@@ -1,3 +1,52 @@
 <h1>Add new article</h1>
 
-<%= render "form" %>
+<%= form_for @article do |f| %>
+    <% if @article.errors.any? %>
+    <div class="error_messages">
+        <h2>Form is invalid</h2>
+        <ul>
+            <% for message in @article.errors.full_messages %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+    <% end %>
+    
+    <p>
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+    </p>
+    <p>
+        <%= f.label :text %>
+        <%= f.text_area :text %>
+    </p>
+    <p>
+        <%= f.label :category %>
+        <%= collection_select(:article, :category_id, Category.all, :id, :name, :prompt => true) %>
+        
+        <%= link_to_function "add new category", "$('#category_name').focus()" %>
+    </p>
+    
+    <p class="button"><%= f.submit %></p>
+<% end %>
+
+<h2>Add new category</h2>
+
+<%= form_for @category, :method => :post, :remote => true do |f| %>
+    <% if @category.errors.any? %>
+    <div class="error_messages">
+        <h2>Form is invalid</h2>
+        <ul>
+            <% for message in @category.errors.full_messages %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+    <% end %>
+    <p>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </p>
+    
+    <p class="button"><%= f.submit %></p>
+<% end %>

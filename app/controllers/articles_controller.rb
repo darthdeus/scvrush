@@ -11,6 +11,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(params[:article])
+    @category = Category.find(@article.category)
     if @article.save
       redirect_to articles_path, :notice => "Article added"
     else
