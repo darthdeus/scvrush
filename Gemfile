@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.1'
-gem 'sqlite3'
 
 group :assets do
   gem 'sass-rails',   '~> 3.1.4'
@@ -12,7 +11,10 @@ end
 gem 'jquery-rails'
 gem 'bcrypt-ruby', :require => 'bcrypt'
 
+gem 'pg', :group => :production
+
 group :development, :test do
+  gem 'sqlite3'
   gem 'nifty-generators'
   gem 'rspec-rails'
   group :darwin do
@@ -31,9 +33,6 @@ group :development, :test do
   gem 'factory_girl_rails'
 end
 
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the web server
 # gem 'unicorn'
