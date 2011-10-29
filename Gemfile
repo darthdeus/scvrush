@@ -2,16 +2,18 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.1'
 
-group :assets do
-  gem 'sass-rails',   '~> 3.1.4'
-  gem 'coffee-rails', '~> 3.1.1'
-  gem 'uglifier', '>= 1.0.3'
-end
-
 gem 'jquery-rails'
 gem 'bcrypt-ruby', :require => 'bcrypt'
 
 gem 'pg', :group => :production
+
+
+gem 'coffee-rails', '~> 3.1.1'
+
+group :assets do
+  gem 'sass-rails',   '~> 3.1.4'
+  gem 'uglifier', '>= 1.0.3'
+end
 
 group :development, :test do
   gem 'sqlite3'
