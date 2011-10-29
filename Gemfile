@@ -28,9 +28,7 @@ group :development, :test do
   gem 'guard-spork', :require => false
   gem 'growl'
   gem 'spork', '> 0.9.0.rc'
-  gem 'cucumber-rails'  
   gem 'database_cleaner'
-  gem 'webrat'
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'factory_girl_rails'
