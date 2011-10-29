@@ -14,5 +14,12 @@ describe "Categories" do
       click_button "Add category"
       page.should have_content("foobar")
     end
+    
+    it "focuses category form when I click 'add new category'" do
+      pending "http://stackoverflow.com/questions/7940525/testing-focus-with-capybara"
+      visit new_article_path
+      click_link "add new category"
+      find_field("category_name").should have_focus
+    end
   end
 end
