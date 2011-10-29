@@ -33,20 +33,10 @@
 <h2>Add new category</h2>
 
 <%= form_for @category, :method => :post, :remote => true do |f| %>
-    <% if @category.errors.any? %>
-    <div class="error_messages">
-        <h2>Form is invalid</h2>
-        <ul>
-            <% for message in @category.errors.full_messages %>
-                <li><%= message %></li>
-            <% end %>
-        </ul>
-    </div>
-    <% end %>
     <p>
         <%= f.label :name %>
         <%= f.text_field :name %>
     </p>
     
-    <p class="button"><%= f.submit %></p>
+    <p class="button"><%= f.submit "Add category" %></p>
 <% end %>
