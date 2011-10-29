@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :article do
-    title "MyString"
-    text "MyText"
-    category nil
+    title "Lorem ipsum"
+    text "Lorem ipsum dolor sit amet"
+    association :category
   end
 end
