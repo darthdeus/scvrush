@@ -10,7 +10,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'sorcery'
+gem 'bcrypt-ruby', :require => 'bcrypt'
 
 group :development, :test do
   gem 'nifty-generators'
