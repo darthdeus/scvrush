@@ -1,0 +1,28 @@
+<%= form_for @article do |f| %>
+    <% if @article.errors.any? %>
+    <div class="error_messages">
+        <h2>Form is invalid</h2>
+        <ul>
+            <% for message in @article.errors.full_messages %>
+                <li><%= message %></li>
+            <% end %>
+        </ul>
+    </div>
+    <% end %>
+    
+    <p>
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+    </p>
+    <p>
+        <%= f.label :text %>
+        <%= f.text_area :text %>
+    </p>
+    <p>
+        <%= f.label :category %>
+        <%= collection_select(:article, :category_id, Category.all, :id, :name, :prompt => true) %>
+        <%= link_to "add new category", new_category_path %>
+    </p>
+    
+    <p class="button"><%= f.submit %></p>
+<% end %>

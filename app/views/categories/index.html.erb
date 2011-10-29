@@ -1,0 +1,9 @@
+<h1>List of all categories</h1>
+
+<ul>
+  <% @categories.each do |category| %>
+    <li><%= category.name %></li>
+  <% end %>  
+</ul>
+
+<%= link_to "back to articles", articles_path %>
