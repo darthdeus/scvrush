@@ -13,7 +13,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(params[:article])
     @category = Category.find(@article.category)
     if @article.save
-      redirect_to root_path, :notice => "Article added"
+      redirect_to root_path, :notice => "Article published"
     else
       render "new"
     end
