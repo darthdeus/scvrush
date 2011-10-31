@@ -18,7 +18,14 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem 'nifty-generators'
+  
   gem 'rspec-rails'
+  gem 'database_cleaner'
+  gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'factory_girl_rails'
+  gem 'launchy'
+  
   group :darwin do
     gem 'rb-fsevent', :require => false
     gem 'rb-inotify', :require => false
@@ -28,10 +35,6 @@ group :development, :test do
   gem 'guard-spork', :require => false
   gem 'growl'
   gem 'spork', '> 0.9.0.rc'
-  gem 'database_cleaner'
-  gem 'capybara'
-  gem 'capybara-webkit'
-  gem 'factory_girl_rails'
 end
 
 
