@@ -8,7 +8,7 @@ class CreatePosts < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :articles, :category_id
-    end
+    add_index :posts, :category_id
+
   end
 end

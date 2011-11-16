@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111029142857) do
+ActiveRecord::Schema.define(:version => 20111116164602) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -28,6 +28,16 @@ ActiveRecord::Schema.define(:version => 20111029142857) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "posts", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "posts", ["category_id"], :name => "index_posts_on_category_id"
 
   create_table "users", :force => true do |t|
     t.string   "username"
