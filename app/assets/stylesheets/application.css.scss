@@ -8,8 +8,7 @@
 
 body {
     background: #F6F6F6 url("/assets/pattern.png") repeat;
-    font-family: Verdana, Helvetica, Arial;
-    font-size: 14px;
+    font: normal normal normal 19px/25px "TeX Gyre Schola","Georgia","Bitstream Charter","Century Schoolbook L","Liberation Serif","Times",serif;
     margin: 0;
     padding: 0;
 }
@@ -169,9 +168,12 @@ label {
     background-color: #eee;
 }
 
+
 @font-face {
     font-family: "BebasNeueRegular";
     font-weight: normal;
     src: url("/assets/BebasNeue-webfont.eot?iefix") format("eot"), url("/assets/BebasNeue-webfont.woff") format("woff"), url("/assets/BebasNeue-webfont.ttf") format("truetype"), url("/assets/BebasNeue-webfont.svg#webfont4Bjy2lJe") format("svg");
 }
+
+
 

@@ -3,9 +3,8 @@ p#notice = notice
 p
   b Title:
   = @post.title
-p
-  b Content:
-  = @post.content
+
+= @post.content.html_safe
 
 = link_to 'Edit', edit_post_path(@post)
 '|

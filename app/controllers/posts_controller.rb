@@ -1,8 +1,12 @@
 class PostsController < ApplicationController
-  before_filter :require_login, :except => :index
+  before_filter :require_login, :except => [:index, :show]
 
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page]).per_page(5)
+  end
+
+  def show
+    @post = Post.find(params[:id])
   end
 
   def new

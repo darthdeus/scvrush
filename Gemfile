@@ -5,10 +5,9 @@ gem 'rails', '3.1.1'
 gem 'jquery-rails'
 gem 'bcrypt-ruby', :require => 'bcrypt'
 
-gem 'pg', :group => :production
-
-
+gem 'will_paginate', '> 3.0'
 gem 'coffee-rails', '~> 3.1.1'
+gem 'mysql'
 
 group :assets do
   gem 'sass-rails',   '~> 3.1.4'
@@ -16,7 +15,6 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'mysql'
   gem 'nifty-generators'
   
   gem 'slim-rails'
@@ -41,7 +39,7 @@ end
 
 
 # Use unicorn as the web server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
