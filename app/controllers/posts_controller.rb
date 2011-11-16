@@ -7,8 +7,8 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
-    @category = Category.new
-    @categories = Category.all
+    # @category = Category.new
+    # @categories = Category.all
   end
 
   def create
