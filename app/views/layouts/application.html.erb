@@ -1,12 +1,9 @@
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:lift="http://liftweb.net/">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-    <meta name="description" content=""/>
-    <meta name="keywords" content=""/>
-    <title class="lift:Menu.title">App: </title>
-    <!--<style class="lift:CSS.blueprint"></style>-->
-    <!--<style class="lift:CSS.fancyType"></style>-->
-    <!-- <link href="/css/style.css" type="text/css" rel="stylesheet" media="screen, projection"/> -->
+    <meta name="description" content="">
+    <meta name="keywords" content="">
 
     <title><%= content_for?(:title) ? yield(:title) : "SCV Rush" %></title>
     <%= stylesheet_link_tag "application" %>
@@ -17,44 +14,42 @@
 
 </head>
 <body>
-<div class="container">
-    <div class="header">
-        <h1>SCV Rush</h1>
-    </div>
+<div id="wrapper">
+    <div id="wrapper-content">
+        
+        <div class="header">
+            <h1>
+                <img src="/assets/logo.png" alt="SCV Rush">
+            </h1>
+        </div>
 
-    <div id="mainmenu">
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Events</a></li>
-            <li><a href="#">Articles</a></li>
-            <li><a href="#">Coaching</a></li>
-            <li><a href="#">Staff</a></li>
-            <li><a href="#">Associates</a></li>
-            <li><a href="#">Members</a></li>
-        </ul>
-    </div>
+        <div id="mainmenu">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="#">Events</a></li>
+                <li><a href="#">Articles</a></li>
+                <li><a href="#">Coaching</a></li>
+                <li><a href="#">Staff</a></li>
+                <li><a href="#">Associates</a></li>
+                <li><a href="<%= !!current_user ? logout_path : login_path %>">Members</a></li>
+            </ul>
+        </div>
 
 
-    <% if current_user %>  
-      Logged in as <%= current_user.username %>
-      <%= link_to "Log out", logout_path %>
-    <% else %>
-      <%= link_to "Sign up", signup_path %>
-      <%= link_to "Log in", login_path %>
-    <% end %>
     
-    <% flash.each do |name, msg| %>
-      <%= content_tag :div, msg, :id => "flash_#{name}" %>
-    <% end %>
-    <%= content_tag :h1, yield(:title) if show_title? %>
+        <% flash.each do |name, msg| %>
+          <%= content_tag :div, msg, :id => "flash_#{name}" %>
+        <% end %>
+        <%= content_tag :h1, yield(:title) if show_title? %>
     
-    <%= yield %>
+        <%= yield %>
 
 
 
-    <hr/>
-    <div class="column span-23 last" style="text-align: center">
-        Copyright &copy; 2011 SCVRush.com
+        <hr/>
+        <div class="column span-23 last" style="text-align: center">
+            Copyright &copy; 2011 SCVRush.com
+        </div>
     </div>
 </div>
 

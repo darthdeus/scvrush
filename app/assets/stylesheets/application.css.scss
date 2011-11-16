@@ -7,33 +7,45 @@
 */
 
 body {
-  background-color: #4B7399;
-  font-family: Verdana, Helvetica, Arial;
-  font-size: 14px;
+    background: #F6F6F6 url("/assets/pattern.png") repeat;
+    font-family: Verdana, Helvetica, Arial;
+    font-size: 14px;
+    margin: 0;
+    padding: 0;
 }
 
 a img {
-  border: none;
+    border: none;
 }
 
 a {
-  color: #0000FF;
+    color: #0000FF;
 }
 
 .clear {
-  clear: both;
-  height: 0;
-  overflow: hidden;
+    clear: both;
+    height: 0;
+    overflow: hidden;
 }
 
-#container {
-  width: 75%;
-  margin: 0 auto;
-  background-color: #FFF;
-  padding: 20px 40px;
-  border: solid 1px black;
-  margin-top: 20px;
+
+#wrapper {
+    width: 1020px;
+    background: url("/assets/wrapper-bg.png") repeat-y;
+    margin: 0 auto;
+    
+    #wrapper-content {
+        width: 940px;
+        margin: 0 auto;
+        padding: 25px 0 25px;
+    }
 }
+//.container {
+//  background-color: #FFF;
+//  padding: 20px 40px;
+//  border: solid 1px black;
+//  margin-top: 20px;
+//}
 
 #flash_notice, #flash_error, #flash_alert {
   padding: 5px 8px;
@@ -86,11 +98,6 @@ label {
     display: block;
 }
 
-.container {
-    width: 960px;
-    margin: 0 auto;
-
-}
 
 #mainmenu {
     font-family: "BebasNeueRegular";
@@ -165,6 +172,6 @@ label {
 @font-face {
     font-family: "BebasNeueRegular";
     font-weight: normal;
-    src: url("../fonts/BebasNeue-webfont.eot?iefix") format("eot"), url("../fonts/BebasNeue-webfont.woff") format("woff"), url("../fonts/BebasNeue-webfont.ttf") format("truetype"), url("../fonts/BebasNeue-webfont.svg#webfont4Bjy2lJe") format("svg");
+    src: url("/assets/BebasNeue-webfont.eot?iefix") format("eot"), url("/assets/BebasNeue-webfont.woff") format("woff"), url("/assets/BebasNeue-webfont.ttf") format("truetype"), url("/assets/BebasNeue-webfont.svg#webfont4Bjy2lJe") format("svg");
 }
 
