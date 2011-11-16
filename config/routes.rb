@@ -1,10 +1,12 @@
 Scvrush::Application.routes.draw do
 
+  resources :posts
+
   get "login" => "sessions#new", :as => "login"
   get "logout" => "sessions#destroy", :as => "logout"
   get "signup" => "users#new", :as => "signup"
 
-  root :to => "articles#index"
+  root :to => "posts#index"
 
   resources :users
   resources :sessions

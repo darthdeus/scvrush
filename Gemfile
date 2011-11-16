@@ -16,8 +16,10 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'sqlite3'
+  gem 'mysql'
   gem 'nifty-generators'
+  
+  gem 'slim-rails'
   
   gem 'rspec-rails'
   gem 'database_cleaner'
