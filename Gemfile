@@ -9,6 +9,7 @@ gem 'will_paginate', '> 3.0'
 gem 'coffee-rails', '~> 3.1.1'
 gem 'mysql'
 
+gem 'slim-rails'
 gem 'therubyracer', :group => :production
 
 group :assets do
@@ -18,9 +19,6 @@ end
 
 group :development, :test do
   gem 'nifty-generators'
-  
-  gem 'slim-rails'
-  
   gem 'rspec-rails'
   gem 'database_cleaner'
   gem 'capybara'
