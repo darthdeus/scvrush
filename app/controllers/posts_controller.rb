@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    redirect_to posts_path, :notice => "Test redirect"
     @post = Post.find(params[:id])
   end
 
@@ -19,7 +20,7 @@ class PostsController < ApplicationController
     @post = Post.new(params[:Post])
     @category = Category.find(@Post.category)
     if @post.save
-      redirect_to Posts_path, :notice => "Post published"
+      redirect_to posts_path, :notice => "Post published"
     else
       render "new"
     end
@@ -27,6 +28,6 @@ class PostsController < ApplicationController
   
   def destroy
     Post.destroy(params[:id])
-    redirect_to Posts_path, :notice => "Post removed"
+    redirect_to posts_path, :notice => "Post removed"
   end
 end
