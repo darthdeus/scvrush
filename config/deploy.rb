@@ -10,6 +10,8 @@ set :branch, "master"
 set :user, "deploy"
 set :runner, user
 set :rails_env, "production"
+set :use_sudo, false
+
 
 set :deploy_to, "/var/apps/#{application}"
 set :deploy_via, :remote_cache
@@ -38,6 +40,7 @@ namespace :deploy do
     run "cd #{release_path}; RAILS_ENV=production bundle exec rake assets:precompile"
   end
 
+  
   after 'deploy:update_code', 'deploy:pipeline_precompile'
   after 'deploy:update_code', 'deploy:symlink_shared'
   
