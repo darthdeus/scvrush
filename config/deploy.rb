@@ -3,7 +3,9 @@ require "bundler/capistrano"
 set :application, "scvrush.com"
 set :domain, "scvrush.xen.prgmr.com"
 
-set :repository,  "git://github.com:darthdeus/scvrush.git"
+default_run_options[:pty] = true
+ssh_options[:forward_agent] = true
+set :repository,  "git@github.com:darthdeus/scvrush.git"
 set :scm, :git
 set :branch, "master"
 
@@ -40,7 +42,6 @@ namespace :deploy do
     run "cd #{release_path}; RAILS_ENV=production bundle exec rake assets:precompile"
   end
 
-  
   after 'deploy:update_code', 'deploy:pipeline_precompile'
   after 'deploy:update_code', 'deploy:symlink_shared'
   
