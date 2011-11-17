@@ -85,14 +85,16 @@ html
         - flash.each do |name, msg|
           = content_tag :div, msg, :id => "flash_#{name}"
         
-        = content_tag :h1, yield(:title) if show_title?
-    
-        = yield
+        #left-wrap          
+          = yield
+
+        #sidebar
+          | This is in a sidebar
 
 
-
-        .footer
-          Copyright &copy; 2011 SCVRush.com
+        #wrapper-footer
+          .footer Copyright &copy; 2011 SCVRush.com
+          
 
         javascript:
           var _gaq = _gaq || [];

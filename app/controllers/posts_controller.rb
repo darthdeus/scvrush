@@ -6,14 +6,11 @@ class PostsController < ApplicationController
   end
 
   def show
-    redirect_to posts_path, :notice => "Test redirect"
     @post = Post.find(params[:id])
   end
 
   def new
     @post = Post.new
-    # @category = Category.new
-    # @categories = Category.all
   end
 
   def create

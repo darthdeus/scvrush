@@ -26,7 +26,9 @@ a img { border:none } /* Gets rid of IE's blue borders */
 
 body {
     background: #F6F6F6 url("/assets/pattern.png") repeat;
-    font: normal normal normal 19px/25px "TeX Gyre Schola","Georgia","Bitstream Charter","Century Schoolbook L","Liberation Serif","Times",serif;
+    font: .75em/1.73em Verdana,Arial,Geneva,Helvetica,sans-serif;
+    
+//    font: normal normal normal 19px/25px "TeX Gyre Schola","Georgia","Bitstream Charter","Century Schoolbook L","Liberation Serif","Times",serif;
     margin: 0;
     padding: 0;
 }
@@ -60,11 +62,24 @@ h1, h2, h3, h4, h5, h6 {
         width: 940px;
         margin: 0 auto;
         padding: 25px 0 25px;
+        overflow: hidden;
+        background: url("/assets/body-splitter.gif") repeat-y 610px 0;
     }
 }
 
+#wrapper-footer {
+    padding-top: 25px;
+    clear: both;
+    .footer {       
+        padding-top: 15px;
+        border-top: 1px solid #aaa;
+        text-align: center;
+        color: #999;
+    }  
+} 
+
 h3.mainpage {    
-    background: url("/assets/heading-box.png") no-repeat;
+    background: url("/assets/heading-box.png") no-repeat -12px 0;
     font-size: 26px;
     margin-bottom: 25px;
     text-shadow: 1px 1px 1px white;
@@ -79,16 +94,6 @@ h3.mainpage {
      }
 
 }
-
-
-//.container {
-//  background-color: #FFF;
-//  padding: 20px 40px;
-//  border: solid 1px black;
-//  margin-top: 20px;
-//}
-
-
 
 label { 
     display: block;
@@ -146,38 +151,24 @@ label {
     li ul li:hover > ul, #navigation li ul li.hover > ul { display: block; position: absolute; top: 0px; left: 170px; z-index: 10; width: 170px; border-left: 1px solid #000000; border-right: 1px solid #000000; border-bottom: 1px solid #000000; background: url('/assets/subnav_bg.png') repeat-x top left; padding-top: 5px; }
     
 }
-//
-//#navigation {
-//    font-family: "BebasNeueRegular";
-//    font-size: 20px;
-//    background: url("/assets/navigation-bg.jpg");
-//    height: 50px;
-//    margin-bottom: 25px;
-//    ul {
-//        margin: 0;
-//        padding: 0;
-//        li {
-//            height: 45px;
-//            padding: 0 2px 0 0;
-//            float: left;
-//            display: block;
-//            list-style: none;
-//            background: url("/assets/navigation-line.gif") center right no-repeat;
-//            a {
-//                color: #FFFFFF;
-//                display: block;
-//                padding: 11px 18px 10px;
-//                text-shadow: 1px 1px 1px #000000;
-//                text-decoration: none;
-//            }
-//            a:hover {
-//                background: url("/assets/navigation-current.png") repeat-x;
-//            }
-//        }
-//        
-//    }
-//}
 
+#left-wrap {
+    float: left;
+    width: 630px;
+    #left-column {
+        width: 600px;
+        padding-left: 10px;
+        padding-right: 20px;
+    }
+
+}
+
+
+#sidebar {
+    float: left;
+    width: 310px;
+    padding: 20px;
+}
 
 .edit_error_class {
     display: block;

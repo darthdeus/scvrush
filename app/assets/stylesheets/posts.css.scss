@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .recent-posts {
-    .post {
+    .recent-post {
         clear: both;
         padding: 10px;
         overflow: hidden;
@@ -16,10 +16,11 @@
         }
         .content {
             float: left;
-            width: 500px;
-            padding: 6px 10px 10px;
+            width: 485px;
+            padding: 5px 10px 10px;
             h3 {
                 font-size: 24px;
+                margin-bottom: 7px;
             }
             p {
                 font-family: arial, sans-serif;
@@ -35,5 +36,24 @@
             a:hover { text-decoration: underline; }
 
         }
+    }
+}
+
+h1 {
+    font: bold 2.45em Arial, Helvetica, sans-serif;                
+    
+}
+
+.single {}
+
+.post {
+    h1 {
+        padding: 17px 0 8px 0;
+        display: block;
+        color: #262626;
+        font-family: 'Droid Sans', Arial, sans-serif;        
+        font-size: 32px;
+        line-height: 40px;
+        
     }
 }
