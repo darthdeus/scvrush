@@ -5,20 +5,34 @@
 .recent-posts {
     .post {
         clear: both;
+        padding: 10px;
+        overflow: hidden;
         img {
+            display: block;
             width: 100px;
             height: 100px;
             float: left;
+            box-shadow: 0 0 4px #666;
         }
         .content {
             float: left;
+            width: 500px;
+            padding: 6px 10px 10px;
             h3 {
                 font-size: 24px;
             }
+            p {
+                font-family: arial, sans-serif;
+                font-size: 12px;
+                line-height: 1.2;
+                color: #666;
+            }
+            
             a {
                 color: #000;
                 text-decoration: none;
             }
+            a:hover { text-decoration: underline; }
 
         }
     }
