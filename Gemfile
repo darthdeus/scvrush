@@ -7,7 +7,7 @@ gem 'bcrypt-ruby', :require => 'bcrypt'
 
 gem 'will_paginate', '> 3.0'
 gem 'coffee-rails', '~> 3.1.1'
-gem 'mysql'
+gem 'mysql2'
 
 gem 'slim-rails'
 gem 'therubyracer', :group => :production

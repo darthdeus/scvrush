@@ -87,7 +87,7 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.17.2)
     multi_json (1.0.3)
-    mysql (2.8.1)
+    mysql2 (0.3.10)
     nifty-generators (0.4.6)
     nokogiri (1.5.0)
     polyglot (0.3.2)
@@ -195,7 +195,7 @@ DEPENDENCIES
   guard-spork
   jquery-rails
   launchy
-  mysql
+  mysql2
   nifty-generators
   rails (= 3.1.1)
   rb-fchange
