@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_filter :require_login, :except => [:index, :show]
 
   def index
-    @posts = Post.page(params[:page]).per_page(5)
+    @posts = Post.order("created_at DESC").limit(5) #page(params[:page]).per_page(5)
   end
 
   def show

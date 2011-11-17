@@ -32,12 +32,10 @@ ActiveRecord::Schema.define(:version => 20111116173741) do
   create_table "posts", :force => true do |t|
     t.string   "title"
     t.text     "content"
-    t.integer  "category_id"
+    t.string   "featured_image"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  add_index "posts", ["category_id"], :name => "index_posts_on_category_id"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"

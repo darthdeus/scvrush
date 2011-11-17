@@ -1,10 +1,14 @@
 h3.mainpage 
-  | List of existing posts
+  | Recent posts
   span.arrows »
 
-
-ul
+.recent-posts
   - @posts.each do |post|
-    li
-      = link_to post.title, post
+    .post
+  
+      = featured_image(post.featured_image)
+      .content
+        h3 
+          = link_to post.title, post
+        = post.content.force_encoding('utf-8').gsub(%r{</?[^>]+?>}, '').slice(0, 300)
     
