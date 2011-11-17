@@ -7,9 +7,4 @@ ul
   - @posts.each do |post|
     li
       = link_to post.title, post
-      br
-      = link_to "delete", post, :method => :delete
-
-= will_paginate @posts
-        
-= link_to "add new post", new_post_path
+    

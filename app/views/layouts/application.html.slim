@@ -1,0 +1,110 @@
+doctype html
+html
+  head
+    meta http-equiv="content-type" content="text/html; charset=UTF-8"
+    meta name="description" content=""
+    meta name="keywords" content=""
+
+    title
+      = content_for?(:title) ? yield(:title) : "SCV Rush"
+      
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tag
+    = yield(:head)
+
+
+  body
+    #wrapper
+      #wrapper-content
+        
+        .header
+          h1
+            img src="/assets/logo.png" alt="SCV Rush"
+
+        #wrapper-navigation
+          #navigation
+            ul
+              li = link_to "Home", root_path
+              li 
+                = link_to "Events", "#"
+                ul
+                  li 
+                    = link_to "Tournaments", "#"
+                    ul
+                      li = link_to "SCV Rush BSG", "#"
+                      li = link_to "Plat/Dia", "#"
+                      li = link_to "Open", "#"
+                  li 
+                    = link_to "Current bracket", "#"
+                  li 
+                    = link_to "Special events", "#"
+                    ul
+                      li = link_to "Contests", "#"
+                      li = link_to "Showmatches", "#"
+                      li = link_to "Misc", "#"
+              li 
+                = link_to "Articles", "#"
+                ul
+                  li 
+                    = link_to "Protoss", "#"
+                    ul
+                      li = link_to "Build Orders", "#"
+                      li = link_to "Strategy", "#"
+                      li = link_to "Units", "#"
+              
+                  li 
+                    = link_to "Zerg", "#"
+                    ul
+                      li = link_to "Build Orders", "#"
+                      li = link_to "Strategy", "#"
+                      li = link_to "Units", "#"
+
+                  li 
+                    = link_to "Terran", "#"
+                    ul
+                      li = link_to "Build Orders", "#"
+                      li = link_to "Strategy", "#"
+                      li = link_to "Units", "#"
+                  li = link_to "Game Diary", "#"
+                  li = link_to "General Tactics", "#"
+                  li = link_to "Vide Replay Analysis", "#"
+            
+              li 
+                = link_to "Coaching", "#"
+                ul
+                  li = link_to "NA", "#"
+                  li = link_to "EU", "#"
+            
+              li = link_to "Staff", "#"
+              li = link_to "Associates", "#"
+              li = link_to "Members", !!current_user ? logout_path : login_path
+
+
+    
+        - flash.each do |name, msg|
+          = content_tag :div, msg, :id => "flash_#{name}"
+        
+        = content_tag :h1, yield(:title) if show_title?
+    
+        = yield
+
+
+
+        .footer
+          Copyright &copy; 2011 SCVRush.com
+
+        javascript:
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', '']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+              var ga = document.createElement('script');
+              ga.type = 'text/javascript';
+              ga.async = true;
+              ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+              var s = document.getElementsByTagName('script')[0];
+              s.parentNode.insertBefore(ga, s);
+          })();
+
