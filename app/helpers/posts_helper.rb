@@ -6,6 +6,6 @@ module PostsHelper
   end
   
   def post_excerpt(content)
-    content.force_encoding('utf-8').gsub(%r{</?[^>]+?>}, '').slice(0, 300)
+    content.force_encoding('utf-8').gsub(%r{</?[^>]+?>}, '').slice(0, 200) + " ..."
   end
 end

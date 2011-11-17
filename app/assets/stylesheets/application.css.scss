@@ -7,26 +7,10 @@
 */
 
 
-/* Global reset */
-/* Based upon 'reset.css' in the Yahoo! User Interface Library: http://developer.yahoo.com/yui */
-*, html, body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, label, fieldset, input, p, blockquote, th, td { margin:0; padding:0 }
-table { border-collapse:collapse; border-spacing:0 }
-fieldset, img { border:0 }
-address, caption, cite, code, dfn, em, strong, th, var { font-style:normal; font-weight:normal }
-ol, ul, li { list-style:none }
-caption, th { text-align:left }
-h1, h2, h3, h4, h5, h6 { font-size:100%; font-weight:normal }
-q:before, q:after { content:''}
-
-/* Global reset-RESET */
-/* The below restores some sensible defaults */
-strong { font-weight: bold }
-em { font-style: italic }
-a img { border:none } /* Gets rid of IE's blue borders */
-
 body {
     background: #F6F6F6 url("/assets/pattern.png") repeat;
     font: .75em/1.73em Verdana,Arial,Geneva,Helvetica,sans-serif;
+    
     
 //    font: normal normal normal 19px/25px "TeX Gyre Schola","Georgia","Bitstream Charter","Century Schoolbook L","Liberation Serif","Times",serif;
     margin: 0;
@@ -46,6 +30,8 @@ a {
     height: 0;
     overflow: hidden;
 }
+
+
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'BebasNeueRegular';
@@ -99,58 +85,6 @@ label {
     display: block;
 }
 
-#wrapper-navigation { 
-    background:url('/assets/navigation-bg.jpg') no-repeat; 
-    height:50px; 
-    margin-top: 10px;
-    margin-bottom: 25px;
-}
-#navigation { 
-    font-family:'BebasNeueRegular'; 
-    font-size:20px; 
-    li { 
-        background:url('/assets/navigation-line.gif') no-repeat right; 
-        float:left; 
-        height:45px; 
-        padding:0 2px 0 0; 
-        position: relative; 
-        z-index: 1000; 
-        a { 
-            color:#FFF; 
-            text-shadow: 1px 1px 1px #000; 
-            padding: 13px 18px 10px 18px; 
-            display: block; 
-            text-decoration: none;
-        }      
-        a:hover { 
-            background: url("/assets/navigation-current.png") repeat-x;
-        }  
-    }
-    li ul { display: none; }
-    li:hover > ul, #navigation li.hover > ul { 
-        display: block; 
-        position: absolute; 
-        top: 45px; 
-        left: 0; 
-        z-index: 10; 
-        width: 170px; 
-        border-left: 1px solid #000000; 
-        border-right: 1px solid #000000; 
-        border-bottom: 1px solid #000000; 
-        background: url('/assets/subnav_bg.png') repeat-x top left; 
-        padding-top: 5px; 
-        }
-    & > div > ul > li > a:hover, 
-    & > div > ul > li.current-menu-item > a { 
-        background:url('/assets/navigation-current.png') repeat-x; 
-    }
-    li > ul li { background: url('/assets/subnav_item_bg.png') repeat-x top left; width: 170px; height: 34px; padding: 0; position: relative; }
-    li > ul li a { padding: 0 15px; text-align: left; line-height: 35px; font-size: 16px; color: #555; text-shadow: none; }
-    li > ul li a:hover { background: url('/assets/subnav_item_hover_bg.png') repeat-x top left; }
-    li > ul li.current-menu-item > a { background: url('/assets/subnav_item_bg.png') repeat-x top left; }
-    li ul li:hover > ul, #navigation li ul li.hover > ul { display: block; position: absolute; top: 0px; left: 170px; z-index: 10; width: 170px; border-left: 1px solid #000000; border-right: 1px solid #000000; border-bottom: 1px solid #000000; background: url('/assets/subnav_bg.png') repeat-x top left; padding-top: 5px; }
-    
-}
 
 #left-wrap {
     float: left;
@@ -167,99 +101,73 @@ label {
 #sidebar {
     float: left;
     width: 310px;
-    padding: 20px;
-}
-
-.edit_error_class {
-    display: block;
-    color: red;
-}
-
-.sidebar ul {
-    margin: 0;
-    padding: 0;
-    border-bottom: 1px solid #ccc;
-}
-
-.sidebar ul li {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    border: 1px solid #ccc;
-    border-bottom: none;
-}
-
-.sidebar ul li a {
-    display: block;
-    padding: 3px;
-    text-indent: 30px;
-    text-decoration: none;
-}
-
-.sidebar ul li span {
-    display: block;
-    padding: 3px;
-    text-indent: 30px;
-    text-decoration: none;
-}
-
-.sidebar ul li a:hover {
-    background-color: #eee;
+    padding: 0px;
+    position: relative;
+    left: -1px;
+    
+    #separator {
+        position: absolute;
+        width: 1px;
+        height: 49px;
+        background: #ccc;
+        left: -1px;
+        top: 2px;
+    }
+    
+    h2 {
+        background: url("/assets/heading-box.png") no-repeat -12px 0;
+        font-size: 26px;
+        margin-bottom: 25px;
+        text-shadow: 1px 1px 1px white;
+        height: 51px;
+        padding-left: 20px;
+        line-height: 45px;
+        color: #333;
+        .arrows { 
+            color: #167ECE;
+            font-size: 37px;
+            font-family: Arial, sans-serif;
+            padding-left: 3px;
+         }
+    }
+    .content {
+        padding: 0 20px;
+    }
 }
 
 
-@font-face {
-    font-family: "BebasNeueRegular";
-    font-weight: normal;
-    src: url("/assets/BebasNeue-webfont.eot?iefix") format("eot"), url("/assets/BebasNeue-webfont.woff") format("woff"), url("/assets/BebasNeue-webfont.ttf") format("truetype"), url("/assets/BebasNeue-webfont.svg#webfont4Bjy2lJe") format("svg");
-}
-
-#flash_notice, #flash_error, #flash_alert {
-  padding: 5px 8px;
-  margin: 10px 0;
-}
-
-#flash_notice {
-  background-color: #CFC;
-  border: solid 1px #6C6;
-}
-
-#flash_error, #flash_alert {
-  background-color: #FCC;
-  border: solid 1px #C66;
-}
-
-.fieldWithErrors {
-  display: inline;
-}
-
-.error_messages {
-  width: 400px;
-  border: 2px solid #CF0000;
-  padding: 0px;
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
-  font-size: 12px;
-}
-
-.error_messages h2 {
-  text-align: left;
-  font-weight: bold;
-  padding: 5px 10px;
-  font-size: 12px;
-  margin: 0;
-  background-color: #c00;
-  color: #fff;
-}
-
-.error_messages p {
-  margin: 8px 10px;
-}
-
-.error_messages ul {
-  margin: 0;
-}
-
-
-
+//.sidebar ul {
+//    margin: 0;
+//    padding: 0;
+//    border-bottom: 1px solid #ccc;
+//}
+//
+//.sidebar ul li {
+//    margin: 0;
+//    padding: 0;
+//    list-style: none;
+//    border: 1px solid #ccc;
+//    border-bottom: none;
+//}
+//
+//.sidebar ul li a {
+//    display: block;
+//    padding: 3px;
+//    text-indent: 30px;
+//    text-decoration: none;
+//}
+//
+//.sidebar ul li span {
+//    display: block;
+//    padding: 3px;
+//    text-indent: 30px;
+//    text-decoration: none;
+//}
+//
+//.sidebar ul li a:hover {
+//    background-color: #eee;
+//}
+//
+//
+//
+//

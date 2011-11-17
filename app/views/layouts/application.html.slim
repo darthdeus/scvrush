@@ -24,62 +24,7 @@ html
 
         #wrapper-navigation
           #navigation
-            ul
-              li = link_to "Home", root_path
-              li 
-                = link_to "Events", "#"
-                ul
-                  li 
-                    = link_to "Tournaments", "#"
-                    ul
-                      li = link_to "SCV Rush BSG", "#"
-                      li = link_to "Plat/Dia", "#"
-                      li = link_to "Open", "#"
-                  li 
-                    = link_to "Current bracket", "#"
-                  li 
-                    = link_to "Special events", "#"
-                    ul
-                      li = link_to "Contests", "#"
-                      li = link_to "Showmatches", "#"
-                      li = link_to "Misc", "#"
-              li 
-                = link_to "Articles", "#"
-                ul
-                  li 
-                    = link_to "Protoss", "#"
-                    ul
-                      li = link_to "Build Orders", "#"
-                      li = link_to "Strategy", "#"
-                      li = link_to "Units", "#"
-              
-                  li 
-                    = link_to "Zerg", "#"
-                    ul
-                      li = link_to "Build Orders", "#"
-                      li = link_to "Strategy", "#"
-                      li = link_to "Units", "#"
-
-                  li 
-                    = link_to "Terran", "#"
-                    ul
-                      li = link_to "Build Orders", "#"
-                      li = link_to "Strategy", "#"
-                      li = link_to "Units", "#"
-                  li = link_to "Game Diary", "#"
-                  li = link_to "General Tactics", "#"
-                  li = link_to "Vide Replay Analysis", "#"
-            
-              li 
-                = link_to "Coaching", "#"
-                ul
-                  li = link_to "NA", "#"
-                  li = link_to "EU", "#"
-            
-              li = link_to "Staff", "#"
-              li = link_to "Associates", "#"
-              li = link_to "Members", !!current_user ? logout_path : login_path
-
+            = render 'shared/menu'
 
     
         - flash.each do |name, msg|
@@ -89,7 +34,7 @@ html
           = yield
 
         #sidebar
-          | This is in a sidebar
+          = render 'shared/sidebar'
 
 
       #wrapper-footer
