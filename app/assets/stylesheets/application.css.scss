@@ -13,7 +13,6 @@
 table { border-collapse:collapse; border-spacing:0 }
 fieldset, img { border:0 }
 address, caption, cite, code, dfn, em, strong, th, var { font-style:normal; font-weight:normal }
-ol, ul, li { list-style:none }
 caption, th { text-align:left }
 h1, h2, h3, h4, h5, h6 { font-size:100%; font-weight:normal }
 q:before, q:after { content:''}
@@ -68,11 +67,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #wrapper-footer {
-    padding-top: 25px;
+    padding: 0 40px;
     clear: both;
     .footer {       
-        padding-top: 15px;
-        border-top: 1px solid #aaa;
+        padding: 15px 0 10px;
+        border-top: 1px solid #eee;
         text-align: center;
         color: #999;
     }  
@@ -118,8 +117,8 @@ label {
         a { 
             color:#FFF; 
             text-shadow: 1px 1px 1px #000; 
-            padding:11px 18px 10px 18px; 
-            display:block; 
+            padding: 13px 18px 10px 18px; 
+            display: block; 
             text-decoration: none;
         }      
         a:hover { 
