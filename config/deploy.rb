@@ -3,7 +3,7 @@ require "bundler/capistrano"
 set :application, "scvrush.com"
 set :domain, "scvrush.xen.prgmr.com"
 
-set :repository,  "git@github.com:darthdeus/scvrush.git"
+set :repository,  "git://github.com:darthdeus/scvrush.git"
 set :scm, :git
 set :branch, "master"
 
