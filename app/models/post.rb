@@ -6,5 +6,5 @@ class Post < ActiveRecord::Base
   
   acts_as_taggable
   
-  scope :recent, order("created_at DESC").limit(5)
+  scope :recent, order("created_at DESC")
 end

@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_filter :require_login, :except => [:index, :show, :tag]
 
   def index
-    @posts = Post.page(params[:page])
+    @posts = Post.recent.page(params[:page])
   end
   
   def tag
