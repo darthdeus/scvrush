@@ -1,9 +1,16 @@
-<h1>Sign Up</h1>
+<%= arrowed_header "Sign up for a new account" %>
+
+<p>
+    Signing up for a new SCV Rush account will allow you to participate
+    in our tournaments, as well as comment on our website and do other social activities.
+</p>
+<p>
+    Already have an account? <%= link_to "Log in here", login_path %>
+</p>
 
 <%= form_for @user do |f| %>
     <% if @user.errors.any? %>
     <div class="error_messages">
-        <h2>Form is invalid</h2>
         <ul>
             <% for message in @user.errors.full_messages %>
                 <li><%= message %></li>
@@ -12,21 +19,24 @@
     </div>
     <% end %>
     
-    <p>
+
+    <div class="field">
         <%= f.label :username %>
         <%= f.text_field :username %>
-    </p>
-    <p>
+    </div>
+    <div class="field">
         <%= f.label :email %>
         <%= f.text_field :email %>
-    </p>
-    <p>
+    </div>
+    <div class="field">
         <%= f.label :password %>
         <%= f.password_field :password %>
-    </p>
-    <p>
+    </div>
+    <div class="field">
         <%= f.label :password_confirmation %>
         <%= f.password_field :password_confirmation %>
-    </p>
-    <p class="button"><%= f.submit %></p>
+    </div>
+    <div class="field">
+        <button type="submit">Sign up</button>
+    </div>
 <% end %>

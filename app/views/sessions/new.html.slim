@@ -1,0 +1,14 @@
+= arrowed_header 'Log in'
+
+= form_tag sessions_path do |f|
+  .field.focused
+    = label_tag :username
+    = text_field_tag :username, params[:username]
+  .field
+    = label_tag :password
+    = password_field_tag :password, params[:password]
+  .field
+    button type="submit" Log in
+    = link_to 'Create a new account', signup_path
+
+    

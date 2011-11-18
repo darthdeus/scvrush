@@ -21,9 +21,10 @@ a img {
     border: none;
 }
 
-a {
-    color: #0000FF;
-}
+a { color: #333; }
+a:hover { color: #666; }
+
+
 
 .clear {
     clear: both;
@@ -48,6 +49,7 @@ h1, h2, h3 {
 h2 { font-size: 24px; font-weight: bold; }
 h3 { font-size: 20px; }
 
+p { margin: 0 0 10px;}
 
 #wrapper {
     width: 1020px;

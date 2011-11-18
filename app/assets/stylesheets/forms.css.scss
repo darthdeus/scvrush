@@ -24,23 +24,12 @@
 }
 
 .error_messages {
-  width: 400px;
-  border: 2px solid #CF0000;
-  padding: 0px;
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
-  font-size: 12px;
-}
-
-.error_messages h2 {
-  text-align: left;
-  font-weight: bold;
-  padding: 5px 10px;
-  font-size: 12px;
-  margin: 0;
-  background-color: #c00;
-  color: #fff;
+    width: 310px;
+    border: 2px solid #966;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #caa;
+    font-size: 12px;
 }
 
 .error_messages p {
@@ -49,4 +38,33 @@
 
 .error_messages ul {
   margin: 0;
+}
+
+.field {
+    display: block;
+    padding: 10px;
+    width: 315px;
+    font-size: 16px;
+
+
+    input, label {
+        display: block;
+    }
+    
+    input, textarea {
+        padding: 5px;
+        width: 300px;
+    }
+    
+    input[type=submit], button[type=submit] {
+        padding: 5px;
+//        width: 311px;
+    }
+    textarea {
+        height: 100px;
+    }
+    
+    &.focused {
+        background: #eee;
+    }
 }
