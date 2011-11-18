@@ -71,7 +71,16 @@
     }
 }
 
-.comments {
+.comments-wrap {
+    
+    .comments {
+        padding: 10px;
+        background: #eee;
+        .comment {
+            border-bottom: 1px solid #ddd;
+        }
+    }
+    
     .new-comment {
         textarea {
             width: 400px;

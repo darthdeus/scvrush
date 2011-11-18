@@ -6,11 +6,22 @@
 
     = @post.content.html_safe
 
-  .comments
-    - @post.comments.each do |comment|
-      .comment-box
-        h4= comment.user.username
-        
-        = comment.content
+  .comments-wrap
+    h2 Comments
+
+    .comments
+      - if @comments.empty?
+        .comment Be the first one to comment on this article!
+      - @comments.each do |comment|
+        .comment
+          h4
+            a href="#{user_path(comment.user_id)}" = comment.author
+          = comment.content
     
-    = render 'comments/form', :locals => { :comment => @comment }
+    - if logged_in?    
+      = render 'comments/form'
+    - else 
+      h2 
+        | You must be 
+        = link_to "logged in", login_path
+        |  to comment

@@ -5,4 +5,8 @@ class Comment < ActiveRecord::Base
   validates :content, :presence => true
   validates :user,    :presence => true
   validates :post,    :presence => true
+  
+  def author
+    self.user.try(:username)    
+  end
 end
