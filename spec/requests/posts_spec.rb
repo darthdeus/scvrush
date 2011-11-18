@@ -3,6 +3,7 @@ require 'spec_helper'
 describe "Posts" do
   describe "GET /posts" do
     it "should create an article for a user who is logged in" do      
+      pending
       user = create(:user)      
       post sessions_path, :username => user.username, :password => user.password
       
