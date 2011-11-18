@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111118020239) do
+ActiveRecord::Schema.define(:version => 20111118030113) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -73,6 +73,8 @@ ActiveRecord::Schema.define(:version => 20111118020239) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "auth_token"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
   end
 
   create_table "wp_commentmeta", :primary_key => "meta_id", :force => true do |t|
@@ -86,7 +88,7 @@ ActiveRecord::Schema.define(:version => 20111118020239) do
 
   create_table "wp_comments", :primary_key => "comment_ID", :force => true do |t|
     t.integer  "comment_post_ID",      :limit => 8,   :default => 0,   :null => false
-    t.text     "comment_author",       :limit => 255,                  :null => false
+    t.text     "comment_author",                                       :null => false
     t.string   "comment_author_email", :limit => 100, :default => "",  :null => false
     t.string   "comment_author_url",   :limit => 200, :default => "",  :null => false
     t.string   "comment_author_IP",    :limit => 100, :default => "",  :null => false
@@ -108,18 +110,18 @@ ActiveRecord::Schema.define(:version => 20111118020239) do
   add_index "wp_comments", ["comment_post_ID"], :name => "comment_post_ID"
 
   create_table "wp_links", :primary_key => "link_id", :force => true do |t|
-    t.string   "link_url",                             :default => "",  :null => false
-    t.string   "link_name",                            :default => "",  :null => false
-    t.string   "link_image",                           :default => "",  :null => false
-    t.string   "link_target",      :limit => 25,       :default => "",  :null => false
-    t.string   "link_description",                     :default => "",  :null => false
-    t.string   "link_visible",     :limit => 20,       :default => "Y", :null => false
-    t.integer  "link_owner",       :limit => 8,        :default => 1,   :null => false
-    t.integer  "link_rating",                          :default => 0,   :null => false
-    t.datetime "link_updated",                                          :null => false
-    t.string   "link_rel",                             :default => "",  :null => false
-    t.text     "link_notes",       :limit => 16777215,                  :null => false
-    t.string   "link_rss",                             :default => "",  :null => false
+    t.string   "link_url",                               :default => "",  :null => false
+    t.string   "link_name",                              :default => "",  :null => false
+    t.string   "link_image",                             :default => "",  :null => false
+    t.string   "link_target",      :limit => 25,         :default => "",  :null => false
+    t.string   "link_description",                       :default => "",  :null => false
+    t.string   "link_visible",     :limit => 20,         :default => "Y", :null => false
+    t.integer  "link_owner",       :limit => 8,          :default => 1,   :null => false
+    t.integer  "link_rating",                            :default => 0,   :null => false
+    t.datetime "link_updated",                                            :null => false
+    t.string   "link_rel",                               :default => "",  :null => false
+    t.text     "link_notes",       :limit => 2147483647,                  :null => false
+    t.string   "link_rss",                               :default => "",  :null => false
   end
 
   add_index "wp_links", ["link_visible"], :name => "link_visible"
@@ -178,18 +180,18 @@ ActiveRecord::Schema.define(:version => 20111118020239) do
   add_index "wp_posts", ["post_type", "post_status", "post_date", "ID"], :name => "type_status_date"
 
   create_table "wp_stoutgc", :force => true do |t|
-    t.text    "name",             :limit => 255, :null => false
-    t.text    "googlecalcode",                   :null => false
-    t.string  "color0",           :limit => 32,  :null => false
-    t.string  "color1",           :limit => 32,  :null => false
-    t.string  "color2",           :limit => 32,  :null => false
-    t.string  "color3",           :limit => 32,  :null => false
-    t.string  "color4",           :limit => 32,  :null => false
-    t.string  "color5",           :limit => 32,  :null => false
-    t.string  "color6",           :limit => 32,  :null => false
-    t.boolean "bkgrdTransparent",                :null => false
-    t.integer "bkgrdImage",       :limit => 3,   :null => false
-    t.string  "bubble_width",     :limit => 32,  :null => false
+    t.text    "name",                           :null => false
+    t.text    "googlecalcode",                  :null => false
+    t.string  "color0",           :limit => 32, :null => false
+    t.string  "color1",           :limit => 32, :null => false
+    t.string  "color2",           :limit => 32, :null => false
+    t.string  "color3",           :limit => 32, :null => false
+    t.string  "color4",           :limit => 32, :null => false
+    t.string  "color5",           :limit => 32, :null => false
+    t.string  "color6",           :limit => 32, :null => false
+    t.boolean "bkgrdTransparent",               :null => false
+    t.integer "bkgrdImage",       :limit => 3,  :null => false
+    t.string  "bubble_width",     :limit => 32, :null => false
   end
 
   add_index "wp_stoutgc", ["id"], :name => "id", :unique => true

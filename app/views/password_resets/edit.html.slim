@@ -1,0 +1,16 @@
+= arrowed_header "Reset password"
+
+= form_for @user, :url => password_reset_path(params[:id]) do |f|
+  -if @user.errors.any?
+    .error_messages
+      ul
+        - for message in @user.errors.full_messages
+          li= message
+  .field
+    = f.label :password
+    = f.password_field :password
+  .field
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+    .field
+      button type="submit" Update Password
