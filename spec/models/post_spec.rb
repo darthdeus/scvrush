@@ -6,7 +6,6 @@ describe Post do
   end
   
   it "should require unique title" do
-    pending
     create(:post, title: "foo")
     duplicate = build(:post, title: "foo")
     duplicate.should_not be_valid
