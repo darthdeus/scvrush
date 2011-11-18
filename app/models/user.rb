@@ -6,8 +6,8 @@ class User < ActiveRecord::Base
   attr_accessor :password  
   before_save :encrypt_password
 
-  validates :username, :presence => true, :uniqueness => true
-  validates :email, :presence => true, :uniqueness => true
+  validates :username, :presence => true, :uniqueness => true, :on => :create
+  validates :email, :presence => true, :uniqueness => true, :on => :create
   validates :password, :confirmation => true
   # validates_confirmation_of :password
   validates_presence_of :password, :on => :create

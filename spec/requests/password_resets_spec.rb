@@ -9,7 +9,7 @@ describe "PasswordResets" do
     click_button "Reset Password"        
     
     current_path.should eq(root_path)
-    page.should have_content("Email sent")
+    page.should have_content("email has been")
     
     last_email.to.should include(user.email)
   end
@@ -21,7 +21,7 @@ describe "PasswordResets" do
     click_button "Reset Password"        
     
     current_path.should eq(root_path)
-    page.should have_content("Email sent")
+    page.should have_content("email has been")
     
     last_email.should be_nil
   end
