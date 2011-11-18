@@ -12,4 +12,12 @@ module PostsHelper
   def post_excerpt(content)
     content.force_encoding('utf-8').gsub(%r{</?[^>]+?>}, '').slice(0, 200) + " ..."
   end
+  
+  def shortenify(title)
+    if title.length > 35
+      title.slice(0, 35) + " ..."
+    else
+      title
+    end
+  end
 end
