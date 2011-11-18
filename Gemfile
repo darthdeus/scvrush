@@ -8,12 +8,14 @@ gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'will_paginate', '> 3.0'
 gem 'coffee-rails', '~> 3.1.1'
 gem 'mysql2'
+gem 'high_voltage'
 
+gem 'unicorn'
+gem 'capistrano'
 gem 'slim-rails'
+
 # find an alternative, https://github.com/bbatsov/rails-style-guide#flawed
 gem 'therubyracer', :group => :production
-
-gem 'high_voltage'
 
 group :assets do
   gem 'sass-rails',   '~> 3.1.4'
@@ -40,13 +42,4 @@ group :development, :test do
   gem 'spork', '> 0.9.0.rc'
 end
 
-
-# Use unicorn as the web server
-gem 'unicorn'
-
-# Deploy with Capistrano
-gem 'capistrano'
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
 
