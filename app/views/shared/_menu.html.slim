@@ -52,4 +52,8 @@ ul
 
   li = link_to "Staff", "#"
   li = link_to "Associates", "#"
-  li = link_to "Members", !!current_user ? logout_path : login_path
+  - if !!current_user
+    li = link_to "Log out", logout_path
+  - else
+    li = link_to "Sign in", login_path
+  / li = link_to "Members", !!current_user ? logout_path : login_path
