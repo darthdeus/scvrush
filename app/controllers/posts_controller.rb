@@ -1,9 +1,19 @@
 class PostsController < ApplicationController
-  before_filter :require_login, :except => [:index, :show]
+  before_filter :require_login, :except => [:index, :show, :tag]
 
   def index
-    @posts = Post.recent
+    @posts = Post.page(params[:page])
     @posts = @posts.tagged_with(params[:tag]) if params[:tag]
+  end
+  
+  def tag
+    if params[:id]
+      @posts = Post.page(params[:page]).tagged_with(params[:id])
+      render :index
+    else
+      flash[:error] = "Tag doesn't exist"
+      redirect_to :action => :index
+    end
   end
   
   def show

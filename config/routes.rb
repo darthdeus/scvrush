@@ -4,9 +4,15 @@ Scvrush::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
+  get "posts/tag/:id" => "posts#tag", :as => "tag"
+
   resources :password_resets
   resources :comments
-  resources :posts
+  resources :posts do
+    collection do
+      get :tag
+    end
+  end
 
   get "login" => "sessions#new", :as => "login"
   get "logout" => "sessions#destroy", :as => "logout"

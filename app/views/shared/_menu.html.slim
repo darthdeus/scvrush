@@ -21,25 +21,27 @@ ul
     = link_to "Articles", page_path("under_construction")
     ul
       li 
-        = link_to "Protoss", posts_path(:tag => "protoss")
+        = link_to "Protoss", tag_path("protoss")
         ul
-          li = link_to "Build Orders", page_path("under_construction")
-          li = link_to "Strategy", page_path("under_construction")
-          li = link_to "Units", page_path("under_construction")
+          li = link_to "Build Orders", tag_path("protoss,build")
+          li = link_to "Strategy",     tag_path("protoss,strategy")
+          li = link_to "Units",        tag_path("protoss,units")
   
       li 
-        = link_to "Zerg", posts_path(:tag => "zerg")
+        = link_to "Zerg", tag_path("zerg")
         ul
-          li = link_to "Build Orders", page_path("under_construction")
-          li = link_to "Strategy", page_path("under_construction")
-          li = link_to "Units", page_path("under_construction")
+          li = link_to "Build Orders", tag_path("zerg,build")
+          li = link_to "Strategy",     tag_path("zerg,strategy")
+          li = link_to "Units",        tag_path("zerg,units")
+
 
       li 
-        = link_to "Terran", posts_path(:tag => "terran")
+        = link_to "Terran", tag_path("terran")
         ul
-          li = link_to "Build Orders", page_path("under_construction")
-          li = link_to "Strategy", page_path("under_construction")
-          li = link_to "Units", page_path("under_construction")
+        li = link_to "Build Orders", tag_path("terran,build")
+        li = link_to "Strategy",     tag_path("terran,strategy")
+        li = link_to "Units",        tag_path("terran,units")
+
       li = link_to "Game Diary", page_path("under_construction")
       li = link_to "General Tactics", page_path("under_construction")
       li = link_to "Vide Replay Analysis", page_path("under_construction")
