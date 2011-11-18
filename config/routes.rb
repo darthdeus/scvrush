@@ -1,7 +1,5 @@
 Scvrush::Application.routes.draw do  
 
-  get "replies/create"
-
   resources :sections
   resources :topics
   resources :replies

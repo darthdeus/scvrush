@@ -25,7 +25,13 @@
     .author {
         font-weight: bold;
         font-size: 18px;
+        span.date {
+            font-size: 12px;
+            font-weight: normal;
+            padding-left: 10px;
+        }
     }
+    
     &:nth-child(even) { background: rgba(#000, 0.02); }
     &:last-child { border-bottom: none; }
 }

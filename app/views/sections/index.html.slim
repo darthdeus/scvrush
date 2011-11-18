@@ -3,5 +3,7 @@
   
   - section.topics.each do |topic|
     .topic
-      .date = topic.created_at
+      .date 
+        = time_ago_in_words(topic.created_at)
+        |  ago
       .name = link_to topic.name, topic
