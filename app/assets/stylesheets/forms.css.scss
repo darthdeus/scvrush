@@ -5,13 +5,14 @@
 }
 
 #flash_notice, #flash_error, #flash_alert {
-  padding: 5px 8px;
-  margin: 10px 0;
+    width: 580px;
+    margin: 10px;
+    padding: 10px;
 }
 
 #flash_notice {
-  background-color: #CFC;
-  border: solid 1px #6C6;
+    background-color: #CFC;
+    border: solid 2px #6C6;
 }
 
 #flash_error, #flash_alert {

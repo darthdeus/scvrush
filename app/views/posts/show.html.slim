@@ -1,12 +1,12 @@
 #left-column
-  p#notice = notice
+  / p#notice = notice
 
   .post
     h1= @post.title
 
     = @post.content.html_safe
 
-  .comments-wrap
+  #comments.comments-wrap
     h2 Comments
 
     .comments

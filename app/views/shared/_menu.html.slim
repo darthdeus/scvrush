@@ -1,62 +1,61 @@
 ul
   li = link_to "Home", root_path
   li 
-    = link_to "Events", "#"
+    = link_to "Events", page_path("under_construction")
     ul
       li 
-        = link_to "Tournaments", "#"
+        = link_to "Tournaments", page_path("under_construction")
         ul
-          li = link_to "SCV Rush BSG", "#"
-          li = link_to "Plat/Dia", "#"
-          li = link_to "Open", "#"
+          li = link_to "SCV Rush BSG", page_path("under_construction")
+          li = link_to "Plat/Dia", page_path("under_construction")
+          li = link_to "Open", page_path("under_construction")
       li 
-        = link_to "Current bracket", "#"
+        = link_to "Current bracket", page_path("under_construction")
       li 
-        = link_to "Special events", "#"
+        = link_to "Special events", page_path("under_construction")
         ul
-          li = link_to "Contests", "#"
-          li = link_to "Showmatches", "#"
-          li = link_to "Misc", "#"
+          li = link_to "Contests", page_path("under_construction")
+          li = link_to "Showmatches", page_path("under_construction")
+          li = link_to "Misc", page_path("under_construction")
   li 
-    = link_to "Articles", "#"
+    = link_to "Articles", page_path("under_construction")
     ul
       li 
-        = link_to "Protoss", "#"
+        = link_to "Protoss", page_path("under_construction")
         ul
-          li = link_to "Build Orders", "#"
-          li = link_to "Strategy", "#"
-          li = link_to "Units", "#"
+          li = link_to "Build Orders", page_path("under_construction")
+          li = link_to "Strategy", page_path("under_construction")
+          li = link_to "Units", page_path("under_construction")
   
       li 
-        = link_to "Zerg", "#"
+        = link_to "Zerg", page_path("under_construction")
         ul
-          li = link_to "Build Orders", "#"
-          li = link_to "Strategy", "#"
-          li = link_to "Units", "#"
+          li = link_to "Build Orders", page_path("under_construction")
+          li = link_to "Strategy", page_path("under_construction")
+          li = link_to "Units", page_path("under_construction")
 
       li 
-        = link_to "Terran", "#"
+        = link_to "Terran", page_path("under_construction")
         ul
-          li = link_to "Build Orders", "#"
-          li = link_to "Strategy", "#"
-          li = link_to "Units", "#"
-      li = link_to "Game Diary", "#"
-      li = link_to "General Tactics", "#"
-      li = link_to "Vide Replay Analysis", "#"
+          li = link_to "Build Orders", page_path("under_construction")
+          li = link_to "Strategy", page_path("under_construction")
+          li = link_to "Units", page_path("under_construction")
+      li = link_to "Game Diary", page_path("under_construction")
+      li = link_to "General Tactics", page_path("under_construction")
+      li = link_to "Vide Replay Analysis", page_path("under_construction")
 
   li 
-    = link_to "Coaching", "#"
+    = link_to "Coaching", page_path("under_construction")
     ul
-      li = link_to "NA", "#"
-      li = link_to "EU", "#"
+      li = link_to "NA", page_path("under_construction")
+      li = link_to "EU", page_path("under_construction")
 
-  li = link_to "Staff", "#"
-  li = link_to "Associates", "#"
+  li = link_to "Staff", page_path("under_construction")
+  li = link_to "Associates", page_path("under_construction")
   - if !!current_user
     li.login = link_to "Log out", logout_path
   - else
     li.login = link_to "Sign in", login_path
-  / li = link_to "Members", !!current_user ? logout_path : login_path
 
   li.stream
     = link_to "Check out our Stream", "http://scvrush.com/stream/"
