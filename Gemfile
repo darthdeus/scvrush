@@ -10,6 +10,7 @@ gem 'mysql2'
 gem 'slim-rails'
 gem 'high_voltage'
 
+gem 'kaminari'
 gem 'acts-as-taggable-on', '~>2.1.0'
 gem 'activeadmin'
 

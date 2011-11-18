@@ -3,8 +3,9 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.recent
+    @posts = @posts.tagged_with(params[:tag]) if params[:tag]
   end
-
+  
   def show
     @post = Post.find(params[:id])
     @comments = @post.comments

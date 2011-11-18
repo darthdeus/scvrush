@@ -21,21 +21,21 @@ ul
     = link_to "Articles", page_path("under_construction")
     ul
       li 
-        = link_to "Protoss", page_path("under_construction")
+        = link_to "Protoss", posts_path(:tag => "protoss")
         ul
           li = link_to "Build Orders", page_path("under_construction")
           li = link_to "Strategy", page_path("under_construction")
           li = link_to "Units", page_path("under_construction")
   
       li 
-        = link_to "Zerg", page_path("under_construction")
+        = link_to "Zerg", posts_path(:tag => "zerg")
         ul
           li = link_to "Build Orders", page_path("under_construction")
           li = link_to "Strategy", page_path("under_construction")
           li = link_to "Units", page_path("under_construction")
 
       li 
-        = link_to "Terran", page_path("under_construction")
+        = link_to "Terran", posts_path(:tag => "terran")
         ul
           li = link_to "Build Orders", page_path("under_construction")
           li = link_to "Strategy", page_path("under_construction")

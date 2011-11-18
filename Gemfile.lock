@@ -248,6 +248,7 @@ DEPENDENCIES
   guard-spork
   high_voltage
   jquery-rails
+  kaminari
   launchy
   mysql2
   nifty-generators
