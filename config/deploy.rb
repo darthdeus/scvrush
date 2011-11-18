@@ -12,7 +12,7 @@ set :branch, "master"
 set :user, "deploy"
 set :runner, user
 set :rails_env, "production"
-# set :use_sudo, false
+set :use_sudo, false
 
 
 set :deploy_to, "/var/apps/#{application}"
