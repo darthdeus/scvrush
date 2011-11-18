@@ -5,14 +5,13 @@ gem 'rails', '3.1.1'
 gem 'jquery-rails'
 gem 'bcrypt-ruby', :require => 'bcrypt'
 
-gem 'will_paginate', '> 3.0'
 gem 'coffee-rails', '~> 3.1.1'
 gem 'mysql2'
+gem 'slim-rails'
 gem 'high_voltage'
 
-gem 'unicorn'
-gem 'capistrano'
-gem 'slim-rails'
+gem 'activeadmin'
+
 
 # find an alternative, https://github.com/bbatsov/rails-style-guide#flawed
 gem 'therubyracer', :group => :production
@@ -42,4 +41,6 @@ group :development, :test do
   gem 'spork', '> 0.9.0.rc'
 end
 
+gem 'unicorn'
+gem 'capistrano'
 

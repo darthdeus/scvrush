@@ -11,7 +11,40 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111118030113) do
+ActiveRecord::Schema.define(:version => 20111118155017) do
+
+  create_table "active_admin_comments", :force => true do |t|
+    t.integer  "resource_id",   :null => false
+    t.string   "resource_type", :null => false
+    t.integer  "author_id"
+    t.string   "author_type"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "namespace"
+  end
+
+  add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
+  add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
+  add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
+
+  create_table "admin_users", :force => true do |t|
+    t.string   "email",                                 :default => "", :null => false
+    t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                         :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
+  add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -88,7 +121,7 @@ ActiveRecord::Schema.define(:version => 20111118030113) do
 
   create_table "wp_comments", :primary_key => "comment_ID", :force => true do |t|
     t.integer  "comment_post_ID",      :limit => 8,   :default => 0,   :null => false
-    t.text     "comment_author",                                       :null => false
+    t.text     "comment_author",       :limit => 255,                  :null => false
     t.string   "comment_author_email", :limit => 100, :default => "",  :null => false
     t.string   "comment_author_url",   :limit => 200, :default => "",  :null => false
     t.string   "comment_author_IP",    :limit => 100, :default => "",  :null => false
@@ -110,18 +143,18 @@ ActiveRecord::Schema.define(:version => 20111118030113) do
   add_index "wp_comments", ["comment_post_ID"], :name => "comment_post_ID"
 
   create_table "wp_links", :primary_key => "link_id", :force => true do |t|
-    t.string   "link_url",                               :default => "",  :null => false
-    t.string   "link_name",                              :default => "",  :null => false
-    t.string   "link_image",                             :default => "",  :null => false
-    t.string   "link_target",      :limit => 25,         :default => "",  :null => false
-    t.string   "link_description",                       :default => "",  :null => false
-    t.string   "link_visible",     :limit => 20,         :default => "Y", :null => false
-    t.integer  "link_owner",       :limit => 8,          :default => 1,   :null => false
-    t.integer  "link_rating",                            :default => 0,   :null => false
-    t.datetime "link_updated",                                            :null => false
-    t.string   "link_rel",                               :default => "",  :null => false
-    t.text     "link_notes",       :limit => 2147483647,                  :null => false
-    t.string   "link_rss",                               :default => "",  :null => false
+    t.string   "link_url",                             :default => "",  :null => false
+    t.string   "link_name",                            :default => "",  :null => false
+    t.string   "link_image",                           :default => "",  :null => false
+    t.string   "link_target",      :limit => 25,       :default => "",  :null => false
+    t.string   "link_description",                     :default => "",  :null => false
+    t.string   "link_visible",     :limit => 20,       :default => "Y", :null => false
+    t.integer  "link_owner",       :limit => 8,        :default => 1,   :null => false
+    t.integer  "link_rating",                          :default => 0,   :null => false
+    t.datetime "link_updated",                                          :null => false
+    t.string   "link_rel",                             :default => "",  :null => false
+    t.text     "link_notes",       :limit => 16777215,                  :null => false
+    t.string   "link_rss",                             :default => "",  :null => false
   end
 
   add_index "wp_links", ["link_visible"], :name => "link_visible"
@@ -180,18 +213,18 @@ ActiveRecord::Schema.define(:version => 20111118030113) do
   add_index "wp_posts", ["post_type", "post_status", "post_date", "ID"], :name => "type_status_date"
 
   create_table "wp_stoutgc", :force => true do |t|
-    t.text    "name",                           :null => false
-    t.text    "googlecalcode",                  :null => false
-    t.string  "color0",           :limit => 32, :null => false
-    t.string  "color1",           :limit => 32, :null => false
-    t.string  "color2",           :limit => 32, :null => false
-    t.string  "color3",           :limit => 32, :null => false
-    t.string  "color4",           :limit => 32, :null => false
-    t.string  "color5",           :limit => 32, :null => false
-    t.string  "color6",           :limit => 32, :null => false
-    t.boolean "bkgrdTransparent",               :null => false
-    t.integer "bkgrdImage",       :limit => 3,  :null => false
-    t.string  "bubble_width",     :limit => 32, :null => false
+    t.text    "name",             :limit => 255, :null => false
+    t.text    "googlecalcode",                   :null => false
+    t.string  "color0",           :limit => 32,  :null => false
+    t.string  "color1",           :limit => 32,  :null => false
+    t.string  "color2",           :limit => 32,  :null => false
+    t.string  "color3",           :limit => 32,  :null => false
+    t.string  "color4",           :limit => 32,  :null => false
+    t.string  "color5",           :limit => 32,  :null => false
+    t.string  "color6",           :limit => 32,  :null => false
+    t.boolean "bkgrdTransparent",                :null => false
+    t.integer "bkgrdImage",       :limit => 3,   :null => false
+    t.string  "bubble_width",     :limit => 32,  :null => false
   end
 
   add_index "wp_stoutgc", ["id"], :name => "id", :unique => true

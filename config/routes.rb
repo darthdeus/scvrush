@@ -1,5 +1,9 @@
 Scvrush::Application.routes.draw do  
 
+  ActiveAdmin.routes(self)
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+
   resources :password_resets
   resources :comments
   resources :posts
