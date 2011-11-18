@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111117233745) do
+ActiveRecord::Schema.define(:version => 20111118020239) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20111117233745) do
     t.string   "password_salt"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "auth_token"
   end
 
   create_table "wp_commentmeta", :primary_key => "meta_id", :force => true do |t|

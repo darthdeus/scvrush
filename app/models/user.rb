@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   # validates_uniqueness_of :username
   # validates_uniqueness_of :email
 
+  before_create { generate_token(:auth_token) }
 
   def self.authenticate(username, password)
     user = find_by_username(username)
@@ -35,5 +36,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+    end while User.exists?(column => self[column])
+  end
   
 end

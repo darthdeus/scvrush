@@ -8,6 +8,9 @@
     = label_tag :password
     = password_field_tag :password, params[:password]
   .field
+    = check_box_tag :remember_me, 1, params[:remember_me]
+    = label_tag :remember_me
+  .field
     button type="submit" Log in
     = link_to 'Create a new account', signup_path
 
