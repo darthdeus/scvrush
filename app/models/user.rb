@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base  
   has_many :comments
+  has_many :replies
   
   attr_accessible :username, :email, :password, :password_confirmation, :password_reset_token
 
