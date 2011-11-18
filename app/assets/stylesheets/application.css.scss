@@ -58,7 +58,7 @@ p { margin: 0 0 10px;}
     #wrapper-content {
         width: 940px;
         margin: 0 auto;
-        padding: 25px 0 25px;
+        padding: 25px 0 0; // 25px;
         overflow: hidden;
         background: url("/assets/body-splitter.gif") repeat-y 610px 0;
     }
@@ -196,3 +196,4 @@ label {
 @import "progress_bar";
 @import "sessions";
 @import "users";
+@import "topics";

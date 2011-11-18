@@ -1,8 +1,7 @@
-= arrowed_header @topic.name
+= arrowed_header @topic.name, "nomargin"
 
 - @replies.each do |reply|
-  p
-    | Author:
-    = reply.user.username
-    
-  p = reply.content
+  .reply
+    .author = link_to reply.user.username, reply.user
+    .date = reply.created_at
+    .content = reply.content

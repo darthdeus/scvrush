@@ -1,3 +1,32 @@
 // Place all the styles related to the topics controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.topic {
+    display: block;
+    padding: 10px;
+    background: rgba(#000, 0.01);
+    border-bottom: 1px solid #ddd;
+    overflow: hidden;
+    
+    &:hover { background: rgba(#000, 0.02); }
+    .name {
+        
+    }
+    .date {
+        float: right;
+    }
+}
+
+.reply {
+    padding: 10px;
+    background: rgba(#000, 0.01);
+    border-bottom: 1px solid #ddd;
+    .author {
+        font-weight: bold;
+        font-size: 18px;
+    }
+    &:nth-child(even) { background: rgba(#000, 0.02); }
+    &:last-child { border-bottom: none; }
+}
+
