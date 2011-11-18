@@ -1,27 +1,27 @@
 #left-column
   / p#notice = notice
+  .show
+    .post
+      h1= @post.title
 
-  .post
-    h1= @post.title
+      = @post.content.html_safe
 
-    = @post.content.html_safe
+    #comments.comments-wrap
+      h2 Comments
 
-  #comments.comments-wrap
-    h2 Comments
-
-    .comments
-      - if @comments.empty?
-        .comment Be the first one to comment on this article!
-      - @comments.each do |comment|
-        .comment
-          h4
-            a href="#{user_path(comment.user_id)}" = comment.author
-          = comment.content
+      .comments
+        - if @comments.empty?
+          .comment Be the first one to comment on this article!
+        - @comments.each do |comment|
+          .comment
+            h4
+              a href="#{user_path(comment.user_id)}" = comment.author
+            = comment.content
     
-    - if logged_in?    
-      = render 'comments/form'
-    - else 
-      h2 
-        | You must be 
-        = link_to "logged in", login_path
-        |  to comment
+      - if logged_in?    
+        = render 'comments/form'
+      - else 
+        h2 
+          | You must be 
+          = link_to "logged in", login_path
+          |  to comment

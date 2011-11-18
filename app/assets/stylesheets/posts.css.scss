@@ -76,37 +76,34 @@
 }
 
 
-.single {}
-
-.post {
-
-
+.single {
+    .post {
+        img {
+            width: 500px;
+            height: 375px;
+            margin: 20px;
+            display: block;
+            border: 10px solid #ddd;
+        }
     
-    img {
-        width: 500px;
-        height: 375px;
-        margin: 20px;
-        display: block;
-        border: 10px solid #ddd;
-    }
+        a { color: #666; }
+        a:hover { color: #aaa; }
     
-    a { color: #666; }
-    a:hover { color: #aaa; }
+        a:hover img {
+            border: 10px solid #ccc;
+        }
     
-    a:hover img {
-        border: 10px solid #ccc;
-    }
+        ol, ul {
+            margin: 15px 0;
+            padding-left: 40px;
+        }    
     
-    ol, ul {
-        margin: 15px 0;
-        padding-left: 40px;
-    }    
-    
-    ul li {
-        list-style: disc;        
-    }
-    ol li {
-        list-style: decimal;
+        ul li {
+            list-style: disc;        
+        }
+        ol li {
+            list-style: decimal;
+        }
     }
 }
 
