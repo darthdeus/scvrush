@@ -12,7 +12,7 @@ set :branch, "master"
 set :user, "deploy"
 set :runner, user
 set :rails_env, "production"
-set :use_sudo, false
+# set :use_sudo, false
 
 
 set :deploy_to, "/var/apps/#{application}"
@@ -22,16 +22,22 @@ role :web, domain
 role :app, domain
 role :db,  domain, :primary => true
 
-
+# 
+# working_directory "/var/apps/scvrush.com/current"
+# pid "/var/apps/scvrush.com/shared/pids/unicorn.pid"
+# stderr_path "/var/apps/scvrush.com/shared/log/unicorn.log"
+# stdout_path "/var/apps/scvrush.com/shared/log/unicorn.log"
+# set :rails_env, :production
 
 namespace :deploy do
-  task :start do 
-    run "touch #{current_path}/tmp/restart.txt"
+  task :start, :roles => :app, :except => { :no_release => true } do 
+    run "#{try_sudo} service unicorn start"
   end
-  task :stop do ; end
+  task :stop, :roles => :app, :except => { :no_release => true } do 
+    run "#{try_sudo} service unicorn stop"    
+  end
   task :restart, :roles => :app, :except => { :no_release => true } do
-    # run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-    run "touch #{current_path}/tmp/restart.txt"
+    run "#{try_sudo} service unicorn restart"
   end
   
   task :symlink_shared do
@@ -44,12 +50,8 @@ namespace :deploy do
 
   after 'deploy:update_code', 'deploy:pipeline_precompile'
   after 'deploy:update_code', 'deploy:symlink_shared'
-  
 end
 
-after 'deploy' do
-  sudo 'service unicorn restart'
-end
 
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
