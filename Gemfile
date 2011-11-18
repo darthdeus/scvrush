@@ -8,22 +8,22 @@ gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'coffee-rails', '~> 3.1.1'
 gem 'mysql2'
 
-gem 'kaminari'
-gem 'activeadmin'
-
 gem 'slim-rails'
-gem 'high_voltage'
-
-gem 'acts-as-taggable-on', '~>2.1.0'
-
-
-# find an alternative, https://github.com/bbatsov/rails-style-guide#flawed
-gem 'therubyracer', :group => :production
-
 group :assets do
   gem 'sass-rails',   '~> 3.1.4'
   gem 'uglifier', '>= 1.0.3'
 end
+
+gem 'kaminari'
+gem 'activeadmin'
+
+gem 'high_voltage'
+
+gem 'acts-as-taggable-on', '~>2.1.0'
+
+# find an alternative, https://github.com/bbatsov/rails-style-guide#flawed
+gem 'therubyracer', :group => :production
+
 
 group :development, :test do
   gem 'nifty-generators'
