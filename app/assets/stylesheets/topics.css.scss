@@ -36,3 +36,10 @@
     &:last-child { border-bottom: none; }
 }
 
+.section .newtopic {
+    float: right;
+    position: relative;
+    top: 4px;
+    right: 10px;
+    font-size: 14px;
+}

@@ -3,7 +3,6 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.page(params[:page])
-    @posts = @posts.tagged_with(params[:tag]) if params[:tag]
   end
   
   def tag

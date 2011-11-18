@@ -13,7 +13,7 @@ module PostsHelper
     content.force_encoding('utf-8').gsub(%r{</?[^>]+?>}, '').slice(0, length) + " ..."
   end
   
-  def shortenify(title, length)
+  def shortenify(title, length = 30)
     if title.length > length
       title.slice(0, length) + " ..."
     else

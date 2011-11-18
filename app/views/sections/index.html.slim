@@ -1,9 +1,14 @@
+
 - @sections.each do |section|
-  = arrowed_header section.name, "nomargin"
-  
-  - section.topics.each do |topic|
-    .topic
-      .date 
-        = time_ago_in_words(topic.created_at)
-        |  ago
-      .name = link_to topic.name, topic
+  .section
+    h2.arrowed.nomargin
+      = section.name
+      span class='arrows' »
+      .newtopic= link_to "add new topic", new_topic_path(:section_id => section)
+    
+    - section.topics.each do |topic|
+      .topic
+        .date 
+          = time_ago_in_words(topic.created_at)
+          |  ago
+        .name = link_to topic.name, topic
