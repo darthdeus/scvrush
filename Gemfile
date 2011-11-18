@@ -7,12 +7,14 @@ gem 'bcrypt-ruby', :require => 'bcrypt'
 
 gem 'coffee-rails', '~> 3.1.1'
 gem 'mysql2'
+
+gem 'kaminari'
+gem 'activeadmin'
+
 gem 'slim-rails'
 gem 'high_voltage'
 
-gem 'kaminari'
 gem 'acts-as-taggable-on', '~>2.1.0'
-gem 'activeadmin'
 
 
 # find an alternative, https://github.com/bbatsov/rails-style-guide#flawed
