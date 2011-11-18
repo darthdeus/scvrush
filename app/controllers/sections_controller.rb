@@ -1,6 +1,6 @@
 class SectionsController < ApplicationController
   def index
-    @sections = Section.all(:include => :topics).order("order DESC")
+    @sections = Section.order("`order` DESC")
   end
 
 end
