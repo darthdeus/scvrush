@@ -1,13 +1,13 @@
 ul
   li 
-    = link_to "Events", page_path("under_construction")
+    = link_to "Events", tag_path("event")
     ul
       li 
-        = link_to "Tournaments", page_path("under_construction")
+        = link_to "Tournaments", tag_path("tournament")
         ul
-          li = link_to "SCV Rush BSG", page_path("under_construction")
-          li = link_to "Plat/Dia", page_path("under_construction")
-          li = link_to "Open", page_path("under_construction")
+          li = link_to "SCV Rush BSG", tag_path("bsg")
+          li = link_to "Plat/Dia", tag_path("plat-dia")
+          li = link_to "Open", tag_path("open")
       li 
         = link_to "Current bracket", page_path("under_construction")
       li 
@@ -17,7 +17,7 @@ ul
           li = link_to "Showmatches", page_path("under_construction")
           li = link_to "Misc", page_path("under_construction")
   li 
-    = link_to "Articles", page_path("under_construction")
+    = link_to "Articles", posts_path
     ul
       li 
         = link_to "Protoss", tag_path("protoss")
@@ -41,9 +41,9 @@ ul
         li = link_to "Strategy",     tag_path("terran,strategy")
         li = link_to "Units",        tag_path("terran,units")
 
-      li = link_to "Game Diary", page_path("under_construction")
-      li = link_to "General Tactics", page_path("under_construction")
-      li = link_to "Vide Replay Analysis", page_path("under_construction")
+      li = link_to "Game Diary", tag_path("game-diary")
+      li = link_to "General Tactics", tag_path("general-tactics")
+      li = link_to "Video Replay Analysis", tag_path("analysis")
 
   li 
     = link_to "Coaching", page_path("under_construction")
