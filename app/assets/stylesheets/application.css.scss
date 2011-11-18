@@ -32,11 +32,21 @@ a {
 }
 
 
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'BebasNeueRegular';
-    color: #333;
+h1 {
+    font: bold 2.45em Arial, Helvetica, sans-serif;     
 }
+
+h1, h2, h3 {
+    padding: 12px 0 9px 0;
+    display: block;
+    color: #262626;
+    font-family: 'Droid Sans', Arial, sans-serif;        
+    font-size: 32px;
+    line-height: 40px;        
+}
+
+h2 { font-size: 24px; font-weight: bold; }
+h3 { font-size: 20px; }
 
 
 #wrapper {
@@ -64,13 +74,15 @@ h1, h2, h3, h4, h5, h6 {
     }  
 } 
 
-h3.mainpage {    
+h2.arrowed, h3.arrowed {    
+    font-family: 'BebasNeueRegular';
+    color: #333;
     background: url("/assets/heading-box.png") no-repeat -12px 0;
     font-size: 26px;
     margin-bottom: 25px;
     text-shadow: 1px 1px 1px white;
     height: 51px;
-    padding-left: 10px;
+    padding: 0 0 0 10px;
     line-height: 45px;
     .arrows { 
         color: #167ECE;
@@ -114,7 +126,7 @@ label {
         top: 2px;
     }
     
-    h2 {
+    h2, h3 {
         background: url("/assets/heading-box.png") no-repeat -12px 0;
         font-size: 26px;
         margin-bottom: 25px;

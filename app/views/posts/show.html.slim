@@ -5,3 +5,12 @@
     h1= @post.title
 
     = @post.content.html_safe
+
+  .comments
+    - @post.comments.each do |comment|
+      .comment-box
+        h4= comment.user.username
+        
+        = comment.content
+    
+    = render 'comments/form', :locals => { :comment => @comment }

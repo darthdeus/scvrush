@@ -1,6 +1,7 @@
 class Post < ActiveRecord::Base
   has_many :taggins
   has_many :tags, :through => :taggings
+  has_many :comments
     
   validates :title, :presence => true
   validates :content, :presence => true

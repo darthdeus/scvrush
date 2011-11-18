@@ -1,5 +1,6 @@
 Scvrush::Application.routes.draw do
 
+  resources :comments
   resources :posts
 
   get "login" => "sessions#new", :as => "login"
@@ -10,8 +11,7 @@ Scvrush::Application.routes.draw do
 
   resources :users
   resources :sessions
-  resources :articles
-  resources :categories
+
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
