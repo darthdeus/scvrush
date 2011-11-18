@@ -1,5 +1,4 @@
 ul
-  li = link_to "Home", root_path
   li 
     = link_to "Events", page_path("under_construction")
     ul
@@ -58,6 +57,8 @@ ul
     li.login = link_to "Log out", logout_path
   - else
     li.login = link_to "Sign in", login_path
+
+  li = link_to "Forum", sections_path
 
   li.stream
     = link_to "Check out our Stream", "http://scvrush.com/stream/"

@@ -1,5 +1,9 @@
 Scvrush::Application.routes.draw do  
 
+  resources :sections
+  resources :topics
+  resources :replies
+  
   get "home/index"
 
   ActiveAdmin.routes(self)
