@@ -1,6 +1,7 @@
 class SectionsController < ApplicationController
   def index
-    @sections = Section.order("`order` DESC")
+    # fix 1+N here
+    @sections = Section.order("`order` ASC")
   end
 
 end
