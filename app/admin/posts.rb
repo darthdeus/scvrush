@@ -14,6 +14,9 @@ ActiveAdmin.register Post do
       f.input :tag_list
       # f.text_area :content
     end
+    f.inputs "Content" do
+      f.text_area :content
+    end
     f.buttons
   end
 end
