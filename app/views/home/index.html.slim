@@ -1,0 +1,22 @@
+= arrowed_header "Recent posts", "nomargin"
+
+.recent-posts
+  - @posts.each do |post|
+    .recent-post
+
+      = featured_image(post)
+      .content
+        h3 = link_to shortenify(post.title, 30), post
+        p  = post_excerpt(post.content, 100)
+    
+= arrowed_header "Tournaments", "nomargin"
+
+.recent-posts
+  - @tournaments.each do |post|
+    .recent-post
+
+      = featured_image(post)
+      .content
+        h3 = link_to shortenify(post.title, 30), post
+        p  = post_excerpt(post.content, 100)
+  

@@ -9,13 +9,13 @@ module PostsHelper
     end
   end
   
-  def post_excerpt(content)
-    content.force_encoding('utf-8').gsub(%r{</?[^>]+?>}, '').slice(0, 200) + " ..."
+  def post_excerpt(content, length = 200)
+    content.force_encoding('utf-8').gsub(%r{</?[^>]+?>}, '').slice(0, length) + " ..."
   end
   
-  def shortenify(title)
-    if title.length > 35
-      title.slice(0, 35) + " ..."
+  def shortenify(title, length)
+    if title.length > length
+      title.slice(0, length) + " ..."
     else
       title
     end

@@ -1,5 +1,7 @@
 Scvrush::Application.routes.draw do  
 
+  get "home/index"
+
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -18,7 +20,7 @@ Scvrush::Application.routes.draw do
   get "logout" => "sessions#destroy", :as => "logout"
   get "signup" => "users#new", :as => "signup"
 
-  root :to => "posts#index"
+  root :to => "home#index"
 
   resources :users
   resources :sessions

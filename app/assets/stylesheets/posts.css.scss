@@ -2,8 +2,47 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.nomargin { margin: 0 !important; }
+
 .recent-posts {
+    clear: both;
+    overflow: hidden;
     .recent-post {
+        background: #fafafa;
+        border-right: 1px solid #dedede;
+        border-left: 1px solid #dedede;
+        border-bottom: 1px solid #dedede;
+        display: block;
+        width: 298px;
+        height: 100px;
+        padding: 5px 10px 5px 5px;
+        float: left;
+
+        &:nth-child(even) { border-left: none; }
+        &:hover { background: #efefef; }
+        h3 {
+            margin-top: 6px;
+            font-size: 12px;
+            line-height: 14px;
+            display: block;
+            height: 14px;
+        }
+        p {
+            font-size: 10px;
+            line-height: 1.4;
+        }
+        img {
+            display: block;
+            width: 60px;
+            height: 60px;
+            float: left;
+            margin: 20px 10px;
+        }
+    }
+}
+
+.all-posts {
+    .post {
         clear: both;
         padding: 10px;
         overflow: hidden;
