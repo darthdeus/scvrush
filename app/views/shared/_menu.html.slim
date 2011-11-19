@@ -1,4 +1,5 @@
 ul
+  li = link_to "Home", root_path
   li 
     = link_to "Events", tag_path("event")
     ul
@@ -10,12 +11,6 @@ ul
           li = link_to "Open", tag_path("open")
       li 
         = link_to "Current bracket", page_path("under_construction")
-      li 
-        = link_to "Special events", page_path("under_construction")
-        ul
-          li = link_to "Contests", page_path("under_construction")
-          li = link_to "Showmatches", page_path("under_construction")
-          li = link_to "Misc", page_path("under_construction")
   li 
     = link_to "Articles", posts_path
     ul
@@ -45,20 +40,16 @@ ul
       li = link_to "General Tactics", tag_path("general-tactics")
       li = link_to "Video Replay Analysis", tag_path("analysis")
 
-  li 
-    = link_to "Coaching", page_path("under_construction")
-    ul
-      li = link_to "NA", page_path("under_construction")
-      li = link_to "EU", page_path("under_construction")
 
   li = link_to "Staff", page_path("under_construction")
   li = link_to "Associates", page_path("under_construction")
+  
+  li = link_to "Forum", sections_path
   - if !!current_user
     li.login = link_to "Log out", logout_path
   - else
     li.login = link_to "Sign in", login_path
 
-  li = link_to "Forum", sections_path
 
   li.stream
     = link_to "Check out our Stream", "http://twitch.tv/scvrush1"
