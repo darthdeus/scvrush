@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
       # end
       redirect_to root_url, :notice => "You are now logged in. Enjoy the community!"
     else
-      flash.now.alert = "Invalid username or password."
+      flash.now.alert = "Invalid username or password. If you are logging in to an account from our old website, please reset your password. We are sorry for any inconvenience caused."
       render "new"
     end
   end

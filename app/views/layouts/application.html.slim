@@ -17,10 +17,25 @@ html
     #wrapper
       #wrapper-content
         
-        .header
+        #header
           h1
             a href="/"
               img src="/assets/logo.png" alt="SCV Rush"
+
+          #upcoming
+            .upcoming
+              h2 There are currently no active tournaments
+            .upcoming
+              h2 
+                | Don't forget to check out our 
+                = link_to 'stream', 'http://twitch.tv/scvrush1'
+            
+            / .upcoming
+            /   h2 [EU] BSG #40
+            /   p starts at 16pm GMT
+            / .upcoming
+            /   h2 [NA] Plat/Dia #32
+            /   p starts in 40 minutes
 
         #wrapper-navigation
           #navigation
