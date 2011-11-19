@@ -161,6 +161,8 @@ label {
 
     &:nth-child(odd) { border-left: none; width: 135px; }
     &:hover { background: #efefef; }
+    
+    a { text-decoration: none; } 
     .name {
         padding-left: 5px;        
         font-size: 14px;
@@ -212,6 +214,7 @@ label {
         .upcoming {
             margin: 10px;
             &:first-child { margin-bottom: 20px;}
+            a { text-decoration: none; }
             h2, p { margin: 0; padding: 0;}
             h2 {
                 margin: 0;

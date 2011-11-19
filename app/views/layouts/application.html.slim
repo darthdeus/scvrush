@@ -23,19 +23,20 @@ html
               img src="/assets/logo.png" alt="SCV Rush"
 
           #upcoming
-            .upcoming
-              h2 There are currently no active tournaments
-            .upcoming
-              h2 
-                | Don't forget to check out our 
-                = link_to 'stream', 'http://twitch.tv/scvrush1'
-            
             / .upcoming
-            /   h2 [EU] BSG #40
-            /   p starts at 16pm GMT
+            /   h2 There are currently no active tournaments
             / .upcoming
-            /   h2 [NA] Plat/Dia #32
-            /   p starts in 40 minutes
+            /   h2 
+            /     | Don't forget to check out our 
+            /     = link_to 'stream', 'http://twitch.tv/scvrush1'
+
+            .upcoming
+              h2 = link_to "[EU] Plat/Dia #10", post_path(9566)
+              p Thursday Nov 24th, 7pm GMT
+              
+            .upcoming
+              h2 = link_to "[EU] BSG #6", post_path(9567)
+              p  Wednesday Nov 23rd, 7pm GMT
 
         #wrapper-navigation
           #navigation

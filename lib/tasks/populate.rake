@@ -11,6 +11,11 @@ namespace :db do
     Post.all.each do |post|
       post.tag_list = "foo,bar,baz"
     end
+
+    6.times do
+      post = Factory(:post)
+      post.tag_list = "coach, na, zerg"      
+    end
     
     salt = BCrypt::Engine.generate_salt
     
