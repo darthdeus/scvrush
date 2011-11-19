@@ -4,6 +4,7 @@ ActiveAdmin.register Post do
     column :title
     column :featured_image
     column :tag_list
+    column :created_at
     default_actions
   end
   
@@ -12,10 +13,8 @@ ActiveAdmin.register Post do
       f.input :title
       f.input :featured_image
       f.input :tag_list
-      # f.text_area :content
-    end
-    f.inputs "Content" do
-      f.text_area :content
+      f.input :created_at
+      f.input :content
     end
     f.buttons
   end
