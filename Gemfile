@@ -35,6 +35,9 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'launchy'
   
+  gem 'populator'
+  gem 'faker'
+  
   group :darwin do
     gem 'rb-fsevent', :require => false
     gem 'rb-inotify', :require => false
