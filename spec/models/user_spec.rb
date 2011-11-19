@@ -35,7 +35,12 @@ describe User do
     it "delivers email to the user" do
       user.send_password_reset
       last_email.to.should include(user.email)
+    end    
+  end
+  
+  describe "points" do    
+    it "has no points when created" do
+      build(:user).current_points.should eq(0)
     end
-    
   end
 end
