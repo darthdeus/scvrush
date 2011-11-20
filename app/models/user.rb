@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   
   attr_accessible :username, :email, :password, :password_confirmation, :password_reset_token
 
+  acts_as_voter
+
   attr_accessor :password  
   before_save :encrypt_password
 

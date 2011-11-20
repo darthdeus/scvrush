@@ -17,12 +17,13 @@ end
 
 gem 'newrelic_rpm'
 
+gem 'rdiscount'
 gem 'kaminari'
 gem 'activeadmin'
-
 gem 'high_voltage'
 
 gem 'acts-as-taggable-on', '~>2.1.0'
+gem 'thumbs_up'
 
 # find an alternative, https://github.com/bbatsov/rails-style-guide#flawed
 gem 'therubyracer', :group => :production
