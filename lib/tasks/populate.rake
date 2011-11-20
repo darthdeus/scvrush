@@ -14,7 +14,7 @@ namespace :db do
 
     6.times do
       post = Factory(:post)
-      post.tag_list = "coach, na, zerg"      
+      post.tag_list = ["coach,na,zerg", "coach,eu,zerg,terran","coach,na,protoss"].sample
     end
     
     salt = BCrypt::Engine.generate_salt

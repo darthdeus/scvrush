@@ -7,44 +7,41 @@
   
 = arrowed_header 'Coaches', 'nomargin'
 
-
-/ - Post.tagged_with("coach").each do |coach|
-/   .coach
-/     .name = coach.title
-/     ul.tags
-/       li= link_to "NA"
-/       li= link_to "Zerg"
-/       li= link_to "Protoss"
+.coach
+  .name = link_to "nDMiniraser", post_path(9565)
+  ul.tags    
+    li= link_to "EU", coach("eu")
+    li= link_to "Zerg", coach("zerg")
 
 .coach
   .name = link_to "Necrosjef", post_path(9525)
   ul.tags
-    li= link_to "EU"
-    li= link_to "Zerg"
-    li= link_to "Terran"
+    li= link_to "EU", coach("eu")
+    li= link_to "Zerg", coach("zerg")
+    li= link_to "Terran", coach("terran")
 
 .coach
   .name = link_to "Proficient", post_path(9524)
   ul.tags
-    li= link_to "NA"
-    li= link_to "All races"
-
-.coach
-  .name = link_to "Cereal", post_path(9523)
-  ul.tags
-    li= link_to "NA"
-    li= link_to "Terran"
-    li= link_to "Protoss"
+    li= link_to "NA", coach("na")
+    li= link_to "All races", coach("protoss")
 
 .coach
   .name = link_to "ESKiLL", post_path(9522)
   ul.tags
-    li= link_to "NA"
-    li= link_to "Zerg"
-
+    li= link_to "NA", coach("na")
+    li= link_to "Zerg", coach("zerg")
 
 .coach
   .name = link_to "Quilliam", post_path(9517)
   ul.tags
-    li= link_to "NA"
-    li= link_to "Protoss"
+    li= link_to "NA", coach("na")
+    li= link_to "Protoss", coach("protoss")
+
+.coach
+  .name = link_to "Ziek", post_path(9466)
+  ul.tags
+    li= link_to "EU", coach("eu")
+    li= link_to "NA", coach("na")
+    li= link_to "Protoss", coach("protoss")
+
