@@ -1,4 +1,5 @@
 require "bundler/capistrano"
+require 'new_relic/recipes'
 
 set :application, "scvrush.com"
 set :domain, "scvrush.xen.prgmr.com"
@@ -51,6 +52,8 @@ namespace :deploy do
   after 'deploy:update_code', 'deploy:symlink_shared'
   after 'deploy:update_code', 'deploy:pipeline_precompile'
 end
+
+after "deploy:update", "newrelic:notice_deployment"
 
 
 # if you're still using the script/reaper helper you will need
