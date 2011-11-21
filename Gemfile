@@ -15,12 +15,15 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'newrelic_rpm'
+
+gem 'rdiscount'
 gem 'kaminari'
 gem 'activeadmin'
-
 gem 'high_voltage'
 
 gem 'acts-as-taggable-on', '~>2.1.0'
+gem 'thumbs_up'
 
 # find an alternative, https://github.com/bbatsov/rails-style-guide#flawed
 gem 'therubyracer', :group => :production
@@ -34,6 +37,12 @@ group :development, :test do
   gem 'capybara-webkit'
   gem 'factory_girl_rails'
   gem 'launchy'
+  
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
+  
+  gem 'populator'
+  gem 'faker'
   
   group :darwin do
     gem 'rb-fsevent', :require => false

@@ -1,0 +1,19 @@
+#left-column
+  .single
+    .post
+      h2= @tournament.name
+      
+      - if @tournament.users.include? current_user
+        = button_to "Cancel your registration for the tournament", { :controller => :signups, :action => :destroy, :id => @tournament.id }, :method => :delete
+      - else
+        = button_to "Sign up for the tournament", :controller => :signups, :action => :create, :method => :post, :id => @tournament.id
+
+      h3 Currently registered players
+
+      - if @tournament.users.empty?
+        p There are no players registered
+      - else
+        ul
+          - @tournament.users.each do |user|
+            li = user.username
+      

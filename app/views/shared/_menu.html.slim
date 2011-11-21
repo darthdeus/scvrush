@@ -1,4 +1,5 @@
 ul
+  li = link_to "Home", root_path
   li 
     = link_to "Events", tag_path("event")
     ul
@@ -9,13 +10,7 @@ ul
           li = link_to "Plat/Dia", tag_path("plat-dia")
           li = link_to "Open", tag_path("open")
       li 
-        = link_to "Current bracket", page_path("under_construction")
-      li 
-        = link_to "Special events", page_path("under_construction")
-        ul
-          li = link_to "Contests", page_path("under_construction")
-          li = link_to "Showmatches", page_path("under_construction")
-          li = link_to "Misc", page_path("under_construction")
+        = link_to "Current bracket", post_path(9511)
   li 
     = link_to "Articles", posts_path
     ul
@@ -32,33 +27,33 @@ ul
           li = link_to "Build Orders", tag_path("zerg,build")
           li = link_to "Strategy",     tag_path("zerg,strategy")
           li = link_to "Units",        tag_path("zerg,units")
-
-
+  
+  
       li 
         = link_to "Terran", tag_path("terran")
         ul
-        li = link_to "Build Orders", tag_path("terran,build")
-        li = link_to "Strategy",     tag_path("terran,strategy")
-        li = link_to "Units",        tag_path("terran,units")
-
+          li = link_to "Build Orders", tag_path("terran,build")
+          li = link_to "Strategy",     tag_path("terran,strategy")
+          li = link_to "Units",        tag_path("terran,units")
+  
       li = link_to "Game Diary", tag_path("game-diary")
       li = link_to "General Tactics", tag_path("general-tactics")
       li = link_to "Video Replay Analysis", tag_path("analysis")
-
+  
+  
+  li = link_to "Staff", post_path(9515)
   li 
-    = link_to "Coaching", page_path("under_construction")
+    = link_to "Associates", post_path(9485)
     ul
-      li = link_to "NA", page_path("under_construction")
-      li = link_to "EU", page_path("under_construction")
-
-  li = link_to "Staff", page_path("under_construction")
-  li = link_to "Associates", page_path("under_construction")
+      li = link_to "GrandMaster Zerg Lectures and Coaching", post_path(9441)
+      li = link_to "The Blindcast!", post_path(9447)
+      li = link_to "Team eXe", post_path(9486)
+      
+  
+  li = link_to "Forum", sections_path
   - if !!current_user
     li.login = link_to "Log out", logout_path
   - else
     li.login = link_to "Sign in", login_path
-
-  li = link_to "Forum", sections_path
-
-  li.stream
-    = link_to "Check out our Stream", "http://scvrush.com/stream/"
+  
+  li.stream = link_to "Check out our Stream", "http://twitch.tv/scvrush1"

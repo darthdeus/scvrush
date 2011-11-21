@@ -1,5 +1,4 @@
-# require 'spec_helper'
-# 
-# describe TopicsController do
-# 
-# end
+require 'spec_helper'
+
+describe TopicsController do
+end

@@ -1,5 +1,10 @@
 = arrowed_header 'Log in'
 
+p 
+  | First time on the new site? You have to 
+  = link_to "reset your password first", new_password_reset_path
+  | .
+
 = form_tag sessions_path do |f|
   .field.focused
     = label_tag :username
