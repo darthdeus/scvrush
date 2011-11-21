@@ -2,6 +2,8 @@ namespace :db do
   desc "Earse and populate the database"
   task :populate => :environment do
     [User, Post].each(&:delete_all)
+
+    Factory(:user, :username => "darthdeus", :password => "admin")
     
     Post.populate 10 do |post|
       post.title    = Populator.words(3..7)
@@ -19,12 +21,27 @@ namespace :db do
     
     salt = BCrypt::Engine.generate_salt
     
-    User.populate 1 do |user|
+    User.populate 15 do |user|
       user.email         = Faker::Internet.email
       user.username      = user.email.sub(/@.*/, '')
       user.password_hash = BCrypt::Engine.hash_secret("secret", salt)
       user.password_salt = salt
     end  
+    
+    Tournament.populate 5 do |tournament|
+      tournament.name = Populator.words(2..5)
+      tournament.starts_at = 1.day.from_now..5.days.from_now                  
+    end
+    
+    users = User.all
+    
+    Tournament.all.each do |tournament|
+      5.times do
+        Factory(:signup, :tournament => tournament, :user => users.sample)
+      end
+    end
+    
+    
   end
   
 end

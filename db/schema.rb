@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111120155831) do
+ActiveRecord::Schema.define(:version => 20111121003016) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -83,6 +83,18 @@ ActiveRecord::Schema.define(:version => 20111120155831) do
     t.integer  "order"
   end
 
+  create_table "signups", :force => true do |t|
+    t.integer  "tournament_id"
+    t.integer  "user_id"
+    t.string   "status"
+    t.integer  "placement"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "signups", ["tournament_id"], :name => "index_signups_on_tournament_id"
+  add_index "signups", ["user_id"], :name => "index_signups_on_user_id"
+
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
     t.integer  "taggable_id"
@@ -110,6 +122,13 @@ ActiveRecord::Schema.define(:version => 20111120155831) do
 
   add_index "topics", ["section_id"], :name => "index_topics_on_section_id"
   add_index "topics", ["user_id"], :name => "index_topics_on_user_id"
+
+  create_table "tournaments", :force => true do |t|
+    t.string   "name"
+    t.datetime "starts_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "username"
