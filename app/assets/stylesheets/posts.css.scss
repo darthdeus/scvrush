@@ -110,6 +110,19 @@
         background: #eee;
         .comment {
             border-bottom: 1px solid #ddd;
+            padding: 10px;
+            h4 {
+                padding-bottom: 10px;
+                span.date {
+                    padding-left: 10px;
+                    display: inline-block;
+                    font-weight: normal;
+                }
+                span.voting {
+                    float: right;
+                    display: inline-block;
+                }
+            }
         }
     }
     

@@ -57,6 +57,18 @@ ActiveRecord::Schema.define(:version => 20111121003016) do
   add_index "comments", ["post_id"], :name => "index_comments_on_post_id"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
+  create_table "points", :force => true do |t|
+    t.integer  "value"
+    t.string   "reason_type"
+    t.integer  "reason_id"
+    t.integer  "user_id"
+    t.string   "note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "points", ["user_id"], :name => "index_points_on_user_id"
+
   create_table "posts", :force => true do |t|
     t.string   "title"
     t.text     "content"

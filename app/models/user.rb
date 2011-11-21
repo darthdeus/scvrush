@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   attr_accessible :username, :email, :password, :password_confirmation, :password_reset_token
 
   acts_as_voter
+  has_karma(:comments, :as => :user)
 
   attr_accessor :password  
   before_save :encrypt_password

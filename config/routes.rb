@@ -1,5 +1,7 @@
 Scvrush::Application.routes.draw do  
 
+
+  resources :votes
   resources :tournaments
   resources :signups
   

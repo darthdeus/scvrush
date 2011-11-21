@@ -2,10 +2,13 @@
 
 .user-profile
 
-  h2 Experience
-
+  h2
+    | Experience: 
+    = @user.karma
+    = (@user.karma > 1) ? ' points' : ' point'
   .progress-bar.blue
 
   h2 
     | This page is a working progress, we'll add detailed user information and profiles soon.
+
   
