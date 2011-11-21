@@ -38,6 +38,9 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'launchy'
   
+  gem 'cucumber-rails'
+  gem 'database_cleaner'
+  
   gem 'populator'
   gem 'faker'
   

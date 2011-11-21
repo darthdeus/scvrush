@@ -36,6 +36,5 @@ describe User do
       user.send_password_reset
       last_email.to.should include(user.email)
     end
-    
   end
 end
