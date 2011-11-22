@@ -50,7 +50,7 @@
     li > ul li.current-menu-item > a { background: url('/assets/subnav_item_bg.png') repeat-x top left; }
     li ul li:hover > ul, #navigation li ul li.hover > ul { display: block; position: absolute; top: 0px; left: 170px; z-index: 10; width: 170px; border-left: 1px solid #000000; border-right: 1px solid #000000; border-bottom: 1px solid #000000; background: url('/assets/subnav_bg.png') repeat-x top left; padding-top: 5px; }
     
-    & > ul > li.login { width: 115px; text-align: center; }
+    & > ul > li.login { width: 112px; text-align: center; }
     
     li.stream {
 //        float: right;
