@@ -1,6 +1,8 @@
 Scvrush::Application.routes.draw do  
 
 
+  get "dashboard/index"
+
   resources :votes
   resources :tournaments
   resources :signups
