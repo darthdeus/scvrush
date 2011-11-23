@@ -5,6 +5,8 @@ class Comment < ActiveRecord::Base
   validates :content, :presence => true
   validates :user,    :presence => true
   validates :post,    :presence => true
+
+  acts_as_voteable
   
   def author
     self.user.try(:username)    

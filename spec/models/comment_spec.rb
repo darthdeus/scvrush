@@ -15,7 +15,7 @@ describe Comment do
   
   context "votes" do
     it "has no votes when created" do
-      build(:comment).votes_for == 0
+      create(:comment).votes_for == 0
     end
     
     it "has one vote for if someone voted" do

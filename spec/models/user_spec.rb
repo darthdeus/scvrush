@@ -40,7 +40,7 @@ describe User do
   
   describe "points" do    
     it "has no points when created" do
-      build(:user).current_points.should eq(0)
+      build(:user).karma.should eq(0)
     end
   end
 end

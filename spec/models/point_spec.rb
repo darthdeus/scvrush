@@ -1,5 +1,7 @@
 require 'spec_helper'
 
 describe Point do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "has a valid factory" do
+    build(:point).should be_valid
+  end
 end
