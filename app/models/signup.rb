@@ -6,7 +6,7 @@ class Signup < ActiveRecord::Base
   scope :registered, where(status: REGISTERED)
   scope :checked, where(status: CHECKED)
   
-  attr_accessible :tournament
+  attr_accessible :tournament, :user
 
   belongs_to :tournament
   belongs_to :user
