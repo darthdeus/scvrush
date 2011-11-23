@@ -11,12 +11,14 @@ gem 'mysql2'
 gem 'slim-rails'
 gem 'sass-rails',   '~> 3.1.4'
   
+gem 'airbrake'
+  
 group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
 gem 'newrelic_rpm'
-gem 'airbrake'
+
 
 gem 'rdiscount'
 gem 'kaminari'
