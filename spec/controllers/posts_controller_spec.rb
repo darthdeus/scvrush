@@ -1,19 +1,17 @@
 require 'spec_helper'
 
 describe PostsController do
-
-  describe "GET 'index'" do
-    it "doesn't show posts that are saved as drafts"
-    it "returns list of published posts"
-  end
-
-  describe "GET 'new'" do
-    it "should require login" do
-      get :new
-      response.should redirect_to('/login')      
-    end
+  describe "GET index" do
+    it "loads only published posts"
   end
   
+  describe "GET 'new'" do
+    it "requires login" do
+      get :new
+      response.should redirect_to('/login')
+    end
+  end
+      
   describe "POST 'create'" do
     it "requires login" do
       post :create
@@ -21,32 +19,36 @@ describe PostsController do
     end
     
     it "requires user to have post rights" do
-      user = create(:user, :role => :subscriber)
-      session[:user_id] = user_id
-      post :create      
+      user = create(:user, :role => User::SUBSCRIBER)
+      session[:user_id] = user.id
+      post :create
+
       response.should redirect_to('/')
-      response.body.should contain("You don't have the rights to post")
+      flash[:error].should match("Access denied")
     end
     it "creates new post belognging to the currently logged in user"
     it "validates the post"
   end
-
+  
   describe "DELETE 'destroy'" do
     it "requires login" do
+      session[:user_id] = nil      
       delete :destroy, :id => 1
       response.should redirect_to('/login')      
     end
+    
 
     it "requires user to be administrator" do
-      user = create(:user, :role => :subscriber)
-      session[:user_id] = user_id
-      delete :destroy      
+      user = create(:user, :role => User::SUBSCRIBER)
+      session[:user_id] = user.id
+
+      delete :destroy, :id => 1
+      # follow_redirect!
+      response.code.should == "302"
       response.should redirect_to('/')
-      response.body.should contain("You don't have the rights to delete a post")      
+      flash[:error].should match("Access denied")
     end
-    
+
     it "sets the status to deleted instead of deleting the post"
   end
-
-
 end

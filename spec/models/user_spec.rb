@@ -43,4 +43,10 @@ describe User do
       build(:user).karma.should eq(0)
     end
   end
+  
+  describe "role" do
+    it "defaults to subscriber" do
+      build(:user).role.should == User::SUBSCRIBER
+    end
+  end
 end

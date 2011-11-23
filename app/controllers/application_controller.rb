@@ -4,6 +4,16 @@ class ApplicationController < ActionController::Base
   
   
   protected
+
+  def require_writer
+    if !logged_in?
+      flash[:error] = "You must be logged in to access this section"
+      redirect_to login_path
+    elsif current_user.role < User::WRITER
+      flash[:error] = "Access denied! You're not authorized to do this."
+      redirect_to root_path
+    end
+  end
   
   def require_login
      unless logged_in?

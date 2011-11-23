@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_filter :require_login, :except => [:index, :show, :tag]
+  before_filter :require_writer, :only => [:new, :create, :destroy]
 
   def index
     @posts = Post.recent.page(params[:page])
@@ -39,4 +39,5 @@ class PostsController < ApplicationController
     Post.destroy(params[:id])
     redirect_to posts_path, :notice => "Post removed"
   end
+  
 end
