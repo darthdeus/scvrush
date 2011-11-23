@@ -2,12 +2,12 @@ class PostsController < ApplicationController
   before_filter :require_writer, :only => [:new, :create, :destroy]
 
   def index
-    @posts = Post.page(params[:page])
+    @posts = Post.published.page(params[:page])
   end
   
   def tag
     if params[:id]
-      @posts = Post.page(params[:page]).tagged_with(params[:id])
+      @posts = Post.published.page(params[:page]).tagged_with(params[:id])
       render :index
     else
       flash[:error] = "Tag doesn't exist"
