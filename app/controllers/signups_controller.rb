@@ -6,7 +6,7 @@ class SignupsController < ApplicationController
     @signup.user = current_user
     @tournament = Tournament.find(params[:id])
     @signup.tournament = @tournament
-    @signup.status = Signup::SIGNED
+    @signup.status = Signup::REGISTERED
     @signup.save!
     redirect_to @tournament, :notice => "You have successfuly registered to the tournament."
   end
