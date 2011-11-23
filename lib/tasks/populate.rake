@@ -20,6 +20,7 @@ namespace :db do
     Post.populate 10 do |post|
       post.title    = Populator.words(3..7)
       post.content  = Populator.paragraphs(2..5)
+      post.status   = Post::PUBLISHED
       
       Comment.populate 5 do |comment|
         comment.content = Populator.paragraphs(1..3)
