@@ -5,7 +5,7 @@
       
       - if logged_in?
         - if current_user.registered_for?(@tournament)
-          - if @tournament.starts_at < 30.minutes.from_now
+          - if @tournament.starts_at < 60.minutes.from_now
             p Signups are closed, only registered users can now check in
             - if current_user.registered_for?(@tournament)
               = button_to "Checkin!", { :controller => :signups, :action => :update, :id => @tournament.id }, :method => :put
@@ -13,11 +13,11 @@
             = button_to "Cancel your registration for the tournament", { :controller => :signups, :action => :destroy, :id => @tournament.id }, :method => :delete
         - elsif current_user.checked_in?(@tournament)
           p You have already checked in.            
-        - elsif @tournament.starts_at > 30.minutes.from_now
+        - elsif @tournament.starts_at > 60.minutes.from_now
           = button_to "Sign up for the tournament", :controller => :signups, :action => :create, :method => :post, :id => @tournament.id
         - else
           p
-            | The tournament starts in less than 30 minutes, you can't sign in
+            | The tournament starts in less than 60 minutes, you can't sign in
       - else
         p 
           | You need to 
@@ -34,11 +34,11 @@
           - @registered_users.each do |signup|
             li = signup.user.username
       
-      h3 Checked in player
       
       - if @checked_users.empty?
         p There are no players checked in yet
       - else
+        h3 Checked in players
         ul
           - @checked_users.each do |signup|
             li = signup.user.username
