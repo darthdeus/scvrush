@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
     signup = Signup.new
     signup.user = self
     signup.tournament = tournament
-    signup.status = Signup::SIGNED
+    signup.status = Signup::REGISTERED
     signup.save!
   end
   
