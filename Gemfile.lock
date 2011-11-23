@@ -41,6 +41,9 @@ GEM
     acts-as-taggable-on (2.1.1)
       rails
     addressable (2.2.6)
+    airbrake (3.0.4)
+      activesupport
+      builder
     arel (2.2.1)
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
@@ -256,6 +259,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin
   acts-as-taggable-on (~> 2.1.0)
+  airbrake
   bcrypt-ruby
   capistrano
   capybara
