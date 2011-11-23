@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_filter :require_writer, :only => [:new, :create, :destroy]
 
   def index
-    @posts = Post.recent.page(params[:page])
+    @posts = Post.page(params[:page])
   end
   
   def tag

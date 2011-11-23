@@ -1,4 +1,8 @@
-class Post < ActiveRecord::Base
+class Post < ActiveRecord::Base  
+  DRAFT = 0
+  PUBLISHED = 1
+  DELETED = 2
+  
   has_many :comments
     
   validates :title, :presence => true #, :uniqueness => true
@@ -6,5 +10,5 @@ class Post < ActiveRecord::Base
   
   acts_as_taggable
   
-  scope :recent, order("created_at DESC")
+  default_scope order("created_at DESC").where(:status => 1)
 end
