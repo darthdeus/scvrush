@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :signup do
-    status "signed"
+    status 0
     placement 0
     association :user
     association :tournament

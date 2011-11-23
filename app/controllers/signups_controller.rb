@@ -17,4 +17,10 @@ class SignupsController < ApplicationController
     redirect_to @tournament, :notice => "You've been signed out."
   end
 
+  def update
+    @tournament = Tournament.find(params[:id])
+    current_user.check_in(@tournament)
+    redirect_to @tournament, :notice => "You've been checked in! Enjoy the tournament."
+  end
+
 end

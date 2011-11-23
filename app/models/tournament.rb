@@ -6,4 +6,5 @@ class Tournament < ActiveRecord::Base
 
   validates :name, :presence => true
   validates :starts_at, :presence => true
+  
 end

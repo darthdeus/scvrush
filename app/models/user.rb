@@ -1,10 +1,8 @@
 class User < ActiveRecord::Base  
   SUBSCRIBER = 0
   WRITER = 1
-  
   ADMIN = 10
-  
-  
+    
   has_many :comments
   has_many :replies
   has_many :signups
@@ -20,8 +18,29 @@ class User < ActiveRecord::Base
   validates :username, :presence => true, :uniqueness => true, :on => :create
   validates :email, :presence => true, :uniqueness => true, :on => :create
   validates :password, :confirmation => true
-  # validates_confirmation_of :password
   validates_presence_of :password, :on => :create
+
+  def sign_up(tournament)
+    signup = Signup.new
+    signup.user = self
+    signup.tournament = tournament
+    signup.save!
+  end
+  
+  def registered_for?(tournament)
+    !self.signups.where(:tournament_id => tournament.id, :status => Signup::REGISTERED).empty?
+  end
+
+  def checked_in?(tournament)
+    !self.signups.where(:tournament_id => tournament.id, :status => Signup::CHECKED).empty?
+  end
+
+  def check_in(tournament)
+    signup = self.signups.where(:tournament_id => tournament.id).first
+    signup.checkin!    
+  end
+
+
 
   before_create { generate_token(:auth_token) }
 
@@ -33,7 +52,6 @@ class User < ActiveRecord::Base
       nil
     end
   end
-
 
   def encrypt_password
     if password.present?
@@ -54,6 +72,5 @@ class User < ActiveRecord::Base
       self[column] = SecureRandom.urlsafe_base64
     end while User.exists?(column => self[column])
   end
-
   
 end
