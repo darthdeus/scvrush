@@ -43,4 +43,22 @@ describe User do
       build(:user).karma.should eq(0)
     end
   end
+  
+  describe "role" do
+    it "defaults to subscriber" do
+      build(:user).role.should == User::SUBSCRIBER
+    end
+  end
+  
+  describe "#checkin" do
+    it "sets signup status to CHECKED" do
+      signup = create(:signup)
+      user = signup.user
+      tournament = signup.tournament
+      
+      user.check_in(tournament)
+      signup.reload
+      signup.status.should == Signup::CHECKED            
+    end
+  end
 end

@@ -5,6 +5,7 @@ ActiveAdmin.register Post do
     column :featured_image
     column :tag_list
     column :created_at
+    column :status
     default_actions
   end
   
@@ -14,6 +15,7 @@ ActiveAdmin.register Post do
       f.input :featured_image
       f.input :tag_list
       f.input :created_at
+      f.input :status
       f.input :content
     end
     f.buttons

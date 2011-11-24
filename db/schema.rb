@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111121003016) do
+ActiveRecord::Schema.define(:version => 20111123154640) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20111121003016) do
     t.string   "featured_image"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "status",         :default => 0
   end
 
   create_table "replies", :force => true do |t|
@@ -98,7 +99,7 @@ ActiveRecord::Schema.define(:version => 20111121003016) do
   create_table "signups", :force => true do |t|
     t.integer  "tournament_id"
     t.integer  "user_id"
-    t.string   "status"
+    t.integer  "status",        :default => 0
     t.integer  "placement"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -152,6 +153,7 @@ ActiveRecord::Schema.define(:version => 20111121003016) do
     t.string   "auth_token"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.integer  "role",                   :default => 0
   end
 
   create_table "votes", :force => true do |t|

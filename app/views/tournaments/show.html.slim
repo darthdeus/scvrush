@@ -3,17 +3,42 @@
     .post
       h2= @tournament.name
       
-      - if @tournament.users.include? current_user
-        = button_to "Cancel your registration for the tournament", { :controller => :signups, :action => :destroy, :id => @tournament.id }, :method => :delete
+      - if logged_in?
+        - if current_user.registered_for?(@tournament)
+          - if @tournament.starts_at < 15.minutes.from_now
+            p Signups are closed, only registered users can now check in
+            - if current_user.registered_for?(@tournament)
+              = button_to "Checkin!", { :controller => :signups, :action => :update, :id => @tournament.id }, :method => :put
+          - else
+            = button_to "Cancel your registration for the tournament", { :controller => :signups, :action => :destroy, :id => @tournament.id }, :method => :delete
+        - elsif current_user.checked_in?(@tournament)
+          p You have already checked in.            
+        - elsif @tournament.starts_at > 15.minutes.from_now
+          = button_to "Sign up for the tournament", :controller => :signups, :action => :create, :method => :post, :id => @tournament.id
+        - else
+          p
+            | The tournament starts in less than 60 minutes, you can't sign in
       - else
-        = button_to "Sign up for the tournament", :controller => :signups, :action => :create, :method => :post, :id => @tournament.id
+        p 
+          | You need to 
+          |  
+          = link_to "log in", login_path
+          |  to play
 
       h3 Currently registered players
-
-      - if @tournament.users.empty?
+      
+      - if @registered_users.empty?
         p There are no players registered
       - else
         ul
-          - @tournament.users.each do |user|
-            li = user.username
+          - @registered_users.each do |signup|
+            li = signup.user.username
       
+      
+      - if @checked_users.empty?
+        p There are no players checked in yet
+      - else
+        h3 Checked in players
+        ul
+          - @checked_users.each do |signup|
+            li = signup.user.username

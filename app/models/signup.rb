@@ -3,8 +3,8 @@ class Signup < ActiveRecord::Base
   CHECKED = 1
   CANCELED = 2
 
-  scope :registered, where(:status => REGISTERED)
-  scope :checked, where(:status => CHECKED)
+  scope :registered, where(status: REGISTERED)
+  scope :checked, where(status: CHECKED)
   
   attr_accessible :tournament, :user
 
@@ -13,5 +13,9 @@ class Signup < ActiveRecord::Base
   
   validates :tournament, :presence => true
   validates :user, :presence => true
-  
+
+  def checkin!
+    self.status = CHECKED
+    self.save!
+  end
 end
