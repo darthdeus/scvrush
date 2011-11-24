@@ -67,5 +67,8 @@ after "deploy:update", "newrelic:notice_deployment"
 #     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
 #   end
 # end
-require './config/boot'
-require 'airbrake/capistrano'
+
+
+# slows down deploys, fix?
+# require './config/boot'
+# require 'airbrake/capistrano'
