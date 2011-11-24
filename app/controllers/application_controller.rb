@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
       flash[:error] = "You must be logged in to access this section"
       redirect_to login_path
     elsif current_user.role < User::WRITER
+      logger.warn "Access denied for #{current_user} with role #{current_user.role}"
       flash[:error] = "Access denied! You're not authorized to do this."
       redirect_to root_path
     end

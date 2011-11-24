@@ -11,6 +11,9 @@ gem 'mysql2'
 gem 'slim-rails'
 gem 'sass-rails',   '~> 3.1.4'
   
+gem 'fog'
+gem 'carrierwave'
+gem 'mini_magick'
 gem 'airbrake'
   
 group :assets do

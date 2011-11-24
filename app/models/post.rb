@@ -9,7 +9,10 @@ class Post < ActiveRecord::Base
   validates :content, :presence => true
   
   acts_as_taggable
-  
-  scope :published, where(:status => 1)  
+
+  scope :drafts, where(:status => DRAFT)
+  scope :published, where(:status => PUBLISHED)  
   default_scope order("created_at DESC")
+
+  mount_uploader :featured_image, FeaturedImageUploader
 end

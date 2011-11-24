@@ -10,7 +10,27 @@
     = f.label :title
     = f.text_field :title
   .field
-    = f.label :content
-    = f.text_area :content
+    .guidelines
+      p Content writing guidelines
+      ul
+        li ## Header 2
+        li ### Header 3 - subheaders
+        li *bold text*
+        li [link to](http://example.com)
+        li ![image name](http://example.com/image.jpg)
+        li 
+          | for lists, use - or *, e.g.
+          ul
+            li * first
+            li * second
+            li * third
+    = f.text_area :content, :rows => 40
+    
+  .field
+    = f.label :featured_image
+    = f.file_field :featured_image
+    
+    - unless @post.featured_image_url.nil?
+      = image_tag @post.featured_image_url(:thumb)
   .actions
     = f.submit 'Save'
