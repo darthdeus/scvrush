@@ -22,7 +22,7 @@ describe PostsController do
     
     it "requires user to have post rights" do
       user = create(:user, :role => :subscriber)
-      session[:user_id] = user_id
+      session[:user_id] = user.id
       post :create      
       response.should redirect_to('/')
       response.body.should contain("You don't have the rights to post")
@@ -39,7 +39,7 @@ describe PostsController do
 
     it "requires user to be administrator" do
       user = create(:user, :role => :subscriber)
-      session[:user_id] = user_id
+      session[:user_id] = user.id
       delete :destroy      
       response.should redirect_to('/')
       response.body.should contain("You don't have the rights to delete a post")      

@@ -51,6 +51,7 @@ group :development, :test do
   end
   gem 'guard-rspec', :require => false
   gem 'guard-spork', :require => false
+  gem 'guard-cucumber'
   gem 'growl'
   gem 'spork', '> 0.9.0.rc'
 end

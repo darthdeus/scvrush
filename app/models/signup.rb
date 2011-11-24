@@ -1,5 +1,12 @@
 class Signup < ActiveRecord::Base
-  attr_accessible :tournament
+  REGISTERED = 0
+  CHECKED = 1
+  CANCELED = 2
+
+  scope :registered, where(:status => REGISTERED)
+  scope :checked, where(:status => CHECKED)
+  
+  attr_accessible :tournament, :user
 
   belongs_to :tournament
   belongs_to :user
