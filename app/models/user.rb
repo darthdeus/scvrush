@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
   validates :password, :confirmation => true
   validates_presence_of :password, :on => :create
 
+  def is_admin?
+    self.role > User::SUBSCRIBER
+  end
+
   def sign_up(tournament)
     signup = Signup.new
     signup.user = self

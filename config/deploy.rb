@@ -17,7 +17,7 @@ set :rails_env, "production"
 
 
 set :deploy_to, "/var/apps/#{application}"
-set :deploy_via, :remote_cache
+set :deploy_via, :copy
 
 role :web, domain
 role :app, domain
