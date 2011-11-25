@@ -6,7 +6,7 @@ set :domain, "scvrush.xen.prgmr.com"
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
-set :repository,  "git@github.com:darthdeus/scvrush.git"
+set :repository,  "git@bitbucket.org:darthdeus/scvrush.git"
 set :scm, :git
 set :branch, "master"
 
