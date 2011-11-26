@@ -2,7 +2,10 @@ h1 Editing post
 
 == render 'form'
 
-= link_to 'Show', @post
-'|
-= link_to 'Back', posts_path
+h2 
+  = link_to 'back to dashboard', :controller => :dashboard, :action => :index
+
+= link_to 'preview - will not save changes!', @post
+
+
 

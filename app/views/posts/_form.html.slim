@@ -25,7 +25,9 @@
             li * second
             li * third
     = f.text_area :content, :rows => 40
-    
+  .field
+    = f.label :status
+    = select :post, :status, [['Draft', 0], ['Published', 1]]
   .field
     = f.label :featured_image
     = f.file_field :featured_image
