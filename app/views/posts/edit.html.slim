@@ -1,11 +1,27 @@
-h1 Editing post
+.post-form
+  h1 Editing post
 
-== render 'form'
+  == render 'form'
 
-h2 
-  = link_to 'back to dashboard', :controller => :dashboard, :action => :index
+  h2 
+    = link_to 'back to dashboard', :controller => :dashboard, :action => :index
 
-= link_to 'preview - will not save changes!', @post
+  = link_to 'preview - will not save changes!', @post
 
+.image-upload
+  h2 Upload new image
 
+  = form_for @image do |f|
+    = f.file_field :image
+    = hidden_field_tag :post_id, @post.id
+    = f.submit
+  
+  h2 Existing images
 
+  ul.images
+    - @images.each do |img|
+      li
+        .image
+          = image_tag img.image_url(:thumb)
+        .url
+          = "![image](#{img.image_url(:normal)})"

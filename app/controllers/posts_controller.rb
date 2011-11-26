@@ -36,6 +36,8 @@ class PostsController < ApplicationController
   
   def edit
     @post = Post.find(params[:id])
+    @image = Image.new
+    @images = Image.last(5)
   end
   
   def update

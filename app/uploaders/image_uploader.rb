@@ -1,20 +1,23 @@
 # encoding: utf-8
-class FeaturedImageUploader < CarrierWave::Uploader::Base
+
+class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
+
   storage :fog
 
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}"
   end
-  
-  # TODO - add default URL
-  
+
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
-  # Create different versions of your uploaded files:
+  version :normal do
+    process :resize_to_fit => [540, 350]
+  end
+  
   version :thumb do
     process :resize_to_fill => [100, 100]
   end

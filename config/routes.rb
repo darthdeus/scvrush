@@ -1,6 +1,7 @@
 Scvrush::Application.routes.draw do  
 
 
+  resources :images
   get "dashboard/index"
 
   resources :votes
