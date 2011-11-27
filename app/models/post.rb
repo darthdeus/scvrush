@@ -15,4 +15,8 @@ class Post < ActiveRecord::Base
   default_scope order("created_at DESC")
 
   mount_uploader :featured_image, FeaturedImageUploader
+  
+  def to_param
+    "#{id}-#{title.parameterize}"
+  end
 end

@@ -15,8 +15,8 @@ class User < ActiveRecord::Base
   attr_accessor :password  
   before_save :encrypt_password
 
-  validates :username, :presence => true, :uniqueness => true, :on => :create
-  validates :email, :presence => true, :uniqueness => true, :on => :create
+  validates :username, :presence => true, :uniqueness => true
+  validates :email, :presence => true, :uniqueness => true
   validates :password, :confirmation => true
   validates_presence_of :password, :on => :create
   
@@ -25,6 +25,10 @@ class User < ActiveRecord::Base
 
   def is_admin?
     self.role > User::SUBSCRIBER
+  end
+
+  def has_bnet_username?
+    self.bnet_username && self.bnet_code
   end
 
   def sign_up(tournament)
@@ -48,7 +52,9 @@ class User < ActiveRecord::Base
     signup.checkin!    
   end
 
-
+  def to_param
+    "#{id}-#{username.parameterize}"
+  end
 
   before_create { generate_token(:auth_token) }
 

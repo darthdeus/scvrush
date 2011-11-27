@@ -1,5 +1,5 @@
 class SignupsController < ApplicationController
-  before_filter :require_login
+  before_filter :require_bnet_username
 
   def create
     @signup = Signup.new
@@ -22,6 +22,15 @@ class SignupsController < ApplicationController
     @tournament = Tournament.find(params[:id])
     current_user.check_in(@tournament)
     redirect_to @tournament, :notice => "You've been checked in! Enjoy the tournament."
+  end
+
+  protected
+  
+  def require_bnet_username
+    require_login
+    unless current_user.has_bnet_username?
+      redirect_to edit_user_path(current_user), :notice => "You can't participate in a tournament unless you fill in your Battle.net username and code."
+    end
   end
 
 end
