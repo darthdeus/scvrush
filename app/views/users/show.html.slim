@@ -1,14 +1,19 @@
 = arrowed_header @user.username + " - profile"
 
 .user-profile
-
-  h2
-    | Experience: 
-    = @user.karma
-    = (@user.karma > 1) ? ' points' : ' point'
-  .progress-bar.blue
-
-  h2 
-    | This page is a working progress, we'll add detailed user information and profiles soon.
-
   
+  ul
+    li 
+      | Username: 
+      = @user.username
+    li
+      | Battle.net: 
+      = "#{@user.bnet_username}.#{@user.bnet_code}"
+    li
+      | Experience: 
+      = pluralize(@user.karma, "points")
+
+  p
+    - if @user == current_user
+      = link_to 'edit your profile', edit_user_path(current_user)
+

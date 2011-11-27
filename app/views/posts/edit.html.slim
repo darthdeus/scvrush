@@ -14,7 +14,8 @@
   = form_for @image do |f|
     = f.file_field :image
     = hidden_field_tag :post_id, @post.id
-    = f.submit
+    p If you made changes to the article, save them before uploading a new image!
+    = f.submit "Upload the image"
   
   h2 Existing images
 

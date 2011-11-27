@@ -1,0 +1,27 @@
+= arrowed_header "Sign up for a new account"
+
+p
+ | Signing up for a new SCV Rush account will allow you to participate
+ | in our tournaments, as well as comment on our website and do other social activities.
+
+= form_for @user do |f|
+  - if @user.errors.any? 
+    .error_messages
+      ul
+        - for message in @user.errors.full_messages
+          li= message
+
+  .field
+    = f.label :username
+    = f.text_field :username
+  .field
+    = f.label :email
+    = f.text_field :email
+  .field
+    = f.label :bnet_username, "Battle.net username (DON'T PUT YOUR CHARACTER CODE HERE)"
+    = f.text_field :bnet_username
+  .field
+    = f.label :bnet_code, "Battle.net character code"
+    = f.text_field :bnet_code
+  .field
+    button type="submit" Update your profile
