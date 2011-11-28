@@ -17,3 +17,11 @@
     - if @user == current_user
       = link_to 'edit your profile', edit_user_path(current_user)
 
+  h2 Recent comments by user
+  ul.comments
+    - @user.comments.each do |comment|
+      li
+        = link_to comment.post.title, post_path(comment.post) + "#comment#{comment.id}"
+        |  - 
+        = comment.content[0..30]
+      

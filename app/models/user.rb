@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
   SUBSCRIBER = 0
   WRITER = 1
   ADMIN = 10
-    
+  
+  
   has_many :comments
   has_many :replies
   has_many :signups
