@@ -21,8 +21,8 @@ class User < ActiveRecord::Base
   validates :password, :confirmation => true
   validates_presence_of :password, :on => :create
   
-  validates_presence_of :bnet_username, :on => :update
-  validates_presence_of :bnet_code, :on => :update
+  # validates_presence_of :bnet_username, :on => :update
+  # validates_presence_of :bnet_code, :on => :update
 
   def is_admin?
     self.role > User::SUBSCRIBER
