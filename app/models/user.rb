@@ -16,8 +16,11 @@ class User < ActiveRecord::Base
   attr_accessor :password  
   before_save :encrypt_password
 
-  validates :username, :presence => true, :uniqueness => true
-  validates :email, :presence => true, :uniqueness => true
+  # TODO - use Rails 3 validations
+  validates_presence_of :username
+  validates :username, :uniqueness => true, :on => :create
+  validates_presence_of :email
+  validates :email, :uniqueness => true, :on => :create
   validates :password, :confirmation => true
   validates_presence_of :password, :on => :create
   
