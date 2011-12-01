@@ -51,7 +51,7 @@ describe User do
   end
   
   describe "#checkin" do
-    it "sets signup status to CHECKED" do
+    it "is CHECKED in" do
       signup = create(:signup)
       user = signup.user
       tournament = signup.tournament
