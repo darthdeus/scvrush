@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
   # validates_presence_of :bnet_username, :on => :update
   # validates_presence_of :bnet_code, :on => :update
 
+  def bnet_info
+    "#{self.bnet_username}.#{self.bnet_code}"
+  end
+
   def is_admin?
     self.role > User::SUBSCRIBER
   end

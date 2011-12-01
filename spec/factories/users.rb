@@ -5,5 +5,7 @@ FactoryGirl.define do
     sequence(:username) { |n| "foo#{n}"}
     password "foobar"
     email { "#{username}@example.com"} 
+    bnet_username { username }
+    bnet_code 939
   end
 end

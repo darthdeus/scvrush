@@ -41,4 +41,9 @@
         h3 Checked in players
         ul
           - @checked_users.each do |signup|
-            li = signup.user.username
+            li 
+              = signup.user.username
+              - if current_user.try(:is_admin?)
+                span.bnet
+                  |  - battle.net info: 
+                  strong = signup.user.bnet_info

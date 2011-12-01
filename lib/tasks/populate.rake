@@ -1,7 +1,7 @@
 namespace :db do
   desc "Earse and populate the database"
   task :populate => :environment do
-    [User, Post].each(&:delete_all)
+    [User, Post, Tournament, Signup].each(&:delete_all)
 
     
     Factory(:user, :username => "darthdeus", :password => "admin")

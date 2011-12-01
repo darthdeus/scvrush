@@ -10,9 +10,9 @@ class FeaturedImageUploader < CarrierWave::Uploader::Base
   # TODO - add default URL
   
   # Provide a default URL as a default if there hasn't been a file uploaded:
-  # def default_url
-  #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
-  # end
+  def default_url
+    "https://s3.amazonaws.com/scvrush/uploads/post/featured_image/thumb_100x100_dark.png"
+  end
 
   # Create different versions of your uploaded files:
   version :thumb do
