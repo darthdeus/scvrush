@@ -2,6 +2,11 @@
   .single
     .post
       h1= @post.title
+      
+      - if @post.user
+        .author
+          | author:  
+          = @post.user.username
 
       = m @post.content
 
