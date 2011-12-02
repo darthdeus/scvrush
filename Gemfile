@@ -37,6 +37,7 @@ gem 'therubyracer', :group => :production
 
 
 group :development, :test do
+  gem 'simplecov'  
   gem 'nifty-generators'
   gem 'rspec-rails'
   gem 'database_cleaner'
