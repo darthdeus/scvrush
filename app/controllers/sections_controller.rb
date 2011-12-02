@@ -1,7 +1,7 @@
 class SectionsController < ApplicationController
   def index
-    # fix 1+N here
-    @sections = Section.order("`order` ASC")
+    # TODO - check 1+N
+    @sections = Section.include(:topics).order("`order` ASC")
   end
 
 end
