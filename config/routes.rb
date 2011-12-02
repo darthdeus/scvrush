@@ -1,16 +1,15 @@
 Scvrush::Application.routes.draw do  
-
-
-  resources :images
+  
+  resources :images, :only => :create
   get "dashboard/index"
 
-  resources :votes
-  resources :tournaments
-  resources :signups
+  resources :votes, :only => [:create, :destroy]
+  resources :tournaments, :only => :show
+  resources :signups, :only => [:create, :destroy, :update]
   
-  resources :sections
-  resources :topics
-  resources :replies
+  resources :sections, :only => :index
+  resources :topics, :only => [:new, :show, :create]
+  resources :replies, :only => :create 
   
   get "home/index"
 
@@ -20,8 +19,8 @@ Scvrush::Application.routes.draw do
 
   get "posts/tag/:id" => "posts#tag", :as => "tag"
 
-  resources :password_resets
-  resources :comments
+  resources :password_resets, :only => [:new, :create, :edit, :update]
+  resources :comments, :only => :create
   resources :posts do
     collection do
       get :tag
@@ -34,8 +33,8 @@ Scvrush::Application.routes.draw do
 
   root :to => "home#index"
 
-  resources :users
-  resources :sessions
+  resources :users, :only => [:new, :create, :edit, :show, :update]
+  resources :sessions, :only => [:new, :create, :destroy]
 
   
   # The priority is based upon order of creation:
