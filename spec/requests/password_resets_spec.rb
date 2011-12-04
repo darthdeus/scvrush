@@ -20,8 +20,8 @@ describe "PasswordResets" do
     fill_in "Email", :with => "nobody@example.com"
     click_button "Reset Password"        
     
-    current_path.should eq(root_path)
-    page.should have_content("email has been")
+    current_path.should eq(signup_path)
+    page.should have_content("The user with given email doesn't exist.")
     
     last_email.should be_nil
   end

@@ -3,14 +3,14 @@ class User < ActiveRecord::Base
   WRITER = 1
   ADMIN = 10
   
-  
   has_many :comments
   has_many :replies
   has_many :signups
   
-  attr_accessible :username, :email, :password, :password_confirmation, :password_reset_token,
-                  :avatar, :race, :league, :server, :favorite_player, :skype, :display_skype, 
-                  :msn, :display_msn, :display_email
+  attr_accessible :username, :email, :password, :password_confirmation, 
+                  :password_reset_token, :avatar, :race, :league, :server, 
+                  :favorite_player, :skype, :display_skype, :msn, 
+                  :display_msn, :display_email, :about
 
   acts_as_voter
   has_karma(:comments, :as => :user)
