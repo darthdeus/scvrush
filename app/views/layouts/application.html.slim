@@ -56,11 +56,14 @@ html
       #wrapper-footer
         .footer 
           | Copyright &copy; 2011 SCVRush.com
-          |  | 
           - if logged_in? && current_user.is_admin?
+            |  | 
             = link_to "dashboard", :controller => :dashboard, :action => :index
           
-
+      #preload
+        img src="/assets/subnav_item_bg.png"
+        img src="/assets/subnav_item_hover_bg.png"
+      
       javascript:
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-21679055-1']);

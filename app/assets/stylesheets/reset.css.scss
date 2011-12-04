@@ -23,3 +23,5 @@ a img { border:none } /* Gets rid of IE's blue borders */
     
 //    src: url("https://s3.amazonaws.com/scvrush/fonts/BebasNeue-webfont.eot?iefix") format("eot"), url("https://s3.amazonaws.com/scvrush/fonts/BebasNeue-webfont.woff") format("woff"), url("https://s3.amazonaws.com/scvrush/fonts/BebasNeue-webfont.ttf") format("truetype"), url("https://s3.amazonaws.com/scvrush/fonts/BebasNeue-webfont.svg#webfont4Bjy2lJe") format("svg");
 }
+
+div#preload { display: none; }
