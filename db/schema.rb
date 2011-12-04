@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111127111921) do
+ActiveRecord::Schema.define(:version => 20111204130435) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -162,6 +162,16 @@ ActiveRecord::Schema.define(:version => 20111127111921) do
     t.integer  "role",                   :default => 0
     t.string   "bnet_username"
     t.string   "bnet_code"
+    t.string   "avatar"
+    t.string   "race"
+    t.string   "league"
+    t.string   "server"
+    t.string   "favorite_player"
+    t.string   "skype"
+    t.string   "msn"
+    t.boolean  "display_email",          :default => false
+    t.boolean  "display_skype",          :default => false
+    t.boolean  "display_msn",            :default => false
   end
 
   create_table "votes", :force => true do |t|

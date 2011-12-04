@@ -17,10 +17,35 @@ p
     = f.label :email
     = f.text_field :email
   .field
+    = f.check_box :display_email
+    = f.label :display_email
+  .field
     = f.label :bnet_username, "Battle.net username (DON'T PUT YOUR CHARACTER CODE HERE)"
     = f.text_field :bnet_username
   .field
-    = f.label :bnet_code, "Battle.net character code"
-    = f.text_field :bnet_code
+    = f.label :race
+    = f.text_field :race
+  .field
+    = f.label :league
+    = f.text_field :league
+  .field
+    = f.label :server
+    = f.text_field :server
+  .field
+    = f.label :favorite_player
+    = f.text_field :favorite_player
+  .field
+    = f.label :skype
+    = f.text_field :skype
+  .field
+    = f.check_box :display_skype
+    = f.label :display_skype
+  .field
+    = f.label :msn
+    = f.text_field :msn
+  .field
+    = f.check_box :display_msn
+    = f.label :display_msn
+  
   .field
     button type="submit" Update your profile

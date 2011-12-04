@@ -8,7 +8,9 @@ class User < ActiveRecord::Base
   has_many :replies
   has_many :signups
   
-  attr_accessible :username, :email, :password, :password_confirmation, :password_reset_token
+  attr_accessible :username, :email, :password, :password_confirmation, :password_reset_token,
+                  :avatar, :race, :league, :server, :favorite_player, :skype, :display_skype, 
+                  :msn, :display_msn, :display_email
 
   acts_as_voter
   has_karma(:comments, :as => :user)

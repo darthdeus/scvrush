@@ -52,8 +52,17 @@ ul
   
   li = link_to "Forum", sections_path
   - if logged_in?
-    li.login = link_to "Log out", logout_path
+    li.login 
+      = link_to "User", "#"
+      ul
+        li = link_to "Profile", current_user
+        li = link_to "Log out", logout_path
   - else
-    li.login = link_to "Sign in", login_path
+    li.login 
+      = link_to "Login", login_path
+      ul
+        li = link_to "Login", login_path
+        li = link_to "Sign up", signup_url
+        li = link_to "Reset password", new_password_reset_path
   
   li.stream = link_to "Check out our Stream", "http://twitch.tv/scvrush1"

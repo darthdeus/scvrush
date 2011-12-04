@@ -24,10 +24,7 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    @user.username      = params[:user][:username]
-    @user.email         = params[:user][:email]
-    @user.bnet_username = params[:user][:bnet_username]
-    @user.bnet_code     = params[:user][:bnet_code]
+    @user.update_attributes(params[:user])
     if @user.save
       redirect_to @user, :notice => "Your profile was successfully updated."
     else

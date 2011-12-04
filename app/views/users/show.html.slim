@@ -13,6 +13,8 @@
       | Experience: 
       = pluralize(@user.karma, "points")
 
+    = info_for_user(@user, %w{race league server favorite_player}, %w{email skype msn})
+
   p
     - if @user == current_user
       = link_to 'edit your profile', edit_user_path(current_user)
