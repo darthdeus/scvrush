@@ -1,6 +1,11 @@
 = arrowed_header @user.username + " - profile"
 
 .user-profile
+  .avatar
+    .image
+      = image_tag @user.avatar.url(:thumb), :alt => @user.username
+    .meta
+      = link_to "change avatar", new_avatar_path
   
   ul
     li 

@@ -105,6 +105,7 @@
 .comments-wrap {
     
     .comments {
+        margin: 0 5px;
         padding: 10px;
         background: #eee;
         .comment {
@@ -174,3 +175,24 @@
     display: block;
     overflow: hidden;
 }
+
+#author-box {
+    padding: 10px;
+    margin: 20px 5px 0;
+    border-radius: 5px;
+    background: #efefef;
+    overflow: hidden;
+    
+    .avatar, .content { float: left; }
+    .avatar img {
+        border-radius: 5px;
+        width: 80px;
+    }
+    .content {
+        .name { font-weight: bold; }
+        padding: 0 10px;
+    }
+}
+
+
+

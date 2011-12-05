@@ -15,10 +15,12 @@
         - @post.tag_list.each do |tag|
           li = link_to tag, "/posts/tag/#{tag}"
 
-    - if @post.user? && @post.user.about?
+    - if @post.user && @post.user.about
       #author-box
-        .name = @post.user.username
-        .about = @post.user.about
+        .avatar = image_tag @post.user.avatar.url(:thumb) if @post.user.avatar?
+        .content 
+          .name = @post.user.username
+          .about = @post.user.about
 
     #comments.comments-wrap
       h2 Comments

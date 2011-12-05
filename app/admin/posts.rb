@@ -6,6 +6,7 @@ ActiveAdmin.register Post do
     column :tag_list
     column :created_at
     column :status
+    column :user
     default_actions
   end
   
@@ -17,6 +18,7 @@ ActiveAdmin.register Post do
       f.input :created_at
       f.input :status
       f.input :content
+      f.input :user
     end
     f.buttons
   end

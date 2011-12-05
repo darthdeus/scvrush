@@ -1,5 +1,7 @@
 Scvrush::Application.routes.draw do  
   
+  resources :avatars
+
   resources :images, :only => :create
   get "dashboard/index"
 
