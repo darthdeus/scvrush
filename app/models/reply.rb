@@ -1,7 +1,4 @@
-class Reply < ActiveRecord::Base
-  # add test for mass assignment check
-  attr_accessible :topic, :content
-  
+class Reply < ActiveRecord::Base  
   belongs_to :topic
   belongs_to :user
   
