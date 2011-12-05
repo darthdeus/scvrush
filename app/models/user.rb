@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :replies
   has_many :signups
+  has_many :posts
   
   attr_accessible :username, :email, :password, :password_confirmation, 
                   :password_reset_token, :avatar, :race, :league, :server, 

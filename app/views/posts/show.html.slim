@@ -14,7 +14,11 @@
       ul.tags
         - @post.tag_list.each do |tag|
           li = link_to tag, "/posts/tag/#{tag}"
-        
+
+    - if @post.user? && @post.user.about?
+      #author-box
+        .name = @post.user.username
+        .about = @post.user.about
 
     #comments.comments-wrap
       h2 Comments
