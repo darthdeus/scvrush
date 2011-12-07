@@ -56,6 +56,8 @@ Spork.each_run do
   #     DatabaseCleaner.strategy = :transaction
   #   end
   #
+  
+  # TODO - check if controllers and helpers are reloaded
 
   require 'factory_girl_rails'
   # reload all the models

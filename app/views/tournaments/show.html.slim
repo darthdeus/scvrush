@@ -3,12 +3,15 @@
     .post
       h2= @tournament.name
       
-      - if @tournament.checkin_open?
+      - if current_user.checked_in? @tournament
+        p You have already checked in.
+      - elsif @tournament.checkin_open?
         = checkin_button @tournament
-      - if @tournament.signup_open?
+      - elsif current_user.registered_for? @tournament
+        = cancel_signup_button @tournament
+      - elsif @tournament.signup_open?
         = signup_button @tournament      
-        
-      = cancel_signup_button @tournament
+      
       
       /   - if current_user.registered_for?(@tournament)
       /     - if signups_open?(@tournament)
@@ -54,3 +57,8 @@
                   strong = signup.user.bnet_info
                   |  
                   em = signup.user.email
+                  
+        - if current_user.try(:is_admin?)
+          ul
+            - @checked_users.each do |signup|
+              li = signup.user.email
