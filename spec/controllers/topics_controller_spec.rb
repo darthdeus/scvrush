@@ -2,45 +2,27 @@ require 'spec_helper'
 
 describe TopicsController do
   
+  def assigns_should_match(h)
+    h.each { |k,v| assigns[k].should == v }
+  end
+  
   describe "#new" do
-    it "builds a topic with a given section" do
-      @new_topic = mock_model(Topic)
-      @topics = mock('topics')
-      @topics.should_receive(:build).and_return(@new_topic)
-    
-      @section = mock_model(Section)
-      @section.should_receive(:topics).and_return(@topics)
-    
-      Section.should_receive(:find).with("1").and_return(@section)
-      get :new, :section_id => 1
-    
-      assigns[:topic].should == @new_topic
+    it "buildes a new section" do
+      pending "https://gist.github.com/484282"
+      section = stub_chain(:topics, :build).and_return(:new_topic)
+      Section.should_receive(:find).with("1").and_return(section)
+
+      get :new, section_id: 1
+
+      assigns_should_match section: section, topic: :new_topic      
     end
   end
   
-  describe "#show" do
-    it "loads a topic by id" do
-      @topic = mock_model(Topic)
-      @topic.should_receive(:replies)
-      
-      @arel_mock = mock("find_result")
-      Topic.should_receive(:includes).with(:replies).and_return(@arel_mock)
-      @arel_mock.should_receive(:find).with("1").and_return(@topic)
-      
-      get :show, :id => 1
-      
-      assigns[:topic].should be(@topic)
-    end
+  specify :create do
+    @section = mock_model(Section)
+    Section.stub!(:find).with("1").and_return(@section)
+    
+    post :create, 'topic[section_id]' => 1
   end
   
-  describe "#create" do
-    it "creates new topic and reply based on given valid data" do
-      @section = mock_model(Section)
-      Section.should_receive(:find).with("1").and_return(@section)
-      
-      
-      
-      
-    end
-  end
 end

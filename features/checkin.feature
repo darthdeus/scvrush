@@ -1,13 +1,35 @@
 Feature: Checkin
-  In order to participate in a tounrnament
-  As a player
-  I want to check in
-
-  Scenario: signed up user wants to check in
-    Given I am signed up for a tournament
+  Users should be able to sign up and check in for a tournament
+  
+  Scenario Outline: user tries to check in too early
+    Given I have a tournament starting in <time>
     And I am on that tournament page
-    When I click on "check in"
-    Then I should see "You have successfuly checked in."
+    Then I should not be able to check in
+    
+  Examples:
+    | time       |
+    | 25 hours   |
+    | 24 hours   |
+    | 23 hours   |
+    | 2 hours    |
+    | 1 hour     |
+    | 20 minutes |
+
+    
+  Scenario: user tries to check in within the checkin time
+    Given I have a tournament starting in 10 minutes
+    And I am on that tournament page
+    Then I should be able to check in
+
+  Scenario: user tries to sign up in time
+    Given I have a tournament starting in 30 minutes
+    And I am on that tournament page
+    Then I should be able to sign up
+    
+  Scenario: user tries to sign up too late
+    Given I have a tournament starting in 10 minutes
+    And I am on that tournament page
+    Then I should not be able to sign up    
   
   
   

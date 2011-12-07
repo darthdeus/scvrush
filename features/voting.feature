@@ -9,6 +9,6 @@ Feature: Voting
     And I am logged in as a different user
     And I am on the post page
     When I click on "upvote" within the "comment"
-    Then I the comment score should raise
+    Then the comment score should raise
     And the comment author should get points
 

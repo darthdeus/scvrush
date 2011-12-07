@@ -3,27 +3,32 @@
     .post
       h2= @tournament.name
       
-      - if logged_in?
-        - if current_user.registered_for?(@tournament)
-          - if signups_open?(@tournament)
-            p Signups are closed, only registered users can now check in
-            - if current_user.registered_for?(@tournament)
-              = button_to "Checkin!", { :controller => :signups, :action => :update, :id => @tournament.id }, :method => :put
-          - else
-            = button_to "Cancel your registration for the tournament", { :controller => :signups, :action => :destroy, :id => @tournament.id }, :method => :delete
-        - elsif current_user.checked_in?(@tournament)
-          p You have already checked in.            
-        - elsif signups_open?(@tournament)
-          = button_to "Sign up for the tournament", :controller => :signups, :action => :create, :method => :post, :id => @tournament.id
-        - else
-          p
-            | The tournament starts in less than 60 minutes, you can't sign in
-      - else
-        p 
-          | You need to 
-          |  
-          = link_to "log in", login_path
-          |  to play
+      - if @tournament.checkin_open?
+        = checkin_button @tournament
+      - if @tournament.signup_open?
+        = signup_button @tournament      
+        
+      = cancel_signup_button @tournament
+      
+      /   - if current_user.registered_for?(@tournament)
+      /     - if signups_open?(@tournament)
+      /       p Signups are closed, only registered users can now check in
+      /       - if current_user.registered_for?(@tournament)
+      /         = button_to "Checkin!", { :controller => :signups, :action => :update, :id => @tournament.id }, :method => :put
+      /     - else
+      /       = button_to "Cancel your registration for the tournament", { :controller => :signups, :action => :destroy, :id => @tournament.id }, :method => :delete
+      /   - elsif current_user.checked_in?(@tournament)
+      /     p You have already checked in.            
+      /   - elsif signups_open?(@tournament)
+      /   - else
+      /     p
+      /       | The tournament starts in less than 60 minutes, you can't sign in
+      / - else
+      /   p 
+      /     | You need to 
+      /     |  
+      /     = link_to "log in", login_path
+      /     |  to play
 
       h3 Currently registered players
       

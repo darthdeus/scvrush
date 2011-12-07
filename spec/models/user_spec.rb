@@ -6,12 +6,12 @@ describe User do
   end
   
   context "authentication" do
-    it "should authenticate with matching username and password" do
+    it "with valid password" do
       user = create(:user, username: "batman", password: "secret")
       User.authenticate("batman", "secret").should == user
     end
     
-    it "should authenticate with matching username and password" do
+    it "rejects bad password" do
       user = create(:user, username: "batman", password: "secret")
       User.authenticate("batman", "badpassword").should be_nil
     end
@@ -60,5 +60,15 @@ describe User do
       signup.reload
       signup.status.should == Signup::CHECKED            
     end
+  end
+  
+  it "doesn't blow up when I call #send_password_reset" do
+    @user = create(:user)
+    lambda { @user.send_password_reset }.should_not raise_error
+  end
+  
+  it "doesn't blow up when I call #save!" do
+    @user = create(:user)
+    lambda { @user.save! }.should_not raise_error    
   end
 end
