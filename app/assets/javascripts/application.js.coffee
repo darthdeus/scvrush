@@ -1,9 +1,3 @@
-# This is a manifest file that'll be compiled into including all the files listed below.
-# Add new JavaScript/Coffee code in separate files in this directory and they'll automatically
-# be included in the compiled file accessible from http://example.com/assets/application.js
-# It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
-# the compiled file.
-#
 #= require jquery
 #= require jquery_ujs
 #= require_tree .
@@ -14,3 +8,15 @@ jQuery ->
   $(form_inputs).blur  -> $(this).parent().removeClass('focused')
   
   $('.focused input[type=text]').focus()
+  
+  $.ajax
+    url: "http://api.justin.tv/api/stream/list.json?channel=scvrush1"
+    dataType: "jsonp"
+    success: (data) ->
+      if console && console.log
+        console.log data
+        if data.name == "live_user_scvrush1"
+          5.times ->
+            console.log "stream is live"
+        else
+          console.log "stream is dead"
