@@ -14,5 +14,9 @@ class Tournament < ActiveRecord::Base
   def checkin_open?
     self.starts_at < 15.minutes.from_now
   end
+
+  def unregister(user)
+    self.signups.where(user_id: user.id).first.destroy
+  end
   
 end

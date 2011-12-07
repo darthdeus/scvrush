@@ -6,11 +6,11 @@ describe Comment do
   end
 
   it "requires post" do
-    build(:comment, :post => nil).should have(1).error_on(:post)
+    build(:comment, :post => nil).should have_at_least(1).error_on(:post)
   end
   
   it "requires user" do
-    build(:comment, :user => nil).should have(1).error_on(:user)
+    build(:comment, :user => nil).should have_at_least(1).error_on(:user)
   end
 
   it "has a limit on content size" do
@@ -18,7 +18,7 @@ describe Comment do
     content = (0..500).map { a.sample }.join
     @comment = build(:comment, :content => content)
     
-    @comment.should have(1).error_on(:content)
+    @comment.should have_at_least(1).error_on(:content)
   end
 
   context "votes" do

@@ -14,8 +14,7 @@ class SignupsController < ApplicationController
 
   def destroy
     @tournament = Tournament.find(params[:id])
-    @signup = @tournament.signups.where(:user_id => current_user.id)
-    @signup.destroy_all
+    @tournament.unregister(current_user)
     redirect_to @tournament, :notice => "You've been signed out."
   end
 

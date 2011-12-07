@@ -41,4 +41,14 @@ describe Tournament do
       end
     end
   end
+  
+  specify :unregister do
+    @signup = create(:signup)
+    @user = @signup.user
+    @tournament = @signup.tournament
+    
+    @tournament.unregister(@user)
+    
+    @user.should_not be_registered_for(@tournament)
+  end
 end
