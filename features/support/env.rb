@@ -56,4 +56,13 @@ Spork.each_run do
   #     DatabaseCleaner.strategy = :transaction
   #   end
   #
+
+  require 'factory_girl_rails'
+  # reload all the models
+  Dir["#{Rails.root}/app/models/**/*.rb"].each do |model|
+    load model
+  end
+  
+  Scvrush::Application.reload_routes!
+
 end
