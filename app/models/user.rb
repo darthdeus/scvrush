@@ -68,7 +68,7 @@ class User < ActiveRecord::Base
 
   def check_in(tournament)
     signup = self.signups.where(:tournament_id => tournament.id).first
-    signup.checkin!    
+    signup.checkin! if signup    
   end
 
   def participating_in?(raffle)

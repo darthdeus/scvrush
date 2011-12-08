@@ -6,10 +6,10 @@
       - if current_user
         - if current_user.checked_in? @tournament
           p You have already checked in.
-        - elsif @tournament.checkin_open?
-          = checkin_button @tournament
         - elsif current_user.registered_for? @tournament
           = cancel_signup_button @tournament
+          - if @tournament.checkin_open?
+            = checkin_button @tournament
         - elsif @tournament.signup_open?
           = signup_button @tournament      
       
