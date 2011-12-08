@@ -1,2 +1,12 @@
-h1 Raffles#edit
-p Find me in app/views/raffles/edit.html.slim
+= arrowed_header "Edit Raffle"
+
+= form_for @raffle do |f|
+  .field
+    = f.label :title
+    = f.text_field :title    
+  .field
+    = f.label :status
+    = select :raffle, :status, [['Draft', 0], ['Open', 1], ['Finished', 2]]
+  .field
+    button type="submit" Update the Raffle
+

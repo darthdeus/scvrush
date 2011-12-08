@@ -1,5 +1,5 @@
 class RafflesController < ApplicationController
-  before_filter :require_writer
+  before_filter :require_writer, :except => :show
   
   def new
     @raffle = Raffle.new
@@ -30,7 +30,7 @@ class RafflesController < ApplicationController
   
   def destroy
     Raffle.destroy(params[:id])
-    redirect_to raffles_path, :notice => "Raffle was removed"
+    redirect_to '/dashboard/index', :notice => "Raffle was removed"
   end
 
   def index
@@ -43,6 +43,7 @@ class RafflesController < ApplicationController
   
   def close
     @raffle = Raffle.find(params[:id])
+    @raffle.calculate_winner
     redirect_to @raffle, :notice => "Raffle was closed and the winner was selected"
   end
 

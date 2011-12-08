@@ -17,5 +17,5 @@ When /^I go to the dashboard page$/ do
 end
 
 Given /^I am a regular user$/ do
-  pending # express the regexp above with the code you wish you had
+  step "I am logged in"
 end
