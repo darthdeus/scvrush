@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
   has_many :posts
 
   has_many :won_raffles, :class_name => "Raffle", :foreign_key => "winner_id"
-  has_many :raffle_signups, :class_name => "raffle_signup", :foreign_key => "reference_id"
+  
+  has_many :raffle_signups
   has_many :raffles, :through => :raffle_signups
   
   attr_accessible :username, :email, :password, :password_confirmation, 
@@ -68,6 +69,10 @@ class User < ActiveRecord::Base
   def check_in(tournament)
     signup = self.signups.where(:tournament_id => tournament.id).first
     signup.checkin!    
+  end
+
+  def participating_in?(raffle)
+    self.raffle_signups.where(raffle_id: raffle.id).first
   end
 
   def to_param

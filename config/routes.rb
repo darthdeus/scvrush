@@ -1,5 +1,9 @@
 Scvrush::Application.routes.draw do  
   
+  resources :raffle_signups
+  resources :raffles do
+    post :close, :on => :member
+  end
   resources :avatars
 
   resources :images, :only => :create

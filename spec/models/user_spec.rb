@@ -71,4 +71,23 @@ describe User do
     @user = create(:user)
     lambda { @user.save! }.should_not raise_error    
   end
+  
+  describe "#participating_in?" do
+    it "returns true if user is participating in a raffle" do
+      @user = create(:user)
+      @raffle = create(:raffle)
+      create(:raffle_signup, user: @user, raffle: @raffle)
+      
+      @user.participating_in?(@raffle).should be_true
+    end    
+
+    it "returns true if user is not participating in a raffle" do
+      RaffleSignup.destroy_all
+      @user = create(:user)
+      @raffle = create(:raffle)
+      
+      @user.participating_in?(@raffle).should be_false
+    end    
+
+  end
 end

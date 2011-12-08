@@ -3,9 +3,6 @@
 FactoryGirl.define do
   factory :raffle do
     status 0
-    association :winner
     title "MyString"
   end
-  
-  factory :winner, :parent => :user
 end
