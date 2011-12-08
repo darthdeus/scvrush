@@ -7,6 +7,10 @@ class User < ActiveRecord::Base
   has_many :replies
   has_many :signups
   has_many :posts
+
+  has_many :won_raffles, :class_name => "Raffle", :foreign_key => "winner_id"
+  has_many :raffle_signups, :class_name => "raffle_signup", :foreign_key => "reference_id"
+  has_many :raffles, :through => :raffle_signups
   
   attr_accessible :username, :email, :password, :password_confirmation, 
                   :password_reset_token, :avatar, :race, :league, :server, 
