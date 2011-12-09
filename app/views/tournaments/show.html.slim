@@ -62,4 +62,8 @@
         - if current_user.try(:is_admin?)
           ul
             - @checked_users.each do |signup|
+              li = signup.user.bnet_info
+        
+          ul
+            - @checked_users.each do |signup|
               li = signup.user.email
