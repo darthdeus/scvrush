@@ -31,5 +31,11 @@ Feature: Checkin
     And I am on that tournament page
     Then I should not be able to sign up    
   
+  Scenario: user who didn't register tries to check in
+    Given I have a tournament starting in 10 minutes
+    And I am on that tournament page
+    Then I should not be able to check in
+  
+  
   
   
