@@ -7,7 +7,6 @@ class TopicsController < ApplicationController
   end
  
   def show
-    # fix 1+N here
     @topic = Topic.includes(:replies).find(params[:id])
     @replies = @topic.replies
     @reply = Reply.new(:topic_id => @topic.id)
