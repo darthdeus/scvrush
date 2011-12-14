@@ -27,6 +27,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(params[:post])
+    @post.user = current_user
     if @post.save
       redirect_to posts_path, :notice => "Post published"
     else
