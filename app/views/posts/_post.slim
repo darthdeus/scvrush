@@ -1,5 +1,7 @@
 li.post 
   = link_to post.title, post
+  - if post.user.present?
+    = link_to post.user.username, post.user
   span.edit
    = link_to 'edit', edit_post_path(post)
   span.delete
