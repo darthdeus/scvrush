@@ -5,4 +5,4 @@ li.post
   span.edit
    = link_to 'edit', edit_post_path(post)
   span.delete
-   = link_to 'delete', post, :method => :delete
+   = link_to 'delete', post, :method => :delete, :confirm => 'Are you sure?'
