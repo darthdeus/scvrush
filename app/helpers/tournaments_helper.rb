@@ -10,4 +10,8 @@ module TournamentsHelper
   def cancel_signup_button(tour)
     button_to "Cancel your registration for the tournament", { :controller => :signups, :action => :destroy, :id => tour.id }, :method => :delete
   end
+
+  def is_writer?
+    current_user.try(:is_writer?)
+  end
 end

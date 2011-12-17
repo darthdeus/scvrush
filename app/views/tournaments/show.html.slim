@@ -2,7 +2,7 @@
   .single
     .post
       h2= @tournament.name
-      
+
       - if current_user
         - if current_user.checked_in? @tournament
           p You have already checked in.
@@ -11,39 +11,17 @@
           - if @tournament.checkin_open?
             = checkin_button @tournament
         - elsif @tournament.signup_open?
-          = signup_button @tournament      
-      
-      
-      /   - if current_user.registered_for?(@tournament)
-      /     - if signups_open?(@tournament)
-      /       p Signups are closed, only registered users can now check in
-      /       - if current_user.registered_for?(@tournament)
-      /         = button_to "Checkin!", { :controller => :signups, :action => :update, :id => @tournament.id }, :method => :put
-      /     - else
-      /       = button_to "Cancel your registration for the tournament", { :controller => :signups, :action => :destroy, :id => @tournament.id }, :method => :delete
-      /   - elsif current_user.checked_in?(@tournament)
-      /     p You have already checked in.            
-      /   - elsif signups_open?(@tournament)
-      /   - else
-      /     p
-      /       | The tournament starts in less than 60 minutes, you can't sign in
-      / - else
-      /   p 
-      /     | You need to 
-      /     |  
-      /     = link_to "log in", login_path
-      /     |  to play
+          = signup_button @tournament
 
       h3 Currently registered players
-      
+
       - if @registered_users.empty?
         p There are no players registered
       - else
         ul
           - @registered_users.each do |signup|
             li = signup.user.username
-      
-      
+
       - if @checked_users.empty?
         p There are no players checked in yet
       - else
@@ -52,18 +30,18 @@
           - @checked_users.each do |signup|
             li 
               = signup.user.username
-              - if current_user.try(:is_admin?)
+              - if is_writer?
                 span.bnet
                   |  - battle.net info: 
                   strong = signup.user.bnet_info
                   |  
                   em = signup.user.email
-                  
-        - if current_user.try(:is_admin?)
+
+        - if is_writer?
           ul
             - @checked_users.each do |signup|
               li = signup.user.bnet_info
-        
+
           ul
             - @checked_users.each do |signup|
               li = signup.user.email
