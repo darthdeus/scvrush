@@ -43,6 +43,10 @@ class User < ActiveRecord::Base
   end
 
   def is_admin?
+    self.role == User::ADMIN
+  end
+
+  def is_writer?
     self.role > User::SUBSCRIBER
   end
 
