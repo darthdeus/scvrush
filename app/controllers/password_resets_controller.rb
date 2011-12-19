@@ -11,11 +11,11 @@ class PasswordResetsController < ApplicationController
       redirect_to signup_path, :notice => "The user with given email doesn't exist. It is possible we lost your username during the data transfer, please sign up again - you can use the exact same username you had before."
     end
   end
-  
+
   def edit
     @user = User.find_by_password_reset_token!(params[:id])
   end
-  
+
   def update
     @user = User.find_by_password_reset_token!(params[:id])
     if @user.password_reset_sent_at < 2.hours.ago
