@@ -4,7 +4,7 @@ require 'simplecov'
 SimpleCov.start 'rails'
 
 Spork.prefork do
-    # This file is copied to spec/ when you run 'rails generate rspec:install'
+  # This file is copied to spec/ when you run 'rails generate rspec:install'
   ENV["RAILS_ENV"] ||= 'test'
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
@@ -31,19 +31,19 @@ Spork.prefork do
     # automatically. This will be the default behavior in future versions of
     # rspec-rails.
     config.infer_base_class_for_anonymous_controllers = false
-    
+
     config.include Factory::Syntax::Methods
     config.include MailerMacros
     config.before(:each) { reset_email }
-    
+
     config.before(:suite) do
       DatabaseCleaner.strategy = :truncation
     end
-    
+
     config.before(:each) do
       DatabaseCleaner.start
     end
-    
+
     config.after(:each) do
       DatabaseCleaner.clean
     end
@@ -52,9 +52,9 @@ end
 
 Spork.each_run do
   # TODO - check if controllers and helpers are reloaded
-  
+
   require 'factory_girl_rails'
-  
+
   # reload all the models
   Dir["#{Rails.root}/app/models/**/*.rb"].each do |model|
     load model
@@ -64,7 +64,7 @@ Spork.each_run do
   # Dir["#{Rails.root}/spec/factories/*.rb"].each do |factory|
   #   load factory
   # end
-  
+
   Scvrush::Application.reload_routes!
 end
 

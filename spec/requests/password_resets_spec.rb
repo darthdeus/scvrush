@@ -1,16 +1,8 @@
-require 'spec_helper'
+    click_button "Reset Password"
 
-describe "PasswordResets" do
-  it "emails user when requesting password reset" do
-    user = Factory(:user)
-    visit login_path
-    click_link "password"
-    fill_in "Email", :with => user.email
-    click_button "Reset Password"        
-    
     current_path.should eq(root_path)
     page.should have_content("email has been")
-    
+
     last_email.to.should include(user.email)
   end
 
@@ -18,14 +10,14 @@ describe "PasswordResets" do
     visit login_path
     click_link "password"
     fill_in "Email", :with => "nobody@example.com"
-    click_button "Reset Password"        
-    
+    click_button "Reset Password"
+
     current_path.should eq(signup_path)
     page.should have_content("The user with given email doesn't exist.")
-    
+
     last_email.should be_nil
   end
-  
+
   it "updates the user password when confirmation matches" do
     user = Factory(:user, :password_reset_token => "something", :password_reset_sent_at => 1.hour.ago)
     visit edit_password_reset_path(user.password_reset_token)
