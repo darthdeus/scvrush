@@ -1,28 +1,28 @@
-class User < ActiveRecord::Base  
+class User < ActiveRecord::Base
   SUBSCRIBER = 0
   WRITER = 1
   ADMIN = 10
-  
+
   has_many :comments
   has_many :replies
   has_many :signups
   has_many :posts
 
   has_many :won_raffles, :class_name => "Raffle", :foreign_key => "winner_id"
-  
+
   has_many :raffle_signups
   has_many :raffles, :through => :raffle_signups
-  
-  attr_accessible :username, :email, :password, :password_confirmation, 
-                  :password_reset_token, :avatar, :race, :league, :server, 
-                  :favorite_player, :skype, :display_skype, :msn, 
+
+  attr_accessible :username, :email, :password, :password_confirmation,
+                  :password_reset_token, :avatar, :race, :league, :server,
+                  :favorite_player, :skype, :display_skype, :msn,
                   :display_msn, :display_email, :about, :avatar,
                   :bnet_code, :bnet_username
 
   acts_as_voter
   has_karma(:comments, :as => :user)
 
-  attr_accessor :password  
+  attr_accessor :password
   before_save :encrypt_password
 
   mount_uploader :avatar, AvatarUploader
@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   validates :email, :uniqueness => true, :on => :create
   validates :password, :confirmation => true
   validates_presence_of :password, :on => :create
-  
+
   # validates_presence_of :bnet_username, :on => :update
   # validates_presence_of :bnet_code, :on => :update
 
@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
     signup.status = Signup::REGISTERED
     signup.save!
   end
-  
+
   def registered_for?(tournament)
     !self.signups.where(:tournament_id => tournament.id, :status => Signup::REGISTERED).empty?
   end
@@ -72,7 +72,7 @@ class User < ActiveRecord::Base
 
   def check_in(tournament)
     signup = self.signups.where(:tournament_id => tournament.id).first
-    signup.checkin! if signup    
+    signup.checkin! if signup
   end
 
   def participating_in?(raffle)
@@ -113,5 +113,5 @@ class User < ActiveRecord::Base
       self[column] = SecureRandom.urlsafe_base64
     end while User.exists?(column => self[column])
   end
-  
+
 end
