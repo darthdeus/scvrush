@@ -3,46 +3,41 @@
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_self
-*/
+ */
 
 
 body {
-    background: #F6F6F6 url("/assets/pattern.png") repeat;
-    font: .75em/1.73em Verdana,Arial,Geneva,Helvetica,sans-serif;
-    
-    
-//    font: normal normal normal 19px/25px "TeX Gyre Schola","Georgia","Bitstream Charter","Century Schoolbook L","Liberation Serif","Times",serif;
-    margin: 0;
-    padding: 0;
+  background: #F6F6F6 url("/assets/pattern.png") repeat;
+  font: .75em/1.73em Verdana,Arial,Geneva,Helvetica,sans-serif;
+
+  margin: 0;
+  padding: 0;
 }
 
 a img {
-    border: none;
+  border: none;
 }
 
 a { color: #333; }
 a:hover { color: #666; }
 
-
-
 .clear {
-    clear: both;
-    height: 0;
-    overflow: hidden;
+  clear: both;
+  height: 0;
+  overflow: hidden;
 }
 
-
 h1 {
-    font: bold 2.45em Arial, Helvetica, sans-serif;     
+  font: bold 2.45em Arial, Helvetica, sans-serif;
 }
 
 h1, h2, h3 {
-    padding: 12px 0 9px 0;
-    display: block;
-    color: #262626;
-    font-family: 'Droid Sans', Arial, sans-serif;        
-    font-size: 32px;
-    line-height: 40px;        
+  padding: 12px 0 9px 0;
+  display: block;
+  color: #262626;
+  font-family: 'Droid Sans', Arial, sans-serif;
+  font-size: 32px;
+  line-height: 40px;
 }
 
 h2 { font-size: 24px; font-weight: bold; }
@@ -51,200 +46,205 @@ h3 { font-size: 20px; }
 p { margin: 0 0 10px;}
 
 #wrapper {
-    width: 1020px;
-    background: url("/assets/wrapper-bg.png") repeat-y;
+  width: 1020px;
+  background: url("/assets/wrapper-bg.png") repeat-y;
+  margin: 0 auto;
+
+  #wrapper-content {
+    width: 940px;
     margin: 0 auto;
-    
-    #wrapper-content {
-        width: 940px;
-        margin: 0 auto;
-        padding: 0; //25px 0 0; // 25px;
-        overflow: hidden;
-        background: url("/assets/body-splitter.gif") repeat-y 610px 0;
-    }
+    padding: 0; //25px 0 0; // 25px;
+    overflow: hidden;
+    background: url("/assets/body-splitter.gif") repeat-y 610px 0;
+  }
 }
 
 #wrapper-footer {
-    padding: 0 40px;
-    clear: both;
-    .footer {       
-        padding: 15px 0 10px;
-        border-top: 1px solid #eee;
-        text-align: center;
-        color: #999;
-    }  
-} 
+  padding: 0 40px;
+  clear: both;
+  .footer {
+    padding: 15px 0 10px;
+    border-top: 1px solid #eee;
+    text-align: center;
+    color: #999;
+  }
+}
 
-h2.arrowed, h3.arrowed {    
-    clear: both;
-    font-family: 'BebasNeueRegular';
-    color: #333;
-    background: url("/assets/heading-box.png") no-repeat -12px 0;
-    font-size: 26px;
-    margin-bottom: 25px;
-    text-shadow: 1px 1px 1px white;
-    height: 51px;
-    padding: 0 0 0 10px;
-    line-height: 45px;
-    .arrows { 
-        color: #167ECE;
-        font-size: 37px;
-        font-family: Arial, sans-serif;
-        padding-left: 3px;
-     }
-     
-     &.facebook-header {
-         margin-bottom: 10px !important;
-     }
+h2.arrowed, h3.arrowed {
+  clear: both;
+  font-family: 'BebasNeueRegular';
+  color: #333;
+  background: url("/assets/heading-box.png") no-repeat -12px 0;
+  font-size: 26px;
+  margin-bottom: 25px;
+  text-shadow: 1px 1px 1px white;
+  height: 51px;
+  padding: 0 0 0 10px;
+  line-height: 45px;
+  .arrows {
+    color: #167ECE;
+    font-size: 37px;
+    font-family: Arial, sans-serif;
+    padding-left: 3px;
+  }
+
+  &.facebook-header {
+    margin-bottom: 10px !important;
+  }
 
 }
 
-label { 
-    display: block;
+label {
+  display: block;
 }
 
 
 #left-wrap {
-    float: left;
-    width: 630px;
-    #left-column {
-        width: 600px;
-        padding-left: 10px;
-        padding-right: 20px;
-    }
+  float: left;
+  width: 630px;
+  #left-column {
+    width: 600px;
+    padding-left: 10px;
+    padding-right: 20px;
+  }
 
 }
 
 
 #sidebar {
-    float: left;
-    width: 310px;
-    padding: 0px;
-    position: relative;
+  float: left;
+  width: 310px;
+  padding: 0px;
+  position: relative;
+  left: -1px;
+
+  #separator {
+    position: absolute;
+    width: 1px;
+    height: 49px;
+    background: #ccc;
     left: -1px;
-    
-    #separator {
-        position: absolute;
-        width: 1px;
-        height: 49px;
-        background: #ccc;
-        left: -1px;
-        top: 2px;
+    top: 2px;
+  }
+
+  h2, h3 {
+    background: url("/assets/heading-box.png") no-repeat -12px 0;
+    font-size: 26px;
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 1px white;
+    height: 51px;
+    padding-left: 20px;
+    line-height: 45px;
+    color: #333;
+    .arrows {
+      color: #167ECE;
+      font-size: 37px;
+      font-family: Arial, sans-serif;
+      padding-left: 3px;
     }
-    
-    h2, h3 {
-        background: url("/assets/heading-box.png") no-repeat -12px 0;
-        font-size: 26px;
-        margin-bottom: 25px;
-        text-shadow: 1px 1px 1px white;
-        height: 51px;
-        padding-left: 20px;
-        line-height: 45px;
-        color: #333;
-        .arrows { 
-            color: #167ECE;
-            font-size: 37px;
-            font-family: Arial, sans-serif;
-            padding-left: 3px;
-         }
-    }
-    .content {
-        padding: 0 20px;
-    }
+  }
+  .content {
+    padding: 0 20px;
+  }
 }
 
 .coach {
-    background: #fafafa;
-    border-left: 1px solid #dedede;
-    border-bottom: 1px solid #dedede;
-    display: block;
-    width: 134px;
-    height: 45px;
-    padding: 10px;
-    float: left;
+  background: #fafafa;
+  border-left: 1px solid #dedede;
+  border-bottom: 1px solid #dedede;
+  display: block;
+  width: 134px;
+  height: 45px;
+  padding: 10px;
+  float: left;
 
-    &:nth-child(odd) { border-left: none; width: 135px; }
-    &:hover { background: #efefef; }
-    
-    a { text-decoration: none; } 
-    .name {
-        padding-left: 5px;        
-        font-size: 14px;
-        font-weight: normal;
-        padding-bottom: 2px;
-    }
+  &:nth-child(odd) { border-left: none; width: 135px; }
+  &:hover { background: #efefef; }
+
+  a { text-decoration: none; }
+  .name {
+    padding-left: 5px;
+    font-size: 14px;
+    font-weight: normal;
+    padding-bottom: 2px;
+  }
 }
 
 .tags {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-     li, a {
-        float: left;
-        height: 20px;
-        line-height: 20px;
-        position: relative;
-        font-size: 11px;
-    }
-    a {
-        margin-left: 5px;
-        padding:0 4px;
-        background:#0089e0;
-        color:#fff;
-        text-decoration:none;
-        -moz-border-radius:4px;
-        -webkit-border-radius:4px;	
-        border-radius:4px;	
-    }
-    a:hover{background:#555;}	
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  li, a {
+    float: left;
+    height: 20px;
+    line-height: 20px;
+    position: relative;
+    font-size: 11px;
+  }
+  a {
+    margin-left: 5px;
+    padding:0 4px;
+    background:#0089e0;
+    color:#fff;
+    text-decoration:none;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border-radius:4px;
+  }
+  a:hover{background:#555;}
 }
 
 #header {
-    position: relative;
-    h1 {
-        padding-top: 25px;
-    }
-    #upcoming {
-        position: absolute;
-        right: 0;
-        top: 0;
-        display: block;
-        width: 270px;
-        height: 110px;
-        padding: 10px 20px;
-        .upcoming {
-            margin: 10px;
-            &:first-child { margin-bottom: 20px;}
-            a { text-decoration: none; }
-            h2, p { margin: 0; padding: 0;}
-            h2 {
-                margin: 0;
-                font-size: 20px;
-                line-height: 1;
-            }
-            p {
-                font-size: 14px;
-                line-height: 1;
-            }
+  position: relative;
+  #donate {
+    position: absolute;
+    right: 330px;
+    top: 80px;
+  }
+  h1 {
+    padding-top: 25px;
+  }
+  #upcoming {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: block;
+    width: 270px;
+    height: 110px;
+    padding: 10px 20px;
+    .upcoming {
+      margin: 10px;
+      &:first-child { margin-bottom: 20px;}
+      a { text-decoration: none; }
+      h2, p { margin: 0; padding: 0;}
+      h2 {
+        margin: 0;
+        font-size: 20px;
+        line-height: 1;
+      }
+      p {
+        font-size: 14px;
+        line-height: 1;
+      }
 
-        }
-    }    
+    }
+  }
 }
 
 ul.bloglinks {
-    padding: 0;
-    margin: 0;
-    li {
-        padding-left: 10px;
-        border-bottom: 1px solid #ddd;
-        display: block;
-        a {
-            display: block;
-            padding: 10px;
-            text-decoration: none;
-            &:hover { background: #fbfbfb; }
-        }
+  padding: 0;
+  margin: 0;
+  li {
+    padding-left: 10px;
+    border-bottom: 1px solid #ddd;
+    display: block;
+    a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      &:hover { background: #fbfbfb; }
     }
+  }
 }
 
 
