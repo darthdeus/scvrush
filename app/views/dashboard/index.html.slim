@@ -1,25 +1,25 @@
-#dashboard 
+#dashboard
 
   h2 Recent published posts
   ul
     = render @published
-    
+
   h2 Recent drafts
   ul
     = render @drafts
-    
-  h2 
+
+  h2
     = link_to "add new post", new_post_path
-    
-    
-  h2 
-    | Raffles - 
+
+
+  h2
+    | Raffles -
     = link_to "create a new raffle", new_raffle_path
   ul
     - @raffles.each do |raffle|
-      li 
+      li
         = link_to raffle.title, raffle
-        |   
+        |
         = link_to "edit", edit_raffle_path(raffle)
-        |   
+        |
         = link_to "delete", raffle, :method => :delete, :confirmation => true
