@@ -43,7 +43,7 @@
     = image_tag @post.featured_image_url(:thumb)
 
   .actions
-    button type="submit" class="btn primary" Save
+    button type="submit" class="btn primary" data-disable-with="saving ..." Save
     - if @post
       = link_to 'back to dashboard', { :controller => :dashboard, :action => :index }, :class => 'btn'
       = link_to 'preview - will not save changes!', @post, :class => 'btn'
