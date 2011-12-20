@@ -7,7 +7,7 @@ html
 
     title
       = content_for?(:title) ? yield(:title) : "SCV Rush"
-      
+
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
     = csrf_meta_tag
@@ -16,7 +16,7 @@ html
   body
     #wrapper
       #wrapper-content
-        
+
         #header
           h1
             a href="/"
@@ -27,7 +27,7 @@ html
             .upcoming
               h2 = link_to "[EU] Plat/Dia #13", post_path("9611-eu-scv-rush-plat-dia-13")
               p Thursday Dec 15th, 7pm GMT
-              
+
             .upcoming
               h2 = link_to "[EU] SCV Rush BSG #9", post_path("9610-eu-scv-rush-bsg-9")
               p Wednesday Dec 14th, 7pm GMT
@@ -36,11 +36,11 @@ html
           #navigation
             = render 'shared/menu'
 
-    
+
         - flash.each do |name, msg|
           = content_tag :div, msg, :id => "flash_#{name}"
-        
-        #left-wrap          
+
+        #left-wrap
           = yield
 
         #sidebar
@@ -48,16 +48,16 @@ html
 
 
       #wrapper-footer
-        .footer 
+        .footer
           | Copyright &copy; 2011 SCVRush.com
           - if logged_in? && current_user.is_admin?
-            |  | 
+            |  |
             = link_to "dashboard", :controller => :dashboard, :action => :index
-          
+
       #preload
         img src="/assets/subnav_item_bg.png"
         img src="/assets/subnav_item_hover_bg.png"
-      
+
       javascript:
         var _gaq = _gaq || [];
         _gaq.push(['_setAccount', 'UA-21679055-1']);
@@ -73,3 +73,9 @@ html
             s.parentNode.insertBefore(ga, s);
         })();
 
+        var uvOptions = {};
+        (function() {
+          var uv = document.createElement('script'); uv.type = 'text/javascript'; uv.async = true;
+          uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/nPpevEFR5LknKSCPSE0NaA.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
+        })();

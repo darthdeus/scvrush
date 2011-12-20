@@ -2,20 +2,20 @@
 
 - @replies.each do |reply|
   .reply
-    .author 
+    .author
       = link_to reply.user.username, reply.user
-      span.date 
+      span.date
         = time_ago_in_words(reply.created_at)
         |  ago
-      
+
     .content = reply.content
-    
+
 h2 Post a new reply
-    
+
 = form_for @reply do |f|
   = hidden_field_tag 'reply[topic_id]', @topic.id
   .field
     = f.text_area :content
   .field
     button type="submit" Reply!
-  
+
