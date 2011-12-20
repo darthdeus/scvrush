@@ -12,6 +12,8 @@
             = checkin_button @tournament
         - elsif @tournament.signup_open?
           = signup_button @tournament
+      - else
+        = signup_button @tournament
 
       h3 Currently registered players
 

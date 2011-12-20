@@ -7,7 +7,7 @@ module ApplicationHelper
   def coach(tags)
     tag_path("coach," + tags)
   end
-  
+
   def m(string)
     RDiscount.new(string).to_html.html_safe
   end
