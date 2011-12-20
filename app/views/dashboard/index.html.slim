@@ -1,25 +1,38 @@
-#dashboard
+= arrowed_header 'Posts'
 
-  h2 Recent published posts
-  ul
+h2 Recent published posts
+
+table.bordered-table.zebra-striped
+  thead
+    tr
+      th Title
+      th Author
+      th
+      th
+  tbody
     = render @published
 
-  h2 Recent drafts
-  ul
-    = render @drafts
+h2 Recent drafts
+- unless @drafts.empty?
+  table.bordered-table.zebra-striped
+    thead
+      tr
+        th Title
+        th Author
+        th
+        th
+    tbody
+      = render @drafts
+p
+  = link_to "New post", new_post_path, :class => 'btn'
 
-  h2
-    = link_to "add new post", new_post_path
+= arrowed_header 'Raffles'
 
+table.bordered-table.zebra-striped
+  - @raffles.each do |raffle|
+    tr
+      td= link_to raffle.title, raffle
+      td= link_to "edit", edit_raffle_path(raffle)
+      td= link_to "delete", raffle, :method => :delete, :confirmation => true
 
-  h2
-    | Raffles -
-    = link_to "create a new raffle", new_raffle_path
-  ul
-    - @raffles.each do |raffle|
-      li
-        = link_to raffle.title, raffle
-        |
-        = link_to "edit", edit_raffle_path(raffle)
-        |
-        = link_to "delete", raffle, :method => :delete, :confirmation => true
+= link_to "New raffle", new_raffle_path, :class => 'btn'
