@@ -3,17 +3,12 @@
     .post
       h2= @tournament.name
 
-      - if current_user
-        - if current_user.checked_in? @tournament
-          p You have already checked in.
-        - elsif current_user.registered_for? @tournament
-          = cancel_signup_button @tournament
-          - if @tournament.checkin_open?
-            = checkin_button @tournament
-        - elsif @tournament.signup_open?
-          = signup_button @tournament
+      - if @tournament.checkin_open?
+        = checkin_button @tournament
       - else
         = signup_button @tournament
+      - if current_user && current_user.registered_for? @tournament
+        = cancel_signup_button @tournament
 
       h3 Currently registered players
 

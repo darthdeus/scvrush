@@ -1,6 +1,6 @@
 class Tournament < ActiveRecord::Base
   attr_accessible :starts_at, :name
-  
+
   has_many :signups, :dependent => :destroy
   has_many :users, :through => :signups
 
@@ -10,7 +10,7 @@ class Tournament < ActiveRecord::Base
   def signup_open?
     self.starts_at > 30.minutes.from_now
   end
-  
+
   def checkin_open?
     self.starts_at < 30.minutes.from_now
   end
@@ -18,5 +18,5 @@ class Tournament < ActiveRecord::Base
   def unregister(user)
     self.signups.where(user_id: user.id).first.destroy
   end
-  
+
 end
