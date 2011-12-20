@@ -1,1 +1,1 @@
---colour --drb
+--no-color --drb --format progress

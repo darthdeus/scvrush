@@ -6,4 +6,3 @@ Feature: Forum
     When I submit a new topic
     Then I should see "Topic was successfuly created."
 
-

@@ -2,8 +2,8 @@
 
 FactoryGirl.define do
   factory :reply do
-    content "MyText"
-    topic nil
-    user nil
+    content 'Lorem ipsum dolor sit amet'
+    association :topic
+    association :user
   end
 end
