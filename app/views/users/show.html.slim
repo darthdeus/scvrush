@@ -6,7 +6,7 @@
       = image_tag @user.avatar.url(:thumb), :alt => @user.username
     .meta
       = link_to "change avatar", new_avatar_path
-  
+
   ul
     li 
       | Username: 
@@ -32,4 +32,3 @@
         = link_to comment.post.title, post_path(comment.post) + "#comment#{comment.id}"
         |  - 
         = comment.content[0..30]
-      

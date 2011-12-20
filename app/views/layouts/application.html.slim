@@ -8,6 +8,7 @@ html
     title
       = content_for?(:title) ? yield(:title) : "SCV Rush"
 
+    link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css"
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
     = csrf_meta_tag

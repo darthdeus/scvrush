@@ -11,12 +11,13 @@
     .content
       = simple_format reply.content
 
-h2 Post a new reply
-
-= form_for @reply do |f|
-  = hidden_field_tag 'reply[topic_id]', @topic.id
-  .field
-    = f.text_area :content
-  .field
-    button type="submit" Reply!
+= form_for @reply, :html => { :class => 'new-comment form-stacked' } do |f|
+  fieldset
+    legend Post a new reply
+    = hidden_field_tag 'reply[topic_id]', @topic.id
+    .clearfix
+      .input
+        = f.text_area :content, :class => 'xlarge', :rows => 4
+    .actions
+      button type="submit" class="btn primary" Reply!
 

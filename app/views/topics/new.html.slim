@@ -1,10 +1,14 @@
+=arrowed_header 'New topic'
+
 = form_for @topic do |f|
   = hidden_field_tag 'topic[section_id]', @section.id
-  .field
+  .clearfix
     = f.label :name
-    = f.text_field :name
-  .field
+    .input
+      = f.text_field :name
+  .clearfix
     = label_tag 'Text'
-    = text_area_tag 'reply[content]'
-  .field
-    button type="submit" Submit topic
+    .input
+      = text_area_tag 'reply[content]', '', :class => 'xlarge', :rows => 5
+  .actions
+    button type="submit" class="btn primary" Submit topic

@@ -94,11 +94,6 @@ h2.arrowed, h3.arrowed {
 
 }
 
-label {
-  display: block;
-}
-
-
 #left-wrap {
   float: left;
   width: 630px;
@@ -250,7 +245,6 @@ ul.bloglinks {
 
 @import "reset";
 @import "comments";
-@import "forms";
 @import "navigation";
 @import "pages";
 @import "password_resets";

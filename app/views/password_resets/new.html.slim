@@ -1,8 +1,9 @@
 = arrowed_header "Reset your password"
 
 = form_tag password_resets_path, :method => :post do
-  .field
+  .clearfix
     = label_tag :email
-    = text_field_tag :email, params[:email]
-  .field.actions
-    button type="submit" Reset Password
+    .input
+      = text_field_tag :email, params[:email]
+  .actions
+    button type="submit" class="btn primary" Reset Password

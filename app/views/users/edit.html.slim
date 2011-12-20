@@ -4,54 +4,71 @@ p
  | You need to fill in your Battle.net information to participate in our tournaments.
 
 = form_for @user do |f|
-  - if @user.errors.any? 
+  - if @user.errors.any?
     .error_messages
       ul
         - for message in @user.errors.full_messages
           li= message
 
-  .field
+  .clearfix
     = f.label :username
-    = f.text_field :username
-  .field
+    .input
+      = f.text_field :username
+  .clearfix
     = f.label :email
-    = f.text_field :email
-  .field
-    = f.check_box :display_email
-    = f.label :display_email
-  .field
-    = f.label :bnet_username, "Battle.net username (DON'T PUT YOUR CHARACTER CODE HERE)"
-    = f.text_field :bnet_username
-  .field
-    = f.label :bnet_code, "Battle.net character code"
-    = f.text_field :bnet_code
-  .field
-    = f.label :race
-    = f.text_field :race
-  .field
-    = f.label :league
-    = f.text_field :league
-  .field
-    = f.label :server
-    = f.text_field :server
-  .field
-    = f.label :favorite_player
-    = f.text_field :favorite_player
-  .field
-    = f.label :skype
-    = f.text_field :skype
-  .field
-    = f.check_box :display_skype
-    = f.label :display_skype
-  .field
-    = f.label :msn
-    = f.text_field :msn
-  .field
-    = f.check_box :display_msn
-    = f.label :display_msn
-  .field
-    = f.label :about
-    = f.text_area :about
-  
-  .field
-    button type="submit" Update your profile
+    .input
+      .input-append
+        = f.text_field :email
+        label class="add-on"
+          = f.check_box :display_email
+
+  fieldset
+    legend Battle.net information
+    .clearfix
+      = f.label :bnet_username, 'username'
+      .input
+        = f.text_field :bnet_username
+    .clearfix
+      = f.label :bnet_code, 'character code'
+      .input
+        = f.text_field :bnet_code
+
+  fieldset
+    legend Community information
+    .clearfix
+      = f.label :race
+      .input
+        = f.text_field :race
+    .clearfix
+      = f.label :league
+      .input
+        = f.text_field :league
+    .clearfix
+      = f.label :server
+      .input
+        = f.text_field :server
+    .clearfix
+      = f.label :favorite_player
+      .input
+        = f.text_field :favorite_player
+    .clearfix
+      = f.label :skype
+      .input
+        .input-append
+          = f.text_field :skype
+          label class="add-on"
+            = f.check_box :display_skype
+    .clearfix
+      = f.label :msn, 'MSN'
+      .input
+        .input-append
+          = f.text_field :msn
+          label class="add-on"
+            = f.check_box :display_msn
+    .clearfix
+      = f.label :about
+      .input
+        = f.text_area :about, :rows => 3, :class => 'xlarge'
+
+  .actions
+    button type="submit" class="btn primary" Update your profile
