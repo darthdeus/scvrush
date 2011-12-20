@@ -2,14 +2,14 @@
   .single
     .post
       h1= @post.title
-      
+
       / - if @post.try(:user?)
       /   .author
-      /     | author:  
+      /     | author:
       /     = @post.user.username
 
       = m @post.content
-    
+
     .taglist
       ul.tags
         - @post.tag_list.each do |tag|
@@ -18,7 +18,7 @@
     - if @post.user && @post.user.about
       #author-box
         .avatar = image_tag @post.user.avatar.url(:thumb) if @post.user.avatar?
-        .content 
+        .content
           .name = @post.user.username
           .about = @post.user.about
 
@@ -31,27 +31,27 @@
         - @comments.each do |comment|
           .comment
             h4
-              a href="#{user_path(comment.user_id)}" = comment.author              
-              span.date 
+              a href="#{user_path(comment.user_id)}" = comment.author
+              span.date
                 = time_ago_in_words comment.created_at
                 |  ago
               span.voting
                 - if logged_in?
                   - if current_user.voted_on?(comment)
                     = link_to 'remove vote', { :controller => :votes, :action => :destroy, :id => comment.id }, :method => :delete
-                  - else                  
+                  - else
                     = link_to 'upvote', { :controller => :votes, :action => :create, :id => comment.id }, :method => :post
                 - else
-                  | please 
-                  = link_to 'log in' 
+                  | please
+                  = link_to 'log in'
                   |  to vote
-                
+
             = simple_format comment.content
-    
-      - if logged_in?    
+
+      - if logged_in?
         = render 'comments/form'
-      - else 
-        h2 
-          | You must be 
+      - else
+        h2
+          | You must be
           = link_to "logged in", login_path
           |  to comment
