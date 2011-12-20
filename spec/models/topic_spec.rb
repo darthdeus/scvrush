@@ -22,18 +22,18 @@ describe Topic do
       topic.replies.destroy_all
       3.times { create(:reply, :topic_id => topic.id) }
       topic.reload
-      topic.last_reply.should == Reply.first
+      topic.last_reply.should == Reply.last
     end
   end
 
   describe '#last_reply_at' do
     let(:topic) { create(:topic) }
 
-    it 'should equal last reply created_at time' do
+    it 'contains last reply created_at time' do
       topic.replies.destroy_all
-      reply = create(:reply, :topic_id => topic.id)
+      create(:reply, :topic_id => topic.id)
       topic.reload
-      topic.last_reply_at.should == reply.created_at
+      topic.last_reply_at.should == topic.last_reply.created_at
     end
   end
 end

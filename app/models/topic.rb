@@ -10,4 +10,8 @@ class Topic < ActiveRecord::Base
   validates :user, :presence => true
   validates :section, :presence => true
   validates :name, :presence => true
+
+  def to_param
+    "#{id}-#{name.parameterize}"
+  end
 end

@@ -10,6 +10,7 @@ class Reply < ActiveRecord::Base
 
   def set_last_reply
     self.topic.last_reply = self
+    self.topic.last_reply_at = self.created_at
     self.topic.save!
   end
 end
