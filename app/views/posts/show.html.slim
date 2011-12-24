@@ -3,11 +3,6 @@
     .post
       h1= @post.title
 
-      / - if @post.try(:user?)
-      /   .author
-      /     | author:
-      /     = @post.user.username
-
       = m @post.content
 
     .taglist
@@ -42,7 +37,7 @@
                   - else
                     = link_to 'upvote', { :controller => :votes, :action => :create, :id => comment.id }, :method => :post
                 - else
-                  | please
+                  | please 
                   = link_to 'log in'
                   |  to vote
 
