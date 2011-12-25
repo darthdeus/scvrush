@@ -4,6 +4,7 @@ ActiveAdmin.register Tournament do
     column :name
     column :post
     column :starts_at
+    default_actions
   end
 
 end
