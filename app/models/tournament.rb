@@ -1,5 +1,5 @@
 class Tournament < ActiveRecord::Base
-  attr_accessible :starts_at, :name
+  attr_accessible :starts_at, :name, :post
 
   has_many :signups, :dependent => :destroy
   has_many :users, :through => :signups
