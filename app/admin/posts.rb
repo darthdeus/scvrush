@@ -9,7 +9,7 @@ ActiveAdmin.register Post do
     column :user
     default_actions
   end
-  
+
   form do |f|
     f.inputs "Details" do
       f.input :title

@@ -27,14 +27,11 @@ html
 
 
           #upcoming
+            - Tournament.upcoming.each do |tournament|
+              .upcoming
+                h2 = link_to tournament_shortname(tournament.name), tournament.post
+                p = nice_date(tournament.starts_at)
 
-            .upcoming
-              h2 = link_to "SCV Rush Plat/Dia #15", post_path("9664-eu-scv-rush-plat-dia-15")
-              p Thursday Dec 29th, 7pm GMT
-
-            .upcoming
-              h2 = link_to "SCV Rush BSG #11", post_path("9663-eu-scv-rush-bsg-11")
-              p Wednesday Dec 28, 7pm GMT
 
         #wrapper-navigation
           #navigation

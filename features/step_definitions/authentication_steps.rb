@@ -1,4 +1,4 @@
-Given(/^I am not logged in$/) do
+Given /^I am not logged in$/ do
   visit logout_path
 end
 
@@ -13,7 +13,7 @@ Given /^I am an administrator$/ do
 end
 
 When /^I go to the dashboard page$/ do
-  pending # express the regexp above with the code you wish you had
+  visit dashboard_path
 end
 
 Given /^I am a regular user$/ do

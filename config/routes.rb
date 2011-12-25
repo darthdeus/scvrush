@@ -1,5 +1,6 @@
-Scvrush::Application.routes.draw do  
-  
+Scvrush::Application.routes.draw do
+
+  resources :upcoming
   resources :raffle_signups
   resources :raffles do
     post :close, :on => :member
@@ -7,16 +8,16 @@ Scvrush::Application.routes.draw do
   resources :avatars
 
   resources :images, :only => :create
-  get "dashboard/index"
+  get "dashboard/index", :as => 'dashboard'
 
   resources :votes, :only => [:create, :destroy]
   resources :tournaments, :only => :show
   resources :signups, :only => [:create, :destroy, :update]
-  
+
   resources :sections, :only => :index
   resources :topics, :only => [:new, :show, :create]
-  resources :replies, :only => :create 
-  
+  resources :replies, :only => :create
+
   get "home/index"
 
   ActiveAdmin.routes(self)
@@ -42,7 +43,7 @@ Scvrush::Application.routes.draw do
   resources :users, :only => [:new, :create, :edit, :show, :update]
   resources :sessions, :only => [:new, :create, :destroy]
 
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

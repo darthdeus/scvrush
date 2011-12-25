@@ -2,7 +2,8 @@
 
 FactoryGirl.define do
   factory :tournament do
-    name "MyString"
-    starts_at "2011-11-21 01:27:41"
+    sequence(:name) { |n| "SCV Rush ##{n}" }
+    starts_at { Time.now }
+    association :post
   end
 end

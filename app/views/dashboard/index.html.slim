@@ -36,3 +36,8 @@ table.bordered-table.zebra-striped
       td= link_to "delete", raffle, :method => :delete, :confirmation => true
 
 = link_to "New raffle", new_raffle_path, :class => 'btn'
+
+.actions
+  = link_to 'manage upcoming tournaments', \
+    { :controller => :upcoming, :action => :index }, \
+    :class => 'btn'
