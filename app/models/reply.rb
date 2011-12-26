@@ -8,6 +8,8 @@ class Reply < ActiveRecord::Base
 
   after_create :set_last_reply
 
+  acts_as_voteable
+
   def set_last_reply
     self.topic.last_reply = self
     self.topic.last_reply_at = self.created_at

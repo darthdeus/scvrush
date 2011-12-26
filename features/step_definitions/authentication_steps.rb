@@ -19,3 +19,7 @@ end
 Given /^I am a regular user$/ do
   step "I am logged in"
 end
+
+Then /^I should see "(\w+)"$/ do |text|
+  page.should have_content(text)
+end

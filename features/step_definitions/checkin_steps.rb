@@ -18,6 +18,11 @@ Given /^I am on that tournament page$/ do
   visit tournament_path(@tournament)
 end
 
+Given /^I am signed up$/ do
+  step "I am logged in"
+  @user.sign_up(@tournament)
+end
+
 Then /^I should not be able to check in$/ do
   lambda { find_button("Checkin!") }.should raise_error(Capybara::ElementNotFound)
 end

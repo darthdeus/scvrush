@@ -31,11 +31,8 @@
                 = time_ago_in_words comment.created_at
                 |  ago
               span.voting
-                - if logged_in?
-                  - if current_user.voted_on?(comment)
-                    = link_to 'remove vote', { :controller => :votes, :action => :destroy, :id => comment.id }, :method => :delete
-                  - else
-                    = link_to 'upvote', { :controller => :votes, :action => :create, :id => comment.id }, :method => :post
+                - if current_user
+                  = vote_link(current_user, comment)
                 - else
                   | please 
                   = link_to 'log in'

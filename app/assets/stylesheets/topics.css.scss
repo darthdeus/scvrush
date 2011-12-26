@@ -8,10 +8,10 @@
     background: rgba(#000, 0.01);
     border-bottom: 1px solid #ddd;
     overflow: hidden;
-    
+
     &:hover { background: rgba(#000, 0.02); }
     .name {
-        
+
     }
     .date {
         float: right;
@@ -30,8 +30,13 @@
             font-weight: normal;
             padding-left: 10px;
         }
+        span.voting {
+          float: right;
+          font-size: 10px;
+          font-weight: normal;
+        }
     }
-    
+
     &:nth-child(even) { background: rgba(#000, 0.02); }
     &:last-child { border-bottom: none; }
 }

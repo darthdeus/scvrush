@@ -3,12 +3,8 @@ class SignupsController < ApplicationController
   before_filter :require_bnet_username
 
   def create
-    @signup = Signup.new
-    @signup.user = current_user
     @tournament = Tournament.find(params[:id])
-    @signup.tournament = @tournament
-    @signup.status = Signup::REGISTERED
-    @signup.save!
+    current_user.sign_up(@tournament)
     redirect_to @tournament, :notice => "You have successfuly registered to the tournament."
   end
 
@@ -25,7 +21,7 @@ class SignupsController < ApplicationController
   end
 
   protected
-  
+
   def require_bnet_username
     unless current_user.has_bnet_username?
       redirect_to edit_user_path(current_user), :notice => "You can't participate in a tournament unless you fill in your Battle.net username and code."

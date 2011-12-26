@@ -7,6 +7,13 @@
       span.date
         = time_ago_in_words(reply.created_at)
         |  ago
+      span.voting
+        - if current_user
+          = vote_link(current_user, reply)
+        - else
+          | please 
+          = link_to 'log in'
+          |  to vote
 
     .content
       = simple_format reply.content

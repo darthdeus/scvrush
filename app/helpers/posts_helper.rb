@@ -23,4 +23,26 @@ module PostsHelper
   def nice_date(date)
     date.strftime("%A %b %est, %l%P GMT")
   end
+
+  def vote_link(user, comment)
+    if comment.user == user
+      "" # no link for your own comment
+    elsif user.voted_on?(comment)
+      downvote_link(comment)
+    else
+      upvote_link(comment)
+    end
+  end
+
+  def upvote_link(comment)
+    link_to 'upvote',
+      { :controller => :votes, :action => :create, :id => comment.id },
+      :method => :post
+  end
+
+  def downvote_link(comment)
+    link_to 'remove vote',
+      { :controller => :votes, :action => :destroy, :id => comment.id },
+      :method => :delete
+  end
 end

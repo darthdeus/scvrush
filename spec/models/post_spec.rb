@@ -24,4 +24,9 @@ describe Post do
 
     Comment.all.size.should == 0
   end
+
+  it 'has a parameterized name' do
+    post = build(:post, :title => 'foo')
+    post.to_param.should == "#{post.id}-#{post.title}"
+  end
 end

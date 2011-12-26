@@ -56,4 +56,9 @@ describe Tournament do
     tournament = create(:tournament)
     tournament.post.should_not be_nil
   end
+
+  it 'has a parameterized name' do
+    tournament = build(:tournament, :name => 'foo')
+    tournament.to_param.should == "#{tournament.id}-#{tournament.name}"
+  end
 end

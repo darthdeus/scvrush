@@ -36,4 +36,9 @@ describe Topic do
       topic.last_reply_at.should == topic.last_reply.created_at
     end
   end
+
+  it 'has a parameterized name' do
+    topic = build(:topic, :name => 'foo')
+    topic.to_param.should == "#{topic.id}-#{topic.name}"
+  end
 end

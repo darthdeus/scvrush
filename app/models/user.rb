@@ -6,8 +6,9 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :replies
   has_many :signups
-  has_many :posts
+  has_many :tournaments, :through => :signups
 
+  has_many :posts
   has_many :won_raffles, :class_name => "Raffle", :foreign_key => "winner_id"
 
   has_many :raffle_signups
@@ -60,6 +61,7 @@ class User < ActiveRecord::Base
     signup.tournament = tournament
     signup.status = Signup::REGISTERED
     signup.save!
+    signup
   end
 
   def registered_for?(tournament)

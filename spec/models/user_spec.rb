@@ -88,6 +88,16 @@ describe User do
 
       @user.participating_in?(@raffle).should be_false
     end
+  end
 
+  describe "#sign_up" do
+    it "creates a signup for a given user" do
+      user = create(:user)
+      tournament = create(:tournament)
+
+      user.sign_up(tournament)
+
+      user.tournaments.should == [tournament]
+    end
   end
 end

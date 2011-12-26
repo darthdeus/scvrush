@@ -1,5 +1,6 @@
 Scvrush::Application.routes.draw do
 
+  resources :reply_votes
   resources :upcoming
   resources :raffle_signups
   resources :raffles do
