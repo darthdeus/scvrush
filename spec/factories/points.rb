@@ -3,9 +3,9 @@
 FactoryGirl.define do
   factory :point do
     value 1
-    reason_type "MyString"
-    reason_id 1
-    user nil
-    note "MyString"
+    association :reason
+    association :user
   end
+
+  factory :reason, :parent => :comment
 end
