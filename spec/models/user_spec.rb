@@ -100,4 +100,23 @@ describe User do
       user.tournaments.should == [tournament]
     end
   end
+
+  describe "#won_tournament!" do
+    it "adds an achievement to the user" do
+      user = create(:user)
+      user.won_tournament!
+      user.achievements.size.should == 1
+    end
+
+    it "it doesn't add the achievement if the user already has it" do
+      Achievement.destroy_all
+      UserAchievement.destroy_all
+      User.destroy_all
+
+      user = create(:user)
+      user.won_tournament!
+      user.won_tournament!
+      user.achievements.size.should == 1
+    end
+  end
 end

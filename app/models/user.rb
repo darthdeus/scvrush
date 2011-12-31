@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   WRITER = 1
   ADMIN = 10
 
+  has_many :user_achievements
+  has_many :achievements, :through => :user_achievements
+
   has_many :comments
   has_many :replies
   has_many :signups
@@ -115,6 +118,12 @@ class User < ActiveRecord::Base
     begin
       self[column] = SecureRandom.urlsafe_base64
     end while User.exists?(column => self[column])
+  end
+
+  def won_tournament!
+    achievement = Achievement.find_or_create_by_name("Tournament winner")
+    self.achievements << achievement unless self.achievements.include?(achievement)
+    self.save!
   end
 
 end

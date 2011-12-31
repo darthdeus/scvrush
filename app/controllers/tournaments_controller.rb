@@ -15,8 +15,7 @@ class TournamentsController < ApplicationController
   def update
     @tournament = Tournament.find(params[:id])
     @winner = @tournament.users.find(params[:tournament][:winner])
-    @tournament.winner = @winner
-    @tournament.save!
+    @tournament.set_winner(@winner)
 
     flash[:notice] = "Tournament winner was set successfuly"
     redirect_to :controller => :dashboard, :action => :index

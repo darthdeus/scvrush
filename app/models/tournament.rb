@@ -23,6 +23,12 @@ class Tournament < ActiveRecord::Base
     self.signups.where(user_id: user.id).first.destroy
   end
 
+  def set_winner(winner)
+    self.winner = winner
+    self.save!
+    winner.won_tournament!
+  end
+
   def to_param
     "#{id}-#{name.parameterize}"
   end

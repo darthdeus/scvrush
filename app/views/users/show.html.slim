@@ -8,7 +8,7 @@
       = link_to "change avatar", new_avatar_path
 
   ul
-    li 
+    li
       | Username: 
       = @user.username
     li
@@ -32,3 +32,19 @@
         = link_to comment.post.title, post_path(comment.post) + "#comment#{comment.id}"
         |  - 
         = comment.content[0..30]
+
+  h2 Achievements
+  ul.comments
+    - @user.achievements.each do |achievement|
+      li
+        = achievement.name
+        ul
+          - @user.won_tournaments.each do |tournament|
+            li = link_to tournament.name, tournament
+
+  .actions
+    - if @user == current_user
+      - if @user.practice
+        = link_to "Quit Practice Buddy", { :controller => :practice, :action => :quit }, :class => "btn"
+      - else
+        = link_to "Join Practice Buddy", { :controller => :practice, :action => :join }, :class => "btn"

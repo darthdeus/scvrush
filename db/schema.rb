@@ -11,10 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111231161817) do
+ActiveRecord::Schema.define(:version => 20111231201842) do
 
   create_table "achievements", :force => true do |t|
     t.string   "name"
+    t.string   "slug"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -207,6 +208,7 @@ ActiveRecord::Schema.define(:version => 20111231161817) do
     t.boolean  "display_skype",          :default => false
     t.boolean  "display_msn",            :default => false
     t.text     "about"
+    t.boolean  "practice"
   end
 
   create_table "votes", :force => true do |t|
@@ -222,15 +224,5 @@ ActiveRecord::Schema.define(:version => 20111231161817) do
   add_index "votes", ["voteable_id", "voteable_type"], :name => "index_votes_on_voteable_id_and_voteable_type"
   add_index "votes", ["voter_id", "voter_type", "voteable_id", "voteable_type"], :name => "fk_one_vote_per_user_per_entity", :unique => true
   add_index "votes", ["voter_id", "voter_type"], :name => "index_votes_on_voter_id_and_voter_type"
-
-  create_table "widgets", :force => true do |t|
-    t.string   "item_type"
-    t.integer  "item_id"
-    t.string   "title"
-    t.string   "name"
-    t.text     "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
 end
