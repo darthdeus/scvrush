@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111225202106) do
+ActiveRecord::Schema.define(:version => 20111231161817) do
+
+  create_table "achievements", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -166,6 +173,14 @@ ActiveRecord::Schema.define(:version => 20111225202106) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "post_id"
+    t.integer  "winner_id"
+  end
+
+  create_table "user_achievements", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "achievement_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

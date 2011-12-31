@@ -3,6 +3,7 @@ class Tournament < ActiveRecord::Base
   has_many :users, :through => :signups
 
   belongs_to :post
+  belongs_to :winner, :class_name => 'User', :foreign_key => 'winner_id'
 
   validates :name, :presence => true
   validates :starts_at, :presence => true

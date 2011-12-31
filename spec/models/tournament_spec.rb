@@ -62,4 +62,13 @@ describe Tournament do
       @user.should_not be_registered_for(@tournament)
     end
   end
+
+  it 'has a winner' do
+    tournament = create(:tournament)
+    user = create(:user)
+    tournament.winner = user
+    tournament.save!
+
+    user.won_tournaments.should == [tournament]
+  end
 end

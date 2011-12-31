@@ -35,9 +35,25 @@ table.bordered-table.zebra-striped
       td= link_to "edit", edit_raffle_path(raffle)
       td= link_to "delete", raffle, :method => :delete, :confirmation => true
 
-= link_to "New raffle", new_raffle_path, :class => 'btn'
+p
+  = link_to "New raffle", new_raffle_path, :class => 'btn'
 
-.actions
-  = link_to 'manage upcoming tournaments', \
-    { :controller => :upcoming, :action => :index }, \
-    :class => 'btn'
+
+= arrowed_header 'Select a winner for a tournament'
+
+table.bordered-table.zebra-striped
+  thead
+    tr
+      th Name
+      th Winner
+      th
+  tbody
+    - @recent_tournaments.each do |tournament|
+      tr
+        td= link_to tournament.name, tournament
+        - if tournament.winner
+          td= link_to tournament.winner.username, tournament.winner
+        - else
+          td no winner set
+        td= link_to "select a winner", edit_tournament_path(tournament)
+

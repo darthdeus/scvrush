@@ -4,6 +4,7 @@ class DashboardController < ApplicationController
   def index
     @drafts = Post.drafts.limit(10)
     @published = Post.published.limit(10)
+    @recent_tournaments = Tournament.recent
     @raffles = Raffle.all
   end
 

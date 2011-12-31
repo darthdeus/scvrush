@@ -12,7 +12,7 @@ Scvrush::Application.routes.draw do
   get "dashboard/index", :as => 'dashboard'
 
   resources :votes, :only => [:create, :destroy]
-  resources :tournaments, :only => :show
+  resources :tournaments, :only => [:show, :edit, :update]
   resources :signups, :only => [:create, :destroy, :update]
 
   resources :sections, :only => :index
