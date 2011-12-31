@@ -1,15 +1,23 @@
 require 'spec_helper'
 
 describe SignupsController do
-  specify :destroy do
-    @user = mock_model(User)
-    @user.should_receive(:has_bnet_username?).and_return(true)
-    controller.stub!(:current_user).and_return(@user)
 
+  before do
+    @user = mock_model(User).as_null_object
+    controller.stub!(:current_user).and_return(@user)
     @tournament = mock_model(Tournament)
+    Tournament.stub!(:find).and_return(@tournament)
+  end
+
+  specify :create do
+    @user.stub!(:sign_up)
+    post :create, :id => 1
+    response.should redirect_to(tournament_path(@tournament))
+  end
+
+  specify :destroy do
     @tournament.stub!(:unregister)
-    @tournament.should_receive(:unregister).with(@user)
-    Tournament.should_receive(:find).with("1").and_return(@tournament)
-    delete :destroy, id: 1
+    delete :destroy, :id => 1
+    response.should redirect_to(tournament_path(@tournament))
   end
 end

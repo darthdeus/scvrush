@@ -22,6 +22,16 @@ describe Tournament do
       t.destroy
       Signup.all.size.should == 0
     end
+
+    it 'has a post' do
+      tournament = create(:tournament)
+      tournament.post.should_not be_nil
+    end
+
+    it 'has a parameterized name' do
+      tournament = build(:tournament, :name => 'foo')
+      tournament.to_param.should == "#{tournament.id}-#{tournament.name}"
+    end
   end
 
   describe :signup_open? do
@@ -42,23 +52,14 @@ describe Tournament do
     end
   end
 
-  specify :unregister do
-    @signup = create(:signup)
-    @user = @signup.user
-    @tournament = @signup.tournament
+  describe :unregister do
+    it "removes the user from active signups" do
+      @signup = create(:signup)
+      @user = @signup.user
+      @tournament = @signup.tournament
+      @tournament.unregister(@user)
 
-    @tournament.unregister(@user)
-
-    @user.should_not be_registered_for(@tournament)
-  end
-
-  it 'has a post' do
-    tournament = create(:tournament)
-    tournament.post.should_not be_nil
-  end
-
-  it 'has a parameterized name' do
-    tournament = build(:tournament, :name => 'foo')
-    tournament.to_param.should == "#{tournament.id}-#{tournament.name}"
+      @user.should_not be_registered_for(@tournament)
+    end
   end
 end
