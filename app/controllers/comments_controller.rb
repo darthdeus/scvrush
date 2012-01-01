@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to post_path(@comment.post_id) + "#comments", :notice => "Your comment was successfuly submitted."
     else
-      redirect_to post_path(@comment.post_id) + "#comments", :error => "You can't post an empty comment! Try again and write something this time."
+      redirect_to post_path(@comment.post_id) + "#comments", :notice => "You can't post an empty comment! Try again and write at least 10 characters this time."
     end
   end
 
