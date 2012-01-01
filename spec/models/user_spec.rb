@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe User do
+  before { User.destroy_all }
+
   it "has a valid factory" do
     build(:user).should be_valid
   end
@@ -50,11 +52,17 @@ describe User do
     end
   end
 
-  describe "#checkin" do
+  describe "#check_in" do
     it "is CHECKED in" do
-      signup = create(:signup)
-      user = signup.user
-      tournament = signup.tournament
+      user = create(:user)
+      tournament = create(:tournament)
+
+      user.sign_up(tournament)
+
+      user.signups.size.should == 1
+      signup = user.signups.first
+
+      signup.status.should == Signup::REGISTERED
 
       user.check_in(tournament)
       signup.reload
