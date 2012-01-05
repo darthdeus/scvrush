@@ -6,11 +6,11 @@ describe RaffleSignup do
   end
   
   it "requires user" do
-    build(:raffle_signup, user: nil).should have(1).error_on(:user)
+    build(:raffle_signup, user: nil).should have(2).error_on(:user)
   end
 
   it "requires raffle" do
-    build(:raffle_signup, raffle: nil).should have(1).error_on(:raffle)
+    build(:raffle_signup, raffle: nil).should have(2).error_on(:raffle)
   end
 
 end

@@ -21,7 +21,7 @@ module PostsHelper
   end
 
   def nice_date(date)
-    date.strftime("%A %b st, %l%P GMT").sub('st', date.day.ordinalize)
+    date.strftime("%A %b st, %l:%M%P GMT").sub('st', date.day.ordinalize)
   end
 
   def vote_link(user, comment)

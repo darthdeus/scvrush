@@ -82,7 +82,7 @@ class User < ActiveRecord::Base
   end
 
   def participating_in?(raffle)
-    self.raffle_signups.where(raffle_id: raffle.id).first
+    self.raffle_signups.where(:raffle_id => raffle.id).first
   end
 
   def to_param

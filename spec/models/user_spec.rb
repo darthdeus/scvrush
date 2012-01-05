@@ -62,11 +62,10 @@ describe User do
       user.signups.size.should == 1
       signup = user.signups.first
 
-      signup.status.should == Signup::REGISTERED
-
-      user.check_in(tournament)
-      signup.reload
-      signup.status.should == Signup::CHECKED
+      expect {
+        user.check_in(tournament)
+        signup.reload
+      }.to change { signup.status }.from(Signup::REGISTERED).to(Signup::CHECKED)
     end
   end
 

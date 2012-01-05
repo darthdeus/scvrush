@@ -10,12 +10,12 @@ gem 'mysql2'
 
 gem 'slim-rails'
 gem 'sass-rails',   '~> 3.1.4'
-  
+
 gem 'fog'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'airbrake'
-  
+
 group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
@@ -37,7 +37,7 @@ gem 'therubyracer', :group => :production
 
 
 group :development, :test do
-  gem 'simplecov'  
+  gem 'simplecov'
   gem 'nifty-generators'
   gem 'rspec-rails'
   gem 'database_cleaner'
@@ -45,13 +45,13 @@ group :development, :test do
   gem 'capybara-webkit'
   gem 'factory_girl_rails'
   gem 'launchy'
-  
+
   gem 'cucumber-rails'
   gem 'database_cleaner'
-  
+
   gem 'populator'
   gem 'faker'
-  
+
   group :darwin do
     gem 'rb-fsevent', :require => false
     gem 'rb-inotify', :require => false
@@ -62,6 +62,7 @@ group :development, :test do
   gem 'guard-cucumber'
   gem 'growl'
   gem 'spork', '> 0.9.0.rc'
+  gem 'metrical'
 end
 
 gem 'unicorn'

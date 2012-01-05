@@ -29,7 +29,7 @@ html
           #upcoming
             - Tournament.upcoming.each do |tournament|
               .upcoming
-                h2 = link_to tournament_shortname(tournament.name), tournament.post
+                h2 = link_to tournament.name, tournament.post
                 p = nice_date(tournament.starts_at)
 
 
