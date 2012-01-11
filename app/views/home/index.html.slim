@@ -1,7 +1,7 @@
-= arrowed_header "Recent posts", "nomargin"
+= arrowed_header "Tournaments", "nomargin"
 
 .recent-posts
-  - @posts.each do |post|
+  - @tournaments.each do |post|
     .recent-post
 
       = featured_image(post)
@@ -10,10 +10,10 @@
         p  = post_excerpt(post.content, 100)
 
 
-= arrowed_header "Tournaments", "nomargin"
+= arrowed_header "Recent posts", "nomargin"
 
 .recent-posts
-  - @tournaments.each do |post|
+  - @posts.each do |post|
     .recent-post
 
       = featured_image(post)
