@@ -22,8 +22,8 @@ Feature: Checkin
 
   Scenario: user tries to check in within the checkin time
     Given I have a tournament starting in 10 minutes
-    And I am on that tournament page
     And I am signed up
+    When I go to that tournament page
     Then I should be able to check in
 
   Scenario: user tries to sign up too late
@@ -31,3 +31,9 @@ Feature: Checkin
     And I am on that tournament page
     Then I should not be able to sign up
 
+  Scenario: registered user checks in
+    Given I have a tournament starting in 10 minutes
+    And I am signed up
+    And I am on that tournament page
+    When I check in
+    Then I should be in the checkin list

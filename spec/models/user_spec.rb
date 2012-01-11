@@ -52,31 +52,9 @@ describe User do
     end
   end
 
-  describe "#check_in" do
-    it "is CHECKED in" do
-      user = create(:user)
-      tournament = create(:tournament)
-
-      user.sign_up(tournament)
-
-      user.signups.size.should == 1
-      signup = user.signups.first
-
-      expect {
-        user.check_in(tournament)
-        signup.reload
-      }.to change { signup.status }.from(Signup::REGISTERED).to(Signup::CHECKED)
-    end
-  end
-
   it "doesn't blow up when I call #send_password_reset" do
     @user = create(:user)
     lambda { @user.send_password_reset }.should_not raise_error
-  end
-
-  it "doesn't blow up when I call #save!" do
-    @user = create(:user)
-    lambda { @user.save! }.should_not raise_error
   end
 
   describe "#participating_in?" do
@@ -98,13 +76,49 @@ describe User do
   end
 
   describe "#sign_up" do
+    before(:each) { [User, Signup, Tournament].each(&:destroy_all) }
+
     it "creates a signup for a given user" do
+      user = create(:user)
+      tournament = create(:tournament)
+
+      signup = user.sign_up(tournament)
+      user.signups.should == [signup]
+    end
+
+    it "adds the user to the tournament's list" do
+      user = create(:user)
+      tournament = create(:tournament)
+
+      user.should_not be_registered_for(tournament)
+      user.sign_up(tournament)
+      tournament.users.should == [user]
+      user.should be_registered_for(tournament)
+    end
+  end
+
+  describe "#check_in" do
+    it "is CHECKED in" do
       user = create(:user)
       tournament = create(:tournament)
 
       user.sign_up(tournament)
 
-      user.tournaments.should == [tournament]
+      user.signups.size.should == 1
+      signup = user.signups.first
+
+      expect {
+        user.check_in(tournament)
+        signup.reload
+      }.to change { signup.status }.from(Signup::REGISTERED).to(Signup::CHECKED)
+    end
+
+    it "raises and exception if user isn't signed up" do
+      user = create(:user)
+      tournament = create(:tournament)
+      expect {
+        user.check_in(tournament)
+      }.to raise_exception(NotRegistered)
     end
   end
 

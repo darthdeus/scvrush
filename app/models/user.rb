@@ -60,12 +60,7 @@ class User < ActiveRecord::Base
   end
 
   def sign_up(tournament)
-    signup = Signup.new
-    signup.user = self
-    signup.tournament = tournament
-    signup.status = Signup::REGISTERED
-    signup.save!
-    signup
+    self.signups.create!(:tournament => tournament, :status => Signup::REGISTERED)
   end
 
   def registered_for?(tournament)
@@ -78,7 +73,11 @@ class User < ActiveRecord::Base
 
   def check_in(tournament)
     signup = self.signups.where(:tournament_id => tournament.id).first
-    signup.checkin! if signup
+    if signup
+      signup.checkin!
+    else
+      raise NotRegistered.new("Trying to check in a user who isn't registered!")
+    end
   end
 
   def participating_in?(raffle)
@@ -127,3 +126,8 @@ class User < ActiveRecord::Base
   end
 
 end
+
+# TODO - move this some place else!
+class NotRegistered < Exception
+end
+
