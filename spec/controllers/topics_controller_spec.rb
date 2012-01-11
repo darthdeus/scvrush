@@ -13,7 +13,6 @@ describe TopicsController do
       Section.should_receive(:find).with("1").and_return(section)
 
       get :new, section_id: 1
-
       assigns_should_match section: section, topic: :new_topic
     end
   end
