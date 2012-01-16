@@ -1,67 +1,68 @@
 ul
   li = link_to "Home", root_path
-  li 
+  li
     = link_to "Events", tag_path("event")
     ul
-      li 
+      li
         = link_to "Tournaments", tag_path("tournament")
         ul
           li = link_to "SCV Rush BSG", tag_path("bsg")
           li = link_to "Plat/Dia", tag_path("plat-dia")
           li = link_to "Open", tag_path("open")
-      li 
+      li
         = link_to "Current bracket", post_path(9511)
-  li 
+  li
     = link_to "Articles", posts_path
     ul
-      li 
+      li
         = link_to "Protoss", tag_path("protoss")
         ul
           li = link_to "Build Orders", tag_path("protoss,build")
           li = link_to "Strategy",     tag_path("protoss,strategy")
           li = link_to "Units",        tag_path("protoss,units")
-  
-      li 
+
+      li
         = link_to "Zerg", tag_path("zerg")
         ul
           li = link_to "Build Orders", tag_path("zerg,build")
           li = link_to "Strategy",     tag_path("zerg,strategy")
           li = link_to "Units",        tag_path("zerg,units")
-    
-      li 
+
+      li
         = link_to "Terran", tag_path("terran")
         ul
           li = link_to "Build Orders", tag_path("terran,build")
           li = link_to "Strategy",     tag_path("terran,strategy")
           li = link_to "Units",        tag_path("terran,units")
-  
+
       li = link_to "Game Diary", tag_path("game-diary")
       li = link_to "General Tactics", tag_path("general-tactics")
       li = link_to "Video Replay Analysis", tag_path("analysis")
       li = link_to "Zerg - Not Even Once", tag_path("zerg-show")
-  
+      li = link_to "Battle Report", tag_path("battle-report")
+
   li = link_to "Staff", post_path(9515)
-  li 
+  li
     = link_to "Associates", post_path(9485)
     ul
       li = link_to "GrandMaster Zerg Lectures and Coaching", post_path(9441)
       li = link_to "The Blindcast!", post_path(9447)
       li = link_to "Team eXe", post_path(9486)
-      
-  
+
+
   li = link_to "Forum", sections_path
   - if logged_in?
-    li.login 
+    li.login
       = link_to "User", "#"
       ul
         li = link_to "Profile", current_user
         li = link_to "Log out", logout_path
   - else
-    li.login 
+    li.login
       = link_to "Login", login_path
       ul
         li = link_to "Login", login_path
         li = link_to "Sign up", signup_url
         li = link_to "Reset password", new_password_reset_path
-  
+
   li.stream = link_to "Check out our Stream", "http://twitch.tv/scvrush1"
