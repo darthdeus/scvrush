@@ -25,6 +25,9 @@ Scvrush::Application.routes.draw do
 
   get "home/index"
 
+  # FIXME - this causes acts_as_taggable to bug any rake tasks,
+  # including migrations, as it loads the model and fails on a missing
+  # tags table
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
