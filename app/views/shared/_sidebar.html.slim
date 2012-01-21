@@ -16,6 +16,10 @@ ul.bloglinks
   li
     = link_to "SCV Rush Relaunch & New Features", "http://blog.scvrush.com/post/13175509634/scv-rush-relaunch-new-features"
 
+h2.arrowed.nomargin
+  = link_to "Swag Store", post_path("9697-swag-store")
+  span class='arrows' »
+
 = arrowed_header 'Join us on Facebook', 'facebook-header'
 
 .content
@@ -65,7 +69,7 @@ ul.bloglinks
   .name = link_to "Proficient", post_path(9524)
   ul.tags
     li= link_to "NA", coach("na")
-    li= link_to "All races", coach("protoss")
+    li= link_to "All races", coach("terran")
 
 .coach
   .name = link_to "Entry", post_path("9613-eu-na-entry")
@@ -80,10 +84,14 @@ ul.bloglinks
     li= link_to "NA", coach("na")
     li= link_to "Terran", coach("terran")
 
-
 .coach
   .name = link_to "JoATMoN", post_path("9710-na-joatmon")
   ul.tags
     li= link_to "NA", coach("na")
     li= link_to "Protoss", coach("protoss")
 
+.coach
+  .name = link_to "zLfreebird", post_path("9723-na-zlfreebird")
+  ul.tags
+    li= link_to "NA", coach("na")
+    li= link_to "All races", coach("terran")
