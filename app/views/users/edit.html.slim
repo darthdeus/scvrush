@@ -36,9 +36,14 @@ p
   fieldset
     legend Community information
     .clearfix
+      = f.label :twitter
+      span.help-inline Only your username without the @ symbol
+      .input
+        = f.text_field :twitter
+    .clearfix
       = f.label :race
       .input
-        = f.text_field :race
+        = f.text_field :race        
     .clearfix
       = f.label :league
       .input

@@ -17,6 +17,10 @@
     li
       | Experience: 
       = pluralize(@user.karma, "points")
+    - if @user.twitter.present?
+      li
+        | Twitter:
+        = link_to @user.twitter, "http://twitter.com/#{@user.twitter}"
 
     = info_for_user(@user, %w{race league server favorite_player}, %w{email skype msn})
 

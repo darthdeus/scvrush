@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120122211221) do
+ActiveRecord::Schema.define(:version => 20120122212248) do
 
   create_table "achievements", :force => true do |t|
     t.string   "name"
@@ -225,6 +225,7 @@ ActiveRecord::Schema.define(:version => 20120122211221) do
     t.boolean  "display_msn",            :default => false
     t.text     "about"
     t.boolean  "practice"
+    t.string   "twitter"
   end
 
   create_table "votes", :force => true do |t|
