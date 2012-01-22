@@ -45,6 +45,10 @@
         ul
           - @user.won_tournaments.each do |tournament|
             li = link_to tournament.name, tournament
+  - unless @user.posts.empty?
+    ul.comments
+      - @user.posts.each do |post|
+        li = link_to post.title, post_path(post)
 
   .actions
     - if @user == current_user

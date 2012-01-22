@@ -9,7 +9,7 @@ h2.arrowed.nomargin
   span.arrows »
 
 ul.bloglinks
-  - BlogPost.order('order DESC').each do |post|
+  - BlogPost.order('`order` DESC').each do |post|
     li = link_to post.title, post.url
   
 h2.arrowed.nomargin
@@ -30,7 +30,7 @@ h2.arrowed.nomargin
 
 = arrowed_header 'Coaches', 'nomargin'
 
-- Coach.order('order DESC').each do |coach|
+- Coach.order('`order` DESC').each do |coach|
   - if coach.post.present?
     .coach
       .name = link_to coach.title, post_path(coach.post)

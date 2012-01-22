@@ -14,8 +14,8 @@
       #author-box
         .avatar = image_tag @post.user.avatar.url(:thumb) if @post.user.avatar?
         .content
-          .name = @post.user.username
-          .about = @post.user.about
+          .name = link_to @post.user.username, @post.user
+          .about = m @post.user.about
 
     #comments.comments-wrap
       h2 Comments
