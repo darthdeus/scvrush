@@ -6,6 +6,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
   has_many :comments, :dependent => :destroy
   has_one :tournament
+  has_one :coach
 
   validates :title, :presence => true
   validates :content, :presence => true

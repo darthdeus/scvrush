@@ -38,64 +38,10 @@ h2.arrowed.nomargin
 
 = arrowed_header 'Coaches', 'nomargin'
 
-.coach
-  .name = link_to "nDMiniraser", post_path(9465)
-  ul.tags
-    li= link_to "EU", coach("eu")
-    li= link_to "Zerg", coach("zerg")
-
-.coach
-  .name = link_to "Huitzi", post_path("9602-na-huitzi")
-  ul.tags
-    li= link_to "NA", coach("na")
-    li= link_to "Terran", coach("terran")
-
-.coach
-  .name = link_to "Blacklist", post_path("9601-na-blacklist")
-  ul.tags
-    li= link_to "NA", coach("na")
-    li= link_to "Zerg", coach("zerg")
-
-.coach
-  .name = link_to "Another", post_path("9603-na-sea-another")
-  ul.tags
-    li= link_to "NA", coach("na")
-    li= link_to "SEA", coach("sea")
-    li= link_to "Protoss", coach("protoss")
-
-.coach
-  .name = link_to "Bale", post_path("9604-eu-bale")
-  ul.tags
-    li= link_to "EU", coach("eu")
-    li= link_to "Terran", coach("terran")
-
-.coach
-  .name = link_to "Proficient", post_path(9524)
-  ul.tags
-    li= link_to "NA", coach("na")
-    li= link_to "All races", coach("terran")
-
-.coach
-  .name = link_to "Entry", post_path("9613-eu-na-entry")
-  ul.tags
-    li= link_to "EU", coach("eu")
-    li= link_to "NA", coach("na")
-    li= link_to "Terran", coach("terran")
-
-.coach
-  .name = link_to "Marvel", post_path("9632-na-marvel")
-  ul.tags
-    li= link_to "NA", coach("na")
-    li= link_to "Terran", coach("terran")
-
-.coach
-  .name = link_to "JoATMoN", post_path("9710-na-joatmon")
-  ul.tags
-    li= link_to "NA", coach("na")
-    li= link_to "Protoss", coach("protoss")
-
-.coach
-  .name = link_to "zLfreebird", post_path("9723-na-zlfreebird")
-  ul.tags
-    li= link_to "NA", coach("na")
-    li= link_to "All races", coach("terran")
+- Coach.all.each do |coach|
+  - if coach.post.present?
+    .coach
+      .name = link_to coach.title, post_path(coach.post)
+      ul.tags    
+        - coach.tags.each do |tag|
+          li = link_to tag.name.titleize, coach(tag.name)
