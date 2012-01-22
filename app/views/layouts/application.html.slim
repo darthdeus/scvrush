@@ -14,6 +14,8 @@ html
     = csrf_meta_tag
     = yield(:head)
 
+    = auto_discovery_link_tag(:rss, posts_path(:format => 'rss'))
+
   body
     #wrapper
       #wrapper-content

@@ -9,17 +9,9 @@ h2.arrowed.nomargin
   span.arrows »
 
 ul.bloglinks
-  li
-    = link_to "Graphic Tweaks On The Site", "http://blog.scvrush.com/post/14533487136/graphic-tweaks-on-the-site"
-  li
-    = link_to "A Donate Button Next to Our Logo?", "http://blog.scvrush.com/post/14485157512/what-is-this-a-donate-button-next-to-our-logo"
-  li
-    = link_to "[NA] Plat/Dia #5 - The One With Mugs ...", "http://blog.scvrush.com/post/14021077842/na-plat-dia-5-the-one-with-mugs-mistakes"
-  li
-    = link_to "More Features!", "http://blog.scvrush.com/post/14019280609/more-features"
-  li
-    = link_to "SCV Rush Relaunch & New Features", "http://blog.scvrush.com/post/13175509634/scv-rush-relaunch-new-features"
-
+  - BlogPost.order('order DESC').each do |post|
+    li = link_to post.title, post.url
+  
 h2.arrowed.nomargin
   = link_to "Swag Store", post_path("9697-swag-store")
   span class='arrows' »
@@ -38,7 +30,7 @@ h2.arrowed.nomargin
 
 = arrowed_header 'Coaches', 'nomargin'
 
-- Coach.all.each do |coach|
+- Coach.order('order DESC').each do |coach|
   - if coach.post.present?
     .coach
       .name = link_to coach.title, post_path(coach.post)
