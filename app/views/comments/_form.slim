@@ -1,8 +1,10 @@
 .new-comment
-  h2 Post a new comment
-
-  = form_for @comment do |f|
-    = hidden_field_tag 'comment[post_id]', @comment.post_id
-    = f.text_area :content
-
-    button type="submit" Post comment
+  = form_for @comment, :html => { :class => 'new-comment form-stacked' } do |f|
+    fieldset
+      legend Post a new comment
+      = hidden_field_tag 'comment[post_id]', @comment.post_id
+      .clearfix
+        .input
+          = f.text_area :content, :class => 'xlarge', :rows => 4
+      .actions
+        button type="submit" class="btn primary" Post comment
