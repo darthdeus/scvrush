@@ -37,17 +37,20 @@
         |  - 
         = comment.content[0..30]
 
-  h2 Achievements
-  ul.comments
-    - @user.achievements.each do |achievement|
-      li
-        = achievement.name
-        ul
-          - @user.won_tournaments.each do |tournament|
-            li = link_to tournament.name, tournament
-  - unless @user.posts.empty?
+  - unless @user.achievement.empty?
+    h2 Achievements
     ul.comments
-      - @user.posts.each do |post|
+      - @user.achievements.each do |achievement|
+        li
+          = achievement.name
+          ul
+            - @user.won_tournaments.each do |tournament|
+              li = link_to tournament.name, tournament
+
+  - unless @user.posts.published.empty?
+    h2 User Posts
+    ul.comments
+      - @user.posts.published.each do |post|
         li = link_to post.title, post_path(post)
 
   .actions
