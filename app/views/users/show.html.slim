@@ -37,7 +37,7 @@
         |  - 
         = comment.content[0..30]
 
-  - unless @user.achievement.empty?
+  - unless @user.achievements.empty?
     h2 Achievements
     ul.comments
       - @user.achievements.each do |achievement|
