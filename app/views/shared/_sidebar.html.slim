@@ -9,7 +9,7 @@ h2.arrowed.nomargin
   span.arrows »
 
 ul.bloglinks
-  - BlogPost.order('`order` ASC').each do |post|
+  - BlogPost.order('`order` DESC').each do |post|
     li = link_to post.title, post.url
   
 h2.arrowed.nomargin

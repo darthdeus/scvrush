@@ -8,7 +8,7 @@
       - else
         - if current_user && current_user.registered_for?(@tournament)
           = cancel_signup_button @tournament
-        - else
+        - elsif @tournament.signup_open?
           = signup_button @tournament
 
       h3 Currently registered players
