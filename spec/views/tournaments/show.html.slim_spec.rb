@@ -35,8 +35,8 @@ describe "tournaments/show.html.slim" do
       view.stub(:current_user).and_return(user)
 
             tournament = mock_model(Tournament, :checkin_open? => false,
-                                          :name => "foo",
-                                          :signup_open? => true)
+                                                :name => "foo",
+                                                :signup_open? => true)
       assign(:tournament, tournament)
 
       render
@@ -48,8 +48,8 @@ describe "tournaments/show.html.slim" do
       view.stub(:current_user).and_return(user)
 
             tournament = mock_model(Tournament, :checkin_open? => false,
-                                          :name => "foo",
-                                          :signup_open? => true)
+                                                :name => "foo",
+                                                :signup_open? => true)
       assign(:tournament, tournament)
 
       render
