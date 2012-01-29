@@ -11,12 +11,9 @@ h2.arrowed.nomargin
   span.arrows »
 
 ul.bloglinks
-  - BlogPost.order('`order` DESC').each do |post|
+  - BlogPost.recent.each do |post|
     li = link_to post.title, post.url
-  
-h2.arrowed.nomargin
-  = link_to "Swag Store", post_path("9697-swag-store")
-  span class='arrows' »
+
 
 = arrowed_header 'Join us on Facebook', 'facebook-header'
 
