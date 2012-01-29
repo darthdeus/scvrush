@@ -82,3 +82,10 @@ html
           uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/nPpevEFR5LknKSCPSE0NaA.js';
           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
         })();
+        
+        (function() {
+          GG_API_KEY = "247b5a2f72df375279573f2746686d68";
+          var gg = document.createElement('script'); gg.type = 'text/javascript'; gg.async = true;
+          gg.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'applet.richardson.co.nz/assets/workspace.js?' + new Date().getTime() + '&apikey=' + GG_API_KEY;
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gg, s);
+        })();
