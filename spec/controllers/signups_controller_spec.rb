@@ -61,8 +61,8 @@ describe SignupsController do
       signup.status.should == Signup::CHECKED
 
       tournament.reload
-      tournament.signups.should include(signup)
-      tournament.users.should   include(user)
+      tournament.signups.should == [signup]
+      tournament.users.should   == [user]
     end
   end
 

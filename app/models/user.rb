@@ -65,11 +65,11 @@ class User < ActiveRecord::Base
   end
 
   def registered_for?(tournament)
-    !self.signups.where(:tournament_id => tournament.id, :status => Signup::REGISTERED).empty?
+    !self.signups.registered.where(:tournament_id => tournament.id).empty?
   end
 
   def checked_in?(tournament)
-    !self.signups.where(:tournament_id => tournament.id, :status => Signup::CHECKED).empty?
+    !self.signups.checked.where(:tournament_id => tournament.id).empty?
   end
 
   def check_in(tournament)

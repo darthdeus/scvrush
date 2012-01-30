@@ -1,11 +1,17 @@
-require "bundler/capistrano"
+$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+
+require 'rvm/capistrano'
+require 'bundler/capistrano'
 require 'new_relic/recipes'
 
 set :application, "scvrush.com"
-set :domain, "scvrush.xen.prgmr.com"
+# set :domain, "scvrush.com"
+set :domain, "97.107.142.61"
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
+ssh_options[:keys] = [File.join(ENV["HOME"], ".ssh", "id_rsa")]
+
 set :repository,  "git@github.com:darthdeus/scvrush.git"
 set :scm, :git
 set :branch, "master"
@@ -13,11 +19,13 @@ set :branch, "master"
 set :user, "deploy"
 set :runner, user
 set :rails_env, "production"
-# set :use_sudo, false
+set :use_sudo, false
 
+set :rvm_ruby_string, '1.9.3@scvrush'
+set :rvm_type, :user
 
 set :deploy_to, "/var/apps/#{application}"
-set :deploy_via, :remote_cache
+set :deploy_via, :copy
 
 role :web, domain
 role :app, domain
@@ -31,6 +39,17 @@ role :db,  domain, :primary => true
 # set :rails_env, :production
 
 namespace :deploy do
+
+  # task :cold do
+  #   update
+  #   load_schema
+  #   start
+  # end
+
+  # task :load_schema, :roles => :app do
+  #   run "cd #{current_path}; RAILS_ENV=production rake db:schema:load"
+  # end
+
   task :start, :roles => :app, :except => { :no_release => true } do 
     run "#{try_sudo} service unicorn start"
   end
@@ -43,17 +62,27 @@ namespace :deploy do
   
   task :symlink_shared do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs #{shared_path}/bin/unicorn #{release_path}/bin/unicorn"
   end
   
   task :pipeline_precompile do
     run "cd #{release_path}; RAILS_ENV=production bundle exec rake assets:precompile"
   end
 
-  after 'deploy:update_code', 'deploy:symlink_shared'
-  after 'deploy:update_code', 'deploy:pipeline_precompile'
+  # after 'deploy:update_code', 'deploy:symlink_shared'
 end
 
+
+namespace :rvm do
+  task :trust_rvmrc do
+    run "rvm rvmrc trust #{release_path}"
+  end
+end
+
+before "deploy:assets:precompile", "deploy:symlink_shared"
+before "deploy:finalize_update", "rvm:trust_rvmrc"
 after "deploy:update", "newrelic:notice_deployment"
+
 
 
 # if you're still using the script/reaper helper you will need

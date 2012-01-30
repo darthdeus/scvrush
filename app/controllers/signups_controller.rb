@@ -10,8 +10,12 @@ class SignupsController < ApplicationController
 
   def update
     @tournament = Tournament.find(params[:id])
-    current_user.check_in(@tournament)
-    redirect_to @tournament, :notice => "You've been checked in! Enjoy the tournament."
+    if current_user.registered_for? @tournament
+      current_user.check_in(@tournament)
+      redirect_to @tournament, :notice => "You've been checked in! Enjoy the tournament."
+    else
+      redirect_to @tournament, :notice => "You can't check in because you're not registered. Please contact the tournament administrator."
+    end 
   end
 
   def destroy

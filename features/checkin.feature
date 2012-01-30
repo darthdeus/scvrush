@@ -35,5 +35,5 @@ Feature: Checkin
     Given I have a tournament starting in 10 minutes
     And I am signed up
     And I am on that tournament page
-    When I check in
+    When I check in    
     Then I should be in the checkin list

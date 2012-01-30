@@ -6,7 +6,6 @@ defaults: &defaults
   username: root
   password:
   host: localhost
-  
 
 development:
   database: scvrush_development
@@ -15,7 +14,7 @@ development:
 test: &test
   database: scvrush_test
   <<: *defaults
-  
+
 production:
   database: scvrush_production
   <<: *defaults
