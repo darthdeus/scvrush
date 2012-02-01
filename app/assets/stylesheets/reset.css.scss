@@ -13,16 +13,6 @@ strong { font-weight: bold }
 em { font-style: italic }
 a img { border:none } /* Gets rid of IE's blue borders */
 
-
-
-@font-face {
-    font-family: "BebasNeueRegular";
-    font-weight: normal;
-        src: url("/assets/BebasNeue-webfont.eot?iefix") format("eot"), url("/assets/BebasNeue-webfont.woff") format("woff"), url("/assets/BebasNeue-webfont.ttf") format("truetype"), url("/assets/BebasNeue-webfont.svg#webfont4Bjy2lJe") format("svg");
-
-//    src: url("https://s3.amazonaws.com/scvrush/fonts/BebasNeue-webfont.eot?iefix") format("eot"), url("https://s3.amazonaws.com/scvrush/fonts/BebasNeue-webfont.woff") format("woff"), url("https://s3.amazonaws.com/scvrush/fonts/BebasNeue-webfont.ttf") format("truetype"), url("https://s3.amazonaws.com/scvrush/fonts/BebasNeue-webfont.svg#webfont4Bjy2lJe") format("svg");
-}
-
 div#preload { display: none; }
 
 .btn { margin-right: 4px; }

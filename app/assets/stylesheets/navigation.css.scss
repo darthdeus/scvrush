@@ -6,7 +6,7 @@
     margin-bottom: 25px;
 }
 #navigation { 
-    font-family:'BebasNeueRegular'; 
+    font-family: "bebas-neue",sans-serif;
     font-size:20px; 
     ul { margin: 0; }
     li { 
@@ -54,9 +54,7 @@
     & > ul > li.login { width: 112px; text-align: center; }
     
     li.stream {
-//        float: right;
         background-color: rgba(#fff, 0.1);
-//        position: relative;
         width: 308px;
         text-align: center;
     }

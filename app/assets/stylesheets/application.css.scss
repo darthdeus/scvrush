@@ -8,7 +8,7 @@
 
 body {
   background: #F6F6F6 url("/assets/pattern.png") repeat;
-  font: .75em/1.73em Verdana,Arial,Geneva,Helvetica,sans-serif;
+  font: .75em/1.73em "ff-meta-web-pro",sans-serif;
 
   margin: 0;
   padding: 0;
@@ -28,14 +28,14 @@ a:hover { color: #666; }
 }
 
 h1 {
-  font: bold 2.45em Arial, Helvetica, sans-serif;
+  font: bold 2.45em "ff-meta-web-pro",sans-serif;
 }
 
 h1, h2, h3 {
   padding: 12px 0 9px 0;
   display: block;
   color: #262626;
-  font-family: 'Droid Sans', Arial, sans-serif;
+  font-family: "ff-meta-web-pro",sans-serif;
   font-size: 32px;
   line-height: 40px;
 }
@@ -43,7 +43,9 @@ h1, h2, h3 {
 h2 { font-size: 24px; font-weight: bold; }
 h3 { font-size: 20px; }
 
-p { margin: 0 0 10px;}
+p { 
+  margin: 0 0 10px;
+}
 
 #wrapper {
   width: 1020px;
@@ -53,7 +55,7 @@ p { margin: 0 0 10px;}
   #wrapper-content {
     width: 940px;
     margin: 0 auto;
-    padding: 0; //25px 0 0; // 25px;
+    padding: 0;
     overflow: hidden;
     background: url("/assets/body-splitter.gif") repeat-y 610px 0;
   }
@@ -76,7 +78,7 @@ p { margin: 0 0 10px;}
 
 h2.arrowed, h3.arrowed {
   clear: both;
-  font-family: 'BebasNeueRegular';
+  font-family: "bebas-neue",sans-serif;
   color: #333;
   background: url("/assets/heading-box.png") no-repeat -12px 0;
   font-size: 26px;
@@ -211,8 +213,9 @@ h2.arrowed, h3.arrowed {
     width: 270px;
     height: 110px;
     padding: 10px 20px;
+    
     .upcoming {
-      margin: 10px;
+      margin: 20px;
       &:first-child { margin-bottom: 20px;}
       a { text-decoration: none; }
       h2, p { margin: 0; padding: 0;}
