@@ -9,7 +9,7 @@ class Tournament < ActiveRecord::Base
   validates :starts_at, :presence => true
 
   scope :recent, order('starts_at DESC').limit(5)
-  scope :upcoming, order('starts_at DESC').limit(2)
+  scope :upcoming, lambda { where(['starts_at > ?', Time.now]).first(2) }
 
   def signup_open?
     self.starts_at > 30.minutes.from_now
