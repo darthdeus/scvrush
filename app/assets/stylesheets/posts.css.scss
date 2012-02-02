@@ -17,7 +17,7 @@
         &:nth-child(even) { border-left: none; }
         &:hover { background: #efefef; }
         h3 {
-            margin-top: 6px;
+            margin-top: 19px;
             font-size: 12px;
             line-height: 14px;
             display: block;
@@ -95,14 +95,16 @@
 
         ol, ul {
             font-size: 16px;
-            padding-left: 40px;
+            padding-left: 20px;
             margin-bottom: 10px;
         }
 
         ul li {
+            color: #666;
             list-style: disc;
         }
         ol li {
+            color: #666;
             list-style: decimal;
         }
     }
