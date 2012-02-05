@@ -29,8 +29,9 @@ html
           h1
             a href="/"
               img src="/assets/logo.png" alt="SCV Rush"
-            a href="http://www.ggbet.net/" style="height: 100px;margin-left: 30px;position: absolute;"
-              img src="http://www.ggbet.net/assets/small-logo.png" alt="ggbet" style="height: 100px;margin-left: 30px;position: absolute;"
+            - if Rails.cache.read('ggbet_logo')
+              a href="http://www.ggbet.net/" style="height: 100px;margin-left: 30px;position: absolute;"
+                img src="http://www.ggbet.net/assets/small-logo.png" alt="ggbet" style="height: 100px;margin-left: 30px;position: absolute;"
 
 
           #upcoming
