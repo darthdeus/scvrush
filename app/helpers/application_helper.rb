@@ -11,4 +11,10 @@ module ApplicationHelper
   def m(string)
     RDiscount.new(string).to_html.html_safe
   end
+
+  def tag_link(tag)
+    name = tag.name.titleize
+    name = name.upcase if %w(Na Eu Sea Kr).include? name
+    link_to name, coach(tag.name)
+  end
 end
