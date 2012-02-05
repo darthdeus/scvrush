@@ -50,8 +50,10 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.update_attributes(params[:post])
     if @post.save
-      redirect_to @post, :notice => "post updated"
+      redirect_to @post, :notice => "Post was successfuly updated"
     else
+      @image = Image.new
+      @images = Image.last(5)
       render "edit"
     end
   end

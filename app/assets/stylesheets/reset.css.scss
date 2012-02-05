@@ -13,6 +13,10 @@ strong { font-weight: bold }
 em { font-style: italic }
 a img { border:none } /* Gets rid of IE's blue borders */
 
+/* TODO - what is tihs? */
 div#preload { display: none; }
 
-.btn { margin-right: 4px; }
+.btn {
+  margin-right: 4px;
+  padding: 6px 10px 3px 10px
+}
