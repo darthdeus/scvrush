@@ -22,7 +22,7 @@ end
 
 gem 'newrelic_rpm'
 
-
+gem 'redis-store'
 gem 'rdiscount'
 gem 'kaminari'
 gem 'activeadmin'
@@ -30,7 +30,6 @@ gem 'high_voltage'
 
 gem 'thumbs_up'
 gem 'acts-as-taggable-on', '~>2.1.0'
-
 
 # find an alternative, https://github.com/bbatsov/rails-style-guide#flawed
 gem 'therubyracer', :group => :production

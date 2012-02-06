@@ -8,6 +8,8 @@ html
     title
       = content_for?(:title) ? yield(:title) : "SCV Rush"
 
+    = favicon_link_tag 'favicon.png'
+
     link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css"
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
@@ -60,7 +62,7 @@ html
         .footer
           | Copyright &copy; 2011 SCVRush.com
           - if logged_in? && current_user.is_writer?
-            |  | 
+            |  |
             = link_to "dashboard", :controller => :dashboard, :action => :index
 
       #preload
@@ -88,7 +90,7 @@ html
           uv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'widget.uservoice.com/nPpevEFR5LknKSCPSE0NaA.js';
           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(uv, s);
         })();
-        
+
         (function() {
           GG_API_KEY = "247b5a2f72df375279573f2746686d68";
           var gg = document.createElement('script'); gg.type = 'text/javascript'; gg.async = true;
