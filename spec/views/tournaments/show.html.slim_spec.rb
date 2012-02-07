@@ -34,9 +34,9 @@ describe "tournaments/show.html.slim" do
       user = mock_model(User, :registered_for? => true)
       view.stub(:current_user).and_return(user)
 
-            tournament = mock_model(Tournament, :checkin_open? => false,
-                                                :name => "foo",
-                                                :signup_open? => true)
+      tournament = mock_model(Tournament, :checkin_open? => false,
+                                          :name => "foo",
+                                          :signup_open? => true)
       assign(:tournament, tournament)
 
       render
@@ -47,9 +47,9 @@ describe "tournaments/show.html.slim" do
       user = mock_model(User, :registered_for? => false)
       view.stub(:current_user).and_return(user)
 
-            tournament = mock_model(Tournament, :checkin_open? => false,
-                                                :name => "foo",
-                                                :signup_open? => true)
+      tournament = mock_model(Tournament, :checkin_open? => false,
+                                          :name => "foo",
+                                          :signup_open? => true)
       assign(:tournament, tournament)
 
       render

@@ -79,11 +79,30 @@ describe User do
     before(:each) { [User, Signup, Tournament].each(&:destroy_all) }
 
     it "creates a signup for a given user" do
-      user = create(:user)
       tournament = create(:tournament)
+      user = create(:user)
 
       signup = user.sign_up(tournament)
-      user.signups.should == [signup]
+
+      user.signups.should       == [signup]
+      tournament.signups.should == [signup]
+      tournament.users.should   == [user]
+    end
+
+    it "works for shitton of users" do
+      tournament = create(:tournament)
+
+      10.times do
+        user = build(:user)
+        if (rand * 2).round == 0
+          user.bnet_username = nil
+          user.bnet_code = nil
+        end
+        user.save!
+        signup = user.sign_up(tournament)
+      end
+
+      User.all.each { |user| user.should be_registered_for(tournament) }
     end
 
     it "adds the user to the tournament's list" do

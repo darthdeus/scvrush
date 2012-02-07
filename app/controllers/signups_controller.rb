@@ -15,7 +15,7 @@ class SignupsController < ApplicationController
       redirect_to @tournament, :notice => "You've been checked in! Enjoy the tournament."
     else
       redirect_to @tournament, :notice => "You can't check in because you're not registered. Please contact the tournament administrator."
-    end 
+    end
   end
 
   def destroy

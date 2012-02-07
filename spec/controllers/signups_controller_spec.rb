@@ -49,6 +49,7 @@ describe SignupsController do
     it "checks user in" do
       tournament = create(:tournament)
       user       = create(:user)
+      20.times { create(:user) }
       controller.stub!(:current_user).and_return(user)
 
       post :create, :id => tournament.id
