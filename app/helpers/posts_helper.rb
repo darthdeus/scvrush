@@ -45,4 +45,8 @@ module PostsHelper
       { :controller => :votes, :action => :destroy, :id => comment.id },
       :method => :delete
   end
+
+  def tag_by_name(name)
+    link_to name, "/posts/tag/#{name}"
+  end
 end
