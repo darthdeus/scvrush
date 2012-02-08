@@ -3,6 +3,7 @@
 #= require underscore
 #= require active_admin
 #= require bootstrap-buttons
+#= require dashboard
 
 jQuery ->
   form_inputs = '.field input, .field textarea'

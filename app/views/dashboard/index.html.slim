@@ -3,8 +3,12 @@
 h2 GGBet
 
 
-= label_tag 'ggbet_logo_checkbox', 'Display GGBet logo'
-= check_box_tag 'ggbet_logo', '0', false, :id => 'ggbet_logo_checkbox'
+.ggbet_settings
+  = label_tag 'ggbet_logo_checkbox', :class => 'checkbox' do
+    = check_box_tag 'ggbet_logo', @ggbet_logo, @ggbet_logo, :id => 'ggbet_logo_checkbox'
+    | Display GGBet logo
+
+
 
 h2 Recent published posts
 
