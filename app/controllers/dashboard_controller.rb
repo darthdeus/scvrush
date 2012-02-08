@@ -8,17 +8,18 @@ class DashboardController < ApplicationController
     @raffles = Raffle.all
 
     @ggbet_logo = Rails.cache.read('ggbet_logo')
+    @ggbet_widget = Rails.cache.read('ggbet_widget')
   end
 
   def ggbet
 
-    if logged_in? && current_user.role < User::WRITER
-      status = 401
-    else
+    if logged_in? && current_user.role >= User::WRITER
+      handle(params)
       status = 200
+    else
+      status = 401
     end
 
-    handle(params)
 
     respond_to do |format|
       format.json { render :json => { status: status } }
@@ -31,13 +32,23 @@ class DashboardController < ApplicationController
     case params[:ggbet_logo]
       when '1'
         Rails.cache.write('ggbet_logo', true)
-        logger.info 'ggbet enabled'
+        logger.info 'ggbet logo enabled'
       when '0'
         Rails.cache.write('ggbet_logo', nil)
-        logger.info 'ggbet disabled'
+        logger.info 'ggbet logo disabled'
       else
-        logger.info "invalid ggbet value #{params[:ggbet_logo].inspect}"
+        logger.info "invalid ggbet_logo value #{params[:ggbet_logo].inspect}"
+    end
+
+    case params[:ggbet_widget]
+      when '1'
+        Rails.cache.write('ggbet_widget', true)
+        logger.info 'ggbet widget enabled'
+      when '0'
+        Rails.cache.write('ggbet_widget', nil)
+        logger.info 'ggbet widget disabled'
+      else
+        logger.info "invalid ggbet_widget value #{params[:ggbet_widget].inspect}"
     end
   end
-
 end

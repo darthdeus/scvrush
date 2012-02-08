@@ -1,6 +1,7 @@
 #separator
 
-div id="appletContainer" class="gg_applet" data-size="medium_rectangle" style="width:300px;height:250px;background: center center url('http://applet.richardson.co.nz/widget_backgrounds/square-widget.png') no-repeat; margin-left: 5px;"
+- if Rails.cache.read('ggbet_widget')
+  div id="appletContainer" class="gg_applet" data-size="medium_rectangle" style="width:300px;height:250px;background: center center url('http://applet.richardson.co.nz/widget_backgrounds/square-widget.png') no-repeat; margin-left: 5px;"
 
 h2.arrowed.nomargin
   = link_to "Advertise with US", post_path("9724-advertise-with-us")
@@ -35,6 +36,6 @@ ul.bloglinks
   - if coach.post.present?
     .coach
       .name = link_to coach.title, post_path(coach.post)
-      ul.tags    
+      ul.tags
         - coach.tags.each do |tag|
           li = tag_link(tag)
