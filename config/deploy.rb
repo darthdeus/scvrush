@@ -25,13 +25,13 @@ set :rvm_ruby_string, '1.9.3@scvrush'
 set :rvm_type, :user
 
 set :deploy_to, "/var/apps/#{application}"
-set :deploy_via, :copy
+set :deploy_via, :remote_cache
 
 role :web, domain
 role :app, domain
 role :db,  domain, :primary => true
 
-# 
+#
 # working_directory "/var/apps/scvrush.com/current"
 # pid "/var/apps/scvrush.com/shared/pids/unicorn.pid"
 # stderr_path "/var/apps/scvrush.com/shared/log/unicorn.log"
@@ -50,21 +50,21 @@ namespace :deploy do
   #   run "cd #{current_path}; RAILS_ENV=production rake db:schema:load"
   # end
 
-  task :start, :roles => :app, :except => { :no_release => true } do 
+  task :start, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} service unicorn start"
   end
-  task :stop, :roles => :app, :except => { :no_release => true } do 
-    run "#{try_sudo} service unicorn stop"    
+  task :stop, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo} service unicorn stop"
   end
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} service unicorn restart"
   end
-  
+
   task :symlink_shared do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
     run "ln -nfs #{shared_path}/bin/unicorn #{release_path}/bin/unicorn"
   end
-  
+
   task :pipeline_precompile do
     run "cd #{release_path}; RAILS_ENV=production bundle exec rake assets:precompile"
   end

@@ -42,7 +42,7 @@ h1, h2, h3 {
 h2 { font-size: 24px; font-weight: bold; }
 h3 { font-size: 20px; }
 
-p { 
+p {
   margin: 0 0 10px;
 }
 
@@ -214,7 +214,7 @@ h2.arrowed, h3.arrowed {
     width: 270px;
     height: 110px;
     padding: 10px 20px;
-    
+
     .upcoming {
       margin: 20px;
       &:first-child { margin-bottom: 20px;}
@@ -252,6 +252,7 @@ ul.bloglinks {
 
 a.btn { text-decoration: none !important; }
 
+/*@import "bootstrap";*/
 @import "reset";
 @import "comments";
 @import "navigation";

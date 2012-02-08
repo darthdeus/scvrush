@@ -62,7 +62,7 @@ html
         .footer
           | Copyright &copy; 2011 SCVRush.com
           - if logged_in? && current_user.is_writer?
-            |  |
+            = " | "
             = link_to "dashboard", :controller => :dashboard, :action => :index
 
       #preload

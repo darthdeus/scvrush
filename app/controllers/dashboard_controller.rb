@@ -8,4 +8,25 @@ class DashboardController < ApplicationController
     @raffles = Raffle.all
   end
 
+  def ggbet
+    handle(params)
+
+    respond_to do |format|
+      format.json { render :json => { status: 200 } }
+    end
+  end
+
+  protected
+
+  def handle(params)
+    case params[:ggbet_logo]
+      when '1'
+        Rails.cache.write('ggbet_logo', true)
+        logger.info 'ggbet enabled'
+      when '0'
+        Rails.cache.write('ggbet_logo', nil)
+        logger.info 'ggbet disabled'
+    end
+  end
+
 end

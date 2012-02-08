@@ -14,6 +14,7 @@ Scvrush::Application.routes.draw do
 
   resources :images, :only => :create
   get "dashboard/index", :as => 'dashboard'
+  get "dashboard/ggbet"
 
   resources :votes, :only => [:create, :destroy]
   resources :tournaments, :only => [:show, :edit, :update]
