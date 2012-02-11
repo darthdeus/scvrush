@@ -62,6 +62,8 @@ group :development, :test do
   gem 'growl'
   gem 'spork', '> 0.9.0.rc'
   gem 'metrical'
+
+  gem 'pry'
 end
 
 gem 'unicorn'

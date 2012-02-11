@@ -17,11 +17,11 @@ p
   .clearfix
     = f.label :password
     .input
-      = f.text_field :password
+      = f.password_field :password
   .clearfix
     = f.label :password_confirmation
     .input
-      = f.text_field :password_confirmation
+      = f.password_field :password_confirmation
   .actions
     button type="submit" class="btn primary" Sign up
     = link_to "Log in here if you have an account", login_path, :class => 'btn'
