@@ -1,10 +1,14 @@
 class UsersController < ApplicationController
   before_filter :require_login, :only => [:edit, :update]
-  
+
+  def index
+    redirect_to new_user_path
+  end
+
   def new
     @user = User.new
   end
-  
+
   def create
     @user = User.new(params[:user])
     if @user.save
@@ -17,7 +21,7 @@ class UsersController < ApplicationController
   def show
     @user = User.includes(:comments => :post).find(params[:id])
   end
-  
+
   def edit
     @user = current_user
   end
@@ -29,7 +33,7 @@ class UsersController < ApplicationController
       redirect_to @user, :notice => "Your profile was successfully updated."
     else
       render 'edit'
-    end    
+    end
   end
 
 end

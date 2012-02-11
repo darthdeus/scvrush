@@ -5,6 +5,12 @@ p
   | in our tournaments, as well as comment on our website and do other social activities.
 
 = form_for @user do |f|
+  fieldset
+    -if @user.errors.any?
+      #error_explanation
+        ul
+          - @user.errors.full_messages.each do |msg|
+            li= msg
   .clearfix
     = f.label :username
     .input
