@@ -2,15 +2,10 @@
 #= require jquery_ujs
 #= require underscore
 #= require active_admin
-#= require bootstrap-buttons
+#= require bootstrap
 #= require dashboard
 
 jQuery ->
-  form_inputs = '.field input, .field textarea'
-  $(form_inputs).focus -> $(this).parent().addClass('focused')
-  $(form_inputs).blur  -> $(this).parent().removeClass('focused')
-
-  $('.focused input[type=text]').focus()
 
   url = "http://api.justin.tv/api/stream/list.json"
   $.ajax

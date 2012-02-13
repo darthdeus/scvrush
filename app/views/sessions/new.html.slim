@@ -11,8 +11,6 @@
     = check_box_tag :remember_me, 1, params[:remember_me]
     | Remember me
 
-  .form-actions
-    button type="submit" class="btn btn-primary" Log in
-    = link_to 'Create a new account', signup_path, :class => 'btn'
-    = link_to "Reset password", new_password_reset_path, :class => 'btn'
-
+  button type="submit" class="btn btn-primary" Log in
+  = link_to 'Create a new account', signup_path, :class => 'btn'
+  = link_to "Reset password", new_password_reset_path, :class => 'btn'

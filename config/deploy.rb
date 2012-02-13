@@ -79,6 +79,9 @@ namespace :rvm do
   end
 end
 
+before "deploy:restart", "deploy:web:disable"
+after "deploy:restart", "deploy:web:enable"
+
 before "deploy:assets:precompile", "deploy:symlink_shared"
 before "deploy:finalize_update", "rvm:trust_rvmrc"
 after "deploy:update", "newrelic:notice_deployment"
