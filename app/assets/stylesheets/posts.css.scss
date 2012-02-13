@@ -18,10 +18,12 @@
         &:hover { background: #efefef; }
         h3 {
             margin-top: 19px;
-            font-size: 12px;
-            line-height: 14px;
+            font-size: 14px;
+            line-height: 16px;
+            margin-bottom: 4px;
             display: block;
-            height: 14px;
+            height: 16px;
+            a { color: black; text-decoration: none; }
         }
         p {
             line-height: 1.2;

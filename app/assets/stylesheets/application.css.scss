@@ -60,10 +60,6 @@ p {
   }
 }
 
-#left-wrap a {
-  text-decoration: underline;
-}
-
 #wrapper-footer {
   padding: 0 40px;
   clear: both;
@@ -86,6 +82,7 @@ h2.arrowed, h3.arrowed {
   height: 51px;
   padding: 0 0 0 10px;
   line-height: 45px;
+  a { color: #333; }
   .arrows {
     color: #167ECE;
     font-size: 37px;
@@ -161,7 +158,10 @@ h2.arrowed, h3.arrowed {
   &:nth-child(odd) { border-left: none; width: 135px; }
   &:hover { background: #efefef; }
 
-  a { text-decoration: none; }
+  a {
+    text-decoration: none;
+    color: #333;
+  }
   .name {
     padding-left: 5px;
     font-size: 14px;
@@ -183,17 +183,22 @@ h2.arrowed, h3.arrowed {
   }
   a {
     margin-left: 5px;
-    padding:0 4px;
-    background:#0089e0;
-    color:#fff;
-    text-decoration:none !important;
-    -moz-border-radius:4px;
-    -webkit-border-radius:4px;
-    border-radius:4px;
+    padding: 0 4px;
+    background: #0089e0;
+    color: #fff;
+    text-decoration: none !important;
+    /* TODO - does bootstrap has anything to improve this? */
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    /* TODO - use myriad here too? */
     font-family: helvetica, arial, sans-serif;
     line-height: 2;
   }
-  a:hover{background:#555;}
+  a:hover {
+    background: #555;
+    color: #fff;
+  }
 }
 
 #header {
@@ -217,9 +222,9 @@ h2.arrowed, h3.arrowed {
 
     .upcoming {
       margin: 20px;
-      &:first-child { margin-bottom: 20px;}
+      &:first-child { margin-bottom: 20px; }
       a { text-decoration: none; }
-      h2, p { margin: 0; padding: 0;}
+      h2, p { margin: 0; padding: 0; }
       h2 {
         margin: 0;
         font-size: 18px;
@@ -242,6 +247,7 @@ ul.bloglinks {
     border-bottom: 1px solid #ddd;
     display: block;
     a {
+      color: #333;
       display: block;
       padding: 10px;
       text-decoration: none;
@@ -250,10 +256,7 @@ ul.bloglinks {
   }
 }
 
-a.btn { text-decoration: none !important; }
-
-/*@import "bootstrap";*/
-@import "reset";
+@import "bootstrap";
 @import "comments";
 @import "navigation";
 @import "pages";

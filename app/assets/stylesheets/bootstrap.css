@@ -96,8 +96,9 @@ textarea {
 }
 body {
   margin: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
+  /* TODO - change this with LESS instead of directly */
+  font-family: "Myriad Pro", sans-serif; /*Helvetica Neue", Helvetica, Arial, sans-serif;*/
+  font-size: 14px; /* 13px */
   line-height: 18px;
   color: #333333;
   background-color: #ffffff;
@@ -275,9 +276,12 @@ a:hover {
 }
 p {
   margin: 0 0 9px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
+  /* TODO - change this with LESS instead of directly */
+  font-family: "Myriad Pro", sans-serif; /*Helvetica Neue", Helvetica, Arial, sans-serif;*/
+  font-size: 14px; /* 13px */
+  /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+  /*font-size: 13px;*/
+  line-height: 1.4;
 }
 p small {
   font-size: 11px;
@@ -520,6 +524,9 @@ input,
 button,
 select,
 textarea {
+  /* TODO - change this with LESS instead of directly */
+  /*font-family: "Myriad Pro", sans-serif; Helvetica Neue", Helvetica, Arial, sans-serif;*/
+  /*font-size: 14px; /* 13px */
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
   font-weight: normal;
@@ -2459,8 +2466,11 @@ button.btn.small, input[type="submit"].btn.small {
 }
 .navbar-search .search-query {
   padding: 4px 9px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
+    /* TODO - change this with LESS instead of directly */
+  font-family: "Myriad Pro", sans-serif; /*Helvetica Neue", Helvetica, Arial, sans-serif;*/
+  font-size: 14px; /* 13px */
+  /*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+  /*font-size: 13px;*/
   font-weight: normal;
   line-height: 1;
   color: #ffffff;
