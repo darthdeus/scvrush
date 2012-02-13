@@ -24,8 +24,8 @@ gem 'newrelic_rpm'
 
 gem 'redis-store'
 gem 'rdiscount'
+gem 'activeadmin', '~> 0.4.0'
 gem 'kaminari'
-gem 'activeadmin'
 gem 'high_voltage'
 
 gem 'thumbs_up'
