@@ -40,8 +40,8 @@ class User < ActiveRecord::Base
   validates :password, :confirmation => true
   validates_presence_of :password, :on => :create
   validates :bnet_username,
-            :format => { :with => /^[\w\d]+$/,
-                         :message => 'can contain only letters and numbers' },
+            :format => { :with => /^[^@]+$/,
+                         :message => 'can\'t contain the @ symbol, because it is not your email' },
             :if => lambda { |u| u.bnet_username? }
 
   validates :bnet_code,
