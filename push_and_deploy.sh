@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 git push
 cap deploy:web:disable
 echo "→ web disabled, starting deploy"

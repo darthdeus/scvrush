@@ -1663,6 +1663,8 @@ table .span12 {
   cursor: pointer;
 }
 .btn {
+  /* TODO - can I do this in a better way? */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   display: inline-block;
   padding: 4px 10px 4px;
   font-size: 13px;
