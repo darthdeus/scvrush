@@ -21,8 +21,8 @@ set :runner, user
 set :rails_env, "production"
 set :use_sudo, false
 
-set :rvm_ruby_string, '1.9.3@scvrush'
-set :rvm_type, :user
+set :rvm_ruby_string, '1.9.2@scvrush'
+set :rvm_type, :system
 
 set :deploy_to, "/var/apps/#{application}"
 set :deploy_via, :remote_cache
