@@ -48,7 +48,7 @@ html
 
 
         - flash.each do |name, msg|
-          = content_tag :div, msg, :class => "alert-message #{name}"
+          = content_tag :div, msg, :class => "alert span7 alert-#{name}"
 
         #left-wrap
           = yield
