@@ -39,6 +39,10 @@ class User < ActiveRecord::Base
   validates :email, :uniqueness => true, :on => :create
   validates :password, :confirmation => true
   validates_presence_of :password, :on => :create
+  validates :bnet_username,
+            :format => { :with => /^[\w\d]+$/,
+                         :message => 'BNet username can contain only letters and numbers' },
+            :if => lambda { |u| u.bnet_username? }
 
   # validates_presence_of :bnet_username, :on => :update
   # validates_presence_of :bnet_code, :on => :update

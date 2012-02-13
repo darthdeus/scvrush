@@ -17,6 +17,14 @@ describe User do
       user = create(:user, username: "batman", password: "secret")
       User.authenticate("batman", "badpassword").should be_nil
     end
+
+    it "allows only alphanumeric characters in bnet_username" do
+      user = build(:user, bnet_username: 'johndoe')
+      user.should be_valid
+
+      bad_user = build(:user, bnet_username: 'john@example.com')
+      bad_user.should have_at_least(1).error_on(:bnet_username)
+    end
   end
 
   describe "#send_password_reset" do
