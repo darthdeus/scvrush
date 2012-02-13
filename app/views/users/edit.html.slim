@@ -5,10 +5,9 @@ p
 
 = form_for @user do |f|
   - if @user.errors.any?
-    .error_messages
-      ul
-        - for message in @user.errors.full_messages
-          li= message
+    .alert-message.error
+      - @user.errors.full_messages.each do |message|
+        p = message
 
   .clearfix
     = f.label :username
@@ -25,7 +24,7 @@ p
   fieldset
     legend Battle.net information
     .clearfix
-      = f.label :bnet_username, 'username'
+      = f.label :bnet_username, 'battle.net username'
       .input
         = f.text_field :bnet_username
     .clearfix
@@ -43,7 +42,7 @@ p
     .clearfix
       = f.label :race
       .input
-        = f.text_field :race        
+        = f.text_field :race
     .clearfix
       = f.label :league
       .input

@@ -25,6 +25,12 @@ describe User do
       bad_user = build(:user, bnet_username: 'john@example.com')
       bad_user.should have_at_least(1).error_on(:bnet_username)
     end
+
+    it "allows only numbers in bnet_code" do
+      build(:user, bnet_code: 'foobar').should have_at_least(1).error_on(:bnet_code)
+      build(:user, bnet_code:  123)    .should be_valid
+      build(:user, bnet_code: '123')   .should be_valid
+    end
   end
 
   describe "#send_password_reset" do
