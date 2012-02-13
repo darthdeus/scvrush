@@ -9,17 +9,17 @@
 
   ul
     li
-      | Username: 
+      = 'Username: '
       = @user.username
     li
-      | Battle.net: 
+      = 'Battle.net: '
       = "#{@user.bnet_username}.#{@user.bnet_code}"
     li
-      | Experience: 
+      = 'Experience: '
       = pluralize(@user.karma, "points")
     - if @user.twitter.present?
       li
-        | Twitter:
+        = 'Twitter: '
         = link_to @user.twitter, "http://twitter.com/#{@user.twitter}"
 
     = info_for_user(@user, %w{race league server favorite_player}, %w{email skype msn})
@@ -34,7 +34,7 @@
       li
         / TODO - add check if post exists
         = link_to comment.post.title, post_path(comment.post) + "#comment#{comment.id}"
-        |  - 
+        = ' - '
         = comment.content[0..30]
 
   - unless @user.achievements.empty?
