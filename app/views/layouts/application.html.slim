@@ -96,3 +96,7 @@ html
           gg.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'applet.richardson.co.nz/assets/workspace.js?' + new Date().getTime() + '&apikey=' + GG_API_KEY;
           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gg, s);
         })();
+
+      - if logged_in?
+        = render 'shared/intercom'
+

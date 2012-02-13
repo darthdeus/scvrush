@@ -9,7 +9,7 @@ class PostsController < ApplicationController
       format.rss { render :layout => false }
     end
   end
-  
+
   def tag
     if params[:id]
       @posts = Post.published.page(params[:page]).tagged_with(params[:id])
@@ -19,7 +19,7 @@ class PostsController < ApplicationController
       redirect_to :action => :index
     end
   end
-  
+
   def show
     @post = Post.find(params[:id])
     @comments = @post.comments
@@ -39,13 +39,13 @@ class PostsController < ApplicationController
       render "new"
     end
   end
-  
+
   def edit
     @post = Post.find(params[:id])
     @image = Image.new
     @images = Image.last(5)
   end
-  
+
   def update
     @post = Post.find(params[:id])
     @post.update_attributes(params[:post])
@@ -57,10 +57,10 @@ class PostsController < ApplicationController
       render "edit"
     end
   end
-  
+
   def destroy
     Post.destroy(params[:id])
     redirect_to posts_path, :notice => "Post removed"
   end
-  
+
 end
