@@ -23,6 +23,7 @@ end
 
 gem 'newrelic_rpm'
 
+gem 'memcache-client'
 gem 'redis-store'
 gem 'rdiscount'
 gem 'activeadmin'#, '~> 0.4.0'
