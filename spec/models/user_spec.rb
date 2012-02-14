@@ -31,6 +31,11 @@ describe User do
       build(:user, bnet_code:  123)    .should be_valid
       build(:user, bnet_code: '123')   .should be_valid
     end
+
+  end
+
+  it "has a factory that allows to sign up for a tournament" do
+    build(:user).should have_bnet_username
   end
 
   describe "#send_password_reset" do

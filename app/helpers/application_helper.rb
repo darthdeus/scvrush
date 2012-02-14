@@ -17,4 +17,8 @@ module ApplicationHelper
     name = name.upcase if %w(Na Eu Sea Kr).include? name
     link_to name, coach(tag.name)
   end
+
+  def strip_markdown(md)
+    md
+  end
 end

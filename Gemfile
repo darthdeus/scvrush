@@ -1,16 +1,16 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.1.1'
+gem 'rails', '3.2.1'
 
 gem 'jquery-rails'
 gem 'bcrypt-ruby', :require => 'bcrypt'
 
-gem 'coffee-rails', '~> 3.1.1'
+gem 'coffee-rails'#, '~> 3.1.1'
 
 gem 'mysql2'
 
 gem 'slim-rails'
-gem 'sass-rails',   '~> 3.1.4'
+gem 'sass-rails'#,   '~> 3.1.4'
 
 gem 'fog'
 gem 'carrierwave'
@@ -18,14 +18,14 @@ gem 'mini_magick'
 gem 'airbrake'
 
 group :assets do
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier'#, '>= 1.0.3'
 end
 
 gem 'newrelic_rpm'
 
 gem 'redis-store'
 gem 'rdiscount'
-gem 'activeadmin', '~> 0.4.0'
+gem 'activeadmin'#, '~> 0.4.0'
 gem 'kaminari'
 gem 'high_voltage'
 
@@ -33,7 +33,7 @@ gem 'thumbs_up'
 gem 'acts-as-taggable-on', '~>2.1.0'
 
 # find an alternative, https://github.com/bbatsov/rails-style-guide#flawed
-gem 'therubyracer', :group => :production
+# gem 'therubyracer', :group => :production
 
 
 group :development, :test do

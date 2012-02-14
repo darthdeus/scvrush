@@ -5,6 +5,7 @@ describe SignupsController do
   describe "stubbed" do
     before do
       @user = mock_model(User).as_null_object
+      @user.stub!(:has_bnet_username?).and_return(true)
       controller.stub!(:current_user).and_return(@user)
       @tournament = mock_model(Tournament)
       Tournament.stub!(:find).and_return(@tournament)

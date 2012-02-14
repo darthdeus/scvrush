@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Signup" do
   before(:each) do
-    [User, Tournament, Signup].each(&:destroy_all) 
+    [User, Tournament, Signup].each(&:destroy_all)
 
     @user = Factory(:user, :password => "secret")
 
@@ -12,7 +12,7 @@ describe "Signup" do
     fill_in "Password", :with => "secret"
     click_button "Log in"
 
-    within '.alert-message' do
+    within '.alert' do
       page.should have_content("You are now logged in")
     end
   end
@@ -20,7 +20,7 @@ describe "Signup" do
   it "creates a new signup when tournament is open" do
     tournament = Factory(:tournament, :starts_at => 40.minutes.from_now)
 
-    visit tournament_path(tournament)    
+    visit tournament_path(tournament)
 
     expect {
       click_button "Sign up for the tournament"
@@ -52,7 +52,7 @@ describe "Signup" do
 
     current_path.should == tournament_path(tournament)
 
-    within '.alert-message' do
+    within '.alert' do
       page.should have_content("You've been checked in! Enjoy the tournament.")
     end
   end
