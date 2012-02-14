@@ -33,8 +33,8 @@ gem 'thumbs_up'
 gem 'acts-as-taggable-on', '~>2.1.0'
 
 # find an alternative, https://github.com/bbatsov/rails-style-guide#flawed
-# gem 'therubyracer', :group => :production
-
+gem 'therubyracer', :group => :production
+# gem 'mustang'
 
 group :development, :test do
   gem 'simplecov'
