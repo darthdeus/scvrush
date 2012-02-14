@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
   def new
+    # there is no need to display login if the user is already logged in
+    redirect_to current_user if logged_in?
   end
 
   def create

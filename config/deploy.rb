@@ -57,7 +57,10 @@ namespace :deploy do
     run "#{try_sudo} service unicorn stop"
   end
   task :restart, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo} service unicorn restart"
+    # run "#{try_sudo} service unicorn restart"
+    # TODO - this needs to be fixed to work via the init script
+    run "#{try_sudo} service unicorn stop"
+    run "cd #{current_path}; bundle exec ./bin/unicorn -D -c config/unicorn.rb -E production"
   end
 
   task :symlink_shared do
@@ -78,9 +81,6 @@ namespace :rvm do
     run "rvm rvmrc trust #{release_path}"
   end
 end
-
-before "deploy:restart", "deploy:web:disable"
-after "deploy:restart", "deploy:web:enable"
 
 before "deploy:assets:precompile", "deploy:symlink_shared"
 before "deploy:finalize_update", "rvm:trust_rvmrc"

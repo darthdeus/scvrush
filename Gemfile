@@ -6,6 +6,7 @@ gem 'jquery-rails'
 gem 'bcrypt-ruby', :require => 'bcrypt'
 
 gem 'coffee-rails', '~> 3.1.1'
+
 gem 'mysql2'
 
 gem 'slim-rails'
