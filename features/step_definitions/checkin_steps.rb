@@ -47,8 +47,8 @@ When /^I check in$/ do
   click_button "Checkin!"
 end
 
-Then /^I should be in the checkin list$/ do  
-  within ".alert-message" do
+Then /^I should be in the checkin list$/ do
+  within ".alert" do
     page.should have_content("You've been checked in! Enjoy the tournament.")
   end
   @tournament.signups.checked.should == [@user.signups.last]

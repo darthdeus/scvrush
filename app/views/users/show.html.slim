@@ -56,6 +56,6 @@
   .actions
     - if @user == current_user
       - if @user.practice
-        = link_to "Quit Practice Buddy", { :controller => :practice, :action => :quit }, :class => "btn"
+        = link_to "Quit Practice Buddy", { :controller => :practice, :action => :quit }, :class => "btn", :'data-loading-text' => 'loading...'
       - else
-        = link_to "Join Practice Buddy", { :controller => :practice, :action => :join }, :class => "btn"
+        = link_to "Join Practice Buddy", { :controller => :practice, :action => :join }, :class => "btn", :'data-loading-text' => 'loading...'

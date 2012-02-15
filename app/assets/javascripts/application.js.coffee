@@ -19,3 +19,10 @@ jQuery ->
       stream_button.css backgroundColor: 'rgba(255, 0, 0, 0.2)'
 
       stream_button.find("a").text("Check out our stream - Live!")
+
+  $('.btn').click ->
+    btn = $(this)
+    btn.button('loading')
+    setTimeout ->
+      btn.button('reset')
+    , 3000

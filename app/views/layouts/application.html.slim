@@ -49,7 +49,7 @@ html
 
 
         - flash.each do |name, msg|
-          = content_tag :div, msg, :class => "alert span7 alert-#{name}"
+          = content_tag :div, msg, :class => "alert span5 alert-#{name}"
 
         #left-wrap
           = yield
@@ -96,6 +96,18 @@ html
           var gg = document.createElement('script'); gg.type = 'text/javascript'; gg.async = true;
           gg.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'applet.richardson.co.nz/assets/workspace.js?' + new Date().getTime() + '&apikey=' + GG_API_KEY;
           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gg, s);
+        })();
+
+        var _gauges = _gauges || [];
+        (function() {
+          var t   = document.createElement('script');
+          t.type  = 'text/javascript';
+          t.async = true;
+          t.id    = 'gauges-tracker';
+          t.setAttribute('data-site-id', '4f3bdab2844d521263000054');
+          t.src = '//secure.gaug.es/track.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(t, s);
         })();
 
       - if logged_in?
