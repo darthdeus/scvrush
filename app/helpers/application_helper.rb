@@ -18,7 +18,4 @@ module ApplicationHelper
     link_to name, coach(tag.name)
   end
 
-  def strip_markdown(md)
-    md
-  end
 end

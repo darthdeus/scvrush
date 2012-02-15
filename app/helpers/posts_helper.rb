@@ -5,7 +5,7 @@ module PostsHelper
   end
 
   def post_excerpt(content, length = 200)
-    content.force_encoding('utf-8').gsub(%r{</?[^>]+?>}, '').slice(0, length) + " ..."
+    strip_markdown(content.force_encoding('utf-8').gsub(%r{</?[^>]+?>}, '')).slice(0, length) + " ..."
   end
 
   def shortenify(title, length = 30)
@@ -48,5 +48,9 @@ module PostsHelper
 
   def tag_by_name(name)
     link_to name, "/posts/tag/#{name}"
+  end
+
+  def strip_markdown(md)
+    md.gsub(/[\[\]#*]/, '').gsub(/\(.*\)/, '')
   end
 end

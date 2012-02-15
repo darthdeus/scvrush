@@ -3,6 +3,6 @@
     fieldset
       legend Post a new comment
       = hidden_field_tag 'comment[post_id]', @comment.post_id
-      = f.text_area :content, :class => 'span7', :rows => 6
+      = f.text_area :content, :class => 'span6', :rows => 6
       .actions
         button type="submit" class="btn btn-primary" Post comment
