@@ -5,13 +5,13 @@
 
 ul.nav.nav-tabs
   li.active
-    a href="#blog" data-toggle="tab" Blog
+    a data-toggle="tab" href="#blog" Blog
   li
-    a href="#coaches" data-toggle="tab" Coaches
+    a data-toggle="tab" href="#coaches" Coaches
 
 
 .tab-content
-  .fade.in.activetab-pane#blog
+  .fade.in.active.tab-pane#blog
     ul.bloglinks
       - BlogPost.recent.each do |post|
         li = link_to post.title, post.url
