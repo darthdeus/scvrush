@@ -26,18 +26,19 @@ ul.nav.nav-tabs
               li = tag_link(tag)
 
 
-= arrowed_header 'Join us on Facebook', 'facebook-header'
-
 - unless Rails.env.development?
+
+  = arrowed_header 'Join us on Facebook', 'facebook-header'
+
   .content
     iframe src="http://www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2F%23%21%2Fpages%2FSCV-Rush%2F169114036472308&amp;width=292&amp;colorscheme=light&amp;show_faces=false&amp;stream=false&amp;header=false&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height: 65px;" allowtransparency="true"
 
     iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FInfectedone%2F103323789792049&amp;width=292&amp;height=62&amp;colorscheme=light&amp;show_faces=false&amp;border_color&amp;stream=false&amp;header=false&amp;appId=154164565221" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"
 
-= arrowed_header 'Follow us on Twitter', 'facebook-header'
+  = arrowed_header 'Follow us on Twitter', 'facebook-header'
 
-.content
-  a href="https://twitter.com/theSCVRush" class="twitter-follow-button" data-show-count="false" data-lang="en" data-size="large" Follow @theSCVRush
-  javascript:
-    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+  .content
+    a href="https://twitter.com/theSCVRush" class="twitter-follow-button" data-show-count="false" data-lang="en" data-size="large" Follow @theSCVRush
+    javascript:
+      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 

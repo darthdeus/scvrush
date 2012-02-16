@@ -14,7 +14,7 @@
       #author-box
         .avatar = image_tag @post.user.avatar.url(:thumb) if @post.user.avatar?
         .content
-          .name = link_to @post.user.username, @post.user
+          h3.name = link_to @post.user.username, @post.user
           .about = m @post.user.about
 
     #comments.comments-wrap
@@ -44,6 +44,6 @@
         = render 'comments/form'
       - else
         h2
-          = 'You must be '
+          ' You must be
           = link_to "logged in", login_path
           |  to comment
