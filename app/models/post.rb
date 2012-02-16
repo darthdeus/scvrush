@@ -24,4 +24,13 @@ class Post < ActiveRecord::Base
   def to_param
     "#{id}-#{title.parameterize}"
   end
+
+  before_save :expire_sidebar_cache
+
+  def expire_sidebar_cache
+    # TODO - do this in a better way
+    Rails.cache.delete('views/coaches')
+    Rails.cache.delete('views/recent_posts')
+  end
+
 end

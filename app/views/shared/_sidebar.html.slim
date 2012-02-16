@@ -12,18 +12,20 @@ ul.nav.nav-tabs
 
 .tab-content
   .fade.in.active.tab-pane#blog
-    ul.bloglinks
-      - BlogPost.recent.each do |post|
-        li = link_to post.title, post.url
+    - cache('bloglinks', :expire_in => 5.minutes) do
+      ul.bloglinks
+        - BlogPost.recent.each do |post|
+          li = link_to post.title, post.url
 
   .fade.tab-pane#coaches
-    - Coach.order('`order` ASC').each do |coach|
-      - if coach.post.present?
-        .coach
-          .name = link_to coach.title, post_path(coach.post)
-          ul.tags
-            - coach.tags.each do |tag|
-              li = tag_link(tag)
+    - cache('coaches', :expire_in => 5.minutes) do
+      - Coach.order('`order` ASC').each do |coach|
+        - if coach.post.present?
+          .coach
+            .name = link_to coach.title, post_path(coach.post)
+            ul.tags
+              - coach.tags.each do |tag|
+                li = tag_link(tag)
 
 
 - unless Rails.env.development?
