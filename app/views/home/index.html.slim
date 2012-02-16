@@ -1,34 +1,69 @@
-= arrowed_header "Tournaments", "nomargin"
-
-.recent-posts
-  - @tournaments.each do |post|
-    .recent-post
-
-      = featured_image(post)
-      .content
-        h3 = link_to shortenify(post.title, 30), post
-        p  = post_excerpt(post.content, 100)
+ul.nav.nav-tabs
+  li.active
+    a href="#tournaments" data-toggle="tab" Tournaments
+  li
+    a href="#posts" data-toggle="tab" Recent Posts
 
 
-= arrowed_header "Recent posts", "nomargin"
+.tab-content
+  .fade.in.active.tab-pane#tournaments
+    .recent-posts
+      - @tournaments.each do |post|
+        .recent-post
 
-.recent-posts
-  - @posts.each do |post|
-    .recent-post
+          = featured_image(post)
+          .content
+            h3 = link_to shortenify(post.title, 30), post
+            p  = post_excerpt(post.content, 100)
+  .fade.tab-pane#posts
+    .recent-posts
+      - @posts.each do |post|
+        .recent-post
 
-      = featured_image(post)
-      .content
-        h3 = link_to shortenify(post.title, 30), post
-        p  = post_excerpt(post.content, 100)
+          = featured_image(post)
+          .content
+            h3 = link_to shortenify(post.title, 30), post
+            p  = post_excerpt(post.content, 100)
 
+ul.nav.nav-tabs
+  li.active
+    a data-toggle="tab" href="#zerg" Zerg
+  li
+    a data-toggle="tab" href="#terran" Terran
+  li
+    a data-toggle="tab" href="#protoss" Protoss
 
-= arrowed_header "Zerg - Not even once", "nomargin"
+.tab-content
+  .fade.in.active.tab-pane#zerg
+    .recent-posts
+      = render partial: 'home/recent_post', collection: @zerg, as: :post
+  .fade.tab-pane#terran
+    .recent-posts
+      = render partial: 'home/recent_post', collection: @terran, as: :post
+  .fade.tab-pane#protoss
+    .recent-posts
+      = render partial: 'home/recent_post', collection: @protoss, as: :post
 
-.recent-posts
-  - @zerg.each do |post|
-    .recent-post
+ul.nav.nav-tabs
+  li.active
+    a data-toggle="tab" href="#zerg-show" Zerg Show
+  li
+    a data-toggle="tab" href="#today-i-learned" Today I Learned
+  li
+    a data-toggle="tab" href="#game-diary" Game Diary
+  li
+    a data-toggle="tab" href="#deuce-analysis" DeuceStarcraft Casts
 
-      = featured_image(post)
-      .content
-        h3 = link_to shortenify(post.title, 30), post
-        p  = post_excerpt(post.content, 100)
+.tab-content
+  .fade.in.active.tab-pane#zerg-show
+    .recent-posts
+      = render partial: 'home/recent_post', collection: @zerg_show, as: :post
+  .fade.tab-pane#today-i-learned
+    .recent-posts
+      = render partial: 'home/recent_post', collection: @today_i_learned, as: :post
+  .fade.tab-pane#game-diary
+    .recent-posts
+      = render partial: 'home/recent_post', collection: @game_diary, as: :post
+  .fade.tab-pane#deuce-analysis
+    .recent-posts
+      = render partial: 'home/recent_post', collection: @deuce_analysis, as: :post

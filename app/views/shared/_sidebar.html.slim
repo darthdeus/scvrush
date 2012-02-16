@@ -1,19 +1,29 @@
-#separator
-
 - if Rails.cache.read('ggbet_widget')
   div id="appletContainer" class="gg_applet" data-size="medium_rectangle" style="width:300px;height:250px;background: center center url('http://applet.richardson.co.nz/widget_backgrounds/square-widget.png') no-repeat; margin-left: 5px;"
 
-h2.arrowed.nomargin
-  = link_to "Advertise with US", post_path("9724-advertise-with-us")
-  span class='arrows' »
+/ .advertise = link_to "Advertise with us", post_path("9724-advertise-with-us"), :class => 'btn btn-success'
 
-h2.arrowed.nomargin
-  = link_to "Blog", "http://blog.scvrush.com/"
-  span.arrows »
+ul.nav.nav-tabs
+  li.active
+    a href="#blog" data-toggle="tab" Blog
+  li
+    a href="#coaches" data-toggle="tab" Coaches
 
-ul.bloglinks
-  - BlogPost.recent.each do |post|
-    li = link_to post.title, post.url
+
+.tab-content
+  .fade.in.activetab-pane#blog
+    ul.bloglinks
+      - BlogPost.recent.each do |post|
+        li = link_to post.title, post.url
+
+  .fade.tab-pane#coaches
+    - Coach.order('`order` ASC').each do |coach|
+      - if coach.post.present?
+        .coach
+          .name = link_to coach.title, post_path(coach.post)
+          ul.tags
+            - coach.tags.each do |tag|
+              li = tag_link(tag)
 
 
 = arrowed_header 'Join us on Facebook', 'facebook-header'
@@ -30,12 +40,3 @@ ul.bloglinks
   javascript:
     !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 
-= arrowed_header 'Coaches', 'nomargin'
-
-- Coach.order('`order` ASC').each do |coach|
-  - if coach.post.present?
-    .coach
-      .name = link_to coach.title, post_path(coach.post)
-      ul.tags
-        - coach.tags.each do |tag|
-          li = tag_link(tag)

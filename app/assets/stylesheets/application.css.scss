@@ -263,6 +263,12 @@ ul.bloglinks {
   }
 }
 
+.nav.nav-tabs { margin-bottom: 0; }
+
+.advertise a {
+  margin: -6px 0 11px 88px;
+}
+
 @import "bootstrap";
 @import "comments";
 @import "navigation";
