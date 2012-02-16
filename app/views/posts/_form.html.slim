@@ -9,9 +9,9 @@
   .clearfix
     = f.label :title
     .input
-      = f.text_field :title, :class => 'xxlarge'
+      = f.text_field :title, :class => 'span6'
   .clearfix
-    = f.label :tag_list, "Tags"
+    = f.label :tag_list, "Tags", :class => 'span6'
     .input
       = f.text_field :tag_list
   .clearfix
@@ -30,7 +30,7 @@
             li * second
             li * third
     .input
-      = f.text_area :content, :rows => 30, :class => 'xxlarge'
+      = f.text_area :content, :rows => 30, :class => 'span6'
   .clearfix
     = f.label :status
     .input
