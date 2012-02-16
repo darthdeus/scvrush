@@ -14,14 +14,10 @@ div class="navbar"
               b class="caret"
 
             ul.dropdown-menu
-              li
-                = link_to tag_path("tournament") do
-                  | Tournaments
-                  span.submenu-arrow
-                ul.dropdown-menu
-                  li = link_to "SCV Rush BSG", tag_path("bsg")
-                  li = link_to "Plat/Dia", tag_path("plat-dia")
-                  li = link_to "Open", tag_path("open")
+              li = link_to "Bronze/Silver/Gold", tag_path("bsg")
+              li = link_to "Plat/Dia", tag_path("plat-dia")
+              li = link_to "Open tournaments", tag_path("open")
+              li.divider
               li = link_to "Current bracket", post_path(9511)
 
           li.dropdown
