@@ -197,6 +197,7 @@ GEM
       treetop (~> 1.4.8)
     main (4.7.1)
     map (4.3.0)
+    memcache-client (1.8.5)
     meta_search (1.1.3)
       actionpack (~> 3.1)
       activerecord (~> 3.1)
@@ -283,23 +284,6 @@ GEM
     rdiscount (1.6.8)
     rdoc (3.12)
       json (~> 1.4)
-    redis (2.2.2)
-    redis-actionpack (3.2.1.rc)
-      actionpack (= 3.2.1)
-      redis-rack (= 1.4.0.rc2)
-      redis-store (= 1.1.0)
-    redis-activesupport (3.2.1.rc)
-      activesupport (= 3.2.1)
-      redis-store (= 1.1.0)
-    redis-rack (1.4.0.rc2)
-      rack (= 1.4.0)
-      redis-store (= 1.1.0)
-    redis-rails (3.2.1.rc)
-      redis-actionpack (= 3.2.1.rc)
-      redis-activesupport (= 3.2.1.rc)
-      redis-store (= 1.1.0)
-    redis-store (1.1.0)
-      redis (~> 2.2.0)
     reek (1.2.8)
       ruby2ruby (~> 1.2)
       ruby_parser (~> 2.0)
@@ -408,6 +392,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   launchy
+  memcache-client
   metrical
   mini_magick
   mysql2
@@ -420,7 +405,6 @@ DEPENDENCIES
   rb-fsevent
   rb-inotify
   rdiscount
-  redis-rails (~> 3.2.1.rc)
   rspec-rails
   sass-rails
   simplecov
