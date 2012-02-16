@@ -37,7 +37,7 @@ class DashboardController < ApplicationController
         Rails.cache.write('ggbet_logo', nil)
         logger.info 'ggbet logo disabled'
       else
-        logger.info "invalid ggbet_logo value #{params[:ggbet_logo].inspect}"
+        logger.info "invalid ggbet_logo value #{params[:ggbet_logo].inspect}" if params[:ggbet_logo]
     end
 
     case params[:ggbet_widget]
@@ -48,7 +48,7 @@ class DashboardController < ApplicationController
         Rails.cache.write('ggbet_widget', nil)
         logger.info 'ggbet widget disabled'
       else
-        logger.info "invalid ggbet_widget value #{params[:ggbet_widget].inspect}"
+        logger.info "invalid ggbet_widget value #{params[:ggbet_widget].inspect}" if params[:ggbet_widget]
     end
   end
 end

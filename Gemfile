@@ -23,8 +23,10 @@ end
 
 gem 'newrelic_rpm'
 
-gem 'memcache-client'
-gem 'redis-store'
+# gem 'memcache-client'
+# gem 'redis-store'
+gem "redis-rails", "~> 3.2.1.rc"
+
 gem 'rdiscount'
 gem 'activeadmin'#, '~> 0.4.0'
 gem 'kaminari'
