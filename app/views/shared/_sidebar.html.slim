@@ -1,5 +1,5 @@
 - if Rails.cache.read('ggbet_widget')
-  div id="appletContainer" class="gg_applet" data-size="medium_rectangle" style="width:300px;height:250px;background: center center url('http://applet.richardson.co.nz/widget_backgrounds/square-widget.png') no-repeat; margin-left: 5px;"
+  div id="appletContainer" class="gg_applet" data-size="medium_rectangle" style="width:300px;height:250px;background: center center url('http://applet.richardson.co.nz/widget_backgrounds/square-widget.png') no-repeat; margin-left: 5px; margin-bottom: 10px;"
 
 / .advertise = link_to "Advertise with us", post_path("9724-advertise-with-us"), :class => 'btn btn-success'
 
@@ -28,10 +28,11 @@ ul.nav.nav-tabs
 
 = arrowed_header 'Join us on Facebook', 'facebook-header'
 
-.content
-  iframe src="http://www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2F%23%21%2Fpages%2FSCV-Rush%2F169114036472308&amp;width=292&amp;colorscheme=light&amp;show_faces=false&amp;stream=false&amp;header=false&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height: 65px;" allowtransparency="true"
+- unless Rails.env.development?
+  .content
+    iframe src="http://www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2F%23%21%2Fpages%2FSCV-Rush%2F169114036472308&amp;width=292&amp;colorscheme=light&amp;show_faces=false&amp;stream=false&amp;header=false&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height: 65px;" allowtransparency="true"
 
-  iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FInfectedone%2F103323789792049&amp;width=292&amp;height=62&amp;colorscheme=light&amp;show_faces=false&amp;border_color&amp;stream=false&amp;header=false&amp;appId=154164565221" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"
+    iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FInfectedone%2F103323789792049&amp;width=292&amp;height=62&amp;colorscheme=light&amp;show_faces=false&amp;border_color&amp;stream=false&amp;header=false&amp;appId=154164565221" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:62px;" allowTransparency="true"
 
 = arrowed_header 'Follow us on Twitter', 'facebook-header'
 

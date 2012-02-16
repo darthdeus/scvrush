@@ -1,68 +1,154 @@
-ul
-  li = link_to "Home", root_path
-  li
-    = link_to "Events", tag_path("event")
-    ul
-      li
-        = link_to "Tournaments", tag_path("tournament")
-        ul
-          li = link_to "SCV Rush BSG", tag_path("bsg")
-          li = link_to "Plat/Dia", tag_path("plat-dia")
-          li = link_to "Open", tag_path("open")
-      li
-        = link_to "Current bracket", post_path(9511)
-  li
-    = link_to "Articles", posts_path
-    ul
-      li
-        = link_to "Protoss", tag_path("protoss")
-        ul
-          li = link_to "Build Orders", tag_path("protoss,build")
-          li = link_to "Strategy",     tag_path("protoss,strategy")
-          li = link_to "Units",        tag_path("protoss,units")
+div class="navbar"
+  div class="navbar-inner"
+    div class="container" style="width: auto;"
+      a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"
+        span class="icon-bar"
+        span class="icon-bar"
+        span class="icon-bar"
+      .nav-collapse
+        ul.nav
+          li = link_to "Home", root_path
+          li.dropdown
+            a href="#" class="dropdown-toggle" data-toggle="dropdown"
+              | Events
+              b class="caret"
 
-      li
-        = link_to "Zerg", tag_path("zerg")
-        ul
-          li = link_to "Build Orders", tag_path("zerg,build")
-          li = link_to "Strategy",     tag_path("zerg,strategy")
-          li = link_to "Units",        tag_path("zerg,units")
+            ul.dropdown-menu
+              li
+                = link_to tag_path("tournament") do
+                  | Tournaments
+                  span.submenu-arrow
+                ul.dropdown-menu
+                  li = link_to "SCV Rush BSG", tag_path("bsg")
+                  li = link_to "Plat/Dia", tag_path("plat-dia")
+                  li = link_to "Open", tag_path("open")
+              li = link_to "Current bracket", post_path(9511)
 
-      li
-        = link_to "Terran", tag_path("terran")
-        ul
-          li = link_to "Build Orders", tag_path("terran,build")
-          li = link_to "Strategy",     tag_path("terran,strategy")
-          li = link_to "Units",        tag_path("terran,units")
+          li.dropdown
+            a href="#" class="dropdown-toggle" data-toggle="dropdown"
+              | Articles
+              b class="caret"
+            ul.dropdown-menu
+              li.dropdown
+                = link_to tag_path("protoss") do
+                  | Protoss
+                  span.submenu-arrow
+                ul.dropdown-menu
+                  li = link_to "Build Orders", tag_path("protoss,build")
+                  li = link_to "Strategy",     tag_path("protoss,strategy")
+                  li = link_to "Units",        tag_path("protoss,units")
 
-      li = link_to "Game Diary", tag_path("game-diary")
-      li = link_to "General Tactics", tag_path("general-tactics")
-      li = link_to "Video Replay Analysis", tag_path("analysis")
-      li = link_to "Zerg - Not Even Once", tag_path("zerg-show")
-      li = link_to "Battle Report", tag_path("battle-report")
+              li.dropdown
+                = link_to tag_path("zerg") do
+                  | Zerg
+                  span.submenu-arrow
+                ul.dropdown-menu
+                  li = link_to "Build Orders", tag_path("zerg,build")
+                  li = link_to "Strategy",     tag_path("zerg,strategy")
+                  li = link_to "Units",        tag_path("zerg,units")
 
-  li = link_to "Staff", post_path(9515)
-  li
-    = link_to "Associates", post_path(9485)
-    ul
-      li = link_to "GrandMaster Zerg Lectures and Coaching", post_path(9441)
-      li = link_to "The Blindcast!", post_path(9447)
-      li = link_to "Team eXe", post_path(9486)
+              li.dropdown
+                = link_to tag_path("terran") do
+                  | Terran
+                  span.submenu-arrow
+                ul.dropdown-menu
+                  li = link_to "Build Orders", tag_path("terran,build")
+                  li = link_to "Strategy",     tag_path("terran,strategy")
+                  li = link_to "Units",        tag_path("terran,units")
+
+              li = link_to "Game Diary", tag_path("game-diary")
+              li = link_to "General Tactics", tag_path("general-tactics")
+              li = link_to "Video Replay Analysis", tag_path("analysis")
+              li = link_to "Zerg - Not Even Once", tag_path("zerg-show")
+              li = link_to "Battle Report", tag_path("battle-report")
+
+          li = link_to "Staff", post_path(9515)
+          li.dropdown
+            a href="#" class="dropdown-toggle" data-toggle="dropdown"
+              | Associates
+              b class="caret"
+            ul.dropdown-menu
+              li = link_to "GrandMaster Zerg", post_path(9441)
+              li = link_to "The Blindcast!", post_path(9447)
+              li = link_to "Team eXe", post_path(9486)
 
 
-  li = link_to "Forum", sections_path
-  - if logged_in?
-    li.login
-      = link_to "User", "#"
-      ul
-        li = link_to "Profile", current_user
-        li = link_to "Log out", logout_path
-  - else
-    li.login
-      = link_to "Login", login_path
-      ul
-        li = link_to "Login", login_path
-        li = link_to "Sign up", signup_url
-        li = link_to "Reset password", new_password_reset_path
+          li
+            = link_to "Forum", sections_path
+          - if logged_in?
+            li.login.dropdown
+              a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                | User
+                b class="caret"
+              ul.dropdown-menu
+                li = link_to "Profile", current_user
+                li = link_to "Log out", logout_path
+          - else
+            li.login.dropdown
+              a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                | Login
+                b class="caret"
+              ul.dropdown-menu
+                li = link_to "Login", login_path
+                li = link_to "Sign up", signup_url
+                li = link_to "Reset password", new_password_reset_path
 
-  li.stream = link_to "Check out our Stream", "http://twitch.tv/scvrush1"
+        ul.nav.pull-right
+          li.stream = link_to "Check out our Stream", "http://twitch.tv/scvrush1"
+
+
+
+/ div class="navbar"
+/   div class="navbar-inner"
+/     div class="container" style="width: auto;"
+/       a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"
+/         span class="icon-bar"
+/         span class="icon-bar"
+/         span class="icon-bar"
+
+/       a class="brand" href="#" Project name
+/       div class="nav-collapse"
+/         ul class="nav"
+/           li class="active"
+/             a href="#" Home
+/           li
+/             a href="#" Link
+/           li
+/             a href="#" Link
+/           li
+/             a href="#" Link
+/           li class="dropdown"
+/             a href="#" class="dropdown-toggle" data-toggle="dropdown"
+/               | Dropdown
+/               b class="caret"
+/             ul class="dropdown-menu"
+/               li
+/                 a href="#" Action
+/               li
+/                 a href="#" Another action
+/               li
+/                 a href="#" Something else here
+/               li class="divider"
+/               li
+/                 a href="#" Separated link
+
+/         form class="navbar-search pull-left" action=""
+/           input type="text" class="search-query span2" placeholder="Search"
+/         ul class="nav pull-right"
+/           li
+/             a href="#" Link
+/           li class="divider-vertical"
+/           li class="dropdown"
+/             a href="#" class="dropdown-toggle" data-toggle="dropdown"
+/               | Dropdown
+/               b class="caret"
+/             ul class="dropdown-menu"
+/               li
+/                 a href="#" Action
+/               li
+/                 a href="#" Another action
+/               li
+/                 a href="#" Something else here
+/               li class="divider"
+/               li
+/                 a href="#" Separated link

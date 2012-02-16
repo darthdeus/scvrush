@@ -225,7 +225,7 @@ h2.arrowed, h3.arrowed {
     display: block;
     width: 270px;
     height: 110px;
-    padding: 10px 20px;
+    padding: 0 20px;
 
     .upcoming {
       margin: 20px;
@@ -269,9 +269,29 @@ ul.bloglinks {
   margin: -6px 0 11px 88px;
 }
 
+.submenu-arrow {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  text-indent: -99999px;
+  vertical-align: baseline;
+  border-bottom: 4px solid transparent;
+  border-left: 4px solid black;
+  border-top: 4px solid transparent;
+  opacity: 0.3;
+  filter: alpha(opacity=30);
+  border-rigth: 4px solid transparent;
+  float: right;
+  position: relative;
+  top: 3px;
+}
+
+li.stream {
+  margin-right: 65px;
+}
+
 @import "bootstrap";
 @import "comments";
-@import "navigation";
 @import "pages";
 @import "password_resets";
 @import "posts";

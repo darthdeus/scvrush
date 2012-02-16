@@ -15,10 +15,9 @@ jQuery ->
       channel: "scvrush1"
     jsonp: "jsonp"
     success: (data) ->
-      stream_button = $("#navigation li.stream")
-      stream_button.css backgroundColor: 'rgba(255, 0, 0, 0.2)'
-
-      stream_button.find("a").text("Check out our stream - Live!")
+      stream_button = $("li.stream a")
+      stream_button.css(color: 'rgba(255, 150, 150, 0.8)', marginRight: '35px')
+      stream_button.text('Check out our Stream - LIVE NOW!')
 
   $('.btn').click ->
     btn = $(this)
