@@ -83,7 +83,7 @@
   p {
     font-family: "ff-meta-web-pro",sans-serif;
     font-size: 14px;
-    line-height: 1.4em;
+    line-height: 1.4;
   }
   .post {
     img {
@@ -105,11 +105,9 @@
     }
 
     ul li {
-      color: #666;
       list-style: disc;
     }
     ol li {
-      color: #666;
       list-style: decimal;
     }
   }
