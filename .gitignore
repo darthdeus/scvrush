@@ -5,3 +5,4 @@ tmp/
 .sass-cache/
 webrat.log
 coverage/
+config/database.yml
