@@ -69,8 +69,7 @@ div class="navbar"
               li = link_to "Team eXe", post_path(9486)
 
 
-          li
-            = link_to "Forum", sections_path
+          li = link_to "Forum", sections_path
           - if logged_in?
             li.login.dropdown
               a href="#" class="dropdown-toggle" data-toggle="dropdown"

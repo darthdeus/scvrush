@@ -16,7 +16,7 @@ test: &test
   <<: *defaults
 
 production:
-  database: scvrush_production
+  database: scvrush_development
   <<: *defaults
 
 cucumber:

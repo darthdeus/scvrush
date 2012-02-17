@@ -290,6 +290,26 @@ li.stream {
   margin-right: 65px;
 }
 
+.field_with_errors {
+  display: inline;
+  input, textarea { color: #B94A48; border-color: #B94A48; }
+
+  input:focus, textarea:focus {
+    border-color: #953b39;
+    -webkit-box-shadow: 0 0 6px #d59392;
+    -moz-box-shadow: 0 0 6px #d59392;
+    box-shadow: 0 0 6px #d59392;
+  }
+}
+
+.help-inline { color: #999; }
+
+#left-wrap form.well { width: 570px; }
+button.btn, a.btn {
+  vertical-align: top;
+  margin-right: 3px;
+}
+
 @import "bootstrap";
 @import "comments";
 @import "pages";

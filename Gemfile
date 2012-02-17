@@ -68,6 +68,8 @@ group :development, :test do
   gem 'metrical'
 
   gem 'pry'
+  gem 'pry-doc'
+  gem 'pry-rails'
 end
 
 gem 'unicorn'

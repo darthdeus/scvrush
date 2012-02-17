@@ -4,30 +4,25 @@ p
   | Signing up for a new SCV Rush account will allow you to participate
   | in our tournaments, as well as comment on our website and do other social activities.
 
-= form_for @user do |f|
-  fieldset
-    -if @user.errors.any?
-      #error_explanation
-        ul
-          - @user.errors.full_messages.each do |msg|
-            li= msg
-  .clearfix
-    = f.label :username
-    .input
-      = f.text_field :username
-      span.help-inline NOT your Battle.net username
-  .clearfix
-    = f.label :email
-    .input
-      = f.text_field :email
-  .clearfix
-    = f.label :password
-    .input
-      = f.password_field :password
-  .clearfix
-    = f.label :password_confirmation
-    .input
-      = f.password_field :password_confirmation
+= form_for @user, :html => { :class => 'well' } do |f|
+  - if @user.errors.any?
+    .alert.alert-error
+      = f.error_messages
+
+
+  = f.label :username
+  = f.text_field :username
+  span.help-inline this is NOT your Battle.net username
+
+  = f.label :email
+  = f.text_field :email
+
+  = f.label :password
+  = f.password_field :password
+
+  = f.label :password_confirmation
+  = f.password_field :password_confirmation
+
   .actions
-    button type="submit" class="btn primary" Sign up
+    button type="submit" class="btn btn-primary" Sign up
     = link_to "Log in here if you have an account", login_path, :class => 'btn'

@@ -32,9 +32,8 @@ Scvrush::Application.configure do
 
   config.action_mailer.default_url_options = { :host => "localhost:3000" }
 
-end
+  config.active_record.mass_assignment_sanitizer = :strict
+  config.active_record.auto_explain_threshold_in_seconds = 0.2
 
-silence_warnings do
-  require 'pry'
-  IRB = Pry
+  # config.log_tags = [:uuid, :remote_ip]
 end
