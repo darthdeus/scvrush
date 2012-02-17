@@ -40,17 +40,6 @@ role :db,  domain, :primary => true
 
 namespace :deploy do
 
-  namespace :assets do
-    task :precompile, :roles => :web, :except => { :no_release => true } do
-      from = source.next_revision(current_revision)
-      if capture("cd #{latest_release} && #{source.local.log(from)} vendor/assets/ app/assets/ | wc -l").to_i > 0
-        run %Q{cd #{latest_release} && #{rake} RAILS_ENV=#{rails_env} #{asset_env} assets:precompile}
-      else
-        logger.info "Skipping asset pre-compilation because there were no asset changes"
-      end
-    end
-  end
-
   # task :cold do
   #   update
   #   load_schema
@@ -94,7 +83,6 @@ end
 
 # TODO - make this cleaner
 before "deploy:assets:precompile", "deploy:symlink_shared"
-after 'deploy:update_code', 'deploy:symlink_shared'
 
 before "deploy:finalize_update", "rvm:trust_rvmrc"
 after "deploy:update", "newrelic:notice_deployment"
