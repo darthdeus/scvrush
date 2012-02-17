@@ -11,4 +11,10 @@ class Comment < ActiveRecord::Base
   def author
     self.user.try(:username)
   end
+
+  after_create :touch_post
+
+  def touch_post
+    self.post.touch
+  end
 end
