@@ -5,7 +5,7 @@ class PostsController < ApplicationController
     @posts = Post.published.page(params[:page])
 
     respond_to do |format|
-      format.html { fresh_when :etag => Digest::MD5.hexdigest(@posts.pluck(:updated_at).to_s), :public => true }
+      format.html #{ fresh_when :etag => Digest::MD5.hexdigest(@posts.pluck(:updated_at).to_s), :public => true }
       format.rss { render :layout => false }
     end
   end
@@ -22,7 +22,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    fresh_when @post, :public => true
+    # fresh_when @post, :public => true
 
     @comments = @post.comments
     @comment = Comment.new(:post => @post)
