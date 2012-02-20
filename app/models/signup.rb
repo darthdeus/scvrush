@@ -6,7 +6,8 @@ class Signup < ActiveRecord::Base
   scope :registered, where(:status => REGISTERED)
   scope :checked,    where(:status => CHECKED)
 
-  attr_accessible :tournament, :user
+  # TODO - remove signup from here, potentital security risk
+  attr_accessible :tournament, :user, :signup
 
   belongs_to :tournament
   belongs_to :user

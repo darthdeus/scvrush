@@ -34,7 +34,7 @@ describe PostsController do
   describe "POST 'create'" do
     it "requires login" do
       post :create
-      response.should redirect_to('/login')
+      unauthorized?
     end
 
     it "requires user to have post rights" do
@@ -56,19 +56,20 @@ describe PostsController do
 
   describe "DELETE 'destroy'" do
     it "requires login" do
+      post = create(:post)
       session[:user_id] = nil
-      delete :destroy, :id => 1
-      response.should redirect_to('/login')
+
+      delete :destroy, :id => post.id
+      unauthorized?
     end
 
 
     it "requires user to be administrator" do
-      user = create(:user)
-      session[:user_id] = user.id
+      post = create(:post)
+      login
 
-      delete :destroy, :id => 1
-      response.should redirect_to('/')
-      flash[:error].should match("Access denied")
+      delete :destroy, :id => post.id
+      unauthorized?
     end
 
     # it "sets the status to deleted instead of deleting the post"

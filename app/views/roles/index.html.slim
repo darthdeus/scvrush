@@ -5,7 +5,7 @@
   button type="submit" class="btn btn-primary" Search
 
   = link_to "Show all", roles_path, class: 'btn'
-  = link_to "Show onnly users with roles", roles_path(with_roles: '1'), class: 'btn'
+  = link_to "Show only users with roles", roles_path(with_roles: '1'), class: 'btn'
 
 - if params[:search].present?
   .alert.alert-notice

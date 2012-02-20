@@ -72,6 +72,7 @@ group :development, :test do
   gem 'pry'
   gem 'pry-doc'
   gem 'pry-rails'
+  gem 'pry-nav'
 end
 
 gem 'unicorn'

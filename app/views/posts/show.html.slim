@@ -29,5 +29,5 @@
       - else
         h2
           ' You must be
-          = link_to "logged in", login_path
+          = link_to "logged in", login_path(redirect_back: request.original_fullpath)
           |  to comment

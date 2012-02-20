@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    session[:redirect_back] = params[:redirect_back] if params[:redirect_back]
     # there is no need to display login if the user is already logged in
     redirect_to current_user if logged_in?
   end
@@ -9,7 +10,7 @@ class SessionsController < ApplicationController
     if user
       session[:user_id] = user.id
       flash[:success] = "You are now logged in. Enjoy the community!"
-      redirect_to root_url
+      redirect_back_or_default
     else
       flash.now.alert = "Invalid username or password."
       render "new"
