@@ -6,11 +6,12 @@
       ul
         - for message in @user.errors.full_messages
           li= message
-  .field
-    = f.label :password
-    = f.password_field :password
-  .field
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation
-  .field
-    button type="submit" Update Password
+
+  = f.label :password
+  = f.password_field :password
+
+  = f.label :password_confirmation
+  = f.password_field :password_confirmation
+
+  .actions
+    button type="submit" class="btn btn-primary" Update Password
