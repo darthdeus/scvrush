@@ -310,6 +310,32 @@ button.btn, a.btn {
   margin-right: 3px;
 }
 
+.staff {
+  clear: both;
+  padding: 10px;
+  background: rgba(#000, 0.05);
+
+  img {
+    float: left;
+    box-shadow: 0 0 3px #000;
+    -webkit-box-shadow: 0 0 3px #000;
+    margin: 0 20px 0 0;
+  }
+  .info {
+    padding-top: 5px;
+  }
+}
+
+.staff:nth-child(odd) {
+  background: white;
+  img {
+    float: right;
+    margin: 0 0 0 20px;
+  }
+  text-align: right;
+}
+
+
 @import "bootstrap";
 @import "comments";
 @import "pages";
