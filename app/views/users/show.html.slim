@@ -34,7 +34,7 @@
       li
         / TODO - add check if post exists
         = link_to comment.post.title, post_path(comment.post) + "#comment#{comment.id}"
-        = ' - '
+        '  -
         = comment.content[0..30]
 
   - unless @user.achievements.empty?
