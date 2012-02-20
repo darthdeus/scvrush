@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  include Rolify::Roles
+  # extend Rolify::Dynamic
+  has_and_belongs_to_many :roles, :join_table => :users_roles
   SUBSCRIBER = 0
   WRITER = 1
   ADMIN = 10

@@ -29,10 +29,12 @@ class PostsController < ApplicationController
   end
 
   def new
+    authorize! :create, Post
     @post = Post.new
   end
 
   def create
+    authorize! :create, Post
     @post = Post.new(params[:post])
     @post.status = 0
     @post.user = current_user

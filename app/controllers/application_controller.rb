@@ -2,6 +2,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user, :logged_in?
 
+  rescue_from CanCan::AccessDenied do |ex|
+    flash[:error] = ex.message
+    redirect_to root_path
+  end
+
   protected
 
   def require_writer

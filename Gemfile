@@ -27,6 +27,9 @@ gem 'memcache-client'
 # gem 'redis-store'
 # gem "redis-rails", "~> 3.2.1.rc"
 
+gem 'cancan'
+gem 'rolify'
+
 gem 'rdiscount'
 gem 'activeadmin'#, '~> 0.4.0'
 gem 'kaminari'
