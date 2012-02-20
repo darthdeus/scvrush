@@ -35,13 +35,13 @@ module PostsHelper
   end
 
   def upvote_link(comment)
-    link_to 'upvote',
-      { :controller => :votes, :action => :create, :id => comment.id },
-      :method => :post
+    link_to :controller => :votes, :action => :create, :id => comment.id do
+      "<i class='icon-ok'></i>".html_safe
+    end
   end
 
   def downvote_link(comment)
-    link_to 'remove vote',
+    link_to "<i class='icon-remove'></i>",
       { :controller => :votes, :action => :destroy, :id => comment.id },
       :method => :delete
   end

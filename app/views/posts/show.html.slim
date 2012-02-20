@@ -23,23 +23,7 @@
       .comments
         - if @comments.empty?
           .comment Be the first one to comment on this article!
-        - @comments.each do |comment|
-          .comment
-            h4
-              a href="#{user_path(comment.user_id)}" = comment.author
-              span.date
-                = time_ago_in_words comment.created_at
-                |  ago
-              span.voting
-                - if current_user
-                  = vote_link(current_user, comment)
-                - else
-                  | please
-                  = link_to 'log in'
-                  |  to vote
-
-            = simple_format comment.content
-
+        = render @comments
       - if logged_in?
         = render 'comments/form'
       - else

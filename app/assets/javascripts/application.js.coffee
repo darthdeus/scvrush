@@ -25,3 +25,14 @@ jQuery ->
     setTimeout ->
       btn.button('reset')
     , 3000
+
+  $('#new_comment').submit (e) ->
+    self = $(this)
+    textarea = self.find('[data-required]')
+    if textarea.val() == ''
+      textarea.parent('fieldset').addClass('error')
+      textarea.focus()
+      self.find('.btn').button('reset')
+      return false
+    else
+      textarea.parent('fieldset').removeClass('error')
