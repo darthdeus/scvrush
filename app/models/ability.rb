@@ -26,8 +26,9 @@ class Ability
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
     user ||= User.new # guest user (not logged in)
 
-    if user.has_role? 'admin'
+    if user.has_role? :admin
       can :manage, :all
+      can :publish, Post
     else
       can :read, :all
       can :create, Comment
@@ -38,7 +39,7 @@ class Ability
 
       if user.has_role? 'writer'
         can :create, Post
-        can :update, Post do |post|
+        can :manage, Post do |post|
           post.try(:user) == user
         end
       end

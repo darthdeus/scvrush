@@ -13,8 +13,9 @@ class Post < ActiveRecord::Base
 
   acts_as_taggable
 
-  scope :drafts, where(:status => DRAFT)
+  scope :drafts,    where(:status => DRAFT)
   scope :published, where(:status => PUBLISHED)
+
   default_scope order("created_at DESC")
 
   scope :upcoming_tournaments, tagged_with('tournament').limit(2)
@@ -31,6 +32,7 @@ class Post < ActiveRecord::Base
     # TODO - do this in a better way
     Rails.cache.delete('views/coaches')
     Rails.cache.delete('views/recent_posts')
+    true
   end
 
 end

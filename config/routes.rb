@@ -40,6 +40,9 @@ Scvrush::Application.routes.draw do
   resources :password_resets, :only => [:new, :create, :edit, :update]
   resources :comments, :only => :create
   resources :posts do
+    member do
+      post :publish
+    end
     collection do
       get :tag
     end

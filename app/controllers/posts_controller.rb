@@ -1,11 +1,11 @@
 class PostsController < ApplicationController
-  before_filter :require_writer, :except => [:index, :tag, :show]
+  # before_filter :require_writer, :except => [:index, :tag, :show]
 
   def index
     @posts = Post.published.page(params[:page])
 
     respond_to do |format|
-      format.html #{ fresh_when :etag => Digest::MD5.hexdigest(@posts.pluck(:updated_at).to_s), :public => true }
+      format.html
       format.rss { render :layout => false }
     end
   end
@@ -22,7 +22,6 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    # fresh_when @post, :public => true
 
     @comments = @post.comments
     @comment = Comment.new(:post => @post)
@@ -36,7 +35,6 @@ class PostsController < ApplicationController
   def create
     authorize! :create, Post
     @post = Post.new(params[:post])
-    @post.status = 0
     @post.user = current_user
     if @post.save
       redirect_to posts_path, :notice => "Post published"
@@ -47,12 +45,16 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    authorize! :update, @post
+
     @image = Image.new
     @images = Image.last(5)
   end
 
   def update
     @post = Post.find(params[:id])
+    authorize! :update, @post
+
     @post.update_attributes(params[:post])
     if @post.save
       redirect_to @post, :notice => "Post was successfuly updated"
@@ -64,8 +66,27 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    Post.destroy(params[:id])
-    redirect_to posts_path, :notice => "Post removed"
+    @post = Post.find(params[:id])
+    authorize! :destroy, @post
+
+    @post.destroy
+    redirect_to dashboard_path, :notice => "Post removed"
+  end
+
+  def publish
+    @post = Post.find(params[:id])
+    authorize! :publish, @post
+
+    if params[:published] == "1"
+      @post.status = Post::PUBLISHED
+    elsif params[:published] == "0"
+      @post.status = Post::DRAFT
+    else
+      raise "Invalid published status '#{params[:published].inspect}'"
+    end
+
+    @post.save!
+    redirect_to dashboard_path, notice: "Post was #{(params[:published] == "1") ? "published" : "unpublished"}."
   end
 
 end

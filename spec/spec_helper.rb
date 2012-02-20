@@ -38,6 +38,8 @@ Spork.prefork do
 
     config.include Factory::Syntax::Methods
     config.include MailerMacros
+    config.include AuthMacros
+
     config.before(:each) { reset_email }
 
     config.before(:suite) do
@@ -56,7 +58,7 @@ end
 
 Spork.each_run do
   # TODO - check if controllers and helpers are reloaded
-  
+
   require 'factory_girl_rails'
   # reload all the models
   Dir["#{Rails.root}/app/models/**/*.rb"].each { |model| load model }

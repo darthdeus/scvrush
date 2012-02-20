@@ -32,10 +32,6 @@
     .input
       = f.text_area :content, :rows => 30, :class => 'span6'
   .clearfix
-    = f.label :status
-    .input
-      = select :post, :status, [['Draft', 0], ['Published', 1]]
-  .clearfix
     = f.label :featured_image
     .input
       = f.file_field :featured_image

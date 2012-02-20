@@ -1,0 +1,11 @@
+= arrowed_header 'GGBet'
+
+.ggbet_settings
+  = label_tag 'ggbet_logo_checkbox', :class => 'checkbox' do
+    = check_box_tag 'ggbet_logo', @ggbet_logo, @ggbet_logo, :id => 'ggbet_logo_checkbox'
+    | Display GGBet logo
+
+.ggbet_settings
+  = label_tag 'ggbet_widget_checkbox', :class => 'checkbox' do
+    = check_box_tag 'ggbet_widget', @ggbet_widget, @ggbet_widget, :id => 'ggbet_widget_checkbox'
+    | Display GGBet widget

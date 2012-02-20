@@ -2,9 +2,6 @@ class User < ActiveRecord::Base
   include Rolify::Roles
   # extend Rolify::Dynamic
   has_and_belongs_to_many :roles, :join_table => :users_roles
-  SUBSCRIBER = 0
-  WRITER = 1
-  ADMIN = 10
 
   has_many :user_achievements
   has_many :achievements, :through => :user_achievements
@@ -60,11 +57,11 @@ class User < ActiveRecord::Base
   end
 
   def is_admin?
-    self.role == User::ADMIN
+    self.has_role? :admin
   end
 
   def is_writer?
-    self.role > User::SUBSCRIBER
+    self.has_role? :writer
   end
 
   def has_bnet_username?

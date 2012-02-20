@@ -1,9 +1,9 @@
 class DashboardController < ApplicationController
-  before_filter :require_writer, :only => :index
+  before_filter :require_writer, only: :index
 
   def index
-    @drafts = Post.drafts.limit(10)
-    @published = Post.published.limit(10)
+    @drafts = Post.drafts.limit(10).order('updated_at DESC')
+    @published = Post.published.limit(10).order('updated_at DESC')
     @recent_tournaments = Tournament.order('starts_at DESC')
     @raffles = Raffle.all
 
@@ -12,17 +12,15 @@ class DashboardController < ApplicationController
   end
 
   def ggbet
-
-    if logged_in? && current_user.role >= User::WRITER
+    if logged_in? && current_user.has_role?(:admin)
       handle(params)
       status = 200
     else
       status = 401
     end
 
-
     respond_to do |format|
-      format.json { render :json => { status: status } }
+      format.json { render json: { status: status } }
     end
   end
 

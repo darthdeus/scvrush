@@ -4,5 +4,13 @@ tr
     td = link_to post.user.username, post.user
   - else
     td
-  td = link_to 'edit', edit_post_path(post)
-  td = link_to 'delete', post, :method => :delete, :confirm => 'Are you sure?'
+  - if current_user.has_role? :admin
+    td = link_to 'edit', edit_post_path(post)
+    td = link_to 'delete', post, :method => :delete, :confirm => 'Are you sure?'
+    td = publish_post_link(post)
+  - elsif can? :manage, post
+    td = link_to 'edit', edit_post_path(post)
+    td = link_to 'delete', post, :method => :delete, :confirm => 'Are you sure?'
+  - else
+    td
+    td
