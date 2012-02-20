@@ -1,5 +1,7 @@
 Scvrush::Application.routes.draw do
 
+  resources :pages, :only => :show
+
   # TODO - make this post
   get "practice/join"
   get "practice/quit"

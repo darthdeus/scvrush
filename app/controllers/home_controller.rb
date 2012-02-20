@@ -19,8 +19,8 @@ class HomeController < ApplicationController
 
     @battle_report = Post.published.tagged_with('battle-report').page(0).limit(6)
 
-    models = [@posts, @tournaments, @zerg, @terran, @protoss, @zerg_show,
-              @today_i_learned, @game_diary, @deuce_analysis, @battle_report]
+    # models = [@posts, @tournaments, @zerg, @terran, @protoss, @zerg_show,
+              # @today_i_learned, @game_diary, @deuce_analysis, @battle_report]
     # fresh_when :etag => Digest::MD5.hexdigest(models.to_a.flatten.map(&:updated_at).to_s), :public => true
   end
 

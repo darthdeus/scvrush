@@ -30,7 +30,6 @@ gem 'memcache-client'
 gem 'rdiscount'
 gem 'activeadmin'#, '~> 0.4.0'
 gem 'kaminari'
-gem 'high_voltage'
 
 gem 'thumbs_up'
 gem 'acts-as-taggable-on', '~>2.1.0'

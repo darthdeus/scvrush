@@ -165,7 +165,6 @@ GEM
       guard (>= 0.10.0)
       spork (>= 0.8.4)
     has_scope (0.5.1)
-    high_voltage (1.0.1)
     highline (1.6.11)
     hike (1.2.1)
     hirb (0.5.0)
@@ -394,7 +393,6 @@ DEPENDENCIES
   guard-cucumber
   guard-rspec
   guard-spork
-  high_voltage
   jquery-rails
   kaminari
   launchy

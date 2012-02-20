@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
-  belongs_to :post
+  belongs_to :post, touch: true
   belongs_to :user
 
   validates :content, :presence => true, :length => { :maximum => 400, :minimum => 10 }
@@ -10,11 +10,5 @@ class Comment < ActiveRecord::Base
 
   def author
     self.user.try(:username)
-  end
-
-  after_create :touch_post
-
-  def touch_post
-    self.post.touch
   end
 end
