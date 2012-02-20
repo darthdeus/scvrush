@@ -1,5 +1,6 @@
 Scvrush::Application.routes.draw do
 
+  resources :roles
   resources :pages, :only => :show
 
   # TODO - make this post
