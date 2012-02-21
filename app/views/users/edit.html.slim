@@ -3,76 +3,63 @@
 p
  | You need to fill in your Battle.net information to participate in our tournaments.
 
-= form_for @user do |f|
+= form_for @user, html: { class: 'well' } do |f|
   - if @user.errors.any?
-    .alert-message.error
-      - @user.errors.full_messages.each do |message|
-        p = message
+    .alert.alert-error
+      = f.error_messages
 
-  .clearfix
-    = f.label :username
-    .input
-      = f.text_field :username
-  .clearfix
-    = f.label :email
-    .input
-      .input-append
-        = f.text_field :email
-        label class="add-on"
-          = f.check_box :display_email
+  = f.label :username
+  = f.text_field :username
 
-  fieldset
+  = f.label :email
+  .input-append
+    = f.text_field :email
+    label class="add-on"
+      = f.check_box :display_email
+      span.help-inline display on public profile
+
+  fieldset.form-inline
     legend Battle.net information
-    .clearfix
-      = f.label :bnet_username, 'battle.net username'
-      .input
-        = f.text_field :bnet_username
-    .clearfix
-      = f.label :bnet_code, 'character code'
-      .input
-        = f.text_field :bnet_code
+
+    = f.text_field :bnet_username, placeholder: 'Battle.net username'
+    = f.text_field :bnet_code, placeholder: 'character code', style: 'margin-left: 5px;', class: 'span2'
 
   fieldset
     legend Community information
-    .clearfix
-      = f.label :twitter
-      span.help-inline Only your username without the @ symbol
-      .input
-        = f.text_field :twitter
-    .clearfix
-      = f.label :race
-      .input
-        = f.text_field :race
-    .clearfix
-      = f.label :league
-      .input
-        = f.text_field :league
-    .clearfix
-      = f.label :server
-      .input
-        = f.text_field :server
-    .clearfix
-      = f.label :favorite_player
-      .input
-        = f.text_field :favorite_player
-    .clearfix
-      = f.label :skype
-      .input
-        .input-append
-          = f.text_field :skype
-          label class="add-on"
-            = f.check_box :display_skype
-    .clearfix
-      = f.label :msn, 'MSN'
-      .input
-        .input-append
-          = f.text_field :msn
-          label class="add-on"
-            = f.check_box :display_msn
-    .clearfix
-      = f.label :about
-      .input
-        = f.text_area :about, :rows => 3, :class => 'xlarge'
+
+    = f.label :twitter
+    = f.text_field :twitter
+    span.help-inline Only your username without the @ symbol
+
+    = f.label :race
+    = f.select :race, %w{Zerg Terran Protoss Random}
+
+    = f.label :league
+    = f.select :race, %w{Bronze Silver Gold Platinum Master Grandmaster}
+
+    = f.label :server
+    = f.select :server, %w{NA EU SEA KR}
+
+    = f.label :favorite_player
+    = f.text_field :favorite_player
+
+    = f.label :skype
+    .input-append
+      = f.text_field :skype
+      label class="add-on"
+        = f.check_box :display_skype
+        span.help-inline display on public profile
+
+
+    = f.label :msn, 'MSN'
+    .input-append
+      = f.text_field :msn
+      label class="add-on"
+        = f.check_box :display_msn
+        span.help-inline display on public profile
+
+    = f.label :about
+    = f.text_area :about, :rows => 5, :class => 'span4'
 
   .actions
-    button type="submit" class="btn primary" Update your profile
+    button type="submit" class="btn btn-primary" Update your profile
