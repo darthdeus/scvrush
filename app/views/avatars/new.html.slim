@@ -4,9 +4,11 @@ p Your current avatar
 
 = image_tag current_user.avatar.url(:thumb)
 
-h2 Upload new avatar
 
-= form_for @user, :html => { multipart: true } do |f|
-  = f.file_field :avatar
-  = submit_tag "Upload"
+
+= form_for @user, :html => { multipart: true, class: 'well' } do |f|
+  fieldset
+    legend Upload a new avatar
+    = f.file_field :avatar
+    button type="submit" class="btn btn-primary" Upload
 

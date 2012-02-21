@@ -2,20 +2,20 @@ class HomeController < ApplicationController
   def index
     # TODO - does #tagged_with consider all tags, or only one of the list?
     @posts = Post.published.tagged_with('event,tournament,zerg-show', :exclude => true).page(0).limit(6)
-    @eu_tournaments = Post.tagged_with('event,eu').limit(3)
-    @na_tournaments = Post.tagged_with('event,na').limit(3)
+    @eu_tournaments = Post.published.tagged_with('event,eu').limit(3)
+    @na_tournaments = Post.published.tagged_with('event,na').limit(3)
     @tournaments = @eu_tournaments.zip(@na_tournaments).flatten
 
 
     # TODO - why am I using page(0) all over the place?
-    @zerg    = Post.tagged_with('zerg').limit(6)
-    @terran  = Post.tagged_with('terran').limit(6)
-    @protoss = Post.tagged_with('protoss').limit(6)
+    @zerg    = Post.published.tagged_with('zerg').limit(6)
+    @terran  = Post.published.tagged_with('terran').limit(6)
+    @protoss = Post.published.tagged_with('protoss').limit(6)
 
-    @zerg_show      = Post.published.tagged_with('zerg-show').page(0).limit(6)
-    @today_i_learned  = Post.published.tagged_with('today-i-learned').page(0).limit(6)
-    @game_diary     = Post.published.tagged_with('game-diary').page(0).limit(6)
-    @deuce_analysis = Post.published.tagged_with('deuce-analysis').page(0).limit(6)
+    @zerg_show       = Post.published.tagged_with('zerg-show').page(0).limit(6)
+    @today_i_learned = Post.published.tagged_with('today-i-learned').page(0).limit(6)
+    @game_diary      = Post.published.tagged_with('game-diary').page(0).limit(6)
+    @deuce_analysis  = Post.published.tagged_with('deuce-analysis').page(0).limit(6)
 
     @battle_report = Post.published.tagged_with('battle-report').page(0).limit(6)
 
