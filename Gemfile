@@ -21,7 +21,7 @@ group :assets do
   gem 'uglifier'#, '>= 1.0.3'
 end
 
-gem 'newrelic_rpm'
+# gem 'newrelic_rpm'
 
 gem 'memcache-client'
 # gem 'redis-store'

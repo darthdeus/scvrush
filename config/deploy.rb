@@ -2,7 +2,7 @@ $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 
 require 'rvm/capistrano'
 require 'bundler/capistrano'
-require 'new_relic/recipes'
+# require 'new_relic/recipes'
 
 set :application, "scvrush.com"
 # set :domain, "scvrush.com"
@@ -85,7 +85,7 @@ end
 before "deploy:assets:precompile", "deploy:symlink_shared"
 
 before "deploy:finalize_update", "rvm:trust_rvmrc"
-after "deploy:update", "newrelic:notice_deployment"
+# after "deploy:update", "newrelic:notice_deployment"
 
 
 
