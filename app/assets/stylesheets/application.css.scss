@@ -311,6 +311,8 @@ button.btn, a.btn {
   margin-right: 3px;
 }
 
+.people { margin: 0 0 20px 0; }
+
 .staff {
   clear: both;
   padding: 10px;
@@ -327,7 +329,7 @@ button.btn, a.btn {
   }
 }
 
-.staff:nth-child(odd) {
+.staff:nth-child(even) {
   background: white;
   img {
     float: right;
