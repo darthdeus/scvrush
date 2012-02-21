@@ -13,4 +13,5 @@ describe RaffleSignupsController do
       flash[:notice].should_not be_empty
     end
   end
+
 end

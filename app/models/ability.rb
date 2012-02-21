@@ -37,12 +37,14 @@ class Ability
         comment.try(:user) == user
       end
 
-      if user.has_role? 'writer'
+      if user.has_role? :writer
         can :create, Post
         can :manage, Post do |post|
           post.try(:user) == user
         end
       end
+
+      # if user.has_role? :raffle_admin
     end
 
   end

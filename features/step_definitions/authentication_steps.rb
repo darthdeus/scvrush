@@ -8,7 +8,8 @@ Given /^I am logged in$/ do
 end
 
 Given /^I am an administrator$/ do
-  @user = Factory(:user, :password => 'secret', :role => User::ADMIN)
+  @user = Factory(:user, :password => 'secret')
+  @user.grant :admin
   login(@user.username, 'secret')
 end
 
