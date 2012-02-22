@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
                   :password_reset_token, :avatar, :race, :league, :server,
                   :favorite_player, :skype, :display_skype, :msn,
                   :display_msn, :display_email, :about, :avatar,
-                  :bnet_code, :bnet_username, :twitter
+                  :bnet_code, :bnet_username, :twitter, :time_zone
 
   acts_as_voter
   has_karma(:comments, :as => :user)

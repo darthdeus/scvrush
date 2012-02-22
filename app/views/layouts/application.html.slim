@@ -41,7 +41,7 @@ html
             - Tournament.upcoming.each do |tournament|
               .upcoming
                 h2 = link_to tournament.name, tournament.post
-                p = nice_date(tournament.starts_at)
+                p = nice_date(tournament.starts_at, current_user)
 
 
         #wrapper-navigation

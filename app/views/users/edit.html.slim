@@ -18,6 +18,10 @@ p
       = f.check_box :display_email
     span.help-inline check to display on public profile
 
+  = f.label :time_zone, 'Time Zone'
+  = f.time_zone_select :time_zone, ActiveSupport::TimeZone.all
+  span.help-inline All times on the site will be converted to your time zone
+
   fieldset.form-inline
     legend Battle.net information
 

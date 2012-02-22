@@ -20,8 +20,12 @@ module PostsHelper
     name.sub(/\[\w+\] /, '')
   end
 
-  def nice_date(date)
-    date.strftime("%A %b st, %l:%M%P GMT").sub('st', date.day.ordinalize)
+  def nice_date(date, user)
+    timezoned = date
+    if user && user.time_zone
+      timezoned = date.in_time_zone(user.time_zone)
+    end
+    timezoned.strftime("%A %b st, %l:%M%P").sub('st', timezoned.day.ordinalize)
   end
 
   def vote_link(user, comment)

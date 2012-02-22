@@ -2,7 +2,8 @@
   .single
     .post
       h2= @tournament.name
-
+      / TODO - add a text saying when is the tournament starting,
+      / maybe use distance_of_time_in_words_to_now or time_ago_in_words
       - if @tournament.checkin_open?
         = checkin_button @tournament
       - else
