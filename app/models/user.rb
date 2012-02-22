@@ -70,7 +70,10 @@ class User < ActiveRecord::Base
 
   def sign_up(tournament)
     # TODO - Does this actually create the correct signup?
-    self.signups.create!(:tournament => tournament, :status => Signup::REGISTERED)
+    signup = self.signups.build(:tournament => tournament)
+    signup.status = Signup::REGISTERED
+    signup.save!
+    signup
   end
 
   def registered_for?(tournament)

@@ -36,3 +36,23 @@ jQuery ->
       return false
     else
       textarea.parent('fieldset').removeClass('error')
+
+  $('#publish-date-form').dialog {
+    autoOpen: false,
+    modal: true,
+    width: 300,
+    height: 150
+  }
+
+  $(".publish_link").click (e) ->
+    dialog = $("#publish-date-form")
+    post_id = $(this).attr('data-post-id')
+
+    alert("post_id is empty") unless post_id
+
+    dialog.find('form').attr("action", "/posts/" + post_id + "/publish")
+    dialog.dialog("open")
+    e.preventDefault()
+    return false
+
+  $(".datepicker").datepicker();

@@ -6,4 +6,5 @@ describe "Posts" do
     it "doesn't show posts that are saved as drafts"
     it "returns list of published posts"
   end
+
 end

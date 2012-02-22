@@ -74,4 +74,27 @@ describe PostsController do
 
     # it "sets the status to deleted instead of deleting the post"
   end
+
+  describe "POST publish" do
+    before { controller.stub!(:authorize!) }
+
+    it "sets the post's published_at timestamp when sent properly" do
+      p = create(:post)
+      post :publish, id: p.id, published: 1, date: '2012-1-1', time: '14:30'
+      response.should be_redirect
+
+      flash[:notice].should match('Post was published')
+      p.reload
+      p.published_at.should == Time.parse('2012-1-1 14:30')
+    end
+
+    it "redirects back with error if the date format is invalid" do
+      p = create(:post)
+      post :publish, id: p.id, published: 1, date: 'a', time: 'a'
+      response.should be_redirect
+
+      flash[:notice].should match('Invalid date or time format')
+    end
+  end
+
 end

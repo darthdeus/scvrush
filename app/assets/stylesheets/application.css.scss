@@ -338,6 +338,11 @@ button.btn, a.btn {
   text-align: right;
 }
 
+.add-on + .help-inline {
+  margin: 6px 0 0 0;
+}
+
+.btn { margin-left: 3px; }
 
 @import "bootstrap";
 @import "posts";
@@ -346,3 +351,4 @@ button.btn, a.btn {
 @import "topics";
 @import "dashboard";
 @import "pagination";
+@import "jquery-ui.custom"

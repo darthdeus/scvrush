@@ -75,10 +75,16 @@ class PostsController < ApplicationController
 
   def publish
     @post = Post.find(params[:id])
-    authorize! :publish, @post
+    authorize! :publish, Post
 
     if params[:published] == "1"
       @post.status = Post::PUBLISHED
+      begin
+        @post.published_at = Time.parse("#{params[:date]} #{params[:time]}")
+      rescue ArgumentError
+        redirect_to dashboard_path, notice: "Invalid date or time format"
+        return
+      end
     elsif params[:published] == "0"
       @post.status = Post::DRAFT
     else

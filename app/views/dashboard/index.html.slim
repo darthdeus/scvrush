@@ -1,3 +1,10 @@
+div id="publish-date-form" title="Set when the post is published"
+  = form_tag do
+    input type="hidden" name="published" value="1"
+    input type="time" name="time" placeholder="publish time, format 14:30"
+    input type="date" name="date" placeholder="publish date" class="datepicker"
+    button type="submit" class="btn btn-primary" Publish
+
 = arrowed_header 'Posts'
 
 h2 Recent published posts
@@ -13,7 +20,7 @@ table class="table table-striped table-bordered table-condensed"
     = render @published
 
 h2 Recent drafts
-- unless @drafts.empty?
+- unless @drafts && @drafts.empty?
   table class="table table-striped table-bordered table-condensed"
     thead
       tr
@@ -32,9 +39,9 @@ p
   table class="table table-striped table-bordered table-condensed"
     - @raffles.each do |raffle|
       tr
-        td= link_to raffle.title, raffle
-        td= link_to "edit", edit_raffle_path(raffle)
-        td= link_to "delete", raffle, :method => :delete, :confirmation => true
+        td = link_to raffle.title, raffle
+        td = link_to "edit", edit_raffle_path(raffle)
+        td = link_to "delete", raffle, :method => :delete, :confirmation => true
 
   p
     = link_to "New raffle", new_raffle_path, :class => 'btn'
@@ -51,12 +58,12 @@ p
     tbody
       - @recent_tournaments.each do |tournament|
         tr
-          td= link_to tournament.name, tournament
+          td = link_to tournament.name, tournament
           - if tournament.winner
-            td= link_to tournament.winner.username, tournament.winner
+            td = link_to tournament.winner.username, tournament.winner
           - else
             td no winner set
-          td= link_to "select a winner", edit_tournament_path(tournament)
+          td = link_to "select a winner", edit_tournament_path(tournament)
 
   = render 'dashboard/ggbet'
 

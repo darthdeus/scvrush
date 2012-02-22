@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120220152535) do
+ActiveRecord::Schema.define(:version => 20120222090010) do
 
   create_table "achievements", :force => true do |t|
     t.string   "name"
@@ -70,6 +70,8 @@ ActiveRecord::Schema.define(:version => 20120220152535) do
     t.datetime "updated_at"
   end
 
+  add_index "coaches", ["post_id"], :name => "index_coaches_on_post_id"
+
   create_table "comments", :force => true do |t|
     t.text     "content"
     t.integer  "post_id"
@@ -97,6 +99,7 @@ ActiveRecord::Schema.define(:version => 20120220152535) do
     t.datetime "updated_at"
   end
 
+  add_index "points", ["reason_id"], :name => "index_points_on_reason_id"
   add_index "points", ["user_id"], :name => "index_points_on_user_id"
 
   create_table "posts", :force => true do |t|
@@ -107,7 +110,10 @@ ActiveRecord::Schema.define(:version => 20120220152535) do
     t.datetime "updated_at"
     t.integer  "status",         :default => 0
     t.integer  "user_id"
+    t.datetime "published_at"
   end
+
+  add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
 
   create_table "raffle_signups", :force => true do |t|
     t.integer  "user_id"
@@ -116,6 +122,10 @@ ActiveRecord::Schema.define(:version => 20120220152535) do
     t.datetime "updated_at"
   end
 
+  add_index "raffle_signups", ["raffle_id"], :name => "index_raffle_signups_on_raffle_id"
+  add_index "raffle_signups", ["user_id", "raffle_id"], :name => "index_raffle_signups_on_user_id_and_raffle_id"
+  add_index "raffle_signups", ["user_id"], :name => "index_raffle_signups_on_user_id"
+
   create_table "raffles", :force => true do |t|
     t.integer  "status",     :default => 0
     t.integer  "winner_id"
@@ -123,6 +133,8 @@ ActiveRecord::Schema.define(:version => 20120220152535) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "raffles", ["winner_id"], :name => "index_raffles_on_winner_id"
 
   create_table "replies", :force => true do |t|
     t.text     "content"
@@ -177,6 +189,7 @@ ActiveRecord::Schema.define(:version => 20120220152535) do
 
   add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
   add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
+  add_index "taggings", ["tagger_id"], :name => "index_taggings_on_tagger_id"
 
   create_table "tags", :force => true do |t|
     t.string "name"
@@ -192,6 +205,7 @@ ActiveRecord::Schema.define(:version => 20120220152535) do
     t.datetime "last_reply_at"
   end
 
+  add_index "topics", ["last_reply_id"], :name => "index_topics_on_last_reply_id"
   add_index "topics", ["section_id"], :name => "index_topics_on_section_id"
   add_index "topics", ["user_id"], :name => "index_topics_on_user_id"
 
@@ -204,12 +218,19 @@ ActiveRecord::Schema.define(:version => 20120220152535) do
     t.integer  "winner_id"
   end
 
+  add_index "tournaments", ["post_id"], :name => "index_tournaments_on_post_id"
+  add_index "tournaments", ["winner_id"], :name => "index_tournaments_on_winner_id"
+
   create_table "user_achievements", :force => true do |t|
     t.integer  "user_id"
     t.integer  "achievement_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "user_achievements", ["achievement_id"], :name => "index_user_achievements_on_achievement_id"
+  add_index "user_achievements", ["user_id", "achievement_id"], :name => "index_user_achievements_on_user_id_and_achievement_id"
+  add_index "user_achievements", ["user_id"], :name => "index_user_achievements_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "username"

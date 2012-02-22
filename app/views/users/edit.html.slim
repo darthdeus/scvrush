@@ -16,7 +16,7 @@ p
     = f.text_field :email
     label class="add-on"
       = f.check_box :display_email
-      span.help-inline display on public profile
+    span.help-inline check to display on public profile
 
   fieldset.form-inline
     legend Battle.net information
@@ -29,13 +29,13 @@ p
 
     = f.label :twitter
     = f.text_field :twitter
-    span.help-inline Only your username without the @ symbol
+    span.help-inline only your username without the @ symbol
 
     = f.label :race
     = f.select :race, %w{Zerg Terran Protoss Random}
 
     = f.label :league
-    = f.select :race, %w{Bronze Silver Gold Platinum Master Grandmaster}
+    = f.select :race, %w{Bronze Silver Gold Platinum Diamond Master Grandmaster}
 
     = f.label :server
     = f.select :server, %w{NA EU SEA KR}
@@ -48,7 +48,7 @@ p
       = f.text_field :skype
       label class="add-on"
         = f.check_box :display_skype
-        span.help-inline display on public profile
+      span.help-inline check to display on public profile
 
 
     = f.label :msn, 'MSN'
@@ -56,7 +56,7 @@ p
       = f.text_field :msn
       label class="add-on"
         = f.check_box :display_msn
-        span.help-inline display on public profile
+      span.help-inline check to display on public profile
 
     = f.label :about
     = f.text_area :about, :rows => 5, :class => 'span4'
