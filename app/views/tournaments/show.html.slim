@@ -20,19 +20,29 @@
           - @registered_users.each do |signup|
             li = signup.user.username
 
+        - if is_writer?
+          ul
+            - @registered_users.each do |signup|
+              li = signup.user.bnet_info
+
+          ul
+            - @registered_users.each do |signup|
+              li = signup.user.email
+
+
       - if @checked_users.empty?
         p There are no players checked in yet
       - else
         h3 Checked in players
         ul
           - @checked_users.each do |signup|
-            li 
+            li
               = signup.user.username
               - if is_writer?
                 span.bnet
-                  |  - battle.net info: 
+                  |  - battle.net info:
                   strong = signup.user.bnet_info
-                  |  
+                  |
                   em = signup.user.email
 
         - if is_writer?

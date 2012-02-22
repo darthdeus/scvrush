@@ -57,4 +57,26 @@ describe "tournaments/show.html.slim" do
     end
   end
 
+  context "user list display" do
+    it "displays emails of registered users to admin" do
+      user = mock_model(User, registered_for?: false, is_writer?: true)
+      view.stub(:current_user).and_return(user)
+
+      User.destroy_all
+      tournament = create(:tournament)
+      5.times do
+        user = create(:user)
+        user.sign_up(tournament)
+      end
+
+      assign(:tournament, tournament)
+      assign(:registered_users, Signup.all)
+
+      render
+      User.all.each do |user|
+        rendered.should include(user.email)
+      end
+    end
+  end
+
 end
