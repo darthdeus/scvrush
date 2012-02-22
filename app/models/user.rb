@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   has_many :comments
   has_many :replies
-  has_many :signups
+  has_many :signups, :dependent => :destroy
   has_many :tournaments, :through => :signups
   has_many :won_tournaments, :class_name => 'Tournament', :foreign_key => 'winner_id'
 

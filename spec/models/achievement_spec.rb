@@ -14,5 +14,16 @@ describe Achievement do
     achievement.slug.should == "test"
   end
 
-  it "has a dependent destroy"
+  it "has a dependent destroy" do
+    [Achievement, UserAchievement].each(&:destroy_all)
+
+    achievement = create(:achievement)
+    user = create(:user)
+    user.achievements << achievement
+
+    achievement.destroy
+    user.reload
+    user.achievements.size.should == 0
+    UserAchievement.count.should == 0
+  end
 end
