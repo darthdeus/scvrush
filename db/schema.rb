@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120222155952) do
+ActiveRecord::Schema.define(:version => 20120222190650) do
 
   create_table "achievements", :force => true do |t|
     t.string   "name"
@@ -258,6 +258,7 @@ ActiveRecord::Schema.define(:version => 20120222155952) do
     t.boolean  "practice"
     t.string   "twitter"
     t.string   "time_zone"
+    t.string   "api_key"
   end
 
   create_table "users_roles", :id => false, :force => true do |t|

@@ -1,5 +1,9 @@
 class PracticeController < ApplicationController
-  before_filter :require_login
+  before_filter :require_login, except: :index
+
+  def index
+    @users = User.practice
+  end
 
   def join
     @user = current_user

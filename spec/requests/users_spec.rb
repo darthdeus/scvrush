@@ -9,8 +9,8 @@ describe "Users" do
   end
 
   it "has a profile with information" do
-    user = Factory(:user)
-    get user_path(user)
-    response.body.should include(user.username)
+    user = create(:user)
+    visit user_path(user)
+    page.should have_content(user.username)
   end
 end

@@ -32,6 +32,8 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
+  scope :practice, where(practice: true)
+
   # TODO - use Rails 3 validations
   validates_presence_of :username
   validates :username, :uniqueness => true, :on => :create
@@ -99,6 +101,11 @@ class User < ActiveRecord::Base
 
   def to_param
     "#{id}-#{username.parameterize}"
+  end
+
+  def generate_api_key!
+    self.api_key = BCrypt::Engine.generate_salt
+    self.save!
   end
 
   before_create { generate_token(:auth_token) }

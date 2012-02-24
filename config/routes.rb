@@ -1,11 +1,17 @@
 Scvrush::Application.routes.draw do
 
+  # scope constraints: { protocol: 'https' } do
+    get "api/auth"
+    get "api/check"
+  # end
+
   resources :roles
   resources :pages, :only => :show
 
   # TODO - make this post
   get "practice/join"
   get "practice/quit"
+  get "practice/index"
 
   resources :reply_votes
   resources :upcoming

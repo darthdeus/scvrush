@@ -1,7 +1,7 @@
 = arrowed_header "Sign up for a new account"
 
 p
-  | Signing up for a new SCV Rush account will allow you to participate
+  ' Signing up for a new SCV Rush account will allow you to participate
   | in our tournaments, as well as comment on our website and do other social activities.
 
 = form_for @user, :html => { :class => 'well' } do |f|
@@ -22,6 +22,12 @@ p
 
   = f.label :password_confirmation
   = f.password_field :password_confirmation
+
+  fieldset.form-inline
+    legend Battle.net information (optional, you can fill this in later)
+
+    = f.text_field :bnet_username, placeholder: 'Battle.net username'
+    = f.text_field :bnet_code, placeholder: 'character code', style: 'margin-left: 5px;', class: 'span2'
 
   .actions
     button type="submit" class="btn btn-primary" Sign up
