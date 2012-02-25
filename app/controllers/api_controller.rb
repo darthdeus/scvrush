@@ -1,5 +1,5 @@
 class ApiController < ApplicationController
-  # force_ssl
+  force_ssl if Rails.env.production?
 
   def auth
     user = User.authenticate(params[:username], params[:password])
