@@ -348,6 +348,12 @@ button.btn, a.btn {
   margin-bottom: 15px;
 }
 
+#adbtn {
+  position: absolute;
+  top: 70px;
+  right: 320px;
+}
+
 @import "bootstrap";
 @import "posts";
 @import "progress_bar";
