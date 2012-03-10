@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "Api" do
+describe "API" do
 
   it "generates new api key if user doesn't have one" do
     user = create(:user, password: 'secret')
