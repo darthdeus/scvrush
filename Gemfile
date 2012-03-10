@@ -42,18 +42,21 @@ gem 'therubyracer', :group => :production
 # gem 'mustang'
 
 group :development, :test do
-  gem 'simplecov'
-  gem 'nifty-generators'
-  gem 'rspec-rails'
+  gem 'pry'
+  gem 'pry-doc'
+  gem 'pry-rails'
+  gem 'pry-nav'
+end
+
+group :test do
   gem 'database_cleaner'
+  gem 'simplecov'
+  gem 'rspec-rails'
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'factory_girl_rails'
   gem 'launchy'
-
   gem 'cucumber-rails'
-  gem 'database_cleaner'
-
   gem 'populator'
   gem 'faker'
 
@@ -62,19 +65,14 @@ group :development, :test do
     gem 'rb-inotify', :require => false
     gem 'rb-fchange', :require => false
   end
+  gem 'spork', '> 0.9.0.rc'
   gem 'guard-rspec', :require => false
   gem 'guard-spork', :require => false
   gem 'guard-cucumber'
-  gem 'growl'
-  gem 'spork', '> 0.9.0.rc'
-  gem 'metrical'
 
-  gem 'pry'
-  gem 'pry-doc'
-  gem 'pry-rails'
-  gem 'pry-nav'
 end
 
 gem 'unicorn'
+
 gem 'capistrano'
 

@@ -154,6 +154,13 @@ describe User do
     end
   end
 
+  describe :has_bnet_username? do
+    it "returns false if the user has no info" do
+      user = create(:user, bnet_username: nil)
+      user.should_not have_bnet_username
+    end
+  end
+
   describe "#won_tournament!" do
     it "adds an achievement to the user" do
       user = create(:user)

@@ -67,7 +67,7 @@ class User < ActiveRecord::Base
   end
 
   def has_bnet_username?
-    self.bnet_username && self.bnet_code
+    self.bnet_username.present? && self.bnet_code.present?
   end
 
   def sign_up(tournament)

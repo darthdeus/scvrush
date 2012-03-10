@@ -55,4 +55,4 @@ jQuery ->
     e.preventDefault()
     return false
 
-  $(".datepicker").datepicker();
+  $(".datepicker").datepicker()

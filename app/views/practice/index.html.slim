@@ -1,11 +1,17 @@
 h2 Pick your ideal practice partner
 
-div class="btn-group" data-toggle="buttons-radio"
-  button class="btn" Terran
-  button class="btn" Zerg
-  button class="btn" Protoss
+= form_tag '/pracitce/index', class: 'well', method: :get do
 
-div class="btn-group" data-toggle="buttons-radio"
-  button class="btn" NA
-  button class="btn" EU
-  button class="btn" SEA
+  fieldset
+    div class="btn-group" data-toggle="buttons-radio"
+      button type="button" class="btn" Terran
+      button type="button" class="btn" Zerg
+      button type="button" class="btn" Protoss
+
+  fieldset
+    div class="btn-group" data-toggle="buttons-radio"
+      button type="button" class="btn" NA
+      button type="button" class="btn" EU
+      button type="button" class="btn" SEA
+
+  button type="submit" class="btn btn-primary" Give me someone to practice with
