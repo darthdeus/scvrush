@@ -36,6 +36,8 @@
     li.active
       a data-toggle="tab" href="#zerg-show" Zerg Show
     li
+      a data-toggle="tab" href="#watch-the-pros" Watch the Pros
+    li
       a data-toggle="tab" href="#today-i-learned" Today I Learned
     li
       a data-toggle="tab" href="#game-diary" Game Diary
@@ -46,6 +48,9 @@
     .fade.in.active.tab-pane#zerg-show
       .recent-posts
         = render partial: 'home/recent_post', collection: @zerg_show, as: :post
+    .fade.tab-pane#watch-the-pros
+      .recent-posts
+        = render partial: 'home/recent_post', collection: @watch_the_pros, as: :post
     .fade.tab-pane#today-i-learned
       .recent-posts
         = render partial: 'home/recent_post', collection: @today_i_learned, as: :post

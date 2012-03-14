@@ -13,6 +13,7 @@ class HomeController < ApplicationController
     @protoss = Post.published.tagged_with('protoss').limit(6)
 
     @zerg_show       = Post.published.tagged_with('zerg-show').page(0).limit(6)
+    @watch_the_pros  = Post.published.tagged_with('watch-the-pros').page(0).limit(6)
     @today_i_learned = Post.published.tagged_with('today-i-learned').page(0).limit(6)
     @game_diary      = Post.published.tagged_with('game-diary').page(0).limit(6)
     @deuce_analysis  = Post.published.tagged_with('deuce-analysis').page(0).limit(6)

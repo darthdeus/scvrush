@@ -3,6 +3,13 @@ class PracticeController < ApplicationController
 
   def index
     @users = User.practice
+    @users = @users.where(race: params[:race]) if params[:race]
+    @users = @users.where(server: params[:server]) if params[:server]
+    # TODO - search results should be passed back to JavaScript
+    # to be highlighted in the form
+
+    # it should also try to find users with as close league as possible,
+    # but then broaden the results
   end
 
   def join

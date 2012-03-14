@@ -44,6 +44,12 @@ jQuery ->
     height: 150
   }
 
+  $('.pick-race button').click ->
+    $('#picked-race').val $(this).text()
+
+  $('.pick-server button').click ->
+    $('#picked-server').val $(this).text()
+
   $(".publish_link").click (e) ->
     dialog = $("#publish-date-form")
     post_id = $(this).attr('data-post-id')

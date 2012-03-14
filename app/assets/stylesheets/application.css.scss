@@ -354,6 +354,15 @@ button.btn, a.btn {
   right: 320px;
 }
 
+.pick-race, .pick-server {
+  float: left;
+  margin-right: 5px;
+}
+
+.practice-submit {
+  margin-left: 0;
+}
+
 @import "bootstrap";
 @import "posts";
 @import "progress_bar";
@@ -361,4 +370,4 @@ button.btn, a.btn {
 @import "topics";
 @import "dashboard";
 @import "pagination";
-@import "jquery-ui.custom"
+@import "jquery-ui.custom";

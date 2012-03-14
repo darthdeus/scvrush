@@ -11,7 +11,8 @@ Scvrush::Application.routes.draw do
   # TODO - make this post
   get "practice/join"
   get "practice/quit"
-  get "practice/index"
+  # TODO - write this as a single line match
+  match "/practice" => "practice#index", via: :get
 
   resources :reply_votes
   resources :upcoming

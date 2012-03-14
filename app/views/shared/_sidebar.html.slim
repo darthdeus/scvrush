@@ -5,20 +5,14 @@
 
 ul.nav.nav-tabs
   li.active
-    a data-toggle="tab" href="#blog" Blog
-  li
     a data-toggle="tab" href="#coaches" Coaches
+  li
+    a data-toggle="tab" href="#blog" Blog
 
 
 .tab-content
-  .fade.in.active.tab-pane#blog
-    - cache('bloglinks', :expire_in => 5.minutes) do
-      ul.bloglinks
-        - BlogPost.recent.each do |post|
-          li = link_to post.title, post.url
-
-  .fade.tab-pane#coaches
-    - cache('coaches', :expire_in => 5.minutes) do
+  .fade.in.active.tab-pane#coaches
+    - cache('coaches', expire_in: 5.minutes) do
       - Coach.order('`order` ASC').each do |coach|
         - if coach.post.present?
           .coach
@@ -27,6 +21,11 @@ ul.nav.nav-tabs
               - coach.tags.each do |tag|
                 li = tag_link(tag)
 
+  .fade.tab-pane#blog
+    - cache('bloglinks', expire_in: 5.minutes) do
+      ul.bloglinks
+        - BlogPost.recent.each do |post|
+          li = link_to post.title, post.url
 
 - unless Rails.env.development?
 
