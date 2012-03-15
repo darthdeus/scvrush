@@ -16,7 +16,7 @@ jQuery ->
     jsonp: "jsonp"
     success: (data) ->
       stream_button = $("li.stream a")
-      stream_button.css(color: 'rgba(255, 150, 150, 0.8)', marginRight: '35px')
+      stream_button.css(color: 'rgba(255, 150, 150, 0.8)')
       stream_button.text('Check out our Stream - LIVE NOW!')
 
   # $('.btn').click ->
