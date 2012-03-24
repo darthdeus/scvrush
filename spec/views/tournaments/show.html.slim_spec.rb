@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe "tournaments/show.html.slim" do
+describe "tournaments/show" do
   before do
     assign(:registered_users, [])
     assign(:checked_users, [])

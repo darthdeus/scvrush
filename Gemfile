@@ -13,7 +13,7 @@ gem 'slim-rails'
 gem 'sass-rails'#,   '~> 3.1.4'
 
 gem 'fog'
-gem 'carrierwave'
+gem 'carrierwave', github: 'jnicklas/carrierwave'
 gem 'mini_magick'
 gem 'airbrake'
 
@@ -51,12 +51,12 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'simplecov'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '2.9'
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'factory_girl_rails'
   gem 'launchy'
-  gem 'cucumber-rails'
+  gem 'cucumber-rails', :require => false
   gem 'populator'
   gem 'faker'
 

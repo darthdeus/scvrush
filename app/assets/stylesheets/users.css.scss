@@ -5,6 +5,11 @@
         .meta {
             text-align: center;
         }
+        img {
+            box-shadow: 0 0 3px #000;
+            -moz-box-shadow: 0 0 3px #000;
+            -webkit-box-shadow: 0 0 3px #000;
+        }
     }
 
     p {

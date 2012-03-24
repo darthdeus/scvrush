@@ -18,7 +18,9 @@ h2 Pick your ideal practice partner
 
   button type="submit" class="btn btn-primary practice-submit" Give me the results!
 
-- unless @users.try(:empty?)
+- if @users.nil? || @users.try(:empty?)
+  h2 Please use the criteria above to find yourself the perfect practice partner!
+- else
   h2 Search results
 
   table id="search-results" class="table table-striped table-bordered table-condensed"

@@ -2,9 +2,12 @@ class PracticeController < ApplicationController
   before_filter :require_login, except: :index
 
   def index
-    @users = User.practice
-    @users = @users.where(race: params[:race]) if params[:race]
-    @users = @users.where(server: params[:server]) if params[:server]
+    if params[:race] || params[:server] || params[:league]
+      @users = User.practice
+      @users = @users.where(race: params[:race]) if params[:race]
+      @users = @users.where(server: params[:server]) if params[:server]
+      @users = @users.where(league: params[:league]) if params[:league]
+    end
     # TODO - search results should be passed back to JavaScript
     # to be highlighted in the form
 
