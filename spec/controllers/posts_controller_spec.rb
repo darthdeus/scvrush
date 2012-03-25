@@ -93,7 +93,7 @@ describe PostsController do
       post :publish, id: p.id, published: 1, date: 'a', time: 'a'
       response.should be_redirect
 
-      flash[:notice].should match('Invalid date or time format')
+      flash[:error].should match('Invalid date or time format')
     end
   end
 

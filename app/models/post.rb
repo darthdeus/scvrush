@@ -43,6 +43,12 @@ class Post < ActiveRecord::Base
     self.status == Post::PUBLISHED
   end
 
+  # Set a post publish status & published_at date for given parameters
+  #
+  # params - A hash of params. To unpublish, set :published == "0",
+  #          otherwise you have to provide both :date and :time when
+  #          specifying :published == "1". Any other :published value
+  #          will raise an exception.
   def publish(params)
     if params[:published] == "1"
       self.status = Post::PUBLISHED

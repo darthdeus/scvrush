@@ -1,6 +1,6 @@
 class TournamentsController < ApplicationController
   # TODO - change to admin
-  before_filter :require_writer, :except => :show
+  before_filter :require_writer, except: :show
 
   def show
     @tournament = Tournament.find(params[:id])
@@ -18,7 +18,7 @@ class TournamentsController < ApplicationController
     @tournament.set_winner(@winner)
 
     flash[:notice] = "Tournament winner was set successfuly"
-    redirect_to :controller => :dashboard, :action => :index
+    redirect_to controller: :dashboard, action: :index
   end
 
 end

@@ -4,7 +4,7 @@ class RaffleSignupsController < ApplicationController
   def create
     @raffle = Raffle.find(params[:id])
     @raffle.register(current_user)
-    redirect_to @raffle, :notice => "You have successfully join the raffle!"
+    redirect_to @raffle, notice: "You have successfully join the raffle!"
   end
 
 end
