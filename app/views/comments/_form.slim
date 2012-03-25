@@ -1,8 +1,10 @@
-.new-comment
-  = form_for [@post, @comment], :html => { :class => 'well' } do |f|
-    fieldset.control-group
-      legend Post a new comment
-      = hidden_field_tag 'comment[post_id]', @comment.post_id
-      = f.text_area :content, :class => 'span6', :rows => 6, :'data-required' => true
-      .actions
-        button type="submit" class="btn btn-primary" Post comment
+script type="text/template" id="new-comment-template"
+  .new-comment
+    form class="well"
+      fieldset.control-group
+        legend Post a new comment
+        = hidden_field_tag 'post_id', @post.id
+        textarea name="content" class="span6" rows="6" data-required="true"
+        .actions
+          button type="submit" class="btn btn-primary" Post comment
+          span.help-inline or press ctrl + enter to submit

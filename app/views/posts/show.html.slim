@@ -1,4 +1,5 @@
 = content_for :head do
+  = render 'comments/form'
   = javascript_include_tag "comments"
 
 #left-column
@@ -28,7 +29,7 @@
           .comment Be the first one to comment on this article!
         / = render @comments
       - if logged_in?
-        = render 'comments/form'
+        .new-comment
       - else
         h2
           ' You must be

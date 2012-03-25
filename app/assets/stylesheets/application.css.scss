@@ -363,6 +363,10 @@ button.btn, a.btn {
   margin-left: 0;
 }
 
+.new-comment .help-inline {
+  margin-top: 6px;
+}
+
 @import "bootstrap";
 @import "posts";
 @import "progress_bar";

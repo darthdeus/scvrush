@@ -1,20 +1,17 @@
 class CommentsController < ApplicationController
   before_filter :require_login, only: :create
+  respond_to :json
 
   def index
-    respond_to do |format|
-      format.json { render json: Comment.where(post_id: params[:post_id]).includes(:user).map(&:to_json) }
-    end
+    render json: Comment.where(post_id: params[:post_id]).includes(:user).map(&:to_simple_json)
   end
 
   def create
+    @post = Post.find(params[:post_id])
     @comment = Comment.new(params[:comment])
     @comment.user = current_user
-    if @comment.save
-      redirect_to post_path(@comment.post_id) + "#comments", notice: "Your comment was successfuly submitted."
-    else
-      redirect_to post_path(@comment.post_id) + "#comments", notice: "You can't post an empty comment! Try again and write at least 10 characters this time."
-    end
+    @comment.save!
+    render json: comment
   end
 
 end

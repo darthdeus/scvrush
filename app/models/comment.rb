@@ -14,7 +14,7 @@ class Comment < ActiveRecord::Base
     self.user.try(:username)
   end
 
-  def to_json
+  def to_simple_json
     {
       id:      self.id,
       content: simple_format(self.content),
