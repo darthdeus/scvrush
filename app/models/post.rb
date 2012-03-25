@@ -35,4 +35,28 @@ class Post < ActiveRecord::Base
     true
   end
 
+  def draft?
+    self.status == Post::DRAFT
+  end
+
+  def published?
+    self.status == Post::PUBLISHED
+  end
+
+  def publish(params)
+    if params[:published] == "1"
+      self.status = Post::PUBLISHED
+      begin
+        raise ArgumentError.new if !(params.has_key?(:date) && params.has_key?(:time))
+        self.published_at = Time.parse("#{params[:date]} #{params[:time]}")
+      rescue ArgumentError
+        raise ArgumentError.new("Invalid date or time format")
+      end
+    elsif params[:published] == "0"
+      self.status = Post::DRAFT
+    else
+      raise ArgumentError.new("Invalid published status '#{params[:published].inspect}'")
+    end
+  end
+
 end

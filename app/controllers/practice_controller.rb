@@ -20,7 +20,7 @@ class PracticeController < ApplicationController
     @user.practice = true
     @user.save!
 
-    redirect_to @user, :notice => "You've successfully joined the Practice Buddy program!"
+    redirect_to @user, notice: "You've successfully joined the Practice Buddy program!"
   end
 
   def quit
@@ -28,6 +28,6 @@ class PracticeController < ApplicationController
     @user.practice = false
     @user.save!
 
-    redirect_to @user, :notice => "You've left the Practice Buddy program, sorry to see you go."
+    redirect_to @user, notice: "You've left the Practice Buddy program, sorry to see you go."
   end
 end

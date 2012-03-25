@@ -6,7 +6,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.rss { render :layout => false }
+      format.rss { render layout: false }
     end
   end
 
@@ -16,7 +16,7 @@ class PostsController < ApplicationController
       render :index
     else
       flash[:error] = "Tag doesn't exist"
-      redirect_to :action => :index
+      redirect_to action: :index
     end
   end
 
@@ -27,7 +27,7 @@ class PostsController < ApplicationController
     respond_to do |format|
       format.html do
         @comments = @post.comments
-        @comment = Comment.new(:post => @post)
+        @comment = Comment.new(post: @post)
       end
       format.json { render json: @post }
     end
@@ -43,7 +43,7 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
     @post.user = current_user
     if @post.save
-      redirect_to posts_path, :notice => "Post published"
+      redirect_to posts_path, notice: "Post published"
     else
       render "new"
     end
@@ -63,7 +63,7 @@ class PostsController < ApplicationController
 
     @post.update_attributes(params[:post])
     if @post.save
-      redirect_to @post, :notice => "Post was successfuly updated"
+      redirect_to @post, notice: "Post was successfuly updated"
     else
       @image = Image.new
       @images = Image.last(5)
@@ -76,29 +76,21 @@ class PostsController < ApplicationController
     authorize! :destroy, @post
 
     @post.destroy
-    redirect_to dashboard_path, :notice => "Post removed"
+    redirect_to dashboard_path, notice: "Post removed"
   end
 
   def publish
     @post = Post.find(params[:id])
     authorize! :publish, Post
 
-    if params[:published] == "1"
-      @post.status = Post::PUBLISHED
-      begin
-        @post.published_at = Time.parse("#{params[:date]} #{params[:time]}")
-      rescue ArgumentError
-        redirect_to dashboard_path, notice: "Invalid date or time format"
-        return
-      end
-    elsif params[:published] == "0"
-      @post.status = Post::DRAFT
-    else
-      raise "Invalid published status '#{params[:published].inspect}'"
+    begin
+      @post.publish(params)
+      @post.save!
+      redirect_to dashboard_path, notice: "Post was #{(params[:published] == "1") ? "published" : "unpublished"}."
+    rescue ArgumentError => e
+      flash[:error] = e.message
+      redirect_to dashboard_path
     end
-
-    @post.save!
-    redirect_to dashboard_path, notice: "Post was #{(params[:published] == "1") ? "published" : "unpublished"}."
   end
 
 end
