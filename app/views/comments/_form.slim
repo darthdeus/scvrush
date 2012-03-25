@@ -1,5 +1,5 @@
 .new-comment
-  = form_for @comment, :html => { :class => 'well' } do |f|
+  = form_for [@post, @comment], :html => { :class => 'well' } do |f|
     fieldset.control-group
       legend Post a new comment
       = hidden_field_tag 'comment[post_id]', @comment.post_id

@@ -1,5 +1,11 @@
 class CommentsController < ApplicationController
-  before_filter :require_login
+  before_filter :require_login, only: :create
+
+  def index
+    respond_to do |format|
+      format.json { render json: Comment.where(post_id: params[:post_id]).includes(:user).map(&:to_json) }
+    end
+  end
 
   def create
     @comment = Comment.new(params[:comment])

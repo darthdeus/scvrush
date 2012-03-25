@@ -23,8 +23,14 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
 
-    @comments = @post.comments
-    @comment = Comment.new(:post => @post)
+
+    respond_to do |format|
+      format.html do
+        @comments = @post.comments
+        @comment = Comment.new(:post => @post)
+      end
+      format.json { render json: @post }
+    end
   end
 
   def new

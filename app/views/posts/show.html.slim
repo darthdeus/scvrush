@@ -1,6 +1,9 @@
+= content_for :head do
+  = javascript_include_tag "comments"
+
 #left-column
   .single
-    .post
+    = content_tag "div", class: "post", data: { comments: @comments, post_id: @post.id } do
       h1= @post.title
 
       = m @post.content
@@ -23,7 +26,7 @@
       .comments
         - if @comments.empty?
           .comment Be the first one to comment on this article!
-        = render @comments
+        / = render @comments
       - if logged_in?
         = render 'comments/form'
       - else
