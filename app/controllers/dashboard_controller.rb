@@ -7,8 +7,10 @@ class DashboardController < ApplicationController
     @recent_tournaments = Tournament.order('starts_at DESC')
     @raffles = Raffle.all
 
-    @ggbet_logo = Rails.cache.read('ggbet_logo')
-    @ggbet_widget = Rails.cache.read('ggbet_widget')
+    ggbet = GGBet.new(Rails.cache)
+
+    @ggbet_logo = ggbet.logo?
+    @ggbet_widget = ggbet.widget?
   end
 
   def ggbet
@@ -27,26 +29,8 @@ class DashboardController < ApplicationController
   protected
 
   def handle(params)
-    case params[:ggbet_logo]
-      when '1'
-        Rails.cache.write('ggbet_logo', true)
-        logger.info 'ggbet logo enabled'
-      when '0'
-        Rails.cache.write('ggbet_logo', nil)
-        logger.info 'ggbet logo disabled'
-      else
-        logger.info "invalid ggbet_logo value #{params[:ggbet_logo].inspect}" if params[:ggbet_logo]
-    end
-
-    case params[:ggbet_widget]
-      when '1'
-        Rails.cache.write('ggbet_widget', true)
-        logger.info 'ggbet widget enabled'
-      when '0'
-        Rails.cache.write('ggbet_widget', nil)
-        logger.info 'ggbet widget disabled'
-      else
-        logger.info "invalid ggbet_widget value #{params[:ggbet_widget].inspect}" if params[:ggbet_widget]
-    end
+    ggbet = GGBet.new(Rails.cache)
+    ggbet.toggle_logo(params[:ggbet_logo]) if params[:ggbet_logo]
+    ggbet.toggle_widget(params[:ggbet_widget]) if params[:ggbet_widget]
   end
 end
