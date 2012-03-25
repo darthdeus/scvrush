@@ -1,8 +1,9 @@
 #= require jquery
 #= require jquery_ujs
-#= require underscore
+#= require lib/underscore
+#= require lib/backbone
 #= require active_admin
-#= require bootstrap
+#= require lib/bootstrap
 #= require dashboard
 
 jQuery ->
