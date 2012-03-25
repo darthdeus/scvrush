@@ -6,7 +6,7 @@ Scvrush::Application.routes.draw do
   # end
 
   resources :roles
-  resources :pages, :only => :show
+  resources :pages, only: :show
 
   # TODO - make this post
   get "practice/join"
@@ -18,21 +18,21 @@ Scvrush::Application.routes.draw do
   resources :upcoming
   resources :raffle_signups
   resources :raffles do
-    post :close, :on => :member
+    post :close, on: :member
   end
   resources :avatars
 
-  resources :images, :only => :create
-  get "dashboard/index", :as => 'dashboard'
+  resources :images, only: :create
+  get "dashboard/index", as: 'dashboard'
   get "dashboard/ggbet"
 
-  resources :votes, :only => [:create, :destroy]
-  resources :tournaments, :only => [:show, :edit, :update]
-  resources :signups, :only => [:create, :destroy, :update]
+  resources :votes, only: [:create, :destroy]
+  resources :tournaments, only: [:show, :edit, :update]
+  resources :signups, only: [:create, :destroy, :update]
 
-  resources :sections, :only => :index
-  resources :topics, :only => [:new, :show, :create]
-  resources :replies, :only => :create
+  resources :sections, only: :index
+  resources :topics, only: [:new, :show, :create]
+  resources :replies, only: :create
 
   get "home/index"
 
@@ -45,9 +45,9 @@ Scvrush::Application.routes.draw do
 
   get "posts/tag/:id" => "posts#tag", :as => "tag"
 
-  resources :password_resets, :only => [:new, :create, :edit, :update]
-  resources :comments, :only => :create
+  resources :password_resets, only: [:new, :create, :edit, :update]
   resources :posts do
+    resources :comments, only: [:index, :create]
     member do
       post :publish
     end
@@ -56,14 +56,14 @@ Scvrush::Application.routes.draw do
     end
   end
 
-  get "login" => "sessions#new", :as => "login"
-  get "logout" => "sessions#destroy", :as => "logout"
-  get "signup" => "users#new", :as => "signup"
+  get "login" => "sessions#new", as: "login"
+  get "logout" => "sessions#destroy", as: "logout"
+  get "signup" => "users#new", as: "signup"
 
-  root :to => "home#index"
+  root to: "home#index"
 
   resources :users
-  resources :sessions, :only => [:new, :create, :destroy]
+  resources :sessions, only: [:new, :create, :destroy]
 
 
   # The priority is based upon order of creation:

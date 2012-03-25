@@ -1,4 +1,4 @@
-- if Rails.cache.read('ggbet_widget')
+- if Rails.cache.read('ggbet_widget') && Rails.env.production?
   div id="appletContainer" class="gg_applet" data-size="medium_rectangle" style="width:300px;height:250px;background: center center url('http://applet.richardson.co.nz/widget_backgrounds/square-widget.png') no-repeat; margin-left: 5px; margin-bottom: 10px;"
 
 / .advertise = link_to "Advertise with us", post_path("9724-advertise-with-us"), :class => 'btn btn-success'
@@ -27,7 +27,7 @@ ul.nav.nav-tabs
         - BlogPost.recent.each do |post|
           li = link_to post.title, post.url
 
-- unless Rails.env.development?
+- if Rails.env.production?
 
   = arrowed_header 'Join us on Facebook', 'facebook-header'
 
