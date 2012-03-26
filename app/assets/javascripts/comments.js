@@ -8,24 +8,49 @@ window.App = {
 };
 
 App.Comment = Backbone.Model.extend({
-  // urlRoot: function() {
-  //   return App.urlPrefix() + '/comments';
-  // }
 });
 
 App.CommentView = Backbone.View.extend({
   className: 'comment',
-  events: { 'click .delete': 'deleteComment' },
+  events: {
+    'click .delete': 'deleteComment',
+    'click .reply': 'reply',
+    'click .original': 'highlightOriginal'
+  },
   template: _.template('<h4><%= author %>' +
-    '<span class="date"><%= date %> ago</span><a class="delete">delete</a></h4>' +
+    '<span class="date"><%= date %> ago</span>' +
+    '<a class="delete">delete</a>' +
+    '<a class="reply">reply</a>' +
+    '<% if (typeof orig !== "undefined") print("<a class=\\"original\\">in reply to</a>") %>'+
+    '</h4>' +
     '<%= content %>'),
 
   initialize: function() {
     this.model.on('destroy', function() { this.$el.remove(); }, this);
   },
 
+  highlightOriginal: function() {
+    var selector = '#comment-' + this.originalComment;
+    $('.comment').css({
+      opacity: 1,
+      background: null
+    });
+    $(selector).css('background', '#fafafa');
+    $('.comment').not(selector).not(this.$el).animate({opacity: 0.5}, 'fast');
+  },
+
   render: function() {
-    var html = this.template(this.model.toJSON());
+    var attributes = this.model.toJSON();
+    var match = attributes.content.match(/@(\d+) (.+)/);
+    if (match) {
+      attributes.reply  = true;
+      attributes.orig = match[1];
+      this.originalComment = attributes.orig;
+      console.log(attributes);
+    } else {
+      attributes.reply = false;
+    }
+    var html = this.template(attributes);
     this.$el.html(html);
     return this;
   },
@@ -33,6 +58,10 @@ App.CommentView = Backbone.View.extend({
   deleteComment: function(e) {
     e.preventDefault();
     this.model.destroy();
+  },
+
+  reply: function() {
+    this.trigger('reply', this);
   }
 
 });
@@ -61,24 +90,28 @@ App.CommentsView = Backbone.View.extend({
     this.$el.empty();
     this.$el.append(this.template());
     this.$textarea = this.$('textarea');
-    console.log('textarea is', this.$textarea);
     this.collection.forEach(this.addOne, this);
     return this;
   },
 
+  // Render one comment into the comments list
   addOne: function(model) {
-    var view = new App.CommentView({model: model});
+    var view = new App.CommentView({
+      model: model,
+      id: 'comment-' + model.id
+    });
+    view.on('reply', this.reply, this);
     this.$('.comments').append(view.render().el);
   },
 
+  // Submit a comment to the server
   postComment: function(event) {
     event.preventDefault();
-    var textarea = this.$('textarea');
-    var content = textarea.val();
+    var textarea = this.$textarea;
 
-    if (content.length > 10) {
+    if (textarea.val().length > 10) {
       this.collection.create({
-        content: content,
+        content: textarea.val(),
         post_id: App.post
       }, {
         wait: true,
@@ -90,6 +123,7 @@ App.CommentsView = Backbone.View.extend({
     }
   },
 
+  // Handle enter being pressed in the textarea
   handleEnter: function(event) {
     if ((event.metaKey || event.ctrlKey) && event.keyCode == 13) {
       this.$('form').submit();
@@ -97,17 +131,16 @@ App.CommentsView = Backbone.View.extend({
     if (this.$textarea.val().length > 10) {
       this.$('fieldset').removeClass('error');
     }
+  },
+
+  reply: function(view) {
+    console.log('reply triggered on a view', view);
+    this.$textarea.focus();
+    this.$textarea.val('@' + view.model.id + ' ');
   }
 
 });
 
-// Form for submitting a new comment
-App.CommentsFormView = Backbone.View.extend({
-  el: '.new-comment',
-
-
-
-});
 
 App.Router = Backbone.Router.extend({
   routes: { 'comments': 'index' },
