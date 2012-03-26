@@ -47,7 +47,7 @@ Scvrush::Application.routes.draw do
 
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :posts do
-    resources :comments, only: [:index, :create]
+    resources :comments, only: [:index, :create, :destroy]
     member do
       post :publish
     end

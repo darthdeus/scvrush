@@ -25,8 +25,8 @@
       h2 Comments
 
       .comments
-        - if @comments.empty?
-          .comment Be the first one to comment on this article!
+        / - if @comments.empty?
+          / .comment Be the first one to comment on this article!
         / = render @comments
       - if logged_in?
         .new-comment

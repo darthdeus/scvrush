@@ -11,7 +11,12 @@ class CommentsController < ApplicationController
     @comment = Comment.new(params[:comment])
     @comment.user = current_user
     @comment.save!
-    render json: comment
+    render json: @comment.to_json(methods: [:author, :date])
+  end
+
+  def destroy
+    current_user.comments.destroy(params[:id])
+    render json: {status: 'ok'}
   end
 
 end

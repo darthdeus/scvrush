@@ -14,6 +14,10 @@ class Comment < ActiveRecord::Base
     self.user.try(:username)
   end
 
+  def date
+    time_ago_in_words(self.created_at)
+  end
+
   def to_simple_json
     {
       id:      self.id,
