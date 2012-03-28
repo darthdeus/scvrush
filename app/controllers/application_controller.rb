@@ -22,13 +22,17 @@ class ApplicationController < ActionController::Base
 
   def require_login
     unless logged_in?
-      if request.post?
-        session[:redirect_back] = env["HTTP_REFERER"]
+      if request.xhr?
+        render json: { error: 'unauthorized' }, status: :unauthorized
       else
-        session[:redirect_back] = request.original_fullpath
+        if request.post?
+          session[:redirect_back] = env["HTTP_REFERER"]
+        else
+          session[:redirect_back] = request.original_fullpath
+        end
+        flash[:error] = "You must be logged in to access this section"
+        redirect_to login_path
       end
-      flash[:error] = "You must be logged in to access this section"
-      redirect_to login_path
     end
   end
 

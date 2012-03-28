@@ -4,6 +4,7 @@ module AuthMacros
     user = create(:user)
     user.grant role if role
     session[:user_id] = user.id
+    return user
   end
 
   def unauthorized?

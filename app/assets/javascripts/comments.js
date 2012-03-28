@@ -21,6 +21,7 @@ App.CommentView = Backbone.View.extend({
     '<span class="date"><%= date %> ago</span>' +
     '<a class="delete">delete</a>' +
     '<a class="reply">reply</a>' +
+    // link to display the original of the reply comment
     '<% if (typeof orig !== "undefined") print("<a class=\\"original\\">in reply to</a>") %>'+
     '</h4>' +
     '<%= content %>'),
@@ -29,14 +30,23 @@ App.CommentView = Backbone.View.extend({
     this.model.on('destroy', function() { this.$el.remove(); }, this);
   },
 
+  // Highlight the original comment that is being replied to.
+  // It also makes all the other comments transparent.
+  // TODO - add a simple way to remove the effect from all comments.
+  // TODO - what should I do if the comment was deleted?
   highlightOriginal: function() {
+    this.resetHighlight();
+
     var selector = '#comment-' + this.originalComment;
-    $('.comment').css({
-      opacity: 1,
-      background: null
-    });
     $(selector).css('background', '#fafafa');
     $('.comment').not(selector).not(this.$el).animate({opacity: 0.5}, 'fast');
+  },
+
+  resetHighlight: function() {
+    $('.comment').css({
+      opacity: 1,
+      background: 'none'
+    });
   },
 
   render: function() {
@@ -46,7 +56,6 @@ App.CommentView = Backbone.View.extend({
       attributes.reply  = true;
       attributes.orig = match[1];
       this.originalComment = attributes.orig;
-      console.log(attributes);
     } else {
       attributes.reply = false;
     }
@@ -167,4 +176,9 @@ $(function() {
   // window.f = new App.CommentsFormView();
   // window.f.render();
   window.r = new App.Router();
+
+  $('input[name=foo]').autocomplete({
+    source: ['foo', 'bar', 'baz']
+  });
+
 });

@@ -3,8 +3,13 @@ class VotesController < ApplicationController
 
   def create
     @comment = Comment.find(params[:id])
-    current_user.vote_for(@comment)
-    redirect_to post_path(@comment.post) + "#comments", notice: "Voted scuccessfuly"
+    if @comment.user_id == current_user.id
+      # TODO - add different status code
+      redirect_to post_path(@comment.post), error: "You can't vote on your own comments."
+    else
+      current_user.vote_for(@comment)
+      redirect_to post_path(@comment.post) + "#comments", notice: "Voted scuccessfuly"
+    end
   end
 
   def destroy

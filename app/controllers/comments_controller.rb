@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_filter :require_login, only: :create
+  before_filter :require_login, except: :index
   respond_to :json
 
   def index
@@ -7,7 +7,6 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @post = Post.find(params[:post_id])
     @comment = Comment.new(params[:comment])
     @comment.user = current_user
     @comment.save!
