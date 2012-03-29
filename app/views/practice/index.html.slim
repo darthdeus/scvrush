@@ -3,6 +3,7 @@ h2 Pick your ideal practice partner
 = form_tag '/practice', class: 'well practice-form', method: :get do
   input type="hidden" name="race" id="picked-race"
   input type="hidden" name="server" id="picked-server"
+  input type="hidden" name="league" id="picked-league"
 
   fieldset class="pick-race"
     div class="btn-group" data-toggle="buttons-radio"
@@ -17,6 +18,16 @@ h2 Pick your ideal practice partner
       button type="button" class="btn" SEA
 
   button type="submit" class="btn btn-primary practice-submit" Give me the results!
+
+  fieldset class="pick-league"
+    div class="btn-group" data-toggle="buttons-radio"
+      button type="button" class="btn" Brozne
+      button type="button" class="btn" Silver
+      button type="button" class="btn" Gold
+      button type="button" class="btn" Platinum
+      button type="button" class="btn" Diamond
+      button type="button" class="btn" Master
+
 
 - if @users.nil? || @users.try(:empty?)
   h2 Please use the criteria above to find yourself the perfect practice partner!

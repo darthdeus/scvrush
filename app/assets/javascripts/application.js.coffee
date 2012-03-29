@@ -51,6 +51,10 @@ jQuery ->
   $('.pick-server button').click ->
     $('#picked-server').val $(this).text()
 
+  $('.pick-league button').click ->
+    $('#picked-league').val $(this).text()
+
+
   $(".publish_link").click (e) ->
     dialog = $("#publish-date-form")
     post_id = $(this).attr('data-post-id')

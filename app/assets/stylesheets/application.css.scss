@@ -288,7 +288,7 @@ ul.bloglinks {
 }
 
 li.stream {
-  margin-right: 65px;
+  margin-right: 35px;
 }
 
 .field_with_errors {
@@ -360,7 +360,14 @@ button.btn, a.btn {
 }
 
 .practice-submit {
-  margin-left: 0;
+  position: relative;
+  top: 34px;
+  left: 81px;
+  z-index: 100;
+}
+
+.pick-league {
+  margin-top: 6px;
 }
 
 .new-comment .help-inline {
