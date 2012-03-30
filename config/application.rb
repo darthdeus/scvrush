@@ -8,6 +8,9 @@ require "active_resource/railtie"
 require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
+# This will require every file in lib and its subdirectories
+Dir.glob(File.join(File.dirname(__FILE__),'..','lib','**','*.rb')).each{ |file| require file }
+
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
   Bundler.require(*Rails.groups(:assets => %w(development test)))
