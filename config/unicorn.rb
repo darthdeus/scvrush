@@ -21,4 +21,4 @@ before_exec do |_|
 end
 
 
-# preload_app true
+preload_app true

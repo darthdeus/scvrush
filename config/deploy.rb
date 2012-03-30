@@ -81,7 +81,7 @@ before "deploy:assets:precompile", "deploy:symlink_shared"
 # before 'deploy:setup', 'rvm:install_rvm'
 
 # before "deploy:finalize_update", "rvm:trust_rvmrc"
-# after "deploy:update", "newrelic:notice_deployment"
+after "deploy:update", "newrelic:notice_deployment"
 
 
 
