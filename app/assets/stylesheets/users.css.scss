@@ -1,26 +1,26 @@
 .user-profile {
-    .avatar {
-        float: right;
-        padding: 0 40px 0 20px;
-        .meta {
-            text-align: center;
-        }
-        img {
-            box-shadow: 0 0 3px #000;
-            -moz-box-shadow: 0 0 3px #000;
-            -webkit-box-shadow: 0 0 3px #000;
-        }
+  .avatar {
+    float: right;
+    padding: 0 40px 0 20px;
+    .meta {
+      text-align: center;
     }
+    img {
+      box-shadow: 0 0 3px #000;
+      -moz-box-shadow: 0 0 3px #000;
+      -webkit-box-shadow: 0 0 3px #000;
+    }
+  }
 
-    p {
-        margin: 10px 0;
-    }
+  p {
+    margin: 10px 0;
+  }
 
-    ul {
-        margin-left: 0;
-        padding-left: 20px;
-        li {
-            list-style: disc;
-        }
+  ul {
+    margin-left: 0;
+    padding-left: 20px;
+    li {
+      list-style: disc;
     }
+  }
 }

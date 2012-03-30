@@ -15,6 +15,7 @@
     height: 100px;
     padding: 5px 10px 5px 5px;
     float: left;
+    @include transition (background 1.0s ease-in-out);
 
     &:nth-child(even) { border-left: none; }
     &:hover { background: #efefef; }
@@ -38,9 +39,7 @@
       height: 60px;
       float: left;
       margin: 20px 10px;
-      box-shadow: 0 0 3px #333;
-      -webkit-box-shadow: 0 0 3px #333;
-      -moz-box-shadow: 0 0 3px #333;
+      @include box-shadow(0 0 3px #333);
     }
   }
 }
@@ -181,9 +180,7 @@
   .avatar img {
     border-radius: 5px;
     width: 80px;
-    box-shadow: 0 0 3px #333;
-    -webkit-box-shadow: 0 0 3px #333;
-    -moz-box-shadow: 0 0 3px #333;
+    @include box-shadow(0 0 3px #333);
   }
   .content {
     .name { font-weight: bold; }

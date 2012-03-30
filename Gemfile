@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.1'
+gem 'rails', '3.2.2'
 
 gem 'jquery-rails'
 gem 'bcrypt-ruby', :require => 'bcrypt'
@@ -16,6 +16,7 @@ gem 'fog'
 gem 'carrierwave', github: 'jnicklas/carrierwave'
 gem 'mini_magick'
 gem 'airbrake'
+gem 'bourbon'
 
 group :assets do
   gem 'uglifier'#, '>= 1.0.3'
@@ -73,6 +74,5 @@ group :test do
 end
 
 gem 'unicorn'
-
 gem 'capistrano'
 

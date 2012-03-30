@@ -9,7 +9,7 @@ p
     .alert.alert-error
       = f.error_messages
 
-  = f.label :username
+  = f.label :username, 'SCV Rush username'
   = f.text_field :username
   span.help-inline this is NOT your Battle.net username
 
@@ -23,11 +23,38 @@ p
   = f.password_field :password_confirmation
 
   fieldset.form-inline
-    legend Battle.net information (optional, you can fill this in later)
+    legend Battle.net information (mandatory to play in our tournaments)
 
     = f.text_field :bnet_username, placeholder: 'Battle.net username'
     = f.text_field :bnet_code, placeholder: 'character code', style: 'margin-left: 5px;', class: 'span2'
 
-  .actions
+  fieldset
+    legend Community information
+
+    .control-group
+      = f.select :race, %w{Zerg Terran Protoss Random}
+      span.help-inline pick your race
+
+    .control-group
+      = f.select :league, %w{Bronze Silver Gold Platinum Diamond Master Grandmaster}
+      span.help-inline and your league
+
+    .control-group
+      = f.select :server, %w{NA EU SEA KR}
+      span.help-inline and the server you play on
+
+  fieldset
+    legend Practice Buddy
+
+    p
+      ' By joining our Practice Buddy program, you'll be able to find an ideal
+      | practice partner to improve your game.
+
+    = f.label :practice, 'Practice', class: 'checkbox' do
+      = f.check_box :practice, checked: 'checked'
+      | Join the Practice Buddy
+
+
+  .form-actions
     button type="submit" class="btn btn-primary" Sign up
     = link_to "Log in here if you have an account", login_path, :class => 'btn'

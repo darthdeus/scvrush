@@ -5,6 +5,7 @@
  *= require_self
  */
 
+ @import "bourbon";
 
 body {
   background: #F6F6F6 url("/assets/pattern.png") repeat;
@@ -163,8 +164,12 @@ h2.arrowed, h3.arrowed {
   padding: 10px;
   float: left;
 
+  @include transition (background 1.0s ease-in-out);
+
   &:nth-child(odd) { border-left: none; width: 135px; }
-  &:hover { background: #efefef; }
+  &:hover {
+    background: #efefef;
+  }
 
   a {
     text-decoration: none;
@@ -196,12 +201,12 @@ h2.arrowed, h3.arrowed {
     color: #fff;
     text-decoration: none !important;
     /* TODO - does bootstrap has anything to improve this? */
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
-    border-radius: 4px;
+    @include border-radius(4px);
     /* TODO - use myriad here too? */
     font-family: helvetica, arial, sans-serif;
     line-height: 2;
+    @include transition (background 1.0s ease-in-out);
+
   }
   a:hover {
     background: #555;
@@ -374,6 +379,7 @@ button.btn, a.btn {
   margin-top: 6px;
 }
 
+
 @import "bootstrap";
 @import "posts";
 @import "progress_bar";
@@ -382,3 +388,4 @@ button.btn, a.btn {
 @import "dashboard";
 @import "pagination";
 @import "jquery-ui.custom";
+
