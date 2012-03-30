@@ -1,6 +1,6 @@
-$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+# $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 
-# require 'rvm/capistrano'
+require 'rvm/capistrano'
 require 'bundler/capistrano'
 # require 'new_relic/recipes'
 
@@ -21,7 +21,7 @@ set :runner, user
 set :rails_env, "production"
 set :use_sudo, false
 
-set :rvm_ruby_string, '1.9.2@scvrush'
+set :rvm_ruby_string, '1.9.2'
 set :rvm_type, :system
 
 set :deploy_to, "/var/apps/#{application}"
@@ -74,32 +74,19 @@ namespace :deploy do
 
 end
 
-
-namespace :rvm do
-  task :trust_rvmrc do
-    run "rvm rvmrc trust #{release_path}"
-  end
-end
-
 # TODO - make this cleaner
 before "deploy:assets:precompile", "deploy:symlink_shared"
 
-before "deploy:finalize_update", "rvm:trust_rvmrc"
+# TODO - system install?
+# before 'deploy:setup', 'rvm:install_rvm'
+
+# before "deploy:finalize_update", "rvm:trust_rvmrc"
 # after "deploy:update", "newrelic:notice_deployment"
 
 
 
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
-
-# If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
 
 
 # slows down deploys, fix?
