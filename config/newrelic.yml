@@ -35,7 +35,7 @@ common: &default_settings
   # "All UI" then specify a semicolon-separated list of up to three
   # distinct names.  If you comment this out, it defaults to the
   # capitalized RAILS_ENV (i.e., Production, Staging, etc)
-  app_name: SCV Rush
+  app_name: SCV
 
   # When "true", the agent collects performance data about your
   # application and reports this data to the New Relic service at
@@ -220,10 +220,3 @@ production:
   <<: *default_settings
   monitor_mode: true
 
-# Many applications have a staging environment which behaves
-# identically to production.  Support for that environment is provided
-# here.  By default, the staging environment has the agent turned on.
-staging:
-  <<: *default_settings
-  monitor_mode: true
-  app_name: SCV Rush (Staging)
