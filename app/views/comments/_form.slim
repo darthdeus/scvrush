@@ -4,7 +4,13 @@ script type="text/template" id="comment-template"
   .new-comment
     form class="well"
       fieldset.control-group
-        legend Post a new comment
+        legend
+          ' Post a new comment
+          span.reply-message.help-inline style="visibility: hidden"
+            ' in reply to
+            a.reply-username
+        input type="hidden" name="parent_id"
+
         textarea name="content" class="span6" rows="6" data-required="true"
         .actions
           button type="submit" class="btn btn-primary" Post comment

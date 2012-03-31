@@ -11,6 +11,17 @@ describe CommentsController do
     response.should be_success
   end
 
+  it "assigns parent_id if given" do
+    p = create(:post)
+    c = create(:comment, post_id: p.id)
+    post :create, comment: { content: 'some sample text',
+                              post_id: p.id,
+                              parent_id: c.id }
+
+    c.replies.should == [Comment.last]
+    p.comments.size.should == 2
+  end
+
   specify :destroy do
     comment = create(:comment, user: @user)
 

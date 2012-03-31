@@ -374,9 +374,23 @@ button.btn, a.btn {
 .pick-league {
   margin-top: 6px;
 }
+.comment-response {
+  padding-left: 30px;
+}
+.new-comment {
 
-.new-comment .help-inline {
-  margin-top: 6px;
+  legend .reply-message {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  .reply-username {
+    text-decoration: underline;
+  }
+
+  .help-inline {
+    margin-top: 6px;
+  }
 }
 
 

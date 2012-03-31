@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   respond_to :json
 
   def index
-    render json: Comment.where(post_id: params[:post_id]).includes(:user).map(&:to_simple_json)
+    render json: Comment.for_post(params[:post_id])
   end
 
   def create

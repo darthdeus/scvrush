@@ -45,4 +45,27 @@ describe Comment do
       comment.author.should be_nil
     end
   end
+
+  context "replies" do
+
+    it "can have a parent" do
+      comment = create(:comment)
+      parent = create(:comment)
+      comment.parent = parent
+      comment.save.should ==true
+    end
+
+    it "can have replies" do
+      comment = create(:comment)
+      3.times { create(:comment, parent_id: comment.id) }
+      comment.replies.size.should == 3
+    end
+  end
+
+  specify :for_post do
+    post = create(:post)
+    5.times { create(:comment, post_id: post.id) }
+    Comment.for_post(post.id).size.should == 5
+  end
+
 end

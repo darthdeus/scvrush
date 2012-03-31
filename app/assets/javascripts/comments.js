@@ -11,7 +11,14 @@ App.Comment = Backbone.Model.extend({
 });
 
 App.CommentView = Backbone.View.extend({
-  className: 'comment',
+  className: function(model) {
+    // debugger;
+    // if (this.model.get('parent_id')) {
+    //   return 'comment comment-reply';
+    // } else {
+      return 'comment';
+    // }
+  },
   events: {
     'click .delete': 'deleteComment',
     'click .reply': 'reply',
@@ -61,6 +68,9 @@ App.CommentView = Backbone.View.extend({
     }
     var html = this.template(attributes);
     this.$el.html(html);
+    // if (this.model.get('parent_id')) {
+    //   this.$el.addClass('comment-response');
+    // }
     return this;
   },
 
@@ -116,20 +126,40 @@ App.CommentsView = Backbone.View.extend({
   // Submit a comment to the server
   postComment: function(event) {
     event.preventDefault();
+    var self = this;
     var textarea = this.$textarea;
 
     if (textarea.val().length > 10) {
-      this.collection.create({
+      var attributes = {
         content: textarea.val(),
         post_id: App.post
-      }, {
+      };
+
+      var parent_id = this.$('[name="parent_id"]').val();
+      if (typeof parent_id != 'undefined' && parent_id !== '') {
+        attributes.parent_id = parent_id;
+        console.log('parent_id was set to', parent_id);
+      } else {
+        console.log('parent_id was undefined', parent_id,
+                     this.$('[name="parent_id"]').val());
+      }
+
+      this.collection.create({comment: attributes}, {
         wait: true,
-        success: function() { textarea.val(''); },
+        // TODO - not sure what happens to context here ...
+        // is this still referencing to the view? Or is it
+        // the ajax object?
+        success: function() { self.resetForm(); },
         error: function(comment, response) { console.log(comment, response); }
       });
     } else {
       this.$('fieldset').addClass('error');
     }
+  },
+
+  resetForm: function() {
+    this.$textarea.val('');
+    console.log('form was reset');
   },
 
   // Handle enter being pressed in the textarea
@@ -145,7 +175,18 @@ App.CommentsView = Backbone.View.extend({
   reply: function(view) {
     console.log('reply triggered on a view', view);
     this.$textarea.focus();
-    this.$textarea.val('@' + view.model.id + ' ');
+    this.$('[name="parent_id"]').val(view.model.id);
+    this.$('.reply-message').css('visibility', 'visible');
+
+    var user_path = '/users/'
+                    + view.model.get('user_id')
+                    + '-'
+                    + view.model.get('author');
+
+    this.$('.reply-username').text(view.model.get('author'))
+                            .attr('href', user_path);
+    console.log(view.model);
+    // this.$textarea.val('@' + view.model.id + ' ');
   }
 
 });
@@ -177,8 +218,9 @@ $(function() {
   // window.f.render();
   window.r = new App.Router();
 
-  $('input[name=foo]').autocomplete({
-    source: ['foo', 'bar', 'baz']
-  });
+  // TODO - do I still want autocompletition for usernames?
+  // $('input[name=foo]').autocomplete({
+    // source: ['foo', 'bar', 'baz']
+  // });
 
 });
