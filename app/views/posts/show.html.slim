@@ -1,5 +1,8 @@
 = content_for :head do
   = render 'comments/form'
+  - if logged_in?
+    script type="text/javascript"
+      = "window.user_id = #{current_user.id}"
   = javascript_include_tag "comments"
 
 #left-column

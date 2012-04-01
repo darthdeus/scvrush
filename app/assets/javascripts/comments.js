@@ -19,8 +19,10 @@ App.CommentView = Backbone.View.extend({
   },
   template: _.template('<h4><%= author %>' +
     '<span class="date"><%= date %> ago</span>' +
+    '<span class="meta">' +
     '<a class="delete">delete</a>' +
     '<a class="reply">reply</a>' +
+    '</span>' +
     // TODO - make this link to the parent instesad of the user profile
     '<% if (typeof orig !== "undefined") print("<a class=\\"original\\">in reply to</a>") %>'+
     '</h4>' +
@@ -66,6 +68,12 @@ App.CommentView = Backbone.View.extend({
     if (this.model.get('parent_id')) {
       this.$el.addClass('comment-response');
     }
+
+    if ((typeof window.user_id == "undefined")
+          || window.user_id != this.model.get('user_id')) {
+      this.$('.delete').remove();
+    }
+
     return this;
   },
 

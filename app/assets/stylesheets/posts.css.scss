@@ -119,32 +119,60 @@
   .comments {
     padding: 10px;
     background: #f2f2f2;
+
     h2 {
       line-height: 1;
       font-size: 32px;
     }
+
     .comment {
       border-bottom: 1px solid #ddd;
       padding: 10px;
+
       h4 {
         padding-bottom: 10px;
+
         span.date {
           padding-left: 10px;
           display: inline-block;
           font-weight: normal;
         }
+
+        span.meta {
+          float: right;
+        }
+
         span.voting {
           float: right;
           display: inline-block;
         }
       }
     }
+
+    .comment-response {
+      padding-left: 30px;
+    }
   }
 
 }
 
+
+
 .new-comment {
   margin-top: 40px;
+
+  legend .reply-message {
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  .reply-username {
+    text-decoration: underline;
+  }
+
+  .help-inline {
+    margin-top: 6px;
+  }
 }
 
 .guidelines {
