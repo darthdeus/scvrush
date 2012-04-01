@@ -8,6 +8,21 @@ window.App = {
 };
 
 App.Comment = Backbone.Model.extend({
+
+  nesting: function() {
+    var parent = this.get('parent_id'),
+        nesting = 0,
+        comment;
+
+    if (typeof parent == "undefined") return nesting;
+
+    while (comment = window.c.get(parent)) {
+      nesting++;
+      parent = comment.get('parent_id');
+    }
+    return nesting;
+  },
+
 });
 
 App.CommentView = Backbone.View.extend({
@@ -73,6 +88,8 @@ App.CommentView = Backbone.View.extend({
           || window.user_id != this.model.get('user_id')) {
       this.$('.delete').remove();
     }
+
+    this.$el.addClass("comment-response-" + this.model.nesting());
 
     return this;
   },
