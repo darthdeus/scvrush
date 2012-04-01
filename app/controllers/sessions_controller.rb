@@ -20,6 +20,10 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     flash[:success] = "You have been logged out. Come back again at any time!"
-    redirect_to root_url
+    if params[:r].present?
+      redirect_to params[:r]
+    else
+      redirect_to root_path
+    end
   end
 end

@@ -2,7 +2,7 @@
 
 require 'rvm/capistrano'
 require 'bundler/capistrano'
-# require 'new_relic/recipes'
+require 'new_relic/recipes'
 
 set :application, "scvrush.com"
 # set :domain, "scvrush.com"

@@ -77,7 +77,7 @@ div class="navbar"
                 b class="caret"
               ul.dropdown-menu
                 li = link_to "Profile", current_user
-                li = link_to "Log out", logout_path
+                li = link_to "Log out", logout_path(r: request.path)
           - else
             li.login.dropdown
               a href="#" class="dropdown-toggle" data-toggle="dropdown"
