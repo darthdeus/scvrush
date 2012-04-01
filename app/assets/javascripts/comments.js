@@ -11,14 +11,7 @@ App.Comment = Backbone.Model.extend({
 });
 
 App.CommentView = Backbone.View.extend({
-  className: function(model) {
-    // debugger;
-    // if (this.model.get('parent_id')) {
-    //   return 'comment comment-reply';
-    // } else {
-      return 'comment';
-    // }
-  },
+  className: 'comment',
   events: {
     'click .delete': 'deleteComment',
     'click .reply': 'reply',
@@ -28,7 +21,7 @@ App.CommentView = Backbone.View.extend({
     '<span class="date"><%= date %> ago</span>' +
     '<a class="delete">delete</a>' +
     '<a class="reply">reply</a>' +
-    // link to display the original of the reply comment
+    // TODO - make this link to the parent instesad of the user profile
     '<% if (typeof orig !== "undefined") print("<a class=\\"original\\">in reply to</a>") %>'+
     '</h4>' +
     '<%= content %>'),
@@ -68,12 +61,15 @@ App.CommentView = Backbone.View.extend({
     }
     var html = this.template(attributes);
     this.$el.html(html);
-    // if (this.model.get('parent_id')) {
-    //   this.$el.addClass('comment-response');
-    // }
+    // We need to mark this comment as a response to indent it properly
+    // TODO - views should be indented in multiple levels
+    if (this.model.get('parent_id')) {
+      this.$el.addClass('comment-response');
+    }
     return this;
   },
 
+  // TODO - add check or render only for the current_user
   deleteComment: function(e) {
     e.preventDefault();
     this.model.destroy();
@@ -86,10 +82,19 @@ App.CommentView = Backbone.View.extend({
 });
 
 App.Comments = Backbone.Collection.extend({
+
   model: App.Comment,
+
   url: function() {
     return App.urlPrefix() + '/comments';
-  }
+  },
+
+  initialize: function() {
+    this.on('reset', this.render, this);
+    // this.on('add', this.fetch, this);
+  },
+
+
 });
 
 App.CommentsView = Backbone.View.extend({
@@ -102,7 +107,10 @@ App.CommentsView = Backbone.View.extend({
 
   initialize: function() {
     this.collection.on('reset', this.render, this);
-    this.collection.on('add', this.render, this);
+    this.collection.on('add', function(model) {
+      // console.log('add triggered on', this, 'with', model);
+      this.collection.fetch();
+    }, this);
   },
 
   render: function() {
@@ -149,7 +157,12 @@ App.CommentsView = Backbone.View.extend({
         // TODO - not sure what happens to context here ...
         // is this still referencing to the view? Or is it
         // the ajax object?
-        success: function() { self.resetForm(); },
+        success: function() {
+          self.resetForm();
+          // TODO - this shouldn't be done here, but rather sort the items
+          // before rendering them, and remove the sorting on the server
+          // self.fetch();
+        },
         error: function(comment, response) { console.log(comment, response); }
       });
     } else {

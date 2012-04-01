@@ -71,4 +71,23 @@ describe Post do
       }.to raise_error(ArgumentError)
     end
   end
+
+  describe :threaded_comments do
+
+    it "works" do
+      post = create(:post)
+
+      first  = create(:comment, post_id: post.id)
+      second = create(:comment, post_id: post.id)
+      third  = create(:comment, post_id: post.id)
+
+      reply  = create(:comment, post_id: post.id, parent_id: first.id)
+
+      post.comments.should == [first, second, third, reply]
+      Comment.threaded_for_post(post.id)
+              .should == [first, reply, second, third]
+    end
+
+  end
+
 end

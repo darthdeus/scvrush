@@ -3,7 +3,10 @@ class CommentsController < ApplicationController
   respond_to :json
 
   def index
-    render json: Comment.for_post(params[:post_id])
+    @comments = Comment.threaded_for_post(params[:post_id])
+                        .map(&:to_simple_json)
+    logger.info @comments
+    render json: @comments
   end
 
   def create

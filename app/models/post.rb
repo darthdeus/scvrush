@@ -65,4 +65,8 @@ class Post < ActiveRecord::Base
     end
   end
 
+  def threaded_comments
+    Comment.threaded_for_post(self.id)
+  end
+
 end

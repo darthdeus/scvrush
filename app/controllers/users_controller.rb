@@ -30,7 +30,8 @@ class UsersController < ApplicationController
     @user = current_user
     @user.update_attributes(params[:user])
     if @user.save
-      redirect_back_or @user, notice: "Your profile was successfully updated."
+      flash[:notice] = "Your profile was successfully updated."
+      redirect_back_or @user
     else
       render 'edit'
     end

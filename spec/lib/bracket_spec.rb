@@ -26,4 +26,5 @@ describe Bracket do
   it "can start" do
     subject.start
   end
+
 end

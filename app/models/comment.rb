@@ -27,13 +27,43 @@ class Comment < ActiveRecord::Base
     where(post_id: post_id).includes(:user).map(&:to_simple_json)
   end
 
+  def self.expand_children(item)
+    ary = []
+    ary << item[:item]
+    ary.push(*(item[:children].map { |child| expand_children(child) }))
+    ary.flatten
+  end
+
+  def self.threaded_for_post(post_id)
+    comments = where(post_id: post_id).includes(:user)
+    root, children = comments.partition { |comment| !comment.parent_id? }
+
+    sorted = []
+    all = []
+    root.each do |item|
+      node = { item: item, children: [] }
+      sorted << node
+      all << node
+    end
+
+    children.each do |child|
+      parent = all.select { |node| node[:item].id == child.parent_id }.first
+      node = { item: child, children: [] }
+      parent[:children] << node
+      all << node
+    end
+
+    sorted.map { |item| expand_children(item) }.flatten
+  end
+
   def to_simple_json
     {
       id:      self.id,
       content: simple_format(self.content),
       user_id: self.user.id,
       author:  self.user.username,
-      date:    time_ago_in_words(self.created_at)
+      date:    time_ago_in_words(self.created_at),
+      parent_id: self.parent_id
     }
   end
 end
