@@ -36,7 +36,7 @@ class Comment < ActiveRecord::Base
 
   def self.threaded_for_post(post_id)
     comments = where(post_id: post_id).includes(:user)
-    root, children = comments.partition { |comment| !comment.parent_id? }
+    root, children = comments.partition { |comment| !comment.parent_id.present? }
 
     sorted = []
     all = []

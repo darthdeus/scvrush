@@ -4,6 +4,16 @@ describe CommentsController do
 
   before { @user = login }
 
+  specify :index do
+    p = create(:post)
+    5.times { create(:comment, post_id: p.id )}
+
+    p.comments.size.should == 5
+
+    get :index, post_id: p.id
+    response.should be_success
+  end
+
   specify :create do
     p = create(:post)
     post :create, comment: { content: 'some sample text',

@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 
   def index
     @comments = Comment.threaded_for_post(params[:post_id])
-                        .map(&:to_simple_json)
+    @comments.map!(&:to_simple_json)
     logger.info @comments
     render json: @comments
   end
