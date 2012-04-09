@@ -21,14 +21,15 @@ class User < ActiveRecord::Base
   has_many :raffles, :through => :raffle_signups
 
   attr_accessible :username, :email, :password, :password_confirmation,
-  :password_reset_token, :avatar, :race, :league, :server,
-  :favorite_player, :skype, :display_skype, :msn,
-  :display_msn, :display_email, :about, :avatar,
-  :bnet_code, :bnet_username, :twitter, :time_zone,
-  :practice
+                  :password_reset_token, :avatar, :race, :league, :server,
+                  :favorite_player, :skype, :display_skype, :msn,
+                  :display_msn, :display_email, :about, :avatar,
+                  :bnet_code, :bnet_username, :twitter, :time_zone, :practice
 
   acts_as_voter
   has_karma(:comments, :as => :user)
+
+
 
   attr_accessor :password
   before_save :encrypt_password
@@ -44,15 +45,30 @@ class User < ActiveRecord::Base
   validates :email, :uniqueness => true, :on => :create
   validates :password, :confirmation => true
   validates_presence_of :password, :on => :create
-  validates :bnet_username,
-  :format => { :with => /^[^@]+$/,
-  :message => 'can\'t contain the @ symbol, because it is not your email' },
-  :if => lambda { |u| u.bnet_username? }
+
+  def bnet_username_is_string
+    if bnet_username?
+      unless bnet_username =~ /^[^@]+$/
+        errors[:bnet_username] << 'can\'t contain the @ symbol, because it is not your email'
+      end
+
+      if bnet_username =~ /http:\/\//
+        errors[:bnet_username] << 'isn\'t a link to your battle.net profile'
+      end
+    end
+
+  end
+
+  validate :bnet_username_is_string
+  # validates :bnet_username,
+  #           :format => { :with => /^[^@]+$/,
+  #                        :message => 'can\'t contain the @ symbol, because it is not your email' },
+  #           :if => lambda { |u| u.bnet_username? }
 
   validates :bnet_code,
-  :format => { :with => /^\d+$/,
-  :message => 'can contain only numbers' },
-  :if => lambda { |u| u.bnet_username? }
+            :format => { :with => /^\d+$/,
+                         :message => 'can contain only numbers' },
+            :if => lambda { |u| u.bnet_username? }
 
   # validates_presence_of :bnet_username, :on => :update
   # validates_presence_of :bnet_code, :on => :update

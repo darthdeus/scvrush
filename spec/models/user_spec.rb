@@ -26,6 +26,11 @@ describe User do
       bad_user.should have_at_least(1).error_on(:bnet_username)
     end
 
+    it "doesn't allow http in bnet_username" do
+      build(:user, bnet_username: 'http://google.com/')
+        .should have_at_least(1).error_on(:bnet_username)
+    end
+
     it "allows only numbers in bnet_code" do
       build(:user, bnet_code: 'foobar').should have_at_least(1).error_on(:bnet_code)
       build(:user, bnet_code:  123)    .should be_valid
