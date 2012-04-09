@@ -49,7 +49,8 @@ class Comment < ActiveRecord::Base
     children.each do |child|
       parent = all.select { |node| node[:item].id == child.parent_id }.first
       node = { item: child, children: [] }
-      # TODO - the parent should never be nil, check why is it happening here
+      # If the parent was deleted, we don't want to display the replies,
+      # even though they are kept in the database.
       parent[:children] << node if parent
       all << node
     end

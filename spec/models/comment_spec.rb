@@ -15,7 +15,7 @@ describe Comment do
 
   it "has a limit on content size" do
     a = [('a'..'z'),('A'..'Z')].map(&:to_a).flatten
-    content = (0..500).map { a.sample }.join
+    content = (0..900).map { a.sample }.join
     @comment = build(:comment, :content => content)
 
     @comment.should have_at_least(1).error_on(:content)
@@ -69,18 +69,38 @@ describe Comment do
   end
 
 
-  specify :threaded_comments do
-    post = create(:post)
+  describe :threaded_comments do
 
-    first  = create(:comment, post_id: post.id)
-    second = create(:comment, post_id: post.id)
-    third  = create(:comment, post_id: post.id)
+    it "sorts replies properly" do
+      post = create(:post)
 
-    reply  = create(:comment, post_id: post.id, parent_id: first.id)
+      first  = create(:comment, post_id: post.id)
+      second = create(:comment, post_id: post.id)
+      third  = create(:comment, post_id: post.id)
 
-    post.comments.should == [first, second, third, reply]
-    Comment.threaded_for_post(post.id)
-    .should == [first, reply, second, third]
+      reply  = create(:comment, post_id: post.id, parent_id: first.id)
+
+      post.comments.should == [first, second, third, reply]
+      Comment.threaded_for_post(post.id)
+        .should == [first, reply, second, third]
+    end
+
+    it "doesn't display comments who's parent was deleted" do
+      post = create(:post)
+
+      first  = create(:comment, post_id: post.id)
+      second = create(:comment, post_id: post.id)
+      third  = create(:comment, post_id: post.id)
+
+      reply  = create(:comment, post_id: post.id, parent_id: first.id)
+
+      post.comments.should == [first, second, third, reply]
+      first.destroy
+
+      Comment.threaded_for_post(post.id)
+        .should == [second, third]
+    end
+
   end
 
 end
