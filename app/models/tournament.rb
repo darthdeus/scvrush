@@ -11,6 +11,15 @@ class Tournament < ActiveRecord::Base
   scope :recent, order('starts_at DESC').limit(5)
   scope :upcoming, lambda { where(['starts_at > ?', Time.now]).first(2) }
 
+  before_save :expire_sidebar_cache
+
+  def expire_sidebar_cache
+    # TODO - do this in a better way
+    Rails.cache.delete('views/coaches')
+    Rails.cache.delete('views/recent_posts')
+    true
+  end
+
   def signup_open?
     self.starts_at > 30.minutes.from_now
   end
