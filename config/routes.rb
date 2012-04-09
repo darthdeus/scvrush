@@ -15,7 +15,6 @@ Scvrush::Application.routes.draw do
   match "/practice" => "practice#index", via: :get
 
   resources :reply_votes
-  resources :upcoming
   resources :raffle_signups
   resources :raffles do
     post :close, on: :member
