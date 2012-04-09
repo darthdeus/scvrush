@@ -51,7 +51,7 @@ module PostsHelper
   end
 
   def tag_by_name(name)
-    link_to name, "/posts/tag/#{name}"
+    link_to name.gsub('-', ' '), "/posts/tag/#{name}"
   end
 
   def strip_markdown(md)
