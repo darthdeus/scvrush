@@ -140,6 +140,11 @@
 
         span.meta {
           float: right;
+
+          a.delete {
+            margin-right: 10px;
+            color: #058;
+          }
         }
 
         span.voting {

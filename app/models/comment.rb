@@ -5,7 +5,7 @@ class Comment < ActiveRecord::Base
 
   has_many :replies, foreign_key: 'parent_id', class_name: 'Comment'
 
-  validates :content, presence: true, length: { maximum: 400, minimum: 10 }
+  validates :content, presence: true, length: { maximum: 800, minimum: 10 }
   validates :user,    presence: true
   validates :post,    presence: true
 
