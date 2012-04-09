@@ -49,7 +49,8 @@ class Comment < ActiveRecord::Base
     children.each do |child|
       parent = all.select { |node| node[:item].id == child.parent_id }.first
       node = { item: child, children: [] }
-      parent[:children] << node
+      # TODO - the parent should never be nil, check why is it happening here
+      parent[:children] << node if parent
       all << node
     end
 
