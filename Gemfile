@@ -38,6 +38,8 @@ gem 'kaminari'
 gem 'thumbs_up'
 gem 'acts-as-taggable-on', '~>2.1.0'
 
+gem 'rest-client'
+
 # find an alternative, https://github.com/bbatsov/rails-style-guide#flawed
 gem 'therubyracer', :group => :production
 # gem 'mustang'
