@@ -8,6 +8,11 @@ class PracticeController < ApplicationController
       @users = @users.where(server: params[:server]) if params[:server]
       @users = @users.where(league: params[:league]) if params[:league]
     end
+
+    gon.race   = params[:race]
+    gon.server = params[:server]
+    gon.league = params[:league]
+
     # TODO - search results should be passed back to JavaScript
     # to be highlighted in the form
 
