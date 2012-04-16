@@ -1,0 +1,9 @@
+.reply
+  .author
+    = link_to reply.user.username, reply.user
+    span.date
+      = time_ago_in_words(reply.created_at)
+      |  ago
+
+  .content
+    = simple_format reply.content

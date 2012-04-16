@@ -1,0 +1,74 @@
+.new-reply {
+  span.help-inline { margin-top: 6px; }
+}
+
+.topics .topic {
+  @include transition (background 1.0s ease-in-out);
+  &:hover { background: #eee;  }
+
+  overflow: hidden;
+  background: #fefefe;
+  border-bottom: 1px solid #ddd;
+
+  &:last-child { border-bottom: none }
+
+  a {
+    color: #333;
+    display: block;
+    padding: 10px;
+    &:hover { text-decoration: none }
+  }
+
+  .date {
+    float: right;
+    width: 130px;
+    text-align: right;
+    color: #999;
+  }
+}
+
+// div.topic {
+//   display: block;
+//   padding: 10px;
+//   background: rgba(#000, 0.01);
+//   border-bottom: 1px solid #ddd;
+//   overflow: hidden;
+
+//   &:hover { background: rgba(#000, 0.02); }
+//   .name {
+
+//   }
+//   .date {
+//     float: right;
+//   }
+// }
+
+div.reply {
+  padding: 10px;
+  background: rgba(#000, 0.01);
+  border-bottom: 1px solid #ddd;
+
+  .author {
+    font-weight: bold;
+    font-size: 18px;
+    span.date {
+      font-size: 12px;
+      font-weight: normal;
+      padding-left: 10px;
+    }
+  }
+
+  &:nth-child(even) { background: rgba(#000, 0.02); }
+  &:last-child { border-bottom: none; }
+
+  @include transition (background 1.0s ease-in-out);
+  &:hover { background: rgba(#000, 0.05); }
+}
+
+.section .newtopic {
+  float: right;
+  position: relative;
+  top: 4px;
+  right: 10px;
+  font-size: 14px;
+}

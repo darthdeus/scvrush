@@ -9,6 +9,20 @@
   img src="/assets/subnav_item_bg.png"
   img src="/assets/subnav_item_hover_bg.png"
 
+script type="text/template" id="login_form"
+  form class="well"
+    fieldset
+      legend Login to your account
+
+      .control-group
+        input type="text" name="username" placeholder="Username"
+      .control-group
+        input type="password" name="password" placeholder="Password"
+
+      button type="submit" class="btn btn-primary" Log in
+      = link_to 'Create a new account', signup_path, class: 'btn'
+
+
 - if Rails.env.production?
   javascript:
     var _gaq = _gaq || [];

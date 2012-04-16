@@ -1,23 +1,17 @@
-.alert.alert-error.span5
-  h2 Forum has been temporarily disabled
+- @sections.each do |section|
+  .section
+    h2.arrowed.nomargin
+      = section.name
+      span class='arrows' »
+      .newtopic = link_to "add new topic", new_topic_path(section_id: section)
 
-  p
-    ' We are trying to improve the user experience and the old forum just wasn't good enough.
-  p
-    ' Please stay tuned, we'll post on our blog when the new features are out,
-    ' which should be within a week.
+    .topics
+      - section.topics.each do |topic|
+        .topic
+          = link_to topic do
+            .date
+              - if topic.last_reply.present?
+                = time_ago_in_words(topic.last_reply_at)
+                |  ago
 
-/ - @sections.each do |section|
-/   .section
-/     h2.arrowed.nomargin
-/       = section.name
-/       span class='arrows' »
-/       .newtopic= link_to "add new topic", new_topic_path(:section_id => section)
-
-/     - section.topics.each do |topic|
-/       .topic
-/         .date
-/           - if topic.last_reply.present?
-/             = time_ago_in_words(topic.last_reply_at)
-/             |  ago
-/         .name = link_to topic.name, topic
+            .name = topic.name

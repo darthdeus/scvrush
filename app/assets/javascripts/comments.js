@@ -1,10 +1,11 @@
-window.App = {
-  urlPrefix: function() {
-    if (this.post === undefined) {
-      throw 'post is undefined in the app, unable to create a comments URL';
-    }
-    return '/posts/' + this.post;
+window.App = window.App || {};
+var App = Window.App;
+
+App.postsPrefix = function() {
+  if (this.post === undefined) {
+    throw 'post is undefined in the app, unable to create a comments URL';
   }
+  return '/posts/' + this.post;
 };
 
 App.Comment = Backbone.Model.extend({
@@ -39,6 +40,7 @@ App.CommentView = Backbone.View.extend({
     '<a class="reply">reply</a>' +
     '</span>' +
     // TODO - make this link to the parent instesad of the user profile
+    // TODO - add a cancel link here, so that a user can cancel the reply
     '<% if (typeof orig !== "undefined") print("<a class=\\"original\\">in reply to</a>") %>'+
     '</h4>' +
     '<%= content %>'),
@@ -111,7 +113,7 @@ App.Comments = Backbone.Collection.extend({
   model: App.Comment,
 
   url: function() {
-    return App.urlPrefix() + '/comments';
+    return App.postsPrefix() + '/comments';
   },
 
   initialize: function() {

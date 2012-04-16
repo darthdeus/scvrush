@@ -1,10 +1,12 @@
 #= require jquery
 #= require jquery_ujs
+#= require lib/jquery.fancybox
 #= require lib/underscore
 #= require lib/backbone
 #= require active_admin
 #= require lib/bootstrap
 #= require dashboard
+#= require login
 
 jQuery ->
 
@@ -22,13 +24,6 @@ jQuery ->
       $("li.stream a")
         .css('color', 'rgba(255, 150, 150, 0.8)')
         .text('Check out our Stream - LIVE NOW!')
-
-  # $('.btn').click ->
-  #   btn = $(this)
-  #   btn.button('loading')
-  #   setTimeout ->
-  #     btn.button('reset')
-  #   , 3000
 
   $('#new_comment').submit (e) ->
     self = $(this)

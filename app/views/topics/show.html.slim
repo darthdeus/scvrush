@@ -1,30 +1,18 @@
 = arrowed_header @topic.name, "nomargin"
 
-- @replies.each do |reply|
-  .reply
-    .author
-      = link_to reply.user.username, reply.user
-      span.date
-        = time_ago_in_words(reply.created_at)
-        |  ago
-      span.voting
-        - if current_user
-          = vote_link(current_user, reply)
-        - else
-          | please 
-          = link_to 'log in'
-          |  to vote
 
-    .content
-      = simple_format reply.content
+.replies
+  = render collection: @replies, partial: 'topics/reply'
 
-= form_for @reply, :html => { :class => 'new-comment form-stacked' } do |f|
-  fieldset
-    legend Post a new reply
-    = hidden_field_tag 'reply[topic_id]', @topic.id
-    .clearfix
-      .input
-        = f.text_area :content, :class => 'xlarge', :rows => 4
-    .actions
-      button type="submit" class="btn primary" Reply!
+.new-reply
+  form class="well"
+    fieldset.control-group
+      legend Post a new reply
+      / = hidden_field_tag 'reply[topic_id]', @topic.id
+      input type="hidden" name="reply[topic_id]"
 
+      textarea name="content" class="span6" rows="6" data-required="true"
+
+      .actions
+        button type="submit" class="btn btn-primary" Reply!
+        span.help-inline or press ctrl + enter to submit

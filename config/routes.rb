@@ -2,6 +2,7 @@ Scvrush::Application.routes.draw do
 
   # scope constraints: { protocol: 'https' } do
     get "api/auth"
+    get "api/login"
     get "api/check"
   # end
 
