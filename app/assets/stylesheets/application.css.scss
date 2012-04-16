@@ -162,7 +162,7 @@ h2.arrowed, h3.arrowed {
 
 .coach {
   background: #fafafa;
-  border-left: 1px solid #dedede;
+  border-right: 1px solid #dedede;
   border-bottom: 1px solid #dedede;
   display: block;
   width: 134px;
@@ -172,7 +172,7 @@ h2.arrowed, h3.arrowed {
 
   @include transition (background 1.0s ease-in-out);
 
-  &:nth-child(odd) { border-left: none; width: 137px; }
+  &:nth-child(even) { border-right: none; width: 137px; }
   &:hover {
     background: #efefef;
   }
@@ -191,6 +191,7 @@ h2.arrowed, h3.arrowed {
     a {
       color: #999;
       background: none;
+      margin-right: 0;
     }
   }
 }
