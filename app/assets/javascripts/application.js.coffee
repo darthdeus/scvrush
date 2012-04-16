@@ -8,6 +8,9 @@
 
 jQuery ->
 
+  window.gon = {} unless window.gon?
+
+
   url = "http://api.justin.tv/api/stream/list.json"
   $.ajax
     url: url
@@ -16,9 +19,9 @@ jQuery ->
       channel: "scvrush1"
     jsonp: "jsonp"
     success: (data) ->
-      stream_button = $("li.stream a")
-      stream_button.css(color: 'rgba(255, 150, 150, 0.8)')
-      stream_button.text('Check out our Stream - LIVE NOW!')
+      $("li.stream a")
+        .css('color', 'rgba(255, 150, 150, 0.8)')
+        .text('Check out our Stream - LIVE NOW!')
 
   # $('.btn').click ->
   #   btn = $(this)

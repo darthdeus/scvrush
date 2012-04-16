@@ -142,6 +142,7 @@ h2.arrowed, h3.arrowed {
     padding-left: 20px;
     line-height: 45px;
     color: #333;
+    &.nomargin { margin-bottom: 0; }
     .arrows {
       color: #167ECE;
       font-size: 37px;
@@ -149,8 +150,13 @@ h2.arrowed, h3.arrowed {
       padding-left: 3px;
     }
   }
+
   .content {
     padding: 0 20px;
+  }
+
+  .paypal-donate {
+    margin: 5px 0 10px 10px;
   }
 }
 
@@ -379,7 +385,6 @@ button.btn, a.btn {
 @import "posts";
 @import "progress_bar";
 @import "users";
-/*@import "topics";*/
 @import "dashboard";
 @import "pagination";
 @import "jquery-ui.custom";
