@@ -167,7 +167,7 @@ h2.arrowed, h3.arrowed {
   display: block;
   width: 134px;
   height: 45px;
-  padding: 10px 9px 10px 10px;
+  padding: 10px 4px 0 15px;
   float: left;
 
   @include transition (background 1.0s ease-in-out);
@@ -184,7 +184,14 @@ h2.arrowed, h3.arrowed {
   .name {
     font-size: 14px;
     font-weight: normal;
-    padding-bottom: 2px;
+    padding: 0 0 2px 4px;
+  }
+
+  .tags {
+    a {
+      color: #999;
+      background: none;
+    }
   }
 }
 
