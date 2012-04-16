@@ -229,11 +229,19 @@ h2.arrowed, h3.arrowed {
 
 #header {
   position: relative;
+
   #donate {
     position: absolute;
     right: 330px;
     top: 80px;
   }
+
+  #buddies {
+    position: absolute;
+    top: 12px;
+    left: 188px;
+  }
+
   h1 {
     padding-top: 25px;
   }

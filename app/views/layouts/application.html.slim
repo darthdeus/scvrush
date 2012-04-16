@@ -31,7 +31,7 @@ html
 
         #header
           //#donate = render 'shared/donate'
-          #adbtn = link_to "Advertise with us", post_path("9724-advertise-with-us"), class: 'btn btn-success'
+          / #adbtn = link_to "Advertise with us", post_path("9724-advertise-with-us"), class: 'btn btn-success'
 
           h1
             a href="/"
@@ -40,6 +40,7 @@ html
               a href="http://www.ggbet.net/" style="height: 100px;margin-left: 30px;position: absolute;"
                 img src="http://www.ggbet.net/assets/small-logo.png" alt="ggbet" style="height: 100px;margin-left: 30px;position: absolute;"
 
+          #buddies = link_to image_tag('buddies_white.png'), '/practice'
 
           #upcoming
             - Tournament.upcoming.each do |tournament|
