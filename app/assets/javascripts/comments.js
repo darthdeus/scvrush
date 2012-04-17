@@ -1,5 +1,5 @@
 window.App = window.App || {};
-var App = Window.App;
+var App = window.App;
 
 App.postsPrefix = function() {
   if (this.post === undefined) {

@@ -12,7 +12,6 @@ jQuery ->
 
   window.gon = {} unless window.gon?
 
-
   url = "http://api.justin.tv/api/stream/list.json"
   $.ajax
     url: url
@@ -66,21 +65,12 @@ jQuery ->
 
   $(".datepicker").datepicker()
 
-  if gon.race
-    $('.pick-race button').each ->
-      $(this).click() if $(this).text() == gon.race
-  else
-    $('.pick-race button:first').click()
 
-  if gon.league
-    $('.pick-league button').each ->
-      $(this).click() if $(this).text() == gon.league
-  else
-    $('.pick-league button:first').click()
-
-  if gon.server
-    $('.pick-server button').each ->
-      $(this).click() if $(this).text() == gon.server
-  else
-    $('.pick-server button:first').click()
+  for filter in ['race', 'league', 'server']
+    if gon[filter]
+      $(".pick-#{filter} button").each ->
+        $(this).click() if $(this).text() == gon[filter]
+    else
+      console.log('selected', $(".pick-#{filter}:first"), 'by default')
+      $(".pick-#{filter} button:first").click()
 
