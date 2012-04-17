@@ -68,10 +68,6 @@ namespace :deploy do
     run "ln -nfs #{shared_path}/bin/unicorn #{release_path}/bin/unicorn"
   end
 
-  task :pipeline_precompile do
-    run "cd #{release_path}; RAILS_ENV=production bundle exec rake assets:precompile"
-  end
-
 end
 
 # TODO - make this cleaner

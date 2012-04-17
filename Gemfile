@@ -39,6 +39,7 @@ gem 'thumbs_up'
 gem 'acts-as-taggable-on', '~>2.1.0'
 
 gem 'rest-client'
+gem 'fancybox-rails'
 gem 'gon'
 
 # find an alternative, https://github.com/bbatsov/rails-style-guide#flawed
