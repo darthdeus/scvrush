@@ -58,10 +58,9 @@ jQuery ->
 
     alert("post_id is empty") unless post_id
 
-    dialog.find('form').attr("action", "/posts/" + post_id + "/publish")
+    dialog.find('form').attr("action", "/posts/#{post_id}/publish")
     dialog.dialog("open")
     e.preventDefault()
-    return false
 
   $(".datepicker").datepicker()
 
@@ -71,6 +70,5 @@ jQuery ->
       $(".pick-#{filter} button").each ->
         $(this).click() if $(this).text() == gon[filter]
     else
-      console.log('selected', $(".pick-#{filter}:first"), 'by default')
       $(".pick-#{filter} button:first").click()
 
