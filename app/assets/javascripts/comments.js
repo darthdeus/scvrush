@@ -121,7 +121,6 @@ App.Comments = Backbone.Collection.extend({
     // this.on('add', this.fetch, this);
   },
 
-
 });
 
 App.CommentsView = Backbone.View.extend({
@@ -129,20 +128,35 @@ App.CommentsView = Backbone.View.extend({
   template: _.template($('#comment-template').html()),
   events: {
     'submit form': 'postComment',
-    'keydown textarea': 'handleEnter'
+    'keydown textarea': 'handleEnter',
+    'click a.first-comment': 'focusForm',
+    'click a.login-link': 'showLoginLayer'
   },
 
   initialize: function() {
     this.collection.on('reset', this.render, this);
+
     this.collection.on('add', function(model) {
-      // console.log('add triggered on', this, 'with', model);
       this.collection.fetch();
     }, this);
+
+    this.collection.on('remove', this.toggleFirstComment, this);
+  },
+
+  toggleFirstComment: function() {
+    if (this.collection.length == 0) {
+      this.$el.find('a.first-comment').show();
+    } else {
+      this.$el.find('a.first-comment').hide();
+    }
   },
 
   render: function() {
     this.$el.empty();
     this.$el.append(this.template());
+
+    this.toggleFirstComment();
+
     this.$textarea = this.$('textarea');
     this.collection.forEach(this.addOne, this);
     return this;
@@ -197,10 +211,8 @@ App.CommentsView = Backbone.View.extend({
     }
   },
 
-  resetForm: function() {
-    this.$textarea.val('');
-    console.log('form was reset');
-  },
+  resetForm: function() { this.$textarea.val(''); },
+  focusForm: function() { this.$textarea.focus() },
 
   // Handle enter being pressed in the textarea
   handleEnter: function(event) {
@@ -213,8 +225,8 @@ App.CommentsView = Backbone.View.extend({
   },
 
   reply: function(view) {
-    console.log('reply triggered on a view', view);
-    this.$textarea.focus();
+    this.focusForm();
+
     this.$('[name="parent_id"]').val(view.model.id);
     this.$('.reply-message').css('visibility', 'visible');
 
@@ -225,8 +237,11 @@ App.CommentsView = Backbone.View.extend({
 
     this.$('.reply-username').text(view.model.get('author'))
                             .attr('href', user_path);
-    console.log(view.model);
-    // this.$textarea.val('@' + view.model.id + ' ');
+  },
+
+  showLoginLayer: function(e) {
+    e.preventDefault();
+    $('ul.nav .js-login-link').click();
   }
 
 });
@@ -253,14 +268,13 @@ $(function() {
 
   window.c = new App.Comments();
   window.c.fetch();
-  window.v = new App.CommentsView({collection: window.c});
-  // window.f = new App.CommentsFormView();
-  // window.f.render();
+
+  window.v = new App.CommentsView({collection: window.c}),
   window.r = new App.Router();
 
-  // TODO - do I still want autocompletition for usernames?
-  // $('input[name=foo]').autocomplete({
-    // source: ['foo', 'bar', 'baz']
-  // });
+  $('.comments-wrap a.first-comment').click(function(e) {
+    e.preventDefault();
+    window.v.$textarea.focus();
+  });
 
 });

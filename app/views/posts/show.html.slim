@@ -1,10 +1,3 @@
-= content_for :head do
-  = render 'comments/form'
-  - if logged_in?
-    script type="text/javascript"
-      = "window.user_id = #{current_user.id}"
-  = javascript_include_tag "comments"
-
 #left-column
   .single
     = content_tag "div", class: "post", data: { comments: @comments, post_id: @post.id } do
@@ -24,17 +17,8 @@
           h3.name = link_to @post.user.username, @post.user
           .about = m @post.user.about
 
-    #comments.comments-wrap
-      h2 Comments
+    - if @post.comments_enabled?
+      = render 'comments'
+    - else
+      .comments-disabled.alert.alert-notice Comments are disabled for this page.
 
-      .comments
-        / - if @comments.empty?
-          / .comment Be the first one to comment on this article!
-        / = render @comments
-      - if logged_in?
-        .new-comment
-      - else
-        h2
-          ' You must be
-          = link_to "logged in", login_path(redirect_back: request.original_fullpath)
-          |  to comment

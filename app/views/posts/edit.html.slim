@@ -2,23 +2,22 @@
 
 == render 'form'
 
-
 = arrowed_header 'Upload new image'
 
 p.alert-message If you made changes to the article, save them before uploading a new image!
 
-= form_for @image, :html => { :class => 'form-stacked' } do |f|
+= form_for @image, html: { class: 'well' } do |f|
   = f.file_field :image
   = hidden_field_tag :post_id, @post.id
   .actions
-    button type="submit" class="btn primary" data-disable-with="uploading ..." Upload the image
+    button type="submit" class="btn btn-primary" data-disable-with="uploading ..." Upload the image
 
 h2 Existing images
 
-ul.images
+table.table.images
   - @images.each do |img|
-    li
-      .image
+    tr
+      td.image
         = image_tag img.image_url(:thumb)
-      .url
-        = "![image](#{img.image_url(:normal)})"
+      td.url
+        p = "![image](#{img.image_url(:normal)})"

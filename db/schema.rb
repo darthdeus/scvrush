@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120331115604) do
+ActiveRecord::Schema.define(:version => 20120418084710) do
 
   create_table "achievements", :force => true do |t|
     t.string   "name"
@@ -109,9 +109,10 @@ ActiveRecord::Schema.define(:version => 20120331115604) do
     t.string   "featured_image"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "status",         :default => 0
+    t.integer  "status",           :default => 0
     t.integer  "user_id"
     t.datetime "published_at"
+    t.boolean  "comments_enabled", :default => true
   end
 
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"

@@ -3,18 +3,21 @@ class Post < ActiveRecord::Base
   PUBLISHED = 1
   DELETED = 2
 
+  attr_accessible :title, :content, :featured_image, :status,
+                  :user, :user_id, :comments_enabled
+
   belongs_to :user
-  has_many :comments, :dependent => :destroy
+  has_many :comments, dependent: :destroy
   has_one :tournament
   has_one :coach
 
-  validates :title, :presence => true
-  validates :content, :presence => true
+  validates :title, presence: true
+  validates :content, presence: true
 
   acts_as_taggable
 
-  scope :drafts,    where(:status => DRAFT)
-  scope :published, where(:status => PUBLISHED)
+  scope :drafts,    where(status: DRAFT)
+  scope :published, where(status: PUBLISHED)
 
   default_scope order("created_at DESC")
 

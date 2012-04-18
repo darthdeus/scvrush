@@ -1,27 +1,28 @@
-// Place all the styles related to the dashboard controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 #dashboard {
-    padding: 15px;
-    li.post {
-        clear: both;
-        .edit, .delete {
-            display: inline-block;
-            float: right;
-            padding: 0 5px;
-        }
-        border-bottom: 1px solid #ccc;
-        &:hover { background: #eaeaea; }
+  padding: 15px;
+  li.post {
+    clear: both;
+    .edit, .delete {
+      display: inline-block;
+      float: right;
+      padding: 0 5px;
     }
+    border-bottom: 1px solid #ccc;
+    &:hover { background: #eaeaea; }
+  }
+}
+
+.images {
+  .image img { width: 100px; }
+  .url p { word-wrap: break-word; width: 450px; }
 }
 
 .ggbet_settings {
-    clear: both;
-    overflow: hidden;
+  clear: both;
+  overflow: hidden;
 
-    label { width: auto;}
-    input[type=checkbox] {
-        margin-right: 5px;
-    }
+  label { width: auto;}
+  input[type=checkbox] {
+    margin-right: 5px;
+  }
 }

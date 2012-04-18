@@ -1,0 +1,16 @@
+= content_for :head do
+  = render 'comments/form'
+  - if logged_in?
+    script type="text/javascript"
+      = "window.user_id = #{current_user.id}"
+  = javascript_include_tag "comments"
+
+#comments.comments-wrap
+  .comments
+  - if logged_in?
+    .new-comment
+  - else
+    h2
+      ' You must be
+      = link_to "logged in", login_path(redirect_back: request.original_fullpath)
+      |  to comment

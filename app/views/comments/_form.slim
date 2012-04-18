@@ -1,7 +1,12 @@
 script type="text/template" id="comment-template"
-  .comments
 
   - if logged_in?
+    h2
+      ' Comments
+      a.first-comment - be the first one to comment on this article!
+
+    .comments
+
     .new-comment
       form class="well"
         fieldset.control-group
@@ -17,5 +22,6 @@ script type="text/template" id="comment-template"
             button type="submit" class="btn btn-primary" Post comment
             span.help-inline or press ctrl + enter to submit
 
-  / TODO - add login form here with reload of the page and #comments
-  / on success
+  - else
+    .alert.alert-error
+      a.login-link href="#" Click here to log in before you can comment

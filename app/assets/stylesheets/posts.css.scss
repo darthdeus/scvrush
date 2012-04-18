@@ -113,17 +113,33 @@
   }
 }
 
+.comments-disabled {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 15px;
+  margin: 10px 5px;
+}
+
 .comments-wrap {
   margin-top: 20px;
+
+  h2 {
+    line-height: 1;
+    font-size: 32px;
+    a.first-comment { color: #999; font-size: 18px; vertical-align: middle; }
+  }
+
+  a.login-link {
+    padding-top: 3px;
+    display: block;
+    color: #966;
+    font-size: 20px;
+    text-decoration: underline;
+  }
 
   .comments {
     padding: 10px;
     background: #f2f2f2;
-
-    h2 {
-      line-height: 1;
-      font-size: 32px;
-    }
 
     .comment {
       border-bottom: 1px solid #ddd;
@@ -165,8 +181,6 @@
 
 }
 
-
-
 .new-comment {
   margin-top: 40px;
 
@@ -198,7 +212,7 @@
 }
 
 #post_content {
-  height: 450px;
+  height: 600px;
 }
 
 .taglist {
@@ -212,6 +226,9 @@
   border-radius: 5px;
   background: #efefef;
   overflow: hidden;
+
+  @include transition (box-shadow 3.0s);
+  &:hover { @include box-shadow(0 0 3px #666) }
 
   .avatar, .content { float: left; }
   .avatar img {
