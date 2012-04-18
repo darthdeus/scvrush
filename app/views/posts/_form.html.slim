@@ -12,6 +12,10 @@
   = f.label :tag_list, "Tags"
   = f.text_field :tag_list, class: 'span6'
 
+  = f.label :comments_enabled, class: 'checkbox' do
+    = f.check_box :comments_enabled
+    strong Comments enabled
+
   .control-group
     = f.label :content, 'Content writing guidelines'
     .guidelines
@@ -29,10 +33,13 @@
             li * third
     .input
       = f.text_area :content, class: 'span7'
+
+
   .control-group
     = f.label :featured_image
     .input
       = f.file_field :featured_image
+
   - unless @post.featured_image_url.nil?
     = image_tag @post.featured_image_url(:thumb)
 
