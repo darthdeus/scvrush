@@ -1,6 +1,6 @@
 #= require jquery
 #= require jquery_ujs
-#= require fancybox
+#= require lib/jquery.fancybox
 #= require lib/underscore
 #= require lib/backbone
 #= require active_admin

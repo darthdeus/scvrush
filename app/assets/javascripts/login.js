@@ -23,7 +23,7 @@ App.LoginForm = function(template) {
   }
 
   // callback for successful login
-  this.successCallback = function(data) { window.location.reload(); },
+  this.successCallback = function(data) { document.location.reload(true); },
 
   // callback for error form submission
   this.errorCallback = function(data) {
