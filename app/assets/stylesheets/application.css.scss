@@ -210,10 +210,9 @@ h2.arrowed, h3.arrowed {
   a {
     margin-right: 5px;
     padding: 0 4px;
-    background: #0089e0;
-    color: #fff;
+    color: #555;
+    background: #dedede;
     text-decoration: none !important;
-    /* TODO - does bootstrap has anything to improve this? */
     @include border-radius(4px);
     /* TODO - use myriad here too? */
     font-family: helvetica, arial, sans-serif;
@@ -222,6 +221,7 @@ h2.arrowed, h3.arrowed {
 
   }
   a:hover {
+    color: #999;
     background: #555;
     color: #fff;
   }

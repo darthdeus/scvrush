@@ -1,9 +1,12 @@
 #left-column
   .single
     = content_tag "div", class: "post", data: { comments: @comments, post_id: @post.id } do
-      h1= @post.title
+      / TODO - rewrite to semantic HTML5
+      h1 = @post.title
 
       = m @post.content
+
+      div class="fb-like" data-send="false" data-width="450" data-show-faces="false"
 
     .taglist
       ul.tags

@@ -23,6 +23,17 @@ script type="text/template" id="login_form"
       = link_to 'Create a new account', signup_path, class: 'btn'
 
 
+#fb-root
+
+javascript:
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/cs_CZ/all.js#xfbml=1&appId=281251391959105";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
 - if Rails.env.production?
   javascript:
     var _gaq = _gaq || [];
