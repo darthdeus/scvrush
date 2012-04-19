@@ -3,22 +3,22 @@ class User < ActiveRecord::Base
   # TODO - what is this? how does it differ from Rolify::Roles?
   # extend Rolify::Dynamic
 
-  has_and_belongs_to_many :roles, :join_table => :users_roles
+  has_and_belongs_to_many :roles, join_table: :users_roles
 
   has_many :user_achievements
-  has_many :achievements, :through => :user_achievements
+  has_many :achievements, through: :user_achievements
 
   has_many :comments
   has_many :replies
-  has_many :signups, :dependent => :destroy
-  has_many :tournaments, :through => :signups
-  has_many :won_tournaments, :class_name => 'Tournament', :foreign_key => 'winner_id'
+  has_many :signups, dependent: :destroy
+  has_many :tournaments, through: :signups
+  has_many :won_tournaments, class_name: 'Tournament', foreign_key: 'winner_id'
 
   has_many :posts
-  has_many :won_raffles, :class_name => 'Raffle', :foreign_key => 'winner_id'
+  has_many :won_raffles, class_name: 'Raffle', foreign_key: 'winner_id'
 
   has_many :raffle_signups
-  has_many :raffles, :through => :raffle_signups
+  has_many :raffles, through: :raffle_signups
 
   attr_accessible :username, :email, :password, :password_confirmation,
                   :password_reset_token, :avatar, :race, :league, :server,
@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
                   :bnet_code, :bnet_username, :twitter, :time_zone, :practice
 
   acts_as_voter
-  has_karma(:comments, :as => :user)
+  has_karma(:comments, as: :user)
 
 
 
@@ -40,11 +40,11 @@ class User < ActiveRecord::Base
 
   # TODO - use Rails 3 validations
   validates_presence_of :username
-  validates :username, :uniqueness => true, :on => :create
+  validates :username, uniqueness: true, on: :create
   validates_presence_of :email
-  validates :email, :uniqueness => true, :on => :create
-  validates :password, :confirmation => true
-  validates_presence_of :password, :on => :create
+  validates :email, uniqueness: true, on: :create
+  validates :password, confirmation: true
+  validates_presence_of :password, on: :create
 
   def bnet_username_is_string
     if bnet_username?
@@ -66,9 +66,9 @@ class User < ActiveRecord::Base
   #           :if => lambda { |u| u.bnet_username? }
 
   validates :bnet_code,
-            :format => { :with => /^\d+$/,
-                         :message => 'can contain only numbers' },
-            :if => lambda { |u| u.bnet_username? }
+            format: { with: /^\d+$/,
+                         message: 'can contain only numbers' },
+            if: lambda { |u| u.bnet_username? }
 
   # validates_presence_of :bnet_username, :on => :update
   # validates_presence_of :bnet_code, :on => :update
@@ -91,22 +91,22 @@ class User < ActiveRecord::Base
 
   def sign_up(tournament)
     # TODO - Does this actually create the correct signup?
-    signup = self.signups.build(:tournament => tournament)
+    signup = self.signups.build(tournament: tournament)
     signup.status = Signup::REGISTERED
     signup.save!
     signup
   end
 
   def registered_for?(tournament)
-    !self.signups.registered.where(:tournament_id => tournament.id).empty?
+    !self.signups.registered.where(tournament_id: tournament.id).empty?
   end
 
   def checked_in?(tournament)
-    !self.signups.checked.where(:tournament_id => tournament.id).empty?
+    !self.signups.checked.where(tournament_id: tournament.id).empty?
   end
 
   def check_in(tournament)
-    signup = self.signups.where(:tournament_id => tournament.id).first
+    signup = self.signups.where(tournament_id: tournament.id).first
     if signup
       signup.checkin!
     else
@@ -115,7 +115,7 @@ class User < ActiveRecord::Base
   end
 
   def participating_in?(raffle)
-    self.raffle_signups.where(:raffle_id => raffle.id).first
+    self.raffle_signups.where(raffle_id: raffle.id).first
   end
 
   def to_param

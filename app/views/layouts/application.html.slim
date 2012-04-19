@@ -48,19 +48,20 @@ html
                 h2 = link_to tournament.name, tournament.post
                 p = nice_date(tournament.starts_at, current_user)
 
-
         #wrapper-navigation
           #navigation
             = render 'shared/menu'
 
-
         - flash.each do |name, msg|
           = content_tag :div, msg, :class => "alert span5 alert-#{name}"
 
-        #left-wrap
-          = yield
-
-        #sidebar
-          = render 'shared/sidebar'
+        - if content_for? :sidebar
+          #left-wrap
+            = yield
+          #sidebar
+            = yield :sidebar
+        - else
+          #single-column
+            = yield
 
       = render 'shared/footer'

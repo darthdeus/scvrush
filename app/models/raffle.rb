@@ -3,9 +3,9 @@ class Raffle < ActiveRecord::Base
   OPEN = 1
   FINISHED = 2
 
-  belongs_to :winner, :class_name => "User", :foreign_key => "winner_id"
-  has_many :raffle_signups, :dependent => :destroy
-  has_many :users, :through => :raffle_signups
+  belongs_to :winner, class_name: "User", foreign_key: "winner_id"
+  has_many :raffle_signups, dependent: :destroy
+  has_many :users, through: :raffle_signups
 
   validates_presence_of :status
   validates_presence_of :title
@@ -26,7 +26,7 @@ class Raffle < ActiveRecord::Base
   end
 
   def register(user)
-    RaffleSignup.create!(:raffle => self, :user => user)
+    RaffleSignup.create!(raffle: self, user: user)
   end
 
   def is_open?

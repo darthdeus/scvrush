@@ -3,8 +3,8 @@ class Signup < ActiveRecord::Base
   CHECKED = 1
   CANCELED = 2
 
-  scope :registered, where(:status => REGISTERED)
-  scope :checked,    where(:status => CHECKED)
+  scope :registered, where(status: REGISTERED)
+  scope :checked,    where(status: CHECKED)
 
   # TODO - remove signup from here, potentital security risk
   attr_accessible :tournament, :user, :signup
@@ -12,8 +12,8 @@ class Signup < ActiveRecord::Base
   belongs_to :tournament
   belongs_to :user
 
-  validates :tournament, :presence => true
-  validates :user, :presence => true
+  validates :tournament, presence: true
+  validates :user, presence: true
 
 
   def checkin!

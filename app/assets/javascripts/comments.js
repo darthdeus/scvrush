@@ -22,7 +22,7 @@ App.Comment = Backbone.Model.extend({
       parent = comment.get('parent_id');
     }
     return nesting;
-  },
+  }
 
 });
 

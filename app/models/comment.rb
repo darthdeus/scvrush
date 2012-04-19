@@ -34,8 +34,11 @@ class Comment < ActiveRecord::Base
     ary.flatten
   end
 
+  # Return comments sorted by their parent id
   def self.threaded_for_post(post_id)
     comments = where(post_id: post_id).includes(:user)
+    # root comments have no parent id,
+    # while children are always related to a root comment
     root, children = comments.partition { |comment| !comment.parent_id.present? }
 
     sorted = []
@@ -55,6 +58,7 @@ class Comment < ActiveRecord::Base
       all << node
     end
 
+    # flatten out the tree into a simple non-nested array
     sorted.map { |item| expand_children(item) }.flatten
   end
 
@@ -64,7 +68,7 @@ class Comment < ActiveRecord::Base
       content: simple_format(self.content),
       user_id: self.user.id,
       author:  self.user.username,
-      date:    time_ago_in_words(self.created_at),
+      date:    self.date,
       parent_id: self.parent_id
     }
   end

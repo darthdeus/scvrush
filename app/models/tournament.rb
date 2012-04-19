@@ -1,12 +1,12 @@
 class Tournament < ActiveRecord::Base
-  has_many :signups, :dependent => :destroy
-  has_many :users, :through => :signups
+  has_many :signups, dependent: :destroy
+  has_many :users, through: :signups
 
   belongs_to :post
-  belongs_to :winner, :class_name => 'User', :foreign_key => 'winner_id'
+  belongs_to :winner, class_name: 'User', foreign_key: 'winner_id'
 
-  validates :name, :presence => true
-  validates :starts_at, :presence => true
+  validates :name, presence: true
+  validates :starts_at, presence: true
 
   scope :recent, order('starts_at DESC').limit(5)
   scope :upcoming, lambda { where(['starts_at > ?', Time.now]).first(2) }
@@ -29,7 +29,7 @@ class Tournament < ActiveRecord::Base
   end
 
   def unregister(user)
-    self.signups.where(:user_id => user.id).first.destroy
+    self.signups.where(user_id: user.id).first.destroy
   end
 
   def set_winner(winner)
