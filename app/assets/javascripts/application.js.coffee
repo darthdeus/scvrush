@@ -53,6 +53,7 @@ jQuery ->
 
 
   $(".publish_link").click (e) ->
+    e.preventDefault()
     dialog = $("#publish-date-form")
     post_id = $(this).attr('data-post-id')
 
@@ -60,7 +61,6 @@ jQuery ->
 
     dialog.find('form').attr("action", "/posts/#{post_id}/publish")
     dialog.dialog("open")
-    e.preventDefault()
 
   $(".datepicker").datepicker()
 
