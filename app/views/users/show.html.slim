@@ -1,4 +1,4 @@
-= arrowed_header @user.username + " - profile"
+= arrowed_header @user.username + " - profile", 'nomargin'
 
 .user-profile
   .avatar
@@ -7,20 +7,20 @@
     .meta
       = link_to "change avatar", new_avatar_path
 
-  ul
-    li
-      = 'Username: '
-      = @user.username
-    li
-      = 'Battle.net: '
-      = "#{@user.bnet_username}.#{@user.bnet_code}"
-    li
-      = 'Experience: '
-      = pluralize(@user.karma, "points")
+
+  dl.dl-horizontal
+    dt Username
+    dd = @user.username
+
+    dt Battle.net ID
+    dd = "#{@user.bnet_username}.#{@user.bnet_code}"
+
+    dt Experience
+    dd = pluralize(@user.karma, "points")
+
     - if @user.twitter.present?
-      li
-        = 'Twitter: '
-        = link_to @user.twitter, "http://twitter.com/#{@user.twitter}"
+      dt Twitter
+      dd = link_to @user.twitter, "http://twitter.com/#{@user.twitter}"
 
     = info_for_user(@user, %w{race league server favorite_player}, %w{email skype msn})
 
@@ -28,14 +28,27 @@
     - if @user == current_user
       = link_to 'edit your profile', edit_user_path(current_user)
 
-  h2 Recent comments by user
-  ul.comments
-    - @user.comments.each do |comment|
-      li
-        / TODO - add check if post exists
-        = link_to comment.post.title, post_path(comment.post) + "#comment#{comment.id}"
-        '  -
-        = comment.content[0..30]
+  .recent-comments
+    header
+      h1 Recent Comments
+
+    section
+      ul
+        - @user.comments.each do |comment|
+          li
+            = link_to post_path(comment.post) + "#comment#{comment.id}" do
+              .text = comment.content[0..150]
+              .post = comment.post.title
+
+
+  .user-posts
+    - unless @user.posts.published.empty?
+      header
+        h1 Posts
+      section
+        ul
+          - @user.posts.published.each do |post|
+            li = link_to post.title, post_path(post)
 
   - unless @user.achievements.empty?
     h2 Achievements
@@ -46,12 +59,6 @@
           ul
             - @user.won_tournaments.each do |tournament|
               li = link_to tournament.name, tournament
-
-  - unless @user.posts.published.empty?
-    h2 User Posts
-    ul.comments
-      - @user.posts.published.each do |post|
-        li = link_to post.title, post_path(post)
 
   .actions
     - if @user == current_user

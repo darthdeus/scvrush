@@ -80,11 +80,16 @@
 
 
 .single {
+
   p {
     font-family: "ff-meta-web-pro",sans-serif;
     font-size: 14px;
     line-height: 1.4;
   }
+
+  a { color: $linkBlue; }
+  a:hover { color: $linkBlueHover; }
+
   .post {
     img {
       width: 500px;
@@ -237,7 +242,7 @@
     @include box-shadow(0 0 3px #333);
   }
   .content {
-    .name { font-weight: bold; }
+    .name { font-weight: bold; margin-top: 0; }
     padding: 0 10px;
     width: 400px;
   }

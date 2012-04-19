@@ -1,14 +1,16 @@
 .user-profile {
+
   .avatar {
     float: right;
     padding: 0 40px 0 20px;
     .meta {
+      a { color: #666; }
+      a:hover { color: #999; }
+      margin-top: 5px;
       text-align: center;
     }
     img {
-      box-shadow: 0 0 3px #000;
-      -moz-box-shadow: 0 0 3px #000;
-      -webkit-box-shadow: 0 0 3px #000;
+      @include box-shadow(0 0 3px #666);
     }
   }
 
@@ -23,4 +25,52 @@
       list-style: disc;
     }
   }
+
+  $profileListBorder: 1px solid #eee;
+
+  .recent-comments, .user-posts {
+    float: left;
+    width: 315px;
+
+    header h1 { font-size: 20px; }
+
+    section ul {
+      padding-left: 0;
+      border-left: $profileListBorder;
+      border-top: $profileListBorder;
+
+      a {
+        color: #666;
+        display: block;
+      }
+
+      li {
+        margin: 0;
+        list-style: none;
+        border-bottom: $profileListBorder;
+        &:hover { background: #eee; }
+      }
+    }
+  }
+
+  .recent-comments {
+    li {
+      a {
+        padding: 7px 5px 5px;
+        display: block;
+      }
+      a:hover { text-decoration: none; }
+      .text { padding: 5px 0 7px; }
+      .where { text-decoration: underline; }
+
+
+    }
+  }
+
+  .user-posts {
+    li a {
+      padding: 14px 10px 10px;
+    }
+  }
+
 }

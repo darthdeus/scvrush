@@ -6,6 +6,10 @@
  */
 
  @import "bourbon";
+ @import "bootstrap";
+
+$linkBlue: #08C;
+$linkBlueHover: #005580;
 
 body {
   background: #F6F6F6 url("/assets/pattern.png") repeat;
@@ -19,8 +23,10 @@ a img {
   border: none;
 }
 
-a { color: #333; }
-a:hover { color: #666; }
+a { color: $linkBlue; }
+a:hover { color: linkBlueHover; }
+// a { color: #333; }
+// a:hover { color: #666; }
 
 .clear {
   clear: both;
@@ -200,6 +206,7 @@ h2.arrowed, h3.arrowed {
   margin: 0;
   padding: 0;
   list-style: none;
+
   li, a {
     float: left;
     height: 20px;
@@ -207,7 +214,8 @@ h2.arrowed, h3.arrowed {
     position: relative;
     font-size: 11px;
   }
-  a {
+
+  li a {
     margin-right: 5px;
     padding: 0 4px;
     color: #555;
@@ -220,7 +228,8 @@ h2.arrowed, h3.arrowed {
     @include transition (background 1.0s ease-in-out);
 
   }
-  a:hover {
+
+  li a:hover {
     color: #999;
     background: #555;
     color: #fff;
@@ -238,11 +247,12 @@ h2.arrowed, h3.arrowed {
 
   #buddies {
     position: absolute;
-    top: 12px;
+    top: 8px;
     left: 188px;
   }
 
   h1 {
+    margin-top: 0;
     padding-top: 25px;
   }
   #upcoming {
@@ -397,7 +407,6 @@ button.btn, a.btn {
 }
 
 
-@import "bootstrap";
 @import "posts";
 @import "progress_bar";
 @import "users";
