@@ -41,4 +41,15 @@ describe Topic do
     topic = build(:topic, :name => 'foo')
     topic.to_param.should == "#{topic.id}-#{topic.name}"
   end
+
+  specify :to_simple_json do
+    topic = create(:topic)
+    reply = create(:reply, topic_id: topic.id)
+    topic.reload
+
+    json = topic.to_simple_json
+    json.name.should == topic.name
+    json.last_topic_at.should_not be_nil
+  end
+
 end

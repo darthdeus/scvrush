@@ -1,6 +1,13 @@
 class TopicsController < ApplicationController
   before_filter :require_login, :only => :create
 
+  def index
+    @section = Section.find(params[:section_id])
+    respond_to do |format|
+      format.json { render json: @section.topics }
+    end
+  end
+
   def new
     @section = Section.find(params[:section_id])
     @topic = @section.topics.build
@@ -13,18 +20,21 @@ class TopicsController < ApplicationController
   end
 
   def create
-    @section = Section.find(params[:topic][:section_id])
-    @topic = Topic.new(params[:topic])
-    @reply = Reply.new(params[:reply])
-    @reply.topic = @topic
-    @reply.user = current_user
-    @topic.user = current_user
-    if @topic.save && @reply.save
-      redirect_to @topic, notice: "Topic was successfuly created."
-    else
-      logger.error @reply.errors.inspect
-      logger.error @topic.errors.inspect
-      render :new
+    ActiveRecord::Base.transaction do
+      @section = Section.find(params[:section_id])
+      @topic = @section.topics.create({
+        name: params[:topic][:name],
+        user_id: current_user.id
+      })
+
+      @reply = Reply.create({
+        content: params[:topic][:content],
+        topic_id: @topic.id,
+        user_id: current_user.id
+      })
+
+      # TODO - add more information here
+      render json: [@topic, @reply]
     end
   end
 

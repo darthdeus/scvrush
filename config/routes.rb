@@ -30,9 +30,14 @@ Scvrush::Application.routes.draw do
   resources :tournaments, only: [:show, :edit, :update]
   resources :signups, only: [:create, :destroy, :update]
 
-  resources :sections, only: :index
-  resources :topics, only: [:new, :show, :create]
-  resources :replies, only: :create
+  resources :sections, only: :index do
+    resources :topics, only: [:create, :index]
+  end
+
+  resources :topics, only: :show do
+    resources :replies, only: [:create, :destroy]
+  end
+
 
   get "home/index"
 

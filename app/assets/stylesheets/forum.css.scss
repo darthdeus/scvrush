@@ -72,3 +72,14 @@ div.reply {
   right: 10px;
   font-size: 14px;
 }
+
+.new-topic-form {
+  textarea {
+    width: 400px;
+    height: 160px;
+  }
+
+  a.cancel {
+    margin-top: 5px;
+  }
+}

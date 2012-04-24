@@ -1,4 +1,5 @@
 class Reply < ActiveRecord::Base
+  # TODO - add attr_accessible
   belongs_to :topic
   belongs_to :user
 

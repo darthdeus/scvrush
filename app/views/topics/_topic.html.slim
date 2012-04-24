@@ -1,0 +1,8 @@
+.topic
+  = link_to topic do
+    .date
+      - if topic.last_reply.present?
+        = time_ago_in_words(topic.last_reply_at)
+        |  ago
+
+    .name = topic.name

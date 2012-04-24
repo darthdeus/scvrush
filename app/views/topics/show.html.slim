@@ -1,5 +1,7 @@
 = arrowed_header @topic.name, "nomargin"
 
+= content_for :head do
+  = javascript_include_tag "forum"
 
 .replies
   = render collection: @replies, partial: 'topics/reply'

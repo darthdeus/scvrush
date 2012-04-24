@@ -1,0 +1,9 @@
+.section
+  h2.arrowed.nomargin
+    = section.name
+    span class='arrows' »
+    = link_to 'add new topic', '#', :'data-section-id' => section.id, class: 'newtopic'
+
+  .topics
+    = render section.topics
+
