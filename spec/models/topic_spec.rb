@@ -43,6 +43,7 @@ describe Topic do
   end
 
   specify :to_simple_json do
+    pending
     topic = create(:topic)
     reply = create(:reply, topic_id: topic.id)
     topic.reload
@@ -50,6 +51,32 @@ describe Topic do
     json = topic.to_simple_json
     json.name.should == topic.name
     json.last_topic_at.should_not be_nil
+  end
+
+  describe :create_with_reply do
+
+    let(:user) { create(:user) }
+    let(:section) { create(:section) }
+
+    it "creates a Topic and a Reply for valid parameters" do
+      Topic.create_with_reply({
+                                name: 'My topic',
+                                content: 'Content for the reply',
+                                user_id: user.id,
+                                section_id: section.id
+                              })
+      Topic.last.name.should == 'My topic'
+      Reply.last.content.should == 'Content for the reply'
+    end
+
+    it "does a rollback for invalid parameters" do
+      Topic.create_with_reply({
+                                name: 'My topic',
+                                user_id: user.id,
+                                section_id: section.id
+                              }).should == false
+    end
+
   end
 
 end

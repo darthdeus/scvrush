@@ -30,13 +30,13 @@ class Topics extends Backbone.Collection
 
 class TopicFormView extends Backbone.View
 
-  template: ->
-    _.template($('#new-topic-template').html(), {})
+  template: -> _.template($('#new-topic-template').html())
 
-  show: ->
+  show: (section) ->
+    html = @template()
     $.fancybox
       # we need to warp this back in jQuery object to bind events
-      content: $(@template())
+      content: $(html({section: section}))
       onComplete: @bindEvents
 
   bindEvents: ->
@@ -46,7 +46,19 @@ class TopicFormView extends Backbone.View
 
     @content.find('button[type=submit]').click (e) ->
       e.preventDefault()
-      console.log('form submitted')
+      form = $(this).parents('form')
+      section_id = form.find('input[name="topic[section_id]"]').val()
+      $.ajax
+        type: 'POST'
+        url: "/sections/#{section_id}/topics"
+        data: form.serialize()
+        success: (data) ->
+          document.location = data.location
+        error: (data) ->
+          # TODO - add login check if user is not authorized
+          console.log('error response', data)
+
+    @content.find('input[type=text]:first').focus()
 
 class Reply extends Backbone.Model
 
@@ -69,4 +81,11 @@ window.Replies = Replies
 
 $ ->
   window.sf = new TopicFormView()
+
+  $('.newtopic').click (e) ->
+    e.preventDefault()
+    section_id = $(this).attr 'data-section-id'
+    throw "section_id is a required attribute" unless section_id
+    sf.show section_id
+
 #  sf.show()

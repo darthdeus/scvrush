@@ -15,12 +15,12 @@ script type="text/template" id="new-topic-template"
     fieldset
       legend Submit a new topic
 
-    = hidden_field_tag 'topic[section_id]'
+    input type="hidden" name="topic[section_id]" value="<%= section %>"
 
     .control-group
-      = text_field_tag :name, '', placeholder: 'New topic name'
+      = text_field_tag 'topic[name]', '', placeholder: 'New topic name'
 
-    = text_area_tag 'reply[content]', '', placeholder: 'And some meaningful text here ...'
+    = text_area_tag 'topic[content]', '', placeholder: 'And some meaningful text here ...'
 
     .actions
       button type="submit" class="btn btn-primary" Submit topic

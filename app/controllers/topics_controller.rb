@@ -20,21 +20,12 @@ class TopicsController < ApplicationController
   end
 
   def create
-    ActiveRecord::Base.transaction do
-      @section = Section.find(params[:section_id])
-      @topic = @section.topics.create({
-        name: params[:topic][:name],
-        user_id: current_user.id
-      })
+    topic = Section.create_first_topic(params)
 
-      @reply = Reply.create({
-        content: params[:topic][:content],
-        topic_id: @topic.id,
-        user_id: current_user.id
-      })
-
-      # TODO - add more information here
-      render json: [@topic, @reply]
+    if topic
+      render json: { status: :ok, location: topic_path(topic) } and return
+    else
+      render json: { status: :error, type: :validation  }
     end
   end
 

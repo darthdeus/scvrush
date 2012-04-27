@@ -5,13 +5,33 @@ class Topic < ActiveRecord::Base
 
   belongs_to :section
   belongs_to :user
-  has_many :replies
+
+  has_many :replies, dependent: :destroy
 
   belongs_to :last_reply, class_name: 'Reply', foreign_key: 'last_reply_id'
 
   validates :user, presence: true
   validates :section, presence: true
   validates :name, presence: true
+
+  include ActionView::Helpers
+
+  # Create a first Topic in a Section with a content for a Reply.
+  #
+  # Returns a Reply if the parameters are valid, otherwise returns false
+  def self.create_with_reply(params)
+    self.transaction do
+      topic = self.create!(name:       params[:name],
+                           user_id:    params[:user_id],
+                           section_id: params[:section_id])
+      reply = topic.replies.create!(content: params[:content],
+                                    user_id: params[:user_id])
+      return topic
+    end
+  rescue ActiveRecord::RecordInvalid => e
+    # TODO - return `e.message' instead of just false
+    return false
+  end
 
   def to_param
     "#{id}-#{name.parameterize}"
