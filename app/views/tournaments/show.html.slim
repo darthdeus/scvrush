@@ -1,56 +1,58 @@
+- content_for(:title, @tournament.name + ' | SCV Rush')
 #left-column
-  .single
-    .post
-      h2= @tournament.name
-      / TODO - add a text saying when is the tournament starting,
-      / maybe use distance_of_time_in_words_to_now or time_ago_in_words
-      - if @tournament.checkin_open?
-        = checkin_button @tournament
-      - else
-        - if current_user && current_user.registered_for?(@tournament)
-          = cancel_signup_button @tournament
-        - elsif @tournament.signup_open?
-          = signup_button @tournament
+  article.single.post
+    header
+      h1 = @tournament.name
 
-      h3 Currently registered players
+    / TODO - add a text saying when is the tournament starting,
+    / maybe use distance_of_time_in_words_to_now or time_ago_in_words
+    - if @tournament.checkin_open?
+      = checkin_button @tournament
+    - else
+      - if current_user && current_user.registered_for?(@tournament)
+        = cancel_signup_button @tournament
+      - elsif @tournament.signup_open?
+        = signup_button @tournament
 
-      - if @registered_users.empty?
-        p There are no players registered
-      - else
+    h2 Currently registered players
+
+    - if @registered_users.empty?
+      p There are no players registered
+    - else
+      ul
+        - @registered_users.each do |signup|
+          li = signup.user.username
+
+      - if is_writer?
         ul
           - @registered_users.each do |signup|
-            li = signup.user.username
+            li = signup.user.bnet_info
 
-        - if is_writer?
-          ul
-            - @registered_users.each do |signup|
-              li = signup.user.bnet_info
-
-          ul
-            - @registered_users.each do |signup|
-              li = signup.user.email
+        ul
+          - @registered_users.each do |signup|
+            li = signup.user.email
 
 
-      - if @checked_users.empty?
-        p There are no players checked in yet
-      - else
-        h3 Checked in players
+    - if @checked_users.empty?
+      p There are no players checked in yet
+    - else
+      h2 Checked in players
+      ul
+        - @checked_users.each do |signup|
+          li
+            = signup.user.username
+            - if is_writer?
+              span.bnet
+                |  - battle.net info:
+                strong = signup.user.bnet_info
+                |
+                em = signup.user.email
+
+      - if is_writer?
         ul
           - @checked_users.each do |signup|
-            li
-              = signup.user.username
-              - if is_writer?
-                span.bnet
-                  |  - battle.net info:
-                  strong = signup.user.bnet_info
-                  |
-                  em = signup.user.email
+            li = signup.user.bnet_info
 
-        - if is_writer?
-          ul
-            - @checked_users.each do |signup|
-              li = signup.user.bnet_info
-
-          ul
-            - @checked_users.each do |signup|
-              li = signup.user.email
+        ul
+          - @checked_users.each do |signup|
+            li = signup.user.email
