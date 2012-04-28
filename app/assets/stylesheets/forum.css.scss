@@ -36,6 +36,10 @@
   }
 }
 
+ul.breadcrumb {
+  margin-bottom: 0;
+}
+
 // div.topic {
 //   display: block;
 //   padding: 10px;
@@ -53,17 +57,21 @@
 // }
 
 div.reply {
-  padding: 10px;
+  padding: 20px 10px 10px 20px;
   background: rgba(#000, 0.01);
   border-bottom: 1px solid #ddd;
 
   .author {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 14px;
+    margin-bottom: 2px;
+
+    a { color: #666; }
     span.date {
       font-size: 12px;
       font-weight: normal;
       padding-left: 10px;
+      color: #aaa;
     }
   }
 

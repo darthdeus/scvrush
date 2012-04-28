@@ -64,10 +64,10 @@ class Reply extends Backbone.Model
 
 class ReplyView extends Backbone.View
   className: 'reply'
-  template: _.template('<div class="reply"><div class="author">' +
+  template: _.template('<div class="author">' +
     '<a href="/users/<%= user_id %>-<%= author %>"><%= author %></a>' +
     '<span class="date"><%= date %> ago</span></div>' +
-    '<div class="content"><%= content %></div>')
+    '<div class="content"><%= content %>')
 
   render: ->
     html = @template(@model.toJSON())
