@@ -11,14 +11,20 @@ script type="text/template" id="replies-template"
   .replies
 
   .new-reply
-    form class="well"
-      fieldset.control-group
-        legend Post a new reply
-        / = hidden_field_tag 'reply[topic_id]', @topic.id
-        input type="hidden" name="reply[topic_id]"
 
-        textarea name="content" class="span6" rows="6" data-required="true"
+    - if logged_in?
+      form class="well"
+        fieldset.control-group
+          legend Post a new reply
+          / = hidden_field_tag 'reply[topic_id]', @topic.id
+          input type="hidden" name="reply[topic_id]"
 
-        .actions
-          button type="submit" class="btn btn-primary" Reply!
-          span.help-inline or press ctrl + enter to submit
+          textarea name="content" class="span6" rows="6" data-required="true"
+
+          .actions
+            button type="submit" class="btn btn-primary" Reply!
+            span.help-inline or press ctrl + enter to submit
+
+    - else
+      .alert.alert-error
+        a.login-link href="#" Click here to log in before you can reply

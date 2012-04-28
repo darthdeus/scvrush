@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user, :logged_in?
 
+  before_filter :export_user_id
+
   rescue_from CanCan::AccessDenied do |ex|
     flash[:error] = ex.message
     redirect_to root_path
@@ -75,4 +77,9 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+
+  def export_user_id
+    gon.user_id = current_user.id if logged_in?
+  end
+
 end

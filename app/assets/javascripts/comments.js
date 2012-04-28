@@ -86,8 +86,8 @@ App.CommentView = Backbone.View.extend({
       this.$el.addClass('comment-response');
     }
 
-    if ((typeof window.user_id == "undefined")
-          || window.user_id != this.model.get('user_id')) {
+    if ((typeof gon.user_id == "undefined")
+          || gon.user_id != this.model.get('user_id')) {
       this.$('.delete').remove();
     }
 

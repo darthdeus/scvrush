@@ -3,11 +3,8 @@
 }
 
 .topics .topic {
-  @include transition (background 1.0s ease-in-out);
-  &:hover { background: #eee;  }
 
   overflow: hidden;
-  background: #fefefe;
   border-bottom: 1px solid #ddd;
 
   &:last-child { border-bottom: none }
@@ -16,7 +13,19 @@
     color: #333;
     display: block;
     padding: 10px;
-    &:hover { text-decoration: none }
+    background: #fefefe;
+
+    &:visited {
+      color: #999;
+      background: #f6f6f6;
+    }
+
+    @include transition (background 1.0s ease-in-out);
+    &:hover {
+      background: #e1e1a1;
+      text-decoration: none;
+    }
+
   }
 
   .date {

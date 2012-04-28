@@ -65,11 +65,11 @@ App.LoginForm = function(template) {
 
 $(function() {
 
-  var loginForm = new App.LoginForm($('#login_form').html());
+  window.loginForm = new App.LoginForm($('#login_form').html());
 
   $('.js-login-link').click(function(e) {
     e.preventDefault();
-    loginForm.show();
+    window.loginForm.show();
   });
 
 });

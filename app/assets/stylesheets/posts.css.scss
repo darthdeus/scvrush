@@ -80,6 +80,14 @@
 
 
 .single {
+  h1 {
+    line-height: 1;
+  }
+
+  header {
+    margin-bottom: 10px;
+    time { color: #999; }
+  }
 
   p {
     font-family: "ff-meta-web-pro",sans-serif;
@@ -249,6 +257,3 @@
     width: 400px;
   }
 }
-
-
-

@@ -156,10 +156,14 @@ $ ->
 
   $('.newtopic').click (e) ->
     e.preventDefault()
-    section_id = $(this).attr 'data-section-id'
-    throw "section_id is a required attribute" unless section_id
-    sf.show section_id
-
+    if gon.user_id
+      section_id = $(this).attr 'data-section-id'
+      throw "section_id is a required attribute" unless section_id
+      sf.show section_id
+    else
+#      $('ul.nav .js-login-link').click();
+      # TODO - make a global login object singleton
+      window.loginForm.show()
 
   window.r = new RepliesView()
   window.r.collection.fetch()

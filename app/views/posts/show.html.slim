@@ -1,11 +1,14 @@
 - content_for(:title, @post.title + ' | SCV Rush')
 - content_for(:description, post_excerpt(@post.content, 100))
+
 #left-column
   = content_tag "article", class: "single post", data: { comments: @comments, post_id: @post.id } do
     / TODO - rewrite to semantic HTML5
-    heading
+    header
       h1 = @post.title
-
+      time datetime="#{@post.published_at.to_s}" pubdate="true"
+        ' Published on
+        = @post.published_at.strftime("#{@post.published_at.day.ordinalize} %b %Y")
     = m @post.content
 
     footer
