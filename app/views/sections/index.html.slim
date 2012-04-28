@@ -1,29 +1,30 @@
 = content_for :head do
   = javascript_include_tag "forum"
 
-.alert.alert-notice
-  h1 The forum is under construction
+#left-column
+  .alert.alert-notice
+    h1 The forum is under construction
 
-  p
-    ' We are working hard to get our forum up and running.
-    ' Once that's done, we'll notify all of our fans. Stay tuned!
+    p
+      ' We are working hard to get our forum up and running.
+      ' Once that's done, we'll notify all of our fans. Stay tuned!
 
-script type="text/template" id="new-topic-template"
+  script type="text/template" id="new-topic-template"
 
-  form class="well new-topic-form"
+    form class="well new-topic-form"
 
-    fieldset
-      legend Submit a new topic
+      fieldset
+        legend Submit a new topic
 
-    input type="hidden" name="topic[section_id]" value="<%= section %>"
+      input type="hidden" name="topic[section_id]" value="<%= section %>"
 
-    .control-group
-      = text_field_tag 'topic[name]', '', placeholder: 'New topic name'
+      .control-group
+        = text_field_tag 'topic[name]', '', placeholder: 'New topic name'
 
-    = text_area_tag 'topic[content]', '', placeholder: 'And some meaningful text here ...'
+      = text_area_tag 'topic[content]', '', placeholder: 'And some meaningful text here ...'
 
-    .actions
-      button type="submit" class="btn btn-primary" Submit topic
-      a href="#" class="cancel help-inline" or cancel and go back to the forum
+      .actions
+        button type="submit" class="btn btn-primary" Submit topic
+        a href="#" class="cancel help-inline" or cancel and go back to the forum
 
-= render @sections
+  = render @sections
