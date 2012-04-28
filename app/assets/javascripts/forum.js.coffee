@@ -62,12 +62,82 @@ class TopicFormView extends Backbone.View
 
 class Reply extends Backbone.Model
 
+class ReplyView extends Backbone.View
+  className: 'reply'
+  template: _.template('<div class="reply"><div class="author">' +
+    '<a href="/users/<%= user_id %>-<%= author %>"><%= author %></a>' +
+    '<span class="date"><%= date %> ago</span></div>' +
+    '<div class="content"><%= content %></div>')
+
+  render: ->
+    html = @template(@model.toJSON())
+    @$el.html(html)
+    return @
+
+
 class Replies extends Backbone.Collection
   model: Reply
   url: -> @topic.url() + '/replies'
 
   initialize: (options) ->
     @topic = options.topic
+
+class RepliesView extends Backbone.View
+  el: '#replies'
+  template: -> _.template($('#replies-template').html())
+  events:
+    'submit form': 'postReply'
+    'keydown textarea': 'handleEnter'
+
+  initialize: ->
+    # We need to initialize the Replies collection with a Topic,
+    topic_id = $(@el).attr('data-topic-id')
+    # but there is no need for the topic to have any other attributes
+    # than just an `id'
+    @topic = new Topic({id: topic_id})
+    @collection = new Replies({topic: @topic})
+    @collection.on('reset', @render, @)
+    @collection.on('add', @addOne, @)
+
+  addOne: (model) ->
+    view = new ReplyView({model: model})
+    @$('.replies').append(view.render().el)
+
+  render: ->
+    @$el.empty()
+    @$el.append(@template()())
+    @$textarea = @$('textarea')
+    @collection.forEach(@addOne, @)
+
+  resetForm: ->
+    @$textarea.val('')
+
+  postReply: (e) ->
+    self = @
+    e.preventDefault()
+
+    if @$textarea.val().length <= 10
+      @$('fieldset').addClass('error')
+    else
+      attributes =
+        content: @$textarea.val()
+        topic_id: @topic.id
+      window.a = attributes
+      @collection.create({reply: attributes}, {
+        wait: true
+        success: ->
+          self.resetForm()
+        error: (reply, response) ->
+          console.log(reply, response)
+      })
+
+
+  # Handle when a user presses Ctrl/Command + Enter in the <textarea>
+  handleEnter: (event) ->
+    if (event.metaKey || event.ctrlKey) && event.keyCode == 13
+      @$('form').submit()
+    if @$textarea.val().length > 10
+      @$('fieldset').removeClass('error')
 
 
 window.Section = Section
@@ -77,7 +147,9 @@ window.TopicView = TopicView
 window.Topics = Topics
 window.TopicFormView = TopicFormView
 window.Reply = Reply
+window.ReplyView = ReplyView
 window.Replies = Replies
+window.RepliesView = RepliesView
 
 $ ->
   window.sf = new TopicFormView()
@@ -88,4 +160,7 @@ $ ->
     throw "section_id is a required attribute" unless section_id
     sf.show section_id
 
+
+  window.r = new RepliesView()
+  window.r.collection.fetch()
 #  sf.show()

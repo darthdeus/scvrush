@@ -125,7 +125,7 @@ App.Comments = Backbone.Collection.extend({
 
 App.CommentsView = Backbone.View.extend({
   el: '#comments',
-  template: _.template($('#comment-template').html()),
+  template: _.template($('#comments-template').html()),
   events: {
     'submit form': 'postComment',
     'keydown textarea': 'handleEnter',

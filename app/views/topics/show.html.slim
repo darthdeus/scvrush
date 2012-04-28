@@ -3,18 +3,22 @@
 = content_for :head do
   = javascript_include_tag "forum"
 
-.replies
-  = render collection: @replies, partial: 'topics/reply'
+/.replies
+/  = render collection: @replies, partial: 'topics/reply'
+#replies data-topic-id="#{@topic.id}"
 
-.new-reply
-  form class="well"
-    fieldset.control-group
-      legend Post a new reply
-      / = hidden_field_tag 'reply[topic_id]', @topic.id
-      input type="hidden" name="reply[topic_id]"
+script type="text/template" id="replies-template"
+  .replies
 
-      textarea name="content" class="span6" rows="6" data-required="true"
+  .new-reply
+    form class="well"
+      fieldset.control-group
+        legend Post a new reply
+        / = hidden_field_tag 'reply[topic_id]', @topic.id
+        input type="hidden" name="reply[topic_id]"
 
-      .actions
-        button type="submit" class="btn btn-primary" Reply!
-        span.help-inline or press ctrl + enter to submit
+        textarea name="content" class="span6" rows="6" data-required="true"
+
+        .actions
+          button type="submit" class="btn btn-primary" Reply!
+          span.help-inline or press ctrl + enter to submit

@@ -11,6 +11,22 @@ class Reply < ActiveRecord::Base
 
   acts_as_voteable
 
+  include ActionView::Helpers
+  
+  def self.for_topic(topic_id)
+    where(topic_id: topic_id).includes(:user).map(&:to_simple_json)
+  end
+
+  def to_simple_json
+    {
+      id:      self.id,
+      content: simple_format(self.content),
+      user_id: self.user.id,
+      author:  self.user.username,
+      date:    time_ago_in_words(self.created_at)
+    }      
+  end
+  
   def set_last_reply
     self.topic.last_reply = self
     self.topic.last_reply_at = self.created_at

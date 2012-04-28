@@ -35,7 +35,7 @@ Scvrush::Application.routes.draw do
   end
 
   resources :topics, only: :show do
-    resources :replies, only: [:create, :destroy]
+    resources :replies, only: [:index, :create, :destroy]
   end
 
 

@@ -20,7 +20,7 @@ class TopicsController < ApplicationController
   end
 
   def create
-    topic = Section.create_first_topic(params)
+    topic = Section.create_first_topic(params, current_user)
 
     if topic
       render json: { status: :ok, location: topic_path(topic) } and return
