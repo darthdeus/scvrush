@@ -71,4 +71,3 @@ jQuery ->
         $(this).click() if $(this).text() == gon[filter]
     else
       $(".pick-#{filter} button:first").click()
-
