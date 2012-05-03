@@ -24,6 +24,8 @@ class Topics extends Backbone.Collection
   model: Topic
   url: -> @section.url() + '/topics'
 
+  # TODO - rewrite to use @options instead, as they're passed
+  # by default ... also rewrite in all other places and in comments.js
   initialize: (options) ->
     @section = options.section
 

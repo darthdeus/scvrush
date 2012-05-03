@@ -68,10 +68,9 @@ Spork.each_run do
     Dir["#{Rails.root}/app/models/**/*.rb"].each { |model| load model }
   end
 
-  # # reload all factories
+  # reload all factories
   FactoryGirl.factories.clear
-  Dir.glob("#{::Rails.root}/spec/factories/*.rb").each { |file| load file }
+  Dir["#{::Rails.root}/spec/factories/*.rb"].each { |file| load file }
 
   Scvrush::Application.reload_routes!
 end
-
