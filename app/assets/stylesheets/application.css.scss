@@ -354,7 +354,7 @@ button.btn, a.btn {
   min-height: 120px;
   background: rgba(#000, 0.05);
 
-  h2 { margin-top: 0; }
+  h2 { margin-top: 5px; }
   img {
     float: left;
     @include box-shadow(0 0 3px #000);
@@ -399,7 +399,7 @@ button.btn, a.btn {
 .practice-submit {
   position: relative;
   top: 34px;
-  left: 81px;
+  left: 41px;
   z-index: 100;
 }
 

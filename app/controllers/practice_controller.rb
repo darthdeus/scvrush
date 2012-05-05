@@ -4,7 +4,7 @@ class PracticeController < ApplicationController
   def index
     if params[:race] || params[:server] || params[:league]
       @users = User.practice
-      @users = @users.where(race: params[:race]) if params[:race]
+      @users = @users.where(race: params[:race]) if params[:race] && params[:race] != 'Any'
       @users = @users.where(server: params[:server]) if params[:server]
       @users = @users.where(league: params[:league]) if params[:league]
     end
