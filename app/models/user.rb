@@ -30,13 +30,12 @@ class User < ActiveRecord::Base
   has_karma(:comments, as: :user)
 
 
-
   attr_accessor :password
   before_save :encrypt_password
 
   mount_uploader :avatar, AvatarUploader
 
-  scope :practice, where(practice: true)
+  scope :practice, where(practice: true).order('created_at DESC')
 
   # TODO - use Rails 3 validations
   validates_presence_of :username
