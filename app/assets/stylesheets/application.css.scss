@@ -351,13 +351,14 @@ button.btn, a.btn {
 .staff {
   clear: both;
   padding: 10px;
+  min-height: 120px;
   background: rgba(#000, 0.05);
 
+  h2 { margin-top: 0; }
   img {
     float: left;
-    box-shadow: 0 0 3px #000;
-    -webkit-box-shadow: 0 0 3px #000;
-    margin: 0 20px 0 0;
+    @include box-shadow(0 0 3px #000);
+    margin: 10px 20px 0 10px;
   }
   .info {
     padding-top: 5px;
@@ -366,11 +367,12 @@ button.btn, a.btn {
 
 .staff:nth-child(even) {
   background: white;
+  text-align: right;
   img {
     float: right;
-    margin: 0 0 0 20px;
+    margin: 10px 10px 0 20px;
   }
-  text-align: right;
+
 }
 
 .add-on + .help-inline {
