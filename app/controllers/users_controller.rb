@@ -20,7 +20,15 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.includes(comments: :post).find(params[:id])
+    # @user = User.where("id = ? OR username = ?", params[:id],
+    # params[:id]).includes(comments: :post)
+
+
+
+    # @user = User.find(params[:id])
+
+    # @user = User.find_by_username_or_id(params[:id])
+    @user = User.where("id = ? OR username = ?", params[:id], params[:id]).includes(comments: :post).first
   end
 
   def edit
