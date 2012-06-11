@@ -10,6 +10,8 @@
 
 jQuery ->
 
+  $('.carousel').carousel({ interval: 5000 })
+
   window.gon = {} unless window.gon?
 
   url = "http://api.justin.tv/api/stream/list.json"

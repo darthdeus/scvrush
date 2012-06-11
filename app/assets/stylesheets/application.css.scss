@@ -407,6 +407,20 @@ button.btn, a.btn {
   margin-top: 6px;
 }
 
+.carousel {
+  margin: 0 15px 20px;
+
+  .carousel-control {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    display: none;
+    margin-top: 0;
+  }
+
+  &:hover .carousel-control { display: block; }
+}
+
+
+
 
 @import "posts";
 @import "progress_bar";

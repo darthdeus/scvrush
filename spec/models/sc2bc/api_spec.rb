@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe SC2BC::API do
+include SC2BC::API
 
-  include SC2BC::API
+describe SC2BC::API do
 
   describe "#login_via_form" do
 
@@ -11,13 +11,21 @@ describe SC2BC::API do
 
       options = {
         name: "SCV Rush BSG #20",
-        begin: "2011-07-07T18:05:00+00:00",
-        end: "-0001-11-30T00:00:00+00:00",
+        :begin => "2011-07-07T18:05:00+00:00",
+        :end => "2012-01-01T00:00:00+00:00",
         registration_begin: "2011-07-05T13:05:00+00:00",
         registration_end: "2011-07-07T17:30:00+00:00",
         confirmation_begin: "2011-07-07T17:30:00+00:00",
-        confirmation_end: "2011-07-07T17:55:00+00:00"
+        confirmation_end: "2011-07-07T17:55:00+00:00",
+        tournament_type_id: "double-elimination"
       }
+
+
+      res = SC2BC::API.post("https://darthdeus:#{token}@beta.sc2bc.com/api/tournament", options)
+      binding.pry
+
+
+
     end
 
   end

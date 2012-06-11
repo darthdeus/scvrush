@@ -3,6 +3,27 @@
 
 - cache('recent_posts', :expire_in => 5.minutes) do
 
+  .carousel.slide#myCarousel
+    .carousel-inner
+      .item.active
+        a href="http://scvrush.com/posts/9936-upcoming-events"
+          = image_tag "1_upcoming.png"
+      .item
+        a href="http://eepurl.com/iZbzv"
+          = image_tag "2_news.png"
+      .item
+        a href="http://scvrush.com/practice"
+          = image_tag "3_buddy.png"
+      .item
+        a href="http://scvrush.com/posts/9724-advertise-with-us/"
+          = image_tag "4_adv2c.png"
+      .item
+        a href="http://scvrush.com/posts/9937-affiliates"
+          = image_tag "5_sliderE.png"
+
+    a class="carousel-control left" href="#myCarousel" data-slide="prev" &lsaquo;
+    a class="carousel-control right" href="#myCarousel" data-slide="next" &rsaquo;
+
   ul.nav.nav-tabs
     li.active
       a href="#tournaments" data-toggle="tab" Tournaments

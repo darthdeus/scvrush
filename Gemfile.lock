@@ -318,7 +318,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activeadmin
+  activeadmin (~> 0.4.3)
   acts-as-taggable-on (~> 2.1.0)
   airbrake (~> 3.0.9)
   bcrypt-ruby (~> 3.0.1)
@@ -353,7 +353,7 @@ DEPENDENCIES
   rb-fchange
   rb-fsevent
   rb-inotify
-  rdiscount
+  rdiscount (~> 1.6.8)
   rest-client (~> 1.6.7)
   rolify (~> 2.2.2)
   rspec-rails (~> 2.9.0)
