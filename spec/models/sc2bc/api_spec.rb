@@ -9,7 +9,6 @@ describe SC2BC::API do
     it "returns true on successful request" do
       token = "de914d907fe0dccdb67880d0b10b69081a8d290e"
 
-
       options = {
         name: "SCV Rush BSG #20",
         begin: "2011-07-07T18:05:00+00:00",
@@ -19,8 +18,6 @@ describe SC2BC::API do
         confirmation_begin: "2011-07-07T17:30:00+00:00",
         confirmation_end: "2011-07-07T17:55:00+00:00"
       }
-
-      binding.pry
     end
 
   end

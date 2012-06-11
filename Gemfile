@@ -22,8 +22,6 @@ group :assets do
   gem 'uglifier',         '~> 1.2.3'
 end
 
-gem 'newrelic_rpm',       '~> 3.3.3'
-
 gem 'memcache-client',    '~> 1.8.5'
 # gem 'redis-store'
 # gem "redis-rails", "~> 3.2.1.rc"
@@ -31,8 +29,8 @@ gem 'memcache-client',    '~> 1.8.5'
 gem 'cancan', '~> 1.6.7'
 gem 'rolify', '~> 2.2.2'
 
-gem 'rdiscount'
-gem 'activeadmin'#, '~> 0.4.0'
+gem 'rdiscount',           '~> 1.6.8'
+gem 'activeadmin',         '~> 0.4.3'
 gem 'kaminari',            '~> 0.13.0'
 
 gem 'thumbs_up',           '~> 0.5.3'
