@@ -38,7 +38,8 @@ class User < ActiveRecord::Base
   scope :practice, where(practice: true).order('created_at DESC')
 
   def self.filtered(params)
-    res = self.where(race: params[:race]) if params[:race] && params[:race] != 'Any'
+    res = self
+    res = res.where(race: params[:race]) if params[:race] && params[:race] != 'Any'
     res = res.where(server: params[:server]) if params[:server]
     res = res.where(league: params[:league]) if params[:league]
     return res

@@ -1,5 +1,3 @@
-# $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
-
 require 'rvm/capistrano'
 require 'new_relic/recipes'
 require 'bundler/capistrano'
@@ -57,7 +55,6 @@ namespace :deploy do
     run "#{try_sudo} service unicorn stop"
   end
   task :restart, :roles => :app, :except => { :no_release => true } do
-    # run "#{try_sudo} service unicorn restart"
     # TODO - this needs to be fixed to work via the init script
     run "#{try_sudo} service unicorn stop"
     run "cd #{current_path}; bundle exec ./bin/unicorn -D -c config/unicorn.rb -E production"
@@ -70,20 +67,11 @@ namespace :deploy do
 
 end
 
-# TODO - make this cleaner
 before "deploy:assets:precompile", "deploy:symlink_shared"
-
-# TODO - system install?
-# before 'deploy:setup', 'rvm:install_rvm'
-
-# before "deploy:finalize_update", "rvm:trust_rvmrc"
-after "deploy:update", "newrelic:notice_deployment"
-
 
 
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
-
 
 # slows down deploys, fix?
 # require './config/boot'

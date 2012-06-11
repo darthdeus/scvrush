@@ -13,7 +13,7 @@ gem 'slim-rails',   '~> 1.0.3'
 gem 'sass-rails',   '~> 3.2.5'
 
 gem 'fog',          '~> 1.3.0'
-gem 'carrierwave', github: 'jnicklas/carrierwave', ref: "be594ea374a66be25e0cd63e58176987803ccbc4"
+gem 'carrierwave', github: 'darthdeus/carrierwave', ref: "be594ea374a66be25e0cd63e58176987803ccbc4"
 gem 'mini_magick',        '~> 3.4'
 gem 'airbrake',           '~> 3.0.9'
 gem 'bourbon',            '~> 1.4.0'
