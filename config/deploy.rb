@@ -1,5 +1,4 @@
 require 'rvm/capistrano'
-require 'new_relic/recipes'
 require 'bundler/capistrano'
 
 set :application, "scvrush.com"
