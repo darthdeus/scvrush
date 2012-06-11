@@ -20,12 +20,7 @@ describe SC2BC::API do
         tournament_type_id: "double-elimination"
       }
 
-
-      res = SC2BC::API.post("https://darthdeus:#{token}@beta.sc2bc.com/api/tournament", options)
-      binding.pry
-
-
-
+      # res = SC2BC::API.post("https://darthdeus:#{token}@beta.sc2bc.com/api/tournament", options)
     end
 
   end
