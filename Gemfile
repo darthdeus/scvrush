@@ -1,6 +1,6 @@
 source :rubygems
 
-gem 'rails',        '3.2.2'
+gem 'rails',        '3.2.5'
 
 gem 'jquery-rails', '~> 2.0.1'
 gem 'bcrypt-ruby',  '~> 3.0.1', :require => 'bcrypt'

@@ -10,7 +10,7 @@
 
 jQuery ->
 
-  $('.carousel').carousel({ interval: 5000 })
+  $('.carousel').carousel({ interval: 3500 })
 
   window.gon = {} unless window.gon?
 
