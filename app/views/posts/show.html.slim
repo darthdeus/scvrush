@@ -2,8 +2,7 @@
 - content_for(:description, post_excerpt(@post.content, 100))
 
 #left-column
-  = content_tag "article", class: "single post", data: { comments: @comments, post_id: @post.id } do
-    / TODO - rewrite to semantic HTML5
+  article class="single post" data-comments="#{@comments}" data-post_id="#{@post.id}"
     header
       h1 = @post.title
       - if @post.published_at
