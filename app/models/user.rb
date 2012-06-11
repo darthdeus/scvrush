@@ -37,6 +37,13 @@ class User < ActiveRecord::Base
 
   scope :practice, where(practice: true).order('created_at DESC')
 
+  def self.filtered(params)
+    res = self.where(race: params[:race]) if params[:race] && params[:race] != 'Any'
+    res = res.where(server: params[:server]) if params[:server]
+    res = res.where(league: params[:league]) if params[:league]
+    return res
+  end
+
   # TODO - use Rails 3 validations
   validates_presence_of :username
   validates :username, uniqueness: true, on: :create
