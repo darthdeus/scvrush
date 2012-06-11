@@ -87,7 +87,7 @@ p {
 }
 
 h2.arrowed, h3.arrowed {
-  clear: both;
+  margin-top: 0;
   font-family: "bebas-neue",sans-serif;
   color: #333;
   background: url("/assets/heading-box.png") no-repeat -12px 0;
@@ -413,7 +413,6 @@ button.btn, a.btn {
 @import "users";
 @import "forum";
 @import "dashboard";
-@import "pagination";
 @import "jquery-ui.custom";
 @import "fancybox/jquery.fancybox";
 

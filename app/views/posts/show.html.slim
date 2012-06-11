@@ -8,7 +8,7 @@
       - if @post.published_at
         time datetime="#{@post.published_at.to_s}" pubdate="true"
           ' Published on
-          = @post.published_at.strftime("#{@post.published_at.day.ordinalize} %b %Y")
+          = @post.readable_published_at
     = m @post.content
 
     footer
@@ -21,7 +21,7 @@
 
       - if @post.user && @post.user.about
         #author-box
-          .avatar = image_tag @post.user.avatar.url(:thumb) if @post.user.avatar?
+          .avatar = author_avatar_for_post(@post)
           .content
             h3.name = link_to @post.user.username, @post.user
             .about = m @post.user.about

@@ -46,6 +46,14 @@ class Post < ActiveRecord::Base
     self.status == Post::PUBLISHED
   end
 
+  def author_avatar_thumb
+    self.user.avatar.url(:thumb)
+  end
+
+  def readable_published_at
+    self.published_at.strftime("#{self.published_at.day.ordinalize} %b %Y")
+  end
+
   # Set a post publish status & published_at date for given parameters
   #
   # params - A hash of params. To unpublish, set :published == "0",

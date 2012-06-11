@@ -57,4 +57,21 @@ module PostsHelper
   def strip_markdown(md)
     md.gsub(/[\[\]#*]/, '').gsub(/\(.*\)/, '')
   end
+
+
+  # Return an image tag for post author's avatar,
+  # or just return a default SCV Rush avatar if the user
+  # doesn't have one.
+  #
+  # TODO - assign a designer to create a placeholder avatar
+  # customized for scvrush
+  def author_avatar_for_post(post)
+    if post.user.avatar?
+      url = post.user.avatar.url(:thumb)
+    else
+      url = "https://s3.amazonaws.com/scvrush/uploads/post/featured_image/100x100_dark.png"
+    end
+    return image_tag(url)
+  end
+
 end
