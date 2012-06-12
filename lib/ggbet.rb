@@ -9,10 +9,10 @@ class GGBet
     case value
       when '1'
         @cache.write('ggbet_logo', true)
-        logger.info 'ggbet logo enabled'
+        Rails.logger.info 'ggbet logo enabled'
       when '0'
         @cache.write('ggbet_logo', nil)
-        logger.info 'ggbet logo disabled'
+        Rails.logger.info 'ggbet logo disabled'
       else
         raise ArgumentError.new('Invalid value passed to #toggle_logo, only "0" or "1" allowed.')
     end
@@ -23,10 +23,10 @@ class GGBet
     case value
       when '1'
         @cache.write('ggbet_widget', true)
-        logger.info 'ggbet widget enabled'
+        Rails.logger.info 'ggbet widget enabled'
       when '0'
         @cache.write('ggbet_widget', nil)
-        logger.info 'ggbet widget disabled'
+        Rails.logger.info 'ggbet widget disabled'
       else
         raise ArgumentError.new('Invalid value passed to #toggle_logo, only "0" or "1" allowed.')
     end
