@@ -106,7 +106,8 @@ h2.arrowed, h3.arrowed {
   }
 
   &.facebook-header {
-    margin-bottom: 10px !important;
+    margin-bottom: 10px;
+    margin-top: 10px;
   }
 
 }
@@ -161,23 +162,22 @@ h2.arrowed, h3.arrowed {
   }
 
   .paypal-donate {
-    margin: 5px 0 10px 10px;
+    margin: 0 0 0 10px;
+    float: right;
   }
 }
 
 .coach {
   background: #fafafa;
-  border-right: 1px solid #dedede;
   border-bottom: 1px solid #dedede;
   display: block;
-  width: 134px;
+  width: 290px;
   height: 45px;
   padding: 10px 4px 0 15px;
   float: left;
 
   @include transition (background 1.0s ease-in-out);
 
-  &:nth-child(even) { border-right: none; width: 137px; }
   &:hover {
     background: #efefef;
   }
@@ -185,7 +185,11 @@ h2.arrowed, h3.arrowed {
   a {
     text-decoration: none;
     color: #333;
+    font-size: 22px;
+    float: left;
+    line-height: 42px;
   }
+
   .name {
     font-size: 14px;
     font-weight: normal;
@@ -193,6 +197,8 @@ h2.arrowed, h3.arrowed {
   }
 
   .tags {
+    float: right;
+    margin-top: 20px;
     a {
       color: #999;
       background: none;
@@ -284,7 +290,8 @@ h2.arrowed, h3.arrowed {
 
 ul.bloglinks {
   padding: 0;
-  margin: 0;
+  margin: 0 0 10px 0;
+
   li {
     padding-left: 10px;
     border-bottom: 1px solid #ddd;
