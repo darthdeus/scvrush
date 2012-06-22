@@ -1,18 +1,22 @@
 source :rubygems
 
+# TODO - update to 3.2.6
 gem 'rails',        '3.2.5'
 
 gem 'jquery-rails', '~> 2.0.1'
 gem 'bcrypt-ruby',  '~> 3.0.1', :require => 'bcrypt'
 
-gem 'coffee-rails', '~> 3.2.2'
+gem 'coffee-rails',              '~> 3.2.2'
 
-gem 'mysql2',       '~> 0.3.11'
+gem 'mysql2',                    '~> 0.3.11'
 
-gem 'slim-rails',   '~> 1.0.3'
-gem 'sass-rails',   '~> 3.2.5'
+gem 'slim-rails',                '~> 1.0.3'
+gem 'sass-rails',                '~> 3.2.5'
+gem 'jquery-datatables-rails',   '~> 1.9.1.3'
+gem 'bootstrap-sass',            '~> 2.0.3.1'
+gem 'simple_form',               '~> 2.0.1'
 
-gem 'fog',          '~> 1.3.0'
+gem 'fog',                       '~> 1.3.0'
 gem 'carrierwave', github: 'darthdeus/carrierwave', ref: "be594ea374a66be25e0cd63e58176987803ccbc4"
 gem 'mini_magick',        '~> 3.4'
 gem 'airbrake',           '~> 3.0.9'
@@ -37,7 +41,6 @@ gem 'acts-as-taggable-on', '~> 2.1.0'
 
 gem 'rest-client',         '~> 1.6.7'
 gem 'gon',                 '~> 2.3.0'
-gem 'jquery-datatables-rails', '~> 1.9.1.3'
 
 # find an alternative, https://github.com/bbatsov/rails-style-guide#flawed
 gem 'therubyracer', :group => :production
@@ -77,4 +80,3 @@ end
 gem 'unicorn',        '~> 4.2.0'
 gem 'capistrano',     '~> 2.11.2'
 gem 'rvm-capistrano', '~> 1.0.2'
-

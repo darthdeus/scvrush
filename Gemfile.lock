@@ -45,6 +45,7 @@ GEM
       builder
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
+    bootstrap-sass (2.0.3.1)
     bourbon (1.4.0)
       sass (>= 3.1)
     builder (3.0.0)
@@ -239,6 +240,9 @@ GEM
       ffi (~> 1.0)
       multi_json (~> 1.0)
       rubyzip
+    simple_form (2.0.2)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
     simplecov (0.6.1)
       multi_json (~> 1.0)
       simplecov-html (~> 0.5.3)
@@ -288,6 +292,7 @@ DEPENDENCIES
   acts-as-taggable-on (~> 2.1.0)
   airbrake (~> 3.0.9)
   bcrypt-ruby (~> 3.0.1)
+  bootstrap-sass (~> 2.0.3.1)
   bourbon (~> 1.4.0)
   cancan (~> 1.6.7)
   capistrano (~> 2.11.2)
@@ -326,6 +331,7 @@ DEPENDENCIES
   rspec-rails (~> 2.9.0)
   rvm-capistrano (~> 1.0.2)
   sass-rails (~> 3.2.5)
+  simple_form (~> 2.0.1)
   simplecov (~> 0.6.1)
   slim-rails (~> 1.0.3)
   spork (> 0.9.0.rc)
