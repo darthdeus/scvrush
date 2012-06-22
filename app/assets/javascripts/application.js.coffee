@@ -3,12 +3,22 @@
 #= require lib/jquery.fancybox
 #= require lib/underscore
 #= require lib/backbone
-#= require active_admin
 #= require lib/bootstrap
 #= require dashboard
+#= require dataTables/jquery.dataTables
+#= require dataTables/jquery.dataTables.bootstrap
 #= require login
 
 jQuery ->
+
+  $('.data-table').dataTable({
+      "sPaginationType": "bootstrap"
+      # "bAutoWidth": false
+      # "oLanguage": {
+      #   "sLengthMenu": "_MENU_ records per page"
+      #     }
+    })
+
 
   $('.carousel').carousel({ interval: 3500 })
 

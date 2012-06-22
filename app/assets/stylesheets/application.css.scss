@@ -5,8 +5,9 @@
  *= require_self
  */
 
- @import "bourbon";
- @import "bootstrap";
+@import "bourbon";
+@import "bootstrap";
+@import "dataTables/jquery.dataTables.bootstrap";
 
 $linkBlue: #08C;
 $linkBlueHover: #005580;

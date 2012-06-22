@@ -30,7 +30,6 @@ gem 'cancan', '~> 1.6.7'
 gem 'rolify', '~> 2.2.2'
 
 gem 'rdiscount',           '~> 1.6.8'
-gem 'activeadmin',         '~> 0.4.3'
 gem 'kaminari',            '~> 0.13.0'
 
 gem 'thumbs_up',           '~> 0.5.3'
@@ -38,6 +37,7 @@ gem 'acts-as-taggable-on', '~> 2.1.0'
 
 gem 'rest-client',         '~> 1.6.7'
 gem 'gon',                 '~> 2.3.0'
+gem 'jquery-datatables-rails', '~> 1.9.1.3'
 
 # find an alternative, https://github.com/bbatsov/rails-style-guide#flawed
 gem 'therubyracer', :group => :production

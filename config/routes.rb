@@ -1,5 +1,9 @@
 Scvrush::Application.routes.draw do
 
+  namespace :admin do
+    resources :users
+  end
+
   # scope constraints: { protocol: 'https' } do
     get "api/auth"
     get "api/login"
@@ -26,6 +30,7 @@ Scvrush::Application.routes.draw do
   get "dashboard/index", as: 'dashboard'
   get "dashboard/ggbet"
 
+
   resources :votes, only: [:create, :destroy]
   resources :tournaments, only: [:show, :edit, :update]
   resources :signups, only: [:create, :destroy, :update]
@@ -38,15 +43,11 @@ Scvrush::Application.routes.draw do
     resources :replies, only: [:index, :create, :destroy]
   end
 
-
   get "home/index"
 
   # FIXME - this causes acts_as_taggable to bug any rake tasks,
   # including migrations, as it loads the model and fails on a missing
   # tags table
-  ActiveAdmin.routes(self)
-
-  devise_for :admin_users, ActiveAdmin::Devise.config
 
   get "posts/tag/:id" => "posts#tag", :as => "tag"
 
