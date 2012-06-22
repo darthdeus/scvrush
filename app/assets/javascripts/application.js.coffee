@@ -11,14 +11,6 @@
 
 jQuery ->
 
-  $('.data-table').dataTable({
-      "sPaginationType": "bootstrap"
-      # "bAutoWidth": false
-      # "oLanguage": {
-      #   "sLengthMenu": "_MENU_ records per page"
-      #     }
-    })
-
 
   $('.carousel').carousel({ interval: 3500 })
 

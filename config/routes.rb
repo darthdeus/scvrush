@@ -1,8 +1,11 @@
 Scvrush::Application.routes.draw do
 
-  namespace :admin do
-    resources :users
-  end
+  # TODO - delete the admin/users controller
+  # namespace :admin do
+  #   resources :users
+  # end
+
+  mount ScvrushAdmin::Engine => '/admin'
 
   # scope constraints: { protocol: 'https' } do
     get "api/auth"

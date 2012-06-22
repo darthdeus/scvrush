@@ -1,12 +1,13 @@
 source :rubygems
 
-# TODO - update to 3.2.6
-gem 'rails',        '3.2.5'
+gem 'rails',        '~> 3.2.6'
 
 gem 'jquery-rails', '~> 2.0.1'
 gem 'bcrypt-ruby',  '~> 3.0.1', :require => 'bcrypt'
 
 gem 'coffee-rails',              '~> 3.2.2'
+
+gem 'scvrush_admin', path: '~/projects/scvrush_admin'
 
 gem 'mysql2',                    '~> 0.3.11'
 
@@ -17,7 +18,7 @@ gem 'bootstrap-sass',            '~> 2.0.3.1'
 gem 'simple_form',               '~> 2.0.1'
 
 gem 'fog',                       '~> 1.3.0'
-gem 'carrierwave', github: 'darthdeus/carrierwave', ref: "be594ea374a66be25e0cd63e58176987803ccbc4"
+gem 'carrierwave', github: 'darthdeus/carrierwave', ref: "be594ea"
 gem 'mini_magick',        '~> 3.4'
 gem 'airbrake',           '~> 3.0.9'
 gem 'bourbon',            '~> 1.4.0'
