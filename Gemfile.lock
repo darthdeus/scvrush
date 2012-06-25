@@ -7,8 +7,9 @@ GIT
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
 
-PATH
-  remote: ~/projects/scvrush_admin/
+GIT
+  remote: git@github.com:darthdeus/scvrush_admin.git
+  revision: 4e178fe961f84962edea8899c48428f87d3a82bf
   specs:
     scvrush_admin (0.0.1)
       rails (~> 3.2.6)
