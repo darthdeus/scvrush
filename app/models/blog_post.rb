@@ -6,7 +6,7 @@ class BlogPost < ActiveRecord::Base
   before_save :expire_sidebar_cache
 
   def expire_sidebar_cache
-    # TODO - do this in a better way
     Rails.cache.delete('views/bloglinks')
+    true
   end
 end

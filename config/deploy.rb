@@ -37,16 +37,6 @@ role :db,  domain, :primary => true
 
 namespace :deploy do
 
-  # task :cold do
-  #   update
-  #   load_schema
-  #   start
-  # end
-
-  # task :load_schema, :roles => :app do
-  #   run "cd #{current_path}; RAILS_ENV=production rake db:schema:load"
-  # end
-
   task :start, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} service unicorn start"
   end

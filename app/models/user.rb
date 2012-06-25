@@ -80,6 +80,18 @@ class User < ActiveRecord::Base
   # validates_presence_of :bnet_username, :on => :update
   # validates_presence_of :bnet_code, :on => :update
 
+  def self.races_collection
+    %w{Zerg Terran Protoss Random}
+  end
+
+  def self.leagues_collection
+    %w{Bronze Silver Gold Platinum Diamond Master Grandmaster}
+  end
+
+  def self.servers_collection
+    %w{NA EU SEA KR}
+  end
+
   def bnet_info
     "#{self.bnet_username}.#{self.bnet_code}"
   end

@@ -7,7 +7,11 @@ gem 'bcrypt-ruby',  '~> 3.0.1', :require => 'bcrypt'
 
 gem 'coffee-rails',              '~> 3.2.2'
 
-gem 'scvrush_admin', path: '~/projects/scvrush_admin'
+if ENV['SCV_DEV']
+  gem 'scvrush_admin', path: '~/projects/scvrush_admin/'
+else
+  gem 'scvrush_admin', git: 'git@github.com:darthdeus/scvrush_admin.git'
+end
 
 gem 'mysql2',                    '~> 0.3.11'
 

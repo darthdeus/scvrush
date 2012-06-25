@@ -8,7 +8,7 @@ GIT
       activesupport (>= 3.2.0)
 
 PATH
-  remote: ~/projects/scvrush_admin
+  remote: ~/projects/scvrush_admin/
   specs:
     scvrush_admin (0.0.1)
       rails (~> 3.2.6)
