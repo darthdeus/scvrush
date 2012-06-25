@@ -1,8 +1,9 @@
 = arrowed_header "Sign up for a new account"
 
 p
-  ' Signing up for a new SCV Rush account will allow you to participate
-  | in our tournaments, as well as comment on our website and do other social activities.
+  | Signing up for a new SCV Rush account will allow you to participate
+  |  in our tournaments, as well as comment on our website
+  |  and do other social activities.
 
 = form_for @user, :html => { :class => 'well' } do |f|
   - if @user.errors.any?
@@ -47,8 +48,8 @@ p
     legend Practice Buddy
 
     p
-      ' By joining our Practice Buddy program, you'll be able to find an ideal
-      | practice partner to improve your game.
+      | By joining our Practice Buddy program, you'll be able to find an ideal
+      |  practice partner to improve your game.
 
     = f.label :practice, 'Practice', class: 'checkbox' do
       = f.check_box :practice, checked: 'checked'
