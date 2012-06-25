@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: git@github.com:darthdeus/scvrush_admin.git
-  revision: 4e178fe961f84962edea8899c48428f87d3a82bf
+  revision: f9f2a93e01e4c379b724d2fe5625f3f89e5e1882
   specs:
     scvrush_admin (0.0.1)
       rails (~> 3.2.6)
