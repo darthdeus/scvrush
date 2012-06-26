@@ -8,6 +8,8 @@ class Tournament < ActiveRecord::Base
   validates :name, presence: true
   validates :starts_at, presence: true
 
+  attr_accessible :name, :starts_at
+
   scope :recent, order('starts_at DESC').limit(5)
   scope :upcoming, lambda { where(['starts_at > ?', Time.now]).first(2) }
 
