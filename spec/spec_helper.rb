@@ -61,12 +61,9 @@ Spork.each_run do
 
   require 'factory_girl_rails'
 
-  Dir["#{Rails.root}/app/controllers/**/*.rb"].each { |model| load model }
-
-  # reload all the models
-  suppress_warnings do
-    Dir["#{Rails.root}/app/models/**/*.rb"].each { |model| load model }
-  end
+  Dir["#{Rails.root}/app/helpers/**/*.rb"].each     { |helper|     load helper }
+  Dir["#{Rails.root}/app/controllers/**/*.rb"].each { |controller| load controller }
+  Dir["#{Rails.root}/app/models/**/*.rb"].each      { |model|      load model }
 
   # reload all factories
   FactoryGirl.factories.clear

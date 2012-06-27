@@ -20,12 +20,17 @@ module PostsHelper
     name.sub(/\[\w+\] /, '')
   end
 
+  # Return a timezoned date for a given user,
+  # or GMT if the user is nil.
   def nice_date(date, user)
-    timezoned = date
-    if user && user.time_zone
-      timezoned = date.in_time_zone(user.time_zone)
-    end
-    timezoned.strftime("%A %b st, %l:%M%P").sub('st', timezoned.day.ordinalize)
+    zone = (user && user.time_zone) ? user.time_zone : ActiveSupport::TimeZone.new("GMT")
+    timezoned = date.in_time_zone(zone)
+    res = format_time(timezoned)
+    (user && user.time_zone) ? res : (res + " GMT")
+  end
+
+  def format_time(time)
+    time.strftime("%A %b st, %l:%M%P").sub('st', time.day.ordinalize)
   end
 
   def vote_link(user, comment)
