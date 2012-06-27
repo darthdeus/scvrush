@@ -1,11 +1,12 @@
 Scvrush::Application.routes.draw do
 
-  # TODO - delete the admin/users controller
-  # namespace :admin do
-  #   resources :users
-  # end
-
-  mount ScvrushAdmin::Engine => '/admin'
+  namespace :admin do
+    resources :tournaments
+    resources :posts
+    resources :coaches
+    resources :blog_posts
+    resources :users
+  end
 
   # scope constraints: { protocol: 'https' } do
     get "api/auth"
@@ -30,8 +31,8 @@ Scvrush::Application.routes.draw do
   resources :avatars
 
   resources :images, only: :create
-  get "dashboard/index", as: 'dashboard'
-  get "dashboard/ggbet"
+  # get "dashboard/index", as: 'dashboard'
+  # get "dashboard/ggbet"
 
 
   resources :votes, only: [:create, :destroy]

@@ -1,0 +1,19 @@
+= content_for :subnav do
+  li= link_to "Add new", new_admin_tournament_path
+
+section.data-table
+  header
+    h1 Tournaments
+
+  table.table.table-bordered.table-striped.data-table
+    thead
+      tr
+        th Title
+        th Starts at
+        th Actions
+    tbody
+      - @tournaments.each do |tournament|
+        tr
+          td = tournament.name
+          td = tournament.starts_at.to_s
+          td = get_action_buttons(tournament)

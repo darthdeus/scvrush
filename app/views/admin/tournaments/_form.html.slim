@@ -1,0 +1,6 @@
+= simple_form_for [:admin, @tournament], class: "well" do |f|
+
+  = f.input :name
+  = f.input :starts_at, input_html: { class: "span2" }
+
+  = f.button :submit

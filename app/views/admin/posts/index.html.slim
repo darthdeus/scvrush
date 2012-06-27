@@ -1,0 +1,20 @@
+= content_for :subnav do
+  li= link_to "Add new", new_admin_post_path
+
+
+section.data-table
+  header
+    h1 Posts
+
+  table.table.table-bordered.table-striped.data-table
+    thead
+      tr
+        th Title
+        th URL
+        th Actions
+    tbody
+      - @posts.each do |post|
+        tr
+          td = post.title
+          td = link_to post.tournament.name if post.tournament
+          td = get_action_buttons(post)

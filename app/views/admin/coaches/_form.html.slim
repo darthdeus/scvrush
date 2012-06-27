@@ -1,0 +1,7 @@
+= simple_form_for [:admin, @coach], class: "well" do |f|
+
+  = f.input :title
+  = f.association :post
+  = f.input :order
+
+  = f.button :submit

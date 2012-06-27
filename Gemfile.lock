@@ -7,13 +7,6 @@ GIT
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
 
-GIT
-  remote: git@github.com:darthdeus/scvrush_admin.git
-  revision: 63ea50b1b3ca4f15ce359b09887d27628a35bef8
-  specs:
-    scvrush_admin (0.0.1)
-      rails (~> 3.2.6)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -338,7 +331,6 @@ DEPENDENCIES
   rspec-rails (~> 2.9.0)
   rvm-capistrano (~> 1.0.2)
   sass-rails (~> 3.2.5)
-  scvrush_admin!
   simple_form (~> 2.0.1)
   simplecov (~> 0.6.1)
   slim-rails (~> 1.0.3)

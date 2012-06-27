@@ -1,0 +1,22 @@
+= content_for :subnav do
+  li= link_to "Add new", new_admin_blog_post_path
+
+
+section.data-table
+  header
+    h1 Blog posts
+
+  table.table.table-bordered.table-striped.data-table
+    thead
+      tr
+        th Title
+        th URL
+        th Order
+        th Actions
+    tbody
+      - @blog_posts.each do |post|
+        tr
+          td = post.title
+          td = link_to post.url, post.url
+          td = post.order
+          td = get_action_buttons(post)

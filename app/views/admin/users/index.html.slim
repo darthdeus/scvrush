@@ -1,19 +1,23 @@
-h1 User administration
+= content_for :subnav do
+  li= link_to "Add new", new_admin_user_path
 
-table.table.table-striped.table-bordered.data-table
-  thead
-    tr
-      th Username
-      th Email
-      th Battle.net ID
-      th Skype
-      th Actions
-  tbody
-    - @users.each do |user|
+section.data-table
+  header
+    h1 User administration
+
+  table.table.table-bordered.table-striped.data-table data-source="#{admin_users_path(format: 'json')}"
+    thead
       tr
-        td = user.username
-        td = user.email
-        td = user.bnet_info
-        td = user.skype
-        td
-          = get_action_buttons(user)
+        th Username
+        th Email
+        th Battle.net
+        th Skype
+        th Actions
+    tbody
+      - @users.each do |user|
+        tr
+          td = user.username
+          td = user.email
+          td = user.bnet_info
+          td = user.skype
+          td = get_action_buttons(user)

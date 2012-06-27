@@ -1,0 +1,7 @@
+= content_for :subnav do
+  li= link_to "back", admin_coaches_path
+
+section.admin-form
+  header: h1 Add new coach
+
+  = render "form"

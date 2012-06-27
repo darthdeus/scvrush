@@ -1,0 +1,8 @@
+= simple_form_for [:admin, @post], class: "well" do |f|
+
+  = f.input :title
+
+  .control-group
+    = select_tag :tournament_id, options_from_collection_for_select(@tournaments, "id", "name", @post.tournament.id), include_blank: true, prompt: "Select a tournament"
+
+  = f.button :submit
