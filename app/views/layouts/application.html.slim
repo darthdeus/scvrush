@@ -52,6 +52,7 @@ html
           #navigation
             = render 'shared/menu'
 
+        / TODO - display :success
         - flash.each do |name, msg|
           = content_tag :div, msg, :class => "alert span5 alert-#{name}"
 

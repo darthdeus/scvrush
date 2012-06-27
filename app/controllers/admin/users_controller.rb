@@ -12,7 +12,7 @@ module Admin
       @user = User.new(params[:user])
       if @user.save
         flash[:success] = "User was succesfuly created"
-        redirect_to users_path
+        redirect_to admin_users_path
       else
         render :new
       end

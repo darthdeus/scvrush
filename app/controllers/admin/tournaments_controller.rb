@@ -12,7 +12,7 @@ module Admin
       @tournament = Tournament.new(params[:tournament])
       if @tournament.save
         flash[:success] = "Tournament was successfuly added."
-        redirect_to tournaments_path
+        redirect_to admin_tournaments_path
       else
         render :new
       end
@@ -24,9 +24,9 @@ module Admin
 
     def update
       @tournament = Tournament.find(params[:id])
-      if @tournament.update_attributes(:params[:tournament])
+      if @tournament.update_attributes(params[:tournament])
         flash[:success] = "Tournament was updated."
-        redirect_to tournaments_path
+        redirect_to admin_tournaments_path
       else
         render :edit
       end

@@ -19,7 +19,7 @@ module Admin
 
       @post.save!
       flash[:success] = "Post was successfuly updated."
-      redirect_to posts_path
+      redirect_to admin_posts_path
     end
 
   end
