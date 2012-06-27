@@ -46,10 +46,10 @@ gem 'therubyracer', :group => :production
 # gem 'mustang'
 
 group :development, :test do
-  gem 'pry',        '~> 0.9.8.4'
-  gem 'pry-doc',    '~> 0.4.1'
+  gem 'pry',        '~> 0.9.9'
+  gem 'pry-doc',    '~> 0.4.2'
   gem 'pry-rails',  '~> 0.1.6'
-  gem 'pry-nav',    '~> 0.2.0'
+  gem 'pry-nav',    '~> 0.2.1'
 end
 
 group :test do
@@ -76,6 +76,6 @@ group :test do
 
 end
 
-gem 'unicorn',        '~> 4.2.0'
+gem 'unicorn',        '~> 4.3.1'
 gem 'capistrano',     '~> 2.11.2'
 gem 'rvm-capistrano', '~> 1.0.2'

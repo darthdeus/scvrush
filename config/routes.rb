@@ -6,6 +6,8 @@ Scvrush::Application.routes.draw do
     resources :coaches
     resources :blog_posts
     resources :users
+
+    root to: "home#index"
   end
 
   # scope constraints: { protocol: 'https' } do

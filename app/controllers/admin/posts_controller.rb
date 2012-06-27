@@ -1,7 +1,7 @@
 module Admin
   class PostsController < AdminController
     def index
-      @posts = Post.all
+      @posts = Post.includes(:tournament)
     end
 
     def edit
