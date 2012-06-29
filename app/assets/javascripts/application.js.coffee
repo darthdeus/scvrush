@@ -27,6 +27,7 @@ jQuery ->
       $("li.stream a")
         .css('color', 'rgba(255, 150, 150, 0.8)')
         .text('Check out our Stream - LIVE NOW!')
+      $('#inline-stream').show()
 
   $('#new_comment').submit (e) ->
     self = $(this)
