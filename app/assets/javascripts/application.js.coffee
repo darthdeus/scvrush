@@ -1,5 +1,6 @@
 #= require jquery
 #= require jquery_ujs
+#= require jquery-ui
 #= require lib/jquery.fancybox
 #= require lib/underscore
 #= require lib/backbone
@@ -10,7 +11,6 @@
 #= require login
 
 jQuery ->
-
 
   $('.carousel').carousel({ interval: 3500 })
 
