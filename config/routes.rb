@@ -33,8 +33,8 @@ Scvrush::Application.routes.draw do
   resources :avatars
 
   resources :images, only: :create
-  # get "dashboard/index", as: 'dashboard'
-  # get "dashboard/ggbet"
+  get "dashboard/index", as: 'dashboard'
+  get "dashboard/ggbet"
 
 
   resources :votes, only: [:create, :destroy]
@@ -42,7 +42,7 @@ Scvrush::Application.routes.draw do
   resources :signups, only: [:create, :destroy, :update]
 
   resources :sections, only: :index do
-    resources :topics, only: [:create, :index]
+    resources :topics, only: [:new, :create, :index]
   end
 
   resources :topics, only: :show do
