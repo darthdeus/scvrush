@@ -8,7 +8,7 @@ jQuery(function($) {
     playerBox: 26,
     playerGap: 3,
     matchGap: 10,
-    rondTop: 0
+    roundTop: 0
   };
 
   var players = 4,
@@ -19,9 +19,9 @@ jQuery(function($) {
     return {
       playerHeight: dim.playerHeight,
       playerBox: dim.playerBox,
-      playerGap: dim.playerGap + 1.5 * dim.playerBox,
+      playerGap: dim.playerGap + 1.5 * dim.playerBox + dim.playerGap / 1.5,
       matchGap: dim.playerBox + dim.matchGap + dim.playerGap,
-      roundTop: dim.playerBox / 2 + dim.playerGap / 2
+      roundTop: (dim.playerBox / 2) + (dim.playerGap / 2) + dim.roundTop
     };
   }
 
@@ -44,68 +44,28 @@ jQuery(function($) {
     return html.match(dim).append(p1).append(html.player(dim));
   };
 
-  var roundOf = function(first, num) {
-    var round, match, marginTop;
+  var roundOf = function(dim, num) {
+    var round, match, marginTop, newDim;
+    round = html.round(dim);
 
-    if (first) {
-      round = html.round(dimensions);
-
-      // create matches
-      for (var i = 0; i < num / 2; i++) {
-        match = scaffoldMatch(dimensions);
-        // match.find('.player:first').css('marginBottom', dimensions.playerGap);
-        round.append(match);
-      }
-    } else {
-      var newDim = recalculateDimensions(dimensions);
-      round = html.round(newDim);
-
-      // marginTop =  dimensions.playerBox / 2 + dimensions.playerGap / 2;
-      // round.css('marginTop', marginTop);
-
-      // create matches
-      for (var i = 0; i < num / 2; i++) {
-        match = scaffoldMatch(newDim);
-
-        // match.css('marginBottom', dimensions.playerBox + dimensions.matchGap + dimensions.playerGap);
-
-        // marginTop = dimensions.playerGap + 1.5 * dimensions.playerBox;
-        // match.find('.player:first').css('marginBottom', marginTop);
-        round.append(match);
-      }
-
+    // create matches
+    for (var i = 0; i < num / 2; i++) {
+      match = scaffoldMatch(dim);
+      round.append(match);
     }
 
     bracket.append(round);
+    return recalculateDimensions(dim);
   };
 
 
-  roundOf(true, 8);
-  roundOf(false, 4);
-  roundOf(false, 2);
+  var dim = dimensions;
 
-  // // create a match html element
-  // var createMatch = function() {
-  //   addPlayers(match);
-  //   return match;
-  // };
-
-  // // add players to a given match
-  // var addPlayers = function(match) {
-  //   var p1 = html.player(),
-  //       p2 = html.player();
-
-  //   p1.css("marginBottom", dimensions.playerGap + "px");
-  //   match.append(p1).append(p2);
-  // };
-
-  // var round = createRound(0);
-
-  // for (var i = 0; i < matches; i++) {
-  //   round.append(createMatch());
-  // }
-
-  // bracket.append(round);
-
+  // dim = roundOf(dim, 64);
+  // dim = roundOf(dim, 32);
+  dim = roundOf(dim, 16);
+  dim = roundOf(dim, 8);
+  dim = roundOf(dim, 4);
+  roundOf(dim, 2);
 
 });
