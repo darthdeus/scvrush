@@ -5,7 +5,6 @@ class TournamentsController < ApplicationController
 
   def index
     @tournaments = Tournament.page(params[:page])
-
   end
 
   def show

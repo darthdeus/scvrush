@@ -1,0 +1,1 @@
+Scvrush = Ember.Application.create({});

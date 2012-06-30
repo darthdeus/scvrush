@@ -8,7 +8,6 @@
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap
 //= require login
-//= require bracket
 
 jQuery(function($) {
 
@@ -83,7 +82,9 @@ jQuery(function($) {
     dialog.dialog("open");
   });
 
-  $(".datepicker").datepicker();
+  if ($.fn.datepicker) {
+    $(".datepicker").datepicker();
+  }
 
   for (filter in ['race', 'league', 'server']) {
     if (gon[filter]) {

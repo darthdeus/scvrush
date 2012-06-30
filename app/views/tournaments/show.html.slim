@@ -1,7 +1,13 @@
+= javascript "bracket"
+
 - content_for(:title, @tournament.name + ' | SCV Rush')
 #left-column
   article.single.post
     header
       h1 = @tournament.name
 
-      .bracket#js-bracket data-bracket="#{@bracket}"
+      / .bracket#js-bracket data-bracket="#{@bracket}"
+
+
+    script type="text/x-handlebars"
+      | {{view Scvrush.ApplicationView}}

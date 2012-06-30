@@ -1,3 +1,7 @@
+//= require ./vendor/handlebars
+//= require ember
+//= require ember-data
+//= require ./ember_app
 //= require ./store
 //= require_tree ./models
 //= require_tree ./controllers
@@ -12,4 +16,3 @@ var router = Scvrush.router = Scvrush.Router.create({
 });
 
 Scvrush.initialize(router);
-

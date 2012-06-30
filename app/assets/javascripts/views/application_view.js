@@ -1,3 +1,4 @@
 Scvrush.ApplicationView = Ember.View.extend({
-  templateName: 'application'
+  template: Em.TEMPLATES['application']
+  // templateName: "application"
 });

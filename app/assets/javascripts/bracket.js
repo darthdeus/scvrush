@@ -1,3 +1,5 @@
+//= require scvrush
+
 jQuery(function($) {
 
   var bracket = $('#js-bracket');
