@@ -8,6 +8,7 @@
 #= require dataTables/jquery.dataTables
 #= require dataTables/jquery.dataTables.bootstrap
 #= require login
+#= require vendor/gracket
 
 jQuery ->
 
@@ -69,10 +70,11 @@ jQuery ->
 
   $(".datepicker").datepicker()
 
-
   for filter in ['race', 'league', 'server']
     if gon[filter]
       $(".pick-#{filter} button").each ->
         $(this).click() if $(this).text() == gon[filter]
     else
       $(".pick-#{filter} button:first").click()
+
+  $("[data-gracket]").gracket()

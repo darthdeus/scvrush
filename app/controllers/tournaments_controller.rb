@@ -1,11 +1,18 @@
 class TournamentsController < ApplicationController
   # TODO - change to admin
-  before_filter :require_writer, except: :show
+  before_filter :require_writer, except: [:index, :show]
+  layout "single"
+
+  def index
+    @tournaments = Tournament.page(params[:page])
+
+  end
 
   def show
     @tournament = Tournament.find(params[:id])
     @registered_users = @tournament.signups.registered
     @checked_users = @tournament.signups.checked
+    @bracket = Bracket::Bracket.new(@tournament.users).to_json
   end
 
   def edit
