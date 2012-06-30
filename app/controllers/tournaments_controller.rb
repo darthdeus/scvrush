@@ -10,8 +10,11 @@ class TournamentsController < ApplicationController
 
   def show
     @tournament = Tournament.find(params[:id])
-    @registered_users = @tournament.signups.registered
-    @checked_users = @tournament.signups.checked
+    @players =
+    @ro16 = @tournament.users.first(16)
+    @ro8 = @ro16.select.with_index { |player, index| index.even? }
+    @ro4 = @ro8.select.with_index { |player, index| index.even? }
+    @ro2 = @ro4.select.with_index { |player, index| index.even? }
     @bracket = Bracket::Bracket.new(@tournament.users).to_json
   end
 

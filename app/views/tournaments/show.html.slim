@@ -4,57 +4,33 @@
     header
       h1 = @tournament.name
 
-    / TODO - add a text saying when is the tournament starting,
-    / maybe use distance_of_time_in_words_to_now or time_ago_in_words
-    - if @tournament.checkin_open?
-      = checkin_button @tournament
-    - else
-      - if current_user && current_user.registered_for?(@tournament)
-        = cancel_signup_button @tournament
-      - elsif @tournament.signup_open?
-        = signup_button @tournament
+      .bracket#js-bracket
 
-    h2 Currently registered players
+      / .bracket
+      /   .round.round16
+      /     - @ro16.each_slice(2) do |players|
+      /       .match
+      /         .player= players[0].username
+      /         .player= players[1].username
 
-    - if @registered_users.empty?
-      p There are no players registered
-    - else
-      ul
-        - @registered_users.each do |signup|
-          li = signup.user.username
+      /   .round.round8
+      /     - @ro8.each_slice(2) do |players|
+      /       .match
+      /         .player= players[0].username
+      /         .player= players[1].username
 
-      - if is_writer?
-        ul
-          - @registered_users.each do |signup|
-            li = signup.user.bnet_info
+      /   .round.round4
+      /     - @ro4.each_slice(2) do |players|
+      /       .match
+      /         .player= players[0].username
+      /         .player= players[1].username
 
-        ul
-          - @registered_users.each do |signup|
-            li = signup.user.email
+      /   .round.round2
+      /     - @ro2.each_slice(2) do |players|
+      /       .match
+      /         .player= players[0].username
+      /         .player= players[1].username
 
-
-    - if @checked_users.empty?
-      p There are no players checked in yet
-    - else
-      h2 Checked in players
-      ul
-        - @checked_users.each do |signup|
-          li
-            = signup.user.username
-            - if is_writer?
-              span.bnet
-                |  - battle.net info:
-                strong = signup.user.bnet_info
-                |
-                em = signup.user.email
-
-      - if is_writer?
-        ul
-          - @checked_users.each do |signup|
-            li = signup.user.bnet_info
-
-        ul
-          - @checked_users.each do |signup|
-            li = signup.user.email
-
-  div#gracket data-gracket="#{@bracket}"
+      /   .round.round1
+      /     .match
+      /       .player= @ro2[0].username

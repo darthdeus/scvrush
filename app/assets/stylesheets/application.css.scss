@@ -8,7 +8,7 @@
 @import "bourbon";
 @import "bootstrap";
 @import "dataTables/jquery.dataTables.bootstrap";
-@import "vendor/gracket";
+
 
 $linkBlue: #08C;
 $linkBlueHover: #005580;
@@ -73,7 +73,6 @@ p {
     margin: 0 auto;
     padding: 0;
     overflow: hidden;
-    background: url("/assets/body-splitter.gif") repeat-y 610px 0;
   }
 }
 
@@ -476,5 +475,6 @@ button.btn, a.btn {
 @import "users";
 @import "forum";
 @import "dashboard";
+@import "bracket";
 @import "jquery-ui.custom";
 @import "fancybox/jquery.fancybox";

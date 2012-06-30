@@ -1,0 +1,35 @@
+.bracket {
+  .round {
+    width: 110px;
+    float: left;
+
+    .match {
+      margin: 0 5px 10px 0;
+    }
+  }
+
+  /* .round8 .match  { margin-top: 25px; } */
+  /* .round8 .player { margin-bottom: 41px; } */
+
+  /* .round4 .match  { margin-top: 59px; } */
+  /* .round4 .player { margin-bottom: 110px; } */
+
+  /* .round2 .match  { margin-top: 130px; } */
+  /* .round2 .player { margin-bottom: 250px; } */
+
+  /* .round1 .match  { margin-top: 300px; } */
+
+  .player {
+    line-height: 24px;
+
+    height: 20px;
+    margin-bottom: 3px;
+    padding: 3px 6px;
+
+    background: #FAFAFA;
+    border: 1px solid #999;
+    opacity: 0.7;
+
+    &:hover { opacity: 1; }
+  }
+}
