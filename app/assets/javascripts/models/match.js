@@ -1,3 +1,3 @@
-Scvrush.Match = DS.Model.extend({
+Scvrush.Match = Em.Object.extend({
 
 });
