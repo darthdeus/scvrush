@@ -1,1 +1,3 @@
-Scvrush = Ember.Application.create({});
+Scvrush = Ember.Application.create({
+  rootElement: $('.bracket-ember')
+});
