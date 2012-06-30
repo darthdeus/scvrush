@@ -23,7 +23,7 @@ class TopicsController < ApplicationController
     topic = Section.create_first_topic(params, current_user)
 
     if topic
-      render json: { status: :ok, location: topic_path(topic) } and return
+      render json: { status: :ok, location: topic_path(topic) }
     else
       render json: { status: :error, type: :validation  }
     end

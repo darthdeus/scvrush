@@ -1,0 +1,22 @@
+@import "dataTables/jquery.dataTables.bootstrap";
+@import "../bootstrap";
+@import "../lib/chosen";
+
+body {
+  padding-top: 50px;
+}
+
+.nav {
+  margin-bottom: 5px;
+}
+
+.nav +  hr {
+  margin-top: 0;
+}
+
+
+.data-table header, .admin-form header {
+  margin-bottom: 15px;
+
+  h1 { font-size: 18px; }
+}

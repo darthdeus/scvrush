@@ -26,9 +26,7 @@ a img {
 }
 
 a { color: $linkBlue; }
-a:hover { color: linkBlueHover; }
-// a { color: #333; }
-// a:hover { color: #666; }
+a:hover { color: $linkBlueHover; }
 
 .clear {
   clear: both;
@@ -73,6 +71,7 @@ p {
     margin: 0 auto;
     padding: 0;
     overflow: hidden;
+    /* background: url("/assets/body-splitter.gif") repeat-y 610px 0; */
   }
 }
 

@@ -1,0 +1,20 @@
+= content_for :subnav do
+  li= link_to "Add new", new_admin_coach_path
+
+
+section.data-table
+  header
+    h1 Coaches
+
+  table.table.table-bordered.table-striped.data-table
+    thead
+      tr
+        th Title
+        th Order
+        th Actions
+    tbody
+      - @coaches.each do |coach|
+        tr
+          td = coach.title
+          td = coach.order
+          td = get_action_buttons(coach)

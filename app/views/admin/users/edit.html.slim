@@ -1,0 +1,7 @@
+= content_for :subnav do
+  li= link_to "All users", admin_users_path
+
+section.admin-form
+  header: h1 Edit user
+
+  = render "form"

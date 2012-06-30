@@ -1,0 +1,25 @@
+= simple_form_for [:admin, @user], class: "well" do |f|
+  = f.input :username
+  = f.input :email
+
+  = f.input :password
+  = f.input :password_confirmation
+
+  = f.input :skype
+
+  = f.input :time_zone
+
+  fieldset
+    legend Battle.net information
+
+    = f.input :bnet_username
+    = f.input :bnet_code
+
+  fieldset
+    legend Community information
+
+    = f.input :race, collection: User.races_collection, include_blank: false
+    = f.input :league, collection: User.leagues_collection, include_blank: false
+    = f.input :server, collection: User.servers_collection, include_blank: false
+
+  = f.button :submit

@@ -1,0 +1,8 @@
+= content_for :subnav do
+  li= link_to "back", admin_blog_posts_path
+
+
+section.admin-form
+  header: h1 New blog post
+
+  = render "form"

@@ -19,11 +19,6 @@ describe TopicsController do
 
   context :create do
 
-    before do
-      @user = login
-      @section = create(:section)
-    end
-
     it "creates a Topic and a Reply for valid data" do
       user = login
       section = create(:section)

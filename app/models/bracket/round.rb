@@ -3,6 +3,6 @@ class Round < ActiveRecord::Base
   attr_accessible :number
   validates_presence_of :number, :tournament
 
-  belongs_to :parent
-  has_many :children, class_name: "Round", foreign_key: "parent_id"
+  # belongs_to :parent
+  # has_many :children, class_name: "Round", foreign_key: "parent_id"
 end
