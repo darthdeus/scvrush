@@ -15,6 +15,7 @@ GIT
       active_model_serializers
       execjs (>= 1.2)
       railties (~> 3.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
