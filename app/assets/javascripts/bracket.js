@@ -19,7 +19,7 @@ jQuery(function($) {
     return {
       playerHeight: dim.playerHeight,
       playerBox: dim.playerBox,
-      playerGap: dim.playerGap + 1.5 * dim.playerBox + dim.playerGap / 1.5,
+      playerGap: dim.playerGap + dim.playerBox + dim.matchGap + 4,
       matchGap: dim.playerBox + dim.matchGap + dim.playerGap,
       roundTop: (dim.playerBox / 2) + (dim.playerGap / 2) + dim.roundTop
     };
@@ -61,8 +61,8 @@ jQuery(function($) {
 
   var dim = dimensions;
 
-  // dim = roundOf(dim, 64);
-  // dim = roundOf(dim, 32);
+  dim = roundOf(dim, 64);
+  dim = roundOf(dim, 32);
   dim = roundOf(dim, 16);
   dim = roundOf(dim, 8);
   dim = roundOf(dim, 4);
