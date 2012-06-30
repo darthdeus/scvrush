@@ -17,24 +17,24 @@ ActiveRecord::Schema.define(:version => 20120629202920) do
     t.string   "name"
     t.string   "slug"
     t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "blog_posts", :force => true do |t|
     t.string   "title"
     t.string   "url"
     t.integer  "order"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "coaches", :force => true do |t|
     t.integer  "order"
     t.string   "title"
     t.integer  "post_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "coaches", ["post_id"], :name => "index_coaches_on_post_id"
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(:version => 20120629202920) do
     t.text     "content"
     t.integer  "post_id"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "parent_id"
   end
 
@@ -62,8 +62,8 @@ ActiveRecord::Schema.define(:version => 20120629202920) do
 
   create_table "images", :force => true do |t|
     t.string   "image"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "matches", :force => true do |t|
@@ -80,8 +80,8 @@ ActiveRecord::Schema.define(:version => 20120629202920) do
     t.integer  "reason_id"
     t.integer  "user_id"
     t.string   "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   add_index "points", ["reason_id"], :name => "index_points_on_reason_id"
@@ -91,8 +91,8 @@ ActiveRecord::Schema.define(:version => 20120629202920) do
     t.string   "title"
     t.text     "content"
     t.string   "featured_image"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.integer  "status",           :default => 0
     t.integer  "user_id"
     t.datetime "published_at"
@@ -104,8 +104,8 @@ ActiveRecord::Schema.define(:version => 20120629202920) do
   create_table "raffle_signups", :force => true do |t|
     t.integer  "user_id"
     t.integer  "raffle_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "raffle_signups", ["raffle_id"], :name => "index_raffle_signups_on_raffle_id"
@@ -116,8 +116,8 @@ ActiveRecord::Schema.define(:version => 20120629202920) do
     t.integer  "status",     :default => 0
     t.integer  "winner_id"
     t.string   "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   add_index "raffles", ["winner_id"], :name => "index_raffles_on_winner_id"
@@ -126,8 +126,8 @@ ActiveRecord::Schema.define(:version => 20120629202920) do
     t.text     "content"
     t.integer  "topic_id"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "replies", ["topic_id"], :name => "index_replies_on_topic_id"
@@ -147,14 +147,15 @@ ActiveRecord::Schema.define(:version => 20120629202920) do
   create_table "rounds", :force => true do |t|
     t.integer "number",        :null => false
     t.integer "tournament_id", :null => false
+    t.integer "parent_id"
   end
 
   add_index "rounds", ["tournament_id"], :name => "index_rounds_on_tournament_id"
 
   create_table "sections", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "order"
   end
 
@@ -163,8 +164,8 @@ ActiveRecord::Schema.define(:version => 20120629202920) do
     t.integer  "user_id"
     t.integer  "status",        :default => 0
     t.integer  "placement"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
   end
 
   add_index "signups", ["tournament_id"], :name => "index_signups_on_tournament_id"
@@ -192,8 +193,8 @@ ActiveRecord::Schema.define(:version => 20120629202920) do
     t.string   "name"
     t.integer  "section_id"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.integer  "last_reply_id"
     t.datetime "last_reply_at"
   end
@@ -205,8 +206,8 @@ ActiveRecord::Schema.define(:version => 20120629202920) do
   create_table "tournaments", :force => true do |t|
     t.string   "name"
     t.datetime "starts_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "post_id"
     t.integer  "winner_id"
   end
@@ -217,8 +218,8 @@ ActiveRecord::Schema.define(:version => 20120629202920) do
   create_table "user_achievements", :force => true do |t|
     t.integer  "user_id"
     t.integer  "achievement_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   add_index "user_achievements", ["achievement_id"], :name => "index_user_achievements_on_achievement_id"
@@ -230,8 +231,8 @@ ActiveRecord::Schema.define(:version => 20120629202920) do
     t.string   "email"
     t.string   "password_hash"
     t.string   "password_salt"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.string   "auth_token"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
@@ -267,8 +268,8 @@ ActiveRecord::Schema.define(:version => 20120629202920) do
     t.string   "voteable_type",                    :null => false
     t.integer  "voter_id"
     t.string   "voter_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
 
   add_index "votes", ["voteable_id", "voteable_type"], :name => "index_votes_on_voteable_id_and_voteable_type"
