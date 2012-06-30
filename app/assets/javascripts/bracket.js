@@ -16,53 +16,61 @@ jQuery(function($) {
 
 
   var recalculateDimensions = function(dim) {
-    var newDim = {
-        playerHeight: dim.playerHeight,
-        playerBox: dim.playerBox,
-        playerGap: dim.playerGap + 1.5 * dim.playerBox,
-        roundTop: dim.playerBox / 2 + dim.playerGap / 2
+    return {
+      playerHeight: dim.playerHeight,
+      playerBox: dim.playerBox,
+      playerGap: dim.playerGap + 1.5 * dim.playerBox,
+      matchGap: dim.playerBox + dim.matchGap + dim.playerGap,
+      roundTop: dim.playerBox / 2 + dim.playerGap / 2
     };
   }
 
   var html = {
-      round : function(dim) { return $('<div class="round">').css('marginTop', dimensions.roundTop); },
-      match:  function(dim) { return $('<div class="match">'); },
+      round : function(dim) {
+        return $('<div class="round">').css('marginTop', dim.roundTop);
+      },
+      match:  function(dim) {
+        return $('<div class="match">').css('marginBottom', dim.matchGap);
+      },
       player: function(dim) {
         return $('<div class="player">Player</div>')
-               .css('height', dimensions.playerHeight);
+               .css('height', dim.playerHeight);
       }
   };
 
-  var scaffoldMatch = function() {
-    return html.match().append(html.player()).append(html.player());
+  var scaffoldMatch = function(dim) {
+    var p1 = html.player(dim);
+    p1.css('marginBottom', dim.playerGap);
+    return html.match(dim).append(p1).append(html.player(dim));
   };
 
   var roundOf = function(first, num) {
     var round, match, marginTop;
 
     if (first) {
-      round = html.round();
+      round = html.round(dimensions);
 
       // create matches
       for (var i = 0; i < num / 2; i++) {
-        match = scaffoldMatch();
-        match.find('.player:first').css('marginBottom', dimensions.playerGap);
+        match = scaffoldMatch(dimensions);
+        // match.find('.player:first').css('marginBottom', dimensions.playerGap);
         round.append(match);
       }
     } else {
-      round = html.round();
+      var newDim = recalculateDimensions(dimensions);
+      round = html.round(newDim);
 
-      marginTop =  dimensions.playerBox / 2 + dimensions.playerGap / 2;
-      round.css('marginTop', marginTop);
+      // marginTop =  dimensions.playerBox / 2 + dimensions.playerGap / 2;
+      // round.css('marginTop', marginTop);
 
       // create matches
       for (var i = 0; i < num / 2; i++) {
-        match = scaffoldMatch();
+        match = scaffoldMatch(newDim);
 
-        match.css('marginBottom', dimensions.playerBox + dimensions.matchGap + dimensions.playerGap);
+        // match.css('marginBottom', dimensions.playerBox + dimensions.matchGap + dimensions.playerGap);
 
-        marginTop = dimensions.playerGap + 1.5 * dimensions.playerBox;
-        match.find('.player:first').css('marginBottom', marginTop);
+        // marginTop = dimensions.playerGap + 1.5 * dimensions.playerBox;
+        // match.find('.player:first').css('marginBottom', marginTop);
         round.append(match);
       }
 
