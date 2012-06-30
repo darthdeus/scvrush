@@ -2,7 +2,6 @@ jQuery(function($) {
 
   var bracket = $('#js-bracket');
 
-
   var dimensions = {
     playerHeight: 20,
     playerBox: 26,
@@ -61,6 +60,7 @@ jQuery(function($) {
 
   var dim = dimensions;
 
+  dim = roundOf(dim, 128);
   dim = roundOf(dim, 64);
   dim = roundOf(dim, 32);
   dim = roundOf(dim, 16);

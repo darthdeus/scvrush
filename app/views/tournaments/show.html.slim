@@ -4,33 +4,4 @@
     header
       h1 = @tournament.name
 
-      .bracket#js-bracket
-
-      / .bracket
-      /   .round.round16
-      /     - @ro16.each_slice(2) do |players|
-      /       .match
-      /         .player= players[0].username
-      /         .player= players[1].username
-
-      /   .round.round8
-      /     - @ro8.each_slice(2) do |players|
-      /       .match
-      /         .player= players[0].username
-      /         .player= players[1].username
-
-      /   .round.round4
-      /     - @ro4.each_slice(2) do |players|
-      /       .match
-      /         .player= players[0].username
-      /         .player= players[1].username
-
-      /   .round.round2
-      /     - @ro2.each_slice(2) do |players|
-      /       .match
-      /         .player= players[0].username
-      /         .player= players[1].username
-
-      /   .round.round1
-      /     .match
-      /       .player= @ro2[0].username
+      .bracket#js-bracket data-bracket="#{@bracket}"

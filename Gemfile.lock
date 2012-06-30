@@ -7,6 +7,15 @@ GIT
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
 
+GIT
+  remote: git://github.com/emberjs/ember-rails.git
+  revision: 7d0185bece043880d979799476c082cdea1a475b
+  specs:
+    ember-rails (0.6.0)
+      active_model_serializers
+      execjs (>= 1.2)
+      railties (~> 3.1)
+
 PATH
   remote: ~/projects/scvrush_admin/
   specs:
@@ -29,6 +38,8 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.1.3)
+    active_model_serializers (0.5.2)
+      activemodel (~> 3.0)
     activemodel (3.2.6)
       activesupport (= 3.2.6)
       builder (~> 3.0.0)
@@ -308,6 +319,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.2)
   cucumber-rails
   database_cleaner (~> 0.7.2)
+  ember-rails!
   factory_girl_rails (~> 1.7.0)
   faker (~> 1.0.1)
   fog (~> 1.3.0)

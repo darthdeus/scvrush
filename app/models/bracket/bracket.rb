@@ -4,11 +4,10 @@ class Bracket::Bracket
     @users = users
   end
 
+  # Return JSON-formatted user data
   def to_json
-    res = []
     user_data = map_users(@users)
-    res << user_data
-    res.to_json
+    user_data.to_json
   end
 
   def map_users(users)
