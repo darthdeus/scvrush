@@ -9,11 +9,13 @@ Scvrush.Router = Ember.Router.extend({
       // You'll likely want to connect a view here.
       connectOutlets: function(router) {
 
-        router.get('applicationController').connectOutlet({
-          viewClass: Scvrush.MatchesView,
-          controller: window.c = Scvrush.MatchesController.create(),
-          context: [1,2,3]
-        });
+        router.get('applicationController').connectOutlet('tournament');
+
+        // router.get('applicationController').connectOutlet({
+        //   viewClass: Scvrush.MatchesView,
+        //   controller: window.c = Scvrush.MatchesController.create(),
+        //   context: [1,2,3]
+        // });
 
         //"matches", [1,2,3]);
       }

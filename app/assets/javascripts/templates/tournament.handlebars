@@ -1,0 +1,18 @@
+<h1>Tournament</h1>
+
+<div class="bracket">
+
+
+  <h2>collection</h2>
+  {{#collection contentBinding="controller.rounds" itemClassNames="round" itemViewClass="Scvrush.RoundView"}}
+    
+    <div class="round-info">
+      round of {{view.content.matches.length}}
+    </div>
+
+    {{#collection contentBinding="view.content.matches" itemViewClass="Scvrush.MatchView" itemClassNames="match"}}
+    <div class="player {{player1}}">{{view.content.player1}}</div>
+    <div class="player {{player2}}">{{view.content.player2}}</div>
+    {{/collection}}
+  {{/collection}}
+</div>
