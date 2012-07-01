@@ -38,7 +38,10 @@ Scvrush::Application.routes.draw do
 
 
   resources :votes, only: [:create, :destroy]
-  resources :tournaments, only: [:index, :show, :edit, :update]
+  resources :tournaments, only: [:index, :show, :edit, :update] do
+    member { get :signup }
+  end
+
   resources :signups, only: [:create, :destroy, :update]
 
   resources :sections, only: :index do

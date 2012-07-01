@@ -1,0 +1,33 @@
+= javascript "bracket"
+
+- content_for(:title, @tournament.name + ' | SCV Rush')
+
+.tournament
+  header
+    h1 = @tournament.name
+
+    .row
+      .span6
+        .row
+          .span6.alert.alert-info
+            | Registration is currently open. Checkin starts in 40 minutes
+
+        .row
+          .span6
+            h3 You can only register before the checkin starts
+
+            button.btn.btn-success.btn-large
+              i.icon-ok.icon-white
+              |  Sign up
+
+            button.btn.btn-danger.btn-large
+              i.icon-remove.icon-white
+              |  Cancel registraion
+
+      = render partial: "rules"
+
+  .bracket ng-controller="BracketCtrl" ng-app=""
+    .round ng-repeat="round in rounds"
+      .match ng-repeat="match in round.matches"
+        .player class="player_{{match.player1}}" {{match.player1}}
+        .player class="player_{{match.player2}}" {{match.player2}}
