@@ -1,12 +1,70 @@
 = javascript "bracket"
 
 - content_for(:title, @tournament.name + ' | SCV Rush')
-#left-column
-  article.single.post
-    header
-      h1 = @tournament.name
 
-      / .bracket#js-bracket data-bracket="#{@bracket}"
+.tournament
+  header
+    h1 = @tournament.name
 
-    .bracket-ember
+    .row
+      .span6.alert.alert-info
+        p
+          = "Your next match is "
+          strong jack#384.
+        p You are playing best of 3, which means once a player wins 2 games the match is over.
 
+        p Map pool for the current round is:
+
+        ul
+          li Metalopolis
+          li Xel-Naga caverns
+          li Tal'darim Altar
+
+
+        h3 If you won, please report the match results below.
+
+        p You have to report the match result before you can continue on to your next game.
+
+        input.report-box type="text" name="score" placeholder="Final score, e.g 1:4"
+        button.btn.btn-success.btn-large
+          i.icon-ok.icon-white
+          |  Submit the result
+
+
+      .accordion
+        .accordion-group.span5
+          .accordion-heading
+            a.accordion-toggle data-toggle="collapse" href="#rules" Tournament rules
+
+          #rules.accordion-body.in.collapse style="height: auto;"
+            div class="accordion-inner"
+              ul
+                li You are not allowed to change your race during the event
+                li If your opponent doesn't show, report him to admin
+                li Observers are allowed given both players allow it
+                li All replays must be saved
+                li The game will be restarted if a player disconnects within the first 5 minutes
+                li Hateful, racial, sexual or otherwise offending content will result in a warning
+                li Failure to rectify the bad manner will then result in disqualification.
+                li: strong The tournament admins reserve the right to judge what is offensive and what is not.
+
+        .accordion-group.span5
+          .accordion-heading
+            a.accordion-toggle data-toggle="collapse" href="#contact" More useless info
+          #contact.accordion-body.in.collapse style="height: 0;"
+            div class="accordion-inner"
+              ul
+                li In case you have any problem please go to your channel SCVRush
+                li Observers are allowed given both players allow it
+                li All replays must be saved
+                li The game will be restarted if a player disconnects within the first 5 minutes
+                li Hateful, racial, sexual or otherwise offending content will result in a warning
+                li Failure to rectify the bad manner will then result in disqualification.
+                li: strong The tournament admins reserve the right to judge what is offensive and what is not.
+
+
+  .bracket ng-controller="BracketCtrl" ng-app=""
+    .round ng-repeat="round in rounds"
+      .match ng-repeat="match in round.matches"
+        .player class="player_{{match.player1}}" {{match.player1}}
+        .player class="player_{{match.player2}}" {{match.player2}}

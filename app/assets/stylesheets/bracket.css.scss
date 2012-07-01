@@ -1,4 +1,24 @@
+.tournament {
+  input.report-box {
+    font-size: 18px;
+    padding: 9px;
+  }
+
+  header {
+    .alert {
+      padding-right: 0;
+    }
+
+    .accordion-group {
+      padding-left: 10px;
+    }
+  }
+
+  
+}
+
 .bracket {
+  margin-top: 20px;
   .round {
     width: 110px;
     float: left;
