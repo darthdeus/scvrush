@@ -1,5 +1,5 @@
 Scvrush.RoundView = Em.View.extend({
-  playerCountBinding: 'Scvrush.roundsController.playerCount',
+  itemClassNames: 'round',
   mouseEnter: function() {
   }
 });

@@ -15,4 +15,7 @@ var router = Scvrush.router = Scvrush.Router.create({
   location: 'hash'
 });
 
+// Ember.LOG_BINDINGS = true;
+
+
 Scvrush.initialize(router);

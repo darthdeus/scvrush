@@ -2,17 +2,19 @@
 
 <div class="bracket">
 
+  <a {{action "loadRounds" target="Scvrush.router.roundsController"}}>Load rounds</a>
 
   <h2>collection</h2>
-  {{#collection contentBinding="controller.rounds" itemClassNames="round" itemViewClass="Scvrush.RoundView"}}
-    
+  {{#collection contentBinding="Scvrush.router.roundsController" itemClassNames="round" itemViewClass="Scvrush.RoundView"}}
+
     <div class="round-info">
-      round of {{view.content.matches.length}}
+
+      round of {{view.content.round}}
     </div>
 
     {{#collection contentBinding="view.content.matches" itemViewClass="Scvrush.MatchView" itemClassNames="match"}}
-    <div class="player {{player1}}">{{view.content.player1}}</div>
-    <div class="player {{player2}}">{{view.content.player2}}</div>
+    <div {{bindAttr class="view.player1ClassName"}}>{{view.content.player1}}</div>
+    <div {{bindAttr class="view.player2ClassName"}}>{{view.content.player2}}</div>
     {{/collection}}
   {{/collection}}
 </div>

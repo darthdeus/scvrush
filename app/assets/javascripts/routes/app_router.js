@@ -1,6 +1,6 @@
 Scvrush.Router = Ember.Router.extend({
 
-  enableLogging: true,
+  // enableLogging: true,
 
   root: Ember.Route.extend({
     index: Ember.Route.extend({

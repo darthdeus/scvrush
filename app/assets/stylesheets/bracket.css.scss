@@ -7,18 +7,15 @@
       margin: 0 5px 10px 0;
       border-right: 1px solid #666;
     }
+
+    .round-info {
+      margin: 0 5px 20px 0;
+      border: 1px solid #999;
+      border-bottom: 1px solid #666;
+      font-weight: bold;
+      padding: 3px 6px;
+    }
   }
-
-  /* .round8 .match  { margin-top: 25px; } */
-  /* .round8 .player { margin-bottom: 41px; } */
-
-  /* .round4 .match  { margin-top: 59px; } */
-  /* .round4 .player { margin-bottom: 110px; } */
-
-  /* .round2 .match  { margin-top: 130px; } */
-  /* .round2 .player { margin-bottom: 250px; } */
-
-  /* .round1 .match  { margin-top: 300px; } */
 
   .player {
     line-height: 24px;
@@ -33,4 +30,11 @@
 
     &:hover { opacity: 1; }
   }
+
+
+  .player-highlight {
+    background: #333;
+    color: #eee;
+  }
+
 }
