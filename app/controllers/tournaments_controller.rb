@@ -11,11 +11,6 @@ class TournamentsController < ApplicationController
     respond_to do |format|
       format.html do
         @tournament = Tournament.find(params[:id])
-        @ro32 = @tournament.users.all
-        @ro16 = @ro32.select.with_index { |player, index| index.even? }
-        @ro8  = @ro16.select.with_index { |player, index| index.even? }
-        @ro4  = @ro8.select.with_index { |player, index| index.even? }
-        @ro2  = @ro4.select.with_index { |player, index| index.even? }
         @bracket = Bracket::Bracket.new(@tournament.users).to_json
       end
 
