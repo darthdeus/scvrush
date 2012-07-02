@@ -38,8 +38,4 @@ Scvrush::Application.configure do
   # TODO - add strict mass assignment required by default
 
   # config.log_tags = [:uuid, :remote_ip]
-
-  # ActiveSupport::Dependencies.explicitly_unloadable_constants << "ScvrushAdmin"
-
-  config.ember.variant = :development
 end

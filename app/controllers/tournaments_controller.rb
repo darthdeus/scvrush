@@ -44,6 +44,7 @@ class TournamentsController < ApplicationController
 
   def signup
     @tournament = Tournament.find(params[:id])
+    @user = TournamentPlayerDecorator.new(current_user, @tournament)
   end
 
   def edit

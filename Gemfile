@@ -17,9 +17,10 @@ gem 'bootstrap-sass',            '~> 2.0.3.1'
 gem 'simple_form',               '~> 2.0.1'
 gem 'bourbon',                   '~> 1.4.0'
 
-gem 'rdiscount',           '~> 1.6.8'
-gem 'kaminari',            '~> 0.13.0'
+gem 'rdiscount',          '~> 1.6.8'
+gem 'kaminari',           '~> 0.13.0'
 
+gem 'draper',             '~> 0.14.0'
 
 gem 'fog',                '~> 1.3.0'
 gem 'carrierwave', github: 'darthdeus/carrierwave', ref: "be594ea"

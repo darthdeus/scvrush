@@ -16,12 +16,15 @@
           .span6
             h3 You can only register before the checkin starts
 
-            button.btn.btn-success.btn-large
-              i.icon-ok.icon-white
-              |  Sign up
+            - if @user.registered?
+              button.btn.btn-danger.btn-large
+                i.icon-remove.icon-white
+                |  Cancel registraion
 
-            button.btn.btn-danger.btn-large
-              i.icon-remove.icon-white
-              |  Cancel registraion
+            - else
+              button.btn.btn-success.btn-large
+                i.icon-ok.icon-white
+                |  Sign up
+
 
       = render partial: "rules"
