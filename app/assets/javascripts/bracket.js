@@ -1,19 +1,4 @@
-var bracketModule = angular.module('bracket', []);
-
-var BracketCtrl = function($scope, $http) {
-
-  $scope.inputResult = function(target) { debugger; };
-
-  $http.get('/tournaments/1.json').success(function(data) {
-    $scope.rounds = data.tournaments;
-
-    setTimeout(function() { $('.bracket').applyDimensions(window.dimensions); }, 300);
-
-  });
-};
-
-BracketCtrl.$inject = ["$scope", "$http"];
-
+//= require ./angular-ctrls
 
 
 jQuery(function($) {

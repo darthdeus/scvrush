@@ -2,7 +2,7 @@
 
 - content_for(:title, @tournament.name + ' | SCV Rush')
 
-.tournament
+.tournament ng-app="tournament-signup"
   header
     h1 = @tournament.name
 
@@ -25,9 +25,3 @@
               |  Cancel registraion
 
       = render partial: "rules"
-
-  .bracket ng-controller="BracketCtrl" ng-app=""
-    .round ng-repeat="round in rounds"
-      .match ng-repeat="match in round.matches"
-        .player class="player_{{match.player1}}" {{match.player1}}
-        .player class="player_{{match.player2}}" {{match.player2}}
