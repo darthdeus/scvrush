@@ -36,7 +36,7 @@
 
       = render partial: "rules"
 
-  .bracket ng-controller="BracketCtrl" ng-app=""
+  .bracket ng-controller="BracketCtrl" ng-app="scvrush"
     .round ng-repeat="round in rounds"
       .match ng-repeat="match in round.matches" ng-click="inputResult(match)"
         .player class="player_{{match.player1}}" {{match.player1}}

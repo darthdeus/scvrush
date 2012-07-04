@@ -1,23 +1,16 @@
-var module = angular.module("scvrush", []);
+var module = angular.module("scvrush", ["ngResource"]);
 
-// low level storage, such as localStorage
-module.factory("tournaments", function() {
-  if (!localStorage["todos"]) {
-    var data = $('.todos').data('todos');
-    localStorage["todos"] = JSON.stringify({todos: data});
-  }
+module.factory("Tournament", ["$resource", function($resource) {
+  return $resource("/tournaments/1.json", {},
+                   { get: { method: "GET", callback: "JSON_CALLBACK", isArray: true } });
 
-  return localStorage;
-});
+}]);
 
-BracketCtrl.$inject = ["$scope", "$http"];
-function BracketCtrl($scope, $http) {
+BracketCtrl.$inject = ["$scope", "Tournament"];
+function BracketCtrl($scope, Tournament) {
 
-  $http.get('/tournaments/1.json').success(function(data) {
-    $scope.rounds = data.tournaments;
-
+  $scope.rounds = Tournament.get(function() {
     setTimeout(function() { $('.bracket').applyDimensions(window.dimensions); }, 300);
-
   });
 
   $scope.inputResult = function(target) { debugger; };

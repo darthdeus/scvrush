@@ -1,3 +1,5 @@
+//= require ./vendor/angular
+//= require ./vendor/angular-resource
 //= require ./services
 //= require ./angular-ctrls
 
