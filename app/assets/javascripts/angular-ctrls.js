@@ -1,4 +1,4 @@
-var module = angular.module("bracket", []);
+var module = angular.module("scvrush", []);
 
 // low level storage, such as localStorage
 module.factory("tournaments", function() {
@@ -10,19 +10,8 @@ module.factory("tournaments", function() {
   return localStorage;
 });
 
-// storage abstraciton
-module.factory("bongo.storage", ["bongo.storage.lowlevel", function(lowlevel) {
-  return {
-    findAll: function() {
-      return JSON.parse(lowlevel["todos"]);
-    },
-    dump: function(data) {
-      lowlevel["todos"] = JSON.stringify(data);
-    }
-  };
-}]);
-
-var BracketCtrl = function($scope, $http) {
+BracketCtrl.$inject = ["$scope", "$http"];
+function BracketCtrl($scope, $http) {
 
   $http.get('/tournaments/1.json').success(function(data) {
     $scope.rounds = data.tournaments;
@@ -34,6 +23,4 @@ var BracketCtrl = function($scope, $http) {
   $scope.inputResult = function(target) { debugger; };
 
 };
-
-BracketCtrl.$inject = ["$scope", "$http"];
 

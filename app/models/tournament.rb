@@ -44,4 +44,19 @@ class Tournament < ActiveRecord::Base
     "#{id}-#{name.parameterize}"
   end
 
+  # return random tournament info for test purposes
+  def self.random_info
+    [
+      { matches: [
+        { player1: "ham", player2: "burger" },
+        { player1: "jack", player2: "john" },
+        { player1: "kara", player2: "tiara" },
+        { player1: "tara", player2: "lara" } ]
+    }, {
+      matches: [
+        { player1: "ham", player2: "jack" },
+        { player1: "kara", player2: "lara" } ]
+    }, { matches: [ { player1: "ham", player2: "kara" } ] }
+    ]
+  end
 end

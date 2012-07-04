@@ -2,7 +2,7 @@
 
 - content_for(:title, @tournament.name + ' | SCV Rush')
 
-.tournament ng-app="tournament-signup"
+.tournament ng-app="scvrush"
   header
     h1 = @tournament.name
 
@@ -12,19 +12,14 @@
           .span6.alert.alert-info
             | Registration is currently open. Checkin starts in 40 minutes
 
-        .row
+        .row.signup-form
           .span6
             h3 You can only register before the checkin starts
 
             - if @user.registered?
-              button.btn.btn-danger.btn-large
-                i.icon-remove.icon-white
-                |  Cancel registraion
-
+              = cancel_signup_button(@tournament)
             - else
-              button.btn.btn-success.btn-large
-                i.icon-ok.icon-white
-                |  Sign up
+              = signup_button(@tournament)
 
 
       = render partial: "rules"
