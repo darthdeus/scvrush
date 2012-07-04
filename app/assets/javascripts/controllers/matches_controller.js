@@ -1,1 +1,0 @@
-Scvrush.MatchesController = Em.ArrayController.extend({});
