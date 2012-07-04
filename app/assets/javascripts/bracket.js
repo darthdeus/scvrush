@@ -1,3 +1,4 @@
+//= require ./services
 //= require ./angular-ctrls
 
 
