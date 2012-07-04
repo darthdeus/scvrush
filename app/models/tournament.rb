@@ -13,6 +13,10 @@ class Tournament < ActiveRecord::Base
   scope :recent, order('starts_at DESC').limit(5)
   scope :upcoming, lambda { where(['starts_at > ?', Time.now]).first(2) }
 
+  def registered_players
+    self.users.where(signups: { status: 0 })
+  end
+
   before_save :expire_sidebar_cache
 
   def expire_sidebar_cache
@@ -42,6 +46,10 @@ class Tournament < ActiveRecord::Base
 
   def to_param
     "#{id}-#{name.parameterize}"
+  end
+
+  def started?
+    false
   end
 
   # return random tournament info for test purposes

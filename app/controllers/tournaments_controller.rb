@@ -11,7 +11,14 @@ class TournamentsController < ApplicationController
     respond_to do |format|
       format.html do
         @tournament = Tournament.find(params[:id])
-        @bracket = Bracket::Bracket.new(@tournament.users).to_json
+        @user = TournamentPlayerDecorator.new(current_user, @tournament)
+        if @tournament.started?
+          @bracket = Bracket::Bracket.new(@tournament.users).to_json
+          render :show
+        else
+          # redirecting here will drop the flash message
+          render :signup
+        end
       end
 
       format.json do

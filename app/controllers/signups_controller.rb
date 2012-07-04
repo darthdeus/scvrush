@@ -4,24 +4,31 @@ class SignupsController < ApplicationController
 
   def create
     @tournament = Tournament.find(params[:id])
-    current_user.sign_up(@tournament)
-    redirect_to @tournament, notice: "You have successfuly registered to the tournament."
+    @signup = Signup.for(current_user, @tournament)
+    if @signup.signup
+      flash[:notice] = "You have successfuly registered to the tournament."
+    else
+      flash[:success] = "You can't register for a given tournament"
+    end
+    redirect_to signup_tournament_path(@tournament)
   end
 
   def update
     @tournament = Tournament.find(params[:id])
     if current_user.registered_for? @tournament
       current_user.check_in(@tournament)
-      redirect_to @tournament, notice: "You've been checked in! Enjoy the tournament."
+      flash[:notice] = "You've been checked in! Enjoy the tournament."
     else
-      redirect_to @tournament, notice: "You can't check in because you're not registered. Please contact the tournament administrator."
+      flash[:notice] = "You can't check in because you're not registered. Please contact the tournament administrator."
     end
+    redirect_to signup_tournament_path(@tournament)
   end
 
   def destroy
     @tournament = Tournament.find(params[:id])
     @tournament.unregister(current_user)
-    redirect_to @tournament, notice: "You've been signed out."
+    flash[:notice] = "Your registration was canceled, we are sorry to see you go."
+    redirect_to signup_tournament_path(@tournament)
   end
 
   protected

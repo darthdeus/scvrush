@@ -48,10 +48,12 @@ html
           #navigation
             = render 'shared/menu'
 
-        / TODO - display :success
         .row
-          - flash.each do |name, msg|
-            = content_tag :div, msg, :class => "alert span5 alert-#{name}"
+          - [:success, :error, :info, :notice].each do |type|
+            - if flash[type]
+              div id="flash" class="span6 fade in alert #{flash_class(type)}"
+                a href="#" data-dismiss="alert" class="close" ×
+                div= flash[type]
 
         - if content_for? :sidebar
           #left-wrap

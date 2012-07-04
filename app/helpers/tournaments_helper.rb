@@ -13,8 +13,8 @@ module TournamentsHelper
 
   # Cancel signup button
   def cancel_signup_button(tour)
-    action_params = { controller: :signups, action: :create, id: tour.id }
-    link_to action_params, method: :post, class: 'btn btn-danger btn-large' do
+    action_params = { controller: :signups, action: :destroy, id: tour.id }
+    link_to action_params, method: :delete, class: 'btn btn-danger btn-large' do
       html = content_tag(:i, "", class: "icon-remove icon-white")
       html << "Cancel your registraion for the tournament"
       html.html_safe
