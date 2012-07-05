@@ -45,13 +45,13 @@
 
       p
         ' There are
-        strong 5 Zerg
+        strong #{@tournament.zerg_count} Zerg
         '  players,
-        strong 4 Terran
+        strong #{@tournament.terran_count} Terran
         '  players,
-        strong 10 Protoss
+        strong #{@tournament.protoss_count} Protoss
         '  players, and
-        strong 13 people who can't decide
+        strong #{@tournament.random_count} people who can't decide
         |  what race to play.
       // TODO - add a simple AngularJS search for given players
       /*.row*/

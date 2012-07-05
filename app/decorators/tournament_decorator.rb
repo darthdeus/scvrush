@@ -1,9 +1,30 @@
 class TournamentDecorator < Draper::Base
   decorates :tournament
 
-  def registered_players
-    UserDecorator.decorate(tournament.registered_players)
+  def random_count
+    race_count("Random")
   end
+
+  def protoss_count
+    race_count("Protoss")
+  end
+
+  def terran_count
+    race_count("Terran")
+  end
+
+  def zerg_count
+    race_count("Zerg")
+  end
+
+  def registered_players
+    @players ||= UserDecorator.decorate(tournament.registered_players)
+  end
+
+  def race_count(race)
+    registered_players.where(race: race).size
+  end
+
   # Accessing Helpers
   #   You can access any helper via a proxy
   #

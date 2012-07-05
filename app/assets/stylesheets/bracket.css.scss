@@ -23,10 +23,12 @@
 // TODO - This needs to go after we change the whole
 // layout to Twitter bootstrap
 .registered-players .row { margin-left: 0; }
+
 .tournament-players li {
+  @include border-radius(3px);
   float: left;
-  width: 150px;
-  border: 1px solid #aaa;
+  width: 160px;
+  border: 1px solid #ddd;
   margin: 10px 20px 10px 0;
 
   a {
