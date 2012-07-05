@@ -5,6 +5,10 @@ class TournamentPlayerDecorator
     def registered_for?(tournament)
       false
     end
+
+    def checked_in?
+      false
+    end
   end
 
   def initialize(user, tournament)
@@ -14,6 +18,13 @@ class TournamentPlayerDecorator
 
   def registered?
     @user.registered_for?(@tournament)
+  end
+
+  def checked_in?
+    @user.checked_in?(@tournament)
+  end
+
+  def check_in!
   end
 
 end

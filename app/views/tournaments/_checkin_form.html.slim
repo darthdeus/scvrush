@@ -1,0 +1,27 @@
+.row.registration-form
+  .span6
+    h3 Checkin is open!
+
+    - if @user.checked_in?
+      p
+        ' You are currently checked in.
+        strong
+          | The tournament will start in 20 minutes, please come in time.
+      p
+        ' If you can't participate in the tournament, please cancel
+        ' your registraion before the tournament begins.
+      = cancel_signup_button(@tournament)
+    - else
+      p
+        ' The tournament starts in 20 minutes, you have to check in to be
+        ' allowed to participate.
+      p
+        ' Once the tournament starts, all players who didn't check in
+        ' will recieve automatic loss.
+      p
+        ' If you have any questions, contact any of the admins
+        ' on our battle.net channel
+        strong SCVRush
+
+      = checkin_button(@tournament)
+

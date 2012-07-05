@@ -1,17 +1,23 @@
 require 'spec_helper'
 
 describe TournamentsController do
-  it "#show" do
-    @signups = mock_model(Signup)
-    @signups.should_receive(:registered).and_return(:registered)
-    @signups.should_receive(:checked).and_return(:checked)
 
-    @tournament = mock_model(Tournament)
-    @tournament.should_receive(:signups).twice.and_return(@signups)
+  describe "#show" do
+    it "renders signup page if the tournament hasn't started yet" do
+      tournament = stub(started?: false, users: [])
+      TournamentDecorator.stub(:find) { tournament }
 
-    Tournament.should_receive(:find).with("1").and_return(@tournament)
-    get :show, :id => 1
+      get :show, id: 1
+      response.should render_template(:signup)
+    end
 
-    assigns[:tournament].should == @tournament
+    it "renders doesn't render signup page if the tournament has started" do
+      tournament = stub(started?: true, users: [])
+      TournamentDecorator.stub(:find) { tournament }
+
+      get :show, id: 1
+      response.should render_template(:show)
+    end
   end
+
 end

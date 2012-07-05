@@ -12,28 +12,13 @@
           .span6.alert.alert-info
             | Registration is currently open. Checkin starts in 40 minutes
 
-        .row.signup-form
-          .span6
-            h3 You can only register before the checkin starts
-
-            - if @user.registered?
-              p
-                ' You are currently registered for the tournament. Please come back
-                ' in 20 minutes to check in.
-
-              p
-                ' If you can't participate in the tournament, please cancel
-                ' your registraion before the tournament begins.
-              = cancel_signup_button(@tournament)
-            - else
-              p By signing up you agree to the tournament rules.
-              p
-                ' If you have any questions, contact any of the admins
-                ' on our battle.net channel
-                strong SCVRush
-              = signup_button(@tournament)
-
-
+        // Since the tournament controller will render a different template
+        // if the tournament has already started, we don't need to check
+        // for that case here.
+        - if @tournament.registration_open?
+          = render partial: "registration_form"
+        - else
+          = render partial: "checkin_form"
 
       .span5
         = render partial: "rules"

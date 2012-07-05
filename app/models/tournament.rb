@@ -26,7 +26,7 @@ class Tournament < ActiveRecord::Base
     true
   end
 
-  def signup_open?
+  def registration_open?
     self.starts_at > 30.minutes.from_now
   end
 
@@ -49,7 +49,7 @@ class Tournament < ActiveRecord::Base
   end
 
   def started?
-    false
+    self.starts_at < Time.now
   end
 
   # return random tournament info for test purposes
