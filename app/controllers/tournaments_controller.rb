@@ -10,7 +10,7 @@ class TournamentsController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        @tournament = Tournament.find(params[:id])
+        @tournament = TournamentDecorator.find(params[:id])
         @user = TournamentPlayerDecorator.new(current_user, @tournament)
         if @tournament.started?
           @bracket = Bracket::Bracket.new(@tournament.users).to_json
@@ -28,7 +28,7 @@ class TournamentsController < ApplicationController
   end
 
   def signup
-    @tournament = Tournament.find(params[:id])
+    @tournament = TournamentDecorator.find(params[:id])
     @user = TournamentPlayerDecorator.new(current_user, @tournament)
   end
 

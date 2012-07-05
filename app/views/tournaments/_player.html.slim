@@ -1,3 +1,9 @@
 li = link_to player do
-  = image_tag player.avatar
-  span.name = player.username
+  // TODO - we might want to put an avatar here.
+  // But first we have to investigate the amount of players
+  // who actually have their avatar uploaded, and maybe even
+  // make the upload process simpler, so that people do it more often
+
+  // Then we will be able to personalize this better
+  .race class="race-#{player.race.downcase}"
+  .name = player.username

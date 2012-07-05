@@ -34,9 +34,28 @@
               = signup_button(@tournament)
 
 
-        h2 Already registered players
-        ul.unstyled
+
+      .span5
+        = render partial: "rules"
+
+    // TODO - this wrapper needs to go once we change the whole layout
+    // to the twitter bootstrap grid
+    .registered-players
+      h2 Already registered players
+
+      p
+        ' There are
+        strong 5 Zerg
+        '  players,
+        strong 4 Terran
+        '  players,
+        strong 10 Protoss
+        '  players, and
+        strong 13 people who can't decide
+        |  what race to play.
+      // TODO - add a simple AngularJS search for given players
+      /*.row*/
+      /*  input type="text" placeholder="Search here ..."*/
+      .row
+        ul.unstyled.tournament-players
           = render partial: "player", collection: @tournament.registered_players
-
-      = render partial: "rules"
-

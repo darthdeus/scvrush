@@ -20,6 +20,51 @@
   .icon-ok { margin-top: 2px; margin-right: 3px; }
 }
 
+// TODO - This needs to go after we change the whole
+// layout to Twitter bootstrap
+.registered-players .row { margin-left: 0; }
+.tournament-players li {
+  float: left;
+  width: 150px;
+  border: 1px solid #aaa;
+  margin: 10px 20px 10px 0;
+
+  a {
+    display: block;
+    height: 50px;
+    color: black;
+    padding: 5px;
+    opacity: 0.7;
+
+    @include transition (all 0.2s ease-in-out);
+    &:hover {
+      background: #f0f0f0;
+      opacity: 1;
+    }
+  }
+
+  .race, .name {
+    display: block;
+    float: left;
+    height: 50px;
+  }
+
+  .name {
+    padding-left: 5px;
+    line-height: 55px;
+    font-size: 18px;
+  }
+
+  .race {
+    width: 50px;
+
+    &.race-random  { background: url("/assets/race_random_icon.png") no-repeat; }
+    &.race-zerg    { background: url("/assets/race_zerg_icon.png") no-repeat; }
+    &.race-terran  { background: url("/assets/race_terran_icon.png") no-repeat; }
+    &.race-protoss { background: url("/assets/race_protoss_icon.png") no-repeat; }
+  }
+}
+
 .bracket {
   margin-top: 20px;
   .round {
