@@ -5,7 +5,7 @@ class SignupsController < ApplicationController
   def create
     @tournament = Tournament.find(params[:id])
     @signup = Signup.for(current_user, @tournament)
-    if @signup.signup
+    if @signup.signup!
       flash[:notice] = "You have successfuly registered to the tournament."
     else
       flash[:success] = "You can't register for a given tournament"
@@ -14,8 +14,9 @@ class SignupsController < ApplicationController
   end
 
   def update
+    @user = TournamentPlayerDecorator.new(current_user, @tournament)
     @tournament = Tournament.find(params[:id])
-    if current_user.registered_for? @tournament
+    if @user.registered?
       current_user.check_in(@tournament)
       flash[:notice] = "You've been checked in! Enjoy the tournament."
     else

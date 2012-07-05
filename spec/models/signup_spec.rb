@@ -2,18 +2,28 @@ require 'spec_helper'
 
 describe Signup do
 
-  it "requires a tournament" do
-    signup = build(:signup, tournament: nil)
-    signup.should_not be_valid
-    signup.should have_at_least(1).error_on(:tournament)
+  context "validation" do
+    it "requires a user" do
+      build(:signup, user: nil).should_not be_valid
+    end
 
-    expect {
-      signup.save!
-    }.to raise_exception
+    it "requires a tournament" do
+      build(:signup, tournament: nil).should_not be_valid
+    end
+
+    it "has default value of REGISTERED" do
+      create(:signup, status: nil).status == Signup::REGISTERED
+    end
   end
 
-  it "has default value of REGISTERED" do
-    create(:signup, :status => nil).status == Signup::REGISTERED
+  describe "#signup" do
+    it "signs up the user with status REGISTERED" do
+      tournament, user = create(:tournament), create(:user)
+      signup = build(:signup, tournament: tournament, user: user)
+
+      signup.signup!.should == true
+      tournament.users.should include(user)
+    end
   end
 
   describe "#checkin" do

@@ -15,12 +15,17 @@ class Signup < ActiveRecord::Base
   validates :tournament, presence: true
   validates :user, presence: true
 
+  # Create a new signup for a user and a tournament
   def self.for(user, tournament)
     instance = new(user: user, tournament: tournament)
   end
 
-  def signup
-    false
+  # Set the signup status and save
+  #
+  # Returns true if the signup was successful, otherwise false.
+  def signup!
+    self.status = REGISTERED
+    self.save
   end
 
   def checkin!
