@@ -11,6 +11,8 @@
 
 jQuery(function($) {
 
+  $('input[type=text]:first').focus();
+
   $('.carousel').carousel({ interval: 3500 });
 
   if (!window.gon) {

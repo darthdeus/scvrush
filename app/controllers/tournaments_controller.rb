@@ -1,10 +1,23 @@
 class TournamentsController < ApplicationController
   # TODO - change to admin
-  before_filter :require_writer, only: [:edit, :update]
+  before_filter :require_writer, only: [:edit, :update, :create, :new]
   layout "single"
 
   def index
     @tournaments = Tournament.page(params[:page])
+  end
+
+  def new
+    @tournament = Tournament.new
+  end
+
+  def create
+    @tournament = Tournament.new(params[:tournament])
+    if @tournament.save
+      redirect_to @tournament, notice: "You've successfuly created a tournament."
+    else
+      render :new
+    end
   end
 
   def show
