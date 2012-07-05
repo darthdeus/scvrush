@@ -9,13 +9,13 @@
     .row
       .span6
         .row
-          .span6.alert.alert-info
-            | Registration is currently open. Checkin starts in 40 minutes
-
         // Since the tournament controller will render a different template
         // if the tournament has already started, we don't need to check
         // for that case here.
         - if @tournament.registration_open?
+          .span6.alert.alert-info
+            | Registration is currently open. Checkin starts in 40 minutes
+
           = render partial: "registration_form"
         - else
           = render partial: "checkin_form"
@@ -23,24 +23,28 @@
       .span5
         = render partial: "rules"
 
-    // TODO - this wrapper needs to go once we change the whole layout
-    // to the twitter bootstrap grid
-    .registered-players
-      h2 Already registered players
+    - if @tournament.has_players?
+      // TODO - this wrapper needs to go once we change the whole layout
+      // to the twitter bootstrap grid
+      .registered-players
+        h2 Already registered players
 
-      p
-        ' There are
-        strong #{@tournament.zerg_count} Zerg
-        '  players,
-        strong #{@tournament.terran_count} Terran
-        '  players,
-        strong #{@tournament.protoss_count} Protoss
-        '  players, and
-        strong #{@tournament.random_count} people who can't decide
-        |  what race to play.
-      // TODO - add a simple AngularJS search for given players
-      /*.row*/
-      /*  input type="text" placeholder="Search here ..."*/
-      .row
-        ul.unstyled.tournament-players
-          = render partial: "player", collection: @tournament.registered_players
+        p
+          ' There are
+          strong #{@tournament.zerg_count} Zerg
+          '  players,
+          strong #{@tournament.terran_count} Terran
+          '  players,
+          strong #{@tournament.protoss_count} Protoss
+          '  players, and
+          strong #{@tournament.random_count} people who can't decide
+          |  what race to play.
+        // TODO - add a simple AngularJS search for given players
+        /*.row*/
+        /*  input type="text" placeholder="Search here ..."*/
+        .row
+          ul.unstyled.tournament-players
+            = render partial: "player", collection: @tournament.registered_players
+
+    - else
+      h2 There are no players registered for this tournament, be the first one and sign up!

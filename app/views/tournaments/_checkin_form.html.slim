@@ -12,16 +12,20 @@
         ' your registraion before the tournament begins.
       = cancel_signup_button(@tournament)
     - else
-      p
-        ' The tournament starts in 20 minutes, you have to check in to be
-        ' allowed to participate.
-      p
-        ' Once the tournament starts, all players who didn't check in
-        ' will recieve automatic loss.
-      p
-        ' If you have any questions, contact any of the admins
-        ' on our battle.net channel
-        strong SCVRush
+      - if @user.registered?
+        p
+          ' The tournament starts in 20 minutes, you have to check in to be
+          ' allowed to participate.
+        p
+          ' Once the tournament starts, all players who didn't check in
+          ' will recieve automatic loss.
+        p
+          ' If you have any questions, contact any of the admins
+          ' on our battle.net channel
+          strong SCVRush
 
-      = checkin_button(@tournament)
+        = checkin_button(@tournament)
 
+      - else
+        .alert.alert-danger
+          | We are sorry but you're not able to register anymore because the checkin has already started.
