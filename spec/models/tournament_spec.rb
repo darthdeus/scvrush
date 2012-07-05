@@ -7,11 +7,11 @@ describe Tournament do
     end
 
     it "requires name" do
-      build(:tournament, :name => nil).should_not be_valid
+      build(:tournament, name: nil).should_not be_valid
     end
 
     it "requires start date" do
-      build(:tournament, :starts_at => nil).should_not be_valid
+      build(:tournament, starts_at: nil).should_not be_valid
     end
 
     it "deletes all dependent signups when destroyed" do
@@ -34,24 +34,6 @@ describe Tournament do
     end
   end
 
-  describe :signup_open? do
-    it "returns false if tournament starts in more than 30 minutes" do
-      [31, 60, 90, 240].each do |n|
-        tournament = build(:tournament, starts_at: n.minutes.from_now)
-        tournament.checkin_open?.should be_false
-        tournament.signup_open?.should be_true
-      end
-    end
-
-    it "returns true if tournament starts in less than 30 minutes" do
-      [15, 10, 5, 1].each do |n|
-        tournament = build(:tournament, starts_at: n.minutes.from_now)
-        tournament.checkin_open?.should be_true
-        tournament.signup_open?.should be_false
-      end
-    end
-  end
-
   describe :upcoming do
     it "it returns two upcoming tournaments, not last two" do
       Tournament.destroy_all
@@ -67,12 +49,12 @@ describe Tournament do
 
   describe :unregister do
     it "removes the user from active signups" do
-      @signup = create(:signup)
-      @user = @signup.user
-      @tournament = @signup.tournament
-      @tournament.unregister(@user)
+      signup = create(:signup)
+      user = signup.user
+      tournament = signup.tournament
+      tournament.unregister(user)
 
-      @user.should_not be_registered_for(@tournament)
+      user.should_not be_registered_for(tournament)
     end
   end
 
