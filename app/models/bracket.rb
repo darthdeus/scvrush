@@ -43,10 +43,13 @@ class Bracket
     round = tournament.rounds.first
     matches = round.matches
     index = 0
+    # TODO - only checked in users here
     tournament.users.each_slice(2) do |players|
       # TODO - instead of creating a new match, instead find
       # the match that was pre-populated and seed the players to it
       match = matches[index]
+      # TODO - don't create it here
+      match = round.matches.create!(bo: 3)
       match.player1 = players[0]
       match.player2 = players[1]
       match.save!
