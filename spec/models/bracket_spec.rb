@@ -34,6 +34,21 @@ describe Bracket do
     t.should have(3).rounds
   end
 
+  it "creates empty matches to be seeded" do
+    User.delete_all
+    Match.delete_all
+
+    t = create(:tournament)
+    bracket = Bracket.new(t)
+    p1, p2, p3, p4 = *4.times.inject([]) { |v,i| v << create(:user) }
+    t.users << p1 << p2 << p3 << p4
+
+    bracket.create_bracket_rounds
+    bracket.create_matches
+
+    Match.count.should == 3
+  end
+
   it "seeds players to the bracket" do
     User.delete_all
     Match.delete_all
@@ -52,6 +67,8 @@ describe Bracket do
     Match.last.player1.should == p3
     Match.last.player2.should == p4
   end
+
+
 #   describe "seeding" do
 #
 #     context "with a list of players" do

@@ -28,6 +28,30 @@ class Bracket
     end
   end
 
+  def create_matches
+    # We start from the highest round, e.g. Ro8, Ro4, Ro2
+    # TODO - don't create Ro1 match
+    rounds = tournament.rounds.order("number DESC")
+    rounds.each do |round|
+      (round.number / 2).times { round.matches.create!(bo: 3) }
+    end
+  end
+
+  # Linear seed for the bracket
+  def linear_seed
+    tournament.reload
+    round = tournament.rounds.first
+    tournament.users.each_slice(2) do |players|
+      # TODO - instead of creating a new match, instead find
+      # the match that was pre-populated and seed the players to it
+      match = Match.new(round: round)
+      match.player1 = players[0]
+      match.player2 = players[1]
+      match.bo = 3
+      match.save!
+    end
+  end
+
   # Return round sizes for a given player count
   def round_sizes(player_count)
     seed = self.find_seed(player_count)
@@ -70,17 +94,6 @@ class Bracket
     [128, 64, 32, 16, 8, 4, 2, 1]
   end
 
-  def linear_seed
-    tournament.reload
-    round = tournament.rounds.first
-    tournament.users.each_slice(2) do |players|
-      match = Match.new(round: round)
-      match.player1 = players[0]
-      match.player2 = players[1]
-      match.bo = 3
-      match.save!
-    end
-  end
 #   def seed
 #     number = self.players.size
 #

@@ -7,6 +7,9 @@ class Match < ActiveRecord::Base
 
   attr_accessible :bo, :player1, :player2, :round
 
+  # FIX - there is no validation for players, since the bracket is pre-populated
+  # with empty matches, and then the players are seeded later.
+  #
   # TODO - add automatic walkover for player1 if there is no player2
-  validates_presence_of :bo, :round, :player1
+  validates_presence_of :bo, :round
 end

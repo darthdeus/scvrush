@@ -8,9 +8,8 @@ class Round < ActiveRecord::Base
   def to_simple_json
     hash = { type: "match", matches: [] }
     hash[:matches] = self.matches.map do |match|
-      res = {
-        player1: match.player1.username,
-      }
+      res = {}
+      res[:player1] = match.player1.username if match.player1
       res[:player2] = match.player2.username if match.player2
       res
     end

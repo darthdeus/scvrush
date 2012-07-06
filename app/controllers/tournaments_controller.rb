@@ -28,7 +28,8 @@ class TournamentsController < ApplicationController
         if @tournament.started?
           bracket = Bracket.new(@tournament)
           bracket.create_bracket_rounds
-          bracket.linear_seed
+          bracket.create_matches
+          # bracket.linear_seed
 
           render :show
         else
