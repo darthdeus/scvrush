@@ -39,6 +39,9 @@ namespace :db do
       post.tag_list = ["coach,na,zerg", "coach,eu,zerg,terran","coach,na,protoss"].sample
     end
 
+    # Create one testing tournament that is already running
+    Factory(:tournament, starts_at: 10.minutes.ago)
+
     Tournament.populate 5 do |tournament|
       tournament.name = Populator.words(2..5)
       tournament.starts_at = 1.day.from_now..5.days.from_now

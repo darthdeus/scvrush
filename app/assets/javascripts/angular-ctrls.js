@@ -9,6 +9,7 @@ module.factory("Tournament", ["$resource", function($resource) {
 BracketCtrl.$inject = ["$scope", "Tournament"];
 function BracketCtrl($scope, Tournament) {
 
+  window.t = Tournament;
   $scope.rounds = Tournament.get(function() {
     setTimeout(function() { $('.bracket').applyDimensions(window.dimensions); }, 300);
   });

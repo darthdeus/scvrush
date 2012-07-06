@@ -52,6 +52,9 @@ group :development, :test do
   gem 'pry-doc',    '~> 0.4.2'
   gem 'pry-rails',  '~> 0.1.6'
   gem 'pry-nav',    '~> 0.2.1'
+
+  gem 'populator',          '~> 1.0.0'
+  gem 'faker',              '~> 1.0.1'
 end
 
 group :test do
@@ -63,8 +66,6 @@ group :test do
   gem 'factory_girl_rails', '~> 1.7.0'
   gem 'launchy',            '~> 2.1.0'
   gem 'cucumber-rails',     require: false
-  gem 'populator',          '~> 1.0.0'
-  gem 'faker',              '~> 1.0.1'
 
   group :darwin do
     gem 'rb-fsevent',       require: false

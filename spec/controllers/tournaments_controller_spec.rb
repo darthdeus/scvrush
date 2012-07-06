@@ -4,7 +4,8 @@ describe TournamentsController do
 
   describe "#show" do
     it "renders signup page if the tournament hasn't started yet" do
-      tournament = stub(started?: false, users: [])
+      tournament = create(:tournament)
+      tournament.stub(:started) { true }
       TournamentDecorator.stub(:find) { tournament }
 
       get :show, id: 1
@@ -12,7 +13,9 @@ describe TournamentsController do
     end
 
     it "renders doesn't render signup page if the tournament has started" do
-      tournament = stub(started?: true, users: [])
+      tournament = create(:tournament)
+      tournament.stub(:started) { true }
+
       TournamentDecorator.stub(:find) { tournament }
 
       get :show, id: 1

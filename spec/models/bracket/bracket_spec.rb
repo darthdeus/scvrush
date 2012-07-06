@@ -1,8 +1,8 @@
 require "spec_helper"
 
-describe Bracket::Bracket do
+describe Bracket do
 
-  let(:bracket) { Bracket::Bracket.new([]) }
+  let(:bracket) { Bracket.new([]) }
 
   describe "seed size" do
     it "returns the next highest possible seed size for a given number" do
@@ -26,10 +26,11 @@ describe Bracket::Bracket do
 
   it "can create a bracket rounds" do
     t = create(:tournament)
-    bracket = Bracket::Bracket.new(t)
+    bracket = Bracket.new(t)
     4.times { t.users << create(:user) }
 
     bracket.create_bracket_rounds
+    t.reload
     t.should have(3).rounds
   end
 
@@ -38,7 +39,7 @@ describe Bracket::Bracket do
     Match.delete_all
 
     t = create(:tournament)
-    bracket = Bracket::Bracket.new(t)
+    bracket = Bracket.new(t)
     p1, p2, p3, p4 = *4.times.inject([]) { |v,i| v << create(:user) }
     t.users << p1 << p2 << p3 << p4
 

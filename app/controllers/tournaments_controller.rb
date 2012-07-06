@@ -26,7 +26,10 @@ class TournamentsController < ApplicationController
         @tournament = TournamentDecorator.find(params[:id])
         @user = TournamentPlayerDecorator.new(current_user, @tournament)
         if @tournament.started?
-          @bracket = Bracket::Bracket.new(@tournament.users).to_json
+          bracket = Bracket.new(@tournament)
+          bracket.create_bracket_rounds
+          bracket.linear_seed
+
           render :show
         else
           # redirecting here will drop the flash message
@@ -35,7 +38,9 @@ class TournamentsController < ApplicationController
       end
 
       format.json do
-        render json: Tournament.random_info
+        @tournament = Tournament.find(params[:id])
+        rounds = @tournament.rounds.map(&:to_simple_json)
+        render json: rounds
       end
     end
   end
