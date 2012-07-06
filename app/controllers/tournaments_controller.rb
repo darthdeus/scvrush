@@ -29,7 +29,7 @@ class TournamentsController < ApplicationController
           bracket = Bracket.new(@tournament)
           bracket.create_bracket_rounds
           bracket.create_matches
-          # bracket.linear_seed
+          bracket.linear_seed
 
           render :show
         else

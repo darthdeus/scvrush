@@ -36,6 +36,13 @@ jQuery(function($) {
     });
   }
 
+  // TODO
+  // IMPORTANT !!!
+  //
+  // If the player has a dot in his username, this won't work,
+  // because the selector engine will use it as a class.
+  //
+  // IMPORTANT !!!
   $('.bracket .player').live({
     mouseenter: function() {
       var cls = $(this)[0].className;
