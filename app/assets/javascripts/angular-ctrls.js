@@ -1,7 +1,9 @@
 var module = angular.module("scvrush", ["ngResource"]);
 
+
 module.factory("Tournament", ["$resource", function($resource) {
-  return $resource("/tournaments/1.json", {},
+  // TODO - extract tournament_id into an external service
+  return $resource("/tournaments/" + gon.tournament_id + ".json", {},
                    { get: { method: "GET", callback: "JSON_CALLBACK", isArray: true } });
 
 }]);

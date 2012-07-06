@@ -25,6 +25,7 @@ class TournamentsController < ApplicationController
     respond_to do |format|
       format.html do
         @tournament = TournamentDecorator.find(params[:id])
+        gon.tournament_id = @tournament.id
         @user = TournamentPlayerDecorator.new(current_user, @tournament)
         if @tournament.started?
           bracket = Bracket.new(@tournament)

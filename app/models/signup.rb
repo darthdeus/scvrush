@@ -29,15 +29,11 @@ class Signup < ActiveRecord::Base
     else
       self.status = REGISTERED
     end
-    self.save
+    self.save!
   end
 
   def checkin!
-    if self.status == REGISTERED
-      self.status = CHECKED
-      self.save!
-    else
-      raise "User can't check in after he canceled his registration"
-    end
+    self.status = CHECKED
+    self.save!
   end
 end
