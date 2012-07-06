@@ -1,7 +1,9 @@
 class Bracket::Bracket
 
-  def initialize(users)
-    @users = users
+  attr_reader :tournament
+
+  def initialize(tournament)
+    @tournament = tournament
   end
 
   # Return JSON-formatted user data
@@ -14,11 +16,22 @@ class Bracket::Bracket
     users.map.with_index { |user, index| { id: user.id, name: user.username, seed: index + 1 } }
   end
 
-  def create_bracket(tournament)
-    self.seeds.reverse.each do |round|
+  # Create bracket rounds for the given tournament
+  def create_bracket_rounds
+    # TODO - do we really want to erase previous rounds?
+    tournament.rounds = []
+    # TODO - maybe only count checked in players
+    rounds = self.round_sizes(tournament.users.size)
+    rounds.each do |round|
       round = Round.new(number: round, tournament: tournament)
       round.save
     end
+  end
+
+  # Return round sizes for a given player count
+  def round_sizes(player_count)
+    seed = self.find_seed(player_count)
+    seeds[seeds.index(seed)..-1]
   end
 
   # Find a bracket seed for a given number of players
@@ -56,5 +69,25 @@ class Bracket::Bracket
   def seeds
     [128, 64, 32, 16, 8, 4, 2, 1]
   end
+
+  def linear_seed
+    tournament.reload
+    round = tournament.rounds.first
+    tournament.users.each_slice(2) do |players|
+      match = Match.new(round: round)
+      match.player1 = players[0]
+      match.player2 = players[1]
+      match.bo = 3
+      match.save!
+    end
+  end
+#   def seed
+#     number = self.players.size
+#
+#     self.rounds.create!(number: number)
+#     # self.players.each_slice(2) do |players|
+#     #
+#     # end
+#   end
 
 end

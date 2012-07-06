@@ -66,4 +66,5 @@ describe Tournament do
 
     user.won_tournaments.should == [tournament]
   end
+
 end

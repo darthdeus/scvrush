@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120629202920) do
+ActiveRecord::Schema.define(:version => 20120706095538) do
 
   create_table "achievements", :force => true do |t|
     t.string   "name"
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20120629202920) do
     t.integer  "bo"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "round_id",   :null => false
   end
 
   create_table "points", :force => true do |t|

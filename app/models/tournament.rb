@@ -2,6 +2,9 @@ class Tournament < ActiveRecord::Base
   has_many :signups, dependent: :destroy
   has_many :users, through: :signups
 
+  has_many :rounds
+  has_many :matches, through: :rounds
+
   belongs_to :post
   belongs_to :winner, class_name: 'User', foreign_key: 'winner_id'
 
@@ -67,4 +70,5 @@ class Tournament < ActiveRecord::Base
     }, { matches: [ { player1: "ham", player2: "kara" } ] }
     ]
   end
+
 end
