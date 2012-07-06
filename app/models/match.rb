@@ -12,4 +12,13 @@ class Match < ActiveRecord::Base
   #
   # TODO - add automatic walkover for player1 if there is no player2
   validates_presence_of :bo, :round
+
+  before_save :check_if_completed
+
+  def check_if_completed
+    if (player1 && !player2) || (!player1 && !player2)
+      self.completed = true
+    end
+    true
+  end
 end
