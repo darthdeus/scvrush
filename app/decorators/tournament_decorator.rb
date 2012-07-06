@@ -29,8 +29,12 @@ class TournamentDecorator < Draper::Base
     self.registered_players.size > 0
   end
 
-  def checkin_at
+  def start_at
     h.distance_of_time_in_words_to_now self.tournament.starts_at
+  end
+
+  def checkin_at
+    h.distance_of_time_in_words_to_now(self.tournament.starts_at - 30.minutes)
   end
 
   # Accessing Helpers

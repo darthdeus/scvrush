@@ -14,8 +14,8 @@ class SignupsController < ApplicationController
   end
 
   def update
-    @user = TournamentPlayerDecorator.new(current_user, @tournament)
     @tournament = Tournament.find(params[:id])
+    @user = TournamentPlayerDecorator.new(current_user, @tournament)
     if @user.registered?
       current_user.check_in(@tournament)
       flash[:notice] = "You've been checked in! Enjoy the tournament."

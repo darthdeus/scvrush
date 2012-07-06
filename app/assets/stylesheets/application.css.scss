@@ -468,6 +468,10 @@ button.btn, a.btn {
     left: -12px;
 }
 
+.timeline-item {
+  padding: 10px;
+  border-bottom: 1px solid #aaa;
+}
 
 @import "posts";
 @import "progress_bar";

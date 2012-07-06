@@ -4,11 +4,19 @@
 
 .tournament ng-app="scvrush"
   header
-    h1 = @tournament.name
+    h1
+      = @tournament.name
+      span.help-inline style="font-size: 14px;" The tournament starts in #{@tournament.start_at}
 
     .row
       .span6
         .row
+        - if !@user.checked_in? && @tournament.checkin_open?
+          = render partial: "checkin_form"
+          br
+          br
+
+
         - if @user.checked_in?
           = render partial: "checkin_form"
         - else
@@ -18,13 +26,16 @@
           - if @tournament.registration_open?
             .row
               .span6.alert.alert-info
-                | Registration is currently open.
-                - unless @tournament.checkin_open?
-                  p Checkin starts in #{@tournament.checkin_at}
+                - if @tournament.checkin_open?
+                  ' Checkin is currently open.
+                  br
+                  ' You can still sign up and you will be checked in automatically.
+                - else
+                  ' Registration is currently open.
+                  br
+                  ' Checkin starts in #{@tournament.checkin_at}
 
             = render partial: "registration_form"
-          - if @tournament.checkin_open?
-            = render partial: "checkin_form"
 
       .span5
         = render partial: "rules"

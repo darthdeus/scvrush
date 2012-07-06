@@ -1,5 +1,17 @@
 h1 Tournaments
 
-= render partial: "tournament", collection: @tournaments, as: :tournament
+p These are all of our tournaments. We are currently running three types of tournaments.
+
+ul
+  li Bronze/Silver/Gold (BSG) - every Tuesday
+  li Platinum/Diamond - every Thursday
+  li Master's Brawl - every Saturday
+
+.alert.alert-info
+  ' We will be adding custom user tournaments soon in the future,
+  ' which means you will be able to organize a tournament with your friends all by yourself.
+
+.timeline
+  = render partial: "tournament", collection: @tournaments, as: :tournament
 
 = paginate @tournaments
