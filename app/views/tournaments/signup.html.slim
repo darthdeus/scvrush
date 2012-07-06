@@ -32,8 +32,11 @@
 
             .row
               .span6
-                - if !@user.checked_in? && @tournament.checkin_open?
+                - if !@user.has_signup? && @tournament.checkin_open?
                   = signup_button(@tournament, "Sign up and automatically check in")
+                - if @user.registered? && !@user.checked_in? && @tournament.checkin_open?
+                  = signup_button(@tournament)
+
 
             = render partial: "registration_form"
 

@@ -42,7 +42,7 @@ class Tournament < ActiveRecord::Base
   end
 
   def unregister(user)
-    self.signups.where(user_id: user.id).first.destroy
+    self.signups.where(user_id: user.id).each(&:destroy)
   end
 
   def set_winner(winner)
