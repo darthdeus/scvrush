@@ -9,6 +9,10 @@ class TournamentPlayerDecorator
     def checked_in?(tournament)
       false
     end
+
+    def has_signup?(tournament)
+      false
+    end
   end
 
   def initialize(user, tournament)
@@ -26,9 +30,6 @@ class TournamentPlayerDecorator
 
   def has_signup?
     @user.has_signup?(@tournament)
-  end
-
-  def check_in!
   end
 
 end
