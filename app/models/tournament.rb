@@ -30,11 +30,15 @@ class Tournament < ActiveRecord::Base
   end
 
   def registration_open?
-    self.checkin_open?
+    self.starts_at > Time.now
   end
 
   def checkin_open?
     self.starts_at < 30.minutes.from_now && self.starts_at > Time.now
+  end
+
+  def started?
+    self.starts_at < Time.now
   end
 
   def unregister(user)
@@ -51,9 +55,6 @@ class Tournament < ActiveRecord::Base
     "#{id}-#{name.parameterize}"
   end
 
-  def started?
-    self.starts_at < Time.now
-  end
 
   # return random tournament info for test purposes
   def self.random_info
