@@ -26,6 +26,6 @@
 
   .bracket ng-controller="BracketCtrl" ng-app="scvrush"
     .round ng-repeat="round in rounds"
-      .match ng-repeat="match in round.matches" ng-click="inputResult(match)"
+      .match class="completed-{{match.completed}}" ng-repeat="match in round.matches" ng-click="inputResult(match)"
         .player class="player_{{match.player1}}" {{match.player1}}
         .player class="player_{{match.player2}}" {{match.player2}}

@@ -11,6 +11,7 @@ class Round < ActiveRecord::Base
       res = {}
       res[:player1] = match.player1.username if match.player1
       res[:player2] = match.player2.username if match.player2
+      res[:completed] = match.completed
       res
     end
 

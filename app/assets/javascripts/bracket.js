@@ -48,7 +48,9 @@ jQuery(function($) {
       var cls = $(this)[0].className;
       // TODO - add backwards compatible #map
       cls = cls.split(' ').map(function(n) { return "." + n; }).join("")
-      $(cls).addClass('player-highlight');
+      if (cls !== ".player.player_") {
+        $(cls).addClass('player-highlight');
+      }
     },
 
     mouseleave:function() {

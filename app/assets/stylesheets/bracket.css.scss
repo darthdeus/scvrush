@@ -78,6 +78,7 @@
       border-right: 1px solid #666;
     }
 
+
     .round-info {
       margin: 0 5px 20px 0;
       border: 1px solid #999;
@@ -100,6 +101,11 @@
 
     &:hover { opacity: 1; }
   }
+
+    .completed-true .player {
+      opacity: 0.3;
+      &:hover { opacity: 1; }
+    }
 
 
   .player-highlight {
