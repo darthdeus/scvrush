@@ -32,8 +32,8 @@ class Bracket
     # We start from the highest round, e.g. Ro8, Ro4, Ro2
     # TODO - don't create Ro1 match
     rounds = tournament.rounds.order("number DESC")
-    rounds.each do |round|
-      (round.number / 2).times { round.matches.create!(bo: 3) }
+    rounds.each.with_index do |round, seed|
+      (round.number / 2).times { round.matches.create!(bo: 3, seed: seed) }
     end
   end
 
@@ -42,19 +42,27 @@ class Bracket
     tournament.reload
     round = tournament.rounds.first
     matches = round.matches
-    index = 0
+    seed = 0
+
     # TODO - only checked in users here
     tournament.users.each_slice(2) do |players|
       # TODO - instead of creating a new match, instead find
       # the match that was pre-populated and seed the players to it
-      match = matches[index]
+      match = matches[seed]
       # TODO - don't create it here
-      match = round.matches.create!(bo: 3) if match.nil?
+      match = round.matches.create!(bo: 3, seed: seed) if match.nil?
       match.player1 = players[0]
       match.player2 = players[1]
+      match.seed = seed
       match.save!
-      index += 1
+      seed += 1
     end
+  end
+
+  def current_match_for(user)
+    matches = tournament.matches.to_a
+    user_matches = matches.select { |m| m.player1 == user || m.player2 == user }
+    user_matches.sort { |m1, m2| m1.round.number <=> m2.round.number }.first
   end
 
   # Return round sizes for a given player count

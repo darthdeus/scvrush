@@ -59,6 +59,7 @@ describe Bracket do
     t.users << p1 << p2 << p3 << p4
 
     bracket.create_bracket_rounds
+    bracket.create_matches
     bracket.linear_seed
 
     Match.count.should == 2
@@ -68,6 +69,23 @@ describe Bracket do
     Match.last.player2.should == p4
   end
 
+  it "can give the current match for a user" do
+    User.delete_all
+
+    t = create(:tournament)
+    bracket = Bracket.new(t)
+    p1, p2, p3, p4 = *4.times.inject([]) { |v,i| v << create(:user) }
+    t.users << p1 << p2 << p3 << p4
+
+    bracket.create_bracket_rounds
+    bracket.create_matches
+    bracket.linear_seed
+
+    bracket.current_match_for(p1).player2.should == p2
+    bracket.current_match_for(p2).player1.should == p1
+    bracket.current_match_for(p3).player2.should == p4
+    bracket.current_match_for(p4).player1.should == p3
+  end
 
 #   describe "seeding" do
 #
