@@ -11,10 +11,11 @@
     .row
       .span6
         .row
-        - if !@user.checked_in? && @tournament.checkin_open?
-          = render partial: "checkin_form"
-          br
-          br
+          - if !@user.checked_in? && @tournament.checkin_open?
+            .span6.alert.alert-danger
+              ' If you still want to participate, click on the button below
+              ' and you will be checked in automatically.
+
 
 
         - if @user.checked_in?
@@ -28,8 +29,6 @@
               .span6.alert.alert-info
                 - if @tournament.checkin_open?
                   ' Checkin is currently open.
-                  br
-                  ' You can still sign up and you will be checked in automatically.
                 - else
                   ' Registration is currently open.
                   br
