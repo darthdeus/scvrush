@@ -17,7 +17,7 @@ class Tournament < ActiveRecord::Base
   scope :upcoming, lambda { where(['starts_at > ?', Time.now]).first(2) }
 
   def registered_players
-    self.users.where(signups: { status: 0 })
+    self.signups.where("status = 0 OR status = 1").includes(:user).all.map(&:user)
   end
 
   before_save :expire_sidebar_cache

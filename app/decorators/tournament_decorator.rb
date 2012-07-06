@@ -22,7 +22,7 @@ class TournamentDecorator < Draper::Base
   end
 
   def race_count(race)
-    self.registered_players.where(race: race).size
+    self.registered_players.select { |player| player.race == race }.size
   end
 
   def has_players?

@@ -5,7 +5,7 @@ namespace :db do
     [User, Post, Tournament, Signup].each(&:delete_all)
 
 
-    Factory(:user, :username => "darthdeus", :password => "admin")
+    Factory(:user, username: "darthdeus", password: "admin", race: "Zerg")
     salt = BCrypt::Engine.generate_salt
 
     User.populate 15 do |user|
