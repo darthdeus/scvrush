@@ -4,6 +4,6 @@ FactoryGirl.define do
   factory :coach do
     order 1
     title "MyString"
-    post_id 1
+    post
   end
 end

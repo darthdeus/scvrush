@@ -28,6 +28,15 @@
     - if @user == current_user
       = link_to 'edit your profile', edit_user_path(current_user)
 
+
+  / TODO - make this nicer
+  h2 Activity feed
+
+  - @user.signups.each do |signup|
+    p Signed up for tournament #{signup.tournament.name}
+
+
+
   .recent-comments
     header
       h1 Recent Comments
