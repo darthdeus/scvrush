@@ -6,7 +6,7 @@ class TournamentPlayerDecorator
       false
     end
 
-    def checked_in?
+    def checked_in?(tournament)
       false
     end
   end

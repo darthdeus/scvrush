@@ -30,7 +30,7 @@ class Tournament < ActiveRecord::Base
   end
 
   def registration_open?
-    self.starts_at > 30.minutes.from_now
+    self.checkin_open?
   end
 
   def checkin_open?

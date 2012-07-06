@@ -2,6 +2,10 @@
   .span6
     h3 Checkin is open!
 
+    .alert.alert-info
+      p All users have to check in before the tournament starts!
+      p If you haven't signed up yet, click the button above to register before you can check in.
+
     - if @user.checked_in?
       p
         ' You are currently checked in.
@@ -26,6 +30,3 @@
 
         = checkin_button(@tournament)
 
-      - else
-        .alert.alert-danger
-          | We are sorry but you're not able to register anymore because the checkin has already started.
