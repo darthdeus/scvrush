@@ -10,7 +10,7 @@ class SignupsController < ApplicationController
     else
       flash[:success] = "You can't register for a given tournament"
     end
-    redirect_to signup_tournament_path(@tournament)
+    redirect_to tournament_path(@tournament)
   end
 
   def update
@@ -22,14 +22,14 @@ class SignupsController < ApplicationController
     else
       flash[:notice] = "You can't check in because you're not registered. Please contact the tournament administrator."
     end
-    redirect_to signup_tournament_path(@tournament)
+    redirect_to tournament_path(@tournament)
   end
 
   def destroy
     @tournament = Tournament.find(params[:id])
     @tournament.unregister(current_user)
     flash[:notice] = "Your registration was canceled, we are sorry to see you go."
-    redirect_to signup_tournament_path(@tournament)
+    redirect_to tournament_path(@tournament)
   end
 
   protected

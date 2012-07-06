@@ -9,19 +9,22 @@
     .row
       .span6
         .row
-        // Since the tournament controller will render a different template
-        // if the tournament has already started, we don't need to check
-        // for that case here.
-        - if @tournament.registration_open?
-          .row
-            .span6.alert.alert-info
-              | Registration is currently open.
-              - unless @tournament.checkin_open?
-                p Checkin starts in #{@tournament.checkin_at}
-
-          = render partial: "registration_form"
-        - if @tournament.checkin_open?
+        - if @user.checked_in?
           = render partial: "checkin_form"
+        - else
+          // Since the tournament controller will render a different template
+          // if the tournament has already started, we don't need to check
+          // for that case here.
+          - if @tournament.registration_open?
+            .row
+              .span6.alert.alert-info
+                | Registration is currently open.
+                - unless @tournament.checkin_open?
+                  p Checkin starts in #{@tournament.checkin_at}
+
+            = render partial: "registration_form"
+          - if @tournament.checkin_open?
+            = render partial: "checkin_form"
 
       .span5
         = render partial: "rules"

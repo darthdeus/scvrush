@@ -24,7 +24,11 @@ class Signup < ActiveRecord::Base
   #
   # Returns true if the signup was successful, otherwise false.
   def signup!
-    self.status = REGISTERED
+    if self.tournament.checkin_open?
+      self.status = CHECKED
+    else
+      self.status = REGISTERED
+    end
     self.save
   end
 
