@@ -28,10 +28,10 @@ class TournamentsController < ApplicationController
         gon.tournament_id = @tournament.id
         @user = TournamentPlayerDecorator.new(current_user, @tournament)
         if @tournament.started?
-          bracket = Bracket.new(@tournament)
-          bracket.create_bracket_rounds
-          bracket.create_matches
-          bracket.linear_seed
+          @bracket = Bracket.new(@tournament)
+          @bracket.create_bracket_rounds
+          @bracket.create_matches
+          @bracket.linear_seed
 
           render :show
         else

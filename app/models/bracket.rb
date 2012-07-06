@@ -61,8 +61,13 @@ class Bracket
 
   def current_match_for(user)
     matches = tournament.matches.to_a
-    user_matches = matches.select { |m| m.player1 == user || m.player2 == user }
+    user_matches = matches.select { |m| m.player1_id == user.id || m.player2_id == user.id }
     user_matches.sort { |m1, m2| m1.round.number <=> m2.round.number }.first
+  end
+
+  def current_opponent_for(user)
+    match = current_match_for(user)
+    match.player1_id == user.id ? match.player2 : match.player1
   end
 
   # Return round sizes for a given player count

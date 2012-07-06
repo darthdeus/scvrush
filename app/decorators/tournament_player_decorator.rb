@@ -15,9 +15,14 @@ class TournamentPlayerDecorator
     end
   end
 
-  def initialize(user, tournament)
+  # TODO - convert to draper with a call to super
+  def initialize(user, tournament, bracket = nil)
     @tournament = tournament
     @user = user || GuestUser.new
+  end
+
+  def id
+    @user.id
   end
 
   def registered?
@@ -32,4 +37,7 @@ class TournamentPlayerDecorator
     @user.has_signup?(@tournament)
   end
 
+  def next_opponent
+
+  end
 end

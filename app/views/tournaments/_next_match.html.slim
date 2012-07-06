@@ -1,7 +1,7 @@
 .span6.alert.alert-info
   p
     = "Your next match is "
-    strong jack#384.
+    strong = @bracket.current_opponent_for(@user).username
   p You are playing best of 3, which means once a player wins 2 games the match is over.
 
   p Map pool for the current round is:
