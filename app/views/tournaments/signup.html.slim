@@ -11,19 +11,15 @@
     .row
       .span6
         .row
-          - if !@user.checked_in? && @tournament.checkin_open?
-            .span6.alert.alert-danger
+          - if !@user.has_signup? && @tournament.checkin_open?
+            .span6.alert.alert-success
               ' If you still want to participate, click on the button below
               ' and you will be checked in automatically.
-
 
 
         - if @user.checked_in?
           = render partial: "checkin_form"
         - else
-          // Since the tournament controller will render a different template
-          // if the tournament has already started, we don't need to check
-          // for that case here.
           - if @tournament.registration_open?
             .row
               .span6.alert.alert-info
@@ -33,6 +29,11 @@
                   ' Registration is currently open.
                   br
                   ' Checkin starts in #{@tournament.checkin_at}
+
+            .row
+              .span6
+                - if !@user.checked_in? && @tournament.checkin_open?
+                  = signup_button(@tournament, "Sign up and automatically check in")
 
             = render partial: "registration_form"
 

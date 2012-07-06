@@ -1,16 +1,16 @@
 .row.registration-form
   .span6
-    - if @user.registered?
+    - if @user.registered? && !@tournament.checkin_open?
       p
         ' You are currently registered for the tournament. Please come back
-        ' in 20 minutes to check in.
+        ' in #{@tournament.checkin_at} minutes to check in.
 
       p
         ' If you can't participate in the tournament, please cancel
         ' your registraion before the tournament begins.
       = cancel_signup_button(@tournament)
 
-    - else
+    - elsif !@tournament.checkin_open?
       p By signing up you agree to the tournament rules.
       p
         ' If you have any questions, contact any of the admins
@@ -18,4 +18,11 @@
         strong SCVRush
 
       = signup_button(@tournament)
+
+    - elsif @user.has_signup?
+      br
+      p
+        ' If you can't participate in the tournament, please cancel
+        ' your registraion before the tournament begins.
+      = cancel_signup_button(@tournament)
 

@@ -24,6 +24,10 @@ class TournamentPlayerDecorator
     @user.checked_in?(@tournament)
   end
 
+  def has_signup?
+    @user.has_signup?(@tournament)
+  end
+
   def check_in!
   end
 

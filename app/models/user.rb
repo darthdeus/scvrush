@@ -116,6 +116,10 @@ class User < ActiveRecord::Base
     signup
   end
 
+  def has_signup?(tournament)
+    !self.signups.where(tournament_id: tournament.id).empty?
+  end
+
   def registered_for?(tournament)
     false if tournament.nil?
     !self.signups.registered.where(tournament_id: tournament.id).empty?

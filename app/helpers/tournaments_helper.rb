@@ -1,11 +1,11 @@
 module TournamentsHelper
 
   # Tournament signup button
-  def signup_button(tour)
+  def signup_button(tour, text = "Sign up for the tournament")
     action_params = { controller: :signups, action: :create, id: tour.id }
     link_to action_params, method: :post, class: 'btn btn-success btn-large' do
       html = content_tag(:i, "", class: "icon-ok icon-white")
-      html << "Sign up for the tournament"
+      html << text
       html.html_safe
     end
   end
@@ -20,11 +20,11 @@ module TournamentsHelper
     end
   end
 
-  def checkin_button(tour)
+  def checkin_button(tour, text = "Check in")
     action_params = { controller: :signups, action: :update, id: tour.id }
     link_to action_params, method: :put, class: 'btn btn-success btn-large' do
       html = content_tag(:i, "", class: "icon-ok icon-white")
-      html << "Check in"
+      html << text
       html.html_safe
     end
   end
