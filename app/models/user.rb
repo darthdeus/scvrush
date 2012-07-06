@@ -109,11 +109,14 @@ class User < ActiveRecord::Base
   end
 
   def sign_up(tournament)
-    # TODO - Does this actually create the correct signup?
-    signup = self.signups.build(tournament: tournament)
-    signup.status = Signup::REGISTERED
-    signup.save!
-    signup
+    if !self.has_signup?(tournament)
+      signup = self.signups.build(tournament: tournament)
+      signup.status = Signup::REGISTERED
+      signup.save!
+      signup
+    else
+      self.signups.where(tournament_id: tournament.id).first
+    end
   end
 
   def has_signup?(tournament)

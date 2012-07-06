@@ -17,7 +17,8 @@ class Tournament < ActiveRecord::Base
   scope :upcoming, lambda { where(['starts_at > ?', Time.now]).first(2) }
 
   def registered_players
-    self.signups.where("status = 0 OR status = 1").includes(:user).all.map(&:user)
+    self.signups.includes(:user).all.select { |signup|
+      [0,1].include?(signup.status) }.map(&:user)
   end
 
   before_save :expire_sidebar_cache
@@ -54,7 +55,6 @@ class Tournament < ActiveRecord::Base
   def to_param
     "#{id}-#{name.parameterize}"
   end
-
 
   # return random tournament info for test purposes
   def self.random_info
