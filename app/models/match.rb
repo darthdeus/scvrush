@@ -1,9 +1,11 @@
 class ScoreValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    if not value =~ /^\d:\d$/
-      record.errors[attribute] << "Score must have a format of N:N, e.g. 3:1"
-    elsif value == "0:0"
-      record.errors[attribute] << "Score can't be 0:0"
+    if record.player1_id? || record.player2_id?
+      if not value =~ /^\d:\d$/
+        record.errors[attribute] << "Score must have a format of N:N, e.g. 3:1"
+      elsif value == "0:0"
+        record.errors[attribute] << "Score can't be 0:0"
+      end
     end
   end
 end

@@ -4,12 +4,14 @@
 //= require lib/underscore
 //= require lib/backbone
 //= require lib/bootstrap
+//= require lib/chosen
 //= require dashboard
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap
 //= require login
 
 jQuery(function($) {
+  $('.chosen').chosen();
 
   $('input[type=text]:first').focus();
 

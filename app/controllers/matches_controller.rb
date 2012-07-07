@@ -28,14 +28,25 @@ class MatchesController < ApplicationController
   def edit
     authorize! :manage, Match
     @match = Match.find(params[:id])
+    @players = @match.round.tournament.registered_players
   end
 
   def update
     authorize! :manage, Match
     @match = Match.find(params[:id])
-    if @match.update_attributes(params[:match])
+
+    @match.player1_id = params[:match][:player1_id]
+    @match.player2_id = params[:match][:player2_id]
+    @match.score = params[:match][:score]
+
+    if @match.save
+      if !@match.player1_id? && !@match.player2_id?
+        @match.score = nil
+        @match.save!
+      end
       redirect_to @match.round.tournament, notice: "Match results were updated"
     else
+      @players = @match.round.tournament.registered_players
       render :edit
     end
   end
