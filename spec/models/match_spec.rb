@@ -42,6 +42,36 @@ describe Match do
 
       m.score_for(:player1).should == 1
       m.score_for(:player2).should == 3
+
+      m.set_score_for(p2, "1:3")
+
+      m.score_for(:player1).should == 3
+      m.score_for(:player2).should == 1
+    end
+
+    it "returns a match winner" do
+      p1, p2 = create(:user), create(:user)
+      m = create(:match, player1: p1, player2: p2)
+
+      m.winner.should be_nil
+
+      m.set_score_for(p1, "1:3")
+      m.save!
+
+      m.score_for(:player1).should == 1
+      m.score_for(:player2).should == 3
+      m.reload
+      m.winner.should == p2
+
+      # Let's try this in reverse
+      m.set_score_for(p2, "1:3")
+      m.save!
+
+      m.score_for(:player1).should == 3
+      m.score_for(:player2).should == 1
+      m.reload
+      m.winner.should == p1
     end
   end
+
 end

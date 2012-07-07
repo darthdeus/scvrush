@@ -72,7 +72,7 @@ class Bracket
     match.set_score_for(user, score)
     match.save!
 
-    self.seed_next_match_with(user, match)
+    self.seed_next_match_with(match.winner, match)
   end
 
   # Return next round number for a given number, e.g. 2 for 4
@@ -87,11 +87,22 @@ class Bracket
     self.tournament.rounds.where(number: number).first
   end
 
+  def mark_winner(user)
+    self.tournament.winner = user
+    self.tournament.save!
+  end
+
   # Seed the given player to a next round after he won his match
   #
-  # TODO - mark him as a winner if he won Ro2
+  # Returns the winner if there was one, otherwise nil
   def seed_next_match_with(user, match)
     next_round = self.next_round_for(match.round)
+
+    if next_round.number == 1
+      self.mark_winner(user)
+      return user
+    end
+
     next_match = next_round.matches.where(seed: match.seed / 2).first
 
     if match.seed % 2 == 0
@@ -103,6 +114,7 @@ class Bracket
     next_match.completed = false
     next_match.save!
     next_match
+    return nil
   end
 
   # Return the current match for a given user. It should always be

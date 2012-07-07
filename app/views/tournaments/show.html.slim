@@ -11,6 +11,14 @@
         = button_to "Destroy seed", unseed_tournament_path(@tournament)
 
     .row
+      .span12
+        - if @tournament.winner
+          h2
+            ' The tournament is over,
+            = link_to @tournament.winner.username, @tournament.winner
+            |  won!
+
+    .row
       .span6
         .row
           - if @user.registered?

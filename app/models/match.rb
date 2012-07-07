@@ -33,6 +33,18 @@ class Match < ActiveRecord::Base
     true
   end
 
+  def winner
+    return nil if self.score.nil?
+
+    split = self.score.split ":"
+
+    if split[0].to_i > split[1].to_i
+      self.player1
+    else
+      self.player2
+    end
+  end
+
   def score_for(player)
     return nil if self.score.nil? || player.nil?
 
