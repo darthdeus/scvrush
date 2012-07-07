@@ -1,6 +1,8 @@
+h1 Edit match
+
 = simple_form_for @match do |f|
   = f.input :score
   = f.association :player1, collection: @players, input_html: { class: "chosen" }
   = f.association :player2, collection: @players, input_html: { class: "chosen" }
 
-  button.btn.btn-primary Submit
+  button.btn.btn-primary Save match

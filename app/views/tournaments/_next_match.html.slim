@@ -9,17 +9,17 @@
       p
           = "Your next match is "
           strong = @next_opponent.username
-      p You are playing best of 3, which means once a player wins 2 games the match is over.
+      p You are playing best of #{@current_match.round.bo}
+
+      = m @current_match.round.text
+
+    - else
+      p Please wait for your opponent.
+
+      = m @current_match.round.text
 
   - else
     p The tournament bracket wasn't generated yet. Please wait.
-
-  p Map pool for the current round is:
-
-  ul
-    li Metalopolis
-    li Xel-Naga caverns
-    li Tal'darim Altar
 
 .span6
   h3 If you won, please report the match results below.

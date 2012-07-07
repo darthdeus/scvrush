@@ -1,6 +1,6 @@
 class Round < ActiveRecord::Base
   belongs_to :tournament
-  attr_accessible :number, :tournament, :bo
+  attr_accessible :number, :tournament, :bo, :text
 
   validates_presence_of :number, :tournament
 

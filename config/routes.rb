@@ -36,7 +36,7 @@ Scvrush::Application.routes.draw do
   get "dashboard/index", as: 'dashboard'
   get "dashboard/ggbet"
 
-
+  resources :rounds
   resources :matches
   resources :votes, only: [:create, :destroy]
   resources :tournaments, only: [:new, :create, :index, :show, :edit, :update] do

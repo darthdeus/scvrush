@@ -22,7 +22,7 @@
     .row
       .span6
         .row
-          - if @user.registered?
+          - if @user.checked_in?
             = render partial: "next_match"
           - else
             .span6.alert.alert-danger
