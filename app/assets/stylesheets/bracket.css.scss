@@ -8,8 +8,13 @@
     padding-right: 0;
   }
 
-  header .accordion-group {
-    padding-left: 10px;
+  header {
+    .admin-buttons {
+      float: right;
+    }
+    .accordion-group {
+      padding-left: 10px;
+    }
   }
 }
 
