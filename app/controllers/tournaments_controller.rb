@@ -29,9 +29,6 @@ class TournamentsController < ApplicationController
         @user = TournamentPlayerDecorator.new(current_user, @tournament)
         if @tournament.started?
           @bracket = Bracket.new(@tournament)
-          @bracket.create_bracket_rounds
-          @bracket.create_matches
-          @bracket.linear_seed
 
           render :show
         else
@@ -59,6 +56,31 @@ class TournamentsController < ApplicationController
 
     flash[:notice] = "Tournament winner was set successfuly"
     redirect_to controller: :dashboard, action: :index
+  end
+
+  def seed
+    tournament = TournamentDecorator.find(params[:id])
+
+    bracket = Bracket.new(tournament)
+    bracket.create_bracket_rounds
+    bracket.create_matches
+    bracket.linear_seed
+
+    tournament.seeded = true
+    tournament.save!
+
+    flash[:success] = "The tournament was seeded properly"
+    redirect_to tournament
+  end
+
+  def unseed
+    tournament = TournamentDecorator.find(params[:id])
+    tournament.seeded = false
+    tournament.rounds.destroy_all
+    tournament.save!
+
+    flash[:success] = "The seed was destroyed. Please seed the tournament again before players can submit their match results"
+    redirect_to tournament
   end
 
 end

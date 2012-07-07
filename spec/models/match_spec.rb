@@ -23,4 +23,25 @@ describe Match do
     match = create(:match, player2: nil)
     match.should be_completed
   end
+
+  describe "score" do
+    it "sets score in proper order" do
+      p1, p2 = create(:user), create(:user)
+      m = build(:match, player1_id: p1, player2_id: p2)
+      m.set_score_for(p1, "1:3")
+      m.score.should == "1:3"
+
+      m.set_score_for(p2, "1:3")
+      m.score.should == "3:1"
+    end
+
+    it "returns score for each player properly" do
+      p1, p2 = create(:user), create(:user)
+      m = build(:match, player1_id: p1, player2_id: p2)
+      m.set_score_for(p1, "1:3")
+
+      m.score_for(:player1).should == 1
+      m.score_for(:player2).should == 3
+    end
+  end
 end

@@ -5,6 +5,10 @@
 .tournament
   header
     h1 = @tournament.name
+    .row
+      .span6
+        = button_to "Seed", seed_tournament_path(@tournament)
+        = button_to "Destroy seed", unseed_tournament_path(@tournament)
 
     .row
       .span6
@@ -25,8 +29,15 @@
       .span6
         = render partial: "rules"
 
-  .bracket ng-controller="BracketCtrl" ng-app="scvrush"
-    .round ng-repeat="round in rounds"
-      .match class="completed-{{match.completed}}" ng-repeat="match in round.matches" ng-click="inputResult(match)"
-        .player class="player_{{match.player1}}" {{match.player1}}
-        .player class="player_{{match.player2}}" {{match.player2}}
+  - if @tournament.seeded
+    .bracket ng-controller="BracketCtrl" ng-app="scvrush"
+      .round ng-repeat="round in rounds"
+        .match class="completed-{{match.completed}}" ng-repeat="match in round.matches" ng-click="inputResult(match)"
+          .player class="player_{{match.player1}}" {{match.player1}}
+          .player class="player_{{match.player2}}" {{match.player2}}
+
+  - else
+    .row
+      .span6.alert.alert-danger
+        ' The tournament bracket wasn't generated yet. Please wait.
+    = render partial: "registered_players"

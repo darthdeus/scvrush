@@ -37,8 +37,14 @@ Scvrush::Application.routes.draw do
   get "dashboard/ggbet"
 
 
+  resources :matches
   resources :votes, only: [:create, :destroy]
-  resources :tournaments, only: [:new, :create, :index, :show, :edit, :update]
+  resources :tournaments, only: [:new, :create, :index, :show, :edit, :update] do
+    member do
+      post :seed
+      post :unseed
+    end
+  end
   resources :signups, only: [:create, :destroy, :update]
 
   resources :sections, only: :index do

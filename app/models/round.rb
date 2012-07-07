@@ -3,7 +3,7 @@ class Round < ActiveRecord::Base
   attr_accessible :number, :tournament
   validates_presence_of :number, :tournament
 
-  has_many :matches
+  has_many :matches, dependent: :destroy
 
   def to_simple_json
     hash = { type: "match", matches: [] }
@@ -11,6 +11,10 @@ class Round < ActiveRecord::Base
       res = {}
       res[:player1] = match.player1.username if match.player1
       res[:player2] = match.player2.username if match.player2
+
+      res[:player1_score] = match.score_for(:player1)
+      res[:player2_score] = match.score_for(:player2)
+
       res[:completed] = match.completed
       res
     end

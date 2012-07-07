@@ -1,19 +1,28 @@
 class Match < ActiveRecord::Base
-  has_many :games
+  has_many :games, dependent: :destroy
   belongs_to :round
 
   belongs_to :player1, class_name: "User"
   belongs_to :player2, class_name: "User"
 
-  attr_accessible :bo, :player1, :player2, :round, :seed
+  attr_accessible :bo, :player1, :player2, :round, :seed, :score
 
   # FIX - there is no validation for players, since the bracket is pre-populated
   # with empty matches, and then the players are seeded later.
   #
   # TODO - add automatic walkover for player1 if there is no player2
   validates_presence_of :bo, :round, :seed
+  validates_format_of :score, with: /^\d:\d$/, if: lambda { |match| match.score? }
 
   before_save :check_if_completed
+
+    def set_score_for(user, score)
+      if user.id == player1_id
+        self.score = score
+      else
+        self.score = score.split(":").reverse.join(":")
+      end
+    end
 
   def check_if_completed
     if (player1 && !player2) || (!player1 && !player2)
@@ -22,5 +31,17 @@ class Match < ActiveRecord::Base
       self.completed = false
     end
     true
+  end
+
+  def score_for(player)
+    return nil if self.score.nil? || player.nil?
+
+    split = self.score.split ":"
+    if player == :player1
+      split[0].to_i
+    else
+      split[1].to_i
+    end
+
   end
 end

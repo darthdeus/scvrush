@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120706215846) do
+ActiveRecord::Schema.define(:version => 20120707080003) do
 
   create_table "achievements", :force => true do |t|
     t.string   "name"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20120706215846) do
     t.integer  "round_id",                      :null => false
     t.boolean  "completed",  :default => false
     t.integer  "seed",                          :null => false
+    t.string   "score"
   end
 
   create_table "points", :force => true do |t|
@@ -209,10 +210,11 @@ ActiveRecord::Schema.define(:version => 20120706215846) do
   create_table "tournaments", :force => true do |t|
     t.string   "name"
     t.datetime "starts_at"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
     t.integer  "post_id"
     t.integer  "winner_id"
+    t.boolean  "seeded",     :default => false
   end
 
   add_index "tournaments", ["post_id"], :name => "index_tournaments_on_post_id"
