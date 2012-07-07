@@ -67,4 +67,27 @@ describe Tournament do
     user.won_tournaments.should == [tournament]
   end
 
+  it "returns signup for a given user" do
+    t = create(:tournament)
+    u = create(:user)
+    s = create(:signup, user: u, tournament: t)
+    t.signup_for(u).should == s
+  end
+
+  it "returns registered players" do
+    t = create(:tournament)
+    u = create(:user)
+    t.users << u
+    t.registered_players.should == [u]
+  end
+
+  it "returns checked players" do
+    t = create(:tournament)
+    u = create(:user)
+    t.users << u
+    u.check_in(t)
+    t.registered_players.should == [u]
+    t.checked_players.should == [u]
+  end
+
 end

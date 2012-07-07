@@ -21,6 +21,15 @@ class Tournament < ActiveRecord::Base
       [0,1].include?(signup.status) }.map(&:user)
   end
 
+  # TODO - rewrite this to a scope.
+  #
+  # It should also be possible to do something like
+  # tournament.checked_users << user,
+  # but I'm not sure ... need to check that with API documentation
+  def checked_players
+    self.users.includes(:signups).where(signups: { status: 1 }).all
+  end
+
   before_save :expire_sidebar_cache
 
   def expire_sidebar_cache
@@ -44,6 +53,10 @@ class Tournament < ActiveRecord::Base
 
   def unregister(user)
     self.signups.where(user_id: user.id).each(&:destroy)
+  end
+
+  def signup_for(user)
+    self.signups.where(user_id: user.id).first
   end
 
   def set_winner(winner)
