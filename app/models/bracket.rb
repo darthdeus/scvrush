@@ -55,6 +55,10 @@ class Bracket
       match = round.matches.create!(bo: 3, seed: seed) if match.nil?
       match.player1 = players[0]
       match.player2 = players[1]
+      # TODO - seed the player automatically to the next round
+      if match.player2.nil?
+        match.completed = true
+      end
       match.seed = seed
       match.save!
       seed += 1
@@ -65,7 +69,7 @@ class Bracket
   # current match is, and then setting the result.
   def set_score_for(user, score)
     match = self.current_match_for(user)
-    match.set_score_for(current_user, score)
+    match.set_score_for(user, score)
     match.save!
 
     self.seed_next_match_with(user, match)
@@ -96,6 +100,7 @@ class Bracket
       next_match.player2 = user
     end
 
+    next_match.completed = false
     next_match.save!
     next_match
   end
@@ -111,7 +116,9 @@ class Bracket
   # Return a current opponent for a user from his current match.
   def current_opponent_for(user)
     match = current_match_for(user)
-    match.player1_id == user.id ? match.player2 : match.player1
+    if match
+      match.player1_id == user.id ? match.player2 : match.player1
+    end
   end
 
   # Return round sizes for a given player count

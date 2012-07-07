@@ -29,6 +29,7 @@ class TournamentsController < ApplicationController
         @user = TournamentPlayerDecorator.new(current_user, @tournament)
         if @tournament.started?
           @bracket = Bracket.new(@tournament)
+          @next_opponent = @bracket.current_opponent_for(@user)
 
           render :show
         else

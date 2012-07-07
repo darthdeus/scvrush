@@ -1,9 +1,10 @@
 .span6.alert.alert-info
   - if @tournament.seeded
-    p
-      = "Your next match is "
-      strong = @bracket.current_opponent_for(@user).username
-    p You are playing best of 3, which means once a player wins 2 games the match is over.
+    - if @next_opponent
+      p
+          = "Your next match is "
+          strong = @next_opponent.username
+      p You are playing best of 3, which means once a player wins 2 games the match is over.
 
   - else
     p The tournament bracket wasn't generated yet. Please wait.
