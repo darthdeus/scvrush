@@ -97,6 +97,16 @@
     opacity: 0.7;
 
     &:hover { opacity: 1; }
+
+    .name {
+      float: left;
+      width: 120px;
+    }
+
+    .score {
+      float: left;
+      width: 10px;
+    }
   }
 
     .completed-true .player {
