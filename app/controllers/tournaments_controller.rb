@@ -77,6 +77,7 @@ class TournamentsController < ApplicationController
   def unseed
     tournament = TournamentDecorator.find(params[:id])
     tournament.seeded = false
+    tournament.winner = nil
     tournament.rounds.destroy_all
     tournament.save!
 

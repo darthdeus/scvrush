@@ -33,6 +33,10 @@ class Match < ActiveRecord::Base
     true
   end
 
+  def can_submit?
+    !!(!self.winner && self.player1 && self.player2)
+  end
+
   def winner
     return nil if self.score.nil?
 

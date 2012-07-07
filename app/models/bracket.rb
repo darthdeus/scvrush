@@ -1,5 +1,8 @@
 class Bracket
 
+  class AlreadySubmitted < ::Exception; end
+  class NotStartedYet < ::Exception; end
+
   attr_reader :tournament
 
   def initialize(tournament)
@@ -69,6 +72,10 @@ class Bracket
   # current match is, and then setting the result.
   def set_score_for(user, score)
     match = self.current_match_for(user)
+
+    # A player can submit his match results only once
+    raise AlreadySubmitted if match.winner
+    raise NotStartedYet unless match.can_submit?
     match.set_score_for(user, score)
     match.save!
 
