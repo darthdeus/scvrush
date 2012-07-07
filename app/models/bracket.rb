@@ -23,8 +23,7 @@ class Bracket
   def create_bracket_rounds
     # TODO - do we really want to erase previous rounds?
     tournament.rounds = []
-    # TODO - maybe only count checked in players
-    rounds = self.round_sizes(tournament.users.size)
+    rounds = self.round_sizes(tournament.checked_players.size)
     rounds.each do |round|
       round = Round.new(number: round, tournament: tournament)
       round.save
@@ -49,8 +48,7 @@ class Bracket
     matches = round.matches
     seed = 0
 
-    # TODO - only checked in users here
-    tournament.users.each_slice(2) do |players|
+    tournament.checked_players.each_slice(2) do |players|
       # TODO - instead of creating a new match, instead find
       # the match that was pre-populated and seed the players to it
       match = matches[seed]
@@ -63,7 +61,8 @@ class Bracket
         match.completed = true
       end
       match.seed = seed
-      match.save!
+      # TODO - this isn't really a nice solution
+      match.save(validate: false)
       seed += 1
     end
   end

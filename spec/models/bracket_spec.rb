@@ -27,7 +27,11 @@ describe Bracket do
   it "can create a bracket rounds" do
     t = create(:tournament)
     bracket = Bracket.new(t)
-    4.times { t.users << create(:user) }
+    4.times do
+      u = create(:user)
+      t.users << u
+      u.check_in(t)
+    end
 
     bracket.create_bracket_rounds
     t.reload
@@ -42,6 +46,7 @@ describe Bracket do
     bracket = Bracket.new(t)
     p1, p2, p3, p4 = *4.times.inject([]) { |v,i| v << create(:user) }
     t.users << p1 << p2 << p3 << p4
+    [p1, p2, p3, p4].each { |u| u.check_in(t) }
 
     bracket.create_bracket_rounds
     bracket.create_matches
@@ -57,16 +62,19 @@ describe Bracket do
     bracket = Bracket.new(t)
     p1, p2, p3, p4 = *4.times.inject([]) { |v,i| v << create(:user) }
     t.users << p1 << p2 << p3 << p4
+    [p1, p2, p3, p4].each { |u| u.check_in(t) }
 
     bracket.create_bracket_rounds
     bracket.create_matches
     bracket.linear_seed
 
-    Match.count.should == 2
-    Match.first.player1.should == p1
-    Match.first.player2.should == p2
-    Match.last.player1.should == p3
-    Match.last.player2.should == p4
+    Match.count.should == 3
+
+    matches = Match.first(2)
+    matches[0].player1.should == p1
+    matches[0].player2.should == p2
+    matches[1].player1.should == p3
+    matches[1].player2.should == p4
   end
 
   it "can give the current match for a user" do
@@ -76,6 +84,7 @@ describe Bracket do
     bracket = Bracket.new(t)
     p1, p2, p3, p4 = *4.times.inject([]) { |v,i| v << create(:user) }
     t.users << p1 << p2 << p3 << p4
+    [p1, p2, p3, p4].each { |u| u.check_in(t) }
 
     bracket.create_bracket_rounds
     bracket.create_matches
@@ -92,7 +101,11 @@ describe Bracket do
 
     t = create(:tournament)
     bracket = Bracket.new(t)
-    4.times { t.users << create(:user) }
+    4.times do
+      u = create(:user)
+      t.users << u
+      u.check_in(t)
+    end
 
     bracket.create_bracket_rounds
     t.reload
@@ -112,6 +125,7 @@ describe Bracket do
     bracket = Bracket.new(t)
     p1, p2, p3, p4 = *4.times.inject([]) { |v,i| v << create(:user) }
     t.users << p1 << p2 << p3 << p4
+    [p1, p2, p3, p4].each { |u| u.check_in(t) }
 
     bracket.create_bracket_rounds
     bracket.create_matches
