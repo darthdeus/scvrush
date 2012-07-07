@@ -32,8 +32,10 @@ class Bracket
     # We start from the highest round, e.g. Ro8, Ro4, Ro2
     # TODO - don't create Ro1 match
     rounds = tournament.rounds.order("number DESC")
-    rounds.each.with_index do |round, seed|
-      (round.number / 2).times { round.matches.create!(bo: 3, seed: seed) }
+    rounds.each do |round|
+      (round.number / 2).times do |seed|
+        round.matches.create!(bo: 3, seed: seed)
+      end
     end
   end
 
@@ -66,22 +68,36 @@ class Bracket
     match.set_score_for(current_user, score)
     match.save!
 
-    self.seed_next_match_with(user)
+    self.seed_next_match_with(user, match)
   end
 
-
+  # Return next round number for a given number, e.g. 2 for 4
   def next_round_number(number)
     index = self.seeds.index(number)
     self.seeds[index + 1]
   end
 
+  # Return next round for a given round, e.g. Ro2 for Ro4
   def next_round_for(round)
     number = self.next_round_number(round.number)
     self.tournament.rounds.where(number: number).first
   end
 
-  def seed_next_match_with(user)
-    raise "Not yet implemented"
+  # Seed the given player to a next round after he won his match
+  #
+  # TODO - mark him as a winner if he won Ro2
+  def seed_next_match_with(user, match)
+    next_round = self.next_round_for(match.round)
+    next_match = next_round.matches.where(seed: match.seed / 2).first
+
+    if match.seed % 2 == 0
+      next_match.player1 = user
+    else
+      next_match.player2 = user
+    end
+
+    next_match.save!
+    next_match
   end
 
   # Return the current match for a given user. It should always be

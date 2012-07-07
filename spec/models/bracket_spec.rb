@@ -104,6 +104,42 @@ describe Bracket do
     bracket.next_round_for(ro4).should == ro2
   end
 
+  it "seeds player to the next round" do
+    Round.delete_all
+    User.delete_all
+
+    t = create(:tournament)
+    bracket = Bracket.new(t)
+    p1, p2, p3, p4 = *4.times.inject([]) { |v,i| v << create(:user) }
+    t.users << p1 << p2 << p3 << p4
+
+    bracket.create_bracket_rounds
+    bracket.create_matches
+    bracket.linear_seed
+
+    match = bracket.current_match_for(p1)
+    bracket.seed_next_match_with(p1, match)
+
+    ro2 = t.rounds.second
+    ro2.number.should == 2
+    ro2.matches.first.player1.should == p1
+
+    # It relaly shouldn't matter if we re-seed the player,
+    # as the previous one gets overwritten. All we care about
+    # is proper position
+    bracket.seed_next_match_with(p2, match)
+
+    ro2.reload
+    ro2.matches.first.player1.should == p2
+
+    # Seeding player from even match number should result in
+    # him being put in the second position in a match.
+    match2 = bracket.current_match_for(p3)
+    bracket.seed_next_match_with(p3, match2)
+
+    ro2.matches.first.player2.should == p3
+  end
+
   it "returns next round number" do
     bracket = Bracket.new(nil)
     bracket.next_round_number(32).should == 16
