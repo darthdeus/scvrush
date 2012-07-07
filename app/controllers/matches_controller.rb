@@ -3,10 +3,8 @@ class MatchesController < ApplicationController
     tournament = Tournament.find(params[:tournament_id])
     bracket = Bracket.new(tournament)
 
-    match = bracket.current_match_for(current_user)
-    match.set_score_for(current_user, params[:score])
-    # TODO - display possible erroe messages
-    match.save!
+    bracket.set_score_for(current_user, params[:score])
+    # TODO - display possible error messages
 
     flash[:success] = "Match result was submitted"
     redirect_to tournament

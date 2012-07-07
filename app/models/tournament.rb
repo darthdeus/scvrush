@@ -2,7 +2,7 @@ class Tournament < ActiveRecord::Base
   has_many :signups, dependent: :destroy
   has_many :users, through: :signups
 
-  has_many :rounds
+  has_many :rounds, order: "number DESC"
   has_many :matches, through: :rounds
 
   belongs_to :post

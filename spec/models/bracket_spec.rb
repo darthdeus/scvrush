@@ -87,6 +87,33 @@ describe Bracket do
     bracket.current_match_for(p4).player1.should == p3
   end
 
+  it "returns next round for a given round" do
+    Round.delete_all
+
+    t = create(:tournament)
+    bracket = Bracket.new(t)
+    4.times { t.users << create(:user) }
+
+    bracket.create_bracket_rounds
+    t.reload
+    ro4 = t.rounds.first
+    ro2 = t.rounds.second
+    ro4.number.should == 4
+    ro2.number.should == 2
+
+    bracket.next_round_for(ro4).should == ro2
+  end
+
+  it "returns next round number" do
+    bracket = Bracket.new(nil)
+    bracket.next_round_number(32).should == 16
+    bracket.next_round_number(16).should == 8
+    bracket.next_round_number(8).should == 4
+    bracket.next_round_number(4).should == 2
+    bracket.next_round_number(2).should == 1
+    bracket.next_round_number(1).should == nil
+  end
+
 #   describe "seeding" do
 #
 #     context "with a list of players" do

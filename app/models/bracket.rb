@@ -59,12 +59,40 @@ class Bracket
     end
   end
 
+  # Set a score for a given player by figuring out what his
+  # current match is, and then setting the result.
+  def set_score_for(user, score)
+    match = self.current_match_for(user)
+    match.set_score_for(current_user, score)
+    match.save!
+
+    self.seed_next_match_with(user)
+  end
+
+
+  def next_round_number(number)
+    index = self.seeds.index(number)
+    self.seeds[index + 1]
+  end
+
+  def next_round_for(round)
+    number = self.next_round_number(round.number)
+    self.tournament.rounds.where(number: number).first
+  end
+
+  def seed_next_match_with(user)
+    raise "Not yet implemented"
+  end
+
+  # Return the current match for a given user. It should always be
+  # the match with the lowers round number where the player is present.
   def current_match_for(user)
     matches = tournament.matches.to_a
     user_matches = matches.select { |m| m.player1_id == user.id || m.player2_id == user.id }
     user_matches.sort { |m1, m2| m1.round.number <=> m2.round.number }.first
   end
 
+  # Return a current opponent for a user from his current match.
   def current_opponent_for(user)
     match = current_match_for(user)
     match.player1_id == user.id ? match.player2 : match.player1
