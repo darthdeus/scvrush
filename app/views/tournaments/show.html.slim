@@ -40,14 +40,18 @@
 
   - if @tournament.seeded
     .bracket ng-controller="BracketCtrl" ng-app="scvrush"
-      .round ng-repeat="round in rounds"
-        .match class="completed-{{match.completed}}" ng-repeat="match in round.matches" ng-click="inputResult(match)"
-          .player class="player_{{match.player1}}"
-            .name {{match.player1}}
-            .score {{match.player1_score}}
-          .player class="player_{{match.player2}}"
-            .name {{match.player2}}
-            .score {{match.player2_score}}
+      .round-wrap ng-repeat="round in rounds"
+        .round-info-wrap
+          .round-info ng-click="editRound(round)" Round of {{round.number}}
+
+        .round
+          .match class="completed-{{match.completed}}" ng-repeat="match in round.matches" ng-click="inputResult(match)"
+            .player class="player_{{match.player1}}"
+              .name {{match.player1}}
+              .score {{match.player1_score}}
+            .player class="player_{{match.player2}}"
+              .name {{match.player2}}
+              .score {{match.player2_score}}
 
   - else
     .row

@@ -22,5 +22,11 @@ function BracketCtrl($scope, Tournament) {
     }
   };
 
+  $scope.editRound = function(round) {
+    if (gon.is_admin) {
+      document.location = "/rounds/" + round.id + "/edit";
+    }
+  };
+
 };
 

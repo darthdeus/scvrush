@@ -29,7 +29,13 @@ class TournamentsController < ApplicationController
         @user = TournamentPlayerDecorator.new(current_user, @tournament)
         if @tournament.started?
           @bracket = Bracket.new(@tournament)
-          @next_opponent = @bracket.current_opponent_for(@user)
+
+          current_match = @bracket.current_match_for(@user)
+          if current_match
+            @lost = current_match.loser?(@user)
+            @next_opponent = current_match.opponent_for(@user)
+          end
+
           gon.is_admin = Ability.new(current_user).can?(:manage, Match)
 
           render :show
@@ -41,7 +47,8 @@ class TournamentsController < ApplicationController
 
       format.json do
         @tournament = Tournament.find(params[:id])
-        rounds = @tournament.rounds.map(&:to_simple_json)
+        # TODO - display the last round too
+        rounds = @tournament.rounds[0..-2].map(&:to_simple_json)
         render json: rounds
       end
     end

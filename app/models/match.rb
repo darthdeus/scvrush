@@ -17,13 +17,13 @@ class Match < ActiveRecord::Base
   belongs_to :player1, class_name: "User"
   belongs_to :player2, class_name: "User"
 
-  attr_accessible :bo, :player1, :player2, :player1_id, :player2_id, :round, :seed, :score
+  attr_accessible :player1, :player2, :player1_id, :player2_id, :round, :seed, :score
 
   # FIX - there is no validation for players, since the bracket is pre-populated
   # with empty matches, and then the players are seeded later.
   #
   # TODO - add automatic walkover for player1 if there is no player2
-  validates_presence_of :bo, :round, :seed
+  validates_presence_of :round, :seed
 
   validates :score, score: true
   # validates_format_of :score, with: /^\d:\d$/, if: lambda { |match| match.score? }
@@ -72,7 +72,15 @@ class Match < ActiveRecord::Base
     else
       split[1].to_i
     end
-
   end
+
+  def opponent_for(user)
+    self.player1_id == user.id ? self.player2 : self.player1
+  end
+
+  def loser?(user)
+    !self.winner.nil? && (self.winner.id != user.id)
+  end
+
 end
 

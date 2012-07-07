@@ -26,7 +26,13 @@ class Bracket
     rounds = self.round_sizes(tournament.checked_players.size)
     rounds.each do |round|
       round = Round.new(number: round, tournament: tournament)
-      round.save
+      if [1,2,4].include? round
+        round.bo = 3
+      else
+        round.bo = 1
+      end
+
+      round.save!
     end
   end
 
@@ -36,7 +42,7 @@ class Bracket
     rounds = tournament.rounds.order("number DESC")
     rounds.each do |round|
       (round.number / 2).times do |seed|
-        round.matches.create!(bo: 3, seed: seed)
+        round.matches.create!(seed: seed)
       end
     end
   end
@@ -53,7 +59,7 @@ class Bracket
       # the match that was pre-populated and seed the players to it
       match = matches[seed]
       # TODO - don't create it here
-      match = round.matches.create!(bo: 3, seed: seed) if match.nil?
+      match = round.matches.create!(seed: seed) if match.nil?
       match.player1 = players[0]
       match.player2 = players[1]
       # TODO - seed the player automatically to the next round
@@ -134,9 +140,7 @@ class Bracket
   # Return a current opponent for a user from his current match.
   def current_opponent_for(user)
     match = current_match_for(user)
-    if match
-      match.player1_id == user.id ? match.player2 : match.player1
-    end
+    match.opponent_for(user) if match
   end
 
   # Return round sizes for a given player count

@@ -5,7 +5,9 @@ namespace :db do
     [User, Post, Tournament, Signup].each(&:delete_all)
 
 
-    Factory(:user, username: "darthdeus", password: "admin", race: "Zerg")
+    user = Factory(:user, username: "darthdeus", password: "admin", race: "Zerg")
+    user.grant :tournament_admin
+
     salt = BCrypt::Engine.generate_salt
 
     User.populate 15 do |user|
@@ -13,6 +15,8 @@ namespace :db do
       user.username      = user.email.sub(/@.*/, '')
       user.password_hash = BCrypt::Engine.hash_secret("secret", salt)
       user.password_salt = salt
+      user.bnet_username = user.username
+      user.bnet_code     = [123, 321, 432, 546, 432]
     end
 
     users = User.all
@@ -48,8 +52,8 @@ namespace :db do
     end
 
     Tournament.all.each do |tournament|
-      5.times do
-        Factory(:signup, :tournament => tournament, :user => users.sample)
+      8.times do
+        Factory(:signup, tournament: tournament, user: users.sample, status: 1)
       end
     end
 

@@ -1,6 +1,11 @@
 .span6.alert.alert-info
   - if @tournament.seeded
-    - if @next_opponent
+    - if @lost
+      p
+        ' You have lost. Please come back for another one of our tournaments.
+        ' We really do appreciate your participation.
+
+    - elsif @next_opponent
       p
           = "Your next match is "
           strong = @next_opponent.username

@@ -1,6 +1,6 @@
 .tournament {
   input.report-box {
-    font-size: 18px;
+    font-size: 15px;
     padding: 9px;
   }
 
@@ -71,9 +71,27 @@
 
 .bracket {
   margin-top: 20px;
-  .round {
-    width: 150px;
+
+  .round-wrap {
+    width: 180px;
     float: left;
+
+    .round-info-wrap {
+      padding-bottom: 10px;
+
+      .round-info {
+        margin-right: 6px;
+        padding: 3px 6px;
+        color: #000;
+        font-weight: bold;
+        background: #FAFAFA;
+        border: 1px solid #999;
+
+        &:hover {
+          background: #F0F0F0;
+        }
+      }
+    }
 
     .match {
       margin: 0 5px 10px 0;

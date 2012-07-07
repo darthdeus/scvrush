@@ -81,18 +81,18 @@ describe Match do
     end
   end
 
-  describe "started?" do
-    before do
-      User.delete_all
-      @p1 = create(:user)
-      @p2 = create(:user)
-    end
-
-    it "is true when there are both players and no winner" do
-      build(:match, player1: @p1, player2: @p2).can_submit?.should == true
-      build(:match, player1: @p1, player2: nil).can_submit?.should == false
-      build(:match, player1: @p1, player2: nil, score: "3:0").can_submit?.should == false
-    end
-  end
+#   describe "started?" do
+#     before do
+#       User.delete_all
+#       @p1 = create(:user)
+#       @p2 = create(:user)
+#     end
+#
+#     it "is true when there are both players and no winner" do
+#       build(:match, player1: @p1, player2: @p2).can_submit?.should == true
+#       build(:match, player1: @p1, player2: nil).can_submit?.should == false
+#       build(:match, player1: @p1, player2: nil, score: "3:0").can_submit?.should == false
+#     end
+#   end
 
 end

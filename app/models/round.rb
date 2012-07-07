@@ -1,16 +1,20 @@
 class Round < ActiveRecord::Base
   belongs_to :tournament
-  attr_accessible :number, :tournament
+  attr_accessible :number, :tournament, :bo
+
   validates_presence_of :number, :tournament
 
   has_many :matches, dependent: :destroy
 
   def to_simple_json
-    hash = { type: "match", matches: [] }
+    hash = { type: "round", matches: [] }
+    hash[:number]  = self.number
+    hash[:id]      = self.id
+
     hash[:matches] = self.matches.map do |match|
       res = {}
-      res[:player1] = match.player1.username if match.player1
-      res[:player2] = match.player2.username if match.player2
+      res[:player1] = match.player1.bnet_info if match.player1
+      res[:player2] = match.player2.bnet_info if match.player2
       res[:id] = match.id
 
       res[:player1_score] = match.score_for(:player1)
