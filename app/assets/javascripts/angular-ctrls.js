@@ -16,7 +16,11 @@ function BracketCtrl($scope, Tournament) {
     setTimeout(function() { $('.bracket').applyDimensions(window.dimensions); }, 300);
   });
 
-  $scope.inputResult = function(target) { debugger; };
+  $scope.inputResult = function(match) {
+    if (gon.is_admin) {
+      document.location = "/matches/" + match.id + "/edit";
+    }
+  };
 
 };
 

@@ -92,10 +92,6 @@ class User < ActiveRecord::Base
     %w{NA EU SEA KR}
   end
 
-  def bnet_info
-    "#{self.bnet_username}.#{self.bnet_code}"
-  end
-
   def is_admin?
     self.has_role? :admin
   end
@@ -145,8 +141,24 @@ class User < ActiveRecord::Base
     self.raffle_signups.where(raffle_id: raffle.id).first
   end
 
+  def bnet_info
+    "#{self.bnet_username}.#{self.bnet_code}"
+  end
+
+  def bnet_info?
+    self.bnet_username? && self.bnet_code?
+  end
+
   def to_param
     "#{id}-#{username.parameterize}"
+  end
+
+  def to_s
+    if bnet_info?
+      "#{username} - #{bnet_info}"
+    else
+      username
+    end
   end
 
   def generate_api_key!

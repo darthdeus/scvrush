@@ -13,6 +13,10 @@ class TournamentPlayerDecorator
     def has_signup?(tournament)
       false
     end
+
+    def id
+      nil
+    end
   end
 
   # TODO - convert to draper with a call to super

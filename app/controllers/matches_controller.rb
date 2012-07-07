@@ -1,4 +1,6 @@
 class MatchesController < ApplicationController
+  before_filter :require_login
+
   def create
     tournament = Tournament.find(params[:tournament_id])
     bracket = Bracket.new(tournament)
@@ -20,5 +22,21 @@ class MatchesController < ApplicationController
     # TODO - display possible error messages
 
     redirect_to tournament
+  end
+
+
+  def edit
+    authorize! :manage, Match
+    @match = Match.find(params[:id])
+  end
+
+  def update
+    authorize! :manage, Match
+    @match = Match.find(params[:id])
+    if @match.update_attributes(params[:match])
+      redirect_to @match.round.tournament, notice: "Match results were updated"
+    else
+      render :edit
+    end
   end
 end

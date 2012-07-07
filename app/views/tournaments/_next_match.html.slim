@@ -25,7 +25,5 @@
     input.report-box type="text" name="score" placeholder="Final score, e.g 1:4"
     = hidden_field_tag 'tournament_id', @tournament.id
 
-    button.btn.btn-success.btn-large type="submit"
-      i.icon-ok.icon-white
-      |  Submit the result
+    = submit_match_result_button
 

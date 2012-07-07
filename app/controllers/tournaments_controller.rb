@@ -30,6 +30,7 @@ class TournamentsController < ApplicationController
         if @tournament.started?
           @bracket = Bracket.new(@tournament)
           @next_opponent = @bracket.current_opponent_for(@user)
+          gon.is_admin = Ability.new(current_user).can?(:manage, Match)
 
           render :show
         else
@@ -60,6 +61,7 @@ class TournamentsController < ApplicationController
   end
 
   def seed
+    authorize! :seed, Tournament
     tournament = TournamentDecorator.find(params[:id])
 
     bracket = Bracket.new(tournament)
@@ -75,6 +77,8 @@ class TournamentsController < ApplicationController
   end
 
   def unseed
+    authorize! :seed, Tournament
+
     tournament = TournamentDecorator.find(params[:id])
     tournament.seeded = false
     tournament.winner = nil

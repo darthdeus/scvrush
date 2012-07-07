@@ -29,6 +29,14 @@ module TournamentsHelper
     end
   end
 
+  def submit_match_result_button
+    confirm = "Are you sure? Once you submit the match result, you will have to contact an admin to change it."
+    content = '<i class="icon-ok icon-white"></i>Submit the result'
+    button_tag type: "submit", class: "btn btn-success btn-large", :"data-confirm" => confirm do
+      content.html_safe
+    end
+  end
+
 #   def checkin_button(tour)
 #     # action_params = { controller: :signups, action: :create, id: tour.id }
 #     # button_to action_params, method: :post, class: 'btn' do

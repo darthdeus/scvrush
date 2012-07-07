@@ -26,6 +26,11 @@ class Ability
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
     user ||= User.new # guest user (not logged in)
 
+    if user.has_role? :tournament_admin
+      can :manage, Match
+      can :seed, Tournament
+    end
+
     if user.has_role? :admin
       can :manage, :all
       can :publish, Post

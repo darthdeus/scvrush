@@ -1,3 +1,13 @@
+class ScoreValidator < ActiveModel::EachValidator
+  def validate_each(record, attribute, value)
+    if not value =~ /^\d:\d$/
+      record.errors[attribute] << "Score must have a format of N:N, e.g. 3:1"
+    elsif value == "0:0"
+      record.errors[attribute] << "Score can't be 0:0"
+    end
+  end
+end
+
 class Match < ActiveRecord::Base
   has_many :games, dependent: :destroy
   belongs_to :round
@@ -5,14 +15,16 @@ class Match < ActiveRecord::Base
   belongs_to :player1, class_name: "User"
   belongs_to :player2, class_name: "User"
 
-  attr_accessible :bo, :player1, :player2, :round, :seed, :score
+  attr_accessible :bo, :player1, :player2, :player1_id, :player2_id, :round, :seed, :score
 
   # FIX - there is no validation for players, since the bracket is pre-populated
   # with empty matches, and then the players are seeded later.
   #
   # TODO - add automatic walkover for player1 if there is no player2
   validates_presence_of :bo, :round, :seed
-  validates_format_of :score, with: /^\d:\d$/, if: lambda { |match| match.score? }
+
+  validates :score, score: true
+  # validates_format_of :score, with: /^\d:\d$/, if: lambda { |match| match.score? }
 
   before_save :check_if_completed
 
@@ -61,3 +73,4 @@ class Match < ActiveRecord::Base
 
   end
 end
+
