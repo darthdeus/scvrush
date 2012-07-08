@@ -9,7 +9,7 @@ module ApplicationHelper
   end
 
   def m(string)
-    RDiscount.new(string).to_html.html_safe
+    RDiscount.new(string).to_html.html_safe if string
   end
 
   def tag_link(tag)
