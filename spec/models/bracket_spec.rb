@@ -164,4 +164,34 @@ describe Bracket do
     bracket.next_round_number(1).should == nil
   end
 
+  context "walkover" do
+    it "automatically seeds the player to the next match if he has no opponent" do
+      Match.delete_all
+      Round.delete_all
+      User.delete_all
+
+      t = create(:tournament)
+      bracket = Bracket.new(t)
+      p1, p2, p3 = *3.times.inject([]) { |v,i| v << create(:user) }
+      t.users << p1 << p2 << p3
+      [p1, p2, p3].each { |u| u.check_in(t) }
+
+      bracket.create_bracket_rounds
+      bracket.create_matches
+      bracket.linear_seed
+
+      matches = Match.all
+
+      matches[1].should be_complete
+      bracket.current_match_for(p3).should == matches[2]
+
+      # match = bracket.current_match_for(p1)
+      # bracket.seed_next_match_with(p1, match)
+
+      # ro2 = t.rounds.second
+      # ro2.number.should == 2
+      # ro2.matches.first.player1.should == p1
+    end
+  end
+
 end

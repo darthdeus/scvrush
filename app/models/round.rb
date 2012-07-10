@@ -1,6 +1,6 @@
 class Round < ActiveRecord::Base
   belongs_to :tournament
-  attr_accessible :number, :tournament, :bo, :text
+  attr_accessible :number, :tournament, :bo, :text, :parent
 
   validates_presence_of :number, :tournament
 
@@ -27,6 +27,10 @@ class Round < ActiveRecord::Base
     hash
   end
 
-  # belongs_to :parent
+  def is_first?
+    self.tournament.rounds.first == self
+  end
+
+  belongs_to :parent, class_name: "Round", foreign_key: "parent_id"
   # has_many :children, class_name: "Round", foreign_key: "parent_id"
 end

@@ -23,6 +23,9 @@ class Bracket
   def create_bracket_rounds
     # TODO - do we really want to erase previous rounds?
     tournament.rounds = []
+
+    last = nil
+
     rounds = self.round_sizes(tournament.checked_players.size)
     rounds.each do |round|
       text =<<TEXT
@@ -30,14 +33,12 @@ MLG Antiga Shipyard
 GSL Bel'Shir Beach (Winter)
 MLG Cloud Kingdom
 TEXT
-      round = Round.new(number: round, tournament: tournament, text: text)
-      if [1,2,4].include? round
-        round.bo = 3
-      else
-        round.bo = 1
-      end
 
+      round = Round.new(number: round, tournament: tournament, text: text, parent: last)
+      round.bo = [1,2,4].include?(round) ? 3 : 1
       round.save!
+
+      last = round
     end
   end
 
@@ -67,9 +68,11 @@ TEXT
       match = round.matches.create!(seed: seed) if match.nil?
       match.player1 = players[0]
       match.player2 = players[1]
+
       # TODO - seed the player automatically to the next round
       if match.player2.nil?
         match.completed = true
+        self.seed_next_match_with(match.player1, match)
       end
       match.seed = seed
       # TODO - this isn't really a nice solution
@@ -80,12 +83,15 @@ TEXT
 
   # Set a score for a given player by figuring out what his
   # current match is, and then setting the result.
-  def set_score_for(user, score)
+  def set_score_for(user, score, admin = false)
     match = self.current_match_for(user)
 
-    # A player can submit his match results only once
-    raise AlreadySubmitted if match.winner
-    raise NotStartedYet unless match.can_submit?
+    if not admin
+      # A player can submit his match results only once
+      raise AlreadySubmitted if match.winner
+      raise NotStartedYet unless match.can_submit?
+    end
+
     match.set_score_for(user, score)
     match.save!
 

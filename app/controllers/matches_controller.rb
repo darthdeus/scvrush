@@ -42,7 +42,14 @@ class MatchesController < ApplicationController
 
     @match.player1_id = params[:match][:player1_id]
     @match.player2_id = params[:match][:player2_id]
-    @match.score = params[:match][:score]
+
+    score = params[:match][:score]
+
+    if score
+      bracket = Bracket.new(@match.round.tournament)
+      # only tournament admins do this, that's why we skip exceptions
+      bracket.set_score_for(@match.player1, score, true)
+    end
 
     if @match.save
       if !@match.player1_id? && !@match.player2_id?
@@ -54,5 +61,6 @@ class MatchesController < ApplicationController
       @players = @match.round.tournament.registered_players
       render :edit
     end
+
   end
 end

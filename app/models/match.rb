@@ -39,7 +39,7 @@ class Match < ActiveRecord::Base
   end
 
   def check_if_completed
-    if !player1 && !player2
+    if (!player1 && !player2) || (self.round.is_first? && !self.player2)
       self.completed = true
     else
       self.completed = false
