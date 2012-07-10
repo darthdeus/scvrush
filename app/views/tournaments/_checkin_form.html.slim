@@ -3,7 +3,7 @@
     - if @user.checked_in?
       h3 You are currently checked in.
       p
-        strong The tournament will start in 20 minutes, please come in time.
+        strong The tournament will start in #{@tournament.start_at}, please come in time.
       p
         ' If you can't participate in the tournament, please cancel
         ' your registraion before the tournament begins.
@@ -18,7 +18,7 @@
 
       - if @user.registered?
         p
-          ' The tournament starts in 20 minutes, you have to check in to be
+          ' The tournament starts in #{@tournament.start_at}, you have to check in to be
           ' allowed to participate.
         p
           ' Once the tournament starts, all players who didn't check in
