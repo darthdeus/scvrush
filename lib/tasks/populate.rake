@@ -17,6 +17,7 @@ namespace :db do
       user.password_salt = salt
       user.bnet_username = user.username
       user.bnet_code     = [123, 321, 432, 546, 432]
+      user.race          = ["Zerg", "Terran", "Protoss", "Random"]
     end
 
     users = User.all

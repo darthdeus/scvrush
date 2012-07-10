@@ -5,6 +5,11 @@ class MatchesController < ApplicationController
     tournament = Tournament.find(params[:tournament_id])
     bracket = Bracket.new(tournament)
 
+    unless params[:score]
+      flash[:error] = "You can't submit an empty match result"
+      redirect_to tournament
+    end
+
     begin
       winner = bracket.set_score_for(current_user, params[:score])
 

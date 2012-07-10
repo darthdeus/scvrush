@@ -164,24 +164,4 @@ describe Bracket do
     bracket.next_round_number(1).should == nil
   end
 
-#   describe "seeding" do
-#
-#     context "with a list of players" do
-#       it "creates the first round" do
-#         t = create(:tournament)
-#         t.seed
-#         t.should have(1).round
-#       end
-#
-#       it "should assign the round number based of the amount of players" do
-#         t = create(:tournament)
-#         4.times { t.users << create(:user) }
-#         t.seed
-#         t.rounds.first.number.should == 4
-#         t.should have(1).round
-#       end
-#
-#     end
-#   end
-#
 end

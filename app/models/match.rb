@@ -1,9 +1,9 @@
 class ScoreValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     if record.player1_id? || record.player2_id?
-      if not value =~ /^\d:\d$/
+      if value && value !~ /^\d:\d$/
         record.errors[attribute] << "must have a format of N:N, e.g. 3:1"
-      elsif value == "0:0"
+      elsif value && value == "0:0"
         record.errors[attribute] << "can't be 0:0"
       end
     end
@@ -30,13 +30,13 @@ class Match < ActiveRecord::Base
 
   before_save :check_if_completed
 
-    def set_score_for(user, score)
-      if user.id == player1_id
-        self.score = score
-      else
-        self.score = score.split(":").reverse.join(":")
-      end
+  def set_score_for(user, score)
+    if user.id == player1_id
+      self.score = score
+    else
+      self.score = score.split(":").reverse.join(":")
     end
+  end
 
   def check_if_completed
     if !player1 && !player2
