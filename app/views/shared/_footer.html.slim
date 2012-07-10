@@ -1,6 +1,27 @@
-#wrapper-footer
-  .footer
-    ' Copyright &copy; 2011 SCVRush.com
+#footer
+  .container
+    .row
+      .span4
+        h2 Blog
+
+        - cache('bloglinks', expire_in: 5.minutes) do
+          ul.unstyled.blog_posts
+            - BlogPost.recent.each do |post|
+              li
+                .date = post.created_at.strftime("%D")
+                .text = link_to post.title, post.url
+
+
+      .span4
+        h2 Recent tweets
+
+      .span4
+        h2 Follow us
+
+
+    .row
+      .footer
+        ' Copyright &copy; 2011 SCVRush.com
 
 #preload
   img src="/assets/subnav_item_bg.png"

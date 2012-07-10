@@ -25,7 +25,12 @@ class Bracket
     tournament.rounds = []
     rounds = self.round_sizes(tournament.checked_players.size)
     rounds.each do |round|
-      round = Round.new(number: round, tournament: tournament)
+      text =<<TEXT
+MLG Antiga Shipyard
+GSL Bel'Shir Beach (Winter)
+MLG Cloud Kingdom
+TEXT
+      round = Round.new(number: round, tournament: tournament, text: text)
       if [1,2,4].include? round
         round.bo = 3
       else

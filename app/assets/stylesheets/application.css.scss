@@ -75,16 +75,44 @@ p {
   }
 }
 
-#wrapper-footer {
-  padding: 0 40px;
-  clear: both;
+#footer {
+  background: #252525;
+  a, li {
+    color: #fafafa;
+  }
+
+  .blog_posts {
+    clear: both;
+
+    .date {
+      background: #fafafa;
+      color: #252525;
+      @include border-radius(5px);
+      float: left;
+      width: 50px;
+      padding: 5px 10px;
+      margin-right: 10px;
+      width: 50px;
+    }
+
+    .text {
+      padding: 5px;
+    }
+  }
+
+  h2 {
+    color: #fafafa;
+    border-bottom: 1px solid #fafafa;
+  }
+
   .footer {
     padding: 15px 0 10px;
-    border-top: 1px solid #eee;
     text-align: center;
     color: #999;
   }
 }
+
+#preload { display: none; }
 
 h2.arrowed, h3.arrowed {
   margin-top: 0;
