@@ -43,19 +43,18 @@ class MatchesController < ApplicationController
     @match.player1_id = params[:match][:player1_id]
     @match.player2_id = params[:match][:player2_id]
 
-    score = params[:match][:score]
+    @match.score = params[:match][:score]
 
-    if score
-      bracket = Bracket.new(@match.round.tournament)
-      # only tournament admins do this, that's why we skip exceptions
-      bracket.set_score_for(@match.player1, score, true)
-    end
 
     if @match.save
       if !@match.player1_id? && !@match.player2_id?
         @match.score = nil
         @match.save!
       end
+
+      bracket = Bracket.new(@match.round.tournament)
+      bracket.seed_next_match_with(@match.winner, @match)
+
       redirect_to @match.round.tournament, notice: "Match results were updated"
     else
       @players = @match.round.tournament.registered_players

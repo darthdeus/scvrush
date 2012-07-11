@@ -15,7 +15,7 @@ module TournamentsHelper
     action_params = { controller: :signups, action: :destroy, id: tour.id }
     link_to action_params, method: :delete, class: 'btn btn-danger btn-large' do
       html = content_tag(:i, "", class: "icon-remove icon-white")
-      html << "Cancel your registraion for the tournament"
+      html << "Cancel your registration for the tournament"
       html.html_safe
     end
   end
