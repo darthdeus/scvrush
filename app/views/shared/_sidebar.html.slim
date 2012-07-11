@@ -34,13 +34,6 @@ ul.nav.nav-tabs
             - coach.tags.each do |tag|
               li = tag_link(tag)
 
-  .fade.tab-pane#blog
-    - cache('bloglinks', expire_in: 5.minutes) do
-      ul.bloglinks
-        - BlogPost.recent.each do |post|
-          li = link_to post.title, post.url
-
-
 = arrowed_header 'Join us on Facebook', 'facebook-header'
 
 .content

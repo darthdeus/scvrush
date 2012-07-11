@@ -12,6 +12,18 @@ module ApplicationHelper
     RDiscount.new(string).to_html.html_safe if string
   end
 
+  def meta_description
+    if content_for?(:description) 
+      yield(:description) 
+    else
+      I18n.t("meta_description")
+    end
+  end
+
+  def meta_keywords
+    I18n.t("meta_keywords")
+  end
+
   def tag_link(tag)
     name = tag.name.titleize
     name = name.upcase if %w(Na Eu Sea Kr).include? name

@@ -2,4 +2,6 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  meta_description: "Starcraft 2 community website organizing tournaments, writing content and providing the best Starcraft 2 experience under one roof."
+  meta_keywords: "starcraft 2, starcraft 2 tournaments, starcraft 2 content, terran, protoss, zerg, terran strategy, zerg stategy, protoss strategy"
 
