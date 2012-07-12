@@ -1,16 +1,10 @@
 class HomeController < ApplicationController
   def index
-    # TODO - does #tagged_with consider all tags, or only one of the list?
-    @posts = Post.published.tagged_with('event,tournament,zerg-show', exclude: true).page(0).limit(6)
-    @eu_tournaments = Post.published.tagged_with('event,eu').limit(3)
-    @na_tournaments = Post.published.tagged_with('event,na').limit(3)
-    @tournaments = @eu_tournaments.zip(@na_tournaments).flatten
+    @terran_post  = Post.published.tagged_with("terran").first
+    @zerg_post    = Post.published.tagged_with("zerg").first
+    @protoss_post = Post.published.tagged_with("protoss").first
 
-
-    # TODO - why am I using page(0) all over the place?
-    @zerg    = Post.published.tagged_with('zerg').limit(6)
-    @terran  = Post.published.tagged_with('terran').limit(6)
-    @protoss = Post.published.tagged_with('protoss').limit(6)
+    @tournament = Tournament.last
 
     @zerg_show       = Post.published.tagged_with('zerg-show').page(0).limit(6)
     @watch_the_pros  = Post.published.tagged_with('watch-the-pros').page(0).limit(6)

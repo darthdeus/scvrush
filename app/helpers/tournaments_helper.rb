@@ -1,5 +1,9 @@
 module TournamentsHelper
 
+  def tournament_logo
+    image_tag "http://placehold.it/100"
+  end
+
   # Tournament signup button
   def signup_button(tour, text = "Sign up for the tournament")
     action_params = { controller: :signups, action: :create, id: tour.id }
