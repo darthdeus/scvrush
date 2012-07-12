@@ -132,8 +132,13 @@ p {
 
 #footer {
   background: #252525;
+
   a, li {
     color: #fafafa;
+  }
+
+  li {
+    min-height: 40px;
   }
 
   .blog_posts {
@@ -148,10 +153,6 @@ p {
       padding: 5px 10px;
       margin-right: 10px;
       width: 50px;
-    }
-
-    .text {
-      padding: 5px;
     }
   }
 
