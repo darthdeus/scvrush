@@ -1,8 +1,8 @@
 class HomeController < ApplicationController
   def index
-    @terran_post  = Post.published.tagged_with("terran").first
-    @zerg_post    = Post.published.tagged_with("zerg").first
-    @protoss_post = Post.published.tagged_with("protoss").first
+    @terran_post  = Post.published.tagged_with("terran") .tagged_with(["coach", "zerg", "protoss"]  , exclude: true).first
+    @zerg_post    = Post.published.tagged_with("zerg")   .tagged_with(["coach", "terran", "protoss"], exclude: true).first
+    @protoss_post = Post.published.tagged_with("protoss").tagged_with(["coach", "zerg", "terran"]   , exclude: true).first
 
     @tournament = Tournament.upcoming.first
 

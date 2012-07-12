@@ -98,12 +98,20 @@ h2 {
     border-bottom: 1px solid #999;
     margin-bottom: 10px;
   }
+
+  &.nomargin {
+    margin-bottom: 0;
+  }
 }
 
 h3 { font-size: 20px; }
 
 p {
   margin: 0 0 10px;
+}
+
+#homeCarousel {
+  margin: 0;
 }
 
 .btn { font-family: helvetica, arial, sans-serif;}
@@ -162,15 +170,12 @@ p {
 #preload { display: none; }
 
 .coach {
-  background: #fafafa;
   border-bottom: 1px solid #dedede;
   display: block;
-  width: 290px;
   height: 45px;
-  padding: 10px 4px 0 15px;
   float: left;
 
-  @include transition (background 1.0s ease-in-out);
+  @include transition (background 0.2s ease-in-out);
 
   &:hover {
     background: #efefef;
@@ -179,7 +184,7 @@ p {
   a {
     text-decoration: none;
     color: #333;
-    font-size: 22px;
+    font-size: 16px;
     float: left;
     line-height: 42px;
   }
@@ -224,7 +229,7 @@ p {
     /* TODO - use myriad here too? */
     font-family: helvetica, arial, sans-serif;
     line-height: 2;
-    @include transition (background 1.0s ease-in-out);
+    @include transition (background 0.2s ease-in-out);
 
   }
 
