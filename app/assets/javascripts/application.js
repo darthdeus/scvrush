@@ -23,19 +23,20 @@ jQuery(function($) {
 
   var url = 'http://api.justin.tv/api/stream/list.json';
 
-//   $.ajax({
-//       url:url,
-//       dataType:"jsonp",
-//       data:{ channel:"scvrush1" },
-//       jsonp:"jsonp",
-//       success:function (data) {
-//           $("li.stream a")
-//               .css('color', 'rgba(255, 150, 150, 0.8)')
-//               .text('Check out our Stream - LIVE NOW!');
-//           $('#inline-stream').show();
-//       }
-//   });
-// 
+  $.ajax({
+      url:url,
+      dataType:"jsonp",
+      data:{ channel:"scvrush1" },
+      jsonp:"jsonp",
+      success:function (data) {
+          $("li.stream a")
+              .css('color', 'rgba(255, 150, 150, 0.8)')
+              .text('Check out our Stream - LIVE NOW!');
+          $('#inline-stream').show();
+          $('#home-carousel').hide();
+      }
+  });
+
   $('#new_comment').submit(function(e) {
     var self = $(this),
         textarea = self.find('[data-required]');

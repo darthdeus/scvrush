@@ -41,8 +41,13 @@
 
             = render partial: "registration_form"
 
+            .row style="padding-top: 15px;"
+              .span6.alert.alert-info
+                | Admins for this tournament are Vogin.715 and Jigosep.377
+
       .span6
         = render partial: "rules"
+
 
     - if @tournament.has_players?
       = render partial: "registered_players"

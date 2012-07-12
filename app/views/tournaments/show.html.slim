@@ -38,6 +38,9 @@
       .span6
         = render partial: "rules"
 
+      .span6.alert.alert-info
+        | Admins for this tournaments are Vogin.715 and Jigosep.377
+
   - if @tournament.seeded
     .bracket ng-controller="BracketCtrl" ng-app="scvrush"
       .round-wrap ng-repeat="round in rounds"

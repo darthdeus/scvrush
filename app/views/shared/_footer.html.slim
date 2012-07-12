@@ -3,12 +3,11 @@
     .row
       .span4
         h2 Blog
-        - cache('bloglinks', expire_in: 5.minutes) do
-          ul.unstyled.blog_posts
-            - BlogPost.recent.each do |post|
-              li
-                .date = post.created_at.strftime("%D")
-                .text = link_to post.title, post.url
+        ul.unstyled.blog_posts
+          - BlogPost.recent.each do |post|
+            li
+              .date = post.created_at.strftime("%D")
+              .text = link_to post.title, post.url
 
       .span4
         h2 Recent tweets
@@ -50,7 +49,6 @@ script type="text/template" id="login_form"
     js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=281251391959105";
     fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-
 
   javascript:
     var _gaq = _gaq || [];

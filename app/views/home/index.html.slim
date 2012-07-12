@@ -1,15 +1,15 @@
 / = link_to post_path("9913-the-friday-faceoff-dignitas-select-vs-mtw-dimaga") do
 /  = image_tag "FF_Dimaga_vs_Select.png", :alt => "the friday faceoff dimaga vs select", :width => 628, :style => 'margin-bottom: 10px;'
-#inline-stream style="padding-left: 15px; display: none;"
-  object type="application/x-shockwave-flash" height="400" width="600" id="live_embed_player_flash" data="http://www.twitch.tv/widgets/live_embed_player.swf?channel=scvrush1" bgcolor="#000000"
-    param name="allowFullScreen" value="true"
-    param name="allowScriptAccess" value="always"
-    param name="allowNetworking" value="all"
-    param name="movie" value="http://www.twitch.tv/widgets/live_embed_player.swf"
-    param name="flashvars" value="hostname=www.twitch.tv&channel=scvrush1&auto_play=true&start_volume=25"
-
 .row
-  .carousel.slide#homeCarousel.span8
+  .span8
+    #inline-stream style="display: none;"
+      object type="application/x-shockwave-flash" height="400" width="600" id="live_embed_player_flash" data="http://www.twitch.tv/widgets/live_embed_player.swf?channel=scvrush1" bgcolor="#000000"
+        param name="allowFullScreen" value="true"
+        param name="allowScriptAccess" value="always"
+        param name="allowNetworking" value="all"
+        param name="movie" value="http://www.twitch.tv/widgets/live_embed_player.swf"
+        param name="flashvars" value="hostname=www.twitch.tv&channel=scvrush1&auto_play=true&start_volume=25"
+  .carousel.slide#home-carousel.span8
     .carousel-inner
       .item.active
         a href="http://scvrush.com/posts/9950-the-friday-faceoff-grubby-vs-atndarkforce"
@@ -30,8 +30,8 @@
         a href="http://scvrush.com/posts/9937-affiliates"
           = image_tag "5_sliderE.png"
 
-    a class="carousel-control left" href="#homeCarousel" data-slide="prev" &lsaquo;
-    a class="carousel-control right" href="#homeCarousel" data-slide="next" &rsaquo;
+    a class="carousel-control left" href="#home-carousel" data-slide="prev" &lsaquo;
+    a class="carousel-control right" href="#home-carousel" data-slide="next" &rsaquo;
 
 
   .span4#coaches
@@ -46,6 +46,9 @@
                 li = tag_link(tag)
 
 
+.row
+  .span12
+    h2.underline Featured content
 .row.race-posts
   .span4
     = render partial: "recent_race_post", object: @terran_post, as: :post, locals: { race: "terran" }
