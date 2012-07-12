@@ -1,4 +1,11 @@
 .user-profile {
+  .avatar img {
+    @include box-shadow(0 0 3px #666);
+  }
+
+}
+
+.profile {
 
   .avatar {
     float: right;

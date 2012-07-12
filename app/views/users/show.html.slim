@@ -1,77 +1,48 @@
-= arrowed_header @user.username + " - profile", 'nomargin'
-
 .user-profile
-  .avatar
-    .image
-      = image_tag @user.avatar.url(:thumb), :alt => @user.username
-    .meta
-      = link_to "change avatar", new_avatar_path
+  .row
+    .span4
+      .avatar
+        = image_tag @user.avatar.url(:thumb), :alt => @user.username
+      div
+        = link_to "change avatar", new_avatar_path
 
+      dl.dl-horizontal
+        dt Username
+        dd = @user.username
 
-  dl.dl-horizontal
-    dt Username
-    dd = @user.username
+        dt Battle.net ID
+        dd = "#{@user.bnet_username}.#{@user.bnet_code}"
 
-    dt Battle.net ID
-    dd = "#{@user.bnet_username}.#{@user.bnet_code}"
+        dt Experience
+        dd = pluralize(@user.karma, "points")
 
-    dt Experience
-    dd = pluralize(@user.karma, "points")
+        - if @user.twitter.present?
+          dt Twitter
+          dd = link_to @user.twitter, "http://twitter.com/#{@user.twitter}"
 
-    - if @user.twitter.present?
-      dt Twitter
-      dd = link_to @user.twitter, "http://twitter.com/#{@user.twitter}"
+        = info_for_user(@user, %w{race league server favorite_player}, %w{email skype msn})
 
-    = info_for_user(@user, %w{race league server favorite_player}, %w{email skype msn})
+      p
+        - if @user == current_user
+          = link_to 'edit your profile', edit_user_path(current_user)
 
-  p
-    - if @user == current_user
-      = link_to 'edit your profile', edit_user_path(current_user)
+    .span8
 
+      .alert.alert-notice
+        h1 The user profiles is under construction
 
-  / TODO - make this nicer
-  h2 Activity feed
+        p We are going to be adding a lot of new features to user profiles, stay tuned!
 
-  - @user.signups.each do |signup|
-    p Signed up for tournament #{signup.tournament.name}
+      h2 Activity feed
 
+      - @user.signups.each do |signup|
+        p
+          ' Signed up for tournament
+          = link_to signup.tournament.name, signup.tournament
 
-
-  .recent-comments
-    header
-      h1 Recent Comments
-
-    section
-      ul
-        - @user.comments.each do |comment|
-          li
-            = link_to post_path(comment.post) + "#comment#{comment.id}" do
-              .text = comment.content[0..150]
-              .post = comment.post.title
-
-
-  .user-posts
-    - unless @user.posts.published.empty?
-      header
-        h1 Posts
-      section
-        ul
-          - @user.posts.published.each do |post|
-            li = link_to post.title, post_path(post)
-
-  - unless @user.achievements.empty?
-    h2 Achievements
-    ul.comments
-      - @user.achievements.each do |achievement|
-        li
-          = achievement.name
-          ul
-            - @user.won_tournaments.each do |tournament|
-              li = link_to tournament.name, tournament
-
-  .actions
-    - if @user == current_user
-      - if @user.practice
-        = link_to "Quit Practice Buddy", { :controller => :practice, :action => :quit }, :class => "btn", :'data-loading-text' => 'loading...'
-      - else
-        = link_to "Join Practice Buddy", { :controller => :practice, :action => :join }, :class => "btn", :'data-loading-text' => 'loading...'
+      .actions
+        - if @user == current_user
+          - if @user.practice
+            = quit_practice_buddy_button
+          - else
+            = join_practice_buddy_button

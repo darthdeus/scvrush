@@ -28,7 +28,10 @@
             .span6.alert.alert-danger
               h2 The tournament has already started
 
-              p You are not registered for this tournament.
+              - if logged_in?
+                p You are not registered for this tournament.
+              - else
+                p You have to log in in order to submit your match results.
 
               p
                 ' You can still watch the bracket. Feel free to visit our channel SCVRush

@@ -1,5 +1,17 @@
 module UsersHelper
 
+  def quit_practice_buddy_button
+    link_to("Quit Practice Buddy",
+        { :controller => :practice, :action => :quit },
+        :class => "btn", :'data-loading-text' => 'loading...')
+  end
+
+  def join_practice_buddy_button
+    link_to "Join Practice Buddy",
+      { :controller => :practice, :action => :join },
+      :class => "btn", :'data-loading-text' => 'loading...'
+  end
+
   def conditional_user_info(user, attr)
     if user.read_attribute("display_#{attr}")
       user_info(user, attr)
