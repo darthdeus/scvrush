@@ -6,10 +6,6 @@ describe Match do
     build(:match).should be_valid
   end
 
-  it "requires bo for a match" do
-    build(:match, bo: nil).should_not be_valid
-  end
-
   it "is uncompleted by default" do
     build(:match).should_not be_completed
   end

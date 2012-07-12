@@ -3,7 +3,6 @@
     .row
       .span4
         h2 Blog
-
         - cache('bloglinks', expire_in: 5.minutes) do
           ul.unstyled.blog_posts
             - BlogPost.recent.each do |post|
@@ -11,17 +10,15 @@
                 .date = post.created_at.strftime("%D")
                 .text = link_to post.title, post.url
 
-
       .span4
         h2 Recent tweets
 
       .span4
         h2 Follow us
 
-
     .row
       .footer
-        ' Copyright &copy; 2011 SCVRush.com
+        ' Copyright &copy; 2012 SCVRush.com
 
 #preload
   img src="/assets/subnav_item_bg.png"
@@ -68,13 +65,6 @@ script type="text/template" id="login_form"
         ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
         var s = document.getElementsByTagName('script')[0];
         s.parentNode.insertBefore(ga, s);
-    })();
-
-    (function() {
-      GG_API_KEY = "247b5a2f72df375279573f2746686daa";
-      var gg = document.createElement('script'); gg.type = 'text/javascript'; gg.async = true;
-      gg.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'applet.ggbet.net/assets/workspace.js?' + new Date().getTime() + '&apikey=' + GG_API_KEY;
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gg, s);
     })();
 
     var _gauges = _gauges || [];

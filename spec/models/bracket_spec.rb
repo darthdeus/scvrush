@@ -72,8 +72,8 @@ describe Bracket do
 
     matches = Match.first(2)
     matches[0].player1.should == p1
-    matches[0].player2.should == p2
-    matches[1].player1.should == p3
+    matches[0].player2.should == p3
+    matches[1].player1.should == p2
     matches[1].player2.should == p4
   end
 
@@ -90,10 +90,10 @@ describe Bracket do
     bracket.create_matches
     bracket.linear_seed
 
-    bracket.current_match_for(p1).player2.should == p2
-    bracket.current_match_for(p2).player1.should == p1
-    bracket.current_match_for(p3).player2.should == p4
-    bracket.current_match_for(p4).player1.should == p3
+    bracket.current_match_for(p1).player2.should == p3
+    bracket.current_match_for(p2).player2.should == p4
+    bracket.current_match_for(p3).player1.should == p1
+    bracket.current_match_for(p4).player1.should == p2
   end
 
   it "returns next round for a given round" do
@@ -134,24 +134,25 @@ describe Bracket do
     match = bracket.current_match_for(p1)
     bracket.seed_next_match_with(p1, match)
 
+
     ro2 = t.rounds.second
     ro2.number.should == 2
     ro2.matches.first.player1.should == p1
 
-    # It relaly shouldn't matter if we re-seed the player,
+    # It really shouldn't matter if we re-seed the player,
     # as the previous one gets overwritten. All we care about
     # is proper position
-    bracket.seed_next_match_with(p2, match)
+    bracket.seed_next_match_with(p3, match)
 
     ro2.reload
-    ro2.matches.first.player1.should == p2
+    ro2.matches.first.player1.should == p3
 
     # Seeding player from even match number should result in
     # him being put in the second position in a match.
-    match2 = bracket.current_match_for(p3)
-    bracket.seed_next_match_with(p3, match2)
+    match2 = bracket.current_match_for(p2)
+    bracket.seed_next_match_with(p2, match2)
 
-    ro2.matches.first.player2.should == p3
+    ro2.matches.first.player2.should == p2
   end
 
   it "returns next round number" do
@@ -182,15 +183,8 @@ describe Bracket do
 
       matches = Match.all
 
-      matches[1].should be_complete
-      bracket.current_match_for(p3).should == matches[2]
-
-      # match = bracket.current_match_for(p1)
-      # bracket.seed_next_match_with(p1, match)
-
-      # ro2 = t.rounds.second
-      # ro2.number.should == 2
-      # ro2.matches.first.player1.should == p1
+      matches[1].should be_completed
+      bracket.current_match_for(p2).should == matches[2]
     end
   end
 

@@ -57,28 +57,52 @@ TEXT
   def linear_seed
     tournament.reload
     round = tournament.rounds.first
+
     matches = round.matches
     seed = 0
 
-    tournament.checked_players.each_slice(2) do |players|
-      # TODO - instead of creating a new match, instead find
-      # the match that was pre-populated and seed the players to it
-      match = matches[seed]
-      # TODO - don't create it here
-      match = round.matches.create!(seed: seed) if match.nil?
-      match.player1 = players[0]
-      match.player2 = players[1]
+    players = tournament.checked_players
 
-      # TODO - seed the player automatically to the next round
+    matches.each do |match|
+      match.player1 = players.shift
+      match.seed = seed
+      seed += 1
+    end
+
+    matches.each do |match|
+      match.player2 = players.shift
+    end
+
+    matches.each do |match|
       if match.player2.nil?
         match.completed = true
         self.seed_next_match_with(match.player1, match)
       end
-      match.seed = seed
-      # TODO - this isn't really a nice solution
+
       match.save(validate: false)
-      seed += 1
     end
+
+
+#     tournament.checked_players.each_slice(2) do |players|
+#       # TODO - instead of creating a new match, instead find
+#       # the match that was pre-populated and seed the players to it
+#       match = matches[seed]
+#       # TODO - don't create it here
+#       match = round.matches.create!(seed: seed) if match.nil?
+#       match.player1 = players[0]
+#       match.player2 = players[1]
+# 
+#       # TODO - seed the player automatically to the next round
+#       if match.player2.nil?
+#         match.completed = true
+#         self.seed_next_match_with(match.player1, match)
+#       end
+#       match.seed = seed
+#       # TODO - this isn't really a nice solution
+#       match.save(validate: false)
+#       seed += 1
+#     end
+
   end
 
   # Set a score for a given player by figuring out what his
