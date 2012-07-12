@@ -1,6 +1,5 @@
 / = link_to post_path("9913-the-friday-faceoff-dignitas-select-vs-mtw-dimaga") do
 /  = image_tag "FF_Dimaga_vs_Select.png", :alt => "the friday faceoff dimaga vs select", :width => 628, :style => 'margin-bottom: 10px;'
-
 #inline-stream style="padding-left: 15px; display: none;"
   object type="application/x-shockwave-flash" height="400" width="600" id="live_embed_player_flash" data="http://www.twitch.tv/widgets/live_embed_player.swf?channel=scvrush1" bgcolor="#000000"
     param name="allowFullScreen" value="true"
@@ -9,13 +8,12 @@
     param name="movie" value="http://www.twitch.tv/widgets/live_embed_player.swf"
     param name="flashvars" value="hostname=www.twitch.tv&channel=scvrush1&auto_play=true&start_volume=25"
 
-- cache('recent_posts', :expire_in => 5.minutes) do
-
-  .carousel.slide#myCarousel
+.row
+  .carousel.slide#homeCarousel.span8
     .carousel-inner
       .item.active
         a href="http://scvrush.com/posts/9950-the-friday-faceoff-grubby-vs-atndarkforce"
-          = image_tag "slider2.png"
+          = image_tag "grubby_darkforce.png"
       .item
         a href="http://scvrush.com/posts/9936-upcoming-events"
           = image_tag "1_upcoming.png"
@@ -32,67 +30,55 @@
         a href="http://scvrush.com/posts/9937-affiliates"
           = image_tag "5_sliderE.png"
 
-    a class="carousel-control left" href="#myCarousel" data-slide="prev" &lsaquo;
-    a class="carousel-control right" href="#myCarousel" data-slide="next" &rsaquo;
+    a class="carousel-control left" href="#homeCarousel" data-slide="prev" &lsaquo;
+    a class="carousel-control right" href="#homeCarousel" data-slide="next" &rsaquo;
 
-  ul.nav.nav-tabs
-    li.active
-      a href="#tournaments" data-toggle="tab" Tournaments
-    li
-      a href="#posts" data-toggle="tab" Recent Posts
 
-  .tab-content
-    .fade.in.active.tab-pane#tournaments
-      .recent-posts
-        = render partial: 'home/recent_post', collection: @tournaments, as: :post
-    .fade.tab-pane#posts
-      .recent-posts
-        = render partial: 'home/recent_post', collection: @posts, as: :post
+  .span4#coaches
+    h2.underline.nomargin Coaches
+    - Coach.order('`order` ASC').sample(6).each do |coach|
+      - if coach.post.present?
+        .row
+          .coach.span4
+            .name = link_to coach.title, post_path(coach.post)
+            ul.tags
+              - coach.tags.each do |tag|
+                li = tag_link(tag)
 
-  ul.nav.nav-tabs
-    li.active
-      a data-toggle="tab" href="#zerg" Zerg
-    li
-      a data-toggle="tab" href="#terran" Terran
-    li
-      a data-toggle="tab" href="#protoss" Protoss
 
-  .tab-content
-    .fade.in.active.tab-pane#zerg
-      .recent-posts
-        = render partial: 'home/recent_post', collection: @zerg, as: :post
-    .fade.tab-pane#terran
-      .recent-posts
-        = render partial: 'home/recent_post', collection: @terran, as: :post
-    .fade.tab-pane#protoss
-      .recent-posts
-        = render partial: 'home/recent_post', collection: @protoss, as: :post
+.row.race-posts
+  .span4
+    = render partial: "recent_race_post", object: @terran_post, as: :post, locals: { race: "terran" }
 
-  ul.nav.nav-tabs
-    li.active
-      a data-toggle="tab" href="#zerg-show" Zerg Show
-    li
-      a data-toggle="tab" href="#watch-the-pros" Watch the Pros
-    li
-      a data-toggle="tab" href="#today-i-learned" Today I Learned
-    li
-      a data-toggle="tab" href="#game-diary" Game Diary
-    li
-      a data-toggle="tab" href="#deuce-analysis" DeuceStarcraft Casts
+  .span4
+    = render partial: "recent_race_post", object: @zerg_post, as: :post, locals: { race: "zerg" }
 
-  .tab-content
-    .fade.in.active.tab-pane#zerg-show
-      .recent-posts
-        = render partial: 'home/recent_post', collection: @zerg_show, as: :post
-    .fade.tab-pane#watch-the-pros
-      .recent-posts
-        = render partial: 'home/recent_post', collection: @watch_the_pros, as: :post
-    .fade.tab-pane#today-i-learned
-      .recent-posts
-        = render partial: 'home/recent_post', collection: @today_i_learned, as: :post
-    .fade.tab-pane#game-diary
-      .recent-posts
-        = render partial: 'home/recent_post', collection: @game_diary, as: :post
-    .fade.tab-pane#deuce-analysis
-      .recent-posts
-        = render partial: 'home/recent_post', collection: @deuce_analysis, as: :post
+  .span4
+    = render partial: "recent_race_post", object: @protoss_post, as: :post, locals: { race: "protoss" }
+
+.row
+  .span9
+    h2.underline Next tournament
+    .row
+      .span3
+        = link_to @tournament do
+          = image_tag "tournament_eu_pd.png"
+      .span5
+        p
+          ' You know the feeling. There's a tournament, you sign up, get nerd chills...
+          ' only to get eliminated in the first round by some nasty Master player. No more!
+
+        p
+          ' With us, you will feel like a pro. Enjoy live casting,
+          ' a small prize on the line and above all, the most friendly community ever!
+
+  .span3
+    h2.underline Grow Esports!
+
+    form action="https://www.paypal.com/cgi-bin/webscr" method="post" class="paypal-donate"
+      input type="hidden" name="cmd" value="_s-xclick"
+      input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----"
+      button type="submit" style="padding: 0; border: none;"
+        = image_tag "donate.png"
+      img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1"
+

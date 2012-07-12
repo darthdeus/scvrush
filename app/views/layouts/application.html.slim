@@ -2,15 +2,16 @@ doctype html
 html
   head
     meta http-equiv="content-type" content="text/html; charset=UTF-8"
-    meta name="description" content="#{content_for?(:description) ? yield(:description) : "Starcraft 2 community website organizing tournaments, writing content and providing the best Starcraft 2 experience under one roof."}"
-    meta name="keywords" content="starcraft 2, starcraft 2 tournaments, starcraft 2 content, terran, protoss, zerg, terran strategy, zerg stategy, protoss strategy"
+    / TODO - refactor this to a helper
+    meta name="description" content="#{content_for?(:description) ? yield(:description) : I18n.t("meta_description")}"
+    meta name="keywords" content="#{meta_keywords}"
     meta name="google-site-verification" content="igJwBmyTtGQNh8OlgQ0cKXdaEnsKm3BW01gSTyGYR_U"
     meta name="google-site-verification" content="z79z_p3RDNhOsFr6U0BNo249fqzhSzTSpJPBBFp0mTo"
 
     title
       = content_for?(:title) ? yield(:title) : "SCV Rush"
 
-    = favicon_link_tag 'favicon.png'
+    = favicon_link_tag "favicon.png"
 
     = stylesheet_link_tag "application"
     = include_gon
@@ -22,49 +23,19 @@ html
     script type="text/javascript" try{Typekit.load();}catch(e){}
 
   body
-    #wrapper
-      #wrapper-content
+    = render "shared/menu"
+    .container
 
-        #header
-          //#donate = render 'shared/donate'
-          / #adbtn = link_to "Advertise with us", post_path("9724-advertise-with-us"), class: 'btn btn-success'
+      .row
+        .span12
+          = render partial: "shared/flash_messages"
 
-          h1
-            a href="/"
-              img src="/assets/logo.png" alt="SCV Rush"
-            - if Rails.cache.read('ggbet_logo')
-              a href="http://www.ggbet.net/" style="height: 100px;margin-left: 30px;position: absolute;"
-                img src="http://www.ggbet.net/assets/small-logo.png" alt="ggbet" style="height: 100px;margin-left: 30px;position: absolute;"
 
-          / #buddies = link_to image_tag('buddies_white.png'), '/practice'
+      .row
+        .span12
+          = yield
 
-          #upcoming
-            - Tournament.upcoming.each do |tournament|
-              .upcoming
-                h2 = link_to tournament.name, tournament
-                p = nice_date(tournament.starts_at, current_user)
-
-        #wrapper-navigation
-          #navigation
-            = render 'shared/menu'
-
-        .row
-          - [:success, :error, :info, :notice].each do |type|
-            - if flash[type]
-              div id="flash" class="span6 fade in alert #{flash_class(type)}"
-                a href="#" data-dismiss="alert" class="close" ×
-                div= flash[type]
-
-        - if content_for? :sidebar
-          #left-wrap
-            = yield
-          #sidebar
-            = yield :sidebar
-        - else
-          #single-column
-            = yield
-
-    = render 'shared/footer'
+    = render "shared/footer"
 
     = javascript_include_tag "application"
     = yield(:head)

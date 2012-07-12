@@ -41,7 +41,8 @@ namespace :db do
     end
 
     Post.all.each do |post|
-      post.tag_list = "foo,bar,baz"
+      post.tag_list     = ["zerg", "terran", "protoss"]
+      post.save
     end
 
     6.times do

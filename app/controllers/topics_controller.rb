@@ -4,7 +4,7 @@ class TopicsController < ApplicationController
   def index
     @section = Section.find(params[:section_id])
     respond_to do |format|
-      format.json { render json: @section.topics }
+      format.json { render json: @section.topics.order("created_at DESC") }
     end
   end
 

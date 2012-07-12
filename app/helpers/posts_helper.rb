@@ -16,6 +16,17 @@ module PostsHelper
     end
   end
 
+  # Return an article icon for a given race
+  def icon_for_race(race)
+    case race
+    when "protoss" then image_tag "race_protoss_icon.png"
+    when "zerg"    then image_tag "race_zerg_icon.png"
+    when "terran"  then image_tag "race_terran_icon.png"
+    else
+      raise "Invalid race parameter", ArgumentError
+    end
+  end
+
   def tournament_shortname(name)
     name.sub(/\[\w+\] /, '')
   end
