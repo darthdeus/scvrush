@@ -109,9 +109,15 @@ p {
 .btn { font-family: helvetica, arial, sans-serif;}
 
 .race-posts {
-  .race-post .icon {
-    padding-top: 15px;
-    width: 50px;
+  .race-post {
+    a {
+      color: #000;
+    }
+
+    .icon {
+      padding-top: 15px;
+      width: 50px;
+    }
   }
 
 }
