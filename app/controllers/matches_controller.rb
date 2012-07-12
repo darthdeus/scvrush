@@ -1,6 +1,11 @@
 class MatchesController < ApplicationController
   before_filter :require_login
 
+  def index
+    authorize! :manage, Match
+    @matches = Match.limit(20).order("updated_at DESC")
+  end
+
   def create
     tournament = Tournament.find(params[:tournament_id])
     bracket = Bracket.new(tournament)

@@ -1,0 +1,20 @@
+h1 Recent matches and their results
+
+table.table.table-bordered.table-striped
+  thead
+    tr
+      th Player1
+      th Player2
+      th Score
+      th Reported at
+      th
+  tbody
+    - @matches.each do |match|
+      tr
+        td = match.player1.bnet_info if match.player1
+        td = match.player2.bnet_info if match.player2
+        td = match.score
+        td
+          = distance_of_time_in_words_to_now match.updated_at
+          |  ago
+        td = nice_date(match.updated_at, current_user)
