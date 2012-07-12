@@ -2,8 +2,21 @@
   - if @tournament.seeded
     - if @lost
       p
-        ' You have lost. Please come back for another one of our tournaments.
-        ' We really do appreciate your participation.
+        ' You have been eliminated from the tournament,
+        ' we're sorry to see you go. Please return next week and in the meantime:
+
+      ul
+        li
+          = link_to "Post a few words in our TL thread", "http://www.teamliquid.net/forum/viewmessage.php?topic_id=332488"
+          '  – your tournament experience, feedback, suggestions...
+        li
+          = link_to "Subscribe to our newsletter", "http://eepurl.com/iZbzv"
+          '  to stay updated about other events, E-Sports and SCV Rush!
+        li
+          = link_to "Jump to our stream", "http://chat.scvrush.com"
+          '  and enjoy our great casters.
+
+      p Thank you for coming!
 
     - elsif @next_opponent
       p

@@ -35,11 +35,13 @@
                 ' on the battle.net, or visit our
                 = link_to "live stream chat", "http://chat.scvrush.com"
 
+        - if not @tournament.seeded
+          .row
+            .span6.alert.alert-danger
+              ' The tournament bracket wasn't generated yet. Please wait.
+
       .span6
         = render partial: "rules"
-
-      .span6.alert.alert-info
-        | Admins for this tournaments are Vogin.715 and Jigosep.377
 
   - if @tournament.seeded
     .bracket ng-controller="BracketCtrl" ng-app="scvrush"
@@ -57,7 +59,4 @@
               .score {{match.player2_score}}
 
   - else
-    .row
-      .span6.alert.alert-danger
-        ' The tournament bracket wasn't generated yet. Please wait.
     = render partial: "registered_players"
