@@ -42,40 +42,27 @@
             h4 Upcoming events
             p These are our upcoming events ... have fun
 
-
     a class="carousel-control left" href="#myCarousel" data-slide="prev" &lsaquo;
     a class="carousel-control right" href="#myCarousel" data-slide="next" &rsaquo;
 
-.row
+.row.race-posts
   .span4
-    .row
-      .span1 style="padding-top: 20px;"
-        = image_tag "race_terran_icon.png"
-      .span3
-        h3 = @terran_post.title
-        p = post_excerpt @terran_post.content, 50
+    = render partial: "recent_race_post", object: @terran_post, as: :post, locals: { race: "terran" }
 
   .span4
-    .row
-      .span1 style="padding-top: 20px;"
-        = image_tag "race_zerg_icon.png"
-      .span3
-        h3 = @zerg_post.title
-        p = post_excerpt @zerg_post.content, 50
+    = render partial: "recent_race_post", object: @zerg_post, as: :post, locals: { race: "zerg" }
 
   .span4
-    .row
-      .span1 style="padding-top: 20px;"
-        = image_tag "race_protoss_icon.png"
-      .span3
-        h3 = @protoss_post.title
-        p = post_excerpt @protoss_post.content, 50
+    = render partial: "recent_race_post", object: @protoss_post, as: :post, locals: { race: "protoss" }
 
 .row
   .span8
     .row
-      h2.span8 Next tournament
+      h2.span8.underline Next tournament
     .row
-      .span3 = tournament_logo
+      .span3 = image_tag "tournament_eu_pd.png"
       .span5 = @tournament.name
+
+  .span4
+    h2 Grow Esports!
 

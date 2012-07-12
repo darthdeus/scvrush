@@ -9,8 +9,6 @@ class ApplicationController < ActionController::Base
     redirect_to root_path
   end
 
-  layout 'default'
-
   protected
 
   def require_writer

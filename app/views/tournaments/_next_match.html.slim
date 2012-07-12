@@ -8,7 +8,7 @@
     - elsif @next_opponent
       p
           = "Your next match is "
-          strong = @next_opponent.username
+          strong = @next_opponent.bnet_info
       p You are playing best of #{@current_match.round.bo}
 
       = m @current_match.round.text

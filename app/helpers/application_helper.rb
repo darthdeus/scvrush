@@ -12,9 +12,9 @@ module ApplicationHelper
     RDiscount.new(string).to_html.html_safe if string
   end
 
-  def meta_description
-    if content_for?(:description) 
-      yield(:description) 
+  def meta_description(&block)
+    if content_for?(:description)
+      yield(:description)
     else
       I18n.t("meta_description")
     end

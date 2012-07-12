@@ -93,6 +93,11 @@ h2 {
   font-size: 24px;
   font-weight: bold;
   margin-top: 14px;
+
+  &.underline {
+    border-bottom: 1px solid #999;
+    margin-bottom: 10px;
+  }
 }
 
 h3 { font-size: 20px; }
@@ -102,6 +107,14 @@ p {
 }
 
 .btn { font-family: helvetica, arial, sans-serif;}
+
+.race-posts {
+  .race-post .icon {
+    padding-top: 15px;
+    width: 50px;
+  }
+
+}
 
 #footer {
   background: #252525;
