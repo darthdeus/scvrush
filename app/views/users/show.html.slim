@@ -7,11 +7,8 @@
         = link_to "change avatar", new_avatar_path
 
       dl.dl-horizontal
-        dt Username
-        dd = @user.username
-
         dt Battle.net ID
-        dd = "#{@user.bnet_username}.#{@user.bnet_code}"
+        dd = @user.bnet_info
 
         dt Experience
         dd = pluralize(@user.karma, "points")
@@ -27,17 +24,19 @@
           = link_to 'edit your profile', edit_user_path(current_user)
 
     .span8
+      h1 = @user.username
 
       .alert.alert-notice
         h1 The user profiles is under construction
 
         p We are going to be adding a lot of new features to user profiles, stay tuned!
 
-      h2 Activity feed
 
-      = render "statuses/form"
+      div ng-controller="StatusesController" ng-app="scvrush"
+        = render "statuses/form"
 
-      = render @user.statuses
+        .statuses ng-repeat="status in statuses"
+          .status {{status}}
 
       .actions
         - if @user == current_user

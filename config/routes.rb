@@ -1,7 +1,5 @@
 Scvrush::Application.routes.draw do
 
-  resources :statuses
-
   namespace :admin do
     resources :tournaments
     resources :posts
@@ -82,7 +80,9 @@ Scvrush::Application.routes.draw do
 
   root to: "home#index"
 
-  resources :users
+  resources :users do
+    resources :statuses
+  end
   resources :sessions, only: [:new, :create, :destroy]
 
 

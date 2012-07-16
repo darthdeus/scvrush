@@ -2,7 +2,7 @@
 
 - content_for(:title, @tournament.name + ' | SCV Rush')
 
-.tournament
+.tournament ng-app="scvrush"
   header
     .admin-buttons
       = link_to "Seed", seed_tournament_path(@tournament), method: :post
@@ -47,7 +47,7 @@
         = render partial: "rules"
 
   - if @tournament.seeded
-    .bracket ng-controller="BracketCtrl" ng-app="scvrush"
+    .bracket ng-controller="BracketCtrl"
       .round-wrap ng-repeat="round in rounds"
         .round-info-wrap
           .round-info ng-click="editRound(round)" Round of {{round.number}}

@@ -1,8 +1,3 @@
-//= require ./vendor/angular
-//= require ./vendor/angular-resource
-//= require ./services/manifest
-//= require ./controllers/manifest
-
 jQuery(function($) {
   window.dimensions = {
     playerHeight: 20,

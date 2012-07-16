@@ -6,6 +6,9 @@
 //= require dataTables/jquery.dataTables.bootstrap
 //= require login
 
+//= require ./services/manifest
+//= require ./controllers/manifest
+
 jQuery(function($) {
   $('.chosen').chosen();
 
