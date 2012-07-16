@@ -1,3 +1,6 @@
+#= require_self
+#= require_tree .
+
 module = angular.module("scvrush.services", ['ngResource'])
 
 module.config(["$httpProvider", (provider) ->

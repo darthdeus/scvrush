@@ -1,10 +1,6 @@
 //= require jquery
 //= require jquery_ujs
-//= require lib/jquery.fancybox
-//= require lib/underscore
-//= require lib/backbone
-//= require lib/bootstrap
-//= require lib/chosen
+//= require ./vendor/manifest
 //= require dashboard
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap

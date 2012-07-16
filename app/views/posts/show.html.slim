@@ -1,33 +1,32 @@
 - title @post.title + ' | SCV Rush'
 - content_for(:description, post_excerpt(@post.content, 100))
 
-#left-column
-  article class="single post" data-comments="#{@comments}" data-post_id="#{@post.id}"
-    header
-      h1 = @post.title
-      - if @post.published_at
-        time datetime="#{@post.published_at.to_s}" pubdate="true"
-          ' Published on
-          = @post.readable_published_at
-    = m @post.content
+article class="single post" data-comments="#{@comments}" data-post-id="#{@post.id}"
+  header
+    h1 = @post.title
+    - if @post.published_at
+      time datetime="#{@post.published_at.to_s}" pubdate="true"
+        ' Published on
+        = @post.readable_published_at
+  = m @post.content
 
-    footer
-      div class="fb-like" data-send="false" data-width="450" data-show-faces="false"
+  footer
+    div class="fb-like" data-send="false" data-width="450" data-show-faces="false"
 
-      .taglist
-        ul.tags
-          - @post.tag_list.each do |tag|
-            li = tag_by_name(tag)
+    .taglist
+      ul.tags
+        - @post.tag_list.each do |tag|
+          li = tag_by_name(tag)
 
-      - if @post.user && @post.user.about
-        #author-box
-          .avatar = author_avatar_for_post(@post)
-          .content
-            h3.name = link_to @post.user.username, @post.user
-            .about = m @post.user.about
+    - if @post.user && @post.user.about
+      #author-box
+        .avatar = author_avatar_for_post(@post)
+        .content
+          h3.name = link_to @post.user.username, @post.user
+          .about = m @post.user.about
 
-      - if @post.comments_enabled?
-        = render 'comments'
-      - else
-        .comments-disabled.alert.alert-notice Comments are disabled for this page.
+    - if @post.comments_enabled?
+      = render 'comments'
+    - else
+      .comments-disabled.alert.alert-notice Comments are disabled for this page.
 

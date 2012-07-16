@@ -2,10 +2,10 @@ window.App = window.App || {};
 var App = window.App;
 
 App.postsPrefix = function() {
-  if (this.post === undefined) {
+  if (App.post === undefined) {
     throw 'post is undefined in the app, unable to create a comments URL';
   }
-  return '/posts/' + this.post;
+  return '/posts/' + App.post;
 };
 
 App.Comment = Backbone.Model.extend({
