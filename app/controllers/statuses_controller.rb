@@ -1,6 +1,12 @@
 class StatusesController < ApplicationController
 
   before_filter :require_login
+  respond_to :json
+
+  def index
+    @user = User.find(params[:user_id])
+    respond_with @user.statuses
+  end
 
   def create
     @status = current_user.statuses.new(params[:status])

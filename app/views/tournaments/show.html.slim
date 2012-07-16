@@ -47,7 +47,7 @@
         = render partial: "rules"
 
   - if @tournament.seeded
-    .bracket ng-controller="BracketCtrl"
+    .bracket ng-controller="BracketController"
       .round-wrap ng-repeat="round in rounds"
         .round-info-wrap
           .round-info ng-click="editRound(round)" Round of {{round.number}}

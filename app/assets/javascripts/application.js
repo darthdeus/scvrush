@@ -6,7 +6,8 @@
 //= require dataTables/jquery.dataTables.bootstrap
 //= require login
 
-//= require ./services/manifest
+//= require ./services
+//= require ./module
 //= require ./controllers/manifest
 
 jQuery(function($) {

@@ -36,7 +36,7 @@
         = render "statuses/form"
 
         .statuses ng-repeat="status in statuses"
-          .status {{status}}
+          .status {{status.text}}
 
       .actions
         - if @user == current_user
