@@ -1,5 +1,7 @@
 Scvrush::Application.routes.draw do
 
+  resources :statuses
+
   namespace :admin do
     resources :tournaments
     resources :posts

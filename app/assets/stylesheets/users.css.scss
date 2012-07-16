@@ -3,6 +3,12 @@
     @include box-shadow(0 0 3px #666);
   }
 
+  .status-form input {
+    font-size: 18px;
+    height: 30px;
+    line-height: 30px;
+  }
+
 }
 
 .profile {

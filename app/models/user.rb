@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   has_many :tournaments, through: :signups
   has_many :won_tournaments, class_name: 'Tournament', foreign_key: 'winner_id'
 
+  has_many :statuses
+
   has_many :posts
   has_many :won_raffles, class_name: 'Raffle', foreign_key: 'winner_id'
 

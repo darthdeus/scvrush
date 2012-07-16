@@ -12,6 +12,8 @@ class Signup < ActiveRecord::Base
   belongs_to :tournament
   belongs_to :user
 
+  has_many :statuses, as: :statusable
+
   validates :tournament, presence: true
   validates :user, presence: true
 

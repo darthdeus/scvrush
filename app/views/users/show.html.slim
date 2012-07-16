@@ -35,10 +35,9 @@
 
       h2 Activity feed
 
-      - @user.signups.each do |signup|
-        p
-          ' Signed up for tournament
-          = link_to signup.tournament.name, signup.tournament
+      = render "statuses/form"
+
+      = render @user.statuses
 
       .actions
         - if @user == current_user
