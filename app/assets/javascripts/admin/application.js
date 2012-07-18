@@ -1,6 +1,6 @@
 //= require jquery
 //= require jquery_ujs
-//= require lib/chosen
+//= require vendor/chosen
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap
 
