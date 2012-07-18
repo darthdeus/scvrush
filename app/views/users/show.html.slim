@@ -21,7 +21,8 @@
             .text
               | {{status.text}}
             .date
-              | {{status.created_at}}
+              | {{status.posted_at}}
+            a.delete href="#" ng-click="deleteStatus(status)" delete
 
       .actions
         - if @user == current_user

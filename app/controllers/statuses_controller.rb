@@ -1,6 +1,6 @@
 class StatusesController < ApplicationController
 
-  before_filter :require_login, only: [:create]
+  before_filter :require_login, except: [:index]
   respond_to :json
 
   def index
@@ -17,6 +17,16 @@ class StatusesController < ApplicationController
     end
 
     redirect_to current_user
+  end
+
+  def destroy
+    @user = User.find(params[:user_id])
+    @status = @user.statuses.find(params[:id])
+    @status.destroy
+
+    respond_to do |format|
+      format.json { head :no_content }
+    end
   end
 
 end
