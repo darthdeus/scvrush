@@ -1,11 +1,11 @@
 class StatusesController < ApplicationController
 
-  before_filter :require_login
+  before_filter :require_login, only: [:create]
   respond_to :json
 
   def index
     @user = User.find(params[:user_id])
-    respond_with @user.statuses
+    respond_with @user.statuses.order("created_at DESC")
   end
 
   def create

@@ -9,6 +9,24 @@
     line-height: 30px;
   }
 
+  .statuses {
+    .status {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+      overflow: hidden;
+
+      .text {
+        float: left;
+        width: 500px;
+      }
+
+      .date {
+        float: left;
+        width: 100px;
+        color: #999;
+      }
+    }
+  }
 }
 
 .profile {

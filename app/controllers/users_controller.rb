@@ -30,6 +30,7 @@ class UsersController < ApplicationController
     # @user = User.find_by_username_or_id(params[:id])
     id = params[:id]
     @user = User.where("id = ? OR username = ?", id, id).includes(comments: :post).first
+    gon.user_id = id
   end
 
   def edit

@@ -1,42 +1,27 @@
 .user-profile
   .row
     .span4
-      .avatar
-        = image_tag @user.avatar.url(:thumb), :alt => @user.username
-      div
-        = link_to "change avatar", new_avatar_path
-
-      dl.dl-horizontal
-        dt Battle.net ID
-        dd = @user.bnet_info
-
-        dt Experience
-        dd = pluralize(@user.karma, "points")
-
-        - if @user.twitter.present?
-          dt Twitter
-          dd = link_to @user.twitter, "http://twitter.com/#{@user.twitter}"
-
-        = info_for_user(@user, %w{race league server favorite_player}, %w{email skype msn})
-
-      p
-        - if @user == current_user
-          = link_to 'edit your profile', edit_user_path(current_user)
+      = render partial: "info"
 
     .span8
       h1 = @user.username
 
       .alert.alert-notice
-        h1 The user profiles is under construction
+        h1 The user profiles are under construction
 
         p We are going to be adding a lot of new features to user profiles, stay tuned!
 
 
       div ng-controller="StatusesController" ng-app="scvrush"
-        = render "statuses/form"
+        - if @user == current_user
+          = render "statuses/form"
 
         .statuses ng-repeat="status in statuses"
-          .status {{status.text}}
+          .status
+            .text
+              | {{status.text}}
+            .date
+              | {{status.created_at}}
 
       .actions
         - if @user == current_user
