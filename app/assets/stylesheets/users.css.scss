@@ -15,6 +15,12 @@
       border-bottom: 1px solid #ccc;
       overflow: hidden;
 
+      @include transition (background 0.2s ease-in-out);
+
+      &:hover {
+        background: #f5f5f5;
+      }
+
       .text {
         float: left;
         width: 500px;
