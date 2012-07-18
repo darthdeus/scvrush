@@ -27,12 +27,12 @@ class Bracket
     last = nil
 
     rounds = self.round_sizes(tournament.checked_players.size)
-    rounds.each do |round|
-      text =<<TEXT
-MLG Antiga Shipyard
-GSL Bel'Shir Beach (Winter)
-MLG Cloud Kingdom
-TEXT
+    rounds.each.with_index do |round, index|
+      if index == 0
+        text = "GSL Daybreak"
+      elsif index == 1
+        text = "GSL Metropolis"
+      end
 
       round = Round.new(number: round, tournament: tournament, text: text, parent: last)
       round.bo = [1,2,4].include?(round) ? 3 : 1
