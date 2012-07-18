@@ -109,10 +109,14 @@ describe Bracket do
 
     bracket.create_bracket_rounds
     t.reload
+
     ro4 = t.rounds.first
-    ro2 = t.rounds.second
+    ro4.text.should == "GSL Daybreak"
     ro4.number.should == 4
+
+    ro2 = t.rounds.second
     ro2.number.should == 2
+    ro2.text.should == "GSL Metropolis"
 
     bracket.next_round_for(ro4).should == ro2
   end
@@ -133,7 +137,6 @@ describe Bracket do
 
     match = bracket.current_match_for(p1)
     bracket.seed_next_match_with(p1, match)
-
 
     ro2 = t.rounds.second
     ro2.number.should == 2
