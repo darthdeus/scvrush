@@ -68,7 +68,15 @@
           p
             = link_to "Sign up", @tournament, class: "btn btn-mini btn-success"
 
+    h2.underline Scene news
+    .row
+      .span1
+        = @scene_post.link_with_image
+      .span7
+        = post_excerpt @scene_post.content
+
   .span3
     h2.underline Grow Esports!
 
     = render :partial => 'donate'
+
