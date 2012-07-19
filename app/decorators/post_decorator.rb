@@ -2,8 +2,10 @@ class PostDecorator < Draper::Base
   decorates :post
 
   def link_with_image
-    h.link_to post do
-      h.image_tag post.featured_image.url(:thumb)
+    if post.featured_image
+      h.link_to post do
+        h.image_tag post.featured_image.url(:thumb)
+      end
     end
   end
 
