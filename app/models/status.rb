@@ -16,4 +16,15 @@ class Status < ActiveRecord::Base
       user_id: self.user_id
     }
   end
+
+  def self.create_for_signup(user, signup)
+    status = new
+    status.user = user
+    status.statusable = signup
+    tour = TournamentDecorator.new(signup.tournament)
+    status.text =<<STATUS
+Signed up for a tournament #{tour.link_to_self}.
+STATUS
+    status.save!
+  end
 end

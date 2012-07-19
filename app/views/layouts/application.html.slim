@@ -17,6 +17,9 @@ html
     = include_gon
     = csrf_meta_tag
 
+    = javascript_include_tag "application"
+    = yield(:head)
+
     = auto_discovery_link_tag(:rss, posts_path(:format => 'rss'))
 
     script type="text/javascript" src="http://use.typekit.com/pdv6imx.js"
@@ -37,5 +40,3 @@ html
 
     = render "shared/footer"
 
-    = javascript_include_tag "application"
-    = yield(:head)

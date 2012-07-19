@@ -106,11 +106,14 @@ class User < ActiveRecord::Base
     self.bnet_username.present? && self.bnet_code.present?
   end
 
+  # Sign up the user for a tournament and post it on his timeline
   def sign_up(tournament)
     if !self.has_signup?(tournament)
       signup = self.signups.build(tournament: tournament)
       signup.status = Signup::REGISTERED
       signup.save!
+
+      Status.create_for_signup(self, signup)
       signup
     else
       self.signups.where(tournament_id: tournament.id).first

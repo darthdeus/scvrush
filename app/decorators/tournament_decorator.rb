@@ -1,6 +1,10 @@
 class TournamentDecorator < Draper::Base
   decorates :tournament
 
+  def link_to_self
+    h.link_to tournament.name, tournament
+  end
+
   def random_count
     self.race_count("Random")
   end

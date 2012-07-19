@@ -16,10 +16,9 @@
         - if @user == current_user
           = render "statuses/form"
 
-        .statuses ng-repeat="status in statuses"
+        .statuses ng-repeat="status in statuses" ng-cloak=""
           .status
-            .text
-              | {{status.text}}
+            .text ng-bind-html-unsafe="status.text"
             .date
               | {{status.posted_at}}
             a.delete href="#" ng-click="deleteStatus(status)" delete

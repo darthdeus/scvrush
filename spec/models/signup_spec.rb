@@ -34,4 +34,13 @@ describe Signup do
     end
   end
 
+  context "user profile" do
+    it "adds a new status on user's profile when he signs up for a tournament" do
+      user = create(:user)
+      tournament = create(:tournament)
+      user.sign_up(tournament)
+      user.should have(1).status
+    end
+  end
+
 end

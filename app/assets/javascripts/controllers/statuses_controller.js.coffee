@@ -1,6 +1,7 @@
 class @StatusesController
 
   constructor: ($scope, Statuses) ->
+    window.s = Statuses
     $scope.statuses = Statuses.index()
 
     $scope.addStatus = (status) ->
@@ -13,9 +14,11 @@ class @StatusesController
     $scope.deleteStatus = (status) ->
       # status.$delete id: status.id, ->
       Statuses.delete id: status.id, ->
+        # setTimeout ->
         Statuses.index (response) ->
           $scope.statuses = response
           $scope.status = ""
+        # , 500
 
 
   @$inject: ["$scope", "Statuses"]
