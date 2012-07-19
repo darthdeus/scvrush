@@ -1,7 +1,9 @@
 .avatar
   = image_tag @user.avatar.url(:thumb), :alt => @user.username
-div
-  = link_to "change avatar", new_avatar_path
+
+- if @user == current_user
+  div
+    = link_to "change avatar", new_avatar_path
 
 dl.dl-horizontal
   dt Battle.net ID

@@ -26,6 +26,9 @@
     .row
       .footer
         ' Copyright &copy; 2012 SCVRush.com
+        - if logged_in? && current_user.is_admin?
+          ' |
+          = link_to "dashboard", dashboard_path
 
 script type="text/template" id="login_form"
   form class="well"
