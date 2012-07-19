@@ -2,9 +2,9 @@ class PostDecorator < Draper::Base
   decorates :post
 
   def link_with_image
-    h.link_to post do
-      h.image_tag "https://s3.amazonaws.com/scvrush/uploads/post/featured_image/thumb_100x100_dark.png"
-      #post.featured_image.url(:thumb)
+    h.link_to post, class: "block" do
+      # h.image_tag "https://s3.amazonaws.com/scvrush/uploads/post/featured_image/thumb_100x100_dark.png"
+      h.image_tag post.featured_image.url(:thumb)
     end
   end
 
