@@ -5,6 +5,19 @@ class TournamentDecorator < Draper::Base
     h.link_to tournament.name, tournament
   end
 
+  def link_with_image
+    images = {
+      "EU_BSG" => "tournament_eu_bsg.png",
+      "EU_PD"  => "tournament_eu_pd.png",
+      "NA_BSG" => "tournament_na_bsg.png",
+      "NA_PD"  => "tournament_na_pd.png",
+    }
+
+    h.link_to tournament do
+      h.image_tag images[tournament.tournament_type]
+    end
+  end
+
   def random_count
     self.race_count("Random")
   end

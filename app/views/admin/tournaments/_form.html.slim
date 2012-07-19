@@ -3,4 +3,8 @@
   = f.input :name
   = f.input :starts_at, input_html: { class: "span2" }
 
+  = f.input :admins
+  = f.input :description
+  = f.input :tournament_type, collection: Tournament::TYPES
+
   = f.button :submit

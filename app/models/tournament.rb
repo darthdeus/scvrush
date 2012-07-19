@@ -11,7 +11,12 @@ class Tournament < ActiveRecord::Base
   validates :name, presence: true
   validates :starts_at, presence: true
 
-  attr_accessible :name, :starts_at
+  TYPES = %w(EU_BSG EU_PD NA_BSG ND_PD EU_Masters User)
+
+  validates :tournament_type, inclusion: TYPES
+
+  # TODO - remove this so users can't create official tournaments
+  attr_accessible :name, :starts_at, :tournament_type, :description, :admins
 
   scope :recent, order('starts_at DESC').limit(5)
   scope :upcoming, lambda { where(['starts_at > ?', Time.now]).first(2) }

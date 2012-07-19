@@ -4,7 +4,7 @@ class HomeController < ApplicationController
     @zerg_post    = Post.published.tagged_with("zerg")   .tagged_with(["coach", "terran", "protoss"], exclude: true).first
     @protoss_post = Post.published.tagged_with("protoss").tagged_with(["coach", "zerg", "terran"]   , exclude: true).first
 
-    @tournament = Tournament.upcoming.first
+    @tournament = TournamentDecorator.new(Tournament.upcoming.first)
 
     @zerg_show       = Post.published.tagged_with('zerg-show').page(0).limit(6)
     @watch_the_pros  = Post.published.tagged_with('watch-the-pros').page(0).limit(6)

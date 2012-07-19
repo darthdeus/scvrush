@@ -1,5 +1,5 @@
 class @BracketController
-  
+
   constructor: ($scope, Tournament) ->
     $scope.rounds = Tournament.get ->
       setTimeout ->
