@@ -13,8 +13,10 @@ class TournamentDecorator < Draper::Base
       "NA_PD"  => "tournament_na_pd.png",
     }
 
+    image = images[tournament.tournament_type] || "tournament_eu_bsg.png"
+
     h.link_to tournament do
-      h.image_tag images[tournament.tournament_type]
+      h.image_tag image
     end
   end
 
