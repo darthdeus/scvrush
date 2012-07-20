@@ -11,6 +11,7 @@ class TournamentDecorator < Draper::Base
       "EU_PD"  => "tournament_eu_pd.png",
       "NA_BSG" => "tournament_na_bsg.png",
       "NA_PD"  => "tournament_na_pd.png",
+      "Bronze Week" => "tournament_bronze_week.png"
     }
 
     image = images[tournament.tournament_type] || "tournament_eu_bsg.png"
