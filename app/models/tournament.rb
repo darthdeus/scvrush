@@ -11,7 +11,7 @@ class Tournament < ActiveRecord::Base
   validates :name, presence: true
   validates :starts_at, presence: true
 
-  TYPES = %w(EU_BSG EU_PD NA_BSG NA_PD EU_Masters User Bronze Week)
+  TYPES = %w(EU_BSG EU_PD NA_BSG NA_PD EU_Masters User Bronze_Week)
 
   validates :tournament_type, inclusion: TYPES
 
