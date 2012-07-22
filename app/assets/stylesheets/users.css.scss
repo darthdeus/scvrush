@@ -23,14 +23,35 @@
 
       .text {
         float: left;
-        width: 480px;
+        width: 470px;
+        font-size: 16px;
+        padding: 0 10px 10px 0;
+        line-height: 1.2;
       }
 
-      .date {
+      .meta {
         float: right;
         width: 120px;
         color: #999;
+
+        .delete {
+          color: #999;
+          text-decoration: underline;
+        }
       }
+
+      .votebox {
+        clear: both;
+        color: #999;
+
+        a {
+          color: #666;
+          text-decoration: underline;
+          font-weight: bold;
+        }
+
+      }
+
     }
   }
 }

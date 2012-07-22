@@ -12,6 +12,12 @@
 //= require ./controllers/manifest
 
 jQuery(function($) {
+  // TODO - do this via Angular callback on when
+  // the DOM is compiled
+  setTimeout(function() {
+    $('[rel=tooltip]').tooltip();
+  }, 1000);
+
   $('.chosen').chosen();
 
   $('input[type=text]:first').focus();

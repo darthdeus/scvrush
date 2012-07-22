@@ -19,9 +19,21 @@
         .statuses ng-repeat="status in statuses" ng-cloak=""
           .status
             .text ng-bind-html-unsafe="status.text"
-            .date
-              | {{status.posted_at}}
-            a.delete href="#" ng-click="deleteStatus(status)" delete
+            .meta
+              .date  {{status.posted_at}} ago
+              a.delete href="#" ng-click="deleteStatus(status)" delete
+
+            .votebox ng-switch="" on="status.votes_count"
+              div ng-switch-when="0"
+                ' be the first one to
+                a.upvote href="#" ng-click="upvoteStatus(status)" rel="tooltip" title="Your vote will give the status author experience points" upvote this
+
+              div ng-switch-default=""
+                | {{status.votes_count}} people upvoted this
+                a.upvote href="#" ng-click="upvoteStatus(status)"
+                  i.icon-ok
+                  |  like
+
 
       .actions
         - if @user == current_user

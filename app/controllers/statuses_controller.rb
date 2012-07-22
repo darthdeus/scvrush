@@ -9,14 +9,9 @@ class StatusesController < ApplicationController
   end
 
   def create
-    @status = current_user.statuses.new(params[:status])
-    if @status.save
-      flash[:success] = "Status was posted successfuly."
-    else
-      flash[:error] = "The status messsage can't be empty."
-    end
+    @status = current_user.statuses.create(params[:status])
 
-    redirect_to current_user
+    respond_with @status, location: nil
   end
 
   def destroy
