@@ -3,7 +3,8 @@ class Status < ActiveRecord::Base
   belongs_to :statusable, polymorphic: true
 
   attr_accessible :text, :statusable_id, :statusable_type
-  validates_presence_of :text, :user_id
+  validates_presence_of :user_id
+  validates :text, presence: true, length: 6..200
 
   include ActionView::Helpers
 
