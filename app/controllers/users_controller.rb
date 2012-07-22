@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_login, only: [:edit, :update]
+  before_filter :require_login, only: [:edit, :update, :follow, :unfollow]
 
   def index
     redirect_to new_user_path
@@ -46,6 +46,18 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def follow
+    @user = User.find(params[:id])
+    current_user.follow @user
+    redirect_to @user, notice: "You are now following #{@user.username}."
+  end
+
+  def unfollow
+    @user = User.find(params[:id])
+    current_user.unfollow @user
+    redirect_to @user, notice: "You are not ollowing #{@user.username} anymore."
   end
 
 end

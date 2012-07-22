@@ -38,11 +38,13 @@ gem 'memcache-client',    '~> 1.8.5'
 gem 'cancan', '~> 1.6.7'
 gem 'rolify', '~> 2.2.2'
 
-gem 'thumbs_up',           '~> 0.5.3'
-gem 'acts-as-taggable-on', '~> 2.1.0'
+gem 'party_boy',            '~> 0.3.4'
 
-gem 'rest-client',         '~> 1.6.7'
-gem 'gon',                 '~> 2.3.0'
+gem 'thumbs_up',            '~> 0.5.3'
+gem 'acts-as-taggable-on',  '~> 2.1.0'
+
+gem 'rest-client',          '~> 1.6.7'
+gem 'gon',                  '~> 2.3.0'
 
 # find an alternative, https://github.com/bbatsov/rails-style-guide#flawed
 gem 'therubyracer', group: :production

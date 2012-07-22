@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120719095307) do
+ActiveRecord::Schema.define(:version => 20120722200314) do
 
   create_table "achievements", :force => true do |t|
     t.string   "name"
@@ -124,6 +124,16 @@ ActiveRecord::Schema.define(:version => 20120719095307) do
   end
 
   add_index "raffles", ["winner_id"], :name => "index_raffles_on_winner_id"
+
+  create_table "relationships", :force => true do |t|
+    t.integer  "requestor_id",                     :null => false
+    t.string   "requestor_type",                   :null => false
+    t.integer  "requestee_id",                     :null => false
+    t.string   "requestee_type",                   :null => false
+    t.boolean  "restricted",     :default => true
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+  end
 
   create_table "replies", :force => true do |t|
     t.text     "content"

@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
   acts_as_voter
   has_karma(:comments, as: :user)
 
+  acts_as_followable
 
   attr_accessor :password
   before_save :encrypt_password

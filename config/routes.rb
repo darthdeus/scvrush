@@ -81,6 +81,10 @@ Scvrush::Application.routes.draw do
   root to: "home#index"
 
   resources :users do
+    member do
+      post :follow
+      delete :unfollow
+    end
     resources :statuses
   end
   resources :sessions, only: [:new, :create, :destroy]
