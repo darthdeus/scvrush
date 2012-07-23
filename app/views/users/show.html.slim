@@ -1,12 +1,13 @@
 .user-profile
   .row
-    .span4
+    .span3
       = render partial: "info"
 
-    .span8
+    .span9
       h1
         = @user.username
         = " (#{@user.bnet_info})"
+
         .pull-right = render partial: "follow_box"
 
       .alert.alert-notice
@@ -32,11 +33,8 @@
                 a.upvote href="#" ng-click="upvoteStatus(status)" rel="tooltip" title="Your vote will give the status author experience points" upvote this
 
               div ng-switch-default=""
-                | {{status.votes_count}} people upvoted this
-                a.upvote href="#" ng-click="upvoteStatus(status)"
-                  i.icon-ok
-                  |  like
-
+                span ng-pluralize="" count="status.votes_count" when="{'one': '1 person upvoted this ', 'other': '{} people upvoted this '}"
+                a.upvote href="#" ng-click="upvoteStatus(status)" like
 
       .actions
         - if @user == current_user

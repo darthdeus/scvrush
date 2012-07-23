@@ -1,7 +1,31 @@
 module Admin
   class UsersController < AdminController
+
     def index
-      @users = User.first(20)
+      @users = []
+
+      respond_to do |format|
+        format.html
+
+        format.json do
+          fields = %w[username email]
+          columns = %w[username email bnet_username bnet_code skype]
+          table = Datable.new(User, fields, columns, params) do |user|
+            user = UserDecorator.new(user)
+
+            [
+              user.username,
+              user.email,
+              user.bnet_info,
+              user.bnet_code,
+              user.skype,
+              user.action_buttons
+            ]
+          end
+
+          render json: table
+        end
+      end
     end
 
     def new

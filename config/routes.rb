@@ -85,7 +85,11 @@ Scvrush::Application.routes.draw do
       post :follow
       delete :unfollow
     end
-    resources :statuses
+    resources :statuses do
+      member do
+        post :upvote
+      end
+    end
   end
   resources :sessions, only: [:new, :create, :destroy]
 

@@ -5,18 +5,14 @@
   div
     = link_to "change avatar", new_avatar_path
 
-dl.dl-horizontal
-  dt Battle.net ID
-  dd = @user.bnet_info
 
+dl
   dt Experience
   dd = pluralize(@user.karma, "points")
 
-  - if @user.twitter.present?
-    dt Twitter
-    dd = link_to @user.twitter, "http://twitter.com/#{@user.twitter}"
-
   = info_for_user(@user, %w{race league server favorite_player}, %w{email skype msn})
+
+  = @user.twitter_link
 
 p
   - if @user == current_user

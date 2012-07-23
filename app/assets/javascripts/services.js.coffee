@@ -13,10 +13,12 @@ module.factory("Tournament", ["$resource", ($resource) ->
 ])
 
 module.factory("Statuses", ["$resource", ($resource) ->
-  return $resource("/users/#{gon.user_id}/statuses/:id", {},
+  return $resource("/users/#{gon.user_id}/statuses/:id/:action", { id: '@id' },
     {
-      index: { method: "GET", callback: "JSON_CALLBACK", isArray: true },
+      index: { method: "GET", callback: "JSON_CALLBACK", isArray: true }
       create: { method: "POST" }
       delete: { method: "DELETE" }
+      upvote: { method: "POST" }
     })
 ])
+

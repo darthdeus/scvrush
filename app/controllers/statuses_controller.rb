@@ -10,7 +10,6 @@ class StatusesController < ApplicationController
 
   def create
     @status = current_user.statuses.create(params[:status])
-
     respond_with @status, location: nil
   end
 
@@ -22,6 +21,14 @@ class StatusesController < ApplicationController
     respond_to do |format|
       format.json { head :no_content }
     end
+  end
+
+  def upvote
+    @user = User.find(params[:user_id])
+    @status = Status.find(params[:id])
+    @user.vote_for(@status)
+
+    respond_with @status, location: nil
   end
 
 end

@@ -1,8 +1,15 @@
 class @StatusesController
 
-  constructor: ($scope, Statuses) ->
+  constructor: ($scope, Statuses, $http) ->
     window.s = Statuses
     $scope.statuses = Statuses.index()
+
+    $scope.upvoteStatus = (status) ->
+      $('[rel=tooltip]').tooltip('hide')
+      status.$upvote action: "upvote", (res) ->
+      # $http.post("/users/#{gon.user_id}/statuses/#{status.id}/upvote").success (res) ->
+        console.log res
+        console.log "upvoted"
 
     $scope.addStatus = (status) ->
       data = status: text: status
@@ -12,7 +19,7 @@ class @StatusesController
           $scope.status = ""
 
     $scope.deleteStatus = (status) ->
-      # status.$delete id: status.id, ->
+
       Statuses.delete id: status.id, ->
         # setTimeout ->
         Statuses.index (response) ->
@@ -21,6 +28,6 @@ class @StatusesController
         # , 500
 
 
-  @$inject: ["$scope", "Statuses"]
+  @$inject: ["$scope", "Statuses", "$http"]
 
 
