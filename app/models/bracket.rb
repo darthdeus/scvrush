@@ -114,7 +114,7 @@ class Bracket
       raise NotStartedYet unless match.can_submit?
     end
 
-    if opponent_id && match.opponent_for(user).id != opponent_id
+    if opponent_id && match.opponent_for(user).id != opponent_id.to_i
       raise AlreadySubmitted
     end
 
