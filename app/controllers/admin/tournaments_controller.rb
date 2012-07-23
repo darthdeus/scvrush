@@ -11,8 +11,10 @@ module Admin
     def create
       @tournament = Tournament.new(params[:tournament])
       if @tournament.save
-        flash[:success] = "Tournament was successfuly added."
-        redirect_to admin_tournaments_path
+        flash[:success] = "Tournament was successfuly created."
+        bracket = Bracket.new(@tournament)
+
+        redirect_to @tournament
       else
         render :new
       end

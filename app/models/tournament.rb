@@ -2,7 +2,7 @@ class Tournament < ActiveRecord::Base
   has_many :signups, dependent: :destroy
   has_many :users, through: :signups
 
-  has_many :rounds, order: "number DESC"
+  has_many :rounds, order: "number DESC", dependent: :destroy
   has_many :matches, through: :rounds
 
   belongs_to :post
@@ -14,10 +14,11 @@ class Tournament < ActiveRecord::Base
   TYPES = %w(EU_BSG EU_PD NA_BSG NA_PD EU_Masters User Bronze_Week)
 
   validates :tournament_type, inclusion: TYPES
+  validates :bo_preset, format: { with: /^[\d ]+$/ }
 
   # TODO - remove this so users can't create official tournaments
   attr_accessible :name, :starts_at, :tournament_type, :description, :admins,
-    :rules, :map_info
+    :rules, :map_info, :bo_preset
 
   scope :recent, order('starts_at DESC').limit(5)
   scope :upcoming, lambda { where(['starts_at > ?', Time.now]).first(2) }

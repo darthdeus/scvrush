@@ -35,7 +35,14 @@ class Bracket
       end
 
       round = Round.new(number: round, tournament: tournament, text: text, parent: last)
-      round.bo = [1,2,4].include?(round) ? 3 : 1
+      round.bo = [1,2,4].include?(round.number) ? 3 : 1
+
+      # TODO - set the BO preset if there is one for given rounds
+      if tournament.bo_preset
+        bo_preset = tournament.bo_preset.split(" ").map(&:to_i)
+
+        round.bo = bo_preset[index] if bo_preset[index]
+      end
       round.save!
 
       last = round
@@ -85,6 +92,7 @@ class Bracket
       index += 1
     end
 
+    # Automatic walkovers
     matches.each do |match|
       if match.player2.nil?
         match.completed = true
@@ -93,28 +101,6 @@ class Bracket
 
       match.save(validate: false)
     end
-
-
-#     tournament.checked_players.each_slice(2) do |players|
-#       # TODO - instead of creating a new match, instead find
-#       # the match that was pre-populated and seed the players to it
-#       match = matches[seed]
-#       # TODO - don't create it here
-#       match = round.matches.create!(seed: seed) if match.nil?
-#       match.player1 = players[0]
-#       match.player2 = players[1]
-#
-#       # TODO - seed the player automatically to the next round
-#       if match.player2.nil?
-#         match.completed = true
-#         self.seed_next_match_with(match.player1, match)
-#       end
-#       match.seed = seed
-#       # TODO - this isn't really a nice solution
-#       match.save(validate: false)
-#       seed += 1
-#     end
-
   end
 
   # Set a score for a given player by figuring out what his
