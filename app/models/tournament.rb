@@ -16,7 +16,8 @@ class Tournament < ActiveRecord::Base
   validates :tournament_type, inclusion: TYPES
 
   # TODO - remove this so users can't create official tournaments
-  attr_accessible :name, :starts_at, :tournament_type, :description, :admins
+  attr_accessible :name, :starts_at, :tournament_type, :description, :admins,
+    :rules, :map_info
 
   scope :recent, order('starts_at DESC').limit(5)
   scope :upcoming, lambda { where(['starts_at > ?', Time.now]).first(2) }
@@ -36,6 +37,13 @@ class Tournament < ActiveRecord::Base
   end
 
   before_save :expire_sidebar_cache
+  before_save :set_default_rules
+
+  def set_default_rules
+    self.rules    = I18n.t("tournament.rules")    unless self.rules.present?
+    self.map_info = I18n.t("tournament.map_info") unless self.map_info.present?
+    true
+  end
 
   def expire_sidebar_cache
     # TODO - do this in a better way

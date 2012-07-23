@@ -4,7 +4,16 @@
   = f.input :starts_at, input_html: { class: "span2" }
 
   = f.input :admins
-  = f.input :description
   = f.input :tournament_type, collection: Tournament::TYPES
+
+  .row
+    .span3
+      = f.input :description
+    .span3
+      = f.label :rules
+      = text_area_tag "tournament[rules]", @tournament.rules || I18n.t("tournament.rules"), rows: 20
+    .span3
+      = f.label :map_info
+      = text_area_tag "tournament[map_info]", @tournament.map_info || I18n.t("tournament.map_info"), rows: 20
 
   = f.button :submit

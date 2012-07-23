@@ -5,3 +5,29 @@ en:
   meta_description: "Starcraft 2 community website organizing tournaments, writing content and providing the best Starcraft 2 experience under one roof."
   meta_keywords: "starcraft 2, starcraft 2 tournaments, starcraft 2 content, terran, protoss, zerg, terran strategy, zerg stategy, protoss strategy"
 
+  tournament:
+    rules: |
+      - You are not allowed to change your race during the event
+      - If your opponent doesn't show, report him to admin
+      - Observers are allowed given both players allow it
+      - All replays must be saved
+      - The game will be restarted if a player disconnects within the first 5 minutes
+      - Hateful, racial, sexual or otherwise offending content will result in a warning
+      - Failure to rectify the bad manner will then result in disqualification.
+      - **The tournament admins reserve the right to judge what is offensive and what is not.**
+    map_info: |
+      **All rounds until Quarter Finals BO1, the rest BO3, no Loser's Bracket**
+
+      Map pool:
+
+      - MLG Antiga Shipyard
+      - MLG Cloud Kingdom
+      - GSL Daybreak
+      - MLG Entombed Valley
+      - ESV Korhal Compound TE
+      - GSL Metropolis
+      - ESV Ohana LE
+
+      In BO1 rounds, you and your opponent each veto one map and you play the game on the remaining one.
+
+      In BO3 rounds, the loser picks from the pool. Maps don't repeat, winner can veto one map.

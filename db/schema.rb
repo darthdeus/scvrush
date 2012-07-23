@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120722200314) do
+ActiveRecord::Schema.define(:version => 20120723144729) do
 
   create_table "achievements", :force => true do |t|
     t.string   "name"
@@ -240,6 +240,8 @@ ActiveRecord::Schema.define(:version => 20120722200314) do
     t.string   "tournament_type"
     t.text     "description"
     t.string   "admins"
+    t.text     "rules"
+    t.text     "map_info"
   end
 
   add_index "tournaments", ["post_id"], :name => "index_tournaments_on_post_id"
