@@ -25,6 +25,8 @@
             .text ng-bind-html-unsafe="status.text"
             .meta
               .date  {{status.posted_at}} ago
+              .author
+                a href="/users/{{status.user_id}}-{{status.username}}" {{status.username}}
               a.delete href="#" ng-click="deleteStatus(status)" delete
 
             .votebox ng-switch="" on="status.votes_count"

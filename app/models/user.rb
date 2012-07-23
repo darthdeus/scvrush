@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   has_many :following_relationships, class_name: "Relationship", foreign_key: "requestor_id"
 
   def statuses_from_followings
-    Status.where(user_id: self.following_relationships.pluck(:requestee_id))
+    Status.includes(:user).where(user_id: self.following_relationships.pluck(:requestee_id))
   end
 
   # has_many :following_users, through: :following_relationships, source: :requestee
