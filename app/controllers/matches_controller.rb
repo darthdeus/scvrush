@@ -16,7 +16,8 @@ class MatchesController < ApplicationController
     end
 
     begin
-      winner = bracket.set_score_for(current_user, params[:score])
+      # TODO - use hash instead of an id
+      winner = bracket.set_score_for(current_user, params[:score], false, params[:opponent_id])
 
       if winner == current_user
         flash[:success] = "Congratulations, you won the tournament!"

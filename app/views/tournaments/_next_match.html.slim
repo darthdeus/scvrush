@@ -35,14 +35,18 @@
     p The tournament bracket wasn't generated yet. Please wait.
 
 .span6
-  .alert.alert-danger
-    h2 The winner reports the match result
+  - if @next_opponent
+    .alert.alert-danger
+      h2 The winner reports the match result
 
-  p You have to report the match result before you can continue on to your next game.
+    p You have to report the match result before you can continue on to your next game.
 
-  = form_tag matches_path, method: :post do
-    input.report-box type="text" name="score" placeholder="Final score, e.g 1:4"
-    = hidden_field_tag 'tournament_id', @tournament.id
+    = form_tag matches_path, method: :post do
+      input.report-box type="text" name="score" placeholder="Final score, e.g 1:4"
+      = hidden_field_tag 'tournament_id', @tournament.id
+      = hidden_field_tag 'opponent_id', @next_opponent.id
 
-    = submit_match_result_button
+      = submit_match_result_button
+  - else
+    p You don't have an opponent
 

@@ -27,7 +27,6 @@ describe Match do
       build(:match, score: "1:0").should be_valid
     end
 
-
     it "sets score in proper order" do
       p1, p2 = create(:user), create(:user)
       m = build(:match, player1_id: p1, player2_id: p2)

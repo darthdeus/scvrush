@@ -107,13 +107,17 @@ class Bracket
 
   # Set a score for a given player by figuring out what his
   # current match is, and then setting the result.
-  def set_score_for(user, score, admin = false)
+  def set_score_for(user, score, admin = false, opponent_id = nil)
     match = self.current_match_for(user)
 
     if not admin
       # A player can submit his match results only once
       raise AlreadySubmitted if match.winner
       raise NotStartedYet unless match.can_submit?
+    end
+
+    if opponent_id && match.opponent_for(user).id != opponent_id
+      raise AlreadySubmitted
     end
 
     match.set_score_for(user, score)

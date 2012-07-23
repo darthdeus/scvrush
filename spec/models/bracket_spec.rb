@@ -38,6 +38,27 @@ describe Bracket do
     t.should have(3).rounds
   end
 
+  describe "score reporting" do
+
+    it "sets score in proper order" do
+      t = create(:tournament)
+      bracket = Bracket.new(t)
+      p1, p2, p3, p4 = *4.times.inject([]) { |v,i| v << create(:user) }
+      t.users << p1 << p2 << p3 << p4
+      [p1, p2, p3, p4].each { |u| u.check_in(t) }
+
+      bracket.create_bracket_rounds
+      bracket.create_matches
+      bracket.linear_seed
+
+      bracket.set_score_for(p2, "3:1", false)
+
+      expect do
+        bracket.set_score_for(p1, "1:3", false, p1.id)
+      end.to raise_error(Bracket::AlreadySubmitted)
+    end
+  end
+
   it "creates empty matches to be seeded" do
     User.delete_all
     Match.delete_all
