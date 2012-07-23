@@ -18,7 +18,7 @@
 
       p Thank you for coming!
 
-    - elsif @next_opponent
+    - elsif @next_opponent && @current_match
       p
           = "Your next match is "
           strong = @next_opponent.bnet_info
@@ -26,7 +26,7 @@
 
       = m @current_match.round.text
 
-    - else
+    - elsif @current_match
       p Please wait for your opponent.
 
       = m @current_match.round.text
