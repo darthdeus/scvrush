@@ -5,7 +5,7 @@ class StatusesController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])
-    respond_with @user.statuses.order("created_at DESC")
+    respond_with @user.statuses_from_followings.order("created_at DESC")
   end
 
   def create
