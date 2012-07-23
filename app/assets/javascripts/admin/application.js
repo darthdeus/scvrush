@@ -7,7 +7,10 @@
 $(function() {
 
   $('.data-table table').dataTable({
-    "sPaginationType": 'bootstrap'
+    sPaginationType: 'bootstrap',
+    bProcessing: true,
+    bServerSide: true,
+    sAjaxSource: $('#users').data('source')
   });
 
   $('.admin-form select').chosen();

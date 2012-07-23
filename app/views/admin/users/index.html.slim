@@ -5,19 +5,23 @@ section.data-table
   header
     h1 User administration
 
-  table.table.table-bordered.table-striped.data-table data-source="#{admin_users_path(format: 'json')}"
+  table#users.table.table-bordered.table-striped.data-table data-source="#{admin_users_path(format: 'json')}"
     thead
       tr
         th Username
         th Email
-        th Battle.net
+        th Bnet username
+        th Bnet code
         th Skype
         th Actions
-    tbody
-      - @users.each do |user|
-        tr
-          td = user.username
-          td = user.email
-          td = user.bnet_info
-          td = user.skype
-          td = get_action_buttons(user)
+
+    /    th Battle.net
+    /    th Skype
+    /tbody
+    /  - @users.each do |user|
+    /    tr
+    /      td = user.username
+    /      td = user.email
+    /      td = user.bnet_info
+    /      td = user.skype
+    /      td = get_action_buttons(user)

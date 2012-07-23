@@ -33,6 +33,10 @@ class User < ActiveRecord::Base
 
   acts_as_followable
 
+  # TODO
+  # has_many :following_relationships,
+  # has_many :following_statuses, through: :relationships
+
   attr_accessor :password
   before_save :encrypt_password
 

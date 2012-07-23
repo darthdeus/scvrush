@@ -9,6 +9,25 @@ class UserDecorator < Draper::Base
     # end
   end
 
+
+  # Link to the user's twitter
+  def facebook_link
+    if user.facebook.present?
+      h.link_to h.image_tag("glyphicons_390_facebook.png"), user.facebook
+    end
+  end
+
+  # Link to the user's twitter
+  def twitter_link
+    if user.twitter.present?
+      h.link_to h.image_tag("glyphicons_392_twitter.png"), user.twitter
+    end
+  end
+
+  def action_buttons
+    h.get_action_buttons(user)
+  end
+
   # Accessing Helpers
   #   You can access any helper via a proxy
   #
