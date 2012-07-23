@@ -53,7 +53,11 @@ class Bracket
     end
   end
 
-  # Linear seed for the bracket
+  # Seeding first half of players, oscilating between first and last,
+  # for example
+  #
+  # 1, 3
+  # 2, 4
   def linear_seed
     tournament.reload
     round = tournament.rounds.first
@@ -63,14 +67,22 @@ class Bracket
 
     players = tournament.checked_players
 
-    matches.each do |match|
-      match.player1 = players.shift
-      match.seed = seed
-      seed += 1
+    # First half of the players
+    index = 0
+    while index < matches.size / 2
+      matches[index].player1 = players.shift
+      matches[-index - 1].player1 = players.shift
+
+      index += 1
     end
 
-    matches.each do |match|
-      match.player2 = players.shift
+    # Second half of the players
+    index = 0
+    while index < matches.size / 2
+      matches[index].player2 = players.shift
+      matches[-index - 1].player2 = players.shift
+
+      index += 1
     end
 
     matches.each do |match|
@@ -91,7 +103,7 @@ class Bracket
 #       match = round.matches.create!(seed: seed) if match.nil?
 #       match.player1 = players[0]
 #       match.player2 = players[1]
-# 
+#
 #       # TODO - seed the player automatically to the next round
 #       if match.player2.nil?
 #         match.completed = true
