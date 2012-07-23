@@ -57,6 +57,11 @@ class TournamentDecorator < Draper::Base
     h.distance_of_time_in_words_to_now(self.tournament.starts_at - 30.minutes)
   end
 
+  def has_admin? user
+    ability = Ability.new(user)
+    ability.can? :manage, Tournament
+  end
+
   # Accessing Helpers
   #   You can access any helper via a proxy
   #

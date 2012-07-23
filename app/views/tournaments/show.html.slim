@@ -4,10 +4,11 @@
 
 .tournament ng-app="scvrush"
   header
-    .admin-buttons
-      = link_to "Seed", seed_tournament_path(@tournament), method: :post
-      br
-      = link_to "Destroy seed", unseed_tournament_path(@tournament), method: :post
+    - if @tournament.has_admin? current_user
+      .admin-buttons
+        = link_to "Seed", seed_tournament_path(@tournament), method: :post
+        br
+        = link_to "Destroy seed", unseed_tournament_path(@tournament), method: :post
 
     h1 = @tournament.name
 
