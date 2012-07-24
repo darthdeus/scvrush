@@ -75,6 +75,7 @@
         .span1
           = @scene_post.link_with_image
         .span7
+          h4 = link_to @scene_post.title, @scene_post, style: "color: black;"
           = post_excerpt @scene_post.content
 
   .span3
