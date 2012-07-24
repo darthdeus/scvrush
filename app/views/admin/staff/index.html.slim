@@ -8,7 +8,7 @@ div ng-controller="StaffController"
 
   br
 
-  form.staff-form data-staff="#{@data}" action="/admin/staff" method="get"
+  = form_tag "/admin/staff", method: "put", class: "staff-form", data: { staff: @data } do
     input type="hidden" name="staff" value="{{categories}}"
     button.btn.btn-primary.btn-large type="submit" Save all!
 
@@ -20,7 +20,6 @@ div ng-controller="StaffController"
         i.icon-remove.icon-white
 
     input.margin-right type="text" ng-model="category.category" style="display: inline-block"
-
 
     h2
       ' People

@@ -2,21 +2,12 @@ module Admin
   class StaffController < AdminController
 
     def index
-      @data = [
-        {
-          category: "Lead staff",
-          people: [
-            {
-              name: "Jakub Arnold",
-              avatar: "http://placehold.it/100",
-              attributes: [
-                [ "skype", "darthslayer" ],
-                [ "intelligence", "monstrously magnificently glorious" ]
-              ]
-            }
-          ]
-        }
-      ].to_json
+      page = Page.find_or_create_by_name("staff")
+      if params[:staff]
+        page.content = params[:staff]
+        page.save!
+      end
+      @data = page.content
     end
 
   end

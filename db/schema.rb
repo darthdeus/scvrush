@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120723162340) do
+ActiveRecord::Schema.define(:version => 20120724161218) do
 
   create_table "achievements", :force => true do |t|
     t.string   "name"
@@ -75,6 +75,11 @@ ActiveRecord::Schema.define(:version => 20120723162340) do
     t.boolean  "completed",  :default => false
     t.integer  "seed",                          :null => false
     t.string   "score"
+  end
+
+  create_table "pages", :force => true do |t|
+    t.string "name",    :null => false
+    t.text   "content"
   end
 
   create_table "points", :force => true do |t|
