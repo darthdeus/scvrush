@@ -22,15 +22,18 @@ class UsersController < ApplicationController
   def show
     # @user = User.where("id = ? OR username = ?", params[:id],
     # params[:id]).includes(comments: :post)
-
-
-
-    # @user = User.find(params[:id])
-
     # @user = User.find_by_username_or_id(params[:id])
+
     id = params[:id]
-    @user = UserDecorator.new(User.where("id = ? OR username = ?", id, id).includes(comments: :post).first)
+    user = User.where("id = ? OR username = ?", id, id).includes(comments: :post).first
+
+    @user = UserDecorator.new(user)
     gon.user_id = id
+
+    if @user.model.nil?
+      flash[:error] = "The user doesn't exist"
+      redirect_to root_path
+    end
   end
 
   def edit
