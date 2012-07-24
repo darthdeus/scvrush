@@ -7,6 +7,9 @@ Scvrush::Application.routes.draw do
     resources :blog_posts
     resources :users
 
+    match "/staff" => "staff#index"
+    get "staff/index"
+
     root to: "home#index"
   end
 

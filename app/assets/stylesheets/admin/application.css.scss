@@ -14,6 +14,15 @@ body {
   margin-top: 0;
 }
 
+.person {
+  padding: 20px;
+  border-bottom: 1px solid #999;
+}
+
+.inline-button {
+  display: inline-block;
+  margin-bottom: 10px;
+}
 
 .data-table header, .admin-form header {
   margin-bottom: 15px;

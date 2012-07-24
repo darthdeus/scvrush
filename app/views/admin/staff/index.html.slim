@@ -1,0 +1,53 @@
+div ng-controller="StaffController"
+
+  h1
+    ' Staff page administration
+    button.btn ng-click="addCategory(categories)" 
+      i.icon-plus
+      |  add category
+
+  br
+
+  form.staff-form data-staff=@data
+
+    .well ng-repeat="category in categories"
+
+      label
+        | Category
+        input type="text" ng-model="category.category"
+
+      h2 
+        ' People
+        button.btn ng-click="addPerson(category)"
+          i.icon-plus
+          |  add person
+
+
+      .person ng-repeat="person in category.people"
+
+        .row
+          .span3
+            .row
+              label.span3
+                | Name
+                input type="text" ng-model="person.name"
+
+              label.span3
+                | Avatar
+                input type="text" ng-model="person.avatar"
+
+          img.span2 ng-src="{{person.avatar}}"
+
+        p Other attributes:
+        ul
+          li ng-repeat="attribute in person.attributes"
+            input type="text" ng-model="attribute[0]"
+            input type="text" ng-model="attribute[1]"
+
+            button.btn.inline-button ng-click="removeAttribute(person.attributes, attribute)"
+              i.icon-remove
+
+        button.btn ng-click="addAttribute(person.attributes)" add attribute
+
+
+

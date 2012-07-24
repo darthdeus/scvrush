@@ -1,8 +1,12 @@
 //= require jquery
 //= require jquery_ujs
-//= require vendor/chosen
+//= require jquery-ui
+//= require ../vendor/manifest
+
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap
+
+//= require ./backend
 
 $(function() {
 
