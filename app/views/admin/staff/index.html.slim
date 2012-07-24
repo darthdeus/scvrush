@@ -2,52 +2,62 @@ div ng-controller="StaffController"
 
   h1
     ' Staff page administration
-    button.btn ng-click="addCategory(categories)" 
-      i.icon-plus
-      |  add category
+    button.btn.btn-success ng-click="addCategory(categories)"
+      i.icon-plus.icon-white
+      |  Add category
 
   br
 
-  form.staff-form data-staff=@data
+  form.staff-form data-staff="#{@data}" action="/admin/staff" method="get"
+    input type="hidden" name="staff" value="{{categories}}"
+    button.btn.btn-primary.btn-large type="submit" Save all!
 
-    .well ng-repeat="category in categories"
+  .well ng-repeat="category in categories"
 
-      label
-        | Category
-        input type="text" ng-model="category.category"
+    h2
+      ' Category
+      button.btn.btn-danger ng-click="removeAttribute(categories, category)"
+        i.icon-remove.icon-white
 
-      h2 
-        ' People
-        button.btn ng-click="addPerson(category)"
-          i.icon-plus
-          |  add person
+    input.margin-right type="text" ng-model="category.category" style="display: inline-block"
 
 
-      .person ng-repeat="person in category.people"
+    h2
+      ' People
+      button.btn.btn-success ng-click="addPerson(category)"
+        i.icon-plus.icon-white
+        |  Add person
 
-        .row
-          .span3
-            .row
-              label.span3
-                | Name
-                input type="text" ng-model="person.name"
+    .person ng-repeat="person in category.people"
 
-              label.span3
-                | Avatar
-                input type="text" ng-model="person.avatar"
+      .row
+        .span3
+          .row
+            label.span3
+              | Name
+              input type="text" ng-model="person.name"
 
-          img.span2 ng-src="{{person.avatar}}"
+            label.span3
+              | Avatar
+              input type="text" ng-model="person.avatar"
 
-        p Other attributes:
-        ul
-          li ng-repeat="attribute in person.attributes"
-            input type="text" ng-model="attribute[0]"
-            input type="text" ng-model="attribute[1]"
+        img.span2 ng-src="{{person.avatar}}"
 
-            button.btn.inline-button ng-click="removeAttribute(person.attributes, attribute)"
-              i.icon-remove
+      p Other attributes:
+      ul
+        li ng-repeat="attribute in person.attributes"
+          input.margin-right type="text" ng-model="attribute[0]"
+          input.margin-right type="text" ng-model="attribute[1]"
 
-        button.btn ng-click="addAttribute(person.attributes)" add attribute
+          button.btn.btn-danger.inline-button ng-click="removeAttribute(person.attributes, attribute)"
+            i.icon-remove.icon-white
 
+      button.btn.btn-success.margin-right ng-click="addAttribute(person.attributes)"
+        i.icon-plus.icon-white
+        |  Add attribute
+
+      button.btn.btn-danger ng-click="removeAttribute(category.people, person)"
+        i.icon-remove.icon-white
+        |  Remove person
 
 
