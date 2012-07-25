@@ -91,8 +91,7 @@ describe Bracket do
 
     Match.count.should == 3
 
-    binding.pry
-    matches = Match.first(2)
+    matches = Match.order(:id).first(2)
     matches[0].player1.should == p1
     matches[0].player2.should == p3
     matches[1].player1.should == p2
@@ -117,7 +116,7 @@ describe Bracket do
     # Ro8 (4) + Ro4 (2) + Ro2 (1)
     Match.count.should == 7
 
-    matches = Match.first(2)
+    matches = Match.order(:id).first(2)
     matches[0].player1.should == p1
     matches[0].player2.should == p5
     matches[1].player1.should == p3
@@ -157,11 +156,13 @@ describe Bracket do
     bracket.create_bracket_rounds
     t.reload
 
-    ro4 = t.rounds.first
-    ro4.text.should == "GSL Daybreak"
+    rounds = t.rounds.order(:id)
+
+    ro4 = rounds.first
+    ro4.text.should == "ESV Ohana LE"
     ro4.number.should == 4
 
-    ro2 = t.rounds.second
+    ro2 = rounds.second
     ro2.number.should == 2
     ro2.text.should == "GSL Metropolis"
 
@@ -185,7 +186,9 @@ describe Bracket do
     match = bracket.current_match_for(p1)
     bracket.seed_next_match_with(p1, match)
 
-    ro2 = t.rounds.second
+    rounds = t.rounds.order(:id)
+
+    ro2 = rounds.second
     ro2.number.should == 2
     ro2.matches.first.player1.should == p1
 
@@ -231,7 +234,7 @@ describe Bracket do
       bracket.create_matches
       bracket.linear_seed
 
-      matches = Match.all
+      matches = Match.order(:id)
 
       matches[1].should be_completed
       bracket.current_match_for(p2).should == matches[2]

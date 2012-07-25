@@ -4,7 +4,7 @@ class Round < ActiveRecord::Base
 
   validates_presence_of :number, :tournament
 
-  has_many :matches, dependent: :destroy
+  has_many :matches, dependent: :destroy, order: "id"
 
   def to_simple_json
     hash = { type: "round", matches: [] }

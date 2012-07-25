@@ -19,7 +19,7 @@ class Post < ActiveRecord::Base
   scope :drafts,    where(status: DRAFT)
   scope :published, where(status: PUBLISHED)
 
-  default_scope order("published_at DESC")
+  default_scope order("published_at DESC, id DESC")
 
   scope :upcoming_tournaments, tagged_with('tournament').limit(2)
 

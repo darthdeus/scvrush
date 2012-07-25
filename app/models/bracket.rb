@@ -103,6 +103,32 @@ class Bracket
     end
   end
 
+  # Seed the given player to a next round after he won his match
+  #
+  # Returns the winner if there was one, otherwise nil
+  def seed_next_match_with(user, match)
+    next_round = self.next_round_for(match.round)
+
+    if next_round.number == 1
+      self.mark_winner(user)
+      return user
+    end
+
+    next_match = next_round.matches.order(:id).where(seed: match.seed / 2).first
+
+    if match.seed % 2 == 0
+      next_match.player1 = user
+    else
+      next_match.player2 = user
+    end
+
+    next_match.completed = false
+    # TODO - this isn't right
+    next_match.save(validate: false)
+    next_match
+    return nil
+  end
+
   # Set a score for a given player by figuring out what his
   # current match is, and then setting the result.
   def set_score_for(user, score, admin = false, opponent_id = nil)
@@ -139,32 +165,6 @@ class Bracket
   def mark_winner(user)
     self.tournament.winner = user
     self.tournament.save!
-  end
-
-  # Seed the given player to a next round after he won his match
-  #
-  # Returns the winner if there was one, otherwise nil
-  def seed_next_match_with(user, match)
-    next_round = self.next_round_for(match.round)
-
-    if next_round.number == 1
-      self.mark_winner(user)
-      return user
-    end
-
-    next_match = next_round.matches.where(seed: match.seed / 2).first
-
-    if match.seed % 2 == 0
-      next_match.player1 = user
-    else
-      next_match.player2 = user
-    end
-
-    next_match.completed = false
-    # TODO - this isn't right
-    next_match.save(validate: false)
-    next_match
-    return nil
   end
 
   # Return the current match for a given user. It should always be
