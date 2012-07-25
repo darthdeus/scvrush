@@ -29,7 +29,7 @@ class Bracket
     rounds = self.round_sizes(tournament.checked_players.size)
     rounds.each.with_index do |round, index|
       if index == 0
-        text = "GSL Daybreak"
+        text = "ESV Ohana LE"
       elsif index == 1
         text = "GSL Metropolis"
       end
