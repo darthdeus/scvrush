@@ -24,8 +24,11 @@ class UsersController < ApplicationController
     # params[:id]).includes(comments: :post)
     # @user = User.find_by_username_or_id(params[:id])
 
-    id = params[:id]
-    user = User.where("id = ? OR username = ?", id, id).includes(comments: :post).first
+    # id = params[:id]
+
+    # TODO - add search by username
+    user = User.find(params[:id]).includes(comments: :post)
+    # user = User.where("id = ? OR username = ?", id, id).includes(comments: :post).first
 
     @user = UserDecorator.new(user)
     gon.user_id = id
