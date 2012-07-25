@@ -33,7 +33,7 @@
 
   .span4#coaches
     h2.underline.nomargin Coaches
-    - Coach.order('`order` ASC').sample(6).each do |coach|
+    - Coach.order('"order" ASC').sample(6).each do |coach|
       - if coach.post.present?
         .row
           .coach.span4
