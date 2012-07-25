@@ -27,11 +27,11 @@ class UsersController < ApplicationController
     # id = params[:id]
 
     # TODO - add search by username
-    user = User.find(params[:id]).includes(comments: :post)
+    user = User.includes(comments: :post).find(params[:id])
     # user = User.where("id = ? OR username = ?", id, id).includes(comments: :post).first
 
     @user = UserDecorator.new(user)
-    gon.user_id = id
+    gon.user_id = params[:id]
 
     if @user.model.nil?
       flash[:error] = "The user doesn't exist"
