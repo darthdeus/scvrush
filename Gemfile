@@ -5,9 +5,10 @@ gem 'rails',        '~> 3.2.6'
 gem 'jquery-rails', '~> 2.0.1'
 gem 'bcrypt-ruby',  '~> 3.0.1', require: 'bcrypt'
 
-gem 'coffee-rails',              '~> 3.2.2'
+gem 'coffee-rails',             '~> 3.2.2'
 
-gem 'mysql2',                    '~> 0.3.11'
+gem 'mysql2',                   '~> 0.3.11'
+gem 'pg',                       '~> 0.14.0'
 
 # Frontend
 gem 'slim-rails',                '~> 1.0.3'
