@@ -32,5 +32,5 @@ class Round < ActiveRecord::Base
   end
 
   belongs_to :parent, class_name: "Round", foreign_key: "parent_id"
-  # has_many :children, class_name: "Round", foreign_key: "parent_id"
+  has_one    :child, class_name: "Round", foreign_key: "parent_id"
 end

@@ -6,5 +6,6 @@ FactoryGirl.define do
     starts_at { Time.now }
     tournament_type Tournament::TYPES.sample
     association :post
+    bo_preset "1"
   end
 end

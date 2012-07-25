@@ -91,6 +91,7 @@ describe Bracket do
 
     Match.count.should == 3
 
+    binding.pry
     matches = Match.first(2)
     matches[0].player1.should == p1
     matches[0].player2.should == p3

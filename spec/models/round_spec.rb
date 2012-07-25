@@ -24,9 +24,17 @@ describe Round do
     round.matches << create(:match, player1: p1, player2: p2, round: round)
     round.matches << create(:match, player1: p3, player2: p4, round: round)
 
-    round.to_simple_json.should == [
-      { player1: "player1", player2: "player2" },
-      { player1: "player3", player2: "player4" }
-    ]
+    json = round.to_simple_json
+    json[:matches].first[:player1].should == p1.bnet_info
+    json[:number].should == 1
   end
+
+  it "can have a parent" do
+    ro4 = create(:round)
+    ro2 = create(:round, parent: ro4)
+
+    ro2.parent.should == ro4
+    ro4.child.should  == ro2
+  end
+
 end

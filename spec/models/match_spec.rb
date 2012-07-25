@@ -20,6 +20,24 @@ describe Match do
     match.should be_completed
   end
 
+  describe "can_submit?" do
+
+    it "allows to sumbit if ther eis no winner and both players" do
+      build(:match).can_submit?.should == true
+    end
+
+    it "can't submit if there is a winner" do
+      m = create(:match)
+      m.set_score_for(m.player1, "1:0")
+      m.can_submit?.should == false
+    end
+
+    it "can't submit if there is only one player" do
+      build(:match, player1: nil).can_submit?.should == false
+      build(:match, player2: nil).can_submit?.should == false
+    end
+  end
+
   describe "score" do
     it "requires a proper format" do
       build(:match, score: "foo").should have_at_least(1).error_on(:score)
@@ -75,19 +93,5 @@ describe Match do
       m.winner.should == p1
     end
   end
-
-#   describe "started?" do
-#     before do
-#       User.delete_all
-#       @p1 = create(:user)
-#       @p2 = create(:user)
-#     end
-#
-#     it "is true when there are both players and no winner" do
-#       build(:match, player1: @p1, player2: @p2).can_submit?.should == true
-#       build(:match, player1: @p1, player2: nil).can_submit?.should == false
-#       build(:match, player1: @p1, player2: nil, score: "3:0").can_submit?.should == false
-#     end
-#   end
 
 end
