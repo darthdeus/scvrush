@@ -30,10 +30,16 @@ body > .container {
   margin-top: 50px;
   margin-bottom: 60px;
 
+  .container {
+    position: relative;
+    left: -30px;
+  }
+
   #logo img {
     width: 350px;
     position: absolute;
     top: -70px;
+    left: -20px;
   }
 
   .navbar-inner {
