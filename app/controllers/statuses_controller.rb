@@ -6,7 +6,7 @@ class StatusesController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     statuses = @user.statuses_from_followings.order("created_at DESC")
-    respond_with statuses.all
+    respond_with (statuses.all + @user.statuses).sort { |a, b| a.created_at <=> b.created_at }
   end
 
   def create
