@@ -29,9 +29,17 @@ class Bracket
     rounds = self.round_sizes(tournament.checked_players.size)
     rounds.each.with_index do |round, index|
       if index == 0
-        text = "ESV Ohana LE"
+        text =<<MAPS
+MLG Entombed Valley
+GSL Metropolis
+ESV Ohana LE
+MAPS
       elsif index == 1
-        text = "GSL Metropolis"
+        text =<<MAPS
+GSL Bel'Shir Beach (Winter)
+ESL Cloud Kingdom
+GSL Daybreak
+MAPS
       end
 
       round = Round.new(number: round, tournament: tournament, text: text, parent: last)

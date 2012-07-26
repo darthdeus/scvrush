@@ -159,12 +159,12 @@ describe Bracket do
     rounds = t.rounds.order(:id)
 
     ro4 = rounds.first
-    ro4.text.should == "ESV Ohana LE"
+    ro4.text.should == "MLG Entombed Valley\nGSL Metropolis\nESV Ohana LE\n"
     ro4.number.should == 4
 
     ro2 = rounds.second
     ro2.number.should == 2
-    ro2.text.should == "GSL Metropolis"
+    ro2.text.should == "GSL Bel'Shir Beach (Winter)\nESL Cloud Kingdom\nGSL Daybreak\n"
 
     bracket.next_round_for(ro4).should == ro2
   end
