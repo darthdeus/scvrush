@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
 
   def timeline_statuses
     ids = Relationship.where(requestor_id: self.id).pluck(:requestee_id)
-    Status.where("user_id = ? OR user_id = ?", ids, self.id).order(:created_at)
+    Status.where("user_id = ? OR user_id = ?", ids, self.id).order("created_at DESC")
   end
 
   def statuses_from_followings
