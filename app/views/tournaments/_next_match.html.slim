@@ -1,35 +1,36 @@
 - if @tournament.seeded
-  .span6.alert.alert-info
-    - if @lost
-      p
-        ' You have been eliminated from the tournament,
-        ' we're sorry to see you go. Please return next week and in the meantime:
+  .span6
+    .alert.alert-info
+      - if @lost
+        p
+          ' You have been eliminated from the tournament,
+          ' we're sorry to see you go. Please return next week and in the meantime:
 
-      ul
-        li
-          = link_to "Post a few words in our TL thread", "http://www.teamliquid.net/forum/viewmessage.php?topic_id=332488"
-          '  – your tournament experience, feedback, suggestions...
-        li
-          = link_to "Subscribe to our newsletter", "http://eepurl.com/iZbzv"
-          '  to stay updated about other events, E-Sports and SCV Rush!
-        li
-          = link_to "Jump to our stream", "http://chat.scvrush.com"
-          '  and enjoy our great casters.
+        ul
+          li
+            = link_to "Post a few words in our TL thread", "http://www.teamliquid.net/forum/viewmessage.php?topic_id=332488"
+            '  – your tournament experience, feedback, suggestions...
+          li
+            = link_to "Subscribe to our newsletter", "http://eepurl.com/iZbzv"
+            '  to stay updated about other events, E-Sports and SCV Rush!
+          li
+            = link_to "Jump to our stream", "http://chat.scvrush.com"
+            '  and enjoy our great casters.
 
-      p Thank you for coming!
+        p Thank you for coming!
 
-    - elsif @next_opponent && @current_match
-      p
-          = "Your next match is "
-          strong = @next_opponent.bnet_info
-      p You are playing best of #{@current_match.round.bo}
+      - elsif @next_opponent && @current_match
+        p
+            = "Your next match is "
+            strong = @next_opponent.bnet_info
+        p You are playing best of #{@current_match.round.bo}
 
-      = m @current_match.round.text
+        = m @current_match.round.text
 
-    - elsif @current_match
-      p Please wait for your opponent.
+      - elsif @current_match
+        p Please wait for your opponent.
 
-      = m @current_match.round.text
+        = m @current_match.round.text
 
 
 .span6

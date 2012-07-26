@@ -66,6 +66,11 @@ class MatchesController < ApplicationController
       @players = @match.round.tournament.registered_players
       render :edit
     end
-
   end
+
+  def destroy
+    @match = Match.find(params[:id])
+    bracket.reset_match(@match)
+  end
+
 end

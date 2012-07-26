@@ -1,7 +1,7 @@
 class ScoreValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     if record.player1_id? || record.player2_id?
-      if value && value !~ /^\d:\d$/
+      if value.present? && value !~ /^\d:\d$/
         record.errors[attribute] << "must have a format of N:N, e.g. 3:1"
       elsif value && value == "0:0"
         record.errors[attribute] << "can't be 0:0"
@@ -52,7 +52,7 @@ class Match < ActiveRecord::Base
   end
 
   def winner
-    return nil if self.score.nil?
+    return nil unless self.score.present?
 
     split = self.score.split ":"
 
@@ -67,6 +67,7 @@ class Match < ActiveRecord::Base
     return nil if self.score.nil? || player.nil?
 
     split = self.score.split ":"
+    return nil if split.empty?
     if player == :player1
       split[0].to_i
     else
