@@ -26,7 +26,6 @@ describe Round do
 
     json = round.to_simple_json
     json[:matches].first[:player1].should == p1.bnet_info
-    json[:number].should == 1
   end
 
   it "can have a parent" do

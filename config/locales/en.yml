@@ -31,3 +31,15 @@ en:
       In BO1 rounds, you and your opponent each veto one map and you play the game on the remaining one.
 
       In BO3 rounds, the loser picks from the pool. Maps don't repeat, winner can veto one map.
+
+    map_preset: |
+      Specify maps for each round, starting from the first round. Rounds are separated by a blank line. e.g
+
+      - MLG Antiga Shipyard
+      - MLG Cloud Kingdom
+      - GSL Daybreak
+
+      - ESV Korhal Compound TE
+      - GSL Metropolis
+      - ESV Ohana LE
+

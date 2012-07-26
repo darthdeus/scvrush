@@ -1,5 +1,5 @@
-.span6.alert.alert-info
-  - if @tournament.seeded
+- if @tournament.seeded
+  .span6.alert.alert-info
     - if @lost
       p
         ' You have been eliminated from the tournament,
@@ -31,8 +31,6 @@
 
       = m @current_match.round.text
 
-  - else
-    p The tournament bracket wasn't generated yet. Please wait.
 
 .span6
   - if @next_opponent
@@ -47,6 +45,6 @@
       = hidden_field_tag 'opponent_id', @next_opponent.id
 
       = submit_match_result_button
-  - else
+  - elsif @tournament.seeded
     p You don't have an opponent
 

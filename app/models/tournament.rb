@@ -18,7 +18,7 @@ class Tournament < ActiveRecord::Base
 
   # TODO - remove this so users can't create official tournaments
   attr_accessible :name, :starts_at, :tournament_type, :description, :admins,
-    :rules, :map_info, :bo_preset
+    :rules, :map_info, :bo_preset, :map_preset
 
   scope :recent, order('starts_at DESC').limit(5)
   scope :upcoming, lambda { where(['starts_at > ?', Time.now]).first(2) }
@@ -51,6 +51,10 @@ class Tournament < ActiveRecord::Base
     Rails.cache.delete('views/coaches')
     Rails.cache.delete('views/recent_posts')
     true
+  end
+
+  def maps
+    self.map_preset.gsub("\r", "").split("\n\n")
   end
 
   def registration_open?

@@ -51,6 +51,12 @@ MAPS
 
         round.bo = bo_preset[index] if bo_preset[index]
       end
+
+      if tournament.maps.present?
+        round.text = tournament.maps[index] if tournament.maps[index]
+      end
+
+
       round.save!
 
       last = round
