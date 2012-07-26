@@ -36,6 +36,11 @@ class User < ActiveRecord::Base
   # TODO
   has_many :following_relationships, class_name: "Relationship", foreign_key: "requestor_id"
 
+  def timeline_statuses
+    ids = Relationship.where(requestor_id: self.id).pluck(:requestee_id)
+    Status.where("user_id = ? OR user_id = ?", ids, self.id).order(:created_at)
+  end
+
   def statuses_from_followings
     Status.includes(:user).where(user_id: self.following_relationships.pluck(:requestee_id))
   end
