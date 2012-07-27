@@ -20,5 +20,9 @@ before_exec do |_|
   ENV["BUNDLE_GEMFILE"] = "#{app_path}/current/Gemfile"
 end
 
+after_fork do |server, worker|
+  defined?(ActiveRecord::Base) and
+  ActiveRecord::Base.establish_connection
+end
 
 preload_app true
