@@ -16,7 +16,7 @@ class Post < ActiveRecord::Base
 
   acts_as_taggable
 
-  scope :drafts,    where(status: DRAFT)
+  scope :drafts,    where("status = ? AND published_at IS NOT NULL", DRAFT)
   scope :published, where("status = ? AND published_at IS NOT NULL", PUBLISHED)
 
   default_scope order("published_at DESC, id DESC")

@@ -54,7 +54,7 @@ class Tournament < ActiveRecord::Base
   end
 
   def maps
-    self.map_preset.gsub("\r", "").split("\n\n")
+    self.map_preset.gsub("\r", "").split("\n\n") if self.map_preset
   end
 
   def registration_open?

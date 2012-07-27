@@ -45,8 +45,9 @@ namespace :deploy do
   end
   task :restart, :roles => :app, :except => { :no_release => true } do
     # TODO - this needs to be fixed to work via the init script
-    run "#{try_sudo} service unicorn stop"
-    run "cd #{current_path}; bundle exec ./bin/unicorn -D -c config/unicorn.rb -E production"
+    run "#{try_sudo} service unicorn restart"
+    # run "#{try_sudo} service unicorn stop"
+    # run "cd #{current_path}; bundle exec ./bin/unicorn -D -c config/unicorn.rb -E production"
   end
 
   task :symlink_shared do
