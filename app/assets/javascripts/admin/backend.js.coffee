@@ -8,7 +8,7 @@ module = angular.module("scvrush-admin", ["scvrush-admin.services"])
 
 class @StaffController
   constructor: ($scope) ->
-    $scope.categories = $("form.staff-form").data("staff")
+    $scope.categories = $("form.staff-form").data("staff") || []
 
     $scope.addPerson = (category) ->
       category.people.push
