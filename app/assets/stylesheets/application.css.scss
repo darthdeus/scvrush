@@ -323,20 +323,17 @@ li.stream {
 //   margin-right: 3px;
 // }
 
-.people { margin: 0 0 20px 0; }
-
-.staff {
-  clear: both;
-  padding: 10px;
+.staff-member {
   min-height: 120px;
-  background: rgba(#000, 0.05);
 
   h2 { margin-top: 5px; }
+
   img {
     float: left;
     @include box-shadow(0 0 3px #000);
-    margin: 10px 20px 0 10px;
+    margin: 10px 20px 0 5px;
   }
+
   .info {
     padding-top: 5px;
   }

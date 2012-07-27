@@ -1,9 +1,9 @@
 div ng-controller="CategoriesController"
   .category ng-repeat="category in categories"
-    h2 {{category.category}}
+    .row
+      h2.span12 {{category.category}}
 
-    .people
-      .staff ng-repeat="person in category.people"
+      .span4.staff-member ng-repeat="person in category.people"
         img ng-src="{{person.avatar}}"
         .info
           h2 {{person.name}}
