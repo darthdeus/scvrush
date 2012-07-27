@@ -1,7 +1,7 @@
 div ng-controller="CategoriesController"
-  .category ng-repeat="category in categories"
+  .staff-group ng-repeat="category in categories"
     .row
-      h2.span12 {{category.category}}
+      h1.span12 {{category.category}}
 
       .span4.staff-member ng-repeat="person in category.people"
         img ng-src="{{person.avatar}}"
@@ -11,5 +11,7 @@ div ng-controller="CategoriesController"
           ul.unstyled
             li ng-repeat="attribute in person.attributes" ng-switch="" on="attribute[1]"
               span ng-switch-when="" {{attribute[0]}}
-              span ng-switch-default="" {{attribute[0]}} - {{attribute[1]}}
+              span ng-switch-default=""
+                strong {{attribute[0]}}
+                |  - {{attribute[1]}}
 
