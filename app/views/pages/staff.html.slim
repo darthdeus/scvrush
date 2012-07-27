@@ -10,7 +10,8 @@ div ng-controller="CategoriesController"
 
           ul.unstyled
             li ng-repeat="attribute in person.attributes" ng-switch="" on="attribute[1]"
-              span ng-switch-when="" {{attribute[0]}}
+              span ng-switch-when=""
+                strong {{attribute[0]}}
               span ng-switch-default=""
                 strong {{attribute[0]}}
                 |  - {{attribute[1]}}
