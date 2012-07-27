@@ -331,6 +331,7 @@ li.stream {
   h2 { margin-top: 5px; }
 
   img {
+    width: 100px;
     float: left;
     @include box-shadow(0 0 3px #000);
     margin: 10px 20px 0 5px;
