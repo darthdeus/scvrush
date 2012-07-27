@@ -38,14 +38,14 @@ role :db,  domain, :primary => true
 namespace :deploy do
 
   task :start, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo} service unicorn start"
+    run "/etc/init.d/unicorn start"
   end
   task :stop, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo} service unicorn stop"
+    run "/etc/init.d/unicorn stop"
   end
   task :restart, :roles => :app, :except => { :no_release => true } do
     # TODO - this needs to be fixed to work via the init script
-    run "#{try_sudo} service unicorn restart"
+    run "/etc/init.d/unicorn restart"
     # run "#{try_sudo} service unicorn stop"
     # run "cd #{current_path}; bundle exec ./bin/unicorn -D -c config/unicorn.rb -E production"
   end
