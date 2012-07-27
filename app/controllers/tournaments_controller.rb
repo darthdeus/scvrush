@@ -92,9 +92,13 @@ class TournamentsController < ApplicationController
     tournament.seeded = false
     tournament.winner = nil
     tournament.rounds.destroy_all
-    tournament.save!
 
-    flash[:success] = "The seed was destroyed. Please seed the tournament again before players can submit their match results"
+    if tournament.save
+      flash[:success] = "The seed was destroyed. Please seed the tournament again before players can submit their match results"
+    else
+      flash[:error] = "The tournament wasn't created properly"
+    end
+
     redirect_to tournament
   end
 
