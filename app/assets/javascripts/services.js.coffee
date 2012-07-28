@@ -1,3 +1,9 @@
+angular.injector(["ng"]).invoke ($rootScope) ->
+  $rootScope.is = (type, value) -> return angular['is'+type](value)
+  $rootScope.empty = (value) -> return $.isEmptyObject(value)
+  $rootScope.log = (variable) -> console.log(variable)
+  $rootScope.alert = (text) -> alert(text)
+
 module = angular.module("scvrush.services", ["ngResource"])
 
 module.config(["$httpProvider", (provider) ->

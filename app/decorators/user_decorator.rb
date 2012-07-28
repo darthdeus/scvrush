@@ -9,7 +9,6 @@ class UserDecorator < Draper::Base
     # end
   end
 
-
   # Link to the user's twitter
   def facebook_link
     if user.facebook.present?
