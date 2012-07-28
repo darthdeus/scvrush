@@ -12,7 +12,6 @@
 //= require ./module
 //= require ./controllers/manifest
 
-
 jQuery(function($) {
   // TODO - do this via Angular callback on when
   // the DOM is compiled
