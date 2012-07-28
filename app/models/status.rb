@@ -6,8 +6,6 @@ class Status < ActiveRecord::Base
   validates_presence_of :user_id
   validates :text, presence: true, length: 6..200
 
-  acts_as_voteable
-
   include ActionView::Helpers
 
   def as_json(options = {})
@@ -17,7 +15,7 @@ class Status < ActiveRecord::Base
       text: self.text,
       posted_at: posted_at,
       user_id: self.user_id,
-      votes_count: self.votes_for,
+      # votes_count: self.votes_for,
       user_id: self.user.id,
       username: self.user.username
     }

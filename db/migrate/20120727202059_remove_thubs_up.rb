@@ -1,5 +1,9 @@
-class ThumbsUpMigration < ActiveRecord::Migration
-  def self.up
+class RemoveThumbsUp < ActiveRecord::Migration
+  def up
+    drop_table :votes
+  end
+
+  def down
     create_table :votes, :force => true do |t|
       t.boolean    :vote,     :default => false
       t.references :voteable, :polymorphic => true, :null => false
@@ -10,14 +14,8 @@ class ThumbsUpMigration < ActiveRecord::Migration
     add_index :votes, [:voter_id, :voter_type]
     add_index :votes, [:voteable_id, :voteable_type]
 
-
     # Comment out the line below to allow multiple votes per voter on a single entity.
     add_index :votes, [:voter_id, :voter_type, :voteable_id, :voteable_type], :unique => true, :name => 'fk_one_vote_per_user_per_entity'
-
-  end
-
-  def self.down
-    drop_table :votes
   end
 
 end

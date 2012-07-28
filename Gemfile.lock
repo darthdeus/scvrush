@@ -166,7 +166,7 @@ GEM
     net-ssh (2.3.0)
     net-ssh-gateway (1.1.0)
       net-ssh (>= 1.99.1)
-    nokogiri (1.5.2)
+    nokogiri (1.5.5)
     party_boy (0.3.4)
     pg (0.14.0)
     polyglot (0.3.3)
@@ -274,8 +274,6 @@ GEM
     therubyracer (0.9.10)
       libv8 (~> 3.3.10)
     thor (0.14.6)
-    thumbs_up (0.5.3)
-      activerecord
     tilt (1.3.3)
     treetop (1.4.10)
       polyglot
@@ -347,6 +345,5 @@ DEPENDENCIES
   slim-rails (~> 1.0.3)
   spork (> 0.9.0.rc)
   therubyracer
-  thumbs_up (~> 0.5.3)
   uglifier (~> 1.2.3)
   unicorn (~> 4.3.1)

@@ -11,8 +11,6 @@ class Comment < ActiveRecord::Base
 
   attr_accessible :post, :parent, :post_id, :parent_id, :content
 
-  acts_as_voteable
-
   include ActionView::Helpers
 
   def author

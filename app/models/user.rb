@@ -28,9 +28,6 @@ class User < ActiveRecord::Base
                   :display_msn, :display_email, :about, :avatar,
                   :bnet_code, :bnet_username, :twitter, :time_zone, :practice
 
-  acts_as_voter
-  has_karma(:comments, as: :user)
-
   acts_as_followable
 
   # TODO
