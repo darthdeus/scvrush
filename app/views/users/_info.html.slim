@@ -7,9 +7,6 @@
 
 
 dl
-  dt Experience
-  dd = pluralize(@user.karma, "points")
-
   = info_for_user(@user, %w{race league server favorite_player}, %w{email skype msn})
 
   = @user.twitter_link
