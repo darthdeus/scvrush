@@ -42,7 +42,7 @@ class PostsController < ApplicationController
     @post = Post.new(params[:post])
     @post.user = current_user
     if @post.save
-      redirect_to posts_path, notice: "Post published"
+      redirect_to @post, notice: "Post draft was created, it needs to be published to be displayed for users"
     else
       render "new"
     end
