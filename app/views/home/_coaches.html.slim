@@ -1,0 +1,21 @@
+.span4#coaches ng-controller="CoachesController"
+  h2.underline.nomargin Coaches
+
+  .row ng-repeat="coach in coaches"
+    .coach.span4
+      .name: a href="{{coach.link}}" {{coach.name}}
+      ul.tags
+        tag name="{{tag}}" ng-repeat="tag in coach.tags"
+
+  br
+  a.pull-right.btn.btn-mini ng-click="loadMore()" ng-show="coaches.length > 0" Load more
+
+/*  - Coach.order('"order" ASC').sample(6).each do |coach|*/
+/*    - if coach.post.present?*/
+/*      .row*/
+/*        .coach.span4*/
+/*          .name = link_to coach.title, post_path(coach.post)*/
+/*          ul.tags*/
+/*            - coach.tags.each do |tag|*/
+/*              tag name=tag*/
+/*              li = tag_link(tag)*/

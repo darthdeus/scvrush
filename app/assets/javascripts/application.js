@@ -8,6 +8,7 @@
 //= require login
 
 //= require ./services
+//= require ./directives
 //= require ./module
 //= require ./controllers/manifest
 

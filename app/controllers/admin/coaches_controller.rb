@@ -1,7 +1,15 @@
 module Admin
   class CoachesController < AdminController
+
+    skip_filter :require_admin, only: :index
+
     def index
-      @coaches = Coach.all
+      respond_to do |format|
+        @coaches = Coach.all
+
+        format.html
+        format.json { render json: @coaches.sample(6) }
+      end
     end
 
     def new

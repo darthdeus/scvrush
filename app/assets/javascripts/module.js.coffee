@@ -1,1 +1,1 @@
-module = angular.module("scvrush", ["scvrush.services"])
+module = angular.module("scvrush", ["scvrush.services", "scvrush.directives"])

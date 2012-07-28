@@ -31,16 +31,7 @@
     a class="carousel-control right" href="#home-carousel" data-slide="next" &rsaquo;
 
 
-  .span4#coaches
-    h2.underline.nomargin Coaches
-    - Coach.order('"order" ASC').sample(6).each do |coach|
-      - if coach.post.present?
-        .row
-          .coach.span4
-            .name = link_to coach.title, post_path(coach.post)
-            ul.tags
-              - coach.tags.each do |tag|
-                li = tag_link(tag)
+  = render partial: "coaches"
 
 
 .row
