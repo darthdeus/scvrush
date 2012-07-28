@@ -2,6 +2,9 @@ class ReplyVotesController < ApplicationController
   before_filter :require_login
 
   def create
+    # TODO - implement activerecord-reputation-system
+    raise "not yet implemented"
+
     @reply = Reply.find(params[:id])
     if @reply.user == current_user
       redirect_to :back, notice: "You can't vote on your own reply!"
@@ -12,6 +15,9 @@ class ReplyVotesController < ApplicationController
   end
 
   def destroy
+    # TODO - implement activerecord-reputation-system
+    raise "not yet implemented"
+
     @reply = Reply.find(params[:id])
     current_user.clear_votes(@reply)
     redirect_to topic_path(@reply.topic_id) + "#replys", notice: "Vote removed"

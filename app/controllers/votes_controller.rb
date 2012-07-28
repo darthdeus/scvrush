@@ -2,6 +2,9 @@ class VotesController < ApplicationController
   before_filter :require_login
 
   def create
+    # TODO - implement activerecord-reputation-system
+    raise "not yet implemented"
+
     @comment = Comment.find(params[:id])
     if @comment.user_id == current_user.id
       # TODO - add different status code
@@ -13,6 +16,9 @@ class VotesController < ApplicationController
   end
 
   def destroy
+    # TODO - implement activerecord-reputation-system
+    raise "not yet implemented"
+
     @comment = Comment.find(params[:id])
     current_user.clear_votes(@comment)
     redirect_to post_path(@comment.post_id) + "#comments", notice: "Vote removed"
