@@ -10,8 +10,4 @@ describe Vote do
     build(:vote, user: nil).should_not be_valid
   end
 
-  it "can count votes for a votable" do
-
-  end
-
 end

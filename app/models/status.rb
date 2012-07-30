@@ -4,16 +4,25 @@ class Status < ActiveRecord::Base
   belongs_to :statusable, polymorphic: true
   belongs_to :votable,    polymorphic: true
 
+  has_many :votes, foreign_key: "voteable_id", conditions: ["votes.voteable_type = 'Status'"]
+
   attr_accessible :text, :statusable_id, :statusable_type
   validates :text,    presence: true, length: 6..200
   validates :user_id, presence: true
 
   include ActionView::Helpers
 
-  # Returns the number of vote votes the given status has
-  def votes_count
-    Vote.where(voteable_id: self.id, voteable_type: self.class).count
+  # Regenerate the votes count
+  def calculate_votes
+    self.votes_count = Vote.where(voteable_id: self.id, voteable_type: self.class).count
+    self.save
+    self
   end
+
+  # # Returns the number of vote votes the given status has
+  # def votes_count
+  #   Vote.where(voteable_id: self.id, voteable_type: self.class).count
+  # end
 
   def as_json(options = {})
     posted_at = distance_of_time_in_words_to_now(self.created_at, true)
@@ -24,7 +33,7 @@ class Status < ActiveRecord::Base
       user_id: self.user_id,
       user_id: self.user.id,
       username: self.user.username,
-      votes_count: self.votes,
+      votes_count: self.votes_count,
       voted: false
     }
 

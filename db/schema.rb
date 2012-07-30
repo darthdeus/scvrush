@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120730180817) do
+ActiveRecord::Schema.define(:version => 20120730185238) do
 
   create_table "achievements", :force => true do |t|
     t.string   "name"
@@ -192,12 +192,13 @@ ActiveRecord::Schema.define(:version => 20120730180817) do
   add_index "signups", ["user_id"], :name => "index_signups_on_user_id"
 
   create_table "statuses", :force => true do |t|
-    t.text     "text",            :null => false
+    t.text     "text",                           :null => false
     t.integer  "statusable_id"
     t.string   "statusable_type"
-    t.integer  "user_id",         :null => false
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.integer  "user_id",                        :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "votes_count",     :default => 0
   end
 
   add_index "statuses", ["user_id"], :name => "index_statuses_on_user_id"

@@ -3,6 +3,7 @@ class VoterDecorator < Draper::Base
 
   def upvote(status)
     Vote.create(user: self.user, voteable: status, value: 1)
+    status.calculate_votes
   end
   # Accessing Helpers
   #   You can access any helper via a proxy

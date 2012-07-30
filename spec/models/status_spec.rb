@@ -21,8 +21,9 @@ describe Status do
 
       create(:vote, voteable: status)
 
-      status.reload
+      status.calculate_votes.reload
       status.votes_count.should == 1
     end
+
   end
 end
