@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
   has_many :evaluations, class_name: "RSEvaluation", as: :source
 
   def voted_for?(item)
-    self.evaluations.where(target_type: item.class, target_id: item.id).exists?
+    raise "implement this"
   end
 
   def self.filtered(params)

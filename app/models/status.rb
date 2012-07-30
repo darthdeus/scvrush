@@ -6,8 +6,6 @@ class Status < ActiveRecord::Base
   validates_presence_of :user_id
   validates :text, presence: true, length: 6..200
 
-  has_reputation :votes, source: :user, aggregated_by: :sum
-
   include ActionView::Helpers
 
   def as_json(options = {})
@@ -17,16 +15,11 @@ class Status < ActiveRecord::Base
       text: self.text,
       posted_at: posted_at,
       user_id: self.user_id,
-      votes_count: self.votes,
       user_id: self.user.id,
       username: self.user.username,
+      votes_count: self.votes,
       voted: false
     }
-
-    # TODO - check this
-    if options[:user] && options[:user].respond_to?(:voted_for?)
-      data[:voted] = options[:user].voted_for?(self)
-    end
 
     return data
   end
