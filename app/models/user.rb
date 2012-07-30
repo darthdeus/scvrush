@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :won_raffles, class_name: 'Raffle', foreign_key: 'winner_id'
 
+  has_many :votes
   has_many :raffle_signups
   has_many :raffles, through: :raffle_signups
 
@@ -45,6 +46,7 @@ class User < ActiveRecord::Base
     statuses = statuses.joins("LEFT JOIN votes v ON v.voteable_id = statuses.id AND v.voteable_type = 'Status'")
     statuses = statuses.joins("LEFT JOIN users u ON v.user_id = u.id AND u.id = #{self.id}")
     statuses = statuses.where("statuses.user_id = ? OR statuses.user_id IN (?)", self.id, ids)
+    statuses.order("created_at DESC")
   end
 
   def statuses_from_followings

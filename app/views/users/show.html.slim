@@ -32,12 +32,12 @@
             .votebox ng-switch="" on="status.voted"
               div ng-pluralize="" count="status.votes_count" when="{'one': '1 person liked this ', 'other': '{} people liked this '}"
 
-              div ng-switch-when="true"
-                ' you already like this
-              div ng-switch-when="false"
+              div ng-switch-when="0"
                 a.upvote.btn.btn-mini ng-click="upvoteStatus(status)" rel="tooltip" title="Your vote will give the status author experience points"
                   i.icon-ok
                   |  like
+              div ng-switch-default=""
+                ' you already like this
 
       .actions
         - if @user == current_user

@@ -11,4 +11,12 @@ describe VoterDecorator do
     # this also tests that the decorator will recalculate vote count
     status.votes_count.should == 1
   end
+
+  it "can tell if a user voted on a stauts" do
+    s = create(:status)
+    voter.upvote(s)
+
+    voter.voted?(s).should == true
+  end
+
 end

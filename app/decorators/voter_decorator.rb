@@ -5,6 +5,11 @@ class VoterDecorator < Draper::Base
     Vote.create(user: self.user, voteable: status, value: 1)
     status.calculate_votes
   end
+
+  def voted?(status)
+    status.votes.where(user_id: self.user.id).exists?
+  end
+
   # Accessing Helpers
   #   You can access any helper via a proxy
   #

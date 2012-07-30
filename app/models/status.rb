@@ -34,8 +34,17 @@ class Status < ActiveRecord::Base
       user_id: self.user.id,
       username: self.user.username,
       votes_count: self.votes_count,
-      voted: false
+      voted: "0"
     }
+
+    if options[:user]
+      voter = VoterDecorator.new(options[:user])
+      if voter.voted?(self)
+        data[:voted] = "1"
+      end
+    else
+      data[:voted] = self.voted
+    end
 
     return data
   end
