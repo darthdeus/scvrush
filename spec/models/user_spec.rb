@@ -184,4 +184,5 @@ describe User do
       user.achievements.size.should == 1
     end
   end
+
 end

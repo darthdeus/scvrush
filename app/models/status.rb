@@ -1,12 +1,19 @@
 class Status < ActiveRecord::Base
   belongs_to :user
+
   belongs_to :statusable, polymorphic: true
+  belongs_to :votable,    polymorphic: true
 
   attr_accessible :text, :statusable_id, :statusable_type
-  validates_presence_of :user_id
-  validates :text, presence: true, length: 6..200
+  validates :text,    presence: true, length: 6..200
+  validates :user_id, presence: true
 
   include ActionView::Helpers
+
+  # Returns the number of vote votes the given status has
+  def votes_count
+    Vote.where(voteable_id: self.id, voteable_type: self.class).count
+  end
 
   def as_json(options = {})
     posted_at = distance_of_time_in_words_to_now(self.created_at, true)
@@ -34,4 +41,5 @@ Signed up for a tournament #{tour.link_to_self}.
 STATUS
     status.save!
   end
+
 end

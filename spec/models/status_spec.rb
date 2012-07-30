@@ -13,5 +13,16 @@ describe Status do
       user.should have(1).status
     end
   end
-  
+
+  context "voting" do
+    it "can count it's votes" do
+      status = create(:status)
+      status.votes_count.should == 0
+
+      create(:vote, voteable: status)
+
+      status.reload
+      status.votes_count.should == 1
+    end
+  end
 end

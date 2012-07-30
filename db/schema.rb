@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120730175954) do
+ActiveRecord::Schema.define(:version => 20120730180817) do
 
   create_table "achievements", :force => true do |t|
     t.string   "name"
@@ -300,5 +300,14 @@ ActiveRecord::Schema.define(:version => 20120730175954) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
+
+  create_table "votes", :force => true do |t|
+    t.integer  "voteable_id",   :null => false
+    t.string   "voteable_type", :null => false
+    t.integer  "user_id",       :null => false
+    t.integer  "value",         :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
 
 end

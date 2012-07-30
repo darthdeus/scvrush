@@ -64,6 +64,7 @@ Spork.each_run do
   Dir["#{Rails.root}/app/helpers/**/*.rb"].each     { |helper|     load helper }
   Dir["#{Rails.root}/app/controllers/**/*.rb"].each { |controller| load controller }
   Dir["#{Rails.root}/app/models/**/*.rb"].each      { |model|      load model }
+  Dir["#{Rails.root}/app/decorators/**/*.rb"].each  { |model|      load model }
 
   # reload all factories
   FactoryGirl.factories.clear
