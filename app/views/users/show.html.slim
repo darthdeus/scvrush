@@ -29,14 +29,13 @@
                 a href="/users/{{status.user_id}}-{{status.username}}" {{status.username}}
               a.delete href="#" ng-click="deleteStatus(status)" delete
 
-            .votebox ng-switch="" on="status.votes_count"
-              div ng-switch-when="0"
-                ' be the first one to
-                a.upvote href="#" ng-click="upvoteStatus(status)" rel="tooltip" title="Your vote will give the status author experience points" upvote this
+            .votebox ng-switch="" on="status.voted"
+              span ng-pluralize="" count="status.votes_count" when="{'one': '1 person liked this ', 'other': '{} people liked this '}"
+              div ng-switch-when="true"
+                ' you already like this
 
-              div ng-switch-default=""
-                span ng-pluralize="" count="status.votes_count" when="{'one': '1 person upvoted this ', 'other': '{} people upvoted this '}"
-                a.upvote href="#" ng-click="upvoteStatus(status)" like
+              div ng-switch-false=""
+                a.upvote ng-click="upvoteStatus(status)" rel="tooltip" title="Your vote will give the status author experience points" like too
 
       .actions
         - if @user == current_user

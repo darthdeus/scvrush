@@ -42,7 +42,7 @@ gem 'rolify', '~> 2.2.2'
 gem 'party_boy',            '~> 0.3.4'
 
 gem 'acts-as-taggable-on',  '~> 2.1.0'
-gem 'activerecord-reputation-system', '~> 1.2.1'
+gem 'activerecord-reputation-system', '~> 1.2.1', require: 'reputation_system'
 
 gem 'rest-client',          '~> 1.6.7'
 gem 'gon',                  '~> 2.3.0'

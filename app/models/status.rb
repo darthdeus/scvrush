@@ -6,19 +6,29 @@ class Status < ActiveRecord::Base
   validates_presence_of :user_id
   validates :text, presence: true, length: 6..200
 
+  has_reputation :votes, source: :user, aggregated_by: :sum
+
   include ActionView::Helpers
 
   def as_json(options = {})
     posted_at = distance_of_time_in_words_to_now(self.created_at, true)
-    {
+    data = {
       id: self.id,
       text: self.text,
       posted_at: posted_at,
       user_id: self.user_id,
-      # votes_count: self.votes_for,
+      votes_count: self.votes,
       user_id: self.user.id,
-      username: self.user.username
+      username: self.user.username,
+      voted: false
     }
+
+    # TODO - check this
+    if options[:user] && options[:user].respond_to?(:voted_for?)
+      data[:voted] = options[:user].voted_for?(self)
+    end
+
+    return data
   end
 
   def self.create_for_signup(user, signup)

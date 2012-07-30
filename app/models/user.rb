@@ -35,7 +35,9 @@ class User < ActiveRecord::Base
 
   def timeline_statuses
     ids = Relationship.where(requestor_id: self.id).pluck(:requestee_id)
-    Status.where("user_id = ? OR user_id = ?", ids, self.id).order("created_at DESC")
+    conditions = ["user_id = ? OR user_id IN (?)", self.id, ids]
+    options = { conditions: conditions, order: "created_at DESC" }
+    statuses = Status.find_with_reputation(:votes, :all, options)
   end
 
   def statuses_from_followings
@@ -50,6 +52,13 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
   scope :practice, where(practice: true).order('created_at DESC')
+
+  # ActiveRecord reputation system
+  has_many :evaluations, class_name: "RSEvaluation", as: :source
+
+  def voted_for?(item)
+    self.evaluations.where(target_type: item.class, target_id: item.id).exists?
+  end
 
   def self.filtered(params)
     res = self
