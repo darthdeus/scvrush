@@ -25,7 +25,7 @@ class StatusesController < ApplicationController
 
   def upvote
     @user = User.find(params[:user_id])
-    @status = Status.find(params[:id])
+    @status = Status.find_with_reputation(:votes, :all, conditions: ["statuses.id = ?", params[:id]])
 
     # we don't care about multiple votes here
     @status.add_or_update_evaluation(:votes, 1, @user)

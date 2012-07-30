@@ -30,12 +30,14 @@
               a.delete href="#" ng-click="deleteStatus(status)" delete
 
             .votebox ng-switch="" on="status.voted"
-              span ng-pluralize="" count="status.votes_count" when="{'one': '1 person liked this ', 'other': '{} people liked this '}"
+              div ng-pluralize="" count="status.votes_count" when="{'one': '1 person liked this ', 'other': '{} people liked this '}"
+
               div ng-switch-when="true"
                 ' you already like this
-
-              div ng-switch-false=""
-                a.upvote ng-click="upvoteStatus(status)" rel="tooltip" title="Your vote will give the status author experience points" like too
+              div ng-switch-when="false"
+                a.upvote.btn.btn-mini ng-click="upvoteStatus(status)" rel="tooltip" title="Your vote will give the status author experience points"
+                  i.icon-ok
+                  |  like
 
       .actions
         - if @user == current_user
