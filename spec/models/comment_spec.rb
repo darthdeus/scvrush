@@ -21,19 +21,6 @@ describe Comment do
     @comment.should have_at_least(1).error_on(:content)
   end
 
-  context "votes" do
-    it "has no votes when created" do
-      create(:comment).votes_for == 0
-    end
-
-    it "has one vote for if someone voted" do
-      comment = create(:comment)
-      user = create(:user)
-      user.vote_for(comment)
-      comment.votes_for == 1
-    end
-  end
-
   describe "#author" do
     it "returns user's username if there is one" do
       comment = build(:comment)

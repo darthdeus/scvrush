@@ -5,6 +5,7 @@ class Status < ActiveRecord::Base
   belongs_to :votable,    polymorphic: true
 
   has_many :votes, foreign_key: "voteable_id", conditions: ["votes.voteable_type = 'Status'"]
+  # has_many :votes, source: :voteable
 
   attr_accessible :text, :statusable_id, :statusable_type
   validates :text,    presence: true, length: 6..200
