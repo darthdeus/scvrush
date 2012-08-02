@@ -237,7 +237,29 @@ describe Bracket do
       matches = Match.order(:id)
 
       matches[1].should be_completed
-      bracket.current_match_for(p2).should == matches[2]
+      bracket.current_match_for(players[1]).should == matches[2]
+    end
+  end
+
+  context "result reset" do
+    it "should delete the user from all followup matches when he's deleted from a match" do
+      pending
+
+      User.destroy_all
+      Match.destroy_all
+
+      bracket, players = seeded_with(8)
+
+      bracket.create_bracket_rounds
+      bracket.create_matches
+      bracket.linear_seed
+
+      bracket.set_score_for(players[0], "1:0")
+      bracket.set_score_for(players[2], "1:0")
+      bracket.set_score_for(players[0], "1:0")
+
+      binding.pry
+
     end
   end
 

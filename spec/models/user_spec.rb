@@ -64,12 +64,6 @@ describe User do
     end
   end
 
-  describe "points" do
-    it "has no points when created" do
-      build(:user).karma.should eq(0)
-    end
-  end
-
   it "doesn't blow up when I call #send_password_reset" do
     @user = create(:user)
     lambda { @user.send_password_reset }.should_not raise_error

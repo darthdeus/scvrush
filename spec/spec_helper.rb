@@ -40,19 +40,19 @@ Spork.prefork do
     config.include MailerMacros
     config.include AuthMacros
 
-    config.before(:each) { reset_email }
+    # config.before(:each) { reset_email }
 
-    config.before(:suite) do
-      DatabaseCleaner.strategy = :truncation
-    end
+    # config.before(:suite) do
+    #   DatabaseCleaner.strategy = :truncation
+    # end
 
-    config.before(:each) do
-      DatabaseCleaner.start
-    end
+    # config.before(:each) do
+    #   DatabaseCleaner.start
+    # end
 
-    config.after(:each) do
-      DatabaseCleaner.clean
-    end
+    # config.after(:each) do
+    #   DatabaseCleaner.clean
+    # end
   end
 end
 
