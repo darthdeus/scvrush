@@ -36,4 +36,19 @@ describe Round do
     ro4.child.should  == ro2
   end
 
+  describe "next match" do
+
+    it "can tell what the next round is" do
+      ro4 = create(:round)
+      ro2 = create(:round, parent: ro4)
+      ro4.next.should == ro2
+    end
+
+    it "returns nil if there isn't one" do
+      ro4 = create(:round)
+      ro4.next.should be_nil
+    end
+
+  end
+
 end

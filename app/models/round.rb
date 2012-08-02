@@ -27,6 +27,11 @@ class Round < ActiveRecord::Base
     hash
   end
 
+  # Next round for the current round
+  def next
+    Round.where(parent_id: self.id).first
+  end
+
   def is_first?
     self.tournament.rounds.first == self
   end
