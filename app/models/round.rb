@@ -32,6 +32,10 @@ class Round < ActiveRecord::Base
     Round.where(parent_id: self.id).first
   end
 
+  def match_with_seed(seed)
+    self.matches.order(:id).where(seed: seed).first
+  end
+
   def is_first?
     self.tournament.rounds.first == self
   end

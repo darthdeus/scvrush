@@ -94,4 +94,16 @@ describe Match do
     end
   end
 
+  describe "next" do
+    it "can tell what the next match is" do
+      ro4 = create(:round)
+      2.times { ro4.matches << create(:match) }
+
+      ro2 = create(:round, parent: ro4)
+      last_match = create(:match)
+      ro2.matches << last_match
+
+      ro4.matches.first.next.should == last_match
+    end
+  end
 end

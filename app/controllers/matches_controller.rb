@@ -51,7 +51,6 @@ class MatchesController < ApplicationController
 
     @match.score = params[:match][:score]
 
-
     if @match.save
       if !@match.player1_id? && !@match.player2_id?
         @match.score = nil

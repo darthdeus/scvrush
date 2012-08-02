@@ -30,6 +30,7 @@ class Match < ActiveRecord::Base
 
   before_save :check_if_completed
 
+  # Sets score for a given user
   def set_score_for(user, score)
     if user.id == player1_id
       self.score = score
@@ -38,6 +39,7 @@ class Match < ActiveRecord::Base
     end
   end
 
+  # Checkes if the match was completed
   def check_if_completed
     if (!player1 && !player2) || (self.round.is_first? && !self.player2)
       self.completed = true
@@ -51,6 +53,7 @@ class Match < ActiveRecord::Base
     !!(!self.winner && self.player1 && self.player2)
   end
 
+  # Returns the winner for a given match
   def winner
     return nil unless self.score.present?
 
@@ -63,6 +66,7 @@ class Match < ActiveRecord::Base
     end
   end
 
+  # Set score for a given player in the match
   def score_for(player)
     return nil if self.score.nil? || player.nil?
 
@@ -75,12 +79,26 @@ class Match < ActiveRecord::Base
     end
   end
 
+  def unset_score(bracket)
+    self.score = nil
+    binding.pry
+  end
+
+  # Returns the opponent for a given user
   def opponent_for(user)
     self.player1_id == user.id ? self.player2 : self.player1
   end
 
+  # Checkes if a given user lost the match
   def loser?(user)
     !self.winner.nil? && (self.winner.id != user.id)
+  end
+
+  # Return the next following match in the next round
+  # or nil if there is no followup match
+  def next
+    next_round = self.round.next
+    next_round ? next_round.match_with_seed(self.seed / 2) : nil
   end
 
 end

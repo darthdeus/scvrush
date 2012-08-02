@@ -117,18 +117,22 @@ MAPS
     end
   end
 
+  def next_match(round, seed)
+    round.matches.order(:id).where(seed: seed / 2).first
+  end
+
   # Seed the given player to a next round after he won his match
   #
   # Returns the winner if there was one, otherwise nil
   def seed_next_match_with(user, match)
-    next_round = self.next_round_for(match.round)
+    next_round = match.round.next
 
     if next_round.number == 1
       self.mark_winner(user)
       return user
     end
 
-    next_match = next_round.matches.order(:id).where(seed: match.seed / 2).first
+    next_match = self.next_match(next_round, match.seed)
 
     if match.seed % 2 == 0
       next_match.player1 = user
