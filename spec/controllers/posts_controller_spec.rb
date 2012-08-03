@@ -1,15 +1,6 @@
 require 'spec_helper'
 
 describe PostsController do
-  describe "GET index" do
-    it "loads only published posts" do
-      post  = create(:post, status: Post::PUBLISHED)
-      draft = create(:post, status: Post::DRAFT)
-
-      get :index
-      assigns[:posts].should == [post]
-    end
-  end
 
   describe "GET 'new'" do
     it "requires login" do

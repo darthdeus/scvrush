@@ -63,13 +63,13 @@ Spork.each_run do
   # TODO - check if controllers and helpers are reloaded
 
   # reload all factories
-  FactoryGirl.factories.clear
-  Dir["#{::Rails.root}/spec/factories/**/*.rb"].each { |file| load file }
+  # FactoryGirl.factories.clear
+  # Dir["#{::Rails.root}/spec/factories/**/*.rb"].each { |file| load file }
 
-  Dir["#{Rails.root}/app/helpers/**/*.rb"].each     { |helper|     load helper }
-  Dir["#{Rails.root}/app/controllers/**/*.rb"].each { |controller| load controller }
-  Dir["#{Rails.root}/app/models/**/*.rb"].each      { |model|      load model }
-  Dir["#{Rails.root}/app/decorators/**/*.rb"].each  { |model|      load model }
+  # Dir["#{Rails.root}/app/helpers/**/*.rb"].each     { |helper|     load helper }
+  # Dir["#{Rails.root}/app/controllers/**/*.rb"].each { |controller| load controller }
+  # Dir["#{Rails.root}/app/models/**/*.rb"].each      { |model|      load model }
+  # Dir["#{Rails.root}/app/decorators/**/*.rb"].each  { |model|      load model }
 
   Scvrush::Application.reload_routes!
 end

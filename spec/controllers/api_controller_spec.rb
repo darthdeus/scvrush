@@ -19,6 +19,7 @@ describe ApiController do
 
   describe "GET 'check'" do
     it "returns unauthorized for no params" do
+      pending
       get :check, format: 'json'
       response.status.should == 401
     end
@@ -30,7 +31,7 @@ describe ApiController do
     end
 
     it "returns 401 for non-existing API key" do
-      get :check, format: 'json', api_key: 'foobar'
+      get :check, format: 'json', api_key: 'thereisnokeylikethisyo'
       response.status.should == 401
     end
 
