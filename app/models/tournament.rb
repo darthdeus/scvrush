@@ -21,7 +21,7 @@ class Tournament < ActiveRecord::Base
     :rules, :map_info, :bo_preset, :map_preset
 
   scope :recent, order('starts_at DESC').limit(5)
-  scope :upcoming, lambda { where("starts_at > ?", Time.now).order(:starts_at) }
+  scope :upcoming, lambda { where("starts_at > ? AND tournament_type <> 'User'", Time.now).order(:starts_at) }
 
   def registered_players
     self.signups.includes(:user).all.select { |signup|
