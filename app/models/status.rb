@@ -44,7 +44,7 @@ class Status < ActiveRecord::Base
         data[:voted] = "1"
       end
     else
-      data[:voted] = self.voted
+      data[:voted] = "0"
     end
 
     return data
