@@ -4,6 +4,6 @@
 # Implement a fixture file upload
 FactoryGirl.define do
   factory :image do
-    image "image.png"
+    image { File.new(Rails.root + "spec/fixtures/logo.png") }
   end
 end

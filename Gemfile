@@ -72,15 +72,7 @@ group :test do
   gem 'launchy',            '~> 2.1.0'
   gem 'cucumber-rails',     require: false
 
-  group :darwin do
-    gem 'rb-fsevent',       require: false
-    gem 'rb-inotify',       require: false
-    gem 'rb-fchange',       require: false
-  end
   gem 'spork', '> 0.9.0.rc'
-  gem 'guard-rspec',        require: false
-  gem 'guard-spork',        require: false
-  gem 'guard-cucumber'
 end
 
 gem 'unicorn',        '~> 4.3.1'

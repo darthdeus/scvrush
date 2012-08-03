@@ -42,17 +42,17 @@ Spork.prefork do
 
     # config.before(:each) { reset_email }
 
-    # config.before(:suite) do
-    #   DatabaseCleaner.strategy = :truncation
-    # end
+    config.before(:suite) do
+      DatabaseCleaner.strategy = :transaction
+    end
 
-    # config.before(:each) do
-    #   DatabaseCleaner.start
-    # end
+    config.before(:each) do
+      DatabaseCleaner.start
+    end
 
-    # config.after(:each) do
-    #   DatabaseCleaner.clean
-    # end
+    config.after(:each) do
+      DatabaseCleaner.clean
+    end
   end
 
   require 'factory_girl_rails'
