@@ -98,14 +98,44 @@ describe Match do
 
   describe "next" do
     it "can tell what the next match is" do
+      User.delete_all
       ro4 = create(:round)
-      2.times { ro4.matches << create(:match) }
+      2.times { |i| create(:match, round: ro4, seed: i) }
 
       ro2 = create(:round, parent: ro4)
-      last_match = create(:match)
-      ro2.matches << last_match
+      last_match = create(:match, round: ro2, seed: 0)
 
       ro4.matches.first.next.should == last_match
     end
+  end
+
+  describe "unset_score" do
+    it "unsets score from the followup matches" do
+      m = stub(:match1, next: nil)
+      m2 = create(:match)
+      m2.stub(:next) { m }
+
+      m.should_receive(:unset_score)
+      m2.unset_score
+    end
+  end
+
+  describe "unset player" do
+
+    it "unsets a given player from the match" do
+      m = build(:match)
+      m.unset_player(m.player1)
+      m.player1.should == nil
+
+      m.unset_player(m.player2)
+      m.player2.should == nil
+    end
+
+    it "raisees an exception if the given player isn't in the match" do
+      expect {
+        build(:match).unset_player(build(:user))
+      }.to raise_error(Match::UnknownPlayer)
+    end
+
   end
 end

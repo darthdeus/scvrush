@@ -3,6 +3,7 @@ require 'spec_helper'
 describe ApiController do
 
   describe "GET 'auth'" do
+
     it "returns unauthorized for no params" do
       get :auth, format: 'json'
       response.status.should == 401

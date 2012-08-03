@@ -63,6 +63,10 @@ MAPS
     end
   end
 
+  def matches
+    self.tournament.matches
+  end
+
   def create_matches
     # We start from the highest round, e.g. Ro8, Ro4, Ro2
     # TODO - don't create Ro1 match

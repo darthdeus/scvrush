@@ -58,6 +58,10 @@ class MatchesController < ApplicationController
       end
 
       bracket = Bracket.new(@match.round.tournament)
+
+      if !@match.winner.present?
+        @match.unset_score
+      end
       bracket.seed_next_match_with(@match.winner, @match)
 
       redirect_to @match.round.tournament, notice: "Match results were updated"

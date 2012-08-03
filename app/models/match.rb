@@ -10,7 +10,10 @@ class ScoreValidator < ActiveModel::EachValidator
   end
 end
 
+
 class Match < ActiveRecord::Base
+  class UnknownPlayer < Exception; end
+
   has_many :games, dependent: :destroy
   belongs_to :round
 
@@ -79,9 +82,25 @@ class Match < ActiveRecord::Base
     end
   end
 
-  def unset_score(bracket)
+  # Unset the given player from the match
+  def unset_player(player)
+    if self.player1 == player
+      self.player1 = nil
+    elsif self.player2 == player
+      self.player2 = nil
+    elsif player.present?
+      raise UnknownPlayer.new("Can't unset a player who isn't playing this match")
+    end
+  end
+
+  # Unset the match score and propagate to the following match
+  # to unset the winner
+  def unset_score(player = nil)
+    self.unset_player(player)
+    winner = self.winner
     self.score = nil
-    binding.pry
+    self.save
+    self.next.unset_score(winner) if self.next
   end
 
   # Returns the opponent for a given user

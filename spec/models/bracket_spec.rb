@@ -2,6 +2,24 @@ require "spec_helper"
 
 describe Bracket do
 
+  before(:each) do
+    [User, Match].each(&:delete_all)
+  end
+
+  def seeded_with(num)
+    t = create(:tournament)
+    bracket = Bracket.new(t)
+
+    players = num.times.inject([]) { |all, index| all << create(:user) }
+    players.each do |p|
+      t.users << p
+      p.check_in(t)
+    end
+
+    return [bracket, players]
+  end
+
+
   let(:bracket) { Bracket.new([]) }
 
   describe "seed size" do
@@ -226,9 +244,9 @@ describe Bracket do
       bracket.create_matches
       bracket.linear_seed
 
-      matches = Match.order(:id)
+      matches = bracket.matches.order(:id)
 
-      matches[0].should be_completed
+      matches[1].should be_completed
       bracket.current_match_for(players[1]).should == matches[2]
     end
   end
