@@ -25,7 +25,7 @@ gem 'draper',             '~> 0.14.0'
 # gem 'ruby-prof',          '~> 0.11.2'
 
 gem 'fog',                '~> 1.3.0'
-gem 'carrierwave', github: 'darthdeus/carrierwave', ref: "be594ea"
+gem 'carrierwave',        '~> 0.6.2'
 gem 'mini_magick',        '~> 3.4'
 gem 'airbrake',           '~> 3.0.9'
 
@@ -56,7 +56,7 @@ group :development, :test do
   gem 'pry-rails',  '~> 0.1.6'
   gem 'pry-nav',    '~> 0.2.1'
 
-  gem 'rack-mini-profiler', '~> 0.1.6'
+  gem 'rack-mini-profiler', '~> 0.1.9'
 
   gem 'populator',          '~> 1.0.0'
   gem 'faker',              '~> 1.0.1'
@@ -65,16 +65,20 @@ end
 group :test do
   gem 'database_cleaner',   '~> 0.7.2'
   gem 'simplecov',          '~> 0.6.1'
-  gem 'rspec-rails',        '~> 2.9.0'
+  gem 'rspec-rails',        '~> 2.11.0'
   gem 'capybara',           '~> 1.1.2'
-  gem 'capybara-webkit',    '~> 0.11.0'
+  gem 'capybara-webkit',    '~> 0.12.0'
   gem 'factory_girl_rails', '~> 1.7.0'
-  gem 'launchy',            '~> 2.1.0'
-  gem 'cucumber-rails',     require: false
+  gem 'launchy',            '~> 2.1.1'
+  # gem 'cucumber-rails',   require: false
 
-  gem 'spork', '> 0.9.0.rc'
+  # TODO - WUT?
+  # gem 'spork', '~> 1.0.0rc3'
+  gem 'spork-rails',        '~> 3.2.0'
+  # TODO MORE FIX IMPORTANT NOTE spork-rails
+
 end
 
 gem 'unicorn',        '~> 4.3.1'
-gem 'capistrano',     '~> 2.11.2'
-gem 'rvm-capistrano', '~> 1.0.2'
+gem 'capistrano',     '~> 2.12.0'
+gem 'rvm-capistrano', '~> 1.2.5'
