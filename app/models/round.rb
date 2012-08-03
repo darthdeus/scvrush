@@ -4,6 +4,8 @@ class Round < ActiveRecord::Base
 
   validates_presence_of :number, :tournament
 
+  belongs_to :parent, class_name: "Round", foreign_key: "parent_id"
+  has_one    :child, class_name: "Round", foreign_key: "parent_id"
   has_many :matches, dependent: :destroy, order: "id"
 
   def to_simple_json
@@ -32,6 +34,7 @@ class Round < ActiveRecord::Base
     Round.where(parent_id: self.id).first
   end
 
+  # Return a match with given seed
   def match_with_seed(seed)
     self.matches.order(:id).where(seed: seed).first
   end
@@ -40,6 +43,4 @@ class Round < ActiveRecord::Base
     self.tournament.rounds.first == self
   end
 
-  belongs_to :parent, class_name: "Round", foreign_key: "parent_id"
-  has_one    :child, class_name: "Round", foreign_key: "parent_id"
 end
