@@ -188,6 +188,7 @@ MAPS
   # Return the current match for a given user. It should always be
   # the match with the lowers round number where the player is present.
   def current_match_for(user)
+    tournament.reload
     matches = tournament.matches.to_a
     user_matches = matches.select { |m| m.player1_id == user.id || m.player2_id == user.id }
     user_matches.sort { |m1, m2| m1.round.number <=> m2.round.number }.first
@@ -240,14 +241,5 @@ MAPS
   def seeds
     [128, 64, 32, 16, 8, 4, 2, 1]
   end
-
-#   def seed
-#     number = self.players.size
-#
-#     self.rounds.create!(number: number)
-#     # self.players.each_slice(2) do |players|
-#     #
-#     # end
-#   end
 
 end
