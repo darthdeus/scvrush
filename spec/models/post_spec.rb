@@ -19,10 +19,10 @@ describe Post do
 
   it "should delete all dependent comments" do
     p = create(:post)
-    create(:comment, post: p)
-    p.destroy
-
-    Comment.all.size.should == 0
+    expect {
+      create(:comment, post: p)
+      p.destroy
+    }.not_to change { Comment.count }
   end
 
   it 'has a parameterized name' do

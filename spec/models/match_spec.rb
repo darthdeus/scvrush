@@ -2,6 +2,8 @@ require "spec_helper"
 
 describe Match do
 
+  before { User.delete_all }
+
   it "has a valid factory" do
     build(:match).should be_valid
   end
@@ -47,7 +49,7 @@ describe Match do
 
     it "sets score in proper order" do
       p1, p2 = create(:user), create(:user)
-      m = build(:match, player1_id: p1, player2_id: p2)
+      m = build(:match, player1_id: p1.id, player2_id: p2.id)
       m.set_score_for(p1, "1:3")
       m.score.should == "1:3"
 
@@ -57,7 +59,7 @@ describe Match do
 
     it "returns score for each player properly" do
       p1, p2 = create(:user), create(:user)
-      m = build(:match, player1_id: p1, player2_id: p2)
+      m = build(:match, player1_id: p1.id, player2_id: p2.id)
       m.set_score_for(p1, "1:3")
 
       m.score_for(:player1).should == 1

@@ -54,21 +54,22 @@ Spork.prefork do
     #   DatabaseCleaner.clean
     # end
   end
+
+  require 'factory_girl_rails'
+
 end
 
 Spork.each_run do
   # TODO - check if controllers and helpers are reloaded
 
-  require 'factory_girl_rails'
+  # reload all factories
+  FactoryGirl.factories.clear
+  Dir["#{::Rails.root}/spec/factories/**/*.rb"].each { |file| load file }
 
   Dir["#{Rails.root}/app/helpers/**/*.rb"].each     { |helper|     load helper }
   Dir["#{Rails.root}/app/controllers/**/*.rb"].each { |controller| load controller }
   Dir["#{Rails.root}/app/models/**/*.rb"].each      { |model|      load model }
   Dir["#{Rails.root}/app/decorators/**/*.rb"].each  { |model|      load model }
-
-  # reload all factories
-  FactoryGirl.factories.clear
-  Dir["#{::Rails.root}/spec/factories/**/*.rb"].each { |file| load file }
 
   Scvrush::Application.reload_routes!
 end

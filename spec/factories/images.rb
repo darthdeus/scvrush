@@ -4,6 +4,6 @@
 # Implement a fixture file upload
 FactoryGirl.define do
   factory :image do
-    image "MyString"
+    image "image.png"
   end
 end

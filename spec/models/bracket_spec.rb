@@ -220,15 +220,7 @@ describe Bracket do
 
   context "walkover" do
     it "automatically seeds the player to the next match if he has no opponent" do
-      Match.delete_all
-      Round.delete_all
-      User.delete_all
-
-      t = create(:tournament)
-      bracket = Bracket.new(t)
-      p1, p2, p3 = *3.times.inject([]) { |v,i| v << create(:user) }
-      t.users << p1 << p2 << p3
-      [p1, p2, p3].each { |u| u.check_in(t) }
+      bracket, players = seeded_with(3)
 
       bracket.create_bracket_rounds
       bracket.create_matches
@@ -236,7 +228,7 @@ describe Bracket do
 
       matches = Match.order(:id)
 
-      matches[1].should be_completed
+      matches[0].should be_completed
       bracket.current_match_for(players[1]).should == matches[2]
     end
   end

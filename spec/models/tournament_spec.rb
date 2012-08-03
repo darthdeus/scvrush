@@ -15,12 +15,12 @@ describe Tournament do
     end
 
     it "deletes all dependent signups when destroyed" do
+      User.delete_all
       t = create(:tournament)
-      create(:signup, :tournament => t)
-      create(:signup, :tournament => t)
-
-      t.destroy
-      Signup.all.size.should == 0
+      expect {
+        2.times { create(:signup, tournament: t) }
+        t.destroy
+      }.not_to change{ Signup.count }
     end
 
     it 'has a post' do
@@ -31,19 +31,6 @@ describe Tournament do
     it 'has a parameterized name' do
       tournament = build(:tournament, :name => 'foo')
       tournament.to_param.should == "#{tournament.id}-#{tournament.name}"
-    end
-  end
-
-  describe :upcoming do
-    it "it returns two upcoming tournaments, not last two" do
-      Tournament.destroy_all
-
-      t1 = create(:tournament, starts_at: 1.hour.from_now)
-      t2 = create(:tournament, starts_at: 2.hour.from_now)
-      t3 = create(:tournament, starts_at: 3.hour.from_now)
-      t4 = create(:tournament, starts_at: 4.hour.from_now)
-
-      Tournament.upcoming.should == [t1, t2]
     end
   end
 
