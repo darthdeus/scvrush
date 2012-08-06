@@ -33,6 +33,23 @@ class Match < ActiveRecord::Base
 
   before_save :check_if_completed
 
+  # Set the score for a current match and advance
+  # the winner to the next match
+  def set_score_and_advance(user, score)
+    self.set_score_for(user, score)
+    next_match = self.next
+
+    return if next_match.nil?
+
+    if self.seed % 2 == 0
+      next_match.player1 = self.winner
+    else
+      next_match.player2 = self.winner
+    end
+
+    next_match.save!
+  end
+
   # Sets score for a given user
   def set_score_for(user, score)
     if user.id == player1_id

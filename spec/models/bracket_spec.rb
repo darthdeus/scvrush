@@ -253,8 +253,6 @@ describe Bracket do
 
   context "result reset" do
     it "should delete the user from all followup matches when he's deleted from a match" do
-      pending
-
       User.destroy_all
       Match.destroy_all
 
@@ -268,8 +266,12 @@ describe Bracket do
       bracket.set_score_for(players[2], "1:0")
       bracket.set_score_for(players[0], "1:0")
 
-      binding.pry
 
+      matches = bracket.matches
+
+      m = matches.first
+      m.unset_score
+      m.next.player1.should == nil
     end
   end
 

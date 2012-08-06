@@ -64,7 +64,7 @@ MAPS
   end
 
   def matches
-    self.tournament.matches
+    self.tournament.matches.order(:id)
   end
 
   def create_matches
@@ -166,10 +166,10 @@ MAPS
       raise AlreadySubmitted
     end
 
-    match.set_score_for(user, score)
+    match.set_score_and_advance(user, score)
     match.save!
 
-    self.seed_next_match_with(match.winner, match)
+    # self.seed_next_match_with(match.winner, match)
   end
 
   # Return next round number for a given number, e.g. 2 for 4

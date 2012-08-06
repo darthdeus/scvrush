@@ -3,7 +3,7 @@ class Tournament < ActiveRecord::Base
   has_many :users, through: :signups
 
   has_many :rounds, order: "number DESC", dependent: :destroy
-  has_many :matches, through: :rounds
+  has_many :matches, through: :rounds, order: "id"
 
   belongs_to :post
   belongs_to :winner, class_name: 'User', foreign_key: 'winner_id'
