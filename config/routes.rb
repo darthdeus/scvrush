@@ -43,6 +43,7 @@ Scvrush::Application.routes.draw do
   resources :votes, only: [:create, :destroy]
   resources :tournaments, only: [:new, :create, :index, :show, :edit, :update] do
     member do
+      get :matches
       post :seed
       post :unseed
     end

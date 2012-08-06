@@ -102,4 +102,9 @@ class TournamentsController < ApplicationController
     redirect_to tournament
   end
 
+  def matches
+    @tournament = TournamentDecorator.find(params[:id])
+    @matches = @tournament.matches.where("score IS NOT NULL")
+  end
+
 end

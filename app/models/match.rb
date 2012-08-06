@@ -125,6 +125,13 @@ class Match < ActiveRecord::Base
     self.player1_id == user.id ? self.player2 : self.player1
   end
 
+  # Return the player who lost the match,
+  # or nil if the match isn't over yet
+  def loser
+    return nil if self.winner.nil?
+    self.opponent_for(self.winner)
+  end
+
   # Checkes if a given user lost the match
   def loser?(user)
     !self.winner.nil? && (self.winner.id != user.id)
