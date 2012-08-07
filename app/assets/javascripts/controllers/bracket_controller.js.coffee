@@ -3,7 +3,9 @@ class @BracketController
   constructor: ($scope, Tournament) ->
     $scope.rounds = Tournament.get ->
       setTimeout ->
-        $('.bracket').applyDimensions(window.dimensions)
+        bracket = $('.bracket')
+        if _.isFunction(bracket["applyDimensions"])
+          bracket?.applyDimensions(window.dimensions)
       , 300
 
     $scope.inputResult = (match) ->
