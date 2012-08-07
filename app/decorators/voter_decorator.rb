@@ -1,7 +1,9 @@
 class VoterDecorator < Draper::Base
   decorates :user
 
+  # Upvote on a given status only if didn't upvote before
   def upvote(status)
+    return if voted?(status)
     Vote.create(user: self.user, voteable: status, value: 1)
     status.calculate_votes
   end

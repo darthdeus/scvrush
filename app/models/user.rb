@@ -40,11 +40,11 @@ class User < ActiveRecord::Base
   # SELECT s.*, COALESCE(u.id, 0) as voted FROM statuses s
   # LEFT JOIN votes v ON v.voteable_id = s.id AND v.voteable_type = 'Status'
   # LEFT JOIN users u ON v.user_id = u.id AND u.id = 1
-  def timeline_statuses
+  def timeline_statuses(viewer)
     ids = Relationship.where(requestor_id: self.id).pluck(:requestee_id)
     statuses = Status.select("statuses. *, COALESCE(u.id, 0) as voted")
     statuses = statuses.joins("LEFT JOIN votes v ON v.voteable_id = statuses.id AND v.voteable_type = 'Status'")
-    statuses = statuses.joins("LEFT JOIN users u ON v.user_id = u.id AND u.id = #{self.id}")
+    statuses = statuses.joins("LEFT JOIN users u ON v.user_id = u.id AND u.id = #{viewer.id}")
     statuses = statuses.where("statuses.user_id = ? OR statuses.user_id IN (?)", self.id, ids)
     statuses.order("created_at DESC")
   end
