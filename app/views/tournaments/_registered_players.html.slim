@@ -11,8 +11,9 @@
     '  players,
     strong #{@tournament.protoss_count} Protoss
     '  players, and
-    strong #{@tournament.random_count} people who can't decide
-    |  what race to play.
+    strong
+      = "#{@tournament.random_count} people who can't decide"
+      |  what race to play.
   // TODO - add a simple AngularJS search for given players
   /*.row*/
   /*  input type="text" placeholder="Search here ..."*/

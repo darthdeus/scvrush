@@ -30,6 +30,9 @@ jQuery(function($) {
     });
   }
 
+  if gon?.highlight_id
+    $(".player_#{gon.highlight_id}").effect("highlight", {}, 5000)
+
   // TODO
   // IMPORTANT !!!
   //

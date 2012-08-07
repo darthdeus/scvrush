@@ -10,6 +10,7 @@ class SignupsController < ApplicationController
     else
       flash[:success] = "You can't register for a given tournament"
     end
+    gon.highlight_id = current_user.id
     redirect_to tournament_path(@tournament)
   end
 
