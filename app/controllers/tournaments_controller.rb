@@ -14,6 +14,7 @@ class TournamentsController < ApplicationController
 
   def create
     @tournament = Tournament.new(params[:tournament])
+    @tournament.tournament_type = Tournament.types[:user]
     if @tournament.save
       redirect_to @tournament, notice: "You've successfuly created a tournament."
     else

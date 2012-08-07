@@ -23,6 +23,18 @@ class Tournament < ActiveRecord::Base
   scope :recent, order('starts_at DESC').limit(5)
   scope :upcoming, lambda { where("starts_at > ? AND tournament_type <> 'User'", Time.now).order(:starts_at) }
 
+  def self.types
+    {
+      eu_bsg:      "EU_BSG",
+      eu_pd:       "EU_PD",
+      na_bsg:      "NA_BSG",
+      na_pd:       "NA_PD",
+      eu_masters:  "EU_Masters",
+      user:        "User",
+      bronze_week: "Bronze_Week"
+    }
+  end
+
   def registered_players
     self.signups.includes(:user).all.select { |signup|
       [0,1].include?(signup.status) }.map(&:user)

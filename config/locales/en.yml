@@ -32,6 +32,15 @@ en:
 
       In BO3 rounds, the loser picks from the pool. Maps don't repeat, winner can veto one map.
 
+    map_preset_default: |
+      MLG Antiga Shipyard
+      MLG Cloud Kingdom
+      GSL Daybreak
+
+      ESV Korhal Compound TE
+      GSL Metropolis
+      ESV Ohana LE
+
     map_preset: |
       Specify maps for each round, starting from the first round. Rounds are separated by a blank line. e.g
 

@@ -21,7 +21,7 @@
           = render "statuses/form"
 
         .statuses ng-repeat="status in statuses" ng-cloak=""
-          .status
+          .status class="status_{{status.id}}"
             .text ng-bind-html-unsafe="status.text"
             .meta
               .date  {{status.posted_at}} ago
