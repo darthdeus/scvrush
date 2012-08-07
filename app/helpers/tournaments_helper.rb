@@ -37,6 +37,13 @@ module TournamentsHelper
     end
   end
 
+  # Button to start a tournament right now
+  def start_tournament_button
+    link_to("Start now",
+      start_tournament_path(@tournament),
+      method: :post, class: "btn btn-mini")
+  end
+
 #   def checkin_button(tour)
 #     # action_params = { controller: :signups, action: :create, id: tour.id }
 #     # button_to action_params, method: :post, class: 'btn' do

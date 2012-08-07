@@ -107,4 +107,18 @@ class TournamentsController < ApplicationController
     @matches = @tournament.matches.where("score IS NOT NULL")
   end
 
+  def start
+    authorize! :start, Tournament
+
+    @tournament = Tournament.find(params[:id])
+    if @tournament.started?
+      flash[:error] = "Tournament was already started."
+    else
+      @tournament.start
+      flash[:success] = "Tournament was started."
+    end
+
+    redirect_to @tournament
+  end
+
 end

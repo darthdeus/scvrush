@@ -28,6 +28,11 @@ class Tournament < ActiveRecord::Base
       [0,1].include?(signup.status) }.map(&:user)
   end
 
+  def start
+    self.starts_at = Time.now
+    self.save!
+  end
+
   # TODO - rewrite this to a scope.
   #
   # It should also be possible to do something like

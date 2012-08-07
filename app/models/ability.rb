@@ -29,7 +29,8 @@ class Ability
     if user.has_role? :tournament_admin
       can :manage, Match
       can :manage, Round
-      can :seed, Tournament
+      can :seed,  Tournament
+      can :start, Tournament
     end
 
     if user.has_role? :admin
