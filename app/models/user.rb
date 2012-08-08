@@ -23,6 +23,8 @@ class User < ActiveRecord::Base
   has_many :raffle_signups
   has_many :raffles, through: :raffle_signups
 
+  has_many :notifications, order: "created_at DESC"
+
   attr_accessible :username, :email, :password, :password_confirmation,
                   :password_reset_token, :avatar, :race, :league, :server,
                   :favorite_player, :skype, :display_skype, :msn,
