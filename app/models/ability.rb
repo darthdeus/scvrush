@@ -26,6 +26,23 @@ class Ability
     # See the wiki for details: https://github.com/ryanb/cancan/wiki/Defining-Abilities
     user ||= User.new # guest user (not logged in)
 
+    can :read, :all
+    can :create, Comment
+    can :update, Comment do |comment|
+      # NOTE - could be nil
+      comment.user_id == user.id
+    end
+
+    if user.has_role? :writer
+      can :create, Post
+      can :manage, Post do |post|
+        post.try(:user) == user
+      end
+    end
+
+    can(:manage, Tournament) { |t| t.try(:user) == user }
+    can(:seed,   Tournament) { |t| t.try(:user) == user }
+    can(:start,  Tournament) { |t| t.try(:user) == user }
 
     if user.has_role? :tournament_admin
       can :manage, Match
@@ -33,31 +50,11 @@ class Ability
       can :manage, Tournament
       can :seed,   Tournament
       can :start,  Tournament
-    else
-      can :manage, :tournaments, user_id: user.id
-      can :seed,   :tournaments, user_id: user.id
-      can :start,  :tournaments, user_id: user.id
     end
 
     if user.has_role? :admin
       can :manage, :all
       can :publish, Post
-    else
-      can :read, :all
-      can :create, Comment
-      can :update, Comment do |comment|
-        # NOTE - could be nil
-        comment.try(:user) == user
-      end
-
-      if user.has_role? :writer
-        can :create, Post
-        can :manage, Post do |post|
-          post.try(:user) == user
-        end
-      end
-
-      # if user.has_role? :raffle_admin
     end
 
   end

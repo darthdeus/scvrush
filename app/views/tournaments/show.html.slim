@@ -5,10 +5,10 @@
 .tournament ng-app="scvrush"
   header
     .admin-buttons
-      - if can? :seed, Tournament
+      - if can? :seed, @tournament
         = link_to "Seed", seed_tournament_path(@tournament), method: :post, class: "btn btn-mini"
         = link_to "Destroy seed", unseed_tournament_path(@tournament), method: :post, class: "btn btn-mini"
-      - if can?(:start, Tournament) && !@tournament.started?
+      - if can?(:start, @tournament) && !@tournament.started?
         = start_tournament_button
 
     h1 = @tournament.name
