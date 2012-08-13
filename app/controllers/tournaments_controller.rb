@@ -1,6 +1,5 @@
 class TournamentsController < ApplicationController
-  before_filter :require_login, only: [ :new, :create, :seed, :unseed, :start ]
-  before_filter :require_writer, only: [:edit, :update]
+  before_filter :require_login, only: [ :new, :create, :seed, :unseed, :start, :edit, :update ]
 
   layout "single"
 
@@ -59,20 +58,25 @@ class TournamentsController < ApplicationController
 
   def edit
     @tournament = Tournament.find(params[:id])
+    authorize! :edit, @tournament
   end
 
   def update
     @tournament = Tournament.find(params[:id])
-    @winner = @tournament.users.find(params[:tournament][:winner])
-    @tournament.set_winner(@winner)
+    authorize! :update, @tournament
 
-    flash[:notice] = "Tournament winner was set successfuly"
-    redirect_to controller: :dashboard, action: :index
+    # TODO - protect from setting the type here
+    if @tournament.update_attributes(params[:tournament])
+      flash[:notice] = "Tournament winner was set successfuly"
+      redirect_to edit_tournament_path(@tournament)
+    else
+      render :edit
+    end
   end
 
   def seed
-    authorize! :seed, Tournament
     tournament = TournamentDecorator.find(params[:id])
+    authorize! :seed, tournament
 
     bracket = Bracket.new(tournament)
     bracket.create_bracket_rounds
@@ -89,9 +93,9 @@ class TournamentsController < ApplicationController
   end
 
   def unseed
-    authorize! :seed, Tournament
-
     tournament = TournamentDecorator.find(params[:id])
+    authorize! :seed, tournament
+
     tournament.seeded = false
     tournament.winner = nil
     tournament.rounds.destroy_all
@@ -111,9 +115,9 @@ class TournamentsController < ApplicationController
   end
 
   def start
-    authorize! :start, Tournament
-
     @tournament = Tournament.find(params[:id])
+    authorize! :start, @tournament
+
     if @tournament.started?
       flash[:error] = "Tournament was already started."
     else

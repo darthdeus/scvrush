@@ -25,4 +25,37 @@ describe TournamentsController do
 
   end
 
+  context "editing a tournament" do
+    context "as a tournament admin" do
+      let(:tournament) { create(:tournament, user: create(:user)) }
+      before { login :tournament_admin }
+
+      it "can edit any tournament" do
+        get :edit, id: tournament.id
+        response.should be_ok
+      end
+
+      it "can update any tournament" do
+        put :update, id: tournament.id, tournament: {}
+        response.should redirect_to(edit_tournament_path(tournament))
+      end
+
+      it "can seed any tournament" do
+        post :seed, id: tournament.id
+        response.should redirect_to(tournament)
+      end
+
+      it "can unseed any tournament" do
+        post :unseed, id: tournament.id
+        response.should be_ok
+      end
+
+      it "can can start a tournament" do
+        post :start, id: tournament.id
+        response.should redirect_to(tournament)
+      end
+
+    end
+  end
+
 end
