@@ -1,6 +1,7 @@
 class TournamentsController < ApplicationController
-  # TODO - change to admin
-  before_filter :require_writer, only: [:edit, :update, :create, :new]
+  before_filter :require_login, only: [ :new, :create, :seed, :unseed, :start ]
+  before_filter :require_writer, only: [:edit, :update]
+
   layout "single"
 
   def index
@@ -15,6 +16,7 @@ class TournamentsController < ApplicationController
   def create
     @tournament = Tournament.new(params[:tournament])
     @tournament.tournament_type = Tournament.types[:user]
+    @tournament.user = current_user
     if @tournament.save
       redirect_to @tournament, notice: "You've successfuly created a tournament."
     else

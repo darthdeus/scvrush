@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120808110725) do
+ActiveRecord::Schema.define(:version => 20120813091050) do
 
   create_table "achievements", :force => true do |t|
     t.string   "name"
@@ -263,6 +263,7 @@ ActiveRecord::Schema.define(:version => 20120808110725) do
     t.text     "map_info"
     t.string   "bo_preset"
     t.text     "map_preset"
+    t.integer  "user_id"
   end
 
   add_index "tournaments", ["post_id"], :name => "index_tournaments_on_post_id"
