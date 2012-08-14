@@ -53,3 +53,8 @@ en:
       If you want your players to veto from the entire mappack, type the message (e.g. "veto from the map pool") and copy+paste it as if you were setting maps - see the [example](http://i.imgur.com/EaG6v.png) (it's a tournament with 6 rounds, so the message is pasted 6 times)
 
       You can set the maps manually after you generate the bracket (click on the name of the round).
+
+    starts_at: |
+      The starting date and time is in the UTC timezone
+
+      [Convert your timezone to UTC here](http://www.thetimezoneconverter.com/)

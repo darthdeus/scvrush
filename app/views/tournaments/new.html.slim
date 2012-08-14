@@ -20,7 +20,7 @@ h1 Create a new user tournament
 = simple_form_for @tournament, class: "well" do |f|
 
   = f.input :name
-  = f.input :starts_at, input_html: { class: "span2" }
+  = f.input :starts_at, input_html: { class: "span2" }, hint: m(I18n.t("tournament.starts_at"))
 
   = f.input :admins
   / TODO - this defaults to User
