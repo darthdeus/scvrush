@@ -26,6 +26,8 @@ h1 Create a new user tournament
   / TODO - this defaults to User
   / = f.input :tournament_type, collection: Tournament::TYPES
 
+  = f.input :visible, label: "Check if the tournament is public"
+  = f.input :channel, label: "Chat channel"
 
   .row
     .span3
@@ -39,19 +41,7 @@ h1 Create a new user tournament
     .span6
       = text_area_tag "tournament[map_preset]", I18n.t("tournament.map_preset_default"), style: "width: 450px; height: 300px; display: inline-block"
     .span4
-      p.help-inline
-        ' Specify maps for each round, starting from the first round.
-        ' Rounds are separated by a blank line.
-
-      p.help-inline
-        ' The maps are in order from the first round of the tournament.
-        ' If there are more rounds then you specify, the following rounds
-        ' will be left blank and you can specify the map pool once
-        ' the tournament starts.
-      p.help-inline
-        ' The default setup will set maps for the first two rounds.
-        ' If you have Ro8, Ro4 and Ro2, you will have to set maps for Ro2
-        ' by hand.
+      .help_inline = m(I18n.t("tournament.map_preset"))
 
   .row
     .span3

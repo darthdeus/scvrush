@@ -48,13 +48,8 @@ en:
       ESV Ohana LE
 
     map_preset: |
-      Specify maps for each round, starting from the first round. Rounds are separated by a blank line. e.g
+      Set one or multiple maps for each of your rounds, separate the rounds with a blank line (hit Enter two times).
 
-      - MLG Antiga Shipyard
-      - MLG Cloud Kingdom
-      - GSL Daybreak
+      If you want your players to veto from the entire mappack, type the message (e.g. "veto from the map pool") and copy+paste it as if you were setting maps - see the [example](http://i.imgur.com/EaG6v.png) (it's a tournament with 6 rounds, so the message is pasted 6 times)
 
-      - ESV Korhal Compound TE
-      - GSL Metropolis
-      - ESV Ohana LE
-
+      You can set the maps manually after you generate the bracket (click on the name of the round).
