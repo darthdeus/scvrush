@@ -63,7 +63,7 @@ class UsersController < ApplicationController
   def unfollow
     @user = User.find(params[:id])
     current_user.unfollow @user
-    redirect_to @user, notice: "You are not ollowing #{@user.username} anymore."
+    redirect_to @user, notice: "You are not following #{@user.username} anymore."
   end
 
 end

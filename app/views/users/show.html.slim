@@ -6,9 +6,11 @@
     .span9
       h1
         = @user.username
-        = " (#{@user.bnet_info})"
+        - if @user.bnet_info.present?
+          = " (#{@user.bnet_info})"
 
-        .pull-right = render partial: "follow_box"
+        - if @user != current_user
+          .pull-right = render partial: "follow_box"
 
       .alert.alert-notice
         h1 The user profiles are under construction
@@ -22,7 +24,7 @@
 
         .statuses ng-repeat="status in statuses" ng-cloak=""
           .status class="status_{{status.id}}"
-            .text ng-bind-html-unsafe="status.text"
+            .text {{status.text}}
             .meta
               .author
                 a href="/users/{{status.user_id}}-{{status.username}}" {{status.username}}
