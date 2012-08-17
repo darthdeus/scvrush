@@ -13,7 +13,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
-    "https://s3.amazonaws.com/scvrush/uploads/post/featured_image/thumb_100x100_dark.png"
+    "https://s3.amazonaws.com/scvrush/uploads/post/featured_image/100x100_dark.png"
   end
 
   # Create different versions of your uploaded files:
