@@ -56,8 +56,14 @@ class UsersController < ApplicationController
 
   def follow
     @user = User.find(params[:id])
-    current_user.follow @user
-    redirect_to @user, notice: "You are now following #{@user.username}."
+    if @user == current_user
+      flash[:error] =  "You can't follow yourself."
+    else
+      flash[:notice] = "You are now following #{@user.username}."
+      current_user.follow @user
+    end
+
+    redirect_to @user
   end
 
   def unfollow
