@@ -11,7 +11,7 @@ class StatusesController < ApplicationController
   def create
     @status = current_user.statuses.create(params[:status])
     Rails.logger.error @status
-    Rails.logger.error @status.errors
+    Rails.logger.error @status.errors.inspect
     respond_with @status, location: nil
   end
 
