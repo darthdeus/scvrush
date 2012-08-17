@@ -8,7 +8,7 @@ class Status < ActiveRecord::Base
   # has_many :votes, source: :voteable
 
   attr_accessible :text, :statusable_id, :statusable_type
-  validates :text,    presence: true, length: 6..200
+  validates :text,    presence: true, length: 1..200
   validates :user_id, presence: true
 
   include ActionView::Helpers
