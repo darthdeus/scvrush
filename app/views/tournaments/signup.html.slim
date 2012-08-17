@@ -4,6 +4,9 @@
 
 .tournament ng-app="scvrush"
   header
+    .admin-buttons
+      - if can?(:start, @tournament) && !@tournament.started?
+        = start_tournament_button
     h1
       = @tournament.name
       span.help-inline style="font-size: 14px;" The tournament starts in #{@tournament.start_at}
