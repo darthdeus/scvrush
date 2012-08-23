@@ -86,8 +86,9 @@ Scvrush::Application.routes.draw do
 
   resources :users do
     member do
-      post :follow
-      delete :unfollow
+      post    :follow
+      delete  :unfollow
+      get     :info
     end
     resources :statuses do
       member do

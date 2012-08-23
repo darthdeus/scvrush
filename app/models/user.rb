@@ -240,6 +240,15 @@ class User < ActiveRecord::Base
     self.save!
   end
 
+  # Users are friends if they are following eachother
+  def friends
+    self.followers & self.followings.map(&:requestor)
+  end
+
+  def friend?(user)
+    self.following?(user) && user.following?(self)
+  end
+
 end
 
 # TODO - move this some place else!

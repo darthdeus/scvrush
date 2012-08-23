@@ -3,11 +3,33 @@
     .span3
       = render partial: "info"
 
+      .practice-info
+        - if @user == current_user
+
+          h3 Practice Buddy
+
+          - if @user.practice
+            p You are part of the #{link_to "practice buddy program", practice_path}, which means other users are able to see your battle.net information to be able to contact you for practice purposes.
+
+            p The program is completely voluntary and you can leave at any time. You can also come back at any time, no hard feelings.
+
+            = quit_practice_buddy_button
+
+          - else
+            p You can become the part of our #{link_to "practice buddy program", practice_path} and connect with other users for practice purposes.
+
+            = join_practice_buddy_button
     .span9
       h1
         = @user.username
         - if @user.bnet_info != "."
           = " (#{@user.bnet_info})"
+
+        - if @user.race.present?
+          = race_icon(@user.race)
+
+        - if @user.league.present?
+          = league_icon(@user.league)
 
         - if @user != current_user
           .pull-right = render partial: "follow_box"
@@ -32,18 +54,8 @@
               a.delete href="#" ng-click="deleteStatus(status)" delete
 
             .votebox ng-switch="" on="status.voted"
-              div ng-pluralize="" count="status.votes_count" when="{'one': '1 person liked this ', 'other': '{} people liked this '}"
+              span ng-pluralize="" count="status.votes_count" when="{'one': '1 person liked this ', 'other': '{} people liked this '}"
 
-              div ng-switch-when="0"
-                a.upvote.btn.btn-mini ng-click="upvoteStatus(status)" rel="tooltip" title="Your vote will give the status author experience points"
-                  i.icon-ok
-                  |  like
+              button.upvote.btn.btn-mini ng-click="upvoteStatus(status)" rel="tooltip" ng-switch-when="0"
+                |  like
               div ng-switch-default=""
-                ' you already like this
-
-      .actions
-        - if @user == current_user
-          - if @user.practice
-            = quit_practice_buddy_button
-          - else
-            = join_practice_buddy_button

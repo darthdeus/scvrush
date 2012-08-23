@@ -5,9 +5,8 @@
   div
     = link_to "change avatar", new_avatar_path
 
-
 dl
-  = info_for_user(@user, %w{race league server favorite_player}, %w{email skype msn})
+  = info_for_user(@user, %w{server favorite_player}, %w{email skype msn})
 
   = @user.twitter_link
 

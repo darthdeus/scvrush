@@ -179,4 +179,18 @@ describe User do
     end
   end
 
+  describe "friendship" do
+
+    it "means two users are friends if they are following each other" do
+      u1 = create(:user)
+      u2 = create(:user)
+
+      u1.follow u2
+      u2.follow u1
+
+      u1.should be_friend(u2)
+    end
+
+  end
+
 end

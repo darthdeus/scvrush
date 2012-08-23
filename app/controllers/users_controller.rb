@@ -72,4 +72,15 @@ class UsersController < ApplicationController
     redirect_to @user, notice: "You are not following #{@user.username} anymore."
   end
 
+  # API for chat
+  def info
+    user = User.find_by_username(params[:id])
+    if user
+      info = UserInfoDecorator.new(user)
+      render json: info.as_json
+    else
+      render json: { error: 404 }, status: 404
+    end
+  end
+
 end
