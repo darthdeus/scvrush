@@ -60,20 +60,6 @@
           p
             = link_to "Sign up", @tournament, class: "btn btn-mini btn-success"
 
-    - else
-
-      h2.underline Next tournament
-
-      .row
-        .span3
-          = link_to image_tag("http://i.imgur.com/riA7t.jpg"), "http://www.twitch.tv/bellenoir"
-
-        .span5
-          markdown:
-            What started more than a year ago as an ordinary Protoss player’s stream, turned into a private club of SC2 enthusiasts, good-humored players, and funny trolls. And then the streamer decided to give back to his wonderful viewership, by organising an action-packed tournament for them.
-
-            Get ready for a marathon that is the double elimination 16 slot bracket, this Saturday 4th August at 14:00 CEST on [the Bellenoir's stream](http://www.twitch.tv/bellenoir). Want a piece of the action? Head to the [Facebook page](http://www.facebook.com/bellenoirtv) (events tab)!
-
     - if @scene_post
       h2.underline Scene news
       .row
