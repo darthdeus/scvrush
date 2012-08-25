@@ -5,12 +5,6 @@
   div
     = link_to "change avatar", new_avatar_path
 
-dl
-  = info_for_user(@user, %w{server favorite_player}, %w{email skype msn})
-
-  = @user.twitter_link
-
-p
   - if @user == current_user
     = link_to 'edit your profile', edit_user_path(current_user)
 
