@@ -66,7 +66,7 @@ module UsersHelper
       # else raise ArgumentError, "Invalid race"
     end
 
-    image_tag image, class: "user_league_icon"
+    image_tag image, class: "user_league_icon" if image
   end
 
 end
