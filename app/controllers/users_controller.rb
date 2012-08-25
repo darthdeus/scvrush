@@ -20,17 +20,13 @@ class UsersController < ApplicationController
   end
 
   def show
-    # @user = User.where("id = ? OR username = ?", params[:id],
-    # params[:id]).includes(comments: :post)
-    # @user = User.find_by_username_or_id(params[:id])
-
-    # id = params[:id]
-
-    # TODO - add search by username
-    user = User.includes(comments: :post).find(params[:id])
+    # TODO - add search by username, for example, but still need
+    # to decide if redirect isn't better
     # user = User.where("id = ? OR username = ?", id, id).includes(comments: :post).first
+    user = User.includes(comments: :post).find(params[:id])
 
     @user = UserDecorator.new(user)
+    @followers = UserDecorator.decorate(@user.followers)
     gon.user_id = params[:id]
 
     if @user.model.nil?

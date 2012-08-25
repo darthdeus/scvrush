@@ -2,11 +2,11 @@ class UserDecorator < Draper::Base
   decorates :user
 
   def avatar_img
-    # if user.avatar
-    #   user.avatar.url(:thumb)
-    # else
+    if user.avatar
+      user.avatar.url(:thumb)
+    else
       "http://placehold.it/50"
-    # end
+    end
   end
 
   # Link to the user's twitter

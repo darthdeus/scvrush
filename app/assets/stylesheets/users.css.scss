@@ -3,6 +3,13 @@
     @include box-shadow(0 0 3px #666);
   }
 
+  .user-info {
+    h3 {
+      border-bottom: 1px solid #ededed;
+      margin: 20px 0 5px 0;
+    }
+  }
+
   .practice-info {
     margin-top: 35px;
   }
@@ -20,7 +27,7 @@
   .statuses {
     .status {
       padding: 10px;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid #ededed;
       overflow: hidden;
 
       @include transition (background 0.2s ease-in-out);
