@@ -10,56 +10,7 @@
       .nav-collapse.pull-right
         ul.nav
           li = link_to "Home", root_path
-          li.dropdown
-            a href="#" class="dropdown-toggle" data-toggle="dropdown"
-              | Events
-              b class="caret"
-
-            ul.dropdown-menu
-              li = link_to "Bronze/Silver/Gold", tag_path("bsg")
-              li = link_to "Plat/Dia", tag_path("plat-dia")
-              li = link_to "Masters Brawl", tag_path("masters-brawl")
-              li = link_to "Open tournaments", tag_path("open")
-              li.divider
-              li = link_to "Current bracket", post_path(9511)
-
-          li.dropdown
-            a href="#" class="dropdown-toggle" data-toggle="dropdown"
-              | Articles
-              b class="caret"
-            ul.dropdown-menu
-              li.dropdown
-                = link_to tag_path("protoss") do
-                  | Protoss
-                  span.submenu-arrow
-                ul.dropdown-menu
-                  li = link_to "Build Orders", tag_path("protoss,build")
-                  li = link_to "Strategy",     tag_path("protoss,strategy")
-                  li = link_to "Units",        tag_path("protoss,units")
-
-              li.dropdown
-                = link_to tag_path("zerg") do
-                  | Zerg
-                  span.submenu-arrow
-                ul.dropdown-menu
-                  li = link_to "Build Orders", tag_path("zerg,build")
-                  li = link_to "Strategy",     tag_path("zerg,strategy")
-                  li = link_to "Units",        tag_path("zerg,units")
-
-              li.dropdown
-                = link_to tag_path("terran") do
-                  | Terran
-                  span.submenu-arrow
-                ul.dropdown-menu
-                  li = link_to "Build Orders", tag_path("terran,build")
-                  li = link_to "Strategy",     tag_path("terran,strategy")
-                  li = link_to "Units",        tag_path("terran,units")
-
-              li = link_to "Game Diary",            tag_path("game-diary")
-              li = link_to "General Tactics",       tag_path("general-tactics")
-              li = link_to "Video Replay Analysis", tag_path("analysis")
-              li = link_to "Zerg - Not Even Once",  tag_path("zerg-show")
-              li = link_to "Battle Report",         tag_path("battle-report")
+          li = link_to "Events", tournaments_path
 
           li = link_to "Staff", page_path('staff')
           li.dropdown
