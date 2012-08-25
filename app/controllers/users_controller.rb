@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :require_login, only: [:edit, :update, :follow, :unfollow]
+  before_filter :load_user, only: [:show, :follow, :unfollow, :info, :friends]
 
   def index
     redirect_to new_user_path
@@ -20,12 +21,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    # TODO - add search by username, for example, but still need
-    # to decide if redirect isn't better
-    # user = User.where("id = ? OR username = ?", id, id).includes(comments: :post).first
-    user = User.includes(comments: :post).find(params[:id])
-
-    @user = UserDecorator.new(user)
+    @user = UserDecorator.new(@user)
     @followers = UserDecorator.decorate(@user.followers)
     gon.user_id = params[:id]
 
@@ -51,7 +47,6 @@ class UsersController < ApplicationController
   end
 
   def follow
-    @user = User.find(params[:id])
     if @user == current_user
       flash[:error] =  "You can't follow yourself."
     else
@@ -63,7 +58,6 @@ class UsersController < ApplicationController
   end
 
   def unfollow
-    @user = User.find(params[:id])
     current_user.unfollow @user
     redirect_to @user, notice: "You are not following #{@user.username} anymore."
   end
@@ -76,6 +70,25 @@ class UsersController < ApplicationController
       render json: info.as_json
     else
       render json: { error: 404 }, status: 404
+    end
+  end
+
+  def friends
+    if @user
+      render json: { friends: @user.friends.map(&:username) }
+    else
+      render json: { error: 404 }, status: 404
+    end
+  end
+
+  protected
+
+  def load_user
+    id = params[:id]
+    if id =~ /\d+(-.+)?/
+      @user = User.includes(comments: :post).find(id)
+    else
+      @user = User.includes(comments: :post).find_by_username(id)
     end
   end
 

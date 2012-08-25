@@ -1,10 +1,14 @@
 class StatusesController < ApplicationController
 
   before_filter :require_login, except: [:index]
+
   respond_to :json
 
   def index
-    @user = User.find(params[:user_id])
+    u = User.includes(comments: :post)
+    id = params[:user_id]
+    @user = id =~ /\d+(-.+)?/ ? u.find(id) : u.find_by_username(id)
+
     respond_with @user.timeline_statuses(current_user).as_json(user: current_user)
   end
 

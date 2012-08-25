@@ -16,8 +16,6 @@ Scvrush::Application.routes.draw do
   get "api/login"
   get "api/check"
 
-  match "/api/friends/:username" => "api#friends"
-
   resources :roles
   resources :pages, only: :show
 
@@ -88,7 +86,9 @@ Scvrush::Application.routes.draw do
       post    :follow
       delete  :unfollow
       get     :info
+      get     :friends
     end
+
     resources :statuses do
       member do
         post :upvote
