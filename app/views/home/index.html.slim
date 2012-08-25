@@ -51,7 +51,10 @@
   .span9.news-block
 
     - if @tournament.tournament
-      h2.underline Next tournament
+      h2.underline
+        | Next tournament
+        span starts in #{@tournament.start_at}
+
       .row
         .span3
           = @tournament.link_with_image
