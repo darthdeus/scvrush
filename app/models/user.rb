@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
     ids = Relationship.where(requestor_id: self.id).pluck(:requestee_id)
     statuses = Status.select("statuses. *, COALESCE(u.id, 0) as voted")
     statuses = statuses.joins("LEFT JOIN votes v ON v.voteable_id = statuses.id AND v.voteable_type = 'Status'")
-    statuses = statuses.joins("LEFT JOIN users u ON v.user_id = u.id AND u.id = #{(viewer && viewer.id) || nil}")
+    statuses = statuses.joins("LEFT JOIN users u ON v.user_id = u.id AND u.id = #{(viewer && viewer.id) || "NULL"}")
     statuses = statuses.where("statuses.user_id = ? OR statuses.user_id IN (?)", self.id, ids)
     statuses.order("created_at DESC")
   end
