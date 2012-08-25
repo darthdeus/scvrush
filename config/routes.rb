@@ -12,11 +12,11 @@ Scvrush::Application.routes.draw do
     root to: "home#index"
   end
 
-  # scope constraints: { protocol: 'https' } do
-    get "api/auth"
-    get "api/login"
-    get "api/check"
-  # end
+  get "api/auth"
+  get "api/login"
+  get "api/check"
+
+  match "/api/friends/:username" => "api#friends"
 
   resources :roles
   resources :pages, only: :show
@@ -24,7 +24,6 @@ Scvrush::Application.routes.draw do
   # TODO - make this post
   get "practice/join"
   get "practice/quit"
-  # TODO - write this as a single line match
   match "/practice" => "practice#index", via: :get
 
   resources :reply_votes

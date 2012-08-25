@@ -40,4 +40,13 @@ class ApiController < ApplicationController
       end
     end
   end
+
+  def friends
+    user = User.find_by_username(params[:username])
+    if user
+      render json: { friends: user.friends.map(&:username) }
+    else
+      render json: { error: 404 }, status: 404
+    end
+  end
 end
