@@ -49,7 +49,7 @@ module UsersHelper
       when "Terran"  then image_tag("race_terran_icon.png")
       when "Random"  then image_tag("race_random_icon.png")
 
-      else raise ArgumentError, "Invalid race"
+      # else raise ArgumentError, "Invalid race"
     end
   end
 
@@ -63,7 +63,7 @@ module UsersHelper
       when "Diamond"  then "league_diamond_icon.png"
       when "Masters"  then "league_masters_icon.png"
 
-      else raise ArgumentError, "Invalid race"
+      # else raise ArgumentError, "Invalid race"
     end
 
     image_tag image, class: "user_league_icon"
