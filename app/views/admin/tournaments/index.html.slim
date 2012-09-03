@@ -1,11 +1,11 @@
 = content_for :subnav do
   li= link_to "Add new", new_admin_tournament_path
 
-section.data-table
+section.data-table-client
   header
     h1 Tournaments
 
-  table.table.table-bordered.table-striped.data-table
+  table.table.table-bordered.table-striped
     thead
       tr
         th Title
@@ -16,4 +16,6 @@ section.data-table
         tr
           td = tournament.name
           td = tournament.starts_at.to_s
-          td = get_action_buttons(tournament)
+          td
+            = get_action_buttons(tournament)
+            = link_to "signups", admin_tournament_signups_path(tournament), class: "btn btn-mini"

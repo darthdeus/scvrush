@@ -17,6 +17,10 @@ $(function() {
     sAjaxSource: $('#users').data('source')
   });
 
+  $('.data-table-client table').dataTable({
+    sPaginationType: 'bootstrap'
+  });
+
   $('.admin-form select').chosen();
 
 });

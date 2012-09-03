@@ -1,0 +1,25 @@
+section.data-table-client
+  header
+    h1 Signups for tournament #{@tournament.name}
+
+  table.table.table-bordered
+    thead
+      tr
+        th User
+        th Actions
+    tbody
+
+      - @signups.each do |signup|
+        tr class="#{"checked" if signup.checked?}"
+          td = signup.user.bnet_info
+          td
+            = link_to admin_tournament_signup_path(@tournament, signup), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-mini" do
+              | Delete signup
+
+            - if signup.checked?
+              = link_to admin_tournament_signup_path(@tournament, signup, checkin: false), method: :put, class: "btn btn-mini btn-danger" do
+                | Cancel checkin
+            - else
+              = link_to admin_tournament_signup_path(@tournament, signup, checkin: true), method: :put, class: "btn btn-mini btn-success" do
+                | Check in
+

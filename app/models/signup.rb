@@ -22,6 +22,10 @@ class Signup < ActiveRecord::Base
     instance = new(user: user, tournament: tournament)
   end
 
+  def checked?
+    self.status == CHECKED
+  end
+
   # Set the signup status and save
   #
   # Returns true if the signup was successful, otherwise false.
@@ -36,6 +40,11 @@ class Signup < ActiveRecord::Base
 
   def checkin!
     self.status = CHECKED
+    self.save!
+  end
+
+  def cancel_checkin
+    self.status = REGISTERED
     self.save!
   end
 end

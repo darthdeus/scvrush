@@ -1,7 +1,11 @@
 Scvrush::Application.routes.draw do
 
+  get "signups/index"
+
   namespace :admin do
-    resources :tournaments
+    resources :tournaments do
+      resources :signups
+    end
     resources :posts
     resources :coaches
     resources :blog_posts

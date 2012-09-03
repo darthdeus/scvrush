@@ -46,14 +46,14 @@ module ApplicationHelper
     end
 
     # Return CRUD action buttons
-    def get_action_buttons(model)
+    def get_action_buttons(*model)
       content_tag :div do
-        content =  link_to edit_polymorphic_path([:admin, model]) do
+        content =  link_to edit_polymorphic_path([:admin, *model]) do
           bootstrap_icon('icon-edit', 'edit')
         end
 
         icon = bootstrap_icon('icon-remove', 'delete')
-        delete_link = link_to(polymorphic_path([:admin, model]), method: :delete,
+        delete_link = link_to(polymorphic_path([:admin, *model]), method: :delete,
          data: { confirm: "Are you sure?" }) { icon }
 
         content << delete_link
