@@ -440,6 +440,31 @@ li.stream {
   border-bottom: 1px solid #aaa;
 }
 
+.tourwin {
+  position: absolute;
+  top: -120px;
+  left: 590px;
+}
+
+.tournament-name {
+  font-size: 22px;
+  padding: 16px 10px 12px;
+  line-height: 47px;
+  width: 450px;
+  margin-bottom: 15px;
+}
+
+.tournament-descriptions {
+  .span4 {
+    width: 280px;
+  }
+
+  textarea {
+    width: 250px;
+    height: 360px;
+  }
+}
+
 @import "posts";
 @import "progress_bar";
 @import "users";

@@ -1,6 +1,6 @@
 h1 Create a new user tournament
 
-.row
+.row style="position: relative"
   .span6
     p
       ' You can create any number of tournaments you want
@@ -16,24 +16,27 @@ h1 Create a new user tournament
       ' If you have any questions or feedback, contact
       = mail_to "jakub@scvrush.com"
 
+  = image_tag "tourwin.png", class: "tourwin"
 
 = simple_form_for @tournament, class: "well" do |f|
 
-  = f.input :name
+  = f.text_field :name, placeholder: "Tournament name", class: "tournament-name"
   = f.input :starts_at, input_html: { class: "span2" }, hint: m(I18n.t("tournament.starts_at"))
 
-  = f.input :admins
-  / TODO - this defaults to User
-  / = f.input :tournament_type, collection: Tournament::TYPES
-
-  = f.input :visible, label: "Check if the tournament is public"
-  = f.input :channel, label: "Chat channel"
-
+  / = f.input :admins
   .row
     .span3
-      = f.input :bo_preset
-    .span4
-      .help_inline = m(I18n.t("tournament.bo_preset"))
+      = f.label :admins
+      = f.text_field :admins
+
+    .span3
+      = f.label :channel, "Chat channel"
+      = f.text_field :channel
+
+    .span3
+      = f.label :visible, class: "checkbox" do
+        = f.check_box :visible
+        | Check if the tournament is public
 
 
   h2 Map preset - read instructions carefuly
@@ -43,15 +46,22 @@ h1 Create a new user tournament
     .span4
       .help_inline = m(I18n.t("tournament.map_preset"))
 
+  .row.tournament-descriptions
+    .span4
+      = f.input :description
+    .span4
+      = f.label :rules
+      = text_area_tag "tournament[rules]", @tournament.rules || I18n.t("tournament.rules")
+    .span4
+      = f.label :map_info
+      = text_area_tag "tournament[map_info]", @tournament.map_info || I18n.t("tournament.map_info")
+
   .row
     .span3
-      = f.input :description
-    .span3
-      = f.label :rules
-      = text_area_tag "tournament[rules]", @tournament.rules || I18n.t("tournament.rules"), rows: 20
-    .span3
-      = f.label :map_info
-      = text_area_tag "tournament[map_info]", @tournament.map_info || I18n.t("tournament.map_info"), rows: 20
+      = f.input :bo_preset
+    .span4
+      .help_inline = m(I18n.t("tournament.bo_preset"))
 
   button.btn.btn-primary type="submit" Create tournament!
+
 
