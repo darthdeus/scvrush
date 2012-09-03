@@ -51,8 +51,23 @@
   .span4
     = render partial: "recent_race_post", object: @protoss_post, as: :post, locals: { race: "protoss" }
 
+
 .row
   .span9.news-block
+
+    h2.underline Poker Strategy League, Week 3 - Grubby vs Lucifron
+
+    .row
+      .span3
+        = image_tag "LvG.png"
+      .span5
+        markdown:
+          * Starts at **Monday, September 3rd, 4pm BST
+          * [SCV Rush Live Commentary](http://twitch.tv/scvrush1)
+          * [Grubby's Stream](http://www.twitch.tv/followgrubby)
+          * [Lucifron's stream](http://www.twitch.tv/lucifron7)
+
+
 
     - if @tournament.tournament
       h2.underline
