@@ -13,7 +13,7 @@ module Admin
 
             [
               tournament.name,
-              tournament.starts_at,
+              tournament.starts_at.to_s,
               tournament.action_buttons
             ]
           end
