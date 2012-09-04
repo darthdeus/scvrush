@@ -4,4 +4,4 @@
 #= require ./underscore
 #= require ./backbone
 #= require ./bootstrap
-#= require ./chosen
+#= require ./select2

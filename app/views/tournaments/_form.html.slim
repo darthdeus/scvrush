@@ -24,8 +24,8 @@
   / = f.input :admins
   .row
     .span3
-      = f.label :admins
-      = f.text_field :admins
+      = f.label :admin_names
+      = f.select :admin_names, User.with_bnet_info, {}, multiple: true, class: "chosen"
 
     .span3
       = f.label :channel, "Chat channel"

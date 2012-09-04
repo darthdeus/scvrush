@@ -64,8 +64,17 @@ class TournamentDecorator < Draper::Base
   end
 
   def action_buttons
-    h.get_action_buttons(tournament) +
-    h.link_to("signups", h.admin_tournament_signups_path(tournament), class: "btn btn-mini")
+    h.content_tag :div, class: "btn-group" do
+      edit_icon = h.bootstrap_icon('icon-edit', 'edit')
+      content = h.link_to edit_icon, h.edit_polymorphic_path([:admin, tournament]), class: "btn btn-mini"
+
+      icon = h.bootstrap_icon('icon-remove', 'delete')
+      content << h.link_to(h.polymorphic_path([:admin, tournament]), method: :delete, class: "btn btn-mini", data: { confirm: "Are you sure?" }) { icon }
+      content << h.link_to("signups", h.admin_tournament_signups_path(tournament),    class: "btn btn-mini", style: "height: 15px;")
+      content << h.link_to("admins", h.admins_admin_tournament_path(tournament),      class: "btn btn-mini", style: "height: 15px;")
+
+      content.html_safe
+    end
   end
 
 end

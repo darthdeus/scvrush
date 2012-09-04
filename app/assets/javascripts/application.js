@@ -19,7 +19,9 @@ jQuery(function($) {
     $('[rel=tooltip]').tooltip();
   }, 1000);
 
-  $('.chosen').select2();
+  $('.chosen').select2({
+    width: "element"
+  });
 
   $('input[type=text]:first').focus();
 

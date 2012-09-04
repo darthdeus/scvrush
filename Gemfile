@@ -37,7 +37,7 @@ gem 'memcache-client',    '~> 1.8.5'
 
 # Role management
 gem 'cancan', '~> 1.6.7'
-gem 'rolify', '~> 2.2.2'
+gem 'rolify', '~> 3.2.0'
 
 gem 'party_boy',            '~> 0.3.4'
 

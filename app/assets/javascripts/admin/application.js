@@ -21,6 +21,6 @@ $(function() {
     sPaginationType: 'bootstrap'
   });
 
-  $('.admin-form select').chosen();
+  $('.admin-form select').select2();
 
 });

@@ -19,10 +19,25 @@ class Tournament < ActiveRecord::Base
 
   # TODO - remove this so users can't create official tournaments
   attr_accessible :name, :starts_at, :tournament_type, :description, :admins,
-    :rules, :map_info, :bo_preset, :map_preset, :visible, :channel
+    :rules, :map_info, :bo_preset, :map_preset, :visible, :channel, :admin_names
 
   scope :recent, order('starts_at DESC').limit(5)
   scope :upcoming, lambda { where("starts_at > ? AND tournament_type <> 'User'", Time.now).order(:starts_at) }
+
+  def admin_names
+    User.with_role(:tournament_admin, self)
+  end
+
+  def admin_names=(names)
+    admin_names.each do |user|
+      user.revoke :tournament_admin, self
+    end
+
+    names.each do |username|
+      user = User.find_by_username(username)
+      user.grant :tournament_admin, self if user
+    end
+  end
 
   def self.types
     {

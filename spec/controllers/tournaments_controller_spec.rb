@@ -27,7 +27,7 @@ describe TournamentsController do
 
   context "editing a tournament" do
     context "as a tournament admin" do
-      let(:tournament) { create(:tournament, user: create(:user)) }
+      let(:tournament) { create(:tournament, user: create(:user), starts_at: 1.minute.ago) }
       before { login :tournament_admin }
 
       it "can edit any tournament" do
@@ -47,7 +47,8 @@ describe TournamentsController do
 
       it "can unseed any tournament" do
         post :unseed, id: tournament.id
-        response.should be_ok
+        flash[:error].should be_nil
+        response.should redirect_to(tournament)
       end
 
       it "can can start a tournament" do

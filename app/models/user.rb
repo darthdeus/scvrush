@@ -1,7 +1,10 @@
 class User < ActiveRecord::Base
-  include Rolify::Roles
+  rolify
+  # include Rolify::Roles
   # TODO - what is this? how does it differ from Rolify::Roles?
   # extend Rolify::Dynamic
+
+  scope :with_bnet_info, where("bnet_username IS NOT NULL AND bnet_code IS NOT NULL")
 
   has_and_belongs_to_many :roles, join_table: :users_roles
 
