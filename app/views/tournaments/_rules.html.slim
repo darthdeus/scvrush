@@ -18,5 +18,5 @@
   .accordion-group
     .accordion-heading
       .accordion-toggle
-        strong = @tournament.admins
+        strong = @tournament.admin_names.map(&:bnet_info).join(", ")
 

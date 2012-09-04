@@ -25,16 +25,16 @@ class Tournament < ActiveRecord::Base
   scope :upcoming, lambda { where("starts_at > ? AND tournament_type <> 'User'", Time.now).order(:starts_at) }
 
   def admin_names
-    User.with_role(:tournament_admin, self)
+    User.with_role(:tournament_admin, self) - User.with_role(:tournament_admin)
   end
 
-  def admin_names=(names)
+  def admin_names=(ids)
     admin_names.each do |user|
       user.revoke :tournament_admin, self
     end
 
-    names.each do |username|
-      user = User.find_by_username(username)
+    ids.each do |id|
+      user = User.find_by_id(id)
       user.grant :tournament_admin, self if user
     end
   end
