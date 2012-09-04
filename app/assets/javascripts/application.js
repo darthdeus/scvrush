@@ -23,6 +23,12 @@ jQuery(function($) {
     width: "element"
   });
 
+  $(".user-select").select2({
+    width: "element",
+    placeholder: "Tournament admins",
+    minimumInputLength: 3
+  });
+
   $('input[type=text]:first').focus();
 
   $('.carousel').carousel({ interval: 3500 });
