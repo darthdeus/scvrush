@@ -37,7 +37,7 @@ class SignupsController < ApplicationController
 
   def require_bnet_username
     unless current_user.has_bnet_username?
-      session[:redirect_back] = env["HTTP_REFERRER"]
+      session[:redirect_back] = env["HTTP_REFERER"]
       redirect_to edit_user_path(current_user), notice: "You can't participate in a tournament unless you fill in your Battle.net username and code."
     end
   end
