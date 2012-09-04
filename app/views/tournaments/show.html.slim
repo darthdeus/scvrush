@@ -10,6 +10,8 @@
         = link_to "Destroy seed", unseed_tournament_path(@tournament), method: :post, class: "btn btn-mini"
       - if can?(:start, @tournament) && !@tournament.started?
         = start_tournament_button
+      - if can?(:edit, @tournament)
+        = link_to "Edit", edit_tournament_path(@tournament), class: "btn btn-mini"
 
     h1 = @tournament.name
 

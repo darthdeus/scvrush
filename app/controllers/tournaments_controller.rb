@@ -68,7 +68,7 @@ class TournamentsController < ApplicationController
     # TODO - protect from setting the type here
     if @tournament.update_attributes(params[:tournament])
       flash[:notice] = "Tournament was updated successfuly."
-      redirect_to edit_tournament_path(@tournament)
+      redirect_to @tournament
     else
       render :edit
     end

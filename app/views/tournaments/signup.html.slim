@@ -7,6 +7,9 @@
     .admin-buttons
       - if can?(:start, @tournament) && !@tournament.started?
         = start_tournament_button
+      - if can?(:edit, @tournament)
+        = link_to "Edit", edit_tournament_path(@tournament), class: "btn btn-mini"
+
     h1
       = @tournament.name
       span.help-inline style="font-size: 14px;" The tournament starts in #{@tournament.start_at}
