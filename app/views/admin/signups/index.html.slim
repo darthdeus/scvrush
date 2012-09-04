@@ -12,7 +12,7 @@ section.data-table-client
       - @signups.each do |signup|
         tr class="#{"checked" if signup.checked?}"
           td = signup.user.bnet_info
-          td
+          td.btn-group
             = link_to admin_tournament_signup_path(@tournament, signup), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-mini" do
               | Delete signup
 

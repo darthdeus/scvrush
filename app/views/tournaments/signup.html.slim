@@ -4,7 +4,7 @@
 
 .tournament ng-app="scvrush"
   header
-    .admin-buttons
+    .admin-buttons.btn-group
       - if can?(:start, @tournament) && !@tournament.started?
         = start_tournament_button
       - if can?(:edit, @tournament)
