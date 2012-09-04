@@ -63,4 +63,9 @@ class TournamentDecorator < Draper::Base
     ability.can? :manage, Tournament
   end
 
+  def action_buttons
+    h.get_action_buttons(tournament) +
+    h.link_to("signups", h.admin_tournament_signups_path(tournament), class: "btn btn-mini")
+  end
+
 end

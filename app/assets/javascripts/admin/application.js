@@ -14,7 +14,7 @@ $(function() {
     sPaginationType: 'bootstrap',
     bProcessing: true,
     bServerSide: true,
-    sAjaxSource: $('#users').data('source')
+    sAjaxSource: $('.data-table table').data('source')
   });
 
   $('.data-table-client table').dataTable({

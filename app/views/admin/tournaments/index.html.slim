@@ -1,21 +1,21 @@
 = content_for :subnav do
   li= link_to "Add new", new_admin_tournament_path
 
-section.data-table-client
+section.data-table
   header
     h1 Tournaments
 
-  table.table.table-bordered.table-striped
+  table.table.table-bordered.table-striped data-source="#{admin_tournaments_path(format: 'json')}"
     thead
       tr
         th Title
         th Starts at
         th Actions
     tbody
-      - @tournaments.each do |tournament|
-        tr
-          td = tournament.name
-          td = tournament.starts_at.to_s
-          td
-            = get_action_buttons(tournament)
-            = link_to "signups", admin_tournament_signups_path(tournament), class: "btn btn-mini"
+      / - @tournaments.each do |tournament|
+      /   tr
+      /     td = tournament.name
+      /     td = tournament.starts_at.to_s
+      /     td
+      /       = get_action_buttons(tournament)
+      /       = link_to "signups", admin_tournament_signups_path(tournament), class: "btn btn-mini"

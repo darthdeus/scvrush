@@ -1,6 +1,26 @@
 module Admin
   class TournamentsController < AdminController
+
     def index
+      respond_to do |format|
+        format.html
+
+        format.json do
+          fields  = %w[name]
+          columns = %w[name starts_at]
+          table   = Datable.new(Tournament, fields, columns, params) do |tournament|
+            tournament = TournamentDecorator.new(tournament)
+
+            [
+              tournament.name,
+              tournament.starts_at,
+              tournament.action_buttons
+            ]
+          end
+
+          render json: table
+        end
+      end
       @tournaments = Tournament.all
     end
 

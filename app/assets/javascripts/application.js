@@ -19,7 +19,7 @@ jQuery(function($) {
     $('[rel=tooltip]').tooltip();
   }, 1000);
 
-  $('.chosen').chosen();
+  $('.chosen').select2();
 
   $('input[type=text]:first').focus();
 
