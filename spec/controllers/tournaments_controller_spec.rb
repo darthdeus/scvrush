@@ -37,7 +37,7 @@ describe TournamentsController do
 
       it "can update any tournament" do
         put :update, id: tournament.id, tournament: {}
-        response.should redirect_to(edit_tournament_path(tournament))
+        response.should redirect_to(tournament_path(tournament))
       end
 
       it "can seed any tournament" do
