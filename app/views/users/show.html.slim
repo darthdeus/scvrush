@@ -3,9 +3,10 @@
     .span3.user-info
       = render partial: "info"
 
-      h3 Followers
+      - unless @followers.empty?
+        h3 Followers
 
-      = render collection: @followers, partial: "users/follower"
+        = render collection: @followers, partial: "users/follower"
 
       .practice-info
         - if @user == current_user
