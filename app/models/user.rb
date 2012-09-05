@@ -209,7 +209,7 @@ class User < ActiveRecord::Base
   before_create { generate_token(:auth_token) }
 
   def self.authenticate(username, password)
-    user = self.where('username = ? OR email = ?', username, username).first
+    user = self.where('username ILIKE ? OR email ILIKE ?', username, username).first
     if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
       user
     else
