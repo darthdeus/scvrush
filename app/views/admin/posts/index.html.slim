@@ -2,19 +2,19 @@
   li= link_to "Add new", new_admin_post_path
 
 
-section.data-table
+section.data-table-client
   header
     h1 Posts
 
-  table.table.table-bordered.table-striped.data-table
+  table.table.table-bordered.table-striped
     thead
       tr
         th Title
-        th URL
+        th Tournament URL
         th Actions
     tbody
       - @posts.each do |post|
         tr
-          td = post.title
-          td = link_to post.tournament.name if post.tournament
+          td = link_to post.title, post
+          td = link_to post.tournament.name, post.tournament if post.tournament
           td = get_action_buttons(post)

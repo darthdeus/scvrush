@@ -22,5 +22,12 @@ module Admin
       redirect_to admin_posts_path
     end
 
+    def destroy
+      @post = Post.find(params[:id])
+      @post.destroy
+      flash[:success] =  "Post was deleted."
+      redirect_to admin_posts_path
+    end
+
   end
 end
