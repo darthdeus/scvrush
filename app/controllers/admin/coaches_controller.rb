@@ -40,5 +40,11 @@ module Admin
       end
     end
 
+    def destroy
+      Coach.find(params[:id]).destroy
+      flash[:success] = "Coach was deleted"
+      redirect_to admin_coaches_path
+    end
+
   end
 end
