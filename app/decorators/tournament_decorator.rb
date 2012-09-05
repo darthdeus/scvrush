@@ -71,7 +71,6 @@ class TournamentDecorator < Draper::Base
       icon = h.bootstrap_icon('icon-remove', 'delete')
       content << h.link_to(h.polymorphic_path([:admin, tournament]), method: :delete, class: "btn btn-mini", data: { confirm: "Are you sure?" }) { icon }
       content << h.link_to("signups", h.admin_tournament_signups_path(tournament),    class: "btn btn-mini", style: "height: 15px;")
-      content << h.link_to("admins", h.admins_admin_tournament_path(tournament),      class: "btn btn-mini", style: "height: 15px;")
 
       content.html_safe
     end

@@ -31,7 +31,7 @@ module Admin
     def create
       @tournament = Tournament.new(params[:tournament])
       if @tournament.save
-        flash[:success] = "Tournament was successfuly created."
+        flash[:success] = "Tournament was created."
         bracket = Bracket.new(@tournament)
 
         redirect_to @tournament
@@ -54,6 +54,11 @@ module Admin
       end
     end
 
+    def destroy
+      Tournament.find(params[:id]).destroy
+      flash[:success] = "Tournament was deleted."
+      redirect_to admin_tournaments_path
+    end
 
   end
 end
