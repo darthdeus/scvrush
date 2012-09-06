@@ -70,13 +70,13 @@ module ApplicationHelper
     #                      button should be active
     #
     # Returns a String of HTML for the link
-    def main_nav_link(text, path, current_controller)
+    def main_nav_link(text, path, *current_controllers)
       # get the current controller name
       params = request.env["action_dispatch.request.path_parameters"]
       # engine namespace
       ctrl = params[:controller].sub(/^admin\//, '')
 
-      cls = "active" if ctrl == current_controller
+      cls = "active" if current_controllers.include?(ctrl)
       content_tag(:li, link_to(text, path), :class => cls)
     end
 

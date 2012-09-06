@@ -9,6 +9,7 @@
         = start_tournament_button
       - if can?(:edit, @tournament)
         = link_to "Edit", edit_tournament_path(@tournament), class: "btn btn-mini"
+        = link_to "Signups", admin_tournament_signups_path(@tournament), class: "btn btn-mini"
 
     h1
       = @tournament.name

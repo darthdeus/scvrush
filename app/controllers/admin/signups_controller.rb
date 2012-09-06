@@ -1,5 +1,8 @@
 module Admin
-  class SignupsController < AdminController
+  class SignupsController < ApplicationController
+
+    layout "admin"
+
     before_filter :assign_tournament
 
     def index
@@ -30,6 +33,7 @@ module Admin
 
     def assign_tournament
       @tournament = Tournament.find(params[:tournament_id])
+      authorize! :tournament_admin, @tournament
     end
   end
 
