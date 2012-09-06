@@ -15,8 +15,9 @@
       div class="accordion-inner"
         = m @tournament.map_info
 
-  .accordion-group
-    .accordion-heading
-      .accordion-toggle
-        strong = @tournament.admin_names.map(&:bnet_info).join(", ")
+  - unless @tournament.admin_names.empty?
+    .accordion-group
+      .accordion-heading
+        .accordion-toggle
+          strong = @tournament.admin_names.map(&:bnet_info).join(", ")
 
