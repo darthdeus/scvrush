@@ -13,7 +13,9 @@
 
     h1
       = @tournament.name
-      span.help-inline style="font-size: 14px;" The tournament starts in #{@tournament.start_at}
+      span.help-inline
+        ' The tournament starts in
+        span rel="tooltip" title=@tournament.start_time.to_s #{@tournament.start_at}
 
     .row
       .span6
@@ -36,7 +38,8 @@
                 - else
                   ' Registration is currently open.
                   br
-                  ' Checkin starts in #{@tournament.checkin_at}
+                  ' Checkin starts in
+                  span rel="tooltip" title=@tournament.checkin_time.to_s #{@tournament.checkin_at}
 
             .row
               .span6

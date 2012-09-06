@@ -1,4 +1,14 @@
+
 .tournament {
+
+  [rel=tooltip] {
+    text-decoration: underline;
+  }
+
+  h1 span.help-inline {
+    font-size: 14px;
+  }
+
   input.report-box {
     font-size: 18px;
     margin: 3px;

@@ -3,7 +3,9 @@
     - if @user.registered? && !@tournament.checkin_open?
       p
         ' You are currently registered for the tournament. Please come back
-        ' in #{@tournament.checkin_at} to check in.
+        ' in
+        span rel="tooltip" title=@tournament.checkin_time.to_s #{@tournament.checkin_at}
+        '  to check in.
 
       p
         ' If you can't participate in the tournament, please cancel

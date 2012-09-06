@@ -49,6 +49,14 @@ class TournamentDecorator < Draper::Base
     self.registered_players.size > 0
   end
 
+  def start_time
+    self.tournament.starts_at
+  end
+
+  def checkin_time
+    self.start_time - 30.minutes
+  end
+
   def start_at
     h.distance_of_time_in_words_to_now self.tournament.starts_at
   end
