@@ -7,7 +7,9 @@ module Admin
       respond_to do |format|
         @coaches = Coach.all
 
-        format.html
+        format.html do
+          require_admin
+        end
         format.json { render json: @coaches.sample(6) }
       end
     end
