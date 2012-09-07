@@ -5,6 +5,7 @@
 .tournament ng-app="scvrush"
   header
     .admin-buttons.btn-group
+      h4 Admin menu
       - if can? :seed, @tournament
         = link_to "Seed", seed_tournament_path(@tournament), method: :post, class: "btn btn-mini"
         = link_to "Destroy seed", unseed_tournament_path(@tournament), method: :post, class: "btn btn-mini"

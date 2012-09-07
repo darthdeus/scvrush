@@ -24,7 +24,7 @@
   / = f.input :admins
   .row
     .span3
-      = f.label :admin_names, "Add more admins (optional)"
+      = f.label :admin_names, "Add more admins (optional)", rel: "tooltip", title: "You can enter either their SCV Rush or Battle.net username."
       = f.select :admin_names, User.with_bnet_info.map { |u| [ u.to_s, u.id ] }, {}, multiple: true, class: "user-select"
 
     .span3
