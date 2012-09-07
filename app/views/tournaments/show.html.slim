@@ -52,21 +52,23 @@
       .span6
         = render partial: "rules"
 
-  - if @tournament.seeded
-    .bracket ng-controller="BracketController"
-      .round-wrap ng-repeat="round in rounds"
-        .round-info-wrap
-          .round-info ng-click="editRound(round)" Round of {{round.number}}
 
-        .round
-          .match class="completed-{{match.completed}}" ng-repeat="match in round.matches" ng-click="inputResult(match)"
-            .player class="player_{{match.player1}}"
-              .name {{match.player1}}
-              .score {{match.player1_score}}
-            .player class="player_{{match.player2}}"
-              .name {{match.player2}}
-              .score {{match.player2_score}}
+  div.span12 style="overflow: auto;"
+    - if @tournament.seeded
+      .bracket ng-controller="BracketController" style="width: 1300px"
+        .round-wrap ng-repeat="round in rounds"
+          .round-info-wrap
+            .round-info ng-click="editRound(round)" Round of {{round.number}}
 
-  - else
+          .round
+            .match class="completed-{{match.completed}}" ng-repeat="match in round.matches" ng-click="inputResult(match)"
+              .player class="player_{{match.player1}}"
+                .name {{match.player1}}
+                .score {{match.player1_score}}
+              .player class="player_{{match.player2}}"
+                .name {{match.player2}}
+                .score {{match.player2_score}}
+
+  - unless @tournament.seeded
     = render partial: "registered_players"
 

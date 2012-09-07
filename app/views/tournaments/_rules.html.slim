@@ -21,3 +21,12 @@
         .accordion-toggle
           strong = @tournament.admin_names.map(&:bnet_info).join(", ")
 
+  - if @tournament.channel.present?
+    .accordion-group
+      .accordion-heading
+        .accordion-toggle
+          ' The meeting channel for the tournament is
+          strong = @tournament.channel
+          | .
+
+
