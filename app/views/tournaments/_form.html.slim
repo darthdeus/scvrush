@@ -24,11 +24,11 @@
   / = f.input :admins
   .row
     .span3
-      = f.label :admin_names
+      = f.label :admin_names, "Add more admins (optional)"
       = f.select :admin_names, User.with_bnet_info.map { |u| [ u.to_s, u.id ] }, {}, multiple: true, class: "user-select"
 
     .span3
-      = f.label :channel, "Chat channel"
+      = f.label :channel, "Chat channel", rel: "tooltip", title: "Specify the channel where people should come on battle.net."
       = f.text_field :channel
 
     / .span3

@@ -35,7 +35,7 @@ en:
     bo_preset: |
       * **Format:** 1 1 3 3 3 etc.
       * **Example 1** - "1 3 3 5" means RO16 BO1, RO8 BO3, Semifinal BO3 and Finals BO5
-      * **Example 2** - "1 1 1 3 3 3" means RO8 onward BO3, the rest BO1 You can edit these settings before you create the seed, after you know how many checkins you have.
+      * **Example 2** - "1 1 1 3 3 3" means RO8 onward BO3, the rest BO1. You can edit these settings before you create the seed, after you know how many checkins you have.
       You can edit these settings before you create the seed, after you know how many checkins you have.
 
     map_preset_default: |
