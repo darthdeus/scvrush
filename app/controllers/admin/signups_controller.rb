@@ -11,7 +11,7 @@ module Admin
 
     def update
       @signup = @tournament.signups.find(params[:id])
-      if params[:checkin]
+      if params[:checkin] == "true"
         @signup.checkin!
         flash[:success] = "User was checked in."
       else
