@@ -26,7 +26,7 @@ jQuery(function($) {
   $(".user-select").select2({
     width: "element",
     placeholder: "Tournament admins",
-    minimumInputLength: 3
+    minimumInputLength: 2
   });
 
   $('input[type=text]:first').focus();
