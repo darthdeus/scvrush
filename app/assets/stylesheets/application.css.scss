@@ -19,6 +19,14 @@ body > .container {
   min-height: 800px;
 }
 
+body > .navbar > .navbar-inner {
+  @include linear-gradient(#333, #000);
+
+  li a {
+    text-shadow: none;
+  }
+}
+
 .block { display: block; }
 
 .tooltip {
@@ -54,21 +62,24 @@ body > .container {
 
     @include transition (color 0.2s ease-in-out);
 
+    .caret {
+      display: inline-block;
+      margin-top: 23px !important;
+      margin-left: 4px;
+      border-top-color: #ccc !important;
+      border-bottom-color: #ccc !important;
+    }
+
     &:hover {
       color: #aaa;
 
       .caret {
+        @include transition (border 0.2s ease-in-out);
         border-top-color: #aaa !important;
         border-bottom-color: #aaa !important;
       }
     }
 
-    .caret {
-      margin-top: 23px;
-      margin-left: 4px;
-      border-top-color: #ccc;
-      border-bottom-color: #ccc;
-    }
   }
 }
 
@@ -467,6 +478,47 @@ li.stream {
 
 .tournament-edit {
   h1 { width: 620px; }
+}
+
+.calendar {
+  td {
+    width: 22px;
+    height: 22px;
+    line-height: 20px;
+    text-align: center;
+    padding: 0;
+
+    &.today {
+      background: #f3f3f3;
+      .tournament {
+        background: #bdb;
+      }
+    }
+
+    &.notmonth {
+      opacity: 0.7;
+    }
+
+    .tournament {
+      background: #dfd;
+      width: 22px;
+      opacity: 0.8;
+      @include transition(opacity 0.2s ease-in-out);
+
+      a {
+        color: black;
+      }
+
+      &:hover {
+        opacity: 1;
+        background: #cec;
+        a { text-decoration: none; }
+      }
+
+    }
+  }
+
+
 }
 
 @import "posts";

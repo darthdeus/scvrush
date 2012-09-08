@@ -24,6 +24,11 @@ class Tournament < ActiveRecord::Base
   scope :recent, order('starts_at DESC').limit(5)
   scope :upcoming, lambda { where("starts_at > ? AND tournament_type <> 'User'", Time.now).order(:starts_at) }
 
+  def self.calendar
+    tournaments = Tournament.where("starts_at > ? AND starts_at < ?", 1.month.ago, 1.month.from_now)
+    tournaments.group_by { |n| n.starts_at.to_date }
+  end
+
   def admin_names
     User.with_role(:tournament_admin, self) - User.with_role(:tournament_admin)
   end

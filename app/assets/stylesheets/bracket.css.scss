@@ -20,9 +20,14 @@
   }
 
   header {
+    overflow: hidden;
+
     .admin-buttons {
       float: right;
+      position: relative;
+      top: -10px;
     }
+
     .accordion-group {
       padding-left: 10px;
     }
@@ -147,6 +152,7 @@
     .name {
       float: left;
       width: 110px;
+      line-height: 20px;
     }
 
     .score {

@@ -19,45 +19,45 @@
         ' The tournament starts in
         span rel="tooltip" title=@tournament.start_time.to_s #{@tournament.start_at}
 
-    .row
-      .span6
-        .row
-          - if !@user.has_signup? && @tournament.checkin_open?
-            .span6.alert.alert-success
-              ' If you still want to participate, click on the button below
-              ' and you will be checked in automatically.
+  .row
+    .span6
+      .row
+        - if !@user.has_signup? && @tournament.checkin_open?
+          .span6.alert.alert-success
+            ' If you still want to participate, click on the button below
+            ' and you will be checked in automatically.
 
 
-        - if @user.checked_in?
-          = render partial: "checkin_form"
+      - if @user.checked_in?
+        = render partial: "checkin_form"
 
-        - else
-          - if @tournament.registration_open?
-            .row
-              .span6.alert.alert-info
-                - if @tournament.checkin_open?
-                  ' Checkin is currently open.
-                - else
-                  ' Registration is currently open.
-                  br
-                  ' Checkin starts in
-                  span rel="tooltip" title=@tournament.checkin_time.to_s #{@tournament.checkin_at}
+      - else
+        - if @tournament.registration_open?
+          .row
+            .span6.alert.alert-info
+              - if @tournament.checkin_open?
+                ' Checkin is currently open.
+              - else
+                ' Registration is currently open.
+                br
+                ' Checkin starts in
+                span rel="tooltip" title=@tournament.checkin_time.to_s #{@tournament.checkin_at}
 
-            .row
-              .span6
-                - if !@user.has_signup? && @tournament.checkin_open?
-                  = signup_button(@tournament, "Sign up and automatically check in")
-                - if @user.registered? && !@user.checked_in? && @tournament.checkin_open?
-                  = checkin_button(@tournament)
-
-
-            = render partial: "registration_form"
-
-      .span6
-        = render partial: "rules"
+          .row
+            .span6
+              - if !@user.has_signup? && @tournament.checkin_open?
+                = signup_button(@tournament, "Sign up and automatically check in")
+              - if @user.registered? && !@user.checked_in? && @tournament.checkin_open?
+                = checkin_button(@tournament)
 
 
-    - if @tournament.has_players?
-      = render partial: "registered_players"
-    - else
-      h2 There are no players registered for this tournament, be the first one and sign up!
+          = render partial: "registration_form"
+
+    .span6
+      = render partial: "rules"
+
+
+  - if @tournament.has_players?
+    = render partial: "registered_players"
+  - else
+    h2 There are no players registered for this tournament, be the first one and sign up!

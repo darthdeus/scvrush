@@ -13,13 +13,18 @@
 //= require ./controllers/manifest
 
 jQuery(function($) {
+
+  $("[rel=popover]").popover({
+    placement: "top"
+  });
+
   // TODO - do this via Angular callback on when
   // the DOM is compiled
   setTimeout(function() {
-    $('[rel=tooltip]').tooltip();
+    $("[rel=tooltip]").tooltip();
   }, 1000);
 
-  $('.chosen').select2({
+  $(".chosen").select2({
     width: "element"
   });
 
