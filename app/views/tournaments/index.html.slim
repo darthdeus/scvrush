@@ -19,7 +19,15 @@ ul
   ' We will be adding custom user tournaments soon in the future,
   ' which means you will be able to organize a tournament with your friends all by yourself.
 
-.timeline
-  = render partial: "tournament", collection: @tournaments, as: :tournament
+
+.tournament-groups
+  - @tournaments.group_by { |t| t.starts_at.to_date }.each do |date, tournaments|
+
+    .tournament-group
+      h2 = date
+
+      ul.unstyled
+        - tournaments.each do |tournament|
+          li.name rel="tooltip" title="Starts at #{tournament.starts_at.utc.strftime("%H:%M")} UTC" = link_to tournament.name, tournament
 
 = paginate @tournaments

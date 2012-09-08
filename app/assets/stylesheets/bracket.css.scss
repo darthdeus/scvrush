@@ -163,11 +163,10 @@
     }
   }
 
-    .completed-true .player {
-      opacity: 0.3;
-      &:hover { opacity: 1; }
-    }
-
+  .completed-true .player {
+    opacity: 0.3;
+    &:hover { opacity: 1; }
+  }
 
   .player-highlight {
     background: #333;
@@ -175,3 +174,44 @@
   }
 
 }
+
+.tournament-groups {
+  overflow: hidden;
+}
+
+.tournament-group {
+  float: left;
+  width: 298px;
+  margin: 10px;
+  background: #fafafa;
+  border: 1px solid #ccc;
+  min-height: 170px;
+
+  &:nth-child(3n - 2) { margin-left: 0; }
+  &:nth-child(3n + 3) { margin-right: 0; }
+
+  h2 {
+    padding-left: 20px;
+  }
+
+  ul {
+    li {
+      padding: 10px 10px 10px 20px;
+      margin: 0;
+      font-size: 18px;
+      border-bottom: 1px solid #dedede;
+
+      &:first-child { border-top: 1px solid #dedede; }
+
+      a {
+        color: #393939;
+        display: block;
+        &:hover { text-decoration: none; }
+      }
+
+      &:hover { background: #f0f0f0; }
+    }
+  }
+
+}
+
