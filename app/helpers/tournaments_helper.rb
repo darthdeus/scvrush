@@ -41,7 +41,7 @@ module TournamentsHelper
   def start_tournament_button
     link_to("Start now",
       start_tournament_path(@tournament),
-      method: :post, class: "btn btn-mini",
+      method: :post, class: "btn",
       :'data-confirm' => "Are you sure you want to start the tournament?")
   end
 

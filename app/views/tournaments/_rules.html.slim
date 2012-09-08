@@ -15,12 +15,6 @@
       div class="accordion-inner"
         = m @tournament.map_info
 
-  - unless @tournament.admin_names.empty?
-    .accordion-group
-      .accordion-heading
-        .accordion-toggle
-          strong = @tournament.admin_names.map(&:bnet_info).join(", ")
-
   - if @tournament.channel.present?
     .accordion-group
       .accordion-heading
@@ -28,5 +22,11 @@
           ' The meeting channel for the tournament is
           strong = @tournament.channel
           | .
+
+  - unless @tournament.admin_names.empty?
+    .accordion-group
+      .accordion-heading
+        .accordion-toggle
+          strong = @tournament.admin_names.map(&:bnet_info).join(", ")
 
 
