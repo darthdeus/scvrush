@@ -243,7 +243,7 @@ MAPS
 
   # Seeds for the bracket
   def seeds
-    [256, 128, 64, 32, 16, 8, 4, 2, 1]
+    [512, 256, 128, 64, 32, 16, 8, 4, 2, 1]
   end
 
 end
