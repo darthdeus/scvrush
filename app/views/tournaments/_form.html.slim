@@ -40,7 +40,7 @@
   h2 Set your maps - read instructions carefuly
   .row
     .span6
-      = text_area_tag "tournament[map_preset]", I18n.t("tournament.map_preset_default"), style: "width: 450px; height: 300px; display: inline-block"
+      = text_area_tag "tournament[map_preset]", @tournament.map_preset || I18n.t("tournament.map_preset_default"), style: "width: 450px; height: 300px; display: inline-block"
     .span4
       .help_inline = m(I18n.t("tournament.map_preset"))
 
