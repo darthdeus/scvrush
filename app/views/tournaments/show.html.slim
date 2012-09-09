@@ -50,6 +50,8 @@
             .span6.alert.alert-danger
               ' The tournament bracket wasn't generated yet. Please wait.
 
+        = m @tournament.description
+
       .span6
         = render partial: "rules"
 
