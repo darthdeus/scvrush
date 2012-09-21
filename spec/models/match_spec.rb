@@ -8,6 +8,10 @@ describe Match do
     build(:match).should be_valid
   end
 
+  it "requires a round" do
+    build(:match, round: nil).should have(1).error_on(:round)
+  end
+
   it "is uncompleted by default" do
     build(:match).should_not be_completed
   end
