@@ -19,7 +19,8 @@ jQuery(function($) {
   });
 
   // TODO - do this via Angular callback on when
-  // the DOM is compiled
+  // the DOM is compiled, still not sure how to
+  // do it properly though
   setTimeout(function() {
     $("[rel=tooltip]").tooltip();
   }, 1000);
@@ -72,7 +73,7 @@ jQuery(function($) {
     }
   });
 
-  // TODO - refactor this
+  // jQueryUI is loaded only on some pages
   if ($.fn.dialog) {
     $('#publish-date-form').dialog({
     autoOpen: false,

@@ -39,8 +39,6 @@ App.CommentView = Backbone.View.extend({
     '<a class="delete">delete</a>' +
     '<a class="reply">reply</a>' +
     '</span>' +
-    // TODO - make this link to the parent instesad of the user profile
-    // TODO - add a cancel link here, so that a user can cancel the reply
     '<% if (typeof orig !== "undefined") print("<a class=\\"original\\">in reply to</a>") %>'+
     '</h4>' +
     '<%= content %>'),
@@ -51,8 +49,6 @@ App.CommentView = Backbone.View.extend({
 
   // Highlight the original comment that is being replied to.
   // It also makes all the other comments transparent.
-  // TODO - add a simple way to remove the effect from all comments.
-  // TODO - what should I do if the comment was deleted?
   highlightOriginal: function() {
     this.resetHighlight();
 
@@ -96,7 +92,6 @@ App.CommentView = Backbone.View.extend({
     return this;
   },
 
-  // TODO - add check or render only for the current_user
   deleteComment: function(e) {
     e.preventDefault();
     this.model.destroy();

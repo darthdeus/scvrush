@@ -48,7 +48,6 @@ class Datable
     items = @klass.order("#{sort_column} #{sort_direction}")
     items = items.page(page).per(per_page)
     if @params[:sSearch].present?
-      # TODO "name like :search OR category_name like :search"
       query = @fields.map { |field| "#{field} like :search" }.join(" OR ")
       items = items.where(query, search: "%#{@params[:sSearch]}%")
     end

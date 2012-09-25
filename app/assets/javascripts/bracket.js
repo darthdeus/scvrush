@@ -34,17 +34,11 @@ jQuery(function($) {
     $(".player_#{gon.highlight_id}").effect("highlight", {}, 5000)
   }
 
-  // TODO
-  // IMPORTANT !!!
-  //
-  // If the player has a dot in his username, this won't work,
-  // because the selector engine will use it as a class.
-  //
-  // IMPORTANT !!!
+  // TODO - change this to not account the dot in the bnet_info,
+  // since it will break CSS selectors
   $('.bracket .player').live({
     mouseenter: function() {
       var cls = $(this)[0].className;
-      // TODO - add backwards compatible #map
       cls = cls.split(' ').map(function(n) { return "." + n; }).join("")
       if (cls !== ".player.player_") {
         $(cls).addClass('player-highlight');
@@ -53,7 +47,6 @@ jQuery(function($) {
 
     mouseleave:function() {
       var cls = $(this)[0].className;
-      // TODO - add backwards compatible #map
       cls = cls.split(' ').map(function(n) { return "." + n; }).join("")
       $(cls).removeClass('player-highlight');
     }
