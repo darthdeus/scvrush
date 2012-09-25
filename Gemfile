@@ -67,7 +67,7 @@ group :test do
   gem 'simplecov',          '~> 0.6.1'
   gem 'rspec-rails',        '~> 2.11.0'
   gem 'capybara',           '~> 1.1.2'
-  gem 'capybara-webkit',    '~> 0.12.0'
+  # gem 'capybara-webkit',    '~> 0.12.0'
   gem 'factory_girl_rails', '~> 1.7.0'
   gem 'launchy',            '~> 2.1.1'
   # gem 'cucumber-rails',   require: false
