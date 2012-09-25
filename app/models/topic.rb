@@ -1,6 +1,4 @@
 class Topic < ActiveRecord::Base
-  # add test for mass assignment check
-  # TODO - figure out how to work around the user_id thing
   attr_accessible :section, :name, :section_id, :user_id
 
   belongs_to :section
@@ -29,7 +27,6 @@ class Topic < ActiveRecord::Base
       return topic
     end
   rescue ActiveRecord::RecordInvalid => e
-    # TODO - return `e.message' instead of just false
     return false
   end
 

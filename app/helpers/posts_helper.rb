@@ -79,8 +79,7 @@ module PostsHelper
   # or just return a default SCV Rush avatar if the user
   # doesn't have one.
   #
-  # TODO - assign a designer to create a placeholder avatar
-  # customized for scvrush
+  # TODO - assign a designer to create a placeholder avatar customized for scvrush
   def author_avatar_for_post(post)
     if post.user.avatar?
       url = post.user.avatar.url(:thumb)

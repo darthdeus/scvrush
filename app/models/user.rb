@@ -1,8 +1,5 @@
 class User < ActiveRecord::Base
   rolify
-  # include Rolify::Roles
-  # TODO - what is this? how does it differ from Rolify::Roles?
-  # extend Rolify::Dynamic
 
   scope :with_bnet_info, where("bnet_username IS NOT NULL AND bnet_code IS NOT NULL")
 
@@ -36,7 +33,6 @@ class User < ActiveRecord::Base
 
   acts_as_followable
 
-  # TODO
   has_many :following_relationships, class_name: "Relationship", foreign_key: "requestor_id"
 
   # Return timeline statuses for a given user, with information
@@ -82,7 +78,6 @@ class User < ActiveRecord::Base
     return res
   end
 
-  # TODO - use Rails 3 validations
   validates_presence_of :username
   validates :username, uniqueness: true, on: :create
   validates_presence_of :email
@@ -104,18 +99,10 @@ class User < ActiveRecord::Base
   end
 
   validate :bnet_username_is_string
-  # validates :bnet_username,
-  #           :format => { :with => /^[^@]+$/,
-  #                        :message => 'can\'t contain the @ symbol, because it is not your email' },
-  #           :if => lambda { |u| u.bnet_username? }
-
   validates :bnet_code,
             format: { with: /^\d+$/,
                          message: 'can contain only numbers' },
             if: lambda { |u| u.bnet_username? }
-
-  # validates_presence_of :bnet_username, :on => :update
-  # validates_presence_of :bnet_code, :on => :update
 
   def self.races_collection
     %w{Zerg Terran Protoss Random}
@@ -254,6 +241,5 @@ class User < ActiveRecord::Base
 
 end
 
-# TODO - move this some place else!
 class NotRegistered < Exception
 end

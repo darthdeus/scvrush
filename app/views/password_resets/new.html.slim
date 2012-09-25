@@ -1,7 +1,6 @@
 = arrowed_header "Reset your password"
 
-/ TODO clenaup
-= form_tag password_resets_path, :method => :post do
+= form_tag password_resets_path, method: :post do
   = label_tag :email
   = text_field_tag :email, params[:email]
 

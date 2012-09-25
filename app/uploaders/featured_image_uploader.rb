@@ -7,8 +7,6 @@ class FeaturedImageUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}"
   end
 
-  # TODO - add default URL
-
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
     "https://s3.amazonaws.com/scvrush/uploads/post/featured_image/100x100_dark.png"
