@@ -6,3 +6,4 @@ tmp/
 webrat.log
 coverage/
 config/sc2bc.yml
+b.log
