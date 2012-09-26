@@ -30,6 +30,11 @@
     .span3
       = f.label :channel, "Chat channel", rel: "tooltip", title: "Specify the channel where people should come on battle.net."
       = f.text_field :channel
+  .row
+    .span3
+      p
+        ' Upload a logo to personalize your tournament page!
+      = f.file_field :logo, :label => 'Your avatar please'
 
     / .span3
     /   = f.label :visible, class: "checkbox" do
