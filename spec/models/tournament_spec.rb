@@ -77,4 +77,6 @@ describe Tournament do
     t.checked_players.should == [u]
   end
 
+  it {should.respond_to :logo}
+  
 end
