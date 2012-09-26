@@ -4,7 +4,6 @@ defaults: &defaults
   pool: 5
   host: localhost
   username: development
-  password: password
 
 development:
   database: scvrush_development
