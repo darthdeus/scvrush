@@ -22,6 +22,7 @@ class UsersController < ApplicationController
 
   def show
     @user = UserDecorator.new(@user)
+
     @followers = UserDecorator.decorate(@user.followers)
     gon.user_id = params[:id]
 
@@ -89,6 +90,11 @@ class UsersController < ApplicationController
       @user = User.includes(comments: :post).find(id)
     else
       @user = User.includes(comments: :post).find_by_username(id)
+    end
+
+    unless @user
+      render file: "#{Rails.root}/public/404.html", status: :not_found
+      return false
     end
   end
 
