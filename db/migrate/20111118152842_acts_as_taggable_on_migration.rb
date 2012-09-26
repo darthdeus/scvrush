@@ -5,7 +5,7 @@ class ActsAsTaggableOnMigration < ActiveRecord::Migration
     end
 
     create_table :taggings do |t|
-      t.references :tag
+      t.integer :tag_id
 
       # You should make sure that the column created is
       # long enough to store the required class names.
