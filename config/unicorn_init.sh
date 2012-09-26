@@ -23,6 +23,9 @@ oldsig () {
         test -s $old_pid && kill -$1 `cat $old_pid`
 }
 
+source ~/.scvrush_database
+
+
 case $action in
 start)
         sig 0 && echo >&2 "Already running" && exit 0
