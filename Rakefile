@@ -9,8 +9,4 @@ Scvrush::Application.load_tasks
 
 RSpec::Core::RakeTask.new
 
-task :test do
-  Rake::Task["spec"].invoke
-end
-
-task :default => :test
+task default: :spec
