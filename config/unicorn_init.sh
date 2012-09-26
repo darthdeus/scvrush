@@ -23,7 +23,7 @@ oldsig () {
         test -s $old_pid && kill -$1 `cat $old_pid`
 }
 
-source ~/.scvrush_database
+. ~/.scvrush_database
 
 
 case $action in
