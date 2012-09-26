@@ -7,12 +7,11 @@ class MatchesController < ApplicationController
   end
 
   def create
-    tournament = Tournament.find(params[:tournament_id])
-    bracket = Bracket.new(tournament)
+    bracket = Bracket.with_tournament(params[:tournament_id])
 
     unless params[:score].present?
       flash[:error] = "You can't submit an empty match result"
-      redirect_to tournament and return
+      redirect_to bracket.tournament and return
     end
 
     begin
@@ -32,7 +31,7 @@ class MatchesController < ApplicationController
     end
     # TODO - display possible error messages
 
-    redirect_to tournament
+    redirect_to bracket.tournament
   end
 
 

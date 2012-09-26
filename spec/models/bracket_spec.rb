@@ -22,6 +22,12 @@ describe Bracket do
 
   let(:bracket) { Bracket.new([]) }
 
+  it "can create a bracket for given tournament id" do
+    t = create(:tournament)
+    bracket = Bracket.with_tournament(t.id)
+    bracket.tournament.should == t
+  end
+
   describe "seed size" do
     it "returns the next highest possible seed size for a given number" do
       bracket.find_seed(400).should == 512

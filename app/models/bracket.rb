@@ -9,6 +9,11 @@ class Bracket
     @tournament = tournament
   end
 
+  # Create a bracket for a given tournament id
+  def self.with_tournament(id)
+    Bracket.new(Tournament.find(id))
+  end
+
   # Return JSON-formatted user data
   def to_json
     user_data = map_users(@users)
