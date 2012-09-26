@@ -70,15 +70,9 @@ group :test do
   # gem 'capybara-webkit',    '~> 0.12.0'
   gem 'factory_girl_rails', '~> 1.7.0'
   gem 'launchy',            '~> 2.1.1'
-  # gem 'cucumber-rails',   require: false
-
-  # TODO - WUT?
-  # gem 'spork', '~> 1.0.0rc3'
-  gem 'spork-rails',        '~> 3.2.0'
-  # TODO MORE FIX IMPORTANT NOTE spork-rails
-
 end
 
 gem 'unicorn',        '~> 4.3.1'
 gem 'capistrano',     '~> 2.12.0'
 gem 'rvm-capistrano', '~> 1.2.5'
+
