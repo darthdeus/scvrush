@@ -9,11 +9,11 @@ class PlayerInfoDecorator
   end
 
   def lost?
-    @current_match && @current_match.loser?(@user)
+    current_match && current_match.loser?(@user)
   end
 
   def next_opponent
-    @current_match && @current_match.opponent_for(@user)
+    current_match && current_match.opponent_for(@user)
   end
 
 end
