@@ -7,7 +7,6 @@ gem 'bcrypt-ruby',  '~> 3.0.1', require: 'bcrypt'
 
 gem 'coffee-rails',             '~> 3.2.2'
 
-gem 'mysql2',                   '~> 0.3.11'
 gem 'pg',                       '~> 0.14.0'
 
 # Frontend
