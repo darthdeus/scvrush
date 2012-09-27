@@ -1,7 +1,7 @@
 - if @tournament.seeded
   .span6
     .alert.alert-info
-      - if @lost
+      - if @info.lost?
         p
           ' You have been eliminated from the tournament,
           ' we're sorry to see you go. Please return next week and in the meantime:
@@ -19,22 +19,22 @@
 
         p Thank you for coming!
 
-      - elsif @next_opponent && @current_match
+      - elsif @info.next_opponent && @info.current_match
         p
             = "Your next match is "
-            strong = @next_opponent.bnet_info
-        p You are playing best of #{@current_match.round.bo}
+            strong = @info.next_opponent.bnet_info
+        p You are playing best of #{@info.current_match.round.bo}
 
-        = m @current_match.round.text
+        = m @info.current_match.round.text
 
-      - elsif @current_match
+      - elsif @info.current_match
         p Please wait for your opponent.
 
-        = m @current_match.round.text
+        = m @info.current_match.round.text
 
 
 .span6
-  - if @next_opponent
+  - if @info.next_opponent
     .alert.alert-danger
       h2 The winner reports the match result
 
@@ -43,7 +43,7 @@
     = form_tag matches_path, method: :post do
       input.report-box type="text" name="score" placeholder="Final score, e.g 1:4"
       = hidden_field_tag 'tournament_id', @tournament.id
-      = hidden_field_tag 'opponent_id', @next_opponent.id
+      = hidden_field_tag 'opponent_id', @info.next_opponent.id
 
       = submit_match_result_button
   - elsif @tournament.seeded

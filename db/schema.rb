@@ -217,12 +217,12 @@ ActiveRecord::Schema.define(:version => 20120926220208) do
   add_index "statuses", ["user_id"], :name => "index_statuses_on_user_id"
 
   create_table "taggings", :force => true do |t|
+    t.integer  "tag_id"
     t.integer  "taggable_id"
     t.string   "taggable_type"
     t.integer  "tagger_id"
     t.string   "tagger_type"
     t.string   "context"
-    t.integer  "tag_id"
     t.datetime "created_at"
   end
 

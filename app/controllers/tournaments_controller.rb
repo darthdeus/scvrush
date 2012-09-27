@@ -29,14 +29,11 @@ class TournamentsController < ApplicationController
         @tournament = TournamentDecorator.find(params[:id])
         gon.tournament_id = @tournament.id
         @user = TournamentPlayerDecorator.new(current_user, @tournament)
+
         if @tournament.started?
           @bracket = Bracket.new(@tournament)
 
-          @current_match = @bracket.current_match_for(@user)
-          if @current_match
-            @lost = @current_match.loser?(@user)
-            @next_opponent = @current_match.opponent_for(@user)
-          end
+          @info = PlayerInfoDecorator.new(@bracket, @user)
 
           gon.is_admin = Ability.new(current_user).can?(:manage, Match)
 
