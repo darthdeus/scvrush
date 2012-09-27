@@ -56,6 +56,9 @@ namespace :db do
     Tournament.populate 5 do |tournament|
       tournament.name = Populator.words(2..5)
       tournament.starts_at = 1.day.from_now..5.days.from_now
+      tournament.tournament_type = Tournament::TYPES
+      tournament.bo_preset = "1"
+      tournament.map_preset = "foo"
     end
 
     Tournament.all.each do |tournament|
