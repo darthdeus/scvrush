@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   has_many :raffle_signups
   has_many :raffles, through: :raffle_signups
 
-  has_many :notifications, order: "created_at DESC"
+  has_many :notifications, dependent: :destroy, order: "created_at DESC"
 
   attr_accessible :username, :email, :password, :password_confirmation,
                   :password_reset_token, :avatar, :race, :league, :server,
@@ -53,8 +53,6 @@ class User < ActiveRecord::Base
   def statuses_from_followings
     Status.includes(:user).where(user_id: self.following_relationships.pluck(:requestee_id))
   end
-
-  # has_many :following_users, through: :following_relationships, source: :requestee
 
   attr_accessor :password
   before_save :encrypt_password
