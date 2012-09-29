@@ -4,7 +4,7 @@ class Relationship < ActiveRecord::Base
   scope :unrestricted, :conditions => ['relationships.restricted = ?', false]
 	
   scope :to_type, lambda { |rtype| rtype = [rtype].flatten.compact; rtype.size > 0 && { conditions: ['relationships.requestee_type IN (?)', [rtype].flatten] } || {} }
-  scope :from_type, lambda { rtype| rtype = [rtype].flatten.compact; rtype.size > 0 && { conditions: ['relationships.requestor_type IN (?)', [rtype].flatten] } || {} }
+  scope :from_type, lambda { |rtype| rtype = [rtype].flatten.compact; rtype.size > 0 && { conditions: ['relationships.requestor_type IN (?)', [rtype].flatten] } || {} }
 
 
   default_scope :order => 'created_at DESC'
