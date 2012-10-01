@@ -8,13 +8,16 @@ module Admin
         format.html
 
         format.json do
+          view_context
+
           fields = %w[username email bnet_username]
           columns = %w[username email bnet_username bnet_code skype]
+
           table = Datable.new(User, fields, columns, params) do |user|
             user = UserDecorator.new(user)
 
             [
-              user.username,
+              user.link,
               user.email,
               user.bnet_info,
               user.bnet_code,

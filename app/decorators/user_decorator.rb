@@ -27,6 +27,10 @@ class UserDecorator < Draper::Base
     h.get_action_buttons(user)
   end
 
+  def link
+    h.link_to user.username, user
+  end
+
   # Accessing Helpers
   #   You can access any helper via a proxy
   #
