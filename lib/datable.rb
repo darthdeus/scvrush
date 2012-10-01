@@ -48,7 +48,7 @@ class Datable
     items = @klass.order("#{sort_column} #{sort_direction}")
     items = items.page(page).per(per_page)
     if @params[:sSearch].present?
-      query = @fields.map { |field| "#{field} like :search" }.join(" OR ")
+      query = @fields.map { |field| "#{field} ilike :search" }.join(" OR ")
       items = items.where(query, search: "%#{@params[:sSearch]}%")
     end
     return items
