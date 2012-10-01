@@ -18,7 +18,7 @@ describe TournamentsController do
 
     it "sets tournament user to the current user when created" do
       user = login
-      post :create, tournament: Factory.attributes_for(:tournament)
+      post :create, tournament: FactoryGirl.attributes_for(:tournament)
       response.should be_redirect
       Tournament.last.user.should == user
     end

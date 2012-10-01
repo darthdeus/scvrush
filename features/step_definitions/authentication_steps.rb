@@ -3,12 +3,12 @@ Given /^I am not logged in$/ do
 end
 
 Given /^I am logged in$/ do
-  @user = Factory(:user, :password => 'secret')
+  @user = FactoryGirl(:user, :password => 'secret')
   login(@user.username, 'secret')
 end
 
 Given /^I am an administrator$/ do
-  @user = Factory(:user, :password => 'secret')
+  @user = FactoryGirl(:user, :password => 'secret')
   @user.grant :admin
   login(@user.username, 'secret')
 end

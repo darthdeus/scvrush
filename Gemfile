@@ -23,7 +23,7 @@ gem 'kaminari',           '~> 0.13.0'
 gem 'draper',             '~> 0.14.0'
 # gem 'ruby-prof',          '~> 0.11.2'
 
-gem 'fog',                '~> 1.3.0'
+gem 'fog',                '~> 1.6.0'
 gem 'carrierwave',        '~> 0.6.2'
 gem 'mini_magick',        '~> 3.4'
 gem 'airbrake',           '~> 3.0.9'
@@ -52,7 +52,7 @@ gem 'therubyracer', group: :production
 group :development, :test do
   gem 'pry',        '~> 0.9.9'
   gem 'pry-doc',    '~> 0.4.2'
-  gem 'pry-rails',  '~> 0.1.6'
+  gem 'pry-rails',  '~> 0.2.2'
   gem 'pry-nav',    '~> 0.2.1'
 
   gem 'rack-mini-profiler', '~> 0.1.9'
@@ -66,12 +66,11 @@ group :test do
   gem 'simplecov',          '~> 0.6.1'
   gem 'rspec-rails',        '~> 2.11.0'
   gem 'capybara',           '~> 1.1.2'
-  # gem 'capybara-webkit',    '~> 0.12.0'
-  gem 'factory_girl_rails', '~> 1.7.0'
+  gem 'factory_girl_rails', '~> 4.1.0'
   gem 'launchy',            '~> 2.1.1'
 end
 
 gem 'unicorn',        '~> 4.3.1'
-gem 'capistrano',     '~> 2.12.0'
+gem 'capistrano',     '~> 2.13.0'
 gem 'rvm-capistrano', '~> 1.2.5'
 

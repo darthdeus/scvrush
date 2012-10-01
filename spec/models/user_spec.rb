@@ -44,7 +44,7 @@ describe User do
   end
 
   describe "#send_password_reset" do
-    let(:user) { Factory(:user) }
+    let(:user) { create(:user) }
 
     it "generates a unique password_reset_token each time" do
       user.send_password_reset

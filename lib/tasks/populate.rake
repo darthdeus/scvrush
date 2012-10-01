@@ -1,11 +1,12 @@
 namespace :db do
+
   desc "Earse and populate the database"
   task :populate => :environment do
     require "factory_girl_rails"
-    [User, Post, Tournament, Signup].each(&:delete_all)
 
+    [User, Post, Tournament, Signup, Coach].each(&:delete_all)
 
-    user = Factory(:user, username: "darthdeus", password: "admin", race: "Zerg")
+    user = FactoryGirl.create(:user, username: "darthdeus", password: "admin", race: "Zerg")
     user.grant :tournament_admin
 
     salt = BCrypt::Engine.generate_salt
@@ -41,17 +42,17 @@ namespace :db do
     end
 
     Post.all.each do |post|
-      post.tag_list     = ["zerg", "terran", "protoss"]
+      post.tag_list = %w{zerg terran protoss}
       post.save
     end
 
     6.times do
-      post = Factory(:post)
+      post = FactoryGirl.create(:post)
       post.tag_list = ["coach,na,zerg", "coach,eu,zerg,terran","coach,na,protoss"].sample
     end
 
     # Create one testing tournament that is already running
-    Factory(:tournament, starts_at: 10.minutes.ago)
+    FactoryGirl.create(:tournament, starts_at: 10.minutes.ago)
 
     Tournament.populate 5 do |tournament|
       tournament.name = Populator.words(2..5)
@@ -63,10 +64,16 @@ namespace :db do
 
     Tournament.all.each do |tournament|
       8.times do
-        Factory(:signup, tournament: tournament, user: users.sample, status: 1)
+        FactoryGirl.create(:signup, tournament: tournament, user: users.sample, status: 1)
       end
     end
 
+    Coach.populate 10 do |coach|
+      post = FactoryGirl.create(:post)
+
+      coach.title    = Faker::Name.name
+      coach.post_id  = post.id
+    end
 
   end
 

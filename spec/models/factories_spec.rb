@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Factory do
+describe FactoryGirl do
   FactoryGirl.factories.each do |factory|
     context "with factory for :#{factory.name}" do
       subject { FactoryGirl.build(factory.name) }
