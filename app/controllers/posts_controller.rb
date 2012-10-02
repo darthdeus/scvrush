@@ -20,7 +20,7 @@ class PostsController < ApplicationController
     end
   end
 
-  def content 
+  def content
 
   end
 

@@ -11,11 +11,12 @@
 
       .span4
         h2 Recent tweets
-        ul.tweets class="unstyled" 
-          -Twitter.user_timeline("thescvrush").first(5).each do |tweet|
-            li = tweet.text
+        ul.tweets class="unstyled"
+          - if Rails.env.production?
+            - cache "tweets", expire: 5.minutes do
+              - Twitter.user_timeline("thescvrush").first(5).each do |tweet|
+                li = tweet.text
 
-          
       .span4
         h2 Follow us
 
