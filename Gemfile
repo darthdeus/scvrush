@@ -22,6 +22,8 @@ gem 'kaminari',           '~> 0.13.0'
 
 gem 'draper',             '~> 0.17.0'
 # gem 'ruby-prof',          '~> 0.11.2'
+gem 'twitter'
+
 
 gem 'fog',                '~> 1.6.0'
 gem 'carrierwave',        '~> 0.6.2'

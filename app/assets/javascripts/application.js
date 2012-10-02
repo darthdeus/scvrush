@@ -134,5 +134,12 @@ jQuery(function($) {
     console.log(tags)
     $(this).attr("href", 'posts/tags/' + tags.join('/'));
   });
+});
+
+$(document).ready(function() {
 
 });
+
+
+
+

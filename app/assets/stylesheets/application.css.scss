@@ -521,6 +521,15 @@ li.stream {
 
 
 }
+.tweets {
+  li {
+    padding-bottom:5px;
+    border-bottom:1px solid rgba(230,230,230,.1);
+  }
+}
+.timeline-header {
+  display:none!important;
+}
 
 @import "posts";
 @import "progress_bar";
