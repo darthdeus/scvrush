@@ -74,6 +74,17 @@ module PostsHelper
     md.gsub(/[\[\]#*]/, '').gsub(/\(.*\)/, '')
   end
 
+  def escaped_post_content(post)
+    content = content_tag(:div, class: "post") do
+      featured_image(post) +
+      content_tag(:div, class: "content") do
+        content_tag(:h3, link_to(shortenify(post.title), post)) +
+        content_tag(:p, post_excerpt(post.content))
+      end
+    end
+
+    escape_javascript(content)
+  end
 
   # Return an image tag for post author's avatar,
   # or just return a default SCV Rush avatar if the user
