@@ -1,0 +1,10 @@
+$(".active").removeClass("active");
+$(".tagged_with-submit").attr("href", "#");
+console.log("<%= @posts.first %>");
+$(".tagged-content").fadeOut("slow", function() {
+	$(".tagged-content").html(" ");
+	<% @posts.each do |post| %>
+		$(".tagged-content").append('<div class="post"><%= featured_image(post) %><div class="content"><h3><%= link_to shortenify(post.title), post %></h3><p><%= post_excerpt(post.content) %> </p></div></div>');
+	<% end %>
+	$(".tagged-content").fadeIn("slow");
+})

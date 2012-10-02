@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120926220208) do
+ActiveRecord::Schema.define(:version => 20120927231303) do
 
   create_table "achievements", :force => true do |t|
     t.string   "name"
@@ -65,6 +65,21 @@ ActiveRecord::Schema.define(:version => 20120926220208) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "maps", :force => true do |t|
+    t.string   "name"
+    t.string   "overview"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "maps_tournaments", :force => true do |t|
+    t.integer "map_id"
+    t.integer "tournament_id"
+  end
+
+  add_index "maps_tournaments", ["map_id"], :name => "index_maps_tournaments_on_map_id"
+  add_index "maps_tournaments", ["tournament_id"], :name => "index_maps_tournaments_on_tournament_id"
 
   create_table "matches", :force => true do |t|
     t.integer  "player1_id"
@@ -217,12 +232,12 @@ ActiveRecord::Schema.define(:version => 20120926220208) do
   add_index "statuses", ["user_id"], :name => "index_statuses_on_user_id"
 
   create_table "taggings", :force => true do |t|
-    t.integer  "tag_id"
     t.integer  "taggable_id"
     t.string   "taggable_type"
     t.integer  "tagger_id"
     t.string   "tagger_type"
     t.string   "context"
+    t.integer  "tag_id"
     t.datetime "created_at"
   end
 
@@ -318,6 +333,19 @@ ActiveRecord::Schema.define(:version => 20120926220208) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
+
+  create_table "vetoble_maps", :force => true do |t|
+    t.integer  "map_id"
+    t.integer  "match_id"
+    t.boolean  "vetoed"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "vetoble_maps", ["map_id"], :name => "index_vetoble_maps_on_map_id"
+  add_index "vetoble_maps", ["match_id"], :name => "index_vetoble_maps_on_match_id"
+  add_index "vetoble_maps", ["user_id"], :name => "index_vetoble_maps_on_user_id"
 
   create_table "votes", :force => true do |t|
     t.integer  "voteable_id",   :null => false

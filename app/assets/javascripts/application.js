@@ -126,4 +126,13 @@ jQuery(function($) {
     }
   }
 
+  $(".tagged_with-submit").click(function() {
+    var tags =[];
+    $("button.active").each(function(index, value) {
+      tags.push($(value).text());
+    });
+    console.log(tags)
+    $(this).attr("href", 'posts/tags/' + tags.join('/'));
+  });
+
 });

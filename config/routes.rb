@@ -27,6 +27,7 @@ Scvrush::Application.routes.draw do
   get "practice/join"
   get "practice/quit"
   match "/practice" => "practice#index", via: :get
+  match "/content" => "posts#content"
 
   resources :reply_votes
   resources :raffle_signups
@@ -67,6 +68,7 @@ Scvrush::Application.routes.draw do
   # tags table
 
   get "posts/tag/:id" => "posts#tag", :as => "tag"
+  match "posts/tags/*tag" => "posts#tagged_with"
 
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :posts do

@@ -20,6 +20,19 @@ class PostsController < ApplicationController
     end
   end
 
+  def content 
+
+  end
+
+  def tagged_with
+    @tag = params[:tag]
+    @tags = @tag.downcase.split("/")
+    @posts = Post.where("status=1").tagged_with(@tags)
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def show
     @post = Post.find(params[:id])
 

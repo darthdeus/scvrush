@@ -27,6 +27,7 @@ namespace :db do
       post.title = Populator.words(3..7)
       post.url   = "http://example.com"
       post.order = 0
+
     end
 
     Post.populate 10 do |post|
