@@ -171,6 +171,8 @@ GEM
       activesupport (= 3.2.7)
       bundler (~> 1.0)
       railties (= 3.2.7)
+    rails_autolink (1.0.9)
+      rails (~> 3.1)
     railties (3.2.7)
       actionpack (= 3.2.7)
       activesupport (= 3.2.7)
@@ -294,6 +296,7 @@ DEPENDENCIES
   pry-rails (~> 0.2.2)
   rack-mini-profiler (~> 0.1.9)
   rails (~> 3.2.7)
+  rails_autolink
   rdiscount (~> 1.6.8)
   rest-client (~> 1.6.7)
   rolify (~> 3.2.0)

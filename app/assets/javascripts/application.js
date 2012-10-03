@@ -128,11 +128,16 @@ jQuery(function($) {
 
   $(".tagged_with-submit").click(function() {
     var tags =[];
-    $("button.active").each(function(index, value) {
-      tags.push($(value).text());
+    if ($("button.active").length > 0){
+      $("button.active").each(function(index, value) {
+      tags.push($(value).text().replace(/\s+/g, '-'));
     });
-    console.log(tags)
     $(this).attr("href", 'posts/tags/' + tags.join('/'));
+  } else {
+    $(".tagged-content").html("Sorry, no submissions were found");
+    return false;
+  }
+    
   });
 });
 

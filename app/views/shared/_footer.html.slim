@@ -15,7 +15,10 @@
           - if Rails.env.production?
             - cache "tweets", expire: 5.minutes do
               - Twitter.user_timeline("thescvrush").first(5).each do |tweet|
-                li = tweet.text
+                li = "  #{auto_link tweet.text}"
+          - else
+              - Twitter.user_timeline("thescvrush").first(5).each do |tweet|
+                li = "&nbsp;&nbsp;&nbsp;&nbsp;#{auto_link tweet.text}".html_safe
 
       .span4
         h2 Follow us

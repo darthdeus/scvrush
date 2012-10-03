@@ -524,7 +524,10 @@ li.stream {
 .tweets {
   li {
     padding-bottom:5px;
-    border-bottom:1px solid rgba(230,230,230,.1);
+    border-bottom:1px solid #ccc;
+    a {
+      color:#0bb3f1!important;
+    }
   }
 }
 .timeline-header {
