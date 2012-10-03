@@ -9,16 +9,13 @@
               .date = post.created_at.strftime("%D")
               .text = link_to post.title, post.url
 
-      .span4
+      .span4.tweets-wrap
         h2 Recent tweets
         ul.tweets class="unstyled"
-          - if Rails.env.production?
-            - cache "tweets", expire: 5.minutes do
-              - Twitter.user_timeline("thescvrush").first(5).each do |tweet|
-                li = "  #{auto_link tweet.text}"
-          - else
-              - Twitter.user_timeline("thescvrush").first(5).each do |tweet|
-                li = "&nbsp;&nbsp;&nbsp;&nbsp;#{auto_link tweet.text}".html_safe
+          /*- if Rails.env.production? # To speed up development on local*/
+          - cache "tweets", expire: 5.minutes do
+            - Twitter.user_timeline("thescvrush").first(5).each do |tweet|
+              li = auto_link(tweet.text).html_safe
 
       .span4
         h2 Follow us

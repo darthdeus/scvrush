@@ -518,21 +518,30 @@ li.stream {
 
     }
   }
-
-
 }
+
+.tweets-wrap h2 { margin-bottom: 0; }
+
 .tweets {
   li {
-    padding-bottom:5px;
-    border-bottom:1px solid #ccc;
+    padding: 5px 10px;
+    border-bottom: 1px solid #ccc;
+    @include transition(background 0.2s ease-in-out);
+
     a {
-      color:#0bb3f1!important;
+      color: #0bb3f1!important;
+    }
+
+    &:hover {
+      background: #353535;
     }
   }
 }
+
 .timeline-header {
   display:none!important;
 }
+
 
 @import "posts";
 @import "progress_bar";
