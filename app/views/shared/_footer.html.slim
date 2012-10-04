@@ -13,7 +13,7 @@
         h2 Recent tweets
         ul.tweets class="unstyled"
           - if Rails.env.production? # To speed up development on local
-            - cache "tweets", expire: 5.minutes do
+            - cache "tweets/v1", expires_in: 5.minutes do
               - Twitter.user_timeline("thescvrush").first(5).each do |tweet|
                 li = auto_link(tweet.text).html_safe
 
