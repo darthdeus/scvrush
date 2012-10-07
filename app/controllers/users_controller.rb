@@ -22,13 +22,12 @@ class UsersController < ApplicationController
 
   def show
     @user = UserDecorator.new(@user)
-
-    @followers = UserDecorator.decorate(@user.followers)
-    gon.user_id = params[:id]
-
     if @user.model.nil?
       flash[:error] = "The user doesn't exist"
       redirect_to root_path
+    else
+      @followers = UserDecorator.decorate(@user.followers)
+      gon.user_id = params[:id]
     end
   end
 
@@ -93,7 +92,7 @@ class UsersController < ApplicationController
     end
 
     unless @user
-      render file: "#{Rails.root}/public/404.html", status: :not_found
+      render file: "#{Rails.root}/public/404.html", status: 404
       return false
     end
   end
