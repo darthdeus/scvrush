@@ -200,6 +200,7 @@ p {
     clear: both;
 
     .date {
+      font-size: 12px;
       background: #fafafa;
       color: #252525;
       @include border-radius(5px);
