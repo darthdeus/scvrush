@@ -80,5 +80,11 @@ module ApplicationHelper
       content_tag(:li, link_to(text, path), :class => cls)
     end
 
+    def tweet_timeline
+      Twitter.user_timeline("thescvrush").first(5)
+    rescue Twitter::Error::Unauthorized => e
+      Rails.logger.error e
+      []
+    end
 
   end
