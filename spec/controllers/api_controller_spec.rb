@@ -3,7 +3,6 @@ require 'spec_helper'
 describe ApiController do
 
   describe "GET 'auth'" do
-
     it "returns unauthorized for no params" do
       get :auth, format: 'json'
       response.status.should == 401
@@ -18,12 +17,6 @@ describe ApiController do
   end
 
   describe "GET 'check'" do
-    it "returns unauthorized for no params" do
-      pending
-      get :check, format: 'json'
-      response.status.should == 401
-    end
-
     it "returns 200 if the API key exists" do
       User.stub!(:find_by_api_key) { true }
       get :check, format: 'json'

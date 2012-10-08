@@ -42,17 +42,6 @@ describe Topic do
     topic.to_param.should == "#{topic.id}-#{topic.name}"
   end
 
-  specify :to_simple_json do
-    pending
-    topic = create(:topic)
-    reply = create(:reply, topic_id: topic.id)
-    topic.reload
-
-    json = topic.to_simple_json
-    json.name.should == topic.name
-    json.last_topic_at.should_not be_nil
-  end
-
   describe :create_with_reply do
 
     let(:user) { create(:user) }

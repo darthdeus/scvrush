@@ -70,6 +70,7 @@ group :test do
   gem 'capybara',           '~> 1.1.2'
   gem 'factory_girl_rails', '~> 4.1.0'
   gem 'launchy',            '~> 2.1.1'
+  gem 'fuubar'
 end
 
 gem 'rails_autolink'

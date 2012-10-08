@@ -34,21 +34,6 @@ describe TopicsController do
       Reply.last.content.should == 'topic content'
     end
 
-    it "returns errors for invalid data" do
-      pending
-      user = login
-      section = create(:section)
-      [
-       { },
-       { section_id: section.id },
-       { section_id: section.id, topic: { } }
-      ].each do |params|
-        post :create, params
-        json = JSON.parse(response.body)
-        json["status"].should == "error"
-      end
-    end
-
   end
 
 end
