@@ -77,8 +77,9 @@
     }
   }
 }
+
 .tag-selection {
-  fieldset{
+  fieldset {
     padding:15px;
     display:block;
   }
@@ -92,6 +93,8 @@
 
 
 .single {
+  color: #333;
+  font: 400 16px/1.5 "proxima-nova", "Helvetica Neue", Helvetica, sans-serif;
   width: 650px;
 
   h1 {

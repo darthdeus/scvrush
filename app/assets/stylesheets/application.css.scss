@@ -100,16 +100,12 @@ a:hover { color: $linkBlueHover; }
   overflow: hidden;
 }
 
-h1 {
-  font: bold 2.45em "ff-meta-web-pro",sans-serif;
-}
-
 h1, h2, h3 {
   margin: 18px 0 6px 0;
   display: block;
   color: #262626;
-  font-family: "ff-meta-web-pro",sans-serif;
-  font-size: 32px;
+  font-family: "proxima-nova-soft", "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 36px;
 }
 
 h2 {
