@@ -124,31 +124,6 @@ describe Bracket do
     matches[1].player2.should == p4
   end
 
-
-  it "seeds players with oscilation to the bracket" do
-    User.delete_all
-    Match.delete_all
-
-    t = create(:tournament)
-    bracket = Bracket.new(t)
-    p1, p2, p3, p4, p5, p6, p7, p8 = *8.times.inject([]) { |v,i| v << create(:user) }
-    t.users << p1 << p2 << p3 << p4 << p5 << p6 << p7 << p8
-    [p1, p2, p3, p4, p5, p6, p7, p8].each { |u| u.check_in(t) }
-
-    bracket.create_bracket_rounds
-    bracket.create_matches
-    bracket.linear_seed
-
-    # Ro8 (4) + Ro4 (2) + Ro2 (1)
-    Match.count.should == 7
-
-    matches = Match.order(:id).first(2)
-    matches[0].player1.should == p1
-    matches[0].player2.should == p5
-    matches[1].player1.should == p3
-    matches[1].player2.should == p7
-  end
-
   it "can give the current match for a user" do
     User.delete_all
 
@@ -273,7 +248,6 @@ describe Bracket do
       bracket.set_score_for(players[0], "1:0")
       bracket.set_score_for(players[2], "1:0")
       bracket.set_score_for(players[0], "1:0")
-
 
       matches = bracket.matches
 

@@ -17,23 +17,4 @@ describe TopicsController do
     assigns_should_match section: section, topic: :new_topic
   end
 
-  context :create do
-
-    it "creates a Topic and a Reply for valid data" do
-      user = login
-      section = create(:section)
-
-      post :create, {
-        section_id: section.id,
-        topic: { name: 'topic name', content: 'topic content' }
-      }
-
-      json = JSON.parse(response.body)
-      json["status"].should == "ok"
-      json["location"].should == topic_path(Topic.last.to_param)
-      Reply.last.content.should == 'topic content'
-    end
-
-  end
-
 end

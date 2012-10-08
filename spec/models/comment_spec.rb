@@ -6,31 +6,17 @@ describe Comment do
   end
 
   it "requires post" do
-    build(:comment, :post => nil).should have_at_least(1).error_on(:post)
+    build(:comment, post: nil).should have_at_least(1).error_on(:post)
   end
 
   it "requires user" do
-    build(:comment, :user => nil).should have_at_least(1).error_on(:user)
+    build(:comment, user: nil).should have_at_least(1).error_on(:user)
   end
 
   it "has a limit on content size" do
-    a = [('a'..'z'),('A'..'Z')].map(&:to_a).flatten
-    content = (0..900).map { a.sample }.join
-    @comment = build(:comment, :content => content)
-
-    @comment.should have_at_least(1).error_on(:content)
-  end
-
-  describe "#author" do
-    it "returns user's username if there is one" do
-      comment = build(:comment)
-      comment.author.should == comment.user.username
-    end
-
-    it "returns nil if there is no author" do
-      comment = build(:comment, :user => nil)
-      comment.author.should be_nil
-    end
+    content = "a" * 900
+    comment = build(:comment, :content => content)
+    comment.should have_at_least(1).error_on(:content)
   end
 
   context "replies" do
@@ -39,20 +25,20 @@ describe Comment do
       comment = create(:comment)
       parent = create(:comment)
       comment.parent = parent
-      comment.save.should ==true
+      comment.save.should == true
     end
 
     it "can have replies" do
       comment = create(:comment)
-      3.times { create(:comment, parent_id: comment.id) }
-      comment.replies.size.should == 3
+      create(:comment, parent_id: comment.id)
+      comment.replies.should have(1).item
     end
   end
 
   specify :for_post do
     post = create(:post)
-    5.times { create(:comment, post_id: post.id) }
-    Comment.for_post(post.id).size.should == 5
+    create(:comment, post_id: post.id)
+    Comment.for_post(post.id).should have(1).item
   end
 
 
@@ -68,8 +54,7 @@ describe Comment do
       reply  = create(:comment, post_id: post.id, parent_id: first.id)
 
       post.comments.should == [first, second, third, reply]
-      Comment.threaded_for_post(post.id)
-        .should == [first, reply, second, third]
+      Comment.threaded_for_post(post.id).should == [first, reply, second, third]
     end
 
     it "doesn't display comments who's parent was deleted" do
@@ -84,8 +69,7 @@ describe Comment do
       post.comments.should == [first, second, third, reply]
       first.destroy
 
-      Comment.threaded_for_post(post.id)
-        .should == [second, third]
+      Comment.threaded_for_post(post.id).should == [second, third]
     end
 
   end
