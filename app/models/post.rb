@@ -73,6 +73,7 @@ class Post < ActiveRecord::Base
     else
       raise ArgumentError.new("Invalid published status '#{params[:published].inspect}'")
     end
+    self
   end
 
   def threaded_comments

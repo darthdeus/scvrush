@@ -1,21 +1,10 @@
 require 'spec_helper'
 
 describe Post do
-  it "should have a valid factory" do
-    build(:post).should be_valid
-  end
-
-  it "requires title" do
-    build(:post, title: nil)
-  end
-
-  it "requires content" do
-    build(:post, content: nil)
-  end
-
-  it "is created as draft" do
-    create(:post).status == Post::DRAFT
-  end
+  it("should have a valid factory") { build(:post).should be_valid }
+  it("requires title")   { build(:post, title: nil) }
+  it("requires content") { build(:post, content: nil) }
+  its(:status) { should == Post::DRAFT }
 
   it "should delete all dependent comments" do
     p = create(:post)
@@ -44,31 +33,18 @@ describe Post do
     let(:post) { Post.new }
 
     it "sets status to DRAFT for published = 0" do
-      post.publish(published: "0")
-      post.should be_draft
+      post.publish(published: "0").should be_draft
     end
 
     it "sets status to PUBLISHED for published = 1" do
-      post.publish(published: "1", date: '2012-1-1', time: '00:00')
-      post.should be_published
+      post.publish(published: "1", date: '2012-1-1', time: '00:00').should be_published
     end
 
     it "fails for invalid or missing with published = 1" do
-      expect {
-        post.publish(published: "1")
-      }.to raise_error(ArgumentError)
-
-      expect {
-        post.publish(published: "1")
-      }.to raise_error(ArgumentError)
-
-      expect {
-        post.publish(published: "1", time: '00:00')
-      }.to raise_error(ArgumentError)
-
-      expect {
-        post.publish(published: "1", date: '2012-1-1')
-      }.to raise_error(ArgumentError)
+      expect { post.publish(published: "1") }.to raise_error(ArgumentError)
+      expect { post.publish(published: "1") }.to raise_error(ArgumentError)
+      expect { post.publish(published: "1", time: '00:00') }.to raise_error(ArgumentError)
+      expect { post.publish(published: "1", date: '2012-1-1') }.to raise_error(ArgumentError)
     end
   end
 

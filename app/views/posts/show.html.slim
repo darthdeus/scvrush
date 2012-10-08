@@ -1,7 +1,7 @@
 - title @post.title + ' | SCV Rush'
 - content_for(:description, post_excerpt(@post.content, 100))
 
-article class="single post" data-comments="#{@comments}" data-post-id="#{@post.id}"
+article.single.post data-comments="#{@comments}" data-post-id="#{@post.id}"
   header
     h1 = @post.title
     - if @post.published_at

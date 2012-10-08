@@ -24,6 +24,6 @@ describe Status do
       status.calculate_votes.reload
       status.votes_count.should == 1
     end
-
   end
+
 end
