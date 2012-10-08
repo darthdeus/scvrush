@@ -1,6 +1,6 @@
 - if @post.user && @post.user.about
   #author-box
-    .avatar = gravatar_img @user.email
+    .avatar = gravatar_img @post.user.email
     .content
       h3.name = link_to @post.user.username, @post.user
       .about = m @post.user.about
