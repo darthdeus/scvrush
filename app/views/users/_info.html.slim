@@ -1,5 +1,5 @@
 .avatar
-  = image_tag @user.avatar.url(:thumb), :alt => @user.username
+  = gravatar_img @user.email
 
 - if @user == current_user
   div

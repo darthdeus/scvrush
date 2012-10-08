@@ -92,6 +92,8 @@
 
 
 .single {
+  width: 650px;
+
   h1 {
     line-height: 1;
   }
@@ -101,17 +103,11 @@
     time { color: #999; }
   }
 
-  p {
-    font-family: "ff-meta-web-pro",sans-serif;
-    font-size: 14px;
-    line-height: 1.4;
-  }
-
   a { color: $linkBlue; }
   a:hover { color: $linkBlueHover; }
 
   img {
-    width: 500px;
+    max-width: 500px;
     margin: 20px;
     display: block;
     border: 10px solid #ddd;
