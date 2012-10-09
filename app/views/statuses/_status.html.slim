@@ -1,6 +1,6 @@
 .status class="status_#{status.id}"
   .author
-    = link_to gravatar_img(status.avatar), user_path(status.username), class: "avatar"
+    = link_to gravatar_raw(status.avatar), user_path(status.username), class: "avatar"
     .user-info
       = link_to status.username, user_path(status.username), class: "username"
       .date 10 minutes ago

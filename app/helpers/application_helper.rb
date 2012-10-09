@@ -98,4 +98,8 @@ module ApplicationHelper
     image_tag gravatar(email), alt: email
   end
 
+  def gravatar_raw(digest)
+    image_tag("http://www.gravatar.com/avatar/" + digest)
+  end
+
 end
