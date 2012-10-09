@@ -22,13 +22,9 @@ class UsersController < ApplicationController
 
   def show
     @user = UserDecorator.new(@user)
-    if @user.model.nil?
-      flash[:error] = "The user doesn't exist"
-      redirect_to root_path
-    else
-      @followers = UserDecorator.decorate(@user.followers)
-      gon.user_id = params[:id]
-    end
+    @statuses = Status.for(@user)
+    @followers = UserDecorator.decorate(@user.followers)
+    gon.user_id = params[:id]
   end
 
   def edit

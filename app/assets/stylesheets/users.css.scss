@@ -24,49 +24,50 @@
     line-height: 30px;
   }
 
-  .statuses {
-    .status {
-      padding: 10px;
-      border-bottom: 1px solid #ededed;
-      overflow: hidden;
+}
 
-      @include transition (background 0.2s ease-in-out);
+.statuses .status {
+  padding: 10px;
+  border-bottom: 1px solid #ededed;
+  overflow: hidden;
+  position: relative;
 
-      &:hover {
-        background: #f5f5f5;
+  @include transition (background 0.2s ease-in-out);
+
+  &:hover {
+    background: #f5f5f5;
+  }
+
+  .author {
+    float: left;
+    color: #999;
+    margin-right: 65px;
+
+    .user-info, .avatar {
+      float: left;
+    }
+
+    .avatar { margin-right: 15px; }
+
+    .user-info {
+      .username {
+        font-size: 18px;
+        font-weight: bold;
       }
-
-      .text {
-        float: left;
-        width: 470px;
-        font-size: 16px;
-        padding: 0 10px 10px 0;
-        line-height: 1.2;
-      }
-
-      .meta {
-        float: right;
-        width: 120px;
-        color: #999;
-
-        .delete {
-          color: #999;
-          text-decoration: underline;
-        }
-      }
-
-      .votebox {
-        clear: both;
-        color: #999;
-
-        a {
-          color: #666;
-          text-decoration: underline;
-          font-weight: bold;
-        }
-
-      }
-
     }
   }
+
+  .content {
+    float: left;
+    width: 300px;
+  }
+
+  .meta {
+    font-size: 12px;
+    color: #999;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+  }
+
 }

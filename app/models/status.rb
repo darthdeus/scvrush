@@ -1,5 +1,6 @@
 class Status
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   field :text,        type: String
   field :username,    type: String
@@ -12,6 +13,8 @@ class Status
   validates :user_id,  presence: true
   validates :username, presence: true
   validates :avatar,   presence: true
+
+  scope :for, lambda { |user| where(user_id: user.id).order_by(created_at: :desc) }
 
   def like(voter)
     if self.voters.include? voter

@@ -3,7 +3,7 @@ FactoryGirl.define do
     text "Lorem ipsum dolor sit amet"
     username "johndoe"
     user_id 1
-    avatar "1322312098321312"
+    avatar "12312312"
   end
 end
 

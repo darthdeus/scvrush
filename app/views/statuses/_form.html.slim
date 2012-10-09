@@ -1,2 +1,2 @@
-form.status-form ng-submit="addStatus(status)"
-  input.span8 type="text" placeholder="Tell us what's on your mind" ng-model="status"
+= form_for [current_user, Status.new], remote: true, html: { class: "status-form" } do |f|
+  = f.text_field :text, placeholder: "Tell us what's on your mind", class: "span9"

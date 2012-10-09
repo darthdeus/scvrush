@@ -1,7 +1,6 @@
 class StatusesController < ApplicationController
-
+  include ApplicationHelper
   before_filter :require_login, except: [:index]
-
   respond_to :json, :html
 
   def index
@@ -12,10 +11,11 @@ class StatusesController < ApplicationController
   end
 
   def create
-    @status = current_user.statuses.create(params[:status])
-    Rails.logger.error @status
-    Rails.logger.error @status.errors.inspect
-    respond_with @status, location: nil
+    @status = Status.new(params[:status])
+    @status.user_id = current_user.id
+    @status.username = current_user.username
+    @status.avatar = Digest::MD5.hexdigest(current_user.email)
+    @status.save!
   end
 
   def destroy

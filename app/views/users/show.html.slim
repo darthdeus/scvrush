@@ -39,14 +39,8 @@
         - if @user != current_user
           .pull-right = render partial: "follow_box"
 
-      .alert.alert-notice
-        h1 The user profiles are under construction
+      - if @user == current_user
+        = render "statuses/form"
 
-        p We are going to be adding a lot of new features to user profiles, stay tuned!
-
-
-      div ng-controller="StatusesController"
-        - if @user == current_user
-          = render "statuses/form"
-
-        = render partial: "users/status", collection: @statuses
+      .statuses
+        = render @statuses
