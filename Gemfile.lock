@@ -165,6 +165,9 @@ GEM
       pry (~> 0.9.10)
     pry-rails (0.2.2)
       pry (>= 0.9.10)
+    pry-remote (0.1.6)
+      pry (~> 0.9)
+      slop (~> 3.0)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -309,6 +312,7 @@ DEPENDENCIES
   pry-doc (~> 0.4.2)
   pry-nav (~> 0.2.1)
   pry-rails (~> 0.2.2)
+  pry-remote (~> 0.1.6)
   rack-mini-profiler (~> 0.1.9)
   rails (~> 3.2.7)
   rails_autolink
