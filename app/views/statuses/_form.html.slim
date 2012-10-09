@@ -1,2 +1,6 @@
 = form_for [current_user, Status.new], remote: true, html: { class: "status-form" } do |f|
-  = f.text_field :text, placeholder: "Tell us what's on your mind", class: "span9"
+  = hidden_field_tag "status[timeline_id]", @user.id
+  - if @user == current_user
+    = f.text_field :text, placeholder: "Tell us what's on your mind", class: "span9"
+  - else
+    = f.text_field :text, placeholder: "Post on @#{@user.username}'s timeline", class: "span9"

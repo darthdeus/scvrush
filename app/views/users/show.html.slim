@@ -39,8 +39,7 @@
         - if @user != current_user
           .pull-right = render partial: "follow_box"
 
-      - if @user == current_user
-        = render "statuses/form"
+      = render "statuses/form"
 
       .statuses
         = render @statuses

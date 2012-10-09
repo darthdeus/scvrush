@@ -5,16 +5,18 @@ class Status
   field :text,        type: String
   field :username,    type: String
   field :user_id,     type: Integer
+  field :timeline_id, type: Integer
   field :avatar,      type: String
   field :voters,      type: Array,   default: []
   field :likes_count, type: Integer, default: 0
 
-  validates :text,     presence: true
-  validates :user_id,  presence: true
-  validates :username, presence: true
-  validates :avatar,   presence: true
+  validates :text,        presence: true
+  validates :user_id,     presence: true
+  validates :username,    presence: true
+  validates :timeline_id, presence: true
+  validates :avatar,      presence: true
 
-  scope :for, lambda { |user| where(user_id: user.id).order_by(created_at: :desc) }
+  scope :for, lambda { |user| where(timeline_id: user.id).order_by(created_at: :desc) }
 
   def like(voter)
     if self.voters.include? voter
