@@ -6,8 +6,11 @@ namespace :db do
 
     [User, Post, Tournament, Signup, Coach].each(&:delete_all)
 
-    user = FactoryGirl.create(:user, username: "darthdeus", password: "admin", race: "Zerg")
+    user = FactoryGirl.create(:user, email: "darthdeus@gmail.com", 
+                              username: "darthdeus", password: "admin", race: "Zerg")
     user.grant :tournament_admin
+
+    FactoryGirl.create(:status, username: user.username, user_id: user.id)
 
     salt = BCrypt::Engine.generate_salt
 

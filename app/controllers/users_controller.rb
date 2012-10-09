@@ -85,11 +85,7 @@ class UsersController < ApplicationController
 
   def load_user
     id = params[:id]
-    if id =~ /\d+(-.+)?/
-      @user = User.includes(comments: :post).find(id)
-    else
-      @user = User.includes(comments: :post).find_by_username(id)
-    end
+    @user = (id =~ /\d+(-.+)?/) ? User.find_by_id(id) : User.find_by_username(id)
 
     unless @user
       render file: "#{Rails.root}/public/404.html", status: 404
