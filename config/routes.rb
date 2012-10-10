@@ -95,12 +95,14 @@ Scvrush::Application.routes.draw do
       get     :friends
     end
 
-    resources :statuses do
-      member do
-        post :upvote
-      end
+  end
+
+  resources :statuses do
+    member do
+      post :like
     end
   end
+
   resources :sessions, only: [:new, :create, :destroy]
 
 

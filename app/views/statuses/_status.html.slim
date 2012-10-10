@@ -11,6 +11,10 @@
 
   .meta
     span
-      ' one person liked this,
-      = link_to "like it too", "#"
+      ' #{pluralize(status.likes_count, "person")} liked this,
+      - if status.voted?(current_user)
+        | including you
+      - else
+        = link_to "like it too", like_status_path(status), remote: true, method: :post
+
 
