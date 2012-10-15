@@ -52,6 +52,7 @@ namespace :deploy do
 
   task :symlink_shared do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs #{shared_path}/config/mongoid.yml  #{release_path}/config/mongoid.yml"
     run "ln -nfs #{shared_path}/bin/unicorn #{release_path}/bin/unicorn"
   end
 

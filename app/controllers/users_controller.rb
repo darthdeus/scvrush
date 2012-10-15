@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
   def show
     @user = UserDecorator.new(@user)
-    @statuses = Status.for(@user)
+    @statuses = Status.for(@user) || []
     @followers = UserDecorator.decorate(@user.followers)
     gon.user_id = params[:id]
   end
