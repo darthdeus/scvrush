@@ -43,4 +43,4 @@
         = render "statuses/form"
 
       .statuses
-        = render @statuses
+        = render partial: "statuses/status", collection: @statuses
