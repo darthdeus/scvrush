@@ -20,7 +20,7 @@ class Status
   scope :by, lambda { |user| where(user_id: user.id) }
 
   def voted?(user)
-    self.voters.include? user.username
+    self.voters.include?(user.username) if user
   end
 
   def like(voter)
