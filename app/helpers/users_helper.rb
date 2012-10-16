@@ -61,7 +61,7 @@ module UsersHelper
       when "Gold"     then "league_gold_icon.png"
       when "Platinum" then "league_platinum_icon.png"
       when "Diamond"  then "league_diamond_icon.png"
-      when "Masters"  then "league_masters_icon.png"
+      when "Master"  then "league_masters_icon.png"
 
       # else raise ArgumentError, "Invalid race"
     end

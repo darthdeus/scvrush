@@ -2,9 +2,5 @@
   = gravatar_img @user.email
 
 - if @user == current_user
-  div
-    = link_to "change avatar", new_avatar_path
-
-  - if @user == current_user
-    = link_to 'edit your profile', edit_user_path(current_user)
+  = link_to 'edit your profile', edit_user_path(current_user)
 
