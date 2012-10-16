@@ -1,0 +1,22 @@
+defaults: &defaults
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: localhost
+  username: darth
+  password:
+
+development:
+  database: scvrush_development
+  <<: *defaults
+
+test: &test
+  database: scvrush_test
+  <<: *defaults
+
+production:
+  database: scvrush_development
+  <<: *defaults
+
+cucumber:
+  <<: *test
