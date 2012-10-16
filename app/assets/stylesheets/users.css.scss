@@ -1,5 +1,5 @@
 .user-profile {
-  .avatar img {
+  .avatar img, .followers img {
     @include box-shadow(0 0 3px #666);
   }
 
@@ -24,6 +24,12 @@
     line-height: 30px;
   }
 
+  .followers a {
+    width: 80px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    display: inline-block;
+  }
 }
 
 .statuses .status {

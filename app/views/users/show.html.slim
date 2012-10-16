@@ -6,7 +6,8 @@
       - unless @followers.empty?
         h3 Followers
 
-        = render collection: @followers, partial: "users/follower"
+        .followers
+          = render collection: @followers, partial: "users/follower"
 
       .practice-info
         - if @user == current_user
