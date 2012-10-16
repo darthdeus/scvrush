@@ -18,7 +18,7 @@ set :runner, user
 set :rails_env, "production"
 set :use_sudo, false
 
-set :rvm_ruby_string, '1.9.2'
+set :rvm_ruby_string, '1.9.3'
 set :rvm_type, :system
 
 set :deploy_to, "/var/apps/#{application}"
