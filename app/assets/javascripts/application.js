@@ -14,9 +14,8 @@
 
 jQuery(function($) {
 
-  $("[rel=popover]").popover({
-    placement: "top"
-  });
+  $("[rel=popover]").popover({ placement: "top" });
+  $(".avatar a").tooltip({ placement: "right" });
 
   // TODO - do this via Angular callback on when
   // the DOM is compiled, still not sure how to

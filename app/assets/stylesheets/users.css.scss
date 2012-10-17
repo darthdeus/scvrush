@@ -1,4 +1,5 @@
 .user-profile {
+  .avatar a { display: block; }
   .avatar img, .followers img {
     @include box-shadow(0 0 3px #666);
   }
@@ -54,9 +55,8 @@
     color: #999;
     margin-right: 65px;
 
-    .user-info, .avatar {
-      float: left;
-    }
+    .user-info, .avatar { float: left; }
+    .date { font-size: 12px; }
 
     .avatar {
       margin-right: 15px;

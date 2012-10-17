@@ -22,7 +22,12 @@ class UsersController < ApplicationController
 
   def show
     @user = UserDecorator.new(@user)
-    @statuses = Status.for(@user) || []
+    if @user == current_user
+      @statuses = Status.with_ids(@user.timeline_ids)
+    else
+      @statuses = Status.for(@user)
+    end
+
     @followers = UserDecorator.decorate(@user.followers)
     gon.user_id = params[:id]
   end

@@ -237,6 +237,12 @@ class User < ActiveRecord::Base
     self.following?(user) && user.following?(self)
   end
 
+  # Return all ids from the users the current user is following,
+  # include his own. Used to query statuses for user's timeline.
+  def timeline_ids
+    self.following.map(&:id) << self.id
+  end
+
 end
 
 class NotRegistered < Exception

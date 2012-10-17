@@ -16,6 +16,9 @@ class Status
   validates :timeline_id, presence: true
   validates :avatar,      presence: true
 
+  # Statuses for all given ids
+  scope :with_ids, lambda { |ids| where(timeline_id: { "$in" => ids }).order_by(created_at: :desc) }
+  # All statuses for a given user
   scope :for, lambda { |user| where(timeline_id: user.id).order_by(created_at: :desc) }
   scope :by,  lambda { |user| where(user_id: user.id) }
 

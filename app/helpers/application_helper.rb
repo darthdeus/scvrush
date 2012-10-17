@@ -94,8 +94,9 @@ module ApplicationHelper
     "http://www.gravatar.com/avatar/" + Digest::MD5.hexdigest(email)
   end
 
-  def gravatar_img(email)
-    image_tag gravatar(email), alt: email
+  def gravatar_img(email, size = nil)
+    url = size ? gravatar(email) + "?s=#{size}" : gravatar(email)
+    image_tag url, alt: email
   end
 
   def gravatar_raw(digest)

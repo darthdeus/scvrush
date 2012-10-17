@@ -44,4 +44,14 @@ describe Status do
 
   end
 
+  describe "#with_ids" do
+    it "returns statuses for all given timeline_ids" do
+      Status.destroy_all
+      s1 = create(:status, timeline_id: 4)
+      s2 = create(:status, timeline_id: 5)
+      Status.with_ids([4,5]).should == [s2, s1]
+    end
+
+  end
+
 end

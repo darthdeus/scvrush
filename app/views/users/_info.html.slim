@@ -1,6 +1,6 @@
 .avatar
   a href="http://gravatar.com" rel="tooltip" title="We've switched to using gravatar for our user profiles. Click to change your avatar."
-    = gravatar_img @user.email
+    = gravatar_img @user.email, 220
 
 - if @user == current_user
   = link_to 'edit your profile', edit_user_path(current_user)
