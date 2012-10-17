@@ -41,6 +41,10 @@ class Status
     end
   end
 
+  def self.create_for_signup(user, signup)
+    # TODO - need to implement this
+  end
+
   # belongs_to :user
 
   # belongs_to :statusable, polymorphic: true
