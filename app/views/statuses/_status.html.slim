@@ -3,7 +3,7 @@
     = link_to gravatar_raw(status.avatar), user_path(status.username), class: "avatar"
     .user-info
       = link_to status.username, user_path(status.username), class: "username"
-      .date 10 minutes ago
+      .date #{distance_of_time_in_words_to_now status.created_at} ago
 
   .content
     .text

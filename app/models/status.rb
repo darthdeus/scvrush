@@ -17,7 +17,7 @@ class Status
   validates :avatar,      presence: true
 
   scope :for, lambda { |user| where(timeline_id: user.id).order_by(created_at: :desc) }
-  scope :by, lambda { |user| where(user_id: user.id) }
+  scope :by,  lambda { |user| where(user_id: user.id) }
 
   def voted?(user)
     self.voters.include?(user.username) if user
