@@ -8,7 +8,7 @@ class UserAuthenticator
     return false unless @user
 
     hash = BCrypt::Engine.hash_secret(password, @user.password_salt)
-    @user.password_hash == hash ? @user : false
+    @user if @user.password_hash == hash
   end
 
 end

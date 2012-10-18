@@ -55,7 +55,6 @@ class User < ActiveRecord::Base
   end
 
   attr_accessor :password
-  before_save :encrypt_password
 
   mount_uploader :avatar, AvatarUploader
 
@@ -104,8 +103,7 @@ class User < ActiveRecord::Base
 
   validate :bnet_username_is_string
   validates :bnet_code,
-            format: { with: /^\d+$/,
-                         message: 'can contain only numbers' },
+            format: { with: /^\d+$/, message: 'can contain only numbers' },
             if: lambda { |u| u.bnet_username? }
 
   def self.races_collection
@@ -197,16 +195,8 @@ class User < ActiveRecord::Base
     self.save!
   end
 
+  before_save :encrypt_password
   before_create { generate_token(:auth_token) }
-
-  def self.authenticate(username, password)
-    user = self.where('username ILIKE ? OR email ILIKE ?', username, username).first
-    if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
-      user
-    else
-      nil
-    end
-  end
 
   def encrypt_password
     if password.present?

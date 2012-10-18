@@ -9,11 +9,8 @@ describe UserAuthenticator do
     user = create(:user, password: "password")
     authenticator = UserAuthenticator.new(user)
 
-    result = User.authenticate(user.username, "password")
-    authenticator.authenticate("password").should == result
-
-    result = User.authenticate(user.username, "badpass")
-    authenticator.authenticate("badpass").should == result
+    authenticator.authenticate("password").should == user
+    authenticator.authenticate("badpass").should == nil
   end
 
 end

@@ -1,10 +1,12 @@
 class ApiController < ApplicationController
 
   def login
-    user = User.authenticate(params[:username], params[:password])
+    user = User.with_login(params[:username])
+    user_authenticator = UserAuthenticator.new(user)
+
     respond_to do |format|
       format.json do
-        if user
+        if user_authenticator.authenticate(params[:password])
           session[:user_id] = user.id
           render json: { status: 'ok' }, status: 200
         else
@@ -15,10 +17,12 @@ class ApiController < ApplicationController
   end
 
   def auth
-    user = User.authenticate(params[:username], params[:password])
+    user = User.with_login(params[:username])
+    user_authenticator = UserAuthenticator.new(user)
+
     respond_to do |format|
       format.json do
-        if user
+        if user_authenticator.authenticate(params[:password])
           user.generate_api_key! unless user.api_key.present?
           render json: { key: user.api_key }
         else

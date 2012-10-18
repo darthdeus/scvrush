@@ -12,36 +12,23 @@ describe User do
     end
   end
 
-  context "authentication" do
-    it "with valid password" do
-      user = create(:user, username: "batman", password: "secret")
-      User.authenticate("batman", "secret").should == user
-    end
+  it "allows only alphanumeric characters in bnet_username" do
+    user = build(:user, bnet_username: 'johndoe')
+    user.should be_valid
 
-    it "rejects bad password" do
-      user = create(:user, username: "batman", password: "secret")
-      User.authenticate("batman", "badpassword").should be_nil
-    end
+    bad_user = build(:user, bnet_username: 'john@example.com')
+    bad_user.should have_at_least(1).error_on(:bnet_username)
+  end
 
-    it "allows only alphanumeric characters in bnet_username" do
-      user = build(:user, bnet_username: 'johndoe')
-      user.should be_valid
+  it "doesn't allow http in bnet_username" do
+    build(:user, bnet_username: 'http://google.com/')
+    .should have_at_least(1).error_on(:bnet_username)
+  end
 
-      bad_user = build(:user, bnet_username: 'john@example.com')
-      bad_user.should have_at_least(1).error_on(:bnet_username)
-    end
-
-    it "doesn't allow http in bnet_username" do
-      build(:user, bnet_username: 'http://google.com/')
-        .should have_at_least(1).error_on(:bnet_username)
-    end
-
-    it "allows only numbers in bnet_code" do
-      build(:user, bnet_code: 'foobar').should have_at_least(1).error_on(:bnet_code)
-      build(:user, bnet_code:  123)    .should be_valid
-      build(:user, bnet_code: '123')   .should be_valid
-    end
-
+  it "allows only numbers in bnet_code" do
+    build(:user, bnet_code: 'foobar').should have_at_least(1).error_on(:bnet_code)
+    build(:user, bnet_code:  123)    .should be_valid
+    build(:user, bnet_code: '123')   .should be_valid
   end
 
   it "has a factory that allows to sign up for a tournament" do
