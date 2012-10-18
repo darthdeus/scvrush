@@ -61,8 +61,28 @@
 
 
 .row
-  .span9.news-block
 
+  .span9.news-block
+    / Poker
+    h2.underline
+      | Poker Strategy League continues!
+
+    .row
+      .span3
+        = link_to image_tag("http://i.imgur.com/b5oO4.png"), "http://chat.scvrush.com"
+
+      .span5
+        li
+          strong Snute vs Lucifron
+          |  playing their 10 games
+
+        li: strong Thursday, Oct 18th, 19:00 CEST
+        li
+          strong Stream:
+          '
+          = link_to "http://chat.scvrush.com", "http://chat.scvrush.com"
+
+    / Upcoming tournament
     - if @tournament.tournament
       h2.underline
         | Next tournament
@@ -76,6 +96,7 @@
           p
             = link_to "Sign up", @tournament, class: "btn btn-mini btn-success"
 
+    / Scene news post
     - if @scene_post.post
       h2.underline Scene news
       .row
