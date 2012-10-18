@@ -24,9 +24,7 @@ jQuery(function($) {
     $("[rel=tooltip]").tooltip();
   }, 1000);
 
-  $(".chosen").select2({
-    width: "element"
-  });
+  $(".chosen").select2({ width: "element" });
 
   $(".user-select").select2({
     width: "element",
@@ -38,9 +36,7 @@ jQuery(function($) {
 
   $('.carousel').carousel({ interval: 3500 });
 
-  if (!window.gon) {
-    window.gon = {};
-  }
+  if (!window.gon) { window.gon = {}; }
 
   var url = 'http://api.justin.tv/api/stream/list.json';
 
@@ -129,21 +125,14 @@ jQuery(function($) {
     var tags =[];
     if ($("button.active").length > 0){
       $("button.active").each(function(index, value) {
-      tags.push($(value).text().replace(/\s+/g, '-'));
-    });
-    $(this).attr("href", 'posts/tags/' + tags.join('/'));
-  } else {
-    $(".tagged-content").html("Sorry, no submissions were found");
-    return false;
-  }
-    
+        tags.push($(value).text().replace(/\s+/g, '-'));
+      });
+      $(this).attr("href", 'posts/tags/' + tags.join('/'));
+    } else {
+      $(".tagged-content").html("Sorry, no submissions were found");
+      return false;
+    }
   });
-});
-
-$(document).ready(function() {
 
 });
-
-
-
 
