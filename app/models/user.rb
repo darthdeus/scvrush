@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   rolify
+  include BattleNet
 
   scope :with_bnet_info, where("bnet_username IS NOT NULL AND bnet_code IS NOT NULL")
 
@@ -106,17 +107,6 @@ class User < ActiveRecord::Base
             format: { with: /^\d+$/, message: 'can contain only numbers' },
             if: lambda { |u| u.bnet_username? }
 
-  def self.races_collection
-    %w{Zerg Terran Protoss Random}
-  end
-
-  def self.leagues_collection
-    %w{Bronze Silver Gold Platinum Diamond Master Grandmaster}
-  end
-
-  def self.servers_collection
-    %w{NA EU SEA KR}
-  end
 
   def is_admin?
     self.has_role? :admin
@@ -124,10 +114,6 @@ class User < ActiveRecord::Base
 
   def is_writer?
     self.has_role? :writer
-  end
-
-  def has_bnet_username?
-    self.bnet_username.present? && self.bnet_code.present?
   end
 
   # Sign up the user for a tournament and post it on his timeline
@@ -168,14 +154,6 @@ class User < ActiveRecord::Base
 
   def participating_in?(raffle)
     self.raffle_signups.where(raffle_id: raffle.id).first
-  end
-
-  def bnet_info
-    "#{self.bnet_username}.#{self.bnet_code}"
-  end
-
-  def bnet_info?
-    self.bnet_username? && self.bnet_code?
   end
 
   def to_param

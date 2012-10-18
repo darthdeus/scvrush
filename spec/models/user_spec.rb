@@ -13,16 +13,15 @@ describe User do
   end
 
   it "allows only alphanumeric characters in bnet_username" do
-    user = build(:user, bnet_username: 'johndoe')
-    user.should be_valid
+    build(:user, bnet_username: 'johndoe').should be_valid
 
     bad_user = build(:user, bnet_username: 'john@example.com')
     bad_user.should have_at_least(1).error_on(:bnet_username)
   end
 
   it "doesn't allow http in bnet_username" do
-    build(:user, bnet_username: 'http://google.com/')
-    .should have_at_least(1).error_on(:bnet_username)
+    bad_username = build(:user, bnet_username: 'http://google.com/')
+    bad_username.should have_at_least(1).error_on(:bnet_username)
   end
 
   it "allows only numbers in bnet_code" do
@@ -56,26 +55,21 @@ describe User do
     end
   end
 
-  it "doesn't blow up when I call #send_password_reset" do
-    @user = create(:user)
-    lambda { @user.send_password_reset }.should_not raise_error
-  end
-
   describe "#participating_in?" do
     it "returns true if user is participating in a raffle" do
-      @user = create(:user)
-      @raffle = create(:raffle)
-      create(:raffle_signup, user: @user, raffle: @raffle)
+      user   = create(:user)
+      raffle = create(:raffle)
+      create(:raffle_signup, user: user, raffle: raffle)
 
-      @user.participating_in?(@raffle).should be_true
+      user.participating_in?(raffle).should be_true
     end
 
     it "returns true if user is not participating in a raffle" do
       RaffleSignup.destroy_all
-      @user = create(:user)
-      @raffle = create(:raffle)
+      user   = create(:user)
+      raffle = create(:raffle)
 
-      @user.participating_in?(@raffle).should be_false
+      user.participating_in?(raffle).should be_false
     end
   end
 
@@ -146,7 +140,6 @@ describe User do
   end
 
   describe "friendship" do
-
     it "means two users are friends if they are following each other" do
       u1 = create(:user)
       u2 = create(:user)
@@ -158,5 +151,4 @@ describe User do
     end
 
   end
-
 end
