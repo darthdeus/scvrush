@@ -538,6 +538,16 @@ li.stream {
   display:none!important;
 }
 
+.poker_players {
+  img {
+    width: 100px;
+    box-shadow: 0 0 3px #666;
+    margin-bottom: 10px;
+
+  }
+
+  a:nth-child(odd) img { margin-right: 20px; }
+}
 
 @import "posts";
 @import "progress_bar";

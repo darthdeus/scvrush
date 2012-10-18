@@ -107,6 +107,19 @@
           = post_excerpt @scene_post.content
 
   .span3
+    h2.underline Players
+
+    .poker_players
+      = link_to image_tag("pscom-league-player-titan2.png"),  post_path("10047-poker-strategy-league-titan")
+      = link_to image_tag("pscom-league-player-grubby2.png"), post_path("10048-poker-strategy-league-grubby")
+      = link_to image_tag("pscom-league-player-morrow_b26ede322.png"), post_path("10053-poker-strategy-league-morrow")
+      = link_to image_tag("pscom-league-player-lunifron2.png"), post_path("10054-poker-strategy-league-lucifron")
+      = link_to image_tag("pscom-league-player-kas2.png"), post_path("10055-poker-strategy-league-kas")
+      = link_to image_tag("pscom-league-player-sheth2.png"), post_path("10056-poker-strategy-league-sheth")
+      = link_to image_tag("pscom-league-player-snute2.png"), post_path("10057-poker-strategy-league-snute")
+      = link_to image_tag("pscom-league-player-socke2.png"), post_path("10058-poker-strategy-league-socke")
+      = link_to image_tag("pscom-league-player-select2.png"), post_path("10059-poker-strategy-league-select")
+
     h2.underline Event calendar
 
     - t = Tournament.calendar
@@ -118,9 +131,7 @@
       - else
         = date.day
 
-  .span3
     h2.underline Grow Esports!
-
     = render :partial => 'donate'
 
 
