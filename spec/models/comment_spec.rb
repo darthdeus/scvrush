@@ -44,19 +44,6 @@ describe Comment do
 
   describe :threaded_comments do
 
-    it "sorts replies properly" do
-      post = create(:post)
-
-      first  = create(:comment, post_id: post.id)
-      second = create(:comment, post_id: post.id)
-      third  = create(:comment, post_id: post.id)
-
-      reply  = create(:comment, post_id: post.id, parent_id: first.id)
-
-      post.comments.should == [first, second, third, reply]
-      Comment.threaded_for_post(post.id).should == [first, reply, second, third]
-    end
-
     it "doesn't display comments who's parent was deleted" do
       post = create(:post)
 
@@ -67,6 +54,7 @@ describe Comment do
       reply  = create(:comment, post_id: post.id, parent_id: first.id)
 
       post.comments.should == [first, second, third, reply]
+      Comment.threaded_for_post(post.id).should == [first, reply, second, third]
       first.destroy
 
       Comment.threaded_for_post(post.id).should == [second, third]

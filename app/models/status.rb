@@ -3,12 +3,14 @@ class Status
   include Mongoid::Timestamps
 
   field :text,        type: String
-  field :username,    type: String
-  field :user_id,     type: Integer
-  field :timeline_id, type: Integer
-  field :avatar,      type: String
   field :voters,      type: Array,   default: []
   field :likes_count, type: Integer, default: 0
+
+  field :username,    type: String
+  field :user_id,     type: Integer
+  field :avatar,      type: String
+
+  field :timeline_id, type: Integer
 
   validates :text,        presence: true
   validates :user_id,     presence: true

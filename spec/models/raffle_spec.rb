@@ -39,17 +39,6 @@ describe Raffle do
   end
   
   describe "#calculate_winner" do        
-    it "returns a random signed user" do
-      User.destroy_all
-      Raffle.destroy_all
-      @raffle = create(:raffle)
-      
-      3.times { create(:raffle_signup, raffle: @raffle) }
-      @raffle.users.size.should == 3            
-            
-      User.all.should include(@raffle.calculate_winner)
-    end
-    
     it "closes the raffle" do
       @raffle = create(:raffle)
       
@@ -65,7 +54,8 @@ describe Raffle do
     @raffle = create(:raffle)
     3.times { create(:raffle_signup, raffle: @raffle) }
     @raffle.raffle_signups.size.should == 3
-    
+
+    User.all.should include(@raffle.calculate_winner)
     @raffle.destroy
     RaffleSignup.count.should == 0
   end
