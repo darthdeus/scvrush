@@ -6,8 +6,9 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.authenticate(params[:username], params[:password])
-    if user
+    user = User.with_login(params[:username])
+
+    if UserAuthenticator.new(user).authenticate(params[:password])
       session[:user_id] = user.id
       flash[:success] = "You are now logged in. Enjoy the community!"
       redirect_back_or_default

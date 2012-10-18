@@ -59,7 +59,13 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
-  scope :practice, where(practice: true).order('created_at DESC')
+  scope :practice,   where(practice: true).order('created_at DESC')
+
+  # Return a user either by his username or by email.
+  # Used mostly for authentication purposes.
+  def self.with_login(login)
+    where('username ILIKE ? OR email ILIKE ?', login, login).first
+  end
 
   # ActiveRecord reputation system
   has_many :evaluations, class_name: "RSEvaluation", as: :source
