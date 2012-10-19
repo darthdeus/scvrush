@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120926220208) do
+ActiveRecord::Schema.define(:version => 20121019093659) do
 
   create_table "achievements", :force => true do |t|
     t.string   "name"
@@ -153,17 +153,6 @@ ActiveRecord::Schema.define(:version => 20120926220208) do
     t.datetime "updated_at",                       :null => false
   end
 
-  create_table "replies", :force => true do |t|
-    t.text     "content"
-    t.integer  "topic_id"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "replies", ["topic_id"], :name => "index_replies_on_topic_id"
-  add_index "replies", ["user_id"], :name => "index_replies_on_user_id"
-
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.integer  "resource_id"
@@ -184,13 +173,6 @@ ActiveRecord::Schema.define(:version => 20120926220208) do
   end
 
   add_index "rounds", ["tournament_id"], :name => "index_rounds_on_tournament_id"
-
-  create_table "sections", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "order"
-  end
 
   create_table "signups", :force => true do |t|
     t.integer  "tournament_id"
@@ -233,20 +215,6 @@ ActiveRecord::Schema.define(:version => 20120926220208) do
   create_table "tags", :force => true do |t|
     t.string "name"
   end
-
-  create_table "topics", :force => true do |t|
-    t.string   "name"
-    t.integer  "section_id"
-    t.integer  "user_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.integer  "last_reply_id"
-    t.datetime "last_reply_at"
-  end
-
-  add_index "topics", ["last_reply_id"], :name => "index_topics_on_last_reply_id"
-  add_index "topics", ["section_id"], :name => "index_topics_on_section_id"
-  add_index "topics", ["user_id"], :name => "index_topics_on_user_id"
 
   create_table "tournaments", :force => true do |t|
     t.string   "name"
