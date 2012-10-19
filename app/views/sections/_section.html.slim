@@ -1,7 +1,0 @@
-article.section
-  header
-    h1
-      = section.name
-      = link_to 'add new topic', '#', :'data-section-id' => section.id, class: 'newtopic'
-  .topics
-    = render section.topics
