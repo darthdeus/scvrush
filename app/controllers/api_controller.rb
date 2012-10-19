@@ -23,7 +23,9 @@ class ApiController < ApplicationController
     respond_to do |format|
       format.json do
         if user_authenticator.authenticate(params[:password])
-          user.generate_api_key! unless user.api_key.present?
+          user_authenticator.generate_api_key unless user.api_key.present?
+          user.save!
+
           render json: { key: user.api_key }
         else
           render json: { error: 401 }, status: 401

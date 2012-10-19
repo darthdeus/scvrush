@@ -7,13 +7,6 @@ describe ApiController do
       get :auth, format: 'json'
       response.status.should == 401
     end
-
-    it "returns the API key if user is authorized" do
-      user = stub(generate_api_key!: 'foobar', api_key: nil)
-      User.stub!(:authenticate) { user }
-      get :auth, format: 'json'
-    end
-
   end
 
   describe "GET 'check'" do
@@ -29,5 +22,4 @@ describe ApiController do
     end
 
   end
-
 end

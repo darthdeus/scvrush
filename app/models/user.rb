@@ -164,11 +164,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def generate_api_key!
-    self.api_key = BCrypt::Engine.generate_salt
-    self.save!
-  end
-
   before_save :encrypt_password
   before_create { generate_token(:auth_token) }
 
