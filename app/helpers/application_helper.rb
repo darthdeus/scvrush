@@ -91,7 +91,7 @@ module ApplicationHelper
   end
 
   def gravatar(email)
-    "http://www.gravatar.com/avatar/" + Digest::MD5.hexdigest(email)
+    "http://www.gravatar.com/avatar/" + Digest::MD5.hexdigest(email.downcase)
   end
 
   def gravatar_img(email, size = nil)

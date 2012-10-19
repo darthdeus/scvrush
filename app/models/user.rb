@@ -18,8 +18,8 @@ class User < ActiveRecord::Base
 
   has_many :posts
   has_many :won_raffles, class_name: 'Raffle', foreign_key: 'winner_id'
-
   has_many :votes
+
   has_many :raffle_signups
   has_many :raffles, through: :raffle_signups
 
