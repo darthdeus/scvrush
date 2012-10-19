@@ -18,7 +18,7 @@
   fieldset
     legend Community information
 
-    = f.input :race, collection: User.races_collection, include_blank: false
+    = f.input :race,   collection: User.races_collection,   include_blank: false
     = f.input :league, collection: User.leagues_collection, include_blank: false
     = f.input :server, collection: User.servers_collection, include_blank: false
 

@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   rolify
+  include BattleNet
 
   scope :with_bnet_info, where("bnet_username IS NOT NULL AND bnet_code IS NOT NULL")
 
@@ -55,11 +56,16 @@ class User < ActiveRecord::Base
   end
 
   attr_accessor :password
-  before_save :encrypt_password
 
   mount_uploader :avatar, AvatarUploader
 
-  scope :practice, where(practice: true).order('created_at DESC')
+  scope :practice,   where(practice: true).order('created_at DESC')
+
+  # Return a user either by his username or by email.
+  # Used mostly for authentication purposes.
+  def self.with_login(login)
+    where('username ILIKE ? OR email ILIKE ?', login, login).first
+  end
 
   # ActiveRecord reputation system
   has_many :evaluations, class_name: "RSEvaluation", as: :source
@@ -94,21 +100,9 @@ class User < ActiveRecord::Base
 
   validate :bnet_username_is_string
   validates :bnet_code,
-            format: { with: /^\d+$/,
-                         message: 'can contain only numbers' },
+            format: { with: /^\d+$/, message: 'can contain only numbers' },
             if: lambda { |u| u.bnet_username? }
 
-  def self.races_collection
-    %w{Zerg Terran Protoss Random}
-  end
-
-  def self.leagues_collection
-    %w{Bronze Silver Gold Platinum Diamond Master Grandmaster}
-  end
-
-  def self.servers_collection
-    %w{NA EU SEA KR}
-  end
 
   def is_admin?
     self.has_role? :admin
@@ -116,10 +110,6 @@ class User < ActiveRecord::Base
 
   def is_writer?
     self.has_role? :writer
-  end
-
-  def has_bnet_username?
-    self.bnet_username.present? && self.bnet_code.present?
   end
 
   # Sign up the user for a tournament and post it on his timeline
@@ -162,14 +152,6 @@ class User < ActiveRecord::Base
     self.raffle_signups.where(raffle_id: raffle.id).first
   end
 
-  def bnet_info
-    "#{self.bnet_username}.#{self.bnet_code}"
-  end
-
-  def bnet_info?
-    self.bnet_username? && self.bnet_code?
-  end
-
   def to_param
     "#{id}-#{username.parameterize}"
   end
@@ -187,16 +169,8 @@ class User < ActiveRecord::Base
     self.save!
   end
 
+  before_save :encrypt_password
   before_create { generate_token(:auth_token) }
-
-  def self.authenticate(username, password)
-    user = self.where('username ILIKE ? OR email ILIKE ?', username, username).first
-    if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
-      user
-    else
-      nil
-    end
-  end
 
   def encrypt_password
     if password.present?
