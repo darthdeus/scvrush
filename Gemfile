@@ -52,11 +52,12 @@ gem 'therubyracer', group: :production
 # gem 'mustang'
 
 group :development, :test do
+  gem 'rb-fsevent', '~> 0.9.1'
+  gem 'guard-ctags-bundler', '~> 0.1.6'
   gem 'pry',        '~> 0.9.9'
   gem 'pry-doc',    '~> 0.4.2'
   gem 'pry-rails',  '~> 0.2.2'
   gem 'pry-nav',    '~> 0.2.1'
-  gem 'pry-remote', '~> 0.1.6'
 
   gem 'rack-mini-profiler', '~> 0.1.9'
 

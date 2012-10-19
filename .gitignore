@@ -8,3 +8,5 @@ coverage/
 config/sc2bc.yml
 b.log
 config/database.yml
+tags
+gems.tags
