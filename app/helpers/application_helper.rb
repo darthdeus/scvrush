@@ -95,7 +95,7 @@ module ApplicationHelper
   end
 
   def gravatar_img(email, size = nil)
-    url = size ? gravatar(email) + "?s=#{size}" : gravatar(email)
+    url = size ? gravatar(email) + "?s=#{size}" : gravatar(email.downcase)
     image_tag url, alt: email
   end
 
