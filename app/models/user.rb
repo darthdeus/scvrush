@@ -64,10 +64,6 @@ class User < ActiveRecord::Base
   # ActiveRecord reputation system
   has_many :evaluations, class_name: "RSEvaluation", as: :source
 
-  def voted_for?(item)
-    raise "implement this"
-  end
-
   def self.filtered(params)
     res = self
     res = res.where(race: params[:race]) if params[:race] && params[:race] != 'Any'
