@@ -141,8 +141,6 @@ class Bracket
 
     match.set_score_and_advance(user, score)
     match.save!
-
-    # self.seed_next_match_with(match.winner, match)
   end
 
   # Return next round number for a given number, e.g. 2 for 4
@@ -166,9 +164,8 @@ class Bracket
   # the match with the lowers round number where the player is present.
   def current_match_for(user)
     tournament.reload
-    matches = tournament.matches.to_a
-    user_matches = matches.select { |m| m.player1_id == user.id || m.player2_id == user.id }
-    user_matches.sort { |m1, m2| m1.round.number <=> m2.round.number }.first
+    search = MatchSearch.new(tournament.matches.to_a)
+    search.for_user(user.id)
   end
 
   # Return a current opponent for a user from his current match.
