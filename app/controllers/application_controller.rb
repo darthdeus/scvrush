@@ -11,16 +11,26 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def require_writer
-    if !logged_in?
-      flash[:error] = "You must be logged in to access this section"
-      redirect_to login_path
-      # TODO - how does this acutally work!? refactor!
-    elsif !current_user.has_role?(:writer) # || !current_user.has_role?(:admin)
+  def require_role(role)
+    if !current_user.has_role?(role)
       logger.warn "Access denied for #{current_user} with role '#{current_user.roles_name.join(', ')}'"
       flash[:error] = "Access denied! You are not authorized to do this."
       redirect_back_or_root
     end
+  end
+
+
+  def require_writer
+    if !logged_in?
+      flash[:error] = "You must be logged in to access this section"
+      redirect_to login_path
+    else
+      require_role(:writer)
+    end
+  end
+
+  def require_admin
+    require_role(:admin)
   end
 
   def require_login

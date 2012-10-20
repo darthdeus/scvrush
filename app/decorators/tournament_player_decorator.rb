@@ -47,13 +47,17 @@ class TournamentPlayerDecorator
     @user.username
   end
 
+  def signups
+    @user.signups
+  end
+
   def registered?
     return false if @tournament.nil?
     !@user.signups.registered.where(tournament_id: @tournament.id).empty?
   end
 
   def checked_in?
-    return false if @tournament.nil?
+    return false if @tournament.nil? || !@user.respond_to?(:signups)
     !@user.signups.checked.where(tournament_id: @tournament.id).empty?
   end
 
