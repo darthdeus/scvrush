@@ -69,24 +69,20 @@ class Bracket
 
     players = tournament.checked_players
 
-    # First half of the players
-    index = 0
-    while index < matches.size / 2
-      matches[index].player1 = players.shift
-      matches[-index - 1].player1 = players.shift
-
-      index += 1
+    # Seed both first and second half of the players
+    [:player1=, :player2=].each do |attr|
+      index = 0
+      while index < matches.size / 2
+        matches[index]     .send(attr, players.shift)
+        matches[-index - 1].send(attr, players.shift)
+        index += 1
+      end
     end
 
-    # Second half of the players
-    index = 0
-    while index < matches.size / 2
-      matches[index].player2 = players.shift
-      matches[-index - 1].player2 = players.shift
+    resolve_walkovers(matches)
+  end
 
-      index += 1
-    end
-
+  def resolve_walkovers(matches)
     # Automatic walkovers
     matches.each do |match|
       if match.player2.nil?
