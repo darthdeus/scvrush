@@ -24,33 +24,27 @@ class TournamentsController < ApplicationController
   end
 
   def show
-    respond_to do |format|
-      format.html do
-        @tournament = TournamentDecorator.find(params[:id])
-        gon.tournament_id = @tournament.id
-        @user = TournamentPlayerDecorator.new(current_user, @tournament)
+    @tournament = TournamentDecorator.find(params[:id])
+    gon.tournament_id = @tournament.id
+    @user = TournamentPlayerDecorator.new(current_user, @tournament)
 
-        if @tournament.started?
-          @bracket = Bracket.new(@tournament)
+    if @tournament.started?
+      @bracket = Bracket.new(@tournament)
+      @info = PlayerInfoDecorator.new(@bracket, @user)
 
-          @info = PlayerInfoDecorator.new(@bracket, @user)
-
-          gon.is_admin = Ability.new(current_user).can?(:manage, Match)
-
-          render :show
-        else
-          # redirecting here will drop the flash message
-          render :signup
-        end
-      end
-
-      format.json do
-        @tournament = Tournament.find(params[:id])
-        # TODO - display the last round too
-        rounds = @tournament.rounds[0..-2].map(&:to_simple_json)
-        render json: rounds
-      end
+      gon.is_admin = Ability.new(current_user).can?(:manage, Match)
+      render :show
+    else
+      # redirecting here will drop the flash message
+      render :signup
     end
+  end
+
+  def rounds
+    @tournament = Tournament.find(params[:id])
+    # TODO - display the last round too
+    rounds = @tournament.rounds[0..-2].map(&:to_simple_json)
+    render json: rounds
   end
 
   def edit

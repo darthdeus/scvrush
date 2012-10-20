@@ -13,7 +13,7 @@ module.config(["$httpProvider", (provider) ->
 
 module.factory("Tournament", ["$resource", ($resource) ->
   # TODO - extract tournament_id into an external service
-  return $resource("/tournaments/" + gon.tournament_id + ".json", {},
+  return $resource("/tournaments/#{gon.tournament_id}/rounds", {},
     { get: { method: "GET", callback: "JSON_CALLBACK", isArray: true } })
 
 ])

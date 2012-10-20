@@ -5,16 +5,17 @@
 .tournament ng-app="scvrush"
   header
     .admin-buttons
-      h4 Admin menu
-      .btn-group
-        - if can? :seed, @tournament
+      - if can?(:seed, @tournament)
+        h4 Admin menu
+        .btn-group
           = link_to "Seed", seed_tournament_path(@tournament), method: :post, class: "btn"
           = link_to "Destroy seed", unseed_tournament_path(@tournament), method: :post, class: "btn"
-        - if can?(:start, @tournament) && !@tournament.started?
-          = start_tournament_button
-        - if can?(:edit, @tournament)
-          = link_to "Edit", edit_tournament_path(@tournament), class: "btn"
-          = link_to "Signups", admin_tournament_signups_path(@tournament), class: "btn"
+
+          - if can?(:start, @tournament) && !@tournament.started?
+            = start_tournament_button
+          - if can?(:edit, @tournament)
+            = link_to "Edit", edit_tournament_path(@tournament), class: "btn"
+            = link_to "Signups", admin_tournament_signups_path(@tournament), class: "btn"
 
     h1 = @tournament.name
 
