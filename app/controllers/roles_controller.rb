@@ -13,17 +13,20 @@ class RolesController < ApplicationController
 
   def create
     authorize! :manage, Role
-    @user = User.find(params[:user_id])
-    @user.grant params[:role]
-
-    redirect_to roles_path(search: params[:search]), notice: "User #{@user.username} was granted #{params[:role]} role."
+    change_role(params, params[:role], :grant)
   end
 
   def destroy
     authorize! :manage, Role
-    @user = User.find(params[:user_id])
-    @user.revoke params[:id]
-
-    redirect_to roles_path(search: params[:search]), notice: "User #{@user.username} was revoked #{params[:id]} role."
+    change_role(params, params[:id], :revoke)
   end
+
+  private
+
+  def change_role(params, role, action)
+    @user = User.find(params[:user_id])
+    @user.send(action, role)
+    redirect_to roles_path(search: params[:search]), notice: "User #{@user.username} was #{action.to_s}ed #{params[:role]} role."
+  end
+
 end

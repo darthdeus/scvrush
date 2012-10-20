@@ -62,11 +62,8 @@ class Bracket
   # 2, 4
   def linear_seed
     tournament.reload
-    round = tournament.rounds.first
-
+    round   = tournament.rounds.first
     matches = round.matches
-    seed = 0
-
     players = tournament.checked_players
 
     # Seed both first and second half of the players
@@ -82,8 +79,8 @@ class Bracket
     resolve_walkovers(matches)
   end
 
+  # Automatic walkovers when there is no opponent for the player
   def resolve_walkovers(matches)
-    # Automatic walkovers
     matches.each do |match|
       if match.player2.nil?
         match.completed = true

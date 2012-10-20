@@ -10,6 +10,7 @@ namespace :db do
                               username: "darthdeus", password: "password",
                               race: "Zerg", league: "Diamond")
     user.grant :tournament_admin
+    user.grant :admin
 
     10.times do
       attributes = { username: user.username, user_id: user.id, text: Faker::Lorem.sentences(3).join }
