@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   rolify
   include BattleNet
+  include Player
 
   scope :with_bnet_info, where("bnet_username IS NOT NULL AND bnet_code IS NOT NULL")
 
@@ -89,31 +90,6 @@ class User < ActiveRecord::Base
 
   def is_writer?
     self.has_role? :writer
-  end
-
-  # Sign up the user for a tournament and post it on his timeline
-  def sign_up(tournament)
-    if !self.has_signup?(tournament)
-      signup = self.signups.build(tournament: tournament)
-      signup.status = Signup::REGISTERED
-      signup.save!
-      signup
-    else
-      self.signups.where(tournament_id: tournament.id).first
-    end
-  end
-
-  def has_signup?(tournament)
-    !self.signups.where(tournament_id: tournament.id).empty?
-  end
-
-  def check_in(tournament)
-    signup = self.signups.where(tournament_id: tournament.id).first
-    if signup
-      signup.checkin!
-    else
-      raise NotRegistered.new("Trying to check in a user who isn't registered!")
-    end
   end
 
   def participating_in?(raffle)

@@ -17,14 +17,6 @@ class TournamentPlayerDecorator
     def id
       nil
     end
-
-    def race
-      nil
-    end
-
-    def username
-      nil
-    end
   end
 
   attr_reader :user
@@ -37,18 +29,6 @@ class TournamentPlayerDecorator
 
   def id
     @user.id
-  end
-
-  def race
-    @user.race
-  end
-
-  def username
-    @user.username
-  end
-
-  def signups
-    @user.signups
   end
 
   def registered?
