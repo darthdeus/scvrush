@@ -29,6 +29,7 @@ gem 'fog',                '~> 1.6.0'
 gem 'carrierwave',        '~> 0.6.2'
 gem 'mini_magick',        '~> 3.4'
 gem 'airbrake',           '~> 3.0.9'
+gem 'newrelic_rpm',       '~> 3.5.0'
 
 group :assets do
   gem 'uglifier',         '~> 1.2.3'
