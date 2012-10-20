@@ -1,10 +1,9 @@
 module TournamentsHelper
 
-  # Tournament signup button
-  def signup_button(tour, text = "Sign up for the tournament")
-    action_params = { controller: :signups, action: :create, id: tour.id }
-    link_to action_params, method: :post, class: 'btn btn-success btn-large' do
-      html = content_tag(:i, "", class: "icon-ok icon-white")
+  def tournament_button(tour, text, options)
+    action_params = { controller: :signups, action: options[:action], id: tour.id }
+    link_to action_params, method: options[:method], class: "btn btn-large #{options[:class]}" do
+      html = content_tag(:i, "", class: "#{options[:icon]} icon-white")
       html << text
       html.html_safe
     end
@@ -12,22 +11,36 @@ module TournamentsHelper
 
   # Cancel signup button
   def cancel_signup_button(tour)
-    action_params = { controller: :signups, action: :destroy, id: tour.id }
-    link_to action_params, method: :delete, class: 'btn btn-danger btn-large' do
-      html = content_tag(:i, "", class: "icon-remove icon-white")
-      html << "Cancel your registration for the tournament"
-      html.html_safe
-    end
+    text    = "Cancel your registration for the tournament"
+    options = {
+      action: :destroy,
+      method: :delete,
+      class: "btn-danger",
+      icon: "icon-remove"
+    }
+    tournament_button(tour, text, options)
   end
 
   def checkin_button(tour, text = "Check in")
-    action_params = { controller: :signups, action: :update, id: tour.id }
-    link_to action_params, method: :put, class: 'btn btn-success btn-large' do
-      html = content_tag(:i, "", class: "icon-ok icon-white")
-      html << text
-      html.html_safe
-    end
+    options = {
+      action: :update,
+      method: :put,
+      class: "btn-success",
+      icon: "icon-ok"
+    }
+    tournament_button(tour, text, options)
   end
+
+  def signup_button(tour, text = "Sign up for the tournament")
+    options = {
+      action: :create,
+      method: :post,
+      class: "btn-success",
+      icon: "icon-ok"
+    }
+    tournament_button(tour, text, options)
+  end
+
 
   def submit_match_result_button
     confirm = "Are you sure? Once you submit the match result, you will have to contact an admin to change it."
