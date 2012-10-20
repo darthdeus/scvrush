@@ -41,7 +41,8 @@ describe Tournament do
       tournament = signup.tournament
       tournament.unregister(user)
 
-      user.should_not be_registered_for(tournament)
+      player = TournamentPlayerDecorator.new(user, tournament)
+      player.should_not be_registered
     end
   end
 
@@ -65,16 +66,17 @@ describe Tournament do
     t = create(:tournament)
     u = create(:user)
     t.users << u
-    t.registered_players.should == [u]
+    t.registered_players.first.user.should == u
   end
 
   it "returns checked players" do
     t = create(:tournament)
     u = create(:user)
     t.users << u
+
     u.check_in(t)
-    t.registered_players.should == [u]
-    t.checked_players.should == [u]
+    t.registered_players.first.user.should == u
+    t.checked_players.first.should         == u
   end
 
   it { should respond_to(:logo) }

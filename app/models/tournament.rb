@@ -60,8 +60,9 @@ class Tournament < ActiveRecord::Base
   end
 
   def registered_players
-    self.signups.includes(:user).all.select { |signup|
+    players = self.signups.includes(:user).all.select { |signup|
       [0,1].include?(signup.status) }.map(&:user)
+    players.map { |p| TournamentPlayerDecorator.new(p, self) }
   end
 
   def start

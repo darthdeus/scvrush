@@ -91,10 +91,12 @@ describe User do
       user = create(:user)
       tournament = create(:tournament)
 
-      user.should_not be_registered_for(tournament)
+      player = TournamentPlayerDecorator.new(user, tournament)
+      player.should_not be_registered
       user.sign_up(tournament)
+
       tournament.users.should == [user]
-      user.should be_registered_for(tournament)
+      player.should be_registered
     end
   end
 

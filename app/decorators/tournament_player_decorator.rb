@@ -17,7 +17,17 @@ class TournamentPlayerDecorator
     def id
       nil
     end
+
+    def race
+      nil
+    end
+
+    def username
+      nil
+    end
   end
+
+  attr_reader :user
 
   # TODO - convert to draper with a call to super
   def initialize(user, tournament, bracket = nil)
@@ -29,19 +39,30 @@ class TournamentPlayerDecorator
     @user.id
   end
 
+  def race
+    @user.race
+  end
+
+  def username
+    @user.username
+  end
+
   def registered?
-    @user.registered_for?(@tournament)
+    return false if @tournament.nil?
+    !@user.signups.registered.where(tournament_id: @tournament.id).empty?
   end
 
   def checked_in?
-    @user.checked_in?(@tournament)
+    return false if @tournament.nil?
+    !@user.signups.checked.where(tournament_id: @tournament.id).empty?
   end
 
   def has_signup?
+    return false if @tournament.nil?
     @user.has_signup?(@tournament)
   end
 
   def next_opponent
-
   end
+
 end

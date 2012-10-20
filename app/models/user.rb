@@ -36,25 +36,6 @@ class User < ActiveRecord::Base
 
   has_many :following_relationships, class_name: "Relationship", foreign_key: "requestor_id"
 
-  # Return timeline statuses for a given user, with information
-  # whether he voted on a status or not. Basically this query
-  #
-  # SELECT s.*, COALESCE(u.id, 0) as voted FROM statuses s
-  # LEFT JOIN votes v ON v.voteable_id = s.id AND v.voteable_type = 'Status'
-  # LEFT JOIN users u ON v.user_id = u.id AND u.id = 1
-  def timeline_statuses(viewer)
-    ids = Relationship.where(requestor_id: self.id).pluck(:requestee_id)
-    statuses = Status.select("statuses. *, COALESCE(u.id, 0) as voted")
-    statuses = statuses.joins("LEFT JOIN votes v ON v.voteable_id = statuses.id AND v.voteable_type = 'Status'")
-    statuses = statuses.joins("LEFT JOIN users u ON v.user_id = u.id AND u.id = #{(viewer && viewer.id) || "NULL"}")
-    statuses = statuses.where("statuses.user_id = ? OR statuses.user_id IN (?)", self.id, ids)
-    statuses.order("created_at DESC")
-  end
-
-  def statuses_from_followings
-    Status.includes(:user).where(user_id: self.following_relationships.pluck(:requestee_id))
-  end
-
   attr_accessor :password
 
   mount_uploader :avatar, AvatarUploader
@@ -72,16 +53,14 @@ class User < ActiveRecord::Base
 
   def self.filtered(params)
     res = self
-    res = res.where(race: params[:race]) if params[:race] && params[:race] != 'Any'
+    res = res.where(race:   params[:race]) if params[:race] && params[:race] != 'Any'
     res = res.where(server: params[:server]) if params[:server]
     res = res.where(league: params[:league]) if params[:league]
     return res
   end
 
-  validates_presence_of :username
-  validates :username, uniqueness: true, on: :create
-  validates_presence_of :email
-  validates :email, uniqueness: true, on: :create
+  validates :username, presence: true, uniqueness: true, on: :create
+  validates :email, presence: true, uniqueness: true, on: :create
   validates :password, confirmation: true
   validates_presence_of :password, on: :create
 
@@ -118,8 +97,6 @@ class User < ActiveRecord::Base
       signup = self.signups.build(tournament: tournament)
       signup.status = Signup::REGISTERED
       signup.save!
-
-      Status.create_for_signup(self, signup)
       signup
     else
       self.signups.where(tournament_id: tournament.id).first
@@ -128,15 +105,6 @@ class User < ActiveRecord::Base
 
   def has_signup?(tournament)
     !self.signups.where(tournament_id: tournament.id).empty?
-  end
-
-  def registered_for?(tournament)
-    false if tournament.nil?
-    !self.signups.registered.where(tournament_id: tournament.id).empty?
-  end
-
-  def checked_in?(tournament)
-    !self.signups.checked.where(tournament_id: tournament.id).empty?
   end
 
   def check_in(tournament)
