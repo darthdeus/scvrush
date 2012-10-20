@@ -1,11 +1,14 @@
-= arrowed_header "Manage user roles"
+h1 Manage user roles
 
 = form_tag roles_path, method: :get do
-  = text_field_tag :search, params[:search], placeholder: 'Search username'
-  button type="submit" class="btn btn-primary" Search
+  = text_field_tag :search, params[:search],
+    placeholder: 'Search username or battle.net login',
+    class: "span5"
 
-  = link_to "Show all", roles_path, class: 'btn'
-  = link_to "Show only users with roles", roles_path(with_roles: '1'), class: 'btn'
+  div.actions
+    button type="submit" class="btn btn-primary" Search
+    = link_to "Show all", roles_path, class: 'btn'
+    = link_to "Show only users with roles", with_roles_roles_path, class: 'btn'
 
 - if params[:search].present?
   .alert.alert-notice
@@ -28,4 +31,4 @@ table class="table table-striped table-bordered table-condensed"
         td = manage_role_link(user, 'admin', params[:search])
         td = manage_role_link(user, 'writer', params[:search])
 
-= paginate @users unless params[:with_roles].present?
+= paginate @users unless @users.is_a?(Array)

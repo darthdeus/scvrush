@@ -20,7 +20,12 @@ Scvrush::Application.routes.draw do
   get "api/login"
   get "api/check"
 
-  resources :roles
+  resources :roles do
+    collection do
+      get :with_roles
+    end
+  end
+
   resources :pages, only: :show
 
   # TODO - make this post

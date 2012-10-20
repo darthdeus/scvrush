@@ -1,16 +1,14 @@
 class RolesController < ApplicationController
   def index
     authorize! :manage, Role
-    if params[:search].present?
-      @users = User.where('username LIKE ? OR bnet_username LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%").page(params[:page])
-    else
-      @users = User
-    end
-    if params[:with_roles] == '1'
-      @users = @users.includes(:roles).reject { |u| u.roles.empty? }
-    else
-      @users = @users.page(params[:page])
-    end
+    @users = UserSearch.search(params[:search]).page(params[:page])
+  end
+
+  def with_roles
+    authorize! :manage, Role
+    users = UserSearch.search(params[:search]).page(params[:page])
+    @users = users.includes(:roles).reject { |u| u.roles.empty? }
+    render :index
   end
 
   def create
