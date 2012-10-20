@@ -12,11 +12,6 @@ form action="https://www.paypal.com/cgi-bin/webscr" method="post" class="paypal-
   img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1"
 
 
-- if Rails.cache.read('ggbet_widget') && Rails.env.production?
-  div id="appletContainer" class="gg_applet" data-size="medium_rectangle" style="width:300px;height:250px;background: center center url('http://applet.richardson.co.nz/widget_backgrounds/square-widget.png') no-repeat; margin-left: 5px; margin-bottom: 10px;"
-
-/ .advertise = link_to "Advertise with us", post_path("9724-advertise-with-us"), :class => 'btn btn-success'
-
 ul.nav.nav-tabs
   li.active
     a data-toggle="tab" href="#coaches" Coaches
