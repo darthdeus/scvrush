@@ -31,40 +31,12 @@ class Bracket
 
     last = nil
 
+    round_creator = RoundCreator.new
+
     rounds = self.round_sizes(tournament.checked_players.size)
     rounds.each.with_index do |round, index|
-      if index == 0
-        text =<<MAPS
-MLG Entombed Valley
-GSL Metropolis
-ESV Ohana LE
-MAPS
-      elsif index == 1
-        text =<<MAPS
-GSL Bel'Shir Beach (Winter)
-ESL Cloud Kingdom
-GSL Daybreak
-MAPS
-      end
-
-      round = Round.new(number: round, tournament: tournament, text: text, parent: last)
-      round.bo = [1,2,4].include?(round.number) ? 3 : 1
-
-      # TODO - set the BO preset if there is one for given rounds
-      if tournament.bo_preset
-        bo_preset = tournament.bo_preset.split(" ").map(&:to_i)
-
-        round.bo = bo_preset[index] if bo_preset[index]
-      end
-
-      if tournament.maps.present?
-        round.text = tournament.maps[index] if tournament.maps[index]
-      end
-
-
+      last = round = round_creator.create(tournament, round, last, index)
       round.save!
-
-      last = round
     end
   end
 
