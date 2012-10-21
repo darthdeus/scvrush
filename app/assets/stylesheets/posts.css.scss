@@ -236,11 +236,16 @@
 }
 
 .related-post {
-  padding: 20px;
-  width: 170px;
+  padding: 12px;
+  width: 190px;
   display: inline-block;
 
-  h3 { line-height: 1.2 }
+  h3 {
+    line-height: 1.2
+    font-size: 16px;
+    text-align: center;
+  }
+
 }
 
 #post_content {
