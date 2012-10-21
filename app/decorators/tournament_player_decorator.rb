@@ -32,7 +32,7 @@ class TournamentPlayerDecorator
   end
 
   def registered?
-    return false if @tournament.nil?
+    return false if @tournament.nil? || !@user.respond_to?(:signups)
     !@user.signups.registered.where(tournament_id: @tournament.id).empty?
   end
 

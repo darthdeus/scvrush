@@ -10,7 +10,7 @@ module Player
     end
 
     def checked_in?(tournament)
-      return false if tournament.nil? || !user.respond_to?(:signups)
+      return false if tournament.nil?
       !self.signups.checked.where(tournament_id: tournament.id).empty?
     end
 
