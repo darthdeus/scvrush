@@ -1,19 +1,18 @@
 class HomeController < ApplicationController
   def index
-    @terran_post  = Post.published.tagged_with("terran") .tagged_with(%w(coach zerg protoss), exclude: true).first
-    @zerg_post    = Post.published.tagged_with("zerg")   .tagged_with(%w(coach terran protoss), exclude: true).first
-    @protoss_post = Post.published.tagged_with("protoss").tagged_with(%w(coach zerg terran), exclude: true).first
+    @terran_post  = Post.race_post("terran")
+    @zerg_post    = Post.race_post("zerg")
+    @protoss_post = Post.race_post("protoss")
 
     @tournament = TournamentDecorator.new(Tournament.upcoming.first)
     @scene_post = PostDecorator.new(Post.published.tagged_with("scene-news").first)
 
-    @zerg_show       = Post.published.tagged_with('zerg-show').page(0).limit(6)
-    @watch_the_pros  = Post.published.tagged_with('watch-the-pros').page(0).limit(6)
-    @today_i_learned = Post.published.tagged_with('today-i-learned').page(0).limit(6)
-    @game_diary      = Post.published.tagged_with('game-diary').page(0).limit(6)
-    @deuce_analysis  = Post.published.tagged_with('deuce-analysis').page(0).limit(6)
-
-    @battle_report = Post.published.tagged_with('battle-report').page(0).limit(6)
+    @zerg_show       = Post.news_posts('zerg-show')
+    @watch_the_pros  = Post.news_posts('watch-the-pros')
+    @today_i_learned = Post.news_posts('today-i-learned')
+    @game_diary      = Post.news_posts('game-diary')
+    @deuce_analysis  = Post.news_posts('deuce-analysis')
+    @battle_report   = Post.news_posts('battle-report')
 
     # models = [@posts, @tournaments, @zerg, @terran, @protoss, @zerg_show,
               # @today_i_learned, @game_diary, @deuce_analysis, @battle_report]

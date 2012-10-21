@@ -31,6 +31,15 @@ class Post < ActiveRecord::Base
 
   before_save :expire_sidebar_cache
 
+  def self.race_post(race)
+    tags = %w(coach terran zerg protoss)
+    published.tagged_with(race).tagged_with(tags - [race], exclude: true).first
+  end
+
+  def self.news_posts(tag)
+    published.tagged_with(tag).page(0).limit(6)
+  end
+
   def expire_sidebar_cache
     Rails.cache.delete('views/coaches')
     Rails.cache.delete('views/recent_posts')

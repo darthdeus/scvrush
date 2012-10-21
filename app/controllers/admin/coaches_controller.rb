@@ -1,6 +1,7 @@
 module Admin
   class CoachesController < AdminController
 
+    skip_filter :require_login, only: :index
     skip_filter :require_admin, only: :index
 
     def index

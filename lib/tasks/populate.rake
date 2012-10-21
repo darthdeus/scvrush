@@ -37,7 +37,6 @@ namespace :db do
       post.title = Populator.words(3..7)
       post.url   = "http://example.com"
       post.order = 0
-
     end
 
     Post.populate 10 do |post|
@@ -54,7 +53,7 @@ namespace :db do
     end
 
     Post.all.each do |post|
-      post.tag_list = %w{zerg terran protoss}
+      post.tag_list = %w{zerg terran protoss}.sample
       post.save
     end
 
