@@ -18,6 +18,11 @@ article.single.post data-comments="#{@comments}" data-post-id="#{@post.id}"
         - @post.tag_list.each do |tag|
           li = tag_by_name(tag)
 
+
+    h2 Related posts
+
+    = render partial: "posts/related", collection:  Post.related(@post)
+
     = render partial: 'author_box'
 
     - if @post.comments_enabled?

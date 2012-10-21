@@ -235,6 +235,13 @@
   }
 }
 
+.related-post {
+  width: 210px;
+  display: inline-block;
+
+  h3 { line-height: 1.2 }
+}
+
 #post_content {
   height: 600px;
 }

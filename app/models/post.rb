@@ -36,6 +36,10 @@ class Post < ActiveRecord::Base
     published.tagged_with(race).tagged_with(tags - [race], exclude: true).first
   end
 
+  def self.related(post)
+    tagged_with(post.tag_list).limit(3)
+  end
+
   def self.news_posts(tag)
     published.tagged_with(tag).page(0).limit(6)
   end
