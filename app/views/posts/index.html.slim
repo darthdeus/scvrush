@@ -3,10 +3,10 @@
 .all-posts
   - @posts.each do |post|
     .post
-  
+
       = featured_image(post)
       .content
         h3 = link_to shortenify(post.title), post
         p  = post_excerpt(post.content)
-    
+
 = paginate @posts
