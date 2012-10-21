@@ -37,7 +37,7 @@ class Post < ActiveRecord::Base
   end
 
   def self.related(post)
-    tagged_with(post.tag_list).limit(3)
+    tagged_with(post.tag_list, any: true).limit(3)
   end
 
   def self.news_posts(tag)
