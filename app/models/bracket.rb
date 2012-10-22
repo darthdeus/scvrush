@@ -28,9 +28,7 @@ class Bracket
   def create_bracket_rounds
     # TODO - do we really want to erase previous rounds?
     tournament.rounds = []
-
     last = nil
-
     round_creator = RoundCreator.new
 
     rounds = self.round_sizes(tournament.checked_players.size)

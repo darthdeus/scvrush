@@ -32,13 +32,19 @@ class TournamentPlayerDecorator
   end
 
   def registered?
-    return false if @tournament.nil? || !@user.respond_to?(:signups)
-    !@user.signups.registered.where(tournament_id: @tournament.id).empty?
+    with_valid_attributes do
+      !@user.signups.registered.where(tournament_id: @tournament.id).empty?
+    end
   end
 
   def checked_in?
-    return false if @tournament.nil? || !@user.respond_to?(:signups)
-    !@user.signups.checked.where(tournament_id: @tournament.id).empty?
+    with_valid_attributes do
+      !@user.signups.checked.where(tournament_id: @tournament.id).empty?
+    end
+  end
+
+  def with_valid_attributes(&block)
+    (@tournament.nil? || !@user.respond_to?(:signups)) ? false : yield
   end
 
   def has_signup?
