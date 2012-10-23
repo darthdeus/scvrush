@@ -4,7 +4,7 @@ class TournamentsController < ApplicationController
   layout "single"
 
   def index
-    data = Tournament.order("created_at DESC").page(params[:page])
+    data = Tournament.order("starts_at DESC").page(params[:page])
     @tournaments = TournamentDecorator.decorate(data)
   end
 
