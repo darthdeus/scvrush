@@ -7,7 +7,6 @@ class @StatusesController
     $scope.upvoteStatus = (status) ->
       $('[rel=tooltip]').tooltip('hide')
       status.$upvote action: "upvote", (res) ->
-      # $http.post("/users/#{gon.user_id}/statuses/#{status.id}/upvote").success (res) ->
         console.log res
         console.log "upvoted"
 
@@ -27,7 +26,4 @@ class @StatusesController
           $scope.status = ""
         # , 500
 
-
   @$inject: ["$scope", "Statuses", "$http"]
-
-

@@ -48,9 +48,7 @@ gem 'acts-as-taggable-on',  '~> 2.1.0'
 gem 'rest-client',          '~> 1.6.7'
 gem 'gon',                  '~> 4.0.0'
 
-# find an alternative, https://github.com/bbatsov/rails-style-guide#flawed
-gem 'therubyracer', group: :production
-# gem 'mustang'
+gem 'execjs', '~> 1.3.0'
 
 group :development, :test do
   gem 'rb-fsevent', '~> 0.9.1'

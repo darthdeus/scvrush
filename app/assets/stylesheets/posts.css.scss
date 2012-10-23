@@ -275,6 +275,7 @@
     width: 80px;
     @include box-shadow(0 0 3px #333);
   }
+
   .content {
     .name { font-weight: bold; margin-top: 0; }
     padding: 0 10px;
