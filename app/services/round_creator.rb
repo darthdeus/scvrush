@@ -21,7 +21,7 @@ MAPS
   end
 
   def create(tournament, round_number, parent, index)
-    round      = Round.new(number: round_number, tournament: tournament, parent: parent)
+    round      = Round.new(number: round_number, tournament: tournament, child: parent)
     round.bo   = default_bo(round_number)
     round.text = default_maps(index)
 

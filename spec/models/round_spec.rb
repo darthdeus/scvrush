@@ -40,7 +40,7 @@ describe Round do
 
     it "can tell what the next round is" do
       ro4 = create(:round)
-      ro2 = create(:round, parent: ro4)
+      ro2 = create(:round, child: ro4)
       ro4.next.should == ro2
     end
 

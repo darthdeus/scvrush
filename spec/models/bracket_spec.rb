@@ -151,7 +151,7 @@ describe Bracket do
     ro2.number.should == 2
     ro2.text.should == "GSL Bel'Shir Beach (Winter)\nESL Cloud Kingdom\nGSL Daybreak\n"
 
-    bracket.next_round_for(ro4).should == ro2
+    ro4.next.should == ro2
   end
 
   it "seeds player to the next round" do

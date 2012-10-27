@@ -106,7 +106,7 @@ describe Match do
       ro4 = create(:round)
       2.times { |i| create(:match, round: ro4, seed: i) }
 
-      ro2 = create(:round, parent: ro4)
+      ro2 = create(:round, child: ro4)
       last_match = create(:match, round: ro2, seed: 0)
 
       ro4.matches.first.next.should == last_match

@@ -1,12 +1,13 @@
 class Round < ActiveRecord::Base
-  belongs_to :tournament
-  attr_accessible :number, :tournament, :bo, :text, :parent
+  attr_accessible :number, :tournament, :bo, :text, :parent, :child
 
   validates_presence_of :number, :tournament
 
+  belongs_to :tournament
+
   belongs_to :parent, class_name: "Round", foreign_key: "parent_id"
   has_one    :child, class_name: "Round", foreign_key: "parent_id"
-  has_many :matches, dependent: :destroy, order: "id"
+  has_many   :matches, dependent: :destroy, order: "id"
 
   def to_simple_json
     hash = { type: "round", matches: [] }
@@ -29,9 +30,12 @@ class Round < ActiveRecord::Base
     hash
   end
 
-  # Next round for the current round
   def next
-    Round.where(parent_id: self.id).first
+    parent
+  end
+
+  def next?
+    !!self.next
   end
 
   # Return a match with given seed
