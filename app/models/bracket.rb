@@ -105,17 +105,10 @@ class Bracket
     end
 
     next_match = self.next_match(next_round, match.seed)
-
-    if match.seed % 2 == 0
-      next_match.player1 = user
-    else
-      next_match.player2 = user
-    end
-
-    next_match.completed = false
+    next_match.seed_player(user, match.seed)
     # TODO - this isn't right
     next_match.save(validate: false)
-    next_match
+
     return nil
   end
 

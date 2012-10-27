@@ -50,6 +50,15 @@ class Match < ActiveRecord::Base
     next_match.save!
   end
 
+  def seed_player(player, seed)
+    self.completed = false
+    if seed % 2 == 0
+      self.player1 = player
+    else
+      self.player2 = player
+    end
+  end
+
   # Sets score for a given user
   def set_score_for(user, score)
     if user.id == player1_id
