@@ -2,10 +2,6 @@ require "spec_helper"
 
 describe Bracket do
 
-  before(:each) do
-    [User, Match].each(&:delete_all)
-  end
-
   def seeded_with(num)
     t = create(:tournament)
     bracket = Bracket.new(t)
@@ -125,33 +121,6 @@ describe Bracket do
     bracket.current_match_for(p2).player2.should == p4
     bracket.current_match_for(p3).player1.should == p1
     bracket.current_match_for(p4).player1.should == p2
-  end
-
-  it "returns next round for a given round" do
-    Round.delete_all
-
-    t = create(:tournament)
-    bracket = Bracket.new(t)
-    4.times do
-      u = create(:user)
-      t.users << u
-      u.check_in(t)
-    end
-
-    bracket.create_bracket_rounds
-    t.reload
-
-    rounds = t.rounds.order(:id)
-
-    ro4 = rounds.first
-    ro4.text.should == "MLG Entombed Valley\nGSL Metropolis\nESV Ohana LE\n"
-    ro4.number.should == 4
-
-    ro2 = rounds.second
-    ro2.number.should == 2
-    ro2.text.should == "GSL Bel'Shir Beach (Winter)\nESL Cloud Kingdom\nGSL Daybreak\n"
-
-    ro4.next.should == ro2
   end
 
   it "seeds player to the next round" do
