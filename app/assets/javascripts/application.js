@@ -85,7 +85,6 @@ jQuery(function($) {
     $('#picked-server').val($(this).text());
   });
 
-
   $('.pick-league button').click(function(e) {
     $('#picked-league').val($(this).text());
   });
