@@ -19,6 +19,7 @@ Scvrush::Application.routes.draw do
   get "api/auth"
   get "api/login"
   get "api/check"
+  get "api/user_data"
 
   resources :roles do
     collection do
