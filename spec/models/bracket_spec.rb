@@ -6,7 +6,7 @@ describe Bracket do
     t = create(:tournament)
     bracket = Bracket.new(t)
 
-    players = num.times.inject([]) { |all, index| all << create(:user) }
+    players = num.times.inject([]) { |all, _| all << create(:user) }
     players.each do |p|
       t.users << p
       p.check_in(t)
