@@ -8,6 +8,7 @@ class TournamentDecorator < Draper::Base
   def link_with_image
     images = {
       "EU_BSG" => "tournament_eu_bsg.png",
+      "EU_BS"  => "tournament_eu_bg.png",
       "EU_PD"  => "tournament_eu_pd.png",
       "NA_BSG" => "tournament_na_bsg.png",
       "NA_PD"  => "tournament_na_pd.png",

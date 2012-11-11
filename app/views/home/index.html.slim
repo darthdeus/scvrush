@@ -60,23 +60,24 @@
 .row
 
   .span9.news-block
-    / Poker
-    h2.underline
-      | Poker Strategy League continues!
 
-    .row
-      .span3
-        = link_to image_tag("http://i.imgur.com/ulqN6.png"), "http://twitch.tv/scvrush1"
+    /*/ Poker*/
+    /*h2.underline*/
+    /*  | Poker Strategy League continues!*/
 
-      .span5
-        li
-          strong Sheth (Z) and Socke (P)
-          |  playing their 10 games
-        li: strong Thursday, Oct 25th, 19:00 CEST
-        li
-          strong Stream:
-          '
-          = link_to "http://twitch.tv/scvrush1", "http://twitch.tv/scvrush1"
+    /*.row*/
+    /*  .span3*/
+    /*    = link_to image_tag("http://i.imgur.com/ulqN6.png"), "http://twitch.tv/scvrush1"*/
+
+    /*  .span5*/
+    /*    li*/
+    /*      strong Sheth (Z) and Socke (P)*/
+    /*      |  playing their 10 games*/
+    /*    li: strong Thursday, Oct 25th, 19:00 CEST*/
+    /*    li*/
+    /*      strong Stream:*/
+    /*      '*/
+    /*      = link_to "http://twitch.tv/scvrush1", "http://twitch.tv/scvrush1"*/
 
     / Upcoming tournament
     - if @tournament.tournament
@@ -114,7 +115,6 @@
       = link_to image_tag("pscom-league-player-sheth2.png"), post_path("10056-poker-strategy-league-sheth")
       = link_to image_tag("pscom-league-player-snute2.png"), post_path("10057-poker-strategy-league-snute")
       = link_to image_tag("pscom-league-player-socke2.png"), post_path("10058-poker-strategy-league-socke")
-      = link_to image_tag("pscom-league-player-select2.png"), post_path("10059-poker-strategy-league-select")
 
     h2.underline Event calendar
 
