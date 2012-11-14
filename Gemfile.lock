@@ -199,6 +199,7 @@ GEM
     rdiscount (1.6.8)
     rdoc (3.12)
       json (~> 1.4)
+    redis (3.0.2)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rolify (3.2.0)
@@ -315,6 +316,7 @@ DEPENDENCIES
   rails_autolink
   rb-fsevent (~> 0.9.1)
   rdiscount (~> 1.6.8)
+  redis (~> 3.0.2)
   rest-client (~> 1.6.7)
   rolify (~> 3.2.0)
   rspec-rails (~> 2.11.0)

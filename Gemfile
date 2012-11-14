@@ -36,6 +36,7 @@ group :assets do
 end
 
 gem 'memcache-client',    '~> 1.8.5'
+gem 'redis',              '~> 3.0.2'
 
 # Role management
 gem 'cancan', '~> 1.6.7'

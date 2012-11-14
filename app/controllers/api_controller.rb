@@ -46,4 +46,8 @@ class ApiController < ApplicationController
     end
   end
 
+  def streams
+    render json: Stream.all
+  end
+
 end
