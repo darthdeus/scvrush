@@ -1,10 +1,6 @@
 require 'rubygems'
 require 'simplecov'
-SimpleCov.start 'rails' do
-  add_filter do |file|
-    file.filename =~ %r{app/admin}
-  end
-end
+SimpleCov.start 'rails'
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
