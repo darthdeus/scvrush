@@ -10,6 +10,8 @@ class TournamentDecorator < Draper::Base
       "EU_BSG"      => "tournament_eu_bsg.png",
       "EU_BS"       => "tournament_eu_bs.png",
       "EU_PD"       => "tournament_eu_pd.png",
+      "EU_GP"       => "tournament_eu_gp.png",
+      "EU_D"        => "tournament_eu_d.jpg",
       "NA_BSG"      => "tournament_na_bsg.png",
       "NA_PD"       => "tournament_na_pd.png",
       "Bronze_Week" => "tournament_bronze_week.jpg",
