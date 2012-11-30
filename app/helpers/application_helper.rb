@@ -103,4 +103,11 @@ module ApplicationHelper
     image_tag("http://www.gravatar.com/avatar/" + digest)
   end
 
+  def twitter_autolinks(html)
+    html = html.gsub(/#(\w+)/, '<a href="https://twitter.com/search?q=%23\1">#\1</a>')
+    html = html.gsub(/@(\w+)/, '<a href="https://twitter.com/\1">@\1</a>')
+
+    html.html_safe
+  end
+
 end

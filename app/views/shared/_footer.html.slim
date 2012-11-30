@@ -15,7 +15,7 @@
           - if Rails.env.production? # To speed up development on local
             - cache "tweets/v1", expires_in: 5.minutes do
               - tweet_timeline.each do |tweet|
-                li = auto_link(tweet.text).html_safe
+                li = twitter_autolinks(auto_link(tweet.text).html_safe)
 
       .span4
         h2 Follow us
