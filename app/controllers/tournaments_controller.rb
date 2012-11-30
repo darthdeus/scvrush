@@ -1,5 +1,5 @@
 class TournamentsController < ApplicationController
-  before_filter :require_login, only: [ :new, :create, :seed, :unseed, :start, :edit, :update ]
+  before_filter :require_login, only: [ :new, :create, :seed, :unseed, :start, :edit, :update, :emails ]
 
   layout "single"
 
@@ -120,9 +120,13 @@ class TournamentsController < ApplicationController
   end
 
   def emails
-    # TODO - authorize tournament admin
     @tournament = TournamentDecorator.find(params[:id])
-    render text: @tournament.checked_players.map(&:email).join("<br>")
+    if current_user.has_role? :tournament_admin, @tournament
+      render text: @tournament.checked_players.map(&:email).join("<br>")
+    else
+      flash[:error] = "Access denied! Only tournament administrators can view emails."
+      redirect_to root_path
+    end
   end
 
 end
