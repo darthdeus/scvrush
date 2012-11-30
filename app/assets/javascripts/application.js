@@ -6,10 +6,10 @@
 //= require dataTables/jquery.dataTables.bootstrap
 //= require login
 
-//= require ./services
-//= require ./directives
-//= require ./module
-//= require ./angular_controllers/manifest
+//= require ./angular/services
+//= require ./angular/directives
+//= require ./angular/module
+//= require ./angular/controllers/manifest
 
 jQuery(function($) {
 
