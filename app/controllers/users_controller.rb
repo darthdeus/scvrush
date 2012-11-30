@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   before_filter :load_user, only: [:show, :follow, :unfollow, :info, :friends]
 
   def index
-    redirect_to new_user_path
   end
 
   def new

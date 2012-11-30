@@ -11,6 +11,8 @@
 //= require ./angular/module
 //= require ./angular/controllers/manifest
 
+//= require ember
+//= require ember/app
 //= require ./scvrush
 
 jQuery(function($) {
