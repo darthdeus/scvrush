@@ -1,9 +1,11 @@
-div class="tag-selection"  
-  div class="row"
-    div class="span6"
-      fieldset class="pick-race"
+h1 Search our content
+
+.tag-selection
+  .row
+    .span6
+      fieldset.pick-race
         h2 Strategy Tags
-        div class="btn-group" data-toggle="buttons-checkbox"
+        .btn-group data-toggle="buttons-checkbox"
           button type="button" class="btn" Terran
           button type="button" class="btn" Zerg
           button type="button" class="btn" Protoss
@@ -11,21 +13,21 @@ div class="tag-selection"
           button type="button" class="btn" Strategy
           button type="button" class="btn" Guide
           button type="button" class="btn" Build
-    div class="span6"
-      fieldset class="pick-type"
+    .span6
+      fieldset.pick-type
         h2 Scene News
-        div class="btn-group" data-toggle="buttons-checkbox"
+        .btn-group data-toggle="buttons-checkbox"
           button type="button" class="btn" Interview
           button type="button" class="btn" MLG
           button type="button" class="btn" IPL
           button type="button" class="btn" NASL
           button type="button" class="btn" Hots
           button type="button" class="btn" Showmatch
-  div class="row"
-    div class="span6"
-      fieldset class="pick-type"
+  .row
+    .span6
+      fieldset.pick-type
         h2 Matchup
-        div class="btn-group" data-toggle="buttons-checkbox"
+        .btn-group data-toggle="buttons-checkbox"
           button type="button" class="btn" PvP
           button type="button" class="btn" PvZ
           button type="button" class="btn" PvT
@@ -35,17 +37,19 @@ div class="tag-selection"
           button type="button" class="btn" TvT
           button type="button" class="btn" TvP
           button type="button" class="btn" TvZ
-    div class="span6"
-      fieldset class="pick-type"
+
+    .span6
+      fieldset.pick-type
         h2 Blog Posts
-        div class="btn-group" data-toggle="buttons-checkbox"
+        .btn-group data-toggle="buttons-checkbox"
           button type="button" class="btn" Today I Learned
           button type="button" class="btn" Deuce
           button type="button" class="btn" Thor Way
           button type="button" class="btn" Zerg Show
           button type="button" class="btn" Game Diary
-  div class="row"
-    div class="span4 center-dat-button"
+
+  .row
+    .span4.center-dat-button
       =link_to "Give me the results!", "#", class:"btn btn-primary tagged_with-submit", remote:true
 
-div class="tagged-content all-posts"
+.tagged-content.all-posts
