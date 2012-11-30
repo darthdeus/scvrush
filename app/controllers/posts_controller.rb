@@ -34,7 +34,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find_by_id(params[:id])
+    @post = PostDecorator.find_by_id(params[:id])
 
     if @post
       respond_to do |format|

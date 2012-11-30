@@ -23,7 +23,8 @@ article.single.post data-comments="#{@comments}" data-post-id="#{@post.id}"
 
     = render partial: "posts/related", collection:  Post.related(@post)
 
-    = render partial: 'author_box'
+    - unless @post.coach_post?
+      = render partial: 'author_box'
 
     - if @post.comments_enabled?
       = render 'comments'
