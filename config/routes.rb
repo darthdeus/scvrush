@@ -57,6 +57,7 @@ Scvrush::Application.routes.draw do
       post :start
       post :seed
       post :unseed
+      get :emails
     end
   end
   resources :signups, only: [:create, :destroy, :update]

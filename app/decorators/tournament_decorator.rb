@@ -45,6 +45,10 @@ class TournamentDecorator < Draper::Base
     @players ||= UserDecorator.decorate(tournament.registered_players)
   end
 
+  def checked_players
+    @players ||= UserDecorator.decorate(tournament.checked_players)
+  end
+
   def race_count(race)
     self.registered_players.select { |player| player.race == race }.size
   end

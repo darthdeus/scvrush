@@ -119,4 +119,10 @@ class TournamentsController < ApplicationController
     redirect_to @tournament
   end
 
+  def emails
+    # TODO - authorize tournament admin
+    @tournament = TournamentDecorator.find(params[:id])
+    render text: @tournament.checked_players.map(&:email).join("<br>")
+  end
+
 end
