@@ -17,6 +17,7 @@ gem 'bootstrap-sass',          '~> 2.1.0.0'
 gem 'simple_form',             '~> 2.0.1'
 gem 'bourbon',                 '~> 1.4.0'
 gem 'mongoid',                 '~> 3.0.0'
+gem 'ember-rails'
 
 gem 'rdiscount',          '~> 1.6.8'
 gem 'kaminari',           '~> 0.13.0'

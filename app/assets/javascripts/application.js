@@ -11,6 +11,8 @@
 //= require ./angular/module
 //= require ./angular/controllers/manifest
 
+//= require ./scvrush
+
 jQuery(function($) {
 
   $("[rel=popover]").popover({ placement: "top" });
