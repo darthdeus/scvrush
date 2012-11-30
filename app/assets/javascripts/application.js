@@ -9,7 +9,7 @@
 //= require ./services
 //= require ./directives
 //= require ./module
-//= require ./controllers/manifest
+//= require ./angular_controllers/manifest
 
 jQuery(function($) {
 
