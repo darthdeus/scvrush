@@ -22,7 +22,7 @@ set :rvm_ruby_string, '1.9.3'
 set :rvm_type, :system
 
 set :deploy_to, "/var/apps/#{application}"
-set :deploy_via, :remote_cache
+set :deploy_via, :copy
 
 role :web, domain
 role :app, domain
