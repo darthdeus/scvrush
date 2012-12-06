@@ -43,7 +43,8 @@ body > .navbar > .navbar-inner {
     left: -30px;
   }
 
-  #logo img {
+  #logo a {
+    z-index: 9999;
     width: 350px;
     position: absolute;
     top: -70px;
@@ -547,6 +548,10 @@ li.stream {
   }
 
   a:nth-child(3n) img { margin-right: 0; }
+}
+
+.carousel-control {
+  top: 45% !important;
 }
 
 @import "posts";
