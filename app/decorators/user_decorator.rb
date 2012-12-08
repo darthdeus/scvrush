@@ -5,6 +5,10 @@ class UserDecorator < Draper::Base
     h.gravatar user.email
   end
 
+  def as_json(options = {})
+    user.as_json(options).merge("gravatar" => avatar_img)
+  end
+
   # Link to the user's twitter
   def facebook_link
     if user.facebook.present?

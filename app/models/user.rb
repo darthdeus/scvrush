@@ -60,7 +60,9 @@ class User < ActiveRecord::Base
     return res
   end
 
+  # TODO - why is here on: :create?
   validates :username, presence: true, uniqueness: true, on: :create
+  # TODO - why is here on: :create?
   validates :email, presence: true, uniqueness: true, on: :create
   validates :password, confirmation: true
   validates_presence_of :password, on: :create
