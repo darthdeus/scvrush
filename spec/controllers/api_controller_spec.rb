@@ -25,7 +25,8 @@ describe ApiController do
   end
 
   describe "GET 'user_data'" do
-    before(:all) do
+    before do
+      User.delete_all
       @user = create(:user)
       authenticator = UserAuthenticator.new(@user)
       authenticator.generate_api_key
@@ -36,6 +37,11 @@ describe ApiController do
       get :user_data, api_key: @user.api_key
       json = JSON.parse(response.body)
       json.should have_key("gravatar")
+    end
+
+    it "returns 404 for non-existing API key" do
+      get :user_data, api_key: "foobar"
+      response.status.should == 404
     end
   end
 

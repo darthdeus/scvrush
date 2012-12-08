@@ -39,7 +39,7 @@ class ApiController < ApplicationController
 
   def user_data
     user = UserDecorator.find_by_api_key(params[:api_key])
-    if user
+    if user.model
       render json: user.as_json(only: %w(username race league gravatar)), status: 200
     else
       render json: { status: 'failure' }, status: 404
