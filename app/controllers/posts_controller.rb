@@ -36,7 +36,7 @@ class PostsController < ApplicationController
   def show
     @post = PostDecorator.find_by_id(params[:id])
 
-    if @post
+    if @post.model
       respond_to do |format|
         format.html do
           @comments = @post.comments
