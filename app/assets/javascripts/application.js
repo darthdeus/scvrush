@@ -6,13 +6,8 @@
 //= require dataTables/jquery.dataTables.bootstrap
 //= require login
 
-//= require ./angular/services
-//= require ./angular/directives
-//= require ./angular/module
-//= require ./angular/controllers/manifest
-
 //= require ember
-//= require ember/app
+//= require ember-data
 //= require ./scvrush
 
 jQuery(function($) {

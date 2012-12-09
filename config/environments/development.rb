@@ -35,6 +35,9 @@ Scvrush::Application.configure do
   config.active_record.mass_assignment_sanitizer = :strict
   config.active_record.auto_explain_threshold_in_seconds = 0.2
 
+  config.ember.variant = :development
+  config.handlebars.templates_root = 'templates'
+
   # TODO - add strict mass assignment required by default
 
   # config.log_tags = [:uuid, :remote_ip]
