@@ -34,14 +34,19 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = PostDecorator.find_by_id(params[:id])
 
-    respond_to do |format|
-      format.html do
-        @comments = @post.comments
-        @comment = Comment.new(post: @post)
+    if @post.model
+      respond_to do |format|
+        format.html do
+          @comments = @post.comments
+          @comment = Comment.new(post: @post)
+        end
+        format.json { render json: @post }
       end
-      format.json { render json: @post }
+    else
+      flash[:error] = "The post you were looking for doesn't exist."
+      redirect_to content_path
     end
   end
 

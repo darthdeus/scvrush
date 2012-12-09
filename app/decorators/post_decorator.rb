@@ -7,4 +7,8 @@ class PostDecorator < Draper::Base
     end
   end
 
+  def coach_post?
+    post.tag_list.include? "coach"
+  end
+
 end

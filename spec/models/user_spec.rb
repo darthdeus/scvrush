@@ -1,14 +1,13 @@
 require 'spec_helper'
 
 describe User do
-  before { User.destroy_all }
 
-  describe "#with_login" do
+  context "#with_login" do
     let(:user) { create(:user) }
 
     it "finds a user by both username and email" do
       User.with_login(user.username).should == user
-      User.with_login(user.email).should == user
+      User.with_login(user.email)   .should == user
     end
   end
 

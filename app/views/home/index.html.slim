@@ -15,29 +15,26 @@
   .carousel.slide#home-carousel.span8
     .carousel-inner
       .item.active
-        a href="http://scvrush.com/posts/10079" title="IPL"
-          img src="https://s3.amazonaws.com/scvrush/uploads/image/image/normal_ipl.png" alt="IPL"
+        a href="/posts/tag/ipl" title="IPL recap"
+          img src="http://i.imgur.com/I7Vcb.png" alt="IPL recap"
       .item
-        a href="http://scvrush.com/posts/10078" title="Ryung"
-          img src="https://s3.amazonaws.com/scvrush/uploads/image/image/normal_ryung.jpg"
-      /*.item*/
-      /*  a href="http://scvrush.com/posts/9936-upcoming-events"*/
-      /*    = image_tag "slider_1_upcoming.png"*/
-      /*.item*/
-      /*  a href="http://scvrush.com/posts/10035-scv-rush-free-positions"*/
-      /*    = image_tag "joinus.png"*/
-      /*.item*/
-      /*  a href="http://eepurl.com/iZbzv"*/
-      /*    = image_tag "slider_2_news.png"*/
-      /*.item*/
-      /*  a href="http://scvrush.com/practice"*/
-      /*    = image_tag "slider_3_buddy.png"*/
-      /*.item*/
-      /*  a href="http://scvrush.com/posts/9724-advertise-with-us/"*/
-      /*    = image_tag "slider_4_advertise.png"*/
-      /*.item*/
-      /*  a href="http://scvrush.com/posts/9937-affiliates"*/
-      /*    = image_tag "slider_5_grow.png"*/
+        a href="http://scvrush.com/posts/9936-upcoming-events"
+          = image_tag "slider_1_upcoming.png"
+      .item
+        a href="http://scvrush.com/posts/10035-scv-rush-free-positions"
+          = image_tag "joinus.png"
+      .item
+        a href="http://eepurl.com/iZbzv"
+          = image_tag "slider_2_news.png"
+      .item
+        a href="http://scvrush.com/practice"
+          = image_tag "slider_3_buddy.png"
+      .item
+        a href="http://scvrush.com/posts/9724-advertise-with-us/"
+          = image_tag "slider_4_advertise.png"
+      .item
+        a href="http://scvrush.com/posts/9937-affiliates"
+          = image_tag "slider_5_grow.png"
 
     a class="carousel-control left" href="#home-carousel" data-slide="prev" &lsaquo;
     a class="carousel-control right" href="#home-carousel" data-slide="next" &rsaquo;
@@ -107,18 +104,6 @@
           = post_excerpt @scene_post.content
 
   .span3
-    h2.underline Players
-
-    .poker_players
-      = link_to image_tag("pscom-league-player-titan2.png"),  post_path("10047-poker-strategy-league-titan")
-      = link_to image_tag("pscom-league-player-grubby2.png"), post_path("10048-poker-strategy-league-grubby")
-      = link_to image_tag("pscom-league-player-morrow_b26ede322.png"), post_path("10053-poker-strategy-league-morrow")
-      = link_to image_tag("pscom-league-player-lunifron2.png"), post_path("10054-poker-strategy-league-lucifron")
-      = link_to image_tag("pscom-league-player-kas2.png"), post_path("10055-poker-strategy-league-kas")
-      = link_to image_tag("pscom-league-player-sheth2.png"), post_path("10056-poker-strategy-league-sheth")
-      = link_to image_tag("pscom-league-player-snute2.png"), post_path("10057-poker-strategy-league-snute")
-      = link_to image_tag("pscom-league-player-socke2.png"), post_path("10058-poker-strategy-league-socke")
-
     h2.underline Event calendar
 
     - t = Tournament.calendar

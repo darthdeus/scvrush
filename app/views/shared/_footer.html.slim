@@ -15,7 +15,7 @@
           - if Rails.env.production? # To speed up development on local
             - cache "tweets/v1", expires_in: 5.minutes do
               - tweet_timeline.each do |tweet|
-                li = auto_link(tweet.text).html_safe
+                li = twitter_autolinks(auto_link(tweet.text).html_safe)
 
       .span4
         h2 Follow us
@@ -92,6 +92,21 @@ script type="text/template" id="login_form"
     (function(d,c){var a,b,g,e;a=d.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===d.location.protocol?"https:":"http:")+'//api.mixpanel.com/site_media/js/api/mixpanel.2.js';b=d.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b);c._i=[];c.init=function(a,d,f){var b=c;"undefined"!==typeof f?b=c[f]=[]:f="mixpanel";g="disable track track_pageview track_links track_forms register register_once unregister identify name_tag set_config".split(" ");
     for(e=0;e<g.length;e++)(function(a){b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,0)))}})(g[e]);c._i.push([a,d,f])};window.mixpanel=c})(document,[]);
     mixpanel.init("66fbbdc77c12cffbb67031b94a46e736");
+
+    window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=
+    d.createElement(s),e=d.getElementsByTagName(s)[0];z.set=function(o){z.set.
+    _.push(o)};z._=[];z.set._=[];$.async=!0;$.setAttribute('charset','utf-8');
+    $.src='//cdn.zopim.com/?qEZoiJdORhu6juMOCamYisRG9MRZxF5o';z.t=+new Date;$.
+    type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
+
+
+- if current_user && Rails.env.production?
+  javascript:
+    $zopim(function() {
+      $zopim.livechat.setName("#{current_user.username}");
+      $zopim.livechat.setEmail("#{current_user.email}");
+    });
+
 
   - if logged_in?
     = render 'shared/intercom'

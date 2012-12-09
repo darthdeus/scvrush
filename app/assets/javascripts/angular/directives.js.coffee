@@ -15,5 +15,5 @@ module.directive "tag", ->
     restrict: "E",
     scope:
       tag: "@name"
-    template: "<li><a href='/posts/tags/{{tag}}'>{{tag | capitalizeTag}}</a></li>"
+    template: "<li><a href='/posts/tag/{{tag}}'>{{tag | capitalizeTag}}</a></li>"
   }
