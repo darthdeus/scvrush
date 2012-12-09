@@ -99,5 +99,14 @@ script type="text/template" id="login_form"
     $.src='//cdn.zopim.com/?qEZoiJdORhu6juMOCamYisRG9MRZxF5o';z.t=+new Date;$.
     type='text/javascript';e.parentNode.insertBefore($,e)})(document,'script');
 
+
+- if current_user && Rails.env.production?
+  javascript:
+    $zopim(function() {
+      $zopim.livechat.setName("#{current_user.username}");
+      $zopim.livechat.setEmail("#{current_user.email}");
+    });
+
+
   - if logged_in?
     = render 'shared/intercom'
