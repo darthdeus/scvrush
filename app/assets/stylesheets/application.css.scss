@@ -5,87 +5,62 @@
  *= require_self
  */
 
+$navbarBackground: #3B3C3E;
+$navbarBackgroundHighlight: #4B4C4E;
+$navbarLinkColor: #E3E3E3;
+$navbarLinkColorHover: #C3C3C3;
+
 @import "bourbon";
 @import "bootstrap";
 @import "dataTables/jquery.dataTables.bootstrap";
 
-
 $linkBlue: #08C;
 $linkBlueHover: #005580;
 
+body {
+  background: #3B3C3E;
 
-body > .container {
-  background: #fff;
-  min-height: 800px;
+  & > .container {
+    background: #F3F3F3;
+    width: 1200px;
+    overflow: hidden;
+  }
+
 }
 
-body > .navbar > .navbar-inner {
-  @include linear-gradient(#333, #000);
+.sidebar {
+  background: #3B3C3E;
+  padding-bottom: 9999px;
+  margin-bottom: -9999px;
+  box-shadow: inset -4px 0 4px -2px rgba(0, 0, 0, .75), 3px 0 3px -2px rgba(0, 0, 0, .3);
 
-  li a {
-    text-shadow: none;
-  }
-}
-
-.block { display: block; }
-
-.tooltip {
-  font-size: 14px;
-}
-
-.navbar {
-  position: relative;
-  margin-top: 50px;
-  margin-bottom: 60px;
-
-  .container {
-    position: relative;
-    left: -30px;
+  h1, h2, h3, h4, p, ul, li, & {
+    color: #F3F3F3;
   }
 
-  #logo a {
-    z-index: 9999;
-    width: 350px;
-    position: absolute;
-    top: -70px;
-    left: -20px;
+  #logo img {
+    padding: 20px 40px;
+    padding-left: 999px;
+    margin-left: -970px;
+    // background: rgba(0, 0, 0, 0.2);
   }
 
-  .navbar-inner {
-    height: 70px;
-  }
+  header.heading {
+    background: url("bg-heading.gif") repeat-x 0 36px;
+    margin-right: 18px;
 
-  .nav > li > a {
-    font-size: 18px;
-    color: #ccc;
-    height: 50px;
-    line-height: 50px;
-
-    @include transition (color 0.2s ease-in-out);
-
-    .caret {
+    h3 {
+      font-size: 18px;
       display: inline-block;
-      margin-top: 23px !important;
-      margin-left: 4px;
-      border-top-color: #ccc !important;
-      border-bottom-color: #ccc !important;
+      background: #3B3C3E;
+      padding-right: 13px;
     }
-
-    &:hover {
-      color: #aaa;
-
-      .caret {
-        @include transition (border 0.2s ease-in-out);
-        border-top-color: #aaa !important;
-        border-bottom-color: #aaa !important;
-      }
-    }
-
   }
-}
 
-.navbar .container {
-  width: 940px;
+  section {
+    padding-right: 13px;
+  }
+
 }
 
 a img {
@@ -95,10 +70,19 @@ a img {
 a { color: $linkBlue; }
 a:hover { color: $linkBlueHover; }
 
-.clear {
-  clear: both;
-  height: 0;
-  overflow: hidden;
+.tooltip {
+  font-size: 14px;
+}
+
+.navbar {
+  position: relative;
+  width: 980px;
+  margin-left: -20px;
+
+  .navbar-inner {
+    border-radius: 0;
+  }
+
 }
 
 h1, h2, h3 {
@@ -134,10 +118,6 @@ h3 { font-size: 20px; }
 
 p {
   margin: 0 0 10px;
-}
-
-#homeCarousel {
-  margin: 0;
 }
 
 .news-block {
@@ -181,7 +161,6 @@ p {
 }
 
 #footer {
-  margin-top: 20px;
   background: #252525;
 
   a, li {
@@ -554,11 +533,11 @@ li.stream {
   top: 45% !important;
 }
 
-@import "posts";
-@import "progress_bar";
-@import "users";
-@import "dashboard";
-@import "bracket";
-@import "jquery-ui.custom";
-@import "fancybox/jquery.fancybox";
-@import "./vendor/select2";
+// @import "posts";
+// @import "progress_bar";
+// @import "users";
+// @import "dashboard";
+// @import "bracket";
+// @import "jquery-ui.custom";
+// @import "fancybox/jquery.fancybox";
+// @import "./vendor/select2";

@@ -1,3 +1,3 @@
 Scvrush = Ember.Application.create({
-  rootElement: "#coaches"
+  rootElement: ".wrap .span12.content"
 });

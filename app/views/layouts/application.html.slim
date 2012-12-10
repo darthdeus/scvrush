@@ -24,17 +24,30 @@ html ng-app="scvrush"
 
   body
 
-    = render "shared/menu"
     .container
+      .wrap
+        .row
+          .span3.sidebar
+            #logo = image_tag "logo.png"
 
-      .row
-        .span12
-          = render partial: "shared/flash_messages"
+            header.heading
+              h3 Upcoming events
+
+            section
+              ul
+                li EU GP
+                li EU BS
+
+            header.heading
+              h3 Featured articles
+
+            section
+              ul
+                li Whitera dominating GSL Code S
+                li EU BS
 
 
-      .row
-        .span12
-          = yield
+          .span12.content
 
     = render "shared/footer"
 

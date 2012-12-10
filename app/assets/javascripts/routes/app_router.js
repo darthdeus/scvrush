@@ -1,16 +1,22 @@
 Scvrush.Router = Ember.Router.extend({
   location: 'hash',
+  enableLogging: true,
 
   root: Ember.Route.extend({
     index: Ember.Route.extend({
-      route: '/'
+      route: "/",
+      connectOutlets: function(router) {
+        router.get("applicationController").connectOutlet("body", "home");
+      }
+    })
+  }),
 
-      // You'll likely want to connect a view here.
-      // connectOutlets: function(router) {
-      //   router.get('applicationController').connectOutlet(App.MainView);
-      // }
-
-      // Layout your routes here...
+  content: Ember.Route.extend({
+    index: Ember.Route.extend({
+      route: "/content",
+      connectOutlets: function(router) {
+        router.get("applicationController").connectOutlet("body", "content");
+      }
     })
   })
 });
