@@ -1,4 +1,4 @@
-//= require_self
+//= require ./app
 //= require ./store
 //= require_tree ./models
 //= require_tree ./controllers
@@ -6,6 +6,6 @@
 //= require_tree ./helpers
 //= require_tree ./templates
 //= require_tree ./routes
+//= require_self
 
-Scvrush = Ember.Application.create();
 Scvrush.initialize();

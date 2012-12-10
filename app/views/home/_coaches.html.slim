@@ -1,12 +1,3 @@
-.span4#coaches ng-controller="CoachesController"
-  h2.underline.nomargin Coaches
-
-  .row ng-repeat="coach in coaches"
-    .coach.span4
-      .name: a href="{{coach.link}}" {{coach.name}}
-      ul.tags
-        tag name="{{tag}}" ng-repeat="tag in coach.tags"
-
-  br
-  a.pull-right.btn.btn-mini ng-click="loadMore()" ng-show="coaches.length > 0" Load more
-
+.span4#coaches
+  handlebars:
+    {{view Scvrush.CoachesView}}

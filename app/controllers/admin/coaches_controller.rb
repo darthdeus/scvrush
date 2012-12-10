@@ -11,7 +11,7 @@ module Admin
         format.html do
           require_admin
         end
-        format.json { render json: @coaches.sample(6) }
+        format.json { render json: @coaches.sample(6).as_json(include_root: false) }
       end
     end
 

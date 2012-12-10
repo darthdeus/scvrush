@@ -61,7 +61,7 @@ group :development, :test do
   gem 'pry-rails',  '~> 0.2.2'
   gem 'pry-nav',    '~> 0.2.1'
 
-  gem 'rack-mini-profiler', '~> 0.1.9'
+  # gem 'rack-mini-profiler', '~> 0.1.9'
 
   gem 'populator',          '~> 1.0.0'
   gem 'faker',              '~> 1.1.1'

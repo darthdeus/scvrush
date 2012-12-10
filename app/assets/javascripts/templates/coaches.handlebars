@@ -1,0 +1,17 @@
+<h2 class="underline nomargin">Coaches</h2>
+
+<div class="row">
+  {{#each coaches}}
+    <div class="coach span4">
+      <div class="name">
+        <a href="{{link}}">{{name}}</a>
+        <ul class="tags">
+          {{#each tags}}
+            <li><a href="/posts/tag/{{tag}}">{{tag}}</a></li>
+          {{/each}}
+        </ul>
+    </div>
+  {{/each}}
+
+  <a href="#" class="pull-right btn btn-mini">Load more</a>
+</div>
