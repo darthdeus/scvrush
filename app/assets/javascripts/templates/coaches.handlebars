@@ -1,10 +1,10 @@
 <h2 class="underline nomargin">Coaches</h2>
 
 <div class="row">
-  {{#each coach in controller}}
+  {{#each controller}}
     <div class="coach span4">
       <div class="name">
-        <a {{action showCoach coach href=true}}>{{coach.name}}</a>
+        <a {{action showCoach this href=true}}>{{name}}</a>
         <ul class="tags">
           {{#each tags}}
             <li><a href="/posts/tag/{{tag}}">{{tag}}</a></li>

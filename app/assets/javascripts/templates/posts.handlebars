@@ -1,0 +1,13 @@
+<div class="posts">
+
+  {{#each controller}}
+    <div class="post">
+      <a {{action showPost this href=true}}>
+        <img {{bindAttr src="image"}}>
+      </a>
+
+      <a {{action showPost this href=true}}>{{title}}</a>
+    </div>
+  {{/each}}
+
+</div>

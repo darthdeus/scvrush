@@ -11,4 +11,8 @@ class PostDecorator < Draper::Base
     post.tag_list.include? "coach"
   end
 
+  def as_json(options = {})
+    model.as_json(options)
+  end
+
 end

@@ -280,6 +280,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers
   acts-as-taggable-on (~> 2.1.0)
   airbrake (~> 3.0.9)
   bcrypt-ruby (~> 3.0.1)

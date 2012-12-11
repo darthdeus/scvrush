@@ -6,12 +6,22 @@ Scvrush.Router = Ember.Router.extend({
     gotoHome:    Em.Route.transitionTo("root.index"),
     gotoContent: Em.Route.transitionTo("root.content"),
 
-    showCoach: Em.Route.transitionTo("root.show"),
+    showPost: Em.Route.transitionTo("root.show"),
 
     show: Em.Route.extend({
-      route: "/coach/:id",
-      serialize: function(router, context) { return { id: context.id }; },
-      deserialize: function(router, context) { return Scvrush.Coach.find(context.id); },
+      route: "/post/:id",
+
+      serialize: function(router, context) {
+        return { id: context.get("id") };
+      },
+
+      deserialize: function(router, context) {
+        return Scvrush.get("store").find(Scvrush.Post, context.id);
+      },
+
+      connectOutlets: function(router, context) {
+        router.get("applicationController").connectOutlet("body", "post", context);
+      }
     }),
 
     index: Em.Route.extend({
@@ -24,7 +34,8 @@ Scvrush.Router = Ember.Router.extend({
     content: Em.Route.extend({
         route: "/content",
         connectOutlets: function(router) {
-          router.get("applicationController").connectOutlet("body", "coaches", Scvrush.Coach.all());
+          var posts = Scvrush.get("store").findAll(Scvrush.Post);
+          router.get("applicationController").connectOutlet("body", "posts", posts);
         }
     })
   })

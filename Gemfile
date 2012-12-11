@@ -19,6 +19,7 @@ gem 'bourbon',                 '~> 1.4.0'
 gem 'mongoid',                 '~> 3.0.0'
 
 gem 'ember-rails'
+gem 'active_model_serializers'
 
 gem 'rdiscount',          '~> 1.6.8'
 gem 'kaminari',           '~> 0.13.0'

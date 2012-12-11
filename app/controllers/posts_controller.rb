@@ -1,13 +1,11 @@
 class PostsController < ApplicationController
   # before_filter :require_writer, :except => [:index, :tag, :show]
 
+  respond_to :json
+
   def index
     @posts = Post.published.page(params[:page])
-
-    respond_to do |format|
-      format.html
-      format.rss { render layout: false }
-    end
+    respond_with @posts
   end
 
   def tag
@@ -34,20 +32,8 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = PostDecorator.find_by_id(params[:id])
-
-    if @post.model
-      respond_to do |format|
-        format.html do
-          @comments = @post.comments
-          @comment = Comment.new(post: @post)
-        end
-        format.json { render json: @post }
-      end
-    else
-      flash[:error] = "The post you were looking for doesn't exist."
-      redirect_to content_path
-    end
+    @post = Post.find(params[:id])
+    respond_with @post
   end
 
   def new

@@ -1,6 +1,8 @@
 Scvrush.Store = DS.Store.extend({
   revision: 4,
   adapter: DS.RESTAdapter.create({
-    plurals: { coach: "coaches" }
+    bulkCommit: false
   })
 });
+
+Scvrush.store = Scvrush.Store.create();
