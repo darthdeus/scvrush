@@ -9,15 +9,15 @@ Scvrush.Router = Ember.Router.extend({
     showPost: Em.Route.transitionTo("root.show"),
 
     show: Em.Route.extend({
-      route: "/post/:id",
+      route: "/post/:post_id",
 
-      serialize: function(router, context) {
-        return { id: context.get("id") };
-      },
+      // serialize: function(router, context) {
+      //   return { id: context.get("id") };
+      // },
 
-      deserialize: function(router, context) {
-        return Scvrush.get("store").find(Scvrush.Post, context.id);
-      },
+      // deserialize: function(router, context) {
+      //   return Scvrush.get("store").find(Scvrush.Post, context.id);
+      // },
 
       connectOutlets: function(router, context) {
         router.get("applicationController").connectOutlet("body", "post", context);

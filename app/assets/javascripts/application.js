@@ -6,9 +6,14 @@
 //= require dataTables/jquery.dataTables.bootstrap
 //= require login
 
+//= require ./vendor/ember-latest
+//= require ./vendor/ember-data-latest
+//= require ./scvrush
+
+
+1
 //= require ember
 //= require ember-data
-//= require ./scvrush
 
 Handlebars.registerHelper("debug", function(optionalValue) {
   console.log("Current Context");
