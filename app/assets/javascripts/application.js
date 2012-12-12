@@ -10,11 +10,6 @@
 //= require ./vendor/ember-data-latest
 //= require ./scvrush
 
-
-1
-//= require ember
-//= require ember-data
-
 Handlebars.registerHelper("debug", function(optionalValue) {
   console.log("Current Context");
   console.log("====================");

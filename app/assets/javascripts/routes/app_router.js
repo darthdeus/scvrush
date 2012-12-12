@@ -3,26 +3,9 @@ Scvrush.Router = Ember.Router.extend({
   enableLogging: true,
 
   root: Em.Route.extend({
-    gotoHome:    Em.Route.transitionTo("root.index"),
-    gotoContent: Em.Route.transitionTo("root.content"),
-
-    showPost: Em.Route.transitionTo("root.show"),
-
-    show: Em.Route.extend({
-      route: "/post/:post_id",
-
-      // serialize: function(router, context) {
-      //   return { id: context.get("id") };
-      // },
-
-      // deserialize: function(router, context) {
-      //   return Scvrush.get("store").find(Scvrush.Post, context.id);
-      // },
-
-      connectOutlets: function(router, context) {
-        router.get("applicationController").connectOutlet("body", "post", context);
-      }
-    }),
+    gotoHome:  Em.Route.transitionTo("root.index"),
+    gotoPosts: Em.Route.transitionTo("posts.index"),
+    showPost:  Em.Route.transitionTo("posts.show"),
 
     index: Em.Route.extend({
       route: "/",
@@ -31,12 +14,22 @@ Scvrush.Router = Ember.Router.extend({
       }
     }),
 
-    content: Em.Route.extend({
-        route: "/content",
+    posts: Em.Route.extend({
+      index: Em.Route.extend({
+        route: "/posts",
         connectOutlets: function(router) {
           var posts = Scvrush.get("store").findAll(Scvrush.Post);
           router.get("applicationController").connectOutlet("body", "posts", posts);
         }
+      }),
+
+      show: Em.Route.extend({
+        route: "/posts/:post_id",
+        connectOutlets: function(router, context) {
+          router.get("applicationController").connectOutlet("body", "post", context);
+        }
+      })
+
     })
   })
 

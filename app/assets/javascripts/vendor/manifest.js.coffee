@@ -4,3 +4,4 @@
 #= require ./bootstrap
 #= require ./select2
 #= require ./handlebars
+#= require ./Markdown.Converter
