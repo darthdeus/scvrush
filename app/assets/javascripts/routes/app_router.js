@@ -7,30 +7,33 @@ Scvrush.Router = Ember.Router.extend({
     gotoPosts: Em.Route.transitionTo("posts.index"),
     showPost:  Em.Route.transitionTo("posts.show"),
 
+    posts: Em.Route.extend({
+      route: "/posts",
+
+      show: Em.Route.extend({
+        route: "/:post_id",
+        connectOutlets: function(router, context) {
+          router.get("applicationController").connectOutlet("body", "post", context);
+        }
+      }),
+
+      index: Em.Route.extend({
+        route: "/",
+        connectOutlets: function(router) {
+          var posts = Scvrush.get("store").findAll(Scvrush.Post);
+          router.get("applicationController").connectOutlet("body", "posts", posts);
+        }
+      })
+    }),
+
+
     index: Em.Route.extend({
       route: "/",
       connectOutlets: function(router) {
         router.get("applicationController").connectOutlet("body", "home");
       }
-    }),
-
-    posts: Em.Route.extend({
-      index: Em.Route.extend({
-        route: "/posts",
-        connectOutlets: function(router) {
-          var posts = Scvrush.get("store").findAll(Scvrush.Post);
-          router.get("applicationController").connectOutlet("body", "posts", posts);
-        }
-      }),
-
-      show: Em.Route.extend({
-        route: "/posts/:post_id",
-        connectOutlets: function(router, context) {
-          router.get("applicationController").connectOutlet("body", "post", context);
-        }
-      })
-
     })
+
   })
 
 });

@@ -1,5 +1,7 @@
 <div class="posts">
 
+  {{view Scvrush.TagView tagsBinding="Scvrush.tags"}}
+
   {{#each controller}}
     <div class="post">
       <a {{action showPost this href=true}}>

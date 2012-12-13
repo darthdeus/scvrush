@@ -1,0 +1,5 @@
+{{#each tags}}{{this}}{{/each}}
+
+{{#each tags tagName="select"}}
+  <option {{bindAttr value="id"}}>{{name}}</option>
+{{/each}}
