@@ -1,6 +1,6 @@
 <div class="posts">
 
-  {{view Scvrush.TagView tagsBinding="Scvrush.tags"}}
+  {{view Em.TextField valueBinding="controller.query" placeholder="Search the posts"}}
 
   {{#each controller}}
     <div class="post">

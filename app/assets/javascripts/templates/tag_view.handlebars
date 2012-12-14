@@ -1,5 +1,15 @@
-{{#each tags}}{{this}}{{/each}}
+{{view.tags}}
 
-{{#each tags tagName="select"}}
+{{view Ember.Select viewName="select"
+                    contentBinding="controller.content"
+                    optionLabelPath="content.name"
+                    optionValuePath="content.id"
+                    selectionBinding="controller.selectedTags"
+                    prompt="Filter by tags:"
+                    }}
+
+<p>select</p>
+{{#each view.tags tagName="select"}}
   <option {{bindAttr value="id"}}>{{name}}</option>
 {{/each}}
+<p>end of select</p>

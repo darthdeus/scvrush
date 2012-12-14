@@ -1,3 +1,6 @@
 Scvrush.PostsView = Ember.View.extend({
-  templateName: 'posts'
+  templateName: 'posts',
+  tag: function(event) {
+    $(event.target).data("tag");
+  }
 });
