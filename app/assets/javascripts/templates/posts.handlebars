@@ -1,14 +1,14 @@
-<div class="posts">
+{{view Em.TextField valueBinding="controller.query" placeholder="Search the posts"}}
 
-  {{view Em.TextField valueBinding="controller.query" placeholder="Search the posts"}}
+<div class="posts">
 
   {{#each controller}}
     <div class="post">
-      <a {{action showPost this href=true}}>
+      <a class="image" {{action showPost this href=true}}>
         <img {{bindAttr src="image"}}>
       </a>
 
-      <a {{action showPost this href=true}}>{{title}}</a>
+      <h2><a {{action showPost this href=true}}>{{title}}</a></h2>
     </div>
   {{/each}}
 
