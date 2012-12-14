@@ -81,5 +81,5 @@ gem 'rails_autolink'
 
 gem 'unicorn',        '~> 4.3.1'
 gem 'capistrano',     '~> 2.13.0'
-gem 'rvm-capistrano', '~> 1.2.5'
+gem 'rvm-capistrano', '~> 1.2.5', require: false
 
