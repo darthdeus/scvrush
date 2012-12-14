@@ -38,7 +38,7 @@ group :assets do
   gem 'uglifier',         '~> 1.2.3'
 end
 
-gem 'memcache-client',    '~> 1.8.5'
+gem 'redis-store'
 gem 'redis',              '~> 3.0.2'
 
 # Role management
