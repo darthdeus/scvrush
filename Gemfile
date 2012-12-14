@@ -38,7 +38,7 @@ group :assets do
   gem 'uglifier',         '~> 1.2.3'
 end
 
-gem 'redis-store'
+gem 'dalli'
 gem 'redis',              '~> 3.0.2'
 
 # Role management
