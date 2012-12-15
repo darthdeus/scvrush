@@ -5,3 +5,4 @@
 #= require ./select2
 #= require ./handlebars
 #= require ./Markdown.Converter
+#= require ./moment
