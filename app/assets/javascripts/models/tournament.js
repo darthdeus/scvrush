@@ -1,8 +1,6 @@
 Scvrush.Tournament = DS.Model.extend({
   name: DS.attr("string"),
-
   tournament_day: DS.belongsTo("Scvrush.TournamentDay"),
-
 });
 
 Scvrush.TournamentDay = DS.Model.extend({
@@ -12,5 +10,5 @@ Scvrush.TournamentDay = DS.Model.extend({
     return moment(this.get("date"), "YYYY-MM-DD").format("dddd MMMM Do YYYY");
   }.property("date"),
 
-  tournaments: DS.hasMany("Scvrush.Tournament", { embedded: true })
+  tournaments: DS.hasMany("Scvrush.Tournament")
 });
