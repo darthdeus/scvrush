@@ -2,9 +2,6 @@
   <li class="active">
     <a {{action gotoTournaments href="true"}}>All Events</a>
   </li>
-  <!--<li>
-    <a {{action gotoUserTournaments href="true"}}>Your Events</a>
-  </li>-->
 
   <div class="pull-right">
     <select><option>Category</option></select>
@@ -19,7 +16,24 @@
       <h2>{{day.human_date}}</h2>
       {{#each tournament in day.tournaments}}
         <div class="tournament">
-          <a {{action showTournament tournament href="true"}}>{{tournament.name}}</a>
+
+          <div class="time">
+            {{tournament.start_time}}
+          </div>
+
+          <img {{bindAttr src="tournament.image_url"}}>
+
+          <div class="description">
+            <h3><a {{action showTournament tournament href="true"}}>{{tournament.name}}</a></h3>
+
+            <p>
+              <i class="icon-user"></i>
+              {{tournament.participant_count}}
+              {{#if tournament.one_person}}person{{else}}people{{/if}}
+            </p>
+
+          </div>
+
         </div>
       {{/each}}
     {{/each}}

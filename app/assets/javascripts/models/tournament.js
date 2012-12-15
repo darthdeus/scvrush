@@ -1,5 +1,21 @@
 Scvrush.Tournament = DS.Model.extend({
-  name: DS.attr("string"),
+  name:              DS.attr("string"),
+  image_name:        DS.attr("string"),
+  participant_count: DS.attr("number"),
+  starts_at:         DS.attr("string"),
+
+  one_person: function() {
+    return this.get("participant_count") == 1;
+  }.property("participant_count"),
+
+  image_url: function() {
+    return "/assets/" + this.get("image_name");
+  }.property("image_name"),
+
+  start_time: function() {
+    return moment(this.get("starts_at")).calendar();
+  }.property("starts_at"),
+
   tournament_day: DS.belongsTo("Scvrush.TournamentDay"),
 });
 

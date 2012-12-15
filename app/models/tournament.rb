@@ -59,6 +59,22 @@ class Tournament < ActiveRecord::Base
     }
   end
 
+  def image_name
+    images = {
+      "EU_BSG"      => "tournament_eu_bsg.png",
+      "EU_BS"       => "tournament_eu_bs.png",
+      "EU_PD"       => "tournament_eu_pd.png",
+      "EU_GP"       => "tournament_eu_gp.png",
+      "EU_D"        => "tournament_eu_d.jpg",
+      "NA_BSG"      => "tournament_na_bsg.png",
+      "NA_PD"       => "tournament_na_pd.png",
+      "Bronze_Week" => "tournament_bronze_week.jpg",
+      "NA_Friday"   => "tournament_na_friday.png"
+    }
+
+    images[tournament_type] || "tournament_eu_bsg.png"
+  end
+
   def registered_players
     self.signups.includes(:user).all.select { |signup|
       [0,1].include?(signup.status) }.map(&:user)
@@ -144,6 +160,14 @@ class Tournament < ActiveRecord::Base
         { player1: "kara", player2: "lara" } ]
     }, { matches: [ { player1: "ham", player2: "kara" } ] }
     ]
+  end
+
+  def participant_count
+    signups.count
+  end
+
+  def as_json(options = {})
+    super(options.merge(methods: [:participant_count, :image_name]))
   end
 
 end
