@@ -20,7 +20,7 @@ Scvrush.PostsController = Em.ArrayController.extend({
 });
 
 Scvrush.TagsController = Em.ArrayProxy.extend({
-  content: [Em.Object.create({name: "foo", id: 1}) ],
+  content: [ Em.Object.create({name: "foo", id: 1}) ],
   selectedTags: []
 });
 
