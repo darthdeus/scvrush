@@ -61,7 +61,15 @@ Scvrush.Router = Ember.Router.extend({
           var tournaments = Scvrush.get("store").find(Scvrush.TournamentDay, { user: true });
           router.get("applicationController").connectOutlet("body", "tournaments", tournaments);
         }
+      }),
+
+      show: Em.Route.extend({
+        route: "/:tournament_id",
+        connectOutlets: function(router, context) {
+          router.get("applicationController").connectOutlet("body", "tournament", context);
+        }
       })
+
     }),
 
     index: Em.Route.extend({

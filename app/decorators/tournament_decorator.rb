@@ -1,6 +1,8 @@
 class TournamentDecorator < Draper::Base
   decorates :tournament
 
+  delegate :as_json, to: :model
+
   def link_to_self
     h.link_to tournament.name, tournament
   end

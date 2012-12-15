@@ -2,9 +2,9 @@
   <li class="active">
     <a {{action gotoTournaments href="true"}}>All Events</a>
   </li>
-  <li>
+  <!--<li>
     <a {{action gotoUserTournaments href="true"}}>Your Events</a>
-  </li>
+  </li>-->
 
   <div class="pull-right">
     <select><option>Category</option></select>
@@ -18,7 +18,9 @@
     {{#each day in controller}}
       <h2>{{day.human_date}}</h2>
       {{#each tournament in day.tournaments}}
-        {{tournament.name}}<br>
+        <div class="tournament">
+          <a {{action showTournament tournament href="true"}}>{{tournament.name}}</a>
+        </div>
       {{/each}}
     {{/each}}
   </div>

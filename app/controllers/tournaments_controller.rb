@@ -10,7 +10,11 @@ class TournamentsController < ApplicationController
     if params[:ids]
       render json: Tournament.find(params[:ids])
     else
-      render json: { tournament_days: TournamentDay.by_days }
+      if params[:user]
+        render json: { tournament_days: TournamentDay.by_days(current_user) }
+      else
+        render json: { tournament_days: TournamentDay.by_days }
+      end
     end
   end
 
@@ -31,19 +35,20 @@ class TournamentsController < ApplicationController
 
   def show
     @tournament = TournamentDecorator.find(params[:id])
-    gon.tournament_id = @tournament.id
-    @user = TournamentPlayerDecorator.new(current_user, @tournament)
+    render json: { tournament: @tournament }
+    # gon.tournament_id = @tournament.id
+    # @user = TournamentPlayerDecorator.new(current_user, @tournament)
 
-    if @tournament.started?
-      @bracket = Bracket.new(@tournament)
-      @info = PlayerInfoDecorator.new(@bracket, @user)
+    # if @tournament.started?
+    #   @bracket = Bracket.new(@tournament)
+    #   @info = PlayerInfoDecorator.new(@bracket, @user)
 
-      gon.is_admin = Ability.new(current_user).can?(:manage, Match)
-      render :show
-    else
-      # redirecting here will drop the flash message
-      render :signup
-    end
+    #   gon.is_admin = Ability.new(current_user).can?(:manage, Match)
+    #   render :show
+    # else
+    #   # redirecting here will drop the flash message
+    #   render :signup
+    # end
   end
 
   def rounds

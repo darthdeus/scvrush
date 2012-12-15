@@ -1,5 +1,6 @@
 Scvrush.Tournament = DS.Model.extend({
   name: DS.attr("string"),
+
   tournament_day: DS.belongsTo("Scvrush.TournamentDay"),
 
 });
