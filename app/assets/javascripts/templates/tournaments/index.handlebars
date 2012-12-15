@@ -1,0 +1,30 @@
+<ul class="nav nav-tabs">
+  <li class="active">
+    <a href="#">All Events</a>
+  </li>
+  <li><a href="#">Your Events</a></li>
+
+  <div class="pull-right">
+    <select><option>Category</option></select>
+    <input type="text" placeholder="Search">
+  </div>
+</ul>
+
+<div class="tournaments row">
+
+  <div class="span8">
+    these are the tournaments
+
+    {{#each day in controller}}
+      <h2>{{day.date}}</h2>
+      {{#each tournament in day.tournaments}}
+        {{tournament.name}}<br>
+      {{/each}}
+    {{/each}}
+  </div>
+
+  <div class="span4">
+    and these are the calendars
+  </div>
+
+</div>

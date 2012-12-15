@@ -1,11 +1,17 @@
 class TournamentsController < ApplicationController
   before_filter :require_login, only: [ :new, :create, :seed, :unseed, :start, :edit, :update, :emails ]
 
-  layout "single"
+  respond_to :json
 
   def index
-    data = Tournament.order("starts_at DESC").page(params[:page])
-    @tournaments = TournamentDecorator.decorate(data)
+    # data = Tournament.order("starts_at DESC").page(params[:page])
+    # @tournaments = TournamentDecorator.decorate(data)
+    # respond_with @tournaments.group_by { |t| t.starts_at.to_date }
+    if params[:ids]
+      render json: Tournament.find(params[:ids])
+    else
+      render json: { tournament_days: TournamentDay.by_days }
+    end
   end
 
   def new
