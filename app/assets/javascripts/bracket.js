@@ -30,27 +30,25 @@ jQuery(function($) {
     });
   }
 
-  if (gon && gon.highlight_id) {
+  if (typeof gon !== "undefined" && gon.highlight_id) {
     $(".player_#{gon.highlight_id}").effect("highlight", {}, 5000)
   }
 
   // TODO - change this to not account the dot in the bnet_info,
   // since it will break CSS selectors
-  $('.bracket .player').live({
-    mouseenter: function() {
-      var cls = $(this)[0].className;
-      cls = cls.split(' ').map(function(n) { return "." + n; }).join("")
-      if (cls !== ".player.player_") {
-        $(cls).addClass('player-highlight');
-      }
-    },
-
-    mouseleave:function() {
-      var cls = $(this)[0].className;
-      cls = cls.split(' ').map(function(n) { return "." + n; }).join("")
-      $(cls).removeClass('player-highlight');
-    }
-
-  });
+  // $('.bracket .player').live({
+  //   mouseenter: function() {
+  //     var cls = $(this)[0].className;
+  //     cls = cls.split(' ').map(function(n) { return "." + n; }).join("")
+  //     if (cls !== ".player.player_") {
+  //       $(cls).addClass('player-highlight');
+  //     }
+  //   },
+  //   mouseleave:function() {
+  //     var cls = $(this)[0].className;
+  //     cls = cls.split(' ').map(function(n) { return "." + n; }).join("")
+  //     $(cls).removeClass('player-highlight');
+  //   }
+  // });
 
 });

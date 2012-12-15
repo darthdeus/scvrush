@@ -1,12 +1,22 @@
 {{#each round in controller}}
-  <div class="round-info-wrap">
-    <div class="round-info">Round of {{round.number}}</div>
-  </div>
+  <div class="round-wrap">
+    <div class="round-info-wrap">
+      <div class="round-info">Round of {{round.number}}</div>
+    </div>
 
-  <div class="round">
-    <div class="match">
-      <div class="player">
-      </div>
+    <div class="round">
+      {{#each match in round.matches}}
+        <div class="match">
+          <div class="player">
+            <div class="name">{{match.player1}}</div>
+            <div class="score">{{match.player1_score}}</div>
+          </div>
+          <div class="player">
+            <div class="name">{{match.player2}}</div>
+            <div class="score">{{match.player2_score}}</div>
+          </div>
+        </div>
+      {{/each}}
     </div>
   </div>
 {{/each}}

@@ -6,6 +6,8 @@
 //= require dataTables/jquery.dataTables.bootstrap
 //= require login
 
+//= require ./bracket
+
 //= require ./vendor/ember-latest
 //= require ./vendor/ember-data-latest
 //= require ./scvrush
