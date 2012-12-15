@@ -1,8 +1,10 @@
 <ul class="nav nav-tabs">
   <li class="active">
-    <a href="#">All Events</a>
+    <a {{action gotoTournaments href="true"}}>All Events</a>
   </li>
-  <li><a href="#">Your Events</a></li>
+  <li>
+    <a {{action gotoUserTournaments href="true"}}>Your Events</a>
+  </li>
 
   <div class="pull-right">
     <select><option>Category</option></select>

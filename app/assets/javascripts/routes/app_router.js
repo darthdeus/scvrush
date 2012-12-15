@@ -10,6 +10,7 @@ Scvrush.Router = Ember.Router.extend({
     showPost:  Em.Route.transitionTo("posts.show"),
 
     gotoTournaments: Em.Route.transitionTo("tournaments.index"),
+    gotoUserTournaments: Em.Route.transitionTo("tournaments.user"),
     showTournament: Em.Route.transitionTo("tournaments.show"),
 
     posts: Em.Route.extend({
@@ -50,6 +51,14 @@ Scvrush.Router = Ember.Router.extend({
         route: "/",
         connectOutlets: function(router) {
           var tournaments = Scvrush.get("store").findAll(Scvrush.TournamentDay);
+          router.get("applicationController").connectOutlet("body", "tournaments", tournaments);
+        }
+      }),
+
+      user: Em.Route.extend({
+        route: "/my_tournaments",
+        connectOutlets: function(router) {
+          var tournaments = Scvrush.get("store").find(Scvrush.TournamentDay, { user: true });
           router.get("applicationController").connectOutlet("body", "tournaments", tournaments);
         }
       })
