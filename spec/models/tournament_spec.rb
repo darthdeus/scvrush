@@ -80,4 +80,11 @@ describe Tournament do
 
   it { should respond_to(:logo) }
 
+  context "#as_json" do
+    it "renders itself as a json" do
+      tournament = build(:tournament)
+      binding.pry
+    end
+  end
+
 end

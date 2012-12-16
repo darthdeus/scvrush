@@ -3,6 +3,16 @@ Scvrush.Tournament = DS.Model.extend({
   image_name:        DS.attr("string"),
   participant_count: DS.attr("number"),
   starts_at:         DS.attr("string"),
+  winner:            DS.belongsTo("Scvrush.User"),
+  is_registered:     DS.attr("boolean"),
+
+  is_started: function() {
+    return new Date(this.get("starts_at")) < new Date();
+  }.property("starts_at"),
+
+  is_finished: function() {
+    return this.get("winner_id") !== null;
+  }.property("winner_id"),
 
   one_person: function() {
     return this.get("participant_count") == 1;
@@ -14,18 +24,9 @@ Scvrush.Tournament = DS.Model.extend({
 
   start_time: function() {
     var time = moment(this.get("starts_at"))
+    if (!time) { return ""; }
     return time.format("LT") + " (" + time.fromNow() + ")";
   }.property("starts_at"),
 
-  tournament_day: DS.belongsTo("Scvrush.TournamentDay"),
-});
-
-Scvrush.TournamentDay = DS.Model.extend({
-  date: DS.attr("string"),
-
-  human_date: function() {
-    return moment(this.get("date"), "YYYY-MM-DD").format("dddd MMMM Do YYYY");
-  }.property("date"),
-
-  tournaments: DS.hasMany("Scvrush.Tournament")
+  tournament_day: DS.belongsTo("Scvrush.TournamentDay")
 });

@@ -167,7 +167,14 @@ class Tournament < ActiveRecord::Base
   end
 
   def as_json(options = {})
-    super(options.merge(methods: [:participant_count, :image_name]))
+    json = super(options.merge(methods: [:participant_count, :image_name]))
+
+    if options[:user]
+      user_info = TournamentPlayerDecorator.new(options[:user], self)
+      json[:is_registered] = user_info.registered?
+    end
+
+    json
   end
 
 end

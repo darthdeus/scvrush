@@ -1,6 +1,8 @@
 <h1>{{name}}</h1>
 <h4><a {{action gotoTournaments href="true"}}>back to tournaments</a></h4>
 
-<div class="bracket">
-  {{view Scvrush.RoundsView controllerBinding="Scvrush.router.roundsController"}}
-</div>
+{{#if is_started}}
+  {{view Scvrush.RoundsView controllerBinding="Scvrush.router.roundsController" tournamentBinding="controller.content"}}
+{{else}}
+  {{view Scvrush.TournamentSignupView tournamentBinding="controller.content"}}
+{{/if}}

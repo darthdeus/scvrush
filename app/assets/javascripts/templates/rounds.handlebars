@@ -1,22 +1,32 @@
-{{#each round in controller}}
-  <div class="round-wrap">
-    <div class="round-info-wrap">
-      <div class="round-info">Round of {{round.number}}</div>
-    </div>
+<div class="bracket">
+  {{#if view.tournament.winner}}
+    <p>{{view.tournament.winner.username}} is the winner</p>
+  {{else}}
+    <p>Tournament is still in progress</p>
+  {{/if}}
 
-    <div class="round">
-      {{#each match in round.matches}}
-        <div class="match">
-          <div class="player">
-            <div class="name">{{match.player1}}</div>
-            <div class="score">{{match.player1_score}}</div>
+  {{#each round in controller}}
+    <div class="round-wrap">
+      <div class="round-info-wrap">
+        <div class="round-info">Round of {{round.number}}</div>
+      </div>
+
+      <div class="round">
+        {{#each match in round.matches}}
+          <div class="match">
+            <div class="player">
+              <div class="name">{{match.player1}}</div>
+              <div class="score">{{match.player1_score}}</div>
+            </div>
+            <div class="player">
+              <div class="name">{{match.player2}}</div>
+              <div class="score">{{match.player2_score}}</div>
+            </div>
           </div>
-          <div class="player">
-            <div class="name">{{match.player2}}</div>
-            <div class="score">{{match.player2_score}}</div>
-          </div>
-        </div>
-      {{/each}}
+        {{/each}}
+      </div>
+
     </div>
-  </div>
-{{/each}}
+  {{/each}}
+
+</div>

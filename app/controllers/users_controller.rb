@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
-  before_filter :require_login, only: [:edit, :update, :follow, :unfollow]
+  # before_filter :require_login, only: [:edit, :update, :follow, :unfollow]
   before_filter :load_user, only: [:show, :follow, :unfollow, :info, :friends]
+
+  respond_to :json
 
   def index
   end
@@ -21,14 +23,15 @@ class UsersController < ApplicationController
 
   def show
     @user = UserDecorator.new(@user)
-    if @user == current_user
-      @statuses = Status.with_ids(@user.timeline_ids)
-    else
-      @statuses = Status.for(@user)
-    end
+    render json: { user: @user }
+    # if @user == current_user
+    #   @statuses = Status.with_ids(@user.timeline_ids)
+    # else
+    #   @statuses = Status.for(@user)
+    # end
 
-    @followers = UserDecorator.decorate(@user.followers)
-    gon.user_id = params[:id]
+    # @followers = UserDecorator.decorate(@user.followers)
+    # gon.user_id = params[:id]
   end
 
   def edit

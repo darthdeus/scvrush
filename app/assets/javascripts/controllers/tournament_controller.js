@@ -1,13 +1,21 @@
 Scvrush.TournamentController = Em.ObjectController.extend({
 
   rounds: function() {
-    var tournament_id = this.get("content.id");
-
-    if (tournament_id) {
-      return Scvrush.get("store").find(Scvrush.Round, { tournament_id: tournament_id });
+    if (id = this.get("content.id")) {
+      return Scvrush.get("store").find(Scvrush.Round, { tournament_id: id });
     } else {
       return [];
     }
-  }.property("content")
+  }.property("content"),
+
+  register: function() {
+    this.get("content").set("is_registered", true);
+    Scvrush.store.commit();
+  },
+
+  cancel: function() {
+    this.get("content").set("is_registered", false);
+    Scvrush.store.commit();
+  }
 
 });

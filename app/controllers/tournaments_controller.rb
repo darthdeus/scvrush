@@ -4,17 +4,10 @@ class TournamentsController < ApplicationController
   respond_to :json
 
   def index
-    # data = Tournament.order("starts_at DESC").page(params[:page])
-    # @tournaments = TournamentDecorator.decorate(data)
-    # respond_with @tournaments.group_by { |t| t.starts_at.to_date }
     if params[:ids]
-      render json: Tournament.find(params[:ids])
+      render json: Tournament.find(params[:ids]).as_json(user: current_user)
     else
-      if params[:user]
-        render json: { tournament_days: TournamentDay.by_days(current_user) }
-      else
-        render json: { tournament_days: TournamentDay.by_days }
-      end
+      render json: { tournament_days: TournamentDay.by_days(current_user) }
     end
   end
 
@@ -34,21 +27,8 @@ class TournamentsController < ApplicationController
   end
 
   def show
-    @tournament = TournamentDecorator.find(params[:id])
-    render json: { tournament: @tournament }
-    # gon.tournament_id = @tournament.id
-    # @user = TournamentPlayerDecorator.new(current_user, @tournament)
-
-    # if @tournament.started?
-    #   @bracket = Bracket.new(@tournament)
-    #   @info = PlayerInfoDecorator.new(@bracket, @user)
-
-    #   gon.is_admin = Ability.new(current_user).can?(:manage, Match)
-    #   render :show
-    # else
-    #   # redirecting here will drop the flash message
-    #   render :signup
-    # end
+    tournament = TournamentDecorator.find(params[:id])
+    render json: { tournament: tournament.as_json(user: current_user) }
   end
 
   def rounds
@@ -64,16 +44,25 @@ class TournamentsController < ApplicationController
   end
 
   def update
-    @tournament = Tournament.find(params[:id])
-    authorize! :update, @tournament
-
-    # TODO - protect from setting the type here
-    if @tournament.update_attributes(params[:tournament])
-      flash[:notice] = "Tournament was updated successfuly."
-      redirect_to @tournament
+    tournament = Tournament.find(params[:id])
+    if params[:tournament][:is_registered]
+      signup = Signup.for(current_user, tournament)
+      signup.signup!
     else
-      render :edit
+      tournament.unregister(current_user)
     end
+
+    render json: { tournament: tournament.as_json(user: current_user) }
+
+    # authorize! :update, @tournament
+
+    # # TODO - protect from setting the type here
+    # if @tournament.update_attributes(params[:tournament])
+    #   flash[:notice] = "Tournament was updated successfuly."
+    #   redirect_to @tournament
+    # else
+    #   render :edit
+    # end
   end
 
   def seed
