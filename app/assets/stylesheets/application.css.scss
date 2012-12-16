@@ -95,6 +95,16 @@ body {
 
 }
 
+.navbar {
+  position: relative;
+  width: 980px;
+  margin-left: -20px;
+
+  .navbar-inner {
+    border-radius: 0;
+  }
+
+}
 
 
 
@@ -109,16 +119,6 @@ body {
 //   font-size: 14px;
 // }
 // 
-// .navbar {
-//   position: relative;
-//   width: 980px;
-//   margin-left: -20px;
-// 
-//   .navbar-inner {
-//     border-radius: 0;
-//   }
-// 
-// }
 // 
 // h1, h2, h3 {
 //   margin: 18px 0 6px 0;
