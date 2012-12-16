@@ -1,8 +1,10 @@
 class ApplicationController < ActionController::Base
+
   protect_from_forgery
   helper_method :current_user, :logged_in?
 
   before_filter :export_user_id
+
 
   rescue_from CanCan::AccessDenied do |ex|
     flash[:error] = ex.message
@@ -18,7 +20,6 @@ class ApplicationController < ActionController::Base
       redirect_back_or_root
     end
   end
-
 
   def require_writer
     if !logged_in?
@@ -69,7 +70,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  private
+  protected
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -94,4 +95,5 @@ class ApplicationController < ActionController::Base
   def export_user_id
     gon.user_id = current_user.id if logged_in?
   end
+
 end

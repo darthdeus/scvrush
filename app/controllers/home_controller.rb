@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class HomeController < AuthenticatedController
 
   def index
     @terran_post  = Post.race_post("terran")

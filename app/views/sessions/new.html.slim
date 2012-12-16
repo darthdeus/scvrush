@@ -1,6 +1,6 @@
-= arrowed_header 'Log in'
+h1 You need to be logged in to continue
 
-= form_tag sessions_path, :class => 'well' do |f|
+= form_tag sessions_path do |f|
   = label_tag :username
   = text_field_tag :username, params[:username]
 

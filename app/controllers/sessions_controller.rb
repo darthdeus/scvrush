@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  layout "login"
+
   def new
     session[:redirect_back] = params[:redirect_back] if params[:redirect_back]
     # there is no need to display login if the user is already logged in
