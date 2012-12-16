@@ -13,7 +13,8 @@ Scvrush.Tournament = DS.Model.extend({
   }.property("image_name"),
 
   start_time: function() {
-    return moment(this.get("starts_at")).calendar();
+    var time = moment(this.get("starts_at"))
+    return time.format("LT") + " (" + time.fromNow() + ")";
   }.property("starts_at"),
 
   tournament_day: DS.belongsTo("Scvrush.TournamentDay"),

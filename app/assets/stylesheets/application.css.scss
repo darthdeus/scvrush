@@ -66,12 +66,23 @@ body {
 
 
 .tournaments {
+
+  .tournament-day {
+    margin-bottom: 40px;
+
+    h2 {
+      font-size: 14px;
+      border-bottom: 1px solid #c0c0c0;
+    }
+  }
+
   .tournament {
     overflow: hidden;
+    padding: 5px 0;
 
     .time {
       float: left;
-      width: 200px;
+      width: 180px;
     }
 
     img {
@@ -79,6 +90,7 @@ body {
       float: left;
       display: block;
       margin-right: 15px;
+      box-shadow: 0 0 3px #666;
     }
 
     .description {
