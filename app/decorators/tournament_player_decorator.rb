@@ -1,8 +1,7 @@
 class TournamentPlayerDecorator
 
-  attr_reader :user
+  attr_reader :user, :tournament
 
-  # TODO - convert to draper with a call to super
   def initialize(user, tournament, bracket = nil)
     @tournament = tournament
     @user = user || GuestUser.new

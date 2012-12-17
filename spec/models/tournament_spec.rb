@@ -82,18 +82,29 @@ describe Tournament do
 
   context "#as_json" do
     let(:tournament) { create(:tournament) }
-    let(:user)       { create(:user) }
-    let(:player)     { TournamentPlayerDecorator.new(user, tournament) }
 
-    it "counts the number of participants" do
-      json = tournament.as_json
-      json.should have_key("participant_count")
+    context "without user" do
+      subject(:json) { tournament.as_json }
+
+      it "lists the number of participans" do
+        json["participant_count"].should == 0
+      end
+
+      it "has the tournament image" do
+        json.should have_key("image_name")
+      end
     end
 
-    it "renders itself as a json" do
-      player.register
-      json = tournament.as_json(user: user)
-      json.should have_key("is_registered")
+    context "with user" do
+      let(:user)       { create(:user) }
+      subject(:player) { TournamentPlayerDecorator.new(user, tournament) }
+
+      it "renders itself as a json" do
+        tournament.as_json(user: user)["is_registered"].should be_false
+        player.register.save!
+        tournament.as_json(user: user)["is_registered"].should be_true
+      end
+
     end
 
   end
