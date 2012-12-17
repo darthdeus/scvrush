@@ -7,9 +7,9 @@ Scvrush.Store = DS.Store.extend({
 
 Scvrush.store = Scvrush.Store.create();
 
-// Scvrush.store.adapter.serializer.map('Scvrush.TournamentDay', {
-//   tournaments: { embedded: 'load' }
-// });
+Scvrush.store.adapter.serializer.map('Scvrush.TournamentDay', {
+  tournaments: { embedded: 'load' }
+});
 
 Scvrush.store.adapter.serializer.map('Scvrush.Round', {
   matches: { embedded: 'load' }

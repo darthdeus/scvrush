@@ -1,7 +1,7 @@
 class TournamentDaysController < ApplicationController
 
   def index
-    render json: { tournament_days: TournamentDay.by_days(current_user) }
+    render json: TournamentDay.by_days
   end
 
 end
