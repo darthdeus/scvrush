@@ -81,10 +81,21 @@ describe Tournament do
   it { should respond_to(:logo) }
 
   context "#as_json" do
-    it "renders itself as a json" do
-      tournament = build(:tournament)
-      binding.pry
+    let(:tournament) { create(:tournament) }
+    let(:user)       { create(:user) }
+    let(:player)     { TournamentPlayerDecorator.new(user, tournament) }
+
+    it "counts the number of participants" do
+      json = tournament.as_json
+      json.should have_key("participant_count")
     end
+
+    it "renders itself as a json" do
+      player.register
+      json = tournament.as_json(user: user)
+      json.should have_key("is_registered")
+    end
+
   end
 
 end

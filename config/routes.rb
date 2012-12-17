@@ -36,8 +36,6 @@ Scvrush::Application.routes.draw do
   match "/practice" => "practice#index", via: :get
   match "/content" => "posts#content"
 
-  match "/tournament_days" => "tournaments#index"
-
   resources :reply_votes
   resources :raffle_signups
   resources :raffles do

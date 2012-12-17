@@ -33,6 +33,13 @@ class TournamentPlayerDecorator
     @user.has_signup?(@tournament)
   end
 
+  def register
+    if signup = @tournament.signup_for(@user)
+    else
+      signup = Signup.for(@user, @tournament)
+    end
+  end
+
   def next_opponent
   end
 

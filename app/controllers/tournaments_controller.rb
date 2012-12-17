@@ -3,18 +3,6 @@ class TournamentsController < ApplicationController
 
   respond_to :json
 
-  def index
-    if params[:ids]
-      render json: Tournament.find(params[:ids]).as_json(user: current_user)
-    else
-      render json: { tournament_days: TournamentDay.by_days(current_user) }
-    end
-  end
-
-  def new
-    @tournament = Tournament.new
-  end
-
   def create
     @tournament = Tournament.new(params[:tournament])
     @tournament.tournament_type = Tournament.types[:user]
