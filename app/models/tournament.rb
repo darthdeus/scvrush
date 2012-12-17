@@ -166,17 +166,6 @@ class Tournament < ActiveRecord::Base
     signups.count
   end
 
-  def as_json(options = {})
-    json = super(options.merge(methods: %w{participant_count image_name}))
-
-    if options[:user]
-      user_info = TournamentPlayerDecorator.new(options[:user], self)
-      json["is_registered"] = user_info.registered?
-    end
-
-    json
-  end
-
   class DoubleRegistration < Error; end
 
 end

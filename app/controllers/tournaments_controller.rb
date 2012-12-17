@@ -3,6 +3,12 @@ class TournamentsController < ApplicationController
 
   respond_to :json
 
+  def index
+    if params[:ids]
+      respond_with Tournament.find(params[:ids])
+    end
+  end
+
   def create
     @tournament = Tournament.new(params[:tournament])
     @tournament.tournament_type = Tournament.types[:user]
@@ -16,7 +22,7 @@ class TournamentsController < ApplicationController
 
   def show
     tournament = TournamentDecorator.find(params[:id])
-    render json: { tournament: tournament.as_json(user: current_user) }
+    render json: tournament
   end
 
   def rounds
