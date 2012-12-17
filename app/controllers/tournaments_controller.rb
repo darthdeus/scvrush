@@ -21,8 +21,7 @@ class TournamentsController < ApplicationController
   end
 
   def show
-    tournament = TournamentDecorator.find(params[:id])
-    render json: tournament
+    respond_with Tournament.find(params[:id])
   end
 
   def rounds

@@ -1,6 +1,12 @@
 class SignupsController < ApplicationController
-  before_filter :require_login
-  before_filter :require_bnet_username
+  # before_filter :require_login
+  # before_filter :require_bnet_username
+
+  respond_to :json
+
+  def index
+    respond_with Signup.find(params[:ids])
+  end
 
   def create
     @tournament = Tournament.find(params[:id])

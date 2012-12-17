@@ -6,6 +6,8 @@ Scvrush.Tournament = DS.Model.extend({
   winner:            DS.belongsTo("Scvrush.User"),
   is_registered:     DS.attr("boolean"),
 
+  signups:             DS.hasMany("Scvrush.Signup"),
+
   is_started: function() {
     return new Date(this.get("starts_at")) < new Date();
   }.property("starts_at"),

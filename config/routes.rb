@@ -62,7 +62,7 @@ Scvrush::Application.routes.draw do
       get :emails
     end
   end
-  resources :signups, only: [:create, :destroy, :update]
+  resources :signups
 
   resources :sections, only: :index do
     resources :topics, only: [:new, :create, :index]

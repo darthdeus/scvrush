@@ -5,7 +5,7 @@ class TournamentDay
 
     days = data.map.with_index { |pair, index|
       tournaments = pair[1].map { |tour| TournamentSerializer.new(tour) }
-      { id: index, date: pair[0], tournaments: tournaments.as_json(root: false) }
+      { id: index, date: pair[0], tournaments: tournaments.map(&:id) }
     }
   end
 

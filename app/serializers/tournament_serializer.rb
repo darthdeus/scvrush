@@ -1,6 +1,8 @@
 class TournamentSerializer < ActiveModel::Serializer
   attributes :id, :name, :participant_count, :image_name, :starts_at
 
+  has_many :signups, embed: :ids
+
   def attributes
     hash = super
     if scope
