@@ -14,20 +14,11 @@ class StatusesController < ApplicationController
     respond_with Status.find(params[:id])
   end
 
-  # def create
-  #   @status = StatusCreator.create(params[:status], current_user)
-  #   @status.save!
-  # end
-
-  # def destroy
-  #   @status = Status.by(current_user.id).find(params[:id])
-  #   @status.destroy
-  # end
-
-  # def like
-  #   @status = Status.find(params[:id])
-  #   @status.like(current_user.username)
-  #   @status.save!
-  # end
+  def create
+    status = StatusCreator.create(params[:status], current_user)
+    # TODO - figure out how to return a proper error here
+    status.save
+    respond_with status
+  end
 
 end

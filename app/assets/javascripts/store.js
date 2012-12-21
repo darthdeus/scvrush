@@ -5,7 +5,8 @@ Scvrush.Store = DS.Store.extend({
     bulkCommit: false,
 
     plurals: {
-      match: "matches"
+      match:  "matches",
+      status: "statuses"
     }
 
     // init: function() {

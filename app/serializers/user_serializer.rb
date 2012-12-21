@@ -1,6 +1,7 @@
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :username, :race, :image, :bnet_info
 
+  # TODO - this should be the timeline statuses, not the authored ones
   has_many :statuses, embed: :ids
 
   def image

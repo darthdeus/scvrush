@@ -20,8 +20,33 @@
 
     <form class="status-form">
       <!-- TODO - display different placeholder if it's the current user's profile -->
-      <input class="span8" type="text" placeholder="Tell us what's on your mind">
+      {{view Scvrush.NewStatusView class="span8" placeholder="Tell us what's on your mind"}}
+      <!-- <input class="span8" type="text" placeholder="Tell us what's on your mind"> -->
     </form>
+
+
+    <div class="statuses">
+
+      {{#each status in statuses}}
+        <div class="status">
+          <div class="author">
+            <a {{action showUser status.user href="true"}}>{{status.username}}</a>
+          </div>
+
+          <div class="content">
+            <div class="text">{{status.text}}</div>
+          </div>
+
+          <div class="meta">
+            <span>
+              1 person liked this
+            </span>
+          </div>
+
+        </div>
+      {{/each}}
+
+    </div>
 
   </div>
 </div>
