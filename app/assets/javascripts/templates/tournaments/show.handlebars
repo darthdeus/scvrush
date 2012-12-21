@@ -1,14 +1,8 @@
 <h1>{{name}}</h1>
 <h4><a {{action gotoTournaments href="true"}}>back to tournaments</a></h4>
 
-<h2>Signups</h2>
-
-{{#each player in users}}
-  {{player.username}}
-{{/each}}
-
 {{#if is_started}}
   {{view Scvrush.RoundsView controllerBinding="Scvrush.router.roundsController" tournamentBinding="controller.content"}}
 {{else}}
-  {{view Scvrush.TournamentSignupButton contentBinding="controller.content" registerLinkClass="btn btn-success" cancelLinkClass="btn btn-danger"}}
+  {{view Scvrush.TournamentSignupView controllerBinding="controller"}}
 {{/if}}
