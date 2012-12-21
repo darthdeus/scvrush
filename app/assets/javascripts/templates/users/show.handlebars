@@ -7,13 +7,21 @@
     {{#if hasFollowers}}
       <h3>Followers</h3>
     {{else}}
-      <div class="alert alert-info">This user has no followers</div>
+      <div class="alert alert-info">This user has no followers yet.</div>
     {{/if}}
 
   </div>
 
   <div class="span9">
-    <h2>{{username}} ({{bnet_info}})</h2>
-    <a class="help-inline" {{action gotoUsers href="true"}}>back to users</a>
+    <h2>
+      {{username}} ({{bnet_info}})
+      <a class="help-inline" {{action gotoUsers href="true"}}>back to users</a>
+    </h2>
+
+    <form class="status-form">
+      <!-- TODO - display different placeholder if it's the current user's profile -->
+      <input class="span8" type="text" placeholder="Tell us what's on your mind">
+    </form>
+
   </div>
 </div>
