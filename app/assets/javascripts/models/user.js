@@ -4,6 +4,8 @@ Scvrush.User = DS.Model.extend({
   image:     DS.attr("string"),
   bnet_info: DS.attr("string"),
 
+  statuses:  DS.hasMany("Scvrush.Status"),
+
   raceClass: function() {
     if (this.get("race")) {
       return "race-" + this.get("race").toLowerCase();
