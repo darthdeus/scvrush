@@ -2,17 +2,19 @@
 
 {{view Scvrush.TournamentSignupButton contentBinding="controller.content" registerLinkClass="btn btn-success" cancelLinkClass="btn btn-danger"}}
 
-<h4>Registered players</h2>
+{{#if users.isLoaded}}
+  <h4>Registered players</h2>
 
-<div class="registered-players">
-  <ul class="unstyled tournament-players">
-    {{#each player in users}}
-      <li>
-        <a>
-          <div {{bindAttr class="player.raceClass :race"}}>{{player.race_class}}</div>
-          <div class="name">{{player.username}}</div>
-        </a>
-      </li>
-    {{/each}}
-  </ul>
-</div>
+  <div class="registered-players">
+    <ul class="unstyled tournament-players">
+      {{#each player in users}}
+        <li>
+          <a {{action showUser player}}>
+            <div {{bindAttr class="player.raceClass :race"}}>{{player.race_class}}</div>
+            <div class="name">{{player.username}}</div>
+          </a>
+        </li>
+      {{/each}}
+    </ul>
+  </div>
+{{/if}}
