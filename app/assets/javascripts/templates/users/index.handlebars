@@ -1,0 +1,16 @@
+{{view Em.TextField valueBinding="controller.query" placeholder="Search the users"}}
+
+<div class="users">
+
+  {{#each user in controller}}
+    <div class="user">
+      <a {{action showUser user href=true}}>
+        <img {{bindAttr src="user.image"}}>
+
+        {{user.username}}
+      </a>
+    </div>
+  {{/each}}
+
+</div>
+

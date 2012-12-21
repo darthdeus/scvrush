@@ -5,7 +5,11 @@ class UsersController < ApplicationController
   respond_to :json
 
   def index
-    respond_with User.find(params[:ids])
+    if params[:ids]
+      respond_with User.find(params[:ids])
+    else
+      respond_with User.first(20)
+    end
   end
 
   def new

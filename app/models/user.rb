@@ -154,6 +154,10 @@ class User < ActiveRecord::Base
     self.following.map(&:id) << self.id
   end
 
+  def avatar_image
+    avatar.url(:thumb)
+  end
+
 end
 
 class NotRegistered < Exception
