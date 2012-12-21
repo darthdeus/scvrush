@@ -27,16 +27,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = UserDecorator.new(@user)
-    render json: { user: @user }
-    # if @user == current_user
-    #   @statuses = Status.with_ids(@user.timeline_ids)
-    # else
-    #   @statuses = Status.for(@user)
-    # end
-
-    # @followers = UserDecorator.decorate(@user.followers)
-    # gon.user_id = params[:id]
+    respond_with UserDecorator.new(@user)
   end
 
   def edit

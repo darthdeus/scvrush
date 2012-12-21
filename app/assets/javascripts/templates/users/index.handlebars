@@ -1,16 +1,18 @@
 {{view Em.TextField valueBinding="controller.query" placeholder="Search the users"}}
 
-<div class="users">
+<ul class="tournament-players unstyled">
 
   {{#each user in controller}}
-    <div class="user">
+    <li class="user">
       <a {{action showUser user href=true}}>
         <img {{bindAttr src="user.image"}}>
 
-        {{user.username}}
+        <div {{bindAttr class="user.raceClass :race"}}>{{player.race_class}}</div>
+
+        <div class="name">{{user.username}}</div>
       </a>
-    </div>
+    </li>
   {{/each}}
 
-</div>
+</ul>
 

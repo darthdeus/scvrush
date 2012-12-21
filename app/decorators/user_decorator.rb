@@ -6,6 +6,7 @@ class UserDecorator < Draper::Base
   end
 
   def as_json(options = {})
+    # TODO - move this to the serializer
     user.as_json(options).merge("gravatar" => avatar_img)
   end
 
