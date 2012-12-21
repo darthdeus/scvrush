@@ -23,9 +23,9 @@ Scvrush.store = Scvrush.Store.create();
 //   tournaments: { embedded: 'load' }
 // });
 
-Scvrush.store.adapter.serializer.map('Scvrush.Tournament', {
-  players: { embedded: 'load' }
-});
+// Scvrush.store.adapter.serializer.map('Scvrush.Tournament', {
+//   users: { embedded: 'load' }
+// });
 
 Scvrush.store.adapter.serializer.map('Scvrush.Round', {
   matches: { embedded: 'load' }

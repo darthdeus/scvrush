@@ -94,7 +94,7 @@ class Tournament < ActiveRecord::Base
     self.users.includes(:signups).where(signups: { status: 1 }).order(:id).all
   end
 
-  has_many :players, through: :signups, source: :user
+  has_many :users, through: :signups
   #conditions: where(signups: { status: 1 }).order(:id),
 
   before_save :expire_sidebar_cache

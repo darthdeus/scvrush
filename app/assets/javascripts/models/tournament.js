@@ -5,7 +5,7 @@ Scvrush.Tournament = DS.Model.extend({
   starts_at:         DS.attr("string"),
   winner:            DS.belongsTo("Scvrush.User"),
 
-  players:           DS.hasMany("Scvrush.User"),
+  users:             DS.hasMany("Scvrush.User"),
 
   is_registered:     DS.attr("boolean"),
 
