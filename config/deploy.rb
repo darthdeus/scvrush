@@ -19,7 +19,7 @@ set :rails_env, "production"
 set :use_sudo,  false
 
 set :deploy_to, "/var/apps/#{application}"
-set :deploy_via, :remote_cache
+set :deploy_via, :checkout
 
 namespace :deploy do
 

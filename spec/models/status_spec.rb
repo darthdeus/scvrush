@@ -12,7 +12,7 @@ describe Status do
   it { build(:status, user_id:     nil).should_not be_valid }
   it { build(:status, timeline_id: nil).should_not be_valid }
 
-  # its(:likes_count) { should == 0 }
+ # its(:likes_count) { should == 0 }
 
   # describe "#like" do
   #   before { @status = build(:status); @status.like("johndoe") }
