@@ -1,5 +1,12 @@
 .user-profile {
-  .avatar a { display: block; }
+  .avatar {
+    margin-bottom: 10px;
+
+    img {
+      width: 220px;
+    }
+  }
+
   .avatar img, .followers img {
     @include box-shadow(0 0 3px #666);
   }

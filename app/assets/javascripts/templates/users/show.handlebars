@@ -1,0 +1,19 @@
+<div class="row user-profile">
+  <div class="span3 user-info">
+    <div class="avatar">
+      <img {{bindAttr src="image"}}>
+    </div>
+
+    {{#if hasFollowers}}
+      <h3>Followers</h3>
+    {{else}}
+      <div class="alert alert-info">This user has no followers</div>
+    {{/if}}
+
+  </div>
+
+  <div class="span9">
+    <h2>{{username}} ({{bnet_info}})</h2>
+    <a class="help-inline" {{action gotoUsers href="true"}}>back to users</a>
+  </div>
+</div>
