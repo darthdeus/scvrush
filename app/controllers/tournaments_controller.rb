@@ -39,23 +39,15 @@ class TournamentsController < ApplicationController
   def update
     tournament = Tournament.find(params[:id])
     if params[:tournament][:is_registered]
+      # TODO - beware of duplicates
       signup = Signup.for(current_user, tournament)
       signup.signup!
     else
       tournament.unregister(current_user)
     end
 
-    render json: { tournament: tournament.as_json(user: current_user) }
-
-    # authorize! :update, @tournament
-
-    # # TODO - protect from setting the type here
-    # if @tournament.update_attributes(params[:tournament])
-    #   flash[:notice] = "Tournament was updated successfuly."
-    #   redirect_to @tournament
-    # else
-    #   render :edit
-    # end
+    # TODO - check impl of respond_with, since it returns 204 instead of 200
+    render json: tournament
   end
 
   def seed

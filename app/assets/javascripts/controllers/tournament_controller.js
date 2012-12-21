@@ -8,12 +8,12 @@ Scvrush.TournamentController = Em.ObjectController.extend({
     }
   }.property("content"),
 
-  register: function() {
+  register: function(tournament, t) {
     this.get("content").set("is_registered", true);
     Scvrush.store.commit();
   },
 
-  cancel: function() {
+  cancel: function(tournament, t) {
     this.get("content").set("is_registered", false);
     Scvrush.store.commit();
   }

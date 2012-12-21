@@ -13,8 +13,8 @@ Scvrush.PostsController = Em.ArrayController.extend({
     this.set("content", posts);
   }, 200),
 
-  queryChanged: function(value) {
-    this.updatePosts()
+  queryChanged:function (value) {
+        this.updatePosts()
   }.observes("query")
 
 });

@@ -1,7 +1,19 @@
 Scvrush.Store = DS.Store.extend({
   revision: 10,
+
   adapter: DS.RESTAdapter.create({
-    bulkCommit: false
+    bulkCommit: false,
+
+    plurals: {
+      match: "matches"
+    }
+
+    // init: function() {
+    //   this.serializer.map("Scvrush.Tournament", {
+    //     players: { embedded: "load" }
+    //   });
+    // }
+
   })
 });
 
@@ -11,13 +23,13 @@ Scvrush.store = Scvrush.Store.create();
 //   tournaments: { embedded: 'load' }
 // });
 
+Scvrush.store.adapter.serializer.map('Scvrush.Tournament', {
+  players: { embedded: 'load' }
+});
+
 Scvrush.store.adapter.serializer.map('Scvrush.Round', {
   matches: { embedded: 'load' }
 });
 
-
-// Scvrush.store.adapter.serializer.map('Scvrush.Tournament', {
-//   signups: { embedded: 'load' }
-// });
 
 // Em.LOG_BINDINGS = true;

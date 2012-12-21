@@ -30,13 +30,11 @@
               <p>
                 <i class="icon-user"></i>
                 {{tournament.participant_count}}
-                {{#if tournament.one_person}}person{{else}}people{{/if}}
+                {{#if tournament.one_person}}person{{else}}people{{/if}},
+
+                {{view Scvrush.TournamentSignupButton contentBinding="tournament"}}
               </p>
 
-              <p>
-                <!-- TODO - display register now only if not started, maybe even as a direct clickable button -->
-                {{#if tournament.is_registered}}you are registered{{else}}register now!{{/if}}
-              </p>
 
             </div>
 

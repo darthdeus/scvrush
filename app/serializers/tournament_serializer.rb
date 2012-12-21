@@ -1,7 +1,7 @@
 class TournamentSerializer < ActiveModel::Serializer
   attributes :id, :name, :participant_count, :image_name, :starts_at
 
-  has_many :signups, embed: :ids
+  has_many :players, embed: :ids
 
   def attributes
     hash = super

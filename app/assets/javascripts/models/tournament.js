@@ -4,9 +4,10 @@ Scvrush.Tournament = DS.Model.extend({
   participant_count: DS.attr("number"),
   starts_at:         DS.attr("string"),
   winner:            DS.belongsTo("Scvrush.User"),
-  is_registered:     DS.attr("boolean"),
 
-  signups:             DS.hasMany("Scvrush.Signup"),
+  players:           DS.hasMany("Scvrush.User"),
+
+  is_registered:     DS.attr("boolean"),
 
   is_started: function() {
     return new Date(this.get("starts_at")) < new Date();

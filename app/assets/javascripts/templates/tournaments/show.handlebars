@@ -3,13 +3,14 @@
 
 <h2>Signups</h2>
 
-{{signups}}
-{{#each signup in signups}}
-  {{signup.user.username}}
+{{players}}
+
+{{#each player in players}}
+  {{player.username}}
 {{/each}}
 
 {{#if is_started}}
   {{view Scvrush.RoundsView controllerBinding="Scvrush.router.roundsController" tournamentBinding="controller.content"}}
 {{else}}
-  {{view Scvrush.TournamentSignupView tournamentBinding="controller.content"}}
+  {{view Scvrush.TournamentSignupButton contentBinding="controller.content" registerLinkClass="btn btn-success" cancelLinkClass="btn btn-danger"}}
 {{/if}}

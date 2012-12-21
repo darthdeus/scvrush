@@ -38,10 +38,6 @@ GEM
       builder
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
-    better_errors (0.3.2)
-      coderay (>= 1.0.0)
-      erubis (>= 2.7.0)
-    binding_of_caller (0.6.8)
     bootstrap-sass (2.1.0.0)
     bourbon (1.4.0)
       sass (>= 3.1)
@@ -288,8 +284,6 @@ DEPENDENCIES
   acts-as-taggable-on (~> 2.1.0)
   airbrake (~> 3.0.9)
   bcrypt-ruby (~> 3.0.1)
-  better_errors
-  binding_of_caller
   bootstrap-sass (~> 2.1.0.0)
   bourbon (~> 1.4.0)
   cancan (~> 1.6.7)
