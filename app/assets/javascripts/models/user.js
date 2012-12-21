@@ -5,6 +5,13 @@ Scvrush.User = DS.Model.extend({
   bnet_info: DS.attr("string"),
 
   statuses:  DS.hasMany("Scvrush.Status"),
+  followers: DS.hasMany("SCvrush.User"),
+
+  hasFollowers: function() {
+    if (this.get("followers")) {
+      return this.get("followers.length") > 0;
+    }
+  },
 
   raceClass: function() {
     if (this.get("race")) {
