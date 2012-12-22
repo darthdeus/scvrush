@@ -17,6 +17,7 @@ Scvrush.User = DS.Model.extend({
     if (this.get("race")) {
       return "race-" + this.get("race").toLowerCase();
     }
-  }.property("race")
+  }.property("race"),
+
 
 });

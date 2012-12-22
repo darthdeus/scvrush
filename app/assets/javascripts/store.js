@@ -7,15 +7,17 @@ Scvrush.Store = DS.Store.extend({
     plurals: {
       match:  "matches",
       status: "statuses"
+    },
+
+    dirtyRecordsForBelongsToChange: function(dirtySet, child) {
+      console.log("dirty child", dirtySet, child);
+    },
+
+    dirtyRecordsForHasManyChange: function(dirtySet, child) {
+      console.log("dirty has many", dirtySet, child);
     }
+  }),
 
-    // init: function() {
-    //   this.serializer.map("Scvrush.Tournament", {
-    //     players: { embedded: "load" }
-    //   });
-    // }
-
-  })
 });
 
 Scvrush.store = Scvrush.Store.create();
