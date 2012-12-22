@@ -4,9 +4,13 @@ class PostsController < ApplicationController
   respond_to :json
 
   def index
-    @posts = Post.published
-    @posts = @posts.where(["title ILIKE ?", "%#{params[:query]}%"]) if params[:query]
-    respond_with @posts.page(params[:page])
+    if params[:query]
+      @posts = Post.search(params[:query], load: true).to_a if params[:query]
+    else
+      @posts = Post.published.first(20)
+    end
+    # @posts = @posts.where(["title ILIKE ?", "%#{params[:query]}%"]) if params[:query]
+    respond_with @posts
   end
 
   def tag

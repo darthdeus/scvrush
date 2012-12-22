@@ -29,7 +29,23 @@ class Post < ActiveRecord::Base
     "#{id}-#{title.parameterize}"
   end
 
-  before_save :expire_sidebar_cache
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
+
+  mapping do
+    indexes :id,       index: :not_analyzed
+    indexes :title,    analyzer: "snowball", boost: 100
+    indexes :content,  analyzer: "snowball"
+    indexes :tag_names, analyzer: "snowball", boost: 50
+  end
+
+  def tag_names
+    tag_list.join " "
+  end
+
+  def to_indexed_json
+    to_json(only: [:title, :content], methods: [:tag_names])
+  end
 
   def self.race_post(race)
     tags = %w(coach terran zerg protoss)
@@ -42,12 +58,6 @@ class Post < ActiveRecord::Base
 
   def self.news_posts(tag)
     published.tagged_with(tag).page(0).limit(6)
-  end
-
-  def expire_sidebar_cache
-    Rails.cache.delete('views/coaches')
-    Rails.cache.delete('views/recent_posts')
-    true
   end
 
   def draft?

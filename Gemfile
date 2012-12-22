@@ -16,7 +16,8 @@ gem 'jquery-datatables-rails', '~> 1.11.1'
 gem 'bootstrap-sass',          '~> 2.1.0.0'
 gem 'simple_form',             '~> 2.0.1'
 gem 'bourbon',                 '~> 1.4.0'
-# gem 'mongoid',                 '~> 3.0.0'
+
+gem 'tire'
 
 gem 'ember-rails'
 gem 'active_model_serializers'
