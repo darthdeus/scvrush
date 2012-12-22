@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121221040650) do
+ActiveRecord::Schema.define(:version => 20121222231918) do
 
   create_table "blog_posts", :force => true do |t|
     t.string   "title"
@@ -179,11 +179,10 @@ ActiveRecord::Schema.define(:version => 20121221040650) do
   add_index "signups", ["user_id"], :name => "index_signups_on_user_id"
 
   create_table "statuses", :force => true do |t|
-    t.text     "text",        :null => false
-    t.integer  "user_id",     :null => false
-    t.integer  "timeline_id", :null => false
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.text     "text",       :null => false
+    t.integer  "user_id",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "taggings", :force => true do |t|

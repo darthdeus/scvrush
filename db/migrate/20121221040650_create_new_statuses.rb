@@ -9,7 +9,4 @@ class CreateNewStatuses < ActiveRecord::Migration
     end
 
   end
-
-  def down
-  end
 end
