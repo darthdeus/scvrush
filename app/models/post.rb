@@ -33,10 +33,15 @@ class Post < ActiveRecord::Base
   include Tire::Model::Callbacks
 
   mapping do
-    indexes :id,       index: :not_analyzed
-    indexes :title,    analyzer: "snowball", boost: 100
-    indexes :content,  analyzer: "snowball"
-    indexes :tag_names, analyzer: "snowball", boost: 50
+    indexes :id,          index: :not_analyzed
+    indexes :title,       analyzer: "snowball", boost: 100
+    indexes :content,     analyzer: "snowball"
+    indexes :tag_names,   analyzer: "snowball", boost: 50
+    indexes :author_name, analyzer: "snowball", boost: 50
+  end
+
+  def author_name
+    user && user.username
   end
 
   def tag_names
@@ -44,7 +49,7 @@ class Post < ActiveRecord::Base
   end
 
   def to_indexed_json
-    to_json(only: [:title, :content], methods: [:tag_names])
+    to_json(only: [:title, :content], methods: [:tag_names, :author_name])
   end
 
   def self.race_post(race)
