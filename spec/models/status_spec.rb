@@ -10,7 +10,6 @@ describe Status do
   # it { should validate_presence_of(:text) }
   it { build(:status, text:        nil).should_not be_valid }
   it { build(:status, user_id:     nil).should_not be_valid }
-  it { build(:status, timeline_id: nil).should_not be_valid }
 
  # its(:likes_count) { should == 0 }
 
@@ -41,16 +40,6 @@ describe Status do
 
   #   it "returns false if there is no previous vote" do
   #     @status.unlike("katie").should == false
-  #   end
-
-  # end
-
-  # describe "#with_ids" do
-  #   it "returns statuses for all given timeline_ids" do
-  #     Status.destroy_all
-  #     s1 = create(:status, timeline_id: 4)
-  #     s2 = create(:status, timeline_id: 5)
-  #     Status.with_ids([4,5]).should == [s2, s1]
   #   end
 
   # end

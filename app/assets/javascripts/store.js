@@ -9,13 +9,6 @@ Scvrush.Store = DS.Store.extend({
       status: "statuses"
     },
 
-    dirtyRecordsForBelongsToChange: function(dirtySet, child) {
-      console.log("dirty child", dirtySet, child);
-    },
-
-    dirtyRecordsForHasManyChange: function(dirtySet, child) {
-      console.log("dirty has many", dirtySet, child);
-    }
   }),
 
 });

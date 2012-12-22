@@ -6,7 +6,7 @@ Scvrush.NewStatusView = Em.TextField.extend({
     var text = this.get("value"),
         user = Scvrush.currentUser;
 
-    user.get("statuses").createRecord({ text: text, user: user, timeline: user });
+    user.get("statuses").createRecord({ text: text, user: user });
     Scvrush.store.commit();
 
     this.set("value", "");
