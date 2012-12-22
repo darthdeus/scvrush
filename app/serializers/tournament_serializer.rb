@@ -12,4 +12,5 @@ class TournamentSerializer < ActiveModel::Serializer
 
     hash
   end
+
 end

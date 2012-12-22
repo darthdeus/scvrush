@@ -81,16 +81,19 @@ describe Tournament do
   it { should respond_to(:logo) }
 
   context "#as_json" do
+
     let(:tournament) { create(:tournament) }
 
     context "without user" do
       subject(:json) { tournament.as_json }
 
       it "lists the number of participans" do
+        pending "Test the serializer instead"
         json["participant_count"].should == 0
       end
 
       it "has the tournament image" do
+        pending "Test the serializer instead"
         json.should have_key("image_name")
       end
     end
@@ -100,6 +103,7 @@ describe Tournament do
       subject(:player) { TournamentPlayerDecorator.new(user, tournament) }
 
       it "renders itself as a json" do
+        pending "Test the serializer instead"
         tournament.as_json(user: user)["is_registered"].should be_false
         player.register.save!
         tournament.as_json(user: user)["is_registered"].should be_true
