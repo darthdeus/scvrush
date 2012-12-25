@@ -1,14 +1,14 @@
 Scvrush.Tournament = DS.Model.extend({
   name:              DS.attr("string"),
-  imageName:        DS.attr("string"),
-  participantCount: DS.attr("number"),
-  startsAt:         DS.attr("string"),
+  imageName:         DS.attr("string"),
+  participantCount:  DS.attr("number"),
+  startsAt:          DS.attr("string"),
   winner:            DS.belongsTo("Scvrush.User"),
   seeded:            DS.attr("boolean"),
 
   users:             DS.hasMany("Scvrush.User"),
   brackets:          DS.hasMany("Scvrush.Bracket"),
-  is_registered:     DS.attr("boolean"),
+  isRegistered:      DS.attr("boolean"),
 
   rounds:            DS.hasMany("Scvrush.Round"),
 
@@ -34,11 +34,11 @@ Scvrush.Tournament = DS.Model.extend({
     return "/assets/" + this.get("imageName");
   }.property("imageName"),
 
-  start_time: function() {
-    var time = moment(this.get("starts_at"))
+  startTime: function() {
+    var time = moment(this.get("startsAt"))
     if (!time) { return ""; }
     return time.format("LT") + " (" + time.fromNow() + ")";
   }.property("startsAt"),
 
-  tournament_day: DS.belongsTo("Scvrush.TournamentDay")
+  tournamentDay: DS.belongsTo("Scvrush.TournamentDay")
 });
