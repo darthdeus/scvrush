@@ -4,8 +4,11 @@
   {{/if}}
 
   <p>
-    <a {{action seed view.tournament target="controller"}}>seed the tournament</a>
-    <a {{action unseed view.tournament target="controller"}}>unseed the tournament</a>
+    {{#if view.tournament.seeded}}
+      <a {{action unseed view.tournament target="controller"}}>unseed the tournament</a>
+    {{else}}
+      <a {{action seed view.tournament target="controller"}}>seed the tournament</a>
+    {{/if}}
   </p>
 
   {{#each round in view.tournament.rounds}}
@@ -14,7 +17,6 @@
       <div class="round-info">Round of {{round.number}}</div>
     </div>
 
-    {{round.matches}}
     <div class="round">
       {{#each match in round.matches}}
       <div class="match">

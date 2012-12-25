@@ -23,9 +23,9 @@ Scvrush.store = Scvrush.Store.create();
 //   users: { embedded: 'load' }
 // });
 
-Scvrush.store.adapter.serializer.map('Scvrush.Round', {
-  matches: { embedded: 'load' }
-});
+// Scvrush.store.adapter.serializer.map('Scvrush.Round', {
+//   matches: { embedded: 'load' }
+// });
 
 
 // Em.LOG_BINDINGS = true;

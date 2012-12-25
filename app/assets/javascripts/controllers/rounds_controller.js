@@ -1,5 +1,6 @@
 Scvrush.RoundsController = Em.ArrayController.extend({
   contentBinding: "Scvrush.router.tournamentController.rounds",
+  view: null,
 
   hasContent: function() {
     return this.get("content").toArray().length == 0;
@@ -8,6 +9,7 @@ Scvrush.RoundsController = Em.ArrayController.extend({
   seed: function(event) {
     Scvrush.store.createRecord(Scvrush.Bracket, { tournament: event.context });
     Scvrush.store.commit();
+    event.context.reload();
   },
 
   unseed: function(event) {

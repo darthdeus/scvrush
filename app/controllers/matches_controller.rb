@@ -2,8 +2,9 @@ class MatchesController < ApplicationController
   before_filter :require_login
 
   def index
-    authorize! :manage, Match
-    @matches = Match.limit(20).order("updated_at DESC")
+    # authorize! :manage, Match
+    # @matches = Match.limit(20).order("updated_at DESC")
+    render json: Match.find(params[:ids])
   end
 
   def create
