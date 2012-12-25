@@ -2,8 +2,8 @@ Scvrush.RoundsController = Em.ArrayController.extend({
   contentBinding: "Scvrush.router.tournamentController.rounds",
   view: null,
 
-  hasContent: function() {
-    return this.get("content").toArray().length == 0;
+  hasRounds: function() {
+    return this.get("content.length") == 0;
   }.property("content"),
 
   seed: function(event) {

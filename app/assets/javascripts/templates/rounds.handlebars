@@ -11,31 +11,31 @@
     {{/if}}
   </p>
 
-  {{#each round in view.tournament.rounds}}
-  <div class="round-wrap">
-    <div class="round-info-wrap">
-      <div class="round-info">Round of {{round.number}}</div>
-    </div>
+  {{#if controller.hasRounds}}
+    {{#each round in view.tournament.rounds}}
+      <div class="round-wrap">
+        <div class="round-info-wrap">
+          <div class="round-info">Round of {{round.number}}</div>
+        </div>
 
-    <div class="round">
-      {{#each match in round.matches}}
-      <div class="match">
-        <div class="player">
-          <div class="name">{{match.player1}}</div>
-          <div class="score">{{match.player1_score}}</div>
+        <div class="round">
+          {{#each match in round.matches}}
+          <div class="match">
+            <div class="player">
+              <div class="name">{{match.player1}}</div>
+              <div class="score">{{match.player1_score}}</div>
+            </div>
+            <div class="player">
+              <div class="name">{{match.player2}}</div>
+              <div class="score">{{match.player2_score}}</div>
+            </div>
+          </div>
+          {{/each}}
         </div>
-        <div class="player">
-          <div class="name">{{match.player2}}</div>
-          <div class="score">{{match.player2_score}}</div>
-        </div>
+
       </div>
-      {{/each}}
-    </div>
+    {{/each}}
 
-  </div>
-  {{/each}}
-
-  {{#if controller.hasContent}}
   {{else}}
     <div class="row">
       <p class="alert alert-info span5">The bracket wasnt yet generated, please wait</p>
