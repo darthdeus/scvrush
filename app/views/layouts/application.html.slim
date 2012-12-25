@@ -26,26 +26,6 @@ html
 
     .container
       .wrap
-        .row
-          .span3.sidebar
-            #logo = image_tag "logo.png"
-
-            header.heading
-              h3 Upcoming events
-
-            section
-              ul
-                li EU GP
-                li EU BS
-
-            header.heading
-              h3 Featured articles
-
-            section
-              ul
-                li Whitera dominating GSL Code S
-                li EU BS
-
-          .span12.content#ember-app data-user-id=current_user.try(:id)
+        .row#ember-app data-user-id="#{current_user.id}"
 
     = render "shared/footer"

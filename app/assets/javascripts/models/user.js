@@ -19,5 +19,12 @@ Scvrush.User = DS.Model.extend({
     }
   }.property("race"),
 
+  timelineStatuses: function() {
+    return this.get("statuses").toArray().reverse();
+  }.property("statuses.@each.item"),
+
+  recentStatuses: function() {
+    return this.get("statuses").toArray().reverse().slice(0, 5);
+  }.property("statuses.@each.item"),
 
 });
