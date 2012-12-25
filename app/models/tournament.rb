@@ -97,19 +97,11 @@ class Tournament < ActiveRecord::Base
   has_many :users, through: :signups
   #conditions: where(signups: { status: 1 }).order(:id),
 
-  before_save :expire_sidebar_cache
   before_save :set_default_rules
 
   def set_default_rules
     self.rules    = I18n.t("tournament.rules")    unless self.rules.present?
     self.map_info = I18n.t("tournament.map_info") unless self.map_info.present?
-    true
-  end
-
-  def expire_sidebar_cache
-    # TODO - do this in a better way
-    Rails.cache.delete('views/coaches')
-    Rails.cache.delete('views/recent_posts')
     true
   end
 
