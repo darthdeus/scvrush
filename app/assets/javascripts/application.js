@@ -8,8 +8,8 @@
 
 //= require ./bracket
 
-//= require ./vendor/ember-latest
-//= require ./vendor/ember-data-latest
+//= require ./vendor/ember-local
+//= require ./vendor/ember-data-local
 //= require ./scvrush
 
 Handlebars.registerHelper("debug", function(optionalValue) {

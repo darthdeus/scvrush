@@ -18,7 +18,7 @@ class Tournament < ActiveRecord::Base
   validates :bo_preset, format: { with: /^[\d ]+$/ }
 
   # TODO - remove this so users can't create official tournaments
-  attr_accessible :name, :starts_at, :tournament_type, :description
+  attr_accessible :name, :starts_at, :tournament_type, :description,
     :rules, :map_info, :bo_preset, :map_preset, :visible, :channel, :admin_names, :logo
 
   scope :recent, order('starts_at DESC').limit(5)

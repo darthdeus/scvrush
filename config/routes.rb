@@ -52,6 +52,8 @@ Scvrush::Application.routes.draw do
   resources :rounds
   resources :matches
   resources :votes, only: [:create, :destroy]
+
+  resources :brackets
   resources :tournaments, only: [:new, :create, :index, :show, :edit, :update] do
     member do
       get :matches

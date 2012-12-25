@@ -1,24 +1,32 @@
-class Bracket
+class Bracket < Struct.new(:tournament)
 
   class AlreadySubmitted < ::Exception; end
   class NotStartedYet < ::Exception; end
 
-  attr_reader :tournament
+  # attr_reader :tournament
 
-  def initialize(tournament)
-    @tournament = tournament
-  end
+  # def initialize(tournament)
+  #   @tournament = tournament
+  # end
 
   # Create a bracket for a given tournament id
   def self.with_tournament(id)
     Bracket.new(Tournament.find(id))
   end
 
-  # Return JSON-formatted user data
   def to_json
-    user_data = map_users(@users)
-    user_data.to_json
+    {
+      bracket: {
+        tournament_id: tournament.id
+      }
+    }
   end
+
+  # Return JSON-formatted user data
+  # def to_json
+  #   user_data = map_users(@users)
+  #   user_data.to_json
+  # end
 
   def map_users(users)
     users.map.with_index { |user, index| { id: user.id, name: user.username, seed: index + 1 } }
@@ -26,7 +34,6 @@ class Bracket
 
   # Create bracket rounds for the given tournament
   def create_bracket_rounds
-    # TODO - do we really want to erase previous rounds?
     tournament.rounds = []
     last = nil
     round_creator = RoundCreator.new
@@ -59,6 +66,7 @@ class Bracket
   # 1, 3
   # 2, 4
   def linear_seed
+    Rails.logger.info "starting linear seed for tournament #{tournament.id}"
     tournament.reload
     round   = tournament.rounds.first
     matches = round.matches

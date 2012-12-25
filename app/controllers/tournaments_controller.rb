@@ -38,6 +38,7 @@ class TournamentsController < ApplicationController
 
   def update
     tournament = Tournament.find(params[:id])
+
     if params[:tournament][:is_registered]
       # TODO - beware of duplicates
       signup = Signup.for(current_user, tournament)
@@ -60,12 +61,9 @@ class TournamentsController < ApplicationController
     bracket.linear_seed
 
     tournament.seeded = true
-    if tournament.save
-      flash[:success] = "The tournament was seeded properly"
-    else
-      flash[:error] = "The tournament wasn't created properly"
-    end
-    redirect_to tournament
+    tournament.save!
+
+    respond_with tournament
   end
 
   def unseed

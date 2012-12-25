@@ -4,9 +4,14 @@ class RoundsController < ApplicationController
   respond_to :json
 
   def index
-    @tournament = Tournament.find(params[:tournament_id])
-    # TODO - display the last round too
-    rounds = @tournament.rounds[0..-2].map(&:to_simple_json)
+    if params[:ids]
+      rounds = Round.find(params[:ids])
+    else
+      # TODO - display the last round too
+      tournament = Tournament.find(params[:tournament_id])
+      rounds = tournament.rounds[0..-2].map(&:to_simple_json)
+    end
+
     render json: rounds
   end
 
