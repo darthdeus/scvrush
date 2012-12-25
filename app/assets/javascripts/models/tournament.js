@@ -1,8 +1,8 @@
 Scvrush.Tournament = DS.Model.extend({
   name:              DS.attr("string"),
-  image_name:        DS.attr("string"),
-  participant_count: DS.attr("number"),
-  starts_at:         DS.attr("string"),
+  imageName:        DS.attr("string"),
+  participantCount: DS.attr("number"),
+  startsAt:         DS.attr("string"),
   winner:            DS.belongsTo("Scvrush.User"),
   seeded:            DS.attr("boolean"),
 
@@ -12,27 +12,33 @@ Scvrush.Tournament = DS.Model.extend({
 
   rounds:            DS.hasMany("Scvrush.Round"),
 
-  is_started: function() {
-    return new Date(this.get("starts_at")) < new Date();
-  }.property("starts_at"),
+  isStarted: function() {
+    return new Date(this.get("startsAt")) < new Date();
+  }.property("startsAt"),
 
-  is_finished: function() {
-    return this.get("winner_id") !== null;
-  }.property("winner_id"),
+  isOpen: function() {
+    return !(new Date(this.get("startsAt")) < new Date());
+  }.property("startsAt"),
 
-  one_person: function() {
-    return this.get("participant_count") == 1;
-  }.property("participant_count"),
+  // isFinishedBinding: Em.Binding.not("isStarted"),
 
-  image_url: function() {
-    return "/assets/" + this.get("image_name");
-  }.property("image_name"),
+  hasWinner: function() {
+    return this.get("winnerId") !== null;
+  }.property("winnerId"),
+
+  onePerson: function() {
+    return this.get("participantCount") == 1;
+  }.property("participantCount"),
+
+  imageUrl: function() {
+    return "/assets/" + this.get("imageName");
+  }.property("imageName"),
 
   start_time: function() {
     var time = moment(this.get("starts_at"))
     if (!time) { return ""; }
     return time.format("LT") + " (" + time.fromNow() + ")";
-  }.property("starts_at"),
+  }.property("startsAt"),
 
   tournament_day: DS.belongsTo("Scvrush.TournamentDay")
 });

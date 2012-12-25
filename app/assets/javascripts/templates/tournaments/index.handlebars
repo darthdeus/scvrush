@@ -19,20 +19,22 @@
           <div class="tournament">
 
             <div class="time">
-              {{tournament.start_time}}
+              {{tournament.startTime}}
             </div>
 
-            <img {{bindAttr src="tournament.image_url"}}>
+            <img {{bindAttr src="tournament.imageUrl"}}>
 
             <div class="description">
               <h3><a {{action showTournament tournament href="true"}}>{{tournament.name}}</a></h3>
 
               <p>
                 <i class="icon-user"></i>
-                {{tournament.participant_count}}
-                {{#if tournament.one_person}}person{{else}}people{{/if}},
+                {{tournament.participantCount}}
+                {{#if tournament.onePerson}}person{{else}}people{{/if}}
 
-                {{view Scvrush.TournamentSignupButton contentBinding="tournament"}}
+                {{#if tournament.isOpen}}
+                  , {{view Scvrush.TournamentSignupButton contentBinding="tournament"}}
+                {{/if}}
               </p>
 
 
