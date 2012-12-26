@@ -4,12 +4,7 @@
   <section>
     {{view Scvrush.NewStatusView class="sidebar-status-input" placeholder="Post a new status"}}
 
-    {{#each status in Scvrush.currentUser.recentStatuses}}
-      <p>
-        {{status.text}}
-        <span class="help-inline">{{status.postDate}}</span>
-      </p>
-    {{/each}}
+      {{view Scvrush.StatusesView contentBinding="Scvrush.currentUser.recentStatuses"}}
 
   </section>
 

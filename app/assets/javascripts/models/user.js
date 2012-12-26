@@ -28,3 +28,10 @@ Scvrush.User = DS.Model.extend({
   }.property("statuses.@each.item"),
 
 });
+
+
+Scvrush.User.reopenClass({
+  findByUsername: function(username) {
+    return Scvrush.store.find(Scvrush.User, username);
+  }
+});

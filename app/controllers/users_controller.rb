@@ -6,10 +6,14 @@ class UsersController < ApplicationController
 
   def index
     if params[:ids]
-      respond_with User.find(params[:ids])
+      @users = User.find(params[:ids])
+    elsif params[:username]
+      @users = User.find_all_by_username(params[:username])
     else
-      respond_with User.first(20)
+      @users = User.first(20)
     end
+
+    respond_with @users
   end
 
   def new
