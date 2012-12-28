@@ -88,7 +88,7 @@ class UsersController < ApplicationController
 
   def load_user
     id = params[:id]
-    @user = (id =~ /\d+(-.+)?/) ? User.find_by_id(id) : User.find_by_username(id)
+    @user = (id =~ /\d+(-.+)?/) ? User.find_by_id(id) : User.find_by_username(id.downcase)
 
     unless @user
       render file: "#{Rails.root}/public/404.html", status: 404

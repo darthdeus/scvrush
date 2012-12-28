@@ -1,23 +1,21 @@
-Scvrush.StatusesView = Em.CollectionView.extend({
-  itemViewClass: Em.View.extend({
+Scvrush.UserLinksView = Ember.View.extend({
 
-    template: function() {
-      template = this.get("content.text");
+  template: function() {
+    template = this.get("content");
 
-      if (template) {
-        template = template.replace(/@(\w+)/g, '{{view Scvrush.UserLinkView username="$1"}}');
-      }
+    if (template) {
+      template = template.replace(/@(\w+)/g, '{{view Scvrush.UserLinkView username="$1"}}');
+    }
 
-      return Ember.Handlebars.compile(template || "");
-    }.property("content.text"),
+    return Ember.Handlebars.compile(template || "");
+  }.property("content"),
 
-    contentChanged: function() {
-      Ember.run.next(this, function() {
-        this.rerender();
-      });
-    }.observes("content.text"),
+  contentChanged: function() {
+    Ember.run.next(this, function() {
+      this.rerender();
+    });
+  }.observes("content"),
 
-  })
 });
 
 Scvrush.UserLinkView = Ember.View.extend({

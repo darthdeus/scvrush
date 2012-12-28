@@ -3,8 +3,14 @@
 
   <section>
     {{view Scvrush.NewStatusView class="sidebar-status-input" placeholder="Post a new status"}}
+    <a {{action showUser Scvrush.currentUser href="true"}}><i class="icon-user icon-white"></i></a>
 
-    {{view Scvrush.StatusesView contentBinding="Scvrush.currentUser.recentStatuses"}}
+    {{#each status in Scvrush.currentUser.recentStatuses}}
+      <p>
+        {{view Scvrush.UserLinksView contentBinding="status.text"}}
+      </p>
+    {{/each}}
+
   </section>
 
   <header class="heading">

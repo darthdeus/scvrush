@@ -18,12 +18,13 @@
       <a class="help-inline" {{action gotoUsers href="true"}}>back to users</a>
     </h2>
 
-    <form class="status-form">
-      <!-- TODO - display different placeholder if it's the current user's profile -->
-      {{view Scvrush.NewStatusView class="span8" placeholder="Tell us what's on your mind"}}
-      <!-- <input class="span8" type="text" placeholder="Tell us what's on your mind"> -->
-    </form>
-
+    {{#if isCurrentUser}}
+      <form class="status-form">
+        <!-- TODO - display different placeholder if it's the current user's profile -->
+        {{view Scvrush.NewStatusView class="span8" placeholder="Tell us what's on your mind"}}
+        <!-- <input class="span8" type="text" placeholder="Tell us what's on your mind"> -->
+      </form>
+    {{/if}}
 
     <div class="statuses">
 
@@ -34,7 +35,7 @@
           </div>
 
           <div class="content">
-            <div class="text">{{status.text}}</div>
+            <div class="text">{{view Scvrush.UserLinksView contentBinding="status.text"}}</div>
           </div>
 
           <div class="meta">
