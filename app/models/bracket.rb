@@ -16,9 +16,8 @@ class Bracket < Struct.new(:tournament)
 
   def to_json
     {
-      bracket: {
-        tournament_id: tournament.id
-      }
+      id: tournament.id,
+      tournament_id: tournament.id
     }
   end
 

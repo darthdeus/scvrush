@@ -9,6 +9,13 @@ Scvrush.Store = DS.Store.extend({
       status: "statuses"
     },
 
+    mappings: {
+      user: "Scvrush.User",
+      users: "Scvrush.User",
+      tournament: "Scvrush.Tournament",
+      tournaments: "Scvrush.Tournament"
+    }
+
   }),
 
 });

@@ -9,16 +9,16 @@ Scvrush.RoundsController = Em.ArrayController.extend({
   seed: function(event) {
     Scvrush.store.createRecord(Scvrush.Bracket, { tournament: event.context });
     Scvrush.store.commit();
-    Ember.run.next(this, function() {
-      event.context.reload();
-    });
+    // Ember.run.later(this, function() {
+    //   event.context.reload();
+    // }, 500);
   },
 
   unseed: function(event) {
     Scvrush.store.adapter.deleteRecord(Scvrush.store, Scvrush.Bracket, { id: event.context.id });
-    Ember.run.next(this, function() {
-      event.context.reload();
-    });
+    // Ember.run.later(this, function() {
+    //   event.context.reload();
+    // }, 500);
   },
 
 });

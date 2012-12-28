@@ -10,7 +10,8 @@ class BracketsController < ApplicationController
     tournament.seeded = true
     tournament.save!
 
-    render json: bracket.to_json
+    s = TournamentSerializer.new(tournament)
+    render json: s.as_json(include_root: false).merge(bracket: bracket.to_json)
   end
 
   def destroy
@@ -23,7 +24,8 @@ class BracketsController < ApplicationController
 
     tournament.save!
 
-    render nothing: true
+    s = TournamentSerializer.new(tournament)
+    render json: s
   end
 
 end
