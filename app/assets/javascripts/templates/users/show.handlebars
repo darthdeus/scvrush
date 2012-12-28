@@ -6,9 +6,20 @@
 
     {{#if hasFollowers}}
       <h3>Followers</h3>
+
+      {{#each follower in followers}}
+        {{follower.username}}<br>
+      {{/each}}
     {{else}}
       <div class="alert alert-info">This user has no followers.</div>
     {{/if}}
+
+
+    <h3>Following</h3>
+
+    {{#each follower in following}}
+      {{follower.username}}<br>
+    {{/each}}
 
   </div>
 

@@ -51,13 +51,11 @@ class UsersController < ApplicationController
 
   def follow
     if @user == current_user
-      flash[:error] =  "You can't follow yourself."
+      render json: { error: "You can't follow yourself" }, status: 400
     else
-      flash[:notice] = "You are now following #{@user.username}."
       current_user.follow @user
+      render json: current_user
     end
-
-    redirect_to @user
   end
 
   def unfollow

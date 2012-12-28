@@ -4,6 +4,7 @@ class UserSerializer < ActiveModel::Serializer
   # TODO - this should be the timeline statuses, not the authored ones
   has_many :statuses, embed: :ids
   has_many :followers, embed: :ids
+  has_many :following, embed: :ids
 
   def image
     object.avatar.url(:thumb)
