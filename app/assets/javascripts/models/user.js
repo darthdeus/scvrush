@@ -33,8 +33,12 @@ Scvrush.User = DS.Model.extend({
 
     // TODO - error handling
     $.post(url, function(data) {
-      Scvrush.store.load(Scvrush.User, Scvrush.currentUser.get("id"), data.user);
+      Scvrush.store.loadMany(Scvrush.User, data.users);
     });
+  },
+
+  isFollowing: function(anotherUser) {
+    return this.get("following").contains(anotherUser);
   },
 
 });

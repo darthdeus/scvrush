@@ -54,7 +54,7 @@ class UsersController < ApplicationController
       render json: { error: "You can't follow yourself" }, status: 400
     else
       current_user.follow @user
-      render json: current_user
+      render json: [ current_user, @user ]
     end
   end
 
