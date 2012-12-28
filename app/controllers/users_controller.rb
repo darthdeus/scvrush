@@ -60,7 +60,7 @@ class UsersController < ApplicationController
 
   def unfollow
     current_user.unfollow @user
-    redirect_to @user, notice: "You are not following #{@user.username} anymore."
+    render json: [ current_user, @user ]
   end
 
   # API for chat

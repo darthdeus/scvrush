@@ -28,12 +28,8 @@
       {{username}} ({{bnet_info}})
       <a class="help-inline" {{action gotoUsers href="true"}}>back to users</a>
 
-      {{#if content.isLoaded}}
-        {{isFollowing}}
-      {{/if}}
-
       {{#unless isCurrentUser}}
-        {{#if isFollowing}}
+        {{#if controller.isFollowingUser}}
           <a class="btn btn-danger"  {{action unfollow content target="controller"}}>Unfollow</a>
         {{else}}
           <a class="btn btn-success" {{action follow content target="controller"}}>Follow</a>

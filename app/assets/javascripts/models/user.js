@@ -37,6 +37,16 @@ Scvrush.User = DS.Model.extend({
     });
   },
 
+
+  unfollow: function(user) {
+    var url = "/users/" + user.get("id") + "/follow";
+
+    // TODO - error handling
+    $.ajax(url, function(data) {
+      Scvrush.store.loadMany(Scvrush.User, data.users);
+    });
+  },
+
   isFollowing: function(anotherUser) {
     return this.get("following").contains(anotherUser);
   },
