@@ -24,8 +24,7 @@ class BracketsController < ApplicationController
 
     tournament.save!
 
-    s = TournamentSerializer.new(tournament)
-    render json: s
+    render json: TournamentSerializer.new(tournament)
   end
 
 end
