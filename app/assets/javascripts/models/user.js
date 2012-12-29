@@ -39,10 +39,10 @@ Scvrush.User = DS.Model.extend({
 
 
   unfollow: function(user) {
-    var url = "/users/" + user.get("id") + "/follow";
+    var url = "/users/" + user.get("id") + "/unfollow";
 
     // TODO - error handling
-    $.ajax(url, function(data) {
+    $.post(url, { "_method": "DELETE" }, function(data) {
       Scvrush.store.loadMany(Scvrush.User, data.users);
     });
   },

@@ -8,7 +8,8 @@
       <h3>Followers</h3>
 
       {{#each follower in followers}}
-        {{follower.username}}<br>
+        <a {{action showUser follower href="true"}}>{{follower.username}}</a>
+        <br>
       {{/each}}
     {{else}}
       <div class="alert alert-info">This user has no followers.</div>
@@ -18,7 +19,8 @@
     <h3>Following</h3>
 
     {{#each follower in following}}
-      {{follower.username}}<br>
+      <a {{action showUser follower href="true"}}>{{follower.username}}</a>
+      <br>
     {{/each}}
 
   </div>

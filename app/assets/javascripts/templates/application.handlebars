@@ -2,15 +2,6 @@
   <div id="logo"><img src="/assets/logo.png"></div>
 
   <section>
-    {{view Scvrush.NewStatusView class="sidebar-status-input" placeholder="Post a new status"}}
-    <a {{action showUser Scvrush.currentUser href="true"}}><i class="icon-user icon-white"></i></a>
-
-    {{#each status in Scvrush.currentUser.recentStatuses}}
-      <p>
-        {{view Scvrush.UserLinksView contentBinding="status.text"}}
-      </p>
-    {{/each}}
-
   </section>
 
   <header class="heading">

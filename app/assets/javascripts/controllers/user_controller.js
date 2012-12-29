@@ -6,7 +6,7 @@ Scvrush.UserController = Em.ObjectController.extend({
 
   isFollowingUser: function() {
     return Scvrush.currentUser.isFollowing(this.get("content"));
-  }.property("content", "Scvrush.currentUser"),
+  }.property("content", "Scvrush.currentUser.following.@each.item"),
 
   follow: function(event) {
     Scvrush.currentUser.follow(event.context);
