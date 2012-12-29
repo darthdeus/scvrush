@@ -11,16 +11,16 @@ Scvrush.RoundsView = Em.View.extend({
     }, 500);
   },
 
-  willDestroyElement: function() {
-    console.log("willDestroyElement");
-  },
-
-  willInsertElement: function() {
-    console.log("willInsertElement");
-  },
-
-  willClearRender: function() {
-    console.log("view rerendered");
-  },
+//   willDestroyElement: function() {
+//     console.log("willDestroyElement");
+//   },
+//
+//   willInsertElement: function() {
+//     console.log("willInsertElement");
+//   },
+//
+//   willClearRender: function() {
+//     console.log("view rerendered");
+//   },
 
 });

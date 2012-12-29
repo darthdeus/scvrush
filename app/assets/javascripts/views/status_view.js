@@ -20,9 +20,11 @@ Scvrush.UserLinksView = Ember.View.extend({
 
 Scvrush.UserLinkView = Ember.View.extend({
   tagName: "span",
+
   user: function() {
     return Scvrush.User.findByUsername(this.get("username"));
-  }.property(),
+  }.property("username"),
+
   template: Ember.Handlebars.compile('<a {{action showUser view.user href=true}}>@{{view.username}}</a>')
 });
 

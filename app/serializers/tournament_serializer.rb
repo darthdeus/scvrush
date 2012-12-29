@@ -1,7 +1,10 @@
 class TournamentSerializer < ActiveModel::Serializer
-  attributes :id, :name, :participant_count, :image_name, :starts_at, :seeded
+  attributes :id, :name, :participant_count, :image_name, :starts_at, :seeded, :users
 
-  has_many :users,  embed: :ids
+  def users
+    object.users.map(&:username)
+  end
+
   has_many :rounds, embed: :ids
 
   def attributes

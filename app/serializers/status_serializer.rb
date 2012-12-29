@@ -1,3 +1,8 @@
 class StatusSerializer < ActiveModel::Serializer
-  attributes :id, :text, :user_id, :created_at
+  attributes :id, :text, :created_at, :username
+
+  def username
+    object.user.username
+  end
+
 end

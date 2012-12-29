@@ -3,8 +3,8 @@ Scvrush.RoundsController = Em.ArrayController.extend({
   view: null,
 
   hasRounds: function() {
-    return this.get("content.length") == 0;
-  }.property("content"),
+    return this.get("content.length") > 0;
+  }.property("@each.item"),
 
   seed: function(event) {
     Scvrush.store.createRecord(Scvrush.Bracket, { tournament: event.context });

@@ -6,9 +6,9 @@ class UsersController < ApplicationController
 
   def index
     if params[:ids]
-      @users = User.find(params[:ids])
+      @users = User.find_all_by_username(params[:ids])
     elsif params[:username]
-      @users = User.find_all_by_username(params[:username])
+      @users = User.find_by_username(params[:username])
     else
       @users = User.first(20)
     end
