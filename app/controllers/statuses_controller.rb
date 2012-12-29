@@ -6,7 +6,7 @@ class StatusesController < ApplicationController
     if params[:ids]
       respond_with Status.find(params[:ids])
     else
-      respond_with Status.limit(20)
+      respond_with Timeline.for_user(current_user)
     end
   end
 

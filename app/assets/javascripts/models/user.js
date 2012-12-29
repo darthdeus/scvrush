@@ -47,8 +47,14 @@ Scvrush.User = DS.Model.extend({
     });
   },
 
+  lowerUsername: function() {
+    if (this.get("username")) {
+      return this.get("username").toLowerCase()
+    }
+  }.property("username"),
+
   isFollowing: function(anotherUser) {
-    return this.get("following").contains(anotherUser);
+    return this.get("following").mapProperty("lowerUsername").contains(anotherUser.get("lowerUsername"));
   },
 
 });

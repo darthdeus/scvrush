@@ -137,6 +137,11 @@ class User < ActiveRecord::Base
     end while User.exists?(column => self[column])
   end
 
+  def following_ids
+    # TODO - make this more performant
+    following.map(&:id)
+  end
+
   def won_tournament!
     achievement = Achievement.find_or_create_by_name("Tournament winner")
     self.achievements << achievement unless self.achievements.include?(achievement)
