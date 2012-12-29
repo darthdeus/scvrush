@@ -52,7 +52,7 @@
       {{#each status in timelineStatuses}}
         <div class="status">
           <div class="author">
-            <a {{action showUser status.user href="true"}}>{{status.username}}</a>
+            <a {{action showUser status.user href="true"}}>{{status.user.username}}</a>
           </div>
 
           <div class="content">

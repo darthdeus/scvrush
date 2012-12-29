@@ -1,8 +1,9 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :race, :image, :bnet_info, :followers, :following
+  attributes :id, :username, :race, :image, :bnet_info, :followers, :following, :statuses
 
-  # TODO - this should be the timeline statuses, not the authored ones
-  has_many :statuses, embed: :ids
+  def statuses
+    Timeline.for_user(object).map(&:id)
+  end
 
   def followers
     object.followers.map(&:username)
