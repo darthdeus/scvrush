@@ -52,8 +52,12 @@ class User < ActiveRecord::Base
   # ActiveRecord reputation system
   has_many :evaluations, class_name: "RSEvaluation", as: :source
 
+  def self.find_all_by_username(username)
+    where('username ILIKE ?', username)
+  end
+
   def self.find_by_username(username)
-    where('username ILIKE ?', username).first
+    find_all_by_username(username).first
   end
 
   def self.filtered(params)

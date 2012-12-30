@@ -21,12 +21,39 @@ Scvrush.UserLinksView = Ember.View.extend({
 Scvrush.UserLinkView = Ember.View.extend({
   tagName: "span",
 
-  user: function() {
-    return Scvrush.User.findByUsername(this.get("username"));
+  users: function() {
+    return Scvrush.store.find(Scvrush.User, { username: this.get("username") });
   }.property("username"),
+
+  usersChanged: function() {
+    this.rerender();
+  }.observes("users.@each"),
+
+  user: function() {
+    return this.get("users.firstObject");
+  }.property("users.@each"),
 
   template: Ember.Handlebars.compile('<a {{action showUser view.user href=true}}>@{{view.username}}</a>')
 });
+
+
+// App.UserController = Ember.ObjectController.extend({
+//   _content: null,
+// 
+//   content: function(key, value) {
+//     var content = this.get('_content');
+//     if (arguments.length === 2) {
+//       content = Ember.makeArray(value);
+//       this.set('_content', content);
+//     }
+//     return Ember.get(content, 'firstObject');
+//   }.property('_content.firstObject')
+// });
+// 
+// // both will work
+// App.UserController.set('content', App.User.find(1));
+// App.UserController.set('content', App.User.find({username: 'toto'}));
+// 
 
 
 // Scvrush.LinkedUsersView = Ember.View.extend({

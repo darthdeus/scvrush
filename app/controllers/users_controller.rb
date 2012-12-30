@@ -6,9 +6,9 @@ class UsersController < ApplicationController
 
   def index
     if params[:ids]
-      @users = User.find_all_by_username(params[:ids])
+      @users = User.find_all_by_id(params[:ids])
     elsif params[:username]
-      @users = User.find_by_username(params[:username])
+      @users = User.find_all_by_username(params[:username])
     else
       @users = User.first(20)
     end
@@ -86,7 +86,8 @@ class UsersController < ApplicationController
 
   def load_user
     id = params[:id]
-    @user = (id =~ /\d+(-.+)?/) ? User.find_by_id(id) : User.find_by_username(id.downcase)
+    # @user = (id =~ /\d+(-.+)?/) ? User.find_by_id(id) : User.find_by_username(id.downcase)
+    @user = User.find(id)
 
     unless @user
       render file: "#{Rails.root}/public/404.html", status: 404
