@@ -9,7 +9,7 @@
 //= require ./bracket
 
 //= require ./vendor/ember-new-router
-//= require ./vendor/ember-data-local
+//= require ./vendor/ember-data-11
 //= require ./scvrush
 
 Handlebars.registerHelper("debug", function(optionalValue) {

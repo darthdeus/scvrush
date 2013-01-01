@@ -1,22 +1,27 @@
+Scvrush.Adapter = DS.RESTAdapter.extend();
+
+Scvrush.Adapter.configure("plurals", {
+  status: "statuses"
+});
+
 Scvrush.Store = DS.Store.extend({
-  revision: 10,
-
-  adapter: DS.RESTAdapter.create({
-    bulkCommit: false,
-
-    plurals: {
-      match:  "matches",
-      status: "statuses"
-    },
-
-    mappings: {
-      user: "Scvrush.User",
-      users: "Scvrush.User",
-      tournament: "Scvrush.Tournament",
-      tournaments: "Scvrush.Tournament"
-    }
-
-  }),
+  revision: 11,
+  adapter: "Scvrush.Adapter"
+// 
+//   adapter: DS.RESTAdapter.create({
+//     plurals: {
+//       match:  "matches",
+//       status: "statuses"
+//     },
+// 
+//     mappings: {
+//       user: "Scvrush.User",
+//       users: "Scvrush.User",
+//       tournament: "Scvrush.Tournament",
+//       tournaments: "Scvrush.Tournament"
+//     }
+// 
+//   }),
 
 });
 
