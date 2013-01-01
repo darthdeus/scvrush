@@ -53,7 +53,7 @@ Scvrush.User = DS.Model.extend({
   }.property("username"),
 
   isFollowing: function(anotherUser) {
-    return this.get("following").mapProperty("lowerUsername").contains(anotherUser.get("lowerUsername"));
+    return this.get("following").contains(anotherUser.get("id"));
   },
 
 });

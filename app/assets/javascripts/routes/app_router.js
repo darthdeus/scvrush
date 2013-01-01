@@ -37,6 +37,8 @@ Scvrush.TournamentsRoute = Em.Route.extend({
   }
 });
 
+Scvrush.UserRoute = Em.Route.extend();
+
 Scvrush.UsersRoute = Em.Route.extend({
   setupControllers: function(controller, model) {
     controller.set("content", Scvrush.User.find());

@@ -12,10 +12,6 @@ Scvrush.UserController = Em.ObjectController.extend({
     Scvrush.currentUser.follow(event.context);
   },
 
-  showNote: function() {
-    alert("yo");
-  },
-
   unfollow: function(event) {
     Scvrush.currentUser.unfollow(event.context);
   },
