@@ -67,9 +67,9 @@ Scvrush.User.reopenClass({
     });
 
     if (filtered.get("length") > 0) {
+      return filtered.get("firstObject");
     } else {
       return Scvrush.store.find(Scvrush.User, { username: username });
-      // return Scvrush.store.find(Scvrush.User, username);
     }
   }
 
