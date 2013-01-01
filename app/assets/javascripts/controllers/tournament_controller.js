@@ -27,11 +27,9 @@ Scvrush.TournamentController = Em.ObjectController.extend({
   },
 
   unseed: function(event) {
-    event.context.deleteRecord();
-    // Scvrush.store.adapter.deleteRecord(Scvrush.store, Scvrush.Bracket, { id: event.context.id });
-    // Ember.run.later(this, function() {
-    //   event.context.reload();
-    // }, 500);
+    $.post("/brackets/" + event.context.id, { _method: "DELETE" }, function(data) {
+      Scvrush.store.load(Scvrush.Tournament, data.tournament);
+    });
   },
 
 });

@@ -7,8 +7,8 @@ Scvrush.Adapter.configure("plurals", {
 
 Scvrush.Store = DS.Store.extend({
   revision: 11,
-  adapter: "Scvrush.Adapter"
-// 
+  adapter: Scvrush.Adapter.create({})
+
 //   adapter: DS.RESTAdapter.create({
 //     plurals: {
 //       match:  "matches",
