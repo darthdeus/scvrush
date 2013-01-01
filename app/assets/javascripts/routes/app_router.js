@@ -18,7 +18,7 @@ Scvrush.Router.map(function(match) {
 
   match("/users").to("users", function(match) {
     match("/").to("users");
-    match("/:user_username").to("user");
+    match("/:user_id").to("user");
   });
 });
 
