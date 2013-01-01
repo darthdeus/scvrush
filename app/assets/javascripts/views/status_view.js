@@ -22,7 +22,7 @@ Scvrush.UserLinkView = Ember.View.extend({
   tagName: "span",
 
   users: function() {
-    return Scvrush.store.find(Scvrush.User, { username: this.get("username") });
+    return Scvrush.currentUser;
   }.property("username"),
 
   usersChanged: function() {
@@ -30,6 +30,7 @@ Scvrush.UserLinkView = Ember.View.extend({
   }.observes("users.@each"),
 
   user: function() {
+    return Scvrush.currentUser;
     return this.get("users.firstObject");
   }.property("users.@each"),
 

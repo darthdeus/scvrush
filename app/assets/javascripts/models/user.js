@@ -37,7 +37,6 @@ Scvrush.User = DS.Model.extend({
     });
   },
 
-
   unfollow: function(user) {
     var url = "/users/" + user.get("id") + "/unfollow";
 
@@ -61,7 +60,17 @@ Scvrush.User = DS.Model.extend({
 
 
 Scvrush.User.reopenClass({
+
   findByUsername: function(username) {
-    return Scvrush.store.find(Scvrush.User, username);
+    var filtered = Scvrush.store.filter(Scvrush.User, function(user) {
+      return user.username == username;
+    });
+
+    if (filtered.get("length") > 0) {
+    } else {
+      return Scvrush.store.find(Scvrush.User, { username: username });
+      // return Scvrush.store.find(Scvrush.User, username);
+    }
   }
+
 });
