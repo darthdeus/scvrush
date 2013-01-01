@@ -2,7 +2,7 @@
 <h4>{{#linkTo "tournaments"}}back to tournaments{{/linkTo}}</h4>
 
 {{#if isStarted}}
-  {{view Scvrush.RoundsView controllerBinding="Scvrush.router.roundsController" tournamentBinding="controller.content"}}
+  {{view Scvrush.RoundsView tournamentBinding="content"}}
 {{else}}
   {{view Scvrush.TournamentSignupView controllerBinding="controller"}}
 {{/if}}

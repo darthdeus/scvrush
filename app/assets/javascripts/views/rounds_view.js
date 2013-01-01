@@ -3,7 +3,7 @@ Scvrush.RoundsView = Em.View.extend({
 
   roundsChanged: function() {
     this.rerender();
-  }.observes("Scvrush.router.roundsController.content.length"),
+  }.observes("content.length"),
 
   didInsertElement: function() {
     Ember.run.later(function() {

@@ -5,9 +5,9 @@
 
   <p>
     {{#if view.tournament.seeded}}
-      <a {{action unseed view.tournament target="controller"}}>unseed the tournament</a>
+      <a {{action "unseed" view.tournament target="controller"}}>unseed the tournament</a>
     {{else}}
-      <a {{action seed view.tournament target="controller"}}>seed the tournament</a>
+      <a {{action "seed" view.tournament target="controller"}}>seed the tournament</a>
     {{/if}}
   </p>
 

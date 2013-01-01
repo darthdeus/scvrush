@@ -1,7 +1,8 @@
 Scvrush.Adapter = DS.RESTAdapter.extend();
 
 Scvrush.Adapter.configure("plurals", {
-  status: "statuses"
+  status: "statuses",
+  match: "matches"
 });
 
 Scvrush.Store = DS.Store.extend({

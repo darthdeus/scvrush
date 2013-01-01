@@ -16,6 +16,10 @@ Scvrush.Tournament = DS.Model.extend({
     return new Date(this.get("startsAt")) < new Date();
   }.property("startsAt"),
 
+  hasRounds: function() {
+    return this.get("rounds.length") > 0;
+  }.property("rounds.@each"),
+
   isOpen: function() {
     return !(new Date(this.get("startsAt")) < new Date());
   }.property("startsAt"),

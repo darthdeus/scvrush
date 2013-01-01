@@ -16,6 +16,22 @@ Scvrush.TournamentController = Em.ObjectController.extend({
   cancel: function(tournament, t) {
     this.get("content").set("is_registered", false);
     Scvrush.store.commit();
-  }
+  },
+
+  seed: function(event) {
+    Scvrush.store.createRecord(Scvrush.Bracket, { tournament: event.context });
+    Scvrush.store.commit();
+    // Ember.run.later(this, function() {
+    //   event.context.reload();
+    // }, 500);
+  },
+
+  unseed: function(event) {
+    event.context.deleteRecord();
+    // Scvrush.store.adapter.deleteRecord(Scvrush.store, Scvrush.Bracket, { id: event.context.id });
+    // Ember.run.later(this, function() {
+    //   event.context.reload();
+    // }, 500);
+  },
 
 });

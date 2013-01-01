@@ -142,8 +142,8 @@ if ('undefined' !== typeof window) {
 
 })();
 
-// Version: v1.0.0-pre.2-239-gc05164f
-// Last commit: c05164f (2012-12-31 16:02:43 -0800)
+// Version: v1.0.0-pre.2-235-gece4770
+// Last commit: ece4770 (2012-12-31 08:44:19 -0600)
 
 
 (function() {
@@ -6109,20 +6109,16 @@ function isSingleton(container, fullName) {
   return singleton !== false;
 }
 
-function buildInjections(container, injections) {
-  var hash = {};
-
-  if (!injections) { return hash; }
+function applyInjections(container, value, injections) {
+  if (!injections) { return; }
 
   var injection, lookup;
 
   for (var i=0, l=injections.length; i<l; i++) {
     injection = injections[i];
     lookup = container.lookup(injection.fullName);
-    hash[injection.property] = lookup;
+    container.set(value, injection.property, lookup);
   }
-
-  return hash;
 }
 
 function option(container, fullName, optionName) {
@@ -6152,14 +6148,13 @@ function instantiate(container, fullName) {
   }
 
   if (factory) {
+    value = factory.create({ container: container });
+
     var injections = [];
     injections = injections.concat(container.typeInjections[type] || []);
     injections = injections.concat(container.injections[fullName] || []);
 
-    var hash = buildInjections(container, injections);
-    hash.container = container;
-
-    value = factory.create(hash);
+    applyInjections(container, value, injections);
 
     return value;
   }
@@ -11720,7 +11715,7 @@ Ember.ControllerMixin = Ember.Mixin.create({
   send: function(actionName, event) {
     var target;
 
-    if (this.hasOwnProperty(actionName)) {
+    if (this[actionName]) {
       this[actionName](event);
     } else if(target = get(this, 'target')) {
       target.send(actionName, event);
@@ -12067,7 +12062,7 @@ Ember Runtime
 */
 
 var jQuery = Ember.imports.jQuery;
-Ember.assert("Ember Views require jQuery 1.7 (>= 1.7.2) or 1.8", jQuery && (jQuery().jquery.match(/^1\.(7(?!$)(?!\.[01])|8)(\.\d+)?(pre|rc\d?)?/) || Ember.ENV.FORCE_JQUERY));
+Ember.assert("Ember Views require jQuery 1.7 or 1.8", jQuery && (jQuery().jquery.match(/^1\.(7(?!$)(?!\.[01])|8)(\.\d+)?(pre|rc\d?)?/) || Ember.ENV.FORCE_JQUERY));
 
 /**
   Alias for jQuery
@@ -24920,8 +24915,8 @@ Ember States
 
 
 })();
-// Version: v1.0.0-pre.2-239-gc05164f
-// Last commit: c05164f (2012-12-31 16:02:43 -0800)
+// Version: v1.0.0-pre.2-235-gece4770
+// Last commit: ece4770 (2012-12-31 08:44:19 -0600)
 
 
 (function() {
