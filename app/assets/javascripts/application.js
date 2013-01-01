@@ -8,7 +8,7 @@
 
 //= require ./bracket
 
-//= require ./vendor/ember-local
+//= require ./vendor/ember-new-router
 //= require ./vendor/ember-data-local
 //= require ./scvrush
 

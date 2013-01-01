@@ -2,13 +2,16 @@
 
 <div class="posts">
 
-  {{#each controller}}
-    <div class="post">
-      <a class="image" {{action showPost this href=true}}>
-        <img {{bindAttr src="image"}}>
-      </a>
 
-      <h2><a {{action showPost this href=true}}>{{title}}</a></h2>
+  {{#each post in controller}}
+    <div class="post">
+      {{#linkTo "postsShow" post class="image"}}
+        <img {{bindAttr src="post.image"}}>
+      {{/linkTo}}
+
+      <h2>
+        {{#linkTo "postsShow" post}}{{post.title}}{{/linkTo}}
+      </h2>
     </div>
   {{/each}}
 
