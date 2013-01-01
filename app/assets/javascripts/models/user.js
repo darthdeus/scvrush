@@ -31,7 +31,6 @@ Scvrush.User = DS.Model.extend({
   follow: function(user) {
     var url = "/users/" + user.get("id") + "/follow";
 
-    // TODO - error handling
     $.post(url, function(data) {
       Scvrush.store.loadMany(Scvrush.User, data.users);
     });
@@ -40,17 +39,10 @@ Scvrush.User = DS.Model.extend({
   unfollow: function(user) {
     var url = "/users/" + user.get("id") + "/unfollow";
 
-    // TODO - error handling
     $.post(url, { "_method": "DELETE" }, function(data) {
       Scvrush.store.loadMany(Scvrush.User, data.users);
     });
   },
-
-  lowerUsername: function() {
-    if (this.get("username")) {
-      return this.get("username").toLowerCase()
-    }
-  }.property("username"),
 
   isFollowing: function(anotherUser) {
     return this.get("following").contains(anotherUser.get("id"));

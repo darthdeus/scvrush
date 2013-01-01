@@ -40,8 +40,4 @@ Scvrush.store = Scvrush.Store.create();
 //   matches: { embedded: 'load' }
 // });
 
-// Scvrush.store.adapter.serializer.map('Scvrush.User', {
-//   primaryKey: "username"
-// });
-
 // Em.LOG_BINDINGS = true;
