@@ -11,8 +11,15 @@ Scvrush.Router.map(function(match) {
     match("/:post_id").to("postsShow");
   });
 
-  match("/tournaments").to("tournaments");
-  match("/users").to("users");
+  match("/tournaments").to("tournaments", function(match) {
+    match("/").to("tournaments");
+    match("/:tournament_id").to("tournament");
+  });
+
+  match("/users").to("users", function(match) {
+    match("/").to("users");
+    match("/:user_id").to("user");
+  });
 });
 
 Scvrush.PostsIndexRoute = Em.Route.extend({
@@ -27,6 +34,12 @@ Scvrush.PostsShowRoute = Em.Route.extend({
 Scvrush.TournamentsRoute = Em.Route.extend({
   setupControllers: function(controller, model) {
     controller.set("content", Scvrush.TournamentDay.find());
+  }
+});
+
+Scvrush.UsersRoute = Em.Route.extend({
+  setupControllers: function(controller, model) {
+    controller.set("content", Scvrush.User.find());
   }
 });
 

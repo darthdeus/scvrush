@@ -1,3 +1,3 @@
 Scvrush.PostsShowView = Ember.View.extend({
-  templateName: 'post'
+  templateName: "posts/show"
 });

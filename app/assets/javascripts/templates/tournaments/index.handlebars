@@ -25,7 +25,9 @@
             <img {{bindAttr src="tournament.imageUrl"}}>
 
             <div class="description">
-              <h3><a {{action showTournament tournament href="true"}}>{{tournament.name}}</a></h3>
+              <h3>
+                {{#linkTo "tournament" tournament}}{{tournament.name}}{{/linkTo}}
+              </h3>
 
               <p>
                 <i class="icon-user"></i>

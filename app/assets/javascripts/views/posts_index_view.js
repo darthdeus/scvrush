@@ -1,5 +1,6 @@
 Scvrush.PostsIndexView = Ember.View.extend({
-  templateName: 'posts',
+  templateName: "posts/index",
+
   tag: function(event) {
     $(event.target).data("tag");
   }

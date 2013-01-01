@@ -4,13 +4,12 @@
 
   {{#each user in controller}}
     <li class="user">
-      <a {{action showUser user href=true}}>
+      {{#linkTo "user" user}}
         <img {{bindAttr src="user.image"}}>
-
         <div {{bindAttr class="user.raceClass :race"}}>{{player.race_class}}</div>
 
         <div class="name">{{user.username}}</div>
-      </a>
+      {{/linkTo}}
     </li>
   {{/each}}
 

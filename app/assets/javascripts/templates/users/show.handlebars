@@ -8,7 +8,7 @@
       <h3>Followers</h3>
 
       {{#each follower in followers}}
-        <a {{action showUser follower href="true"}}>{{follower.username}}</a>
+        {{#linkTo "user" follower}}{{follower.username}}{{/linkTo}}
         <br>
       {{/each}}
     {{else}}
@@ -19,7 +19,7 @@
     <h3>Following</h3>
 
     {{#each follower in following}}
-      <a {{action showUser follower href="true"}}>{{follower.username}}</a>
+      {{#linkTo "user" follower}}{{follower.username}}{{/linkTo}}
       <br>
     {{/each}}
 
@@ -28,13 +28,13 @@
   <div class="span9">
     <h2>
       {{username}} ({{bnet_info}})
-      <a class="help-inline" {{action gotoUsers href="true"}}>back to users</a>
+      {{#linkTo "users" class="help-inline"}}back to users{{/linkTo}}
 
       {{#unless isCurrentUser}}
         {{#if controller.isFollowingUser}}
-          <a class="btn btn-danger"  {{action unfollow content target="controller"}}>Unfollow</a>
+          <a class="btn btn-danger"  {{action "unfollow" content}}>Unfollow</a>
         {{else}}
-          <a class="btn btn-success" {{action follow content target="controller"}}>Follow</a>
+          <a class="btn btn-success" {{action "follow" content}}>Follow</a>
         {{/if}}
       {{/unless}}
     </h2>
@@ -52,7 +52,7 @@
       {{#each status in timelineStatuses}}
         <div class="status">
           <div class="author">
-            <a {{action showUser status.user href="true"}}>{{status.user.username}}</a>
+            {{#linkTo "user" status.user}}{{status.user.username}}{{/linkTo}}
           </div>
 
           <div class="content">
