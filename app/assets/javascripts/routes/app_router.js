@@ -18,7 +18,7 @@ Scvrush.Router.map(function(match) {
 
   match("/users").to("users", function(match) {
     match("/").to("users");
-    match("/:user_id").to("user");
+    match("/:user_username").to("user");
   });
 });
 
@@ -42,6 +42,12 @@ Scvrush.UsersRoute = Em.Route.extend({
     controller.set("content", Scvrush.User.find());
   }
 });
+
+// Scvrush.UserRoute = Em.Route.extend({
+//   model: function(params) {
+//     return Scvrush.User.find({ username: params.user_username });
+//   }
+// });
 
 
 
