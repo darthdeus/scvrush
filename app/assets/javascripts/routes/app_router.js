@@ -18,7 +18,7 @@ Scvrush.Router.map(function(match) {
 
   match("/users").to("users", function(match) {
     match("/").to("users");
-    match("/:user_id").to("user");
+    match("/:user_username").to("user");
   });
 });
 
@@ -37,7 +37,21 @@ Scvrush.TournamentsRoute = Em.Route.extend({
   }
 });
 
-Scvrush.UserRoute = Em.Route.extend();
+Scvrush.UserRoute = Em.Route.extend({
+  model: function(params) {
+    // var users = Scvrush.User.find({ username: params.user_username });
+    // users.one("didLoad", function() {
+    //   users.resolve(users.get("firstObject"));
+    // });
+
+    // return users;
+    return Scvrush.User.findByUsername(params.user_username);
+  },
+
+  serialize: function(user, params) {
+    return { user_username: Ember.get(user, "username") };
+  }
+});
 
 Scvrush.UsersRoute = Em.Route.extend({
   setupControllers: function(controller, model) {
@@ -50,7 +64,6 @@ Scvrush.UsersRoute = Em.Route.extend({
 //     return Scvrush.User.find({ username: params.user_username });
 //   }
 // });
-
 
 
 // Scvrush.Routers = Ember.Router.extend({
