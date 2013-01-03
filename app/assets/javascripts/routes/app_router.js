@@ -7,12 +7,13 @@ Scvrush.Router.map(function(match) {
   match("/").to("home");
 
   match("/posts").to("posts", function(match) {
-    match("/").to("postsIndex");
-    match("/:post_id").to("postsShow");
+    match("/").to("posts");
+    match("/:post_id").to("post");
   });
 
   match("/tournaments").to("tournaments", function(match) {
     match("/").to("tournaments");
+    match("/new").to("tournamentsNew");
     match("/:tournament_id").to("tournament");
   });
 
@@ -22,13 +23,10 @@ Scvrush.Router.map(function(match) {
   });
 });
 
-Scvrush.PostsIndexRoute = Em.Route.extend({
+Scvrush.PostsRoute = Em.Route.extend({
   setupControllers: function(controller, model) {
     controller.set("content", Scvrush.Post.find());
   }
-});
-
-Scvrush.PostsShowRoute = Em.Route.extend({
 });
 
 Scvrush.TournamentsRoute = Em.Route.extend({

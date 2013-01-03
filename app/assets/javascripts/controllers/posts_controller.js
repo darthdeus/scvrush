@@ -1,4 +1,4 @@
-Scvrush.PostsIndexController = Em.ArrayController.extend({
+Scvrush.PostsController = Em.ArrayController.extend({
   query: null,
 
   updatePosts: _.debounce(function(value) {

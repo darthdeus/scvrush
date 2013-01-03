@@ -51,7 +51,7 @@
       {{#each status in timelineStatuses}}
         <div class="status">
           <div class="author">
-            {{#linkTo "user" status.user}}{{status.user.username}}{{/linkTo}}
+            {{#linkTo "user" status.user}}@{{status.user.username}}{{/linkTo}}
           </div>
 
           <div class="content">

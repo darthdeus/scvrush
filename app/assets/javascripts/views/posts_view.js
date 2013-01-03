@@ -1,4 +1,4 @@
-Scvrush.PostsIndexView = Ember.View.extend({
+Scvrush.PostsView = Ember.View.extend({
   templateName: "posts/index",
 
   tag: function(event) {
