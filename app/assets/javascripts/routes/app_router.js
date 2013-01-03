@@ -35,6 +35,12 @@ Scvrush.TournamentsRoute = Em.Route.extend({
   }
 });
 
+Scvrush.TournamentsNewRoute = Em.Route.extend({
+  model: function(params) {
+    return Ember.Object.create({ name: "test" });
+  }
+});
+
 Scvrush.UserRoute = Em.Route.extend({
   model: function(params) {
     // var users = Scvrush.User.find({ username: params.user_username });

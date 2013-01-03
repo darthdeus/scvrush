@@ -23,6 +23,11 @@ Handlebars.registerHelper("debug", function(optionalValue) {
     console.log(optionalValue);
   }
 });
+
+window.c = Ember.c = function(name) {
+  return Scvrush.container.lookup("controller:" + name);
+}
+
 jQuery(function($) {
 
   $("[rel=popover]").popover({ placement: "top" });
