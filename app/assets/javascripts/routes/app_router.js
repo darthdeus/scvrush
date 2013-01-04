@@ -36,8 +36,8 @@ Scvrush.TournamentsRoute = Em.Route.extend({
 });
 
 Scvrush.TournamentsNewRoute = Em.Route.extend({
-  model: function(params) {
-    return Ember.Object.create({ name: "test" });
+  setupControllers: function(controller, model) {
+    controller.set("content", Scvrush.Tournament.createRecord());
   }
 });
 
