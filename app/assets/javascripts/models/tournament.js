@@ -12,6 +12,10 @@ Scvrush.Tournament = DS.Model.extend({
 
   rounds:            DS.hasMany("Scvrush.Round"),
 
+  nameInvalid: function() {
+    return this.get("name.length") < 3;
+  }.property("name"),
+
   isStarted: function() {
     return new Date(this.get("startsAt")) < new Date();
   }.property("startsAt"),

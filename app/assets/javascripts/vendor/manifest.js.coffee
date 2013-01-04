@@ -6,3 +6,4 @@
 #= require ./handlebars
 #= require ./Markdown.Converter
 #= require ./moment
+#= require ./jquery-ui-timepicker-addon

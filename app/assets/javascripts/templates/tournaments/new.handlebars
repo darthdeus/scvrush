@@ -2,6 +2,22 @@
 
 <p>Every SCV Rush user can create custom tournaments and invite friends to play.</p>
 
-{{view Ember.TextField valueBinding="content.name"}}
+<form class="form-horizontal">
 
-{{content.name}}<br>
+  <div {{bindAttr class="content.nameInvalid:error :control-group"}}>
+    <label class="control-label">Name</label>
+
+    <div class="controls">
+      {{view Ember.TextField valueBinding="content.name"}}
+    </div>
+  </div>
+
+  <div {{bindAttr class="content.startsAtInvalid:error :control-group"}}>
+    <label class="control-label">Starts at</label>
+
+    <div class="controls">
+      {{view Scvrush.DateTimeView valueBinding="content.startsAt" class="control"}}
+    </div>
+  </div>
+
+</form>
