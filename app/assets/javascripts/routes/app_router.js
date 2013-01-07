@@ -12,7 +12,7 @@ Scvrush.Router.map(function(match) {
   });
 
   match("/tournaments").to("tournaments", function(match) {
-    match("/").to("tournaments");
+    match("/").to("tournamentsIndex");
     match("/new").to("tournamentsNew");
     match("/:tournament_id").to("tournament");
   });
@@ -24,20 +24,23 @@ Scvrush.Router.map(function(match) {
 });
 
 Scvrush.PostsRoute = Em.Route.extend({
-  setupControllers: function(controller, model) {
+  setupController: function(controller, model) {
     controller.set("content", Scvrush.Post.find());
   }
 });
 
-Scvrush.TournamentsRoute = Em.Route.extend({
-  setupControllers: function(controller, model) {
+Scvrush.TournamentsIndexRoute = Em.Route.extend({
+  setupController: function(controller, model) {
     controller.set("content", Scvrush.TournamentDay.find());
   }
 });
 
 Scvrush.TournamentsNewRoute = Em.Route.extend({
-  setupControllers: function(controller, model) {
-    controller.set("content", Scvrush.Tournament.createRecord());
+  model: function() {
+    var oneHourFromNow = moment().add("hours", 2);
+    return Scvrush.Tournament.createRecord({
+      startsAt: oneHourFromNow.format("YYYY-MM-DD HH:mm")
+    });
   }
 });
 
@@ -58,7 +61,7 @@ Scvrush.UserRoute = Em.Route.extend({
 });
 
 Scvrush.UsersRoute = Em.Route.extend({
-  setupControllers: function(controller, model) {
+  setupController: function(controller, model) {
     controller.set("content", Scvrush.User.find());
   }
 });

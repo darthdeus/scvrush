@@ -25,7 +25,7 @@ Handlebars.registerHelper("debug", function(optionalValue) {
 });
 
 window.c = Ember.c = function(name) {
-  return Scvrush.container.lookup("controller:" + name);
+  return Scvrush.__container__.lookup("controller:" + name);
 }
 
 jQuery(function($) {

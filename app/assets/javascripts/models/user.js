@@ -2,7 +2,7 @@ Scvrush.User = DS.Model.extend({
   username:  DS.attr("string"),
   race:      DS.attr("string"),
   image:     DS.attr("string"),
-  bnet_info: DS.attr("string"),
+  bnetInfo:  DS.attr("string"),
 
   statuses:   DS.hasMany("Scvrush.Status"),
   followers:  DS.hasMany("Scvrush.User"),

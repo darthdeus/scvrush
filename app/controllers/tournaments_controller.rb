@@ -10,14 +10,18 @@ class TournamentsController < ApplicationController
   end
 
   def create
-    @tournament = Tournament.new(params[:tournament])
-    @tournament.tournament_type = Tournament.types[:user]
-    @tournament.user = current_user
-    if @tournament.save
-      redirect_to @tournament, notice: "You've successfuly created a tournament."
-    else
-      render :new
-    end
+    tournament = Tournament.new
+    tournament.name = params[:tournament][:name]
+    tournament.starts_at = params[:tournament][:starts_at]
+    tournament.max_players = params[:tournament][:max_players]
+
+    tournament.tournament_type = Tournament.types[:user]
+    tournament.user = current_user
+    tournament.bo_preset = "1"
+
+    tournament.save
+
+    respond_with tournament
   end
 
   def show

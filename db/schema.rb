@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121225145106) do
+ActiveRecord::Schema.define(:version => 20130105141444) do
 
   create_table "blog_posts", :force => true do |t|
     t.string   "title"
@@ -221,6 +221,7 @@ ActiveRecord::Schema.define(:version => 20121225145106) do
     t.boolean  "visible"
     t.string   "channel"
     t.string   "logo"
+    t.integer  "max_players"
   end
 
   add_index "tournaments", ["post_id"], :name => "index_tournaments_on_post_id"

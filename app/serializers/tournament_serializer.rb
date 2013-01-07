@@ -4,6 +4,10 @@ class TournamentSerializer < ActiveModel::Serializer
   has_many :rounds, embed: :ids
   has_many :users, embed: :ids
 
+  def starts_at
+    object.starts_at.strftime "%Y-%m-%d %H:%M"
+  end
+
   def attributes
     hash = super
     if scope

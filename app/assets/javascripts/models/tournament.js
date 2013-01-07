@@ -5,6 +5,7 @@ Scvrush.Tournament = DS.Model.extend({
   startsAt:          DS.attr("string"),
   winner:            DS.belongsTo("Scvrush.User"),
   seeded:            DS.attr("boolean"),
+  maxPlayers:        DS.attr("number"),
 
   users:             DS.hasMany("Scvrush.User"),
   brackets:          DS.hasMany("Scvrush.Bracket"),
@@ -12,9 +13,31 @@ Scvrush.Tournament = DS.Model.extend({
 
   rounds:            DS.hasMany("Scvrush.Round"),
 
+  increaseRounds: function() {
+    var rounds = this.get("rounds"),
+        newRound;
+
+    if (rounds.get("length") == 0) {
+      newRound = Scvrush.Round.createRecord({ number: 2 });
+    } else {
+      var lastRoundNumber = rounds.get("lastObject.number");
+      newRound = Scvrush.Round.createRecord({ number: lastRoundNumber * 2 });
+    }
+
+    rounds.pushObject(newRound);
+  },
+
+  reverseRounds: function() {
+    return this.get("rounds");
+  }.property("rounds.@each"),
+
   nameInvalid: function() {
     return this.get("name.length") < 3;
   }.property("name"),
+
+  startsAtInvalid: function() {
+    return !/^\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}(:\d{2})?Z?$/.test(this.get("startsAt"));
+  }.property("startsAt"),
 
   isStarted: function() {
     return new Date(this.get("startsAt")) < new Date();

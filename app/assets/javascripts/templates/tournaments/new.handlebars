@@ -8,7 +8,15 @@
     <label class="control-label">Name</label>
 
     <div class="controls">
-      {{view Ember.TextField valueBinding="content.name"}}
+      {{view Em.TextField valueBinding="content.name"}}
+    </div>
+  </div>
+
+  <div {{bindAttr class=":control-group"}}>
+    <label class="control-label">Number of players</label>
+
+    <div class="controls">
+      {{view Em.TextField valueBinding="content.maxPlayers" class="control"}}
     </div>
   </div>
 
@@ -18,6 +26,23 @@
     <div class="controls">
       {{view Scvrush.DateTimeView valueBinding="content.startsAt" class="control"}}
     </div>
+  </div>
+
+
+  <div class="row">
+    <div class="span1">
+      <a {{action "addRound"}}>add round</a>
+    </div>
+
+    <div class="span1">
+      {{#each round in content.rounds}}
+        {{round.number}}
+      {{/each}}
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="btn btn-primary" {{action "createTournament"}}>Create tournament</button>
   </div>
 
 </form>
