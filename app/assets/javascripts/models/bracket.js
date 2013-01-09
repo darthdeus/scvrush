@@ -1,3 +1,3 @@
-Scvrush.Bracket = DS.Model.extend({
-  tournament: DS.belongsTo("Scvrush.Tournament")
+Scvrush.Models.Bracket = DS.Model.extend({
+  tournament: DS.belongsTo("Scvrush.Models.Tournament")
 });
