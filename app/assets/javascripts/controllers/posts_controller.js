@@ -5,9 +5,9 @@ Scvrush.PostsController = Em.ArrayController.extend({
     var posts;
 
     if (this.get("query") === "") {
-      posts = Scvrush.get("store").find(Scvrush.Models.Post);
+      posts = Scvrush.get("store").find(Scvrush.Post);
     } else {
-      posts = Scvrush.get("store").find(Scvrush.Models.Post, { query: this.get("query") });
+      posts = Scvrush.get("store").find(Scvrush.Post, { query: this.get("query") });
     }
 
     this.set("content", posts);
