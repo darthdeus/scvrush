@@ -4,7 +4,7 @@
 
   {{#each user in controller}}
     <li class="user">
-      {{#linkTo "users.show" user}}
+      {{#linkTo "users.user" user}}
         <img {{bindAttr src="user.image"}}>
         <div {{bindAttr class="user.raceClass :race"}}>{{player.race_class}}</div>
 

@@ -7,8 +7,8 @@
     {{#if hasFollowers}}
       <h3>Followers</h3>
 
-      {{#each follower in followers}}
-        {{#linkTo "user" follower}}{{follower.username}}{{/linkTo}}
+      {{#each follower in controller.followers}}
+        {{#linkTo "users.user" follower}}{{follower.username}}{{/linkTo}}
         <br>
       {{/each}}
     {{else}}
@@ -19,7 +19,7 @@
     <h3>Following</h3>
 
     {{#each follower in following}}
-      {{#linkTo "user" follower}}{{follower.username}}{{/linkTo}}
+      {{#linkTo "users.user" follower}}{{follower.username}}{{/linkTo}}
       <br>
     {{/each}}
 
@@ -28,7 +28,7 @@
   <div class="span9">
     <h2>
       {{username}} ({{bnetInfo}})
-      {{#linkTo "users" class="help-inline"}}back to users{{/linkTo}}
+      {{#linkTo "users.index" class="help-inline"}}back to users{{/linkTo}}
 
       {{#unless isCurrentUser}}
         {{#if controller.isFollowingUser}}

@@ -4,8 +4,8 @@ Scvrush.User = DS.Model.extend({
   image:     DS.attr("string"),
   bnetInfo:  DS.attr("string"),
 
-  statuses:   DS.hasMany("Scvrush.Status"),
-  followers:  DS.hasMany("Scvrush.User"),
+  statuses:  DS.hasMany("Scvrush.Status"),
+  followers: DS.hasMany("Scvrush.User"),
   following: DS.hasMany("Scvrush.User"),
 
   hasFollowers: function() {
@@ -63,7 +63,7 @@ Scvrush.User.reopenClass({
     } else {
       var users = Scvrush.User.find({ username: username });
 
-      users.one("didLoad", function() {
+      users.then(function() {
         users.resolve(users.get("firstObject"));
       });
 

@@ -11,8 +11,9 @@ Scvrush.Router.map(function(match) {
   });
 
   match("/users").to("users", function(match) {
-    match("/:user_username").to("show");
+    match("/:user_id").to("user");
   });
+
 });
 
 Scvrush.PostsIndexRoute = Em.Route.extend({
@@ -39,15 +40,5 @@ Scvrush.TournamentsNewRoute = Em.Route.extend({
 Scvrush.UsersIndexRoute = Em.Route.extend({
   model: function() {
     return Scvrush.User.find();
-  }
-});
-
-Scvrush.UsersShowRoute = Em.Route.extend({
-  model: function(params) {
-    return Scvrush.User.findByUsername(params.user_username);
-  },
-
-  serialize: function(user, params) {
-    return { user_username: Ember.get(user, "username") };
   }
 });
