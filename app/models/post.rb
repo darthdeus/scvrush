@@ -25,9 +25,9 @@ class Post < ActiveRecord::Base
 
   mount_uploader :featured_image, FeaturedImageUploader
 
-  def to_param
-    "#{id}-#{title.parameterize}"
-  end
+  # def to_param
+  #   "#{id}-#{title.parameterize}"
+  # end
 
   include Tire::Model::Search
   include Tire::Model::Callbacks

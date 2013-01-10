@@ -2,7 +2,7 @@ Scvrush.Router.map(function(match) {
   match("/").to("home");
 
   match("/posts").to("posts", function(match) {
-    match("/:post_id").to("show");
+    match("/:post_id").to("post");
   });
 
   match("/tournaments").to("tournaments", function(match) {
@@ -15,19 +15,19 @@ Scvrush.Router.map(function(match) {
   });
 });
 
-Scvrush.PostsRoute = Em.Route.extend({
-  setupController: function(controller, model) {
-    controller.set("content", Scvrush.Post.find());
+Scvrush.PostsIndexRoute = Em.Route.extend({
+  model: function() {
+    return Scvrush.Post.find();
   }
 });
 
-Scvrush.TournamentsRoute = Em.Route.extend({
-  setupController: function(controller, model) {
-    controller.set("content", Scvrush.TournamentDay.find());
+Scvrush.TournamentsIndexRoute = Em.Route.extend({
+  model: function() {
+    return Scvrush.TournamentDay.find();
   }
 });
 
-Scvrush.Tournaments.NewRoute = Em.Route.extend({
+Scvrush.TournamentsNewRoute = Em.Route.extend({
   model: function() {
     var oneHourFromNow = moment().add("hours", 2);
     return Scvrush.Tournament.createRecord({
@@ -36,13 +36,13 @@ Scvrush.Tournaments.NewRoute = Em.Route.extend({
   }
 });
 
-Scvrush.UsersRoute = Em.Route.extend({
-  setupController: function(controller, model) {
-    controller.set("content", Scvrush.User.find());
+Scvrush.UsersIndexRoute = Em.Route.extend({
+  model: function() {
+    return Scvrush.User.find();
   }
 });
 
-Scvrush.Users.ShowRoute = Em.Route.extend({
+Scvrush.UsersShowRoute = Em.Route.extend({
   model: function(params) {
     return Scvrush.User.findByUsername(params.user_username);
   },

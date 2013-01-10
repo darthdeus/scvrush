@@ -4,12 +4,12 @@
 
   {{#each post in controller}}
     <div class="post">
-      {{#linkTo "posts.show" post class="image"}}
+      {{#linkTo "posts.post" post class="image"}}
         <img {{bindAttr src="post.image"}}>
       {{/linkTo}}
 
       <h2>
-        {{#linkTo "posts.show" post}}{{post.title}}{{/linkTo}}
+        {{#linkTo "posts.post" post}}{{post.title}}{{/linkTo}}
       </h2>
     </div>
   {{/each}}
