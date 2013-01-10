@@ -27,7 +27,7 @@ Scvrush.TournamentsRoute = Em.Route.extend({
   }
 });
 
-Scvrush.TournamentsNewRoute = Em.Route.extend({
+Scvrush.Tournaments.NewRoute = Em.Route.extend({
   model: function() {
     var oneHourFromNow = moment().add("hours", 2);
     return Scvrush.Tournament.createRecord({
@@ -42,7 +42,7 @@ Scvrush.UsersRoute = Em.Route.extend({
   }
 });
 
-Scvrush.UsersShowRoute = Em.Route.extend({
+Scvrush.Users.ShowRoute = Em.Route.extend({
   model: function(params) {
     return Scvrush.User.findByUsername(params.user_username);
   },
