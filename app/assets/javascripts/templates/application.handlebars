@@ -3,7 +3,7 @@
 
   <section>
     {{view Scvrush.NewStatusView class="sidebar-status-input" placeholder="Post a new status"}}
-    {{#linkTo "user" Scvrush.currentUser}}<i class="icon-user icon-white"></i>{{/linkTo}}
+    {{#linkTo "users.show" Scvrush.currentUser}}<i class="icon-user icon-white"></i>{{/linkTo}}
 
     {{#each status in Scvrush.currentUser.recentStatuses}}
       <p>

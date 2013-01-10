@@ -1,6 +1,6 @@
 <ul class="nav nav-tabs">
   <li class="active">
-    <a {{action gotoTournaments href="true"}}>All Events</a>
+    <a href="#">All Events</a>
   </li>
 
   <div class="pull-right">
@@ -26,7 +26,7 @@
 
             <div class="description">
               <h3>
-                {{#linkTo "tournament" tournament}}{{tournament.name}}{{/linkTo}}
+                {{#linkTo "tournaments.show" tournament}}{{tournament.name}}{{/linkTo}}
               </h3>
 
               <p>
@@ -50,7 +50,7 @@
 
   <div class="span3">
 
-    {{#linkTo "tournamentsNew" class="btn btn-primary"}}Create your own tournament{{/linkTo}}
+    {{#linkTo "tournaments.new" class="btn btn-primary"}}Create your own tournament{{/linkTo}}
 
     {{view Scvrush.CalendarView weeksBinding="controller.weeks"}}
     and these are the calendars

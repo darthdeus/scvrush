@@ -3,7 +3,7 @@ Scvrush = Ember.Application.create({
   rootElement: "#ember-app",
   ready: function() {
     var userId = this.$(this.rootElement).data("user-id");
-    Scvrush.currentUser = Scvrush.Models.User.find(userId);
+    Scvrush.currentUser = Scvrush.User.find(userId);
   }
 });
 

@@ -1,4 +1,4 @@
-Scvrush.UserController = Em.ObjectController.extend({
+Scvrush.UsersShowController = Em.ObjectController.extend({
 
   isCurrentUser: function() {
     return this.get("content") === Scvrush.currentUser;

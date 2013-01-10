@@ -1,4 +1,4 @@
-Scvrush.TournamentController = Em.ObjectController.extend({
+Scvrush.TournamentsShowController = Em.ObjectController.extend({
 
   register: function(tournament, t) {
     this.get("content").set("is_registered", true);
@@ -13,9 +13,6 @@ Scvrush.TournamentController = Em.ObjectController.extend({
   seed: function(event) {
     Scvrush.store.createRecord(Scvrush.Models.Bracket, { tournament: event.context });
     Scvrush.store.commit();
-    // Ember.run.later(this, function() {
-    //   event.context.reload();
-    // }, 500);
   },
 
   unseed: function(event) {
