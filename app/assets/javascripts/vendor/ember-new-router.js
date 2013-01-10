@@ -1,5 +1,5 @@
-// Version: v1.0.0-pre.2-306-g1bf0df4
-// Last commit: 1bf0df4 (2013-01-06 09:57:01 -0800)
+// Version: v1.0.0-pre.2-366-g4772b18
+// Last commit: 4772b18 (2013-01-09 18:56:47 -0800)
 
 
 (function() {
@@ -142,8 +142,8 @@ if ('undefined' !== typeof window) {
 
 })();
 
-// Version: v1.0.0-pre.2-345-g53a61ce
-// Last commit: 53a61ce (2013-01-09 13:12:41 -0800)
+// Version: v1.0.0-pre.2-366-g4772b18
+// Last commit: 4772b18 (2013-01-09 18:56:47 -0800)
 
 
 (function() {
@@ -3151,6 +3151,7 @@ Ember.warn("The CP_DEFAULT_CACHEABLE flag has been removed and computed properti
 
 
 var get = Ember.get,
+    set = Ember.set,
     metaFor = Ember.meta,
     guidFor = Ember.guidFor,
     a_slice = [].slice,
@@ -3587,6 +3588,22 @@ Ember.computed.empty = function(dependentKey) {
 Ember.computed.bool = function(dependentKey) {
   return Ember.computed(dependentKey, function(key) {
     return !!get(this, dependentKey);
+  });
+};
+
+/**
+  @method computed.alias
+  @for Ember
+  @param {String} dependentKey
+*/
+Ember.computed.alias = function(dependentKey) {
+  return Ember.computed(dependentKey, function(key, value){
+    if (arguments.length === 1) {
+      return get(this, dependentKey);
+    } else {
+      set(this, dependentKey, value);
+      return value;
+    }
   });
 };
 
@@ -5607,8 +5624,34 @@ Alias.prototype = new Ember.Descriptor();
   @for Ember
   @param {String} methodName name of the method or property to alias
   @return {Ember.Descriptor}
+  @deprecated Use `Ember.aliasMethod` or `Ember.computed.alias` instead
 */
 Ember.alias = function(methodName) {
+  return new Alias(methodName);
+};
+
+Ember.deprecateFunc("Ember.alias is deprecated. Please use Ember.aliasMethod or Ember.computed.alias instead.", Ember.alias);
+
+/**
+  Makes a method available via an additional name.
+
+  ```javascript
+  App.Person = Ember.Object.extend({
+    name: function(){
+      return 'Tomhuda Katzdale';
+    },
+    moniker: Ember.aliasMethod('name')
+  });
+
+  var goodGuy = App.Person.create()
+  ```
+
+  @method aliasMethod
+  @for Ember
+  @param {String} methodName name of the method to alias
+  @return {Ember.Descriptor}
+*/
+Ember.aliasMethod = function(methodName) {
   return new Alias(methodName);
 };
 
@@ -10492,7 +10535,7 @@ Ember.Set = Ember.CoreObject.extend(Ember.MutableEnumerable, Ember.Copyable, Emb
     @param {Object} obj The object to add.
     @return {Ember.Set} The set itself.
   */
-  add: Ember.alias('addObject'),
+  add: Ember.aliasMethod('addObject'),
 
   /**
     Removes the object from the set if it is found. If you pass a `null` value
@@ -10510,7 +10553,7 @@ Ember.Set = Ember.CoreObject.extend(Ember.MutableEnumerable, Ember.Copyable, Emb
     @param {Object} obj The object to remove
     @return {Ember.Set} The set itself.
   */
-  remove: Ember.alias('removeObject'),
+  remove: Ember.aliasMethod('removeObject'),
 
   /**
     Removes the last element from the set and returns it, or `null` if it's empty.
@@ -10548,7 +10591,7 @@ Ember.Set = Ember.CoreObject.extend(Ember.MutableEnumerable, Ember.Copyable, Emb
     @method push
     @return {Ember.Set} The set itself.
   */
-  push: Ember.alias('addObject'),
+  push: Ember.aliasMethod('addObject'),
 
   /**
     Removes the last element from the set and returns it, or `null` if it's empty.
@@ -10565,7 +10608,7 @@ Ember.Set = Ember.CoreObject.extend(Ember.MutableEnumerable, Ember.Copyable, Emb
     @method shift
     @return {Object} The removed object from the set or null.
   */
-  shift: Ember.alias('pop'),
+  shift: Ember.aliasMethod('pop'),
 
   /**
     Inserts the given object on to the end of the set. It returns
@@ -10583,7 +10626,7 @@ Ember.Set = Ember.CoreObject.extend(Ember.MutableEnumerable, Ember.Copyable, Emb
     @method unshift
     @return {Ember.Set} The set itself.
   */
-  unshift: Ember.alias('push'),
+  unshift: Ember.aliasMethod('push'),
 
   /**
     Adds each object in the passed enumerable to the set.
@@ -10599,7 +10642,7 @@ Ember.Set = Ember.CoreObject.extend(Ember.MutableEnumerable, Ember.Copyable, Emb
     @param {Ember.Enumerable} objects the objects to add.
     @return {Ember.Set} The set itself.
   */
-  addEach: Ember.alias('addObjects'),
+  addEach: Ember.aliasMethod('addObjects'),
 
   /**
     Removes each object in the passed enumerable to the set.
@@ -10615,7 +10658,7 @@ Ember.Set = Ember.CoreObject.extend(Ember.MutableEnumerable, Ember.Copyable, Emb
     @param {Ember.Enumerable} objects the objects to remove.
     @return {Ember.Set} The set itself.
   */
-  removeEach: Ember.alias('removeObjects'),
+  removeEach: Ember.aliasMethod('removeObjects'),
 
   // ..........................................................
   // PRIVATE ENUMERABLE SUPPORT
@@ -12269,8 +12312,6 @@ Ember.ArrayController = Ember.ArrayProxy.extend(Ember.ControllerMixin,
   },
 
   arrayContentDidChange: function(idx, removedCnt, addedCnt) {
-    this._super(idx, removedCnt, addedCnt);
-
     var subContainers = get(this, 'subContainers'),
         subContainersToRemove = subContainers.slice(idx, idx+removedCnt);
 
@@ -12279,6 +12320,11 @@ Ember.ArrayController = Ember.ArrayProxy.extend(Ember.ControllerMixin,
     });
 
     replace(subContainers, idx, removedCnt, new Array(addedCnt));
+
+    // The shadow array of subcontainers must be updated before we trigger
+    // observers, otherwise observers will get the wrong subcontainer when
+    // calling `objectAt`
+    this._super(idx, removedCnt, addedCnt);
   },
 
   init: function() {
@@ -16727,7 +16773,9 @@ Ember Views
 // Copyright: ©2011 My Company Inc. All rights reserved.
 // ==========================================================================
 
-(function(window) {
+define("metamorph",
+  [],
+  function() {
 
   var K = function(){},
       guid = 0,
@@ -17175,8 +17223,8 @@ Ember Views
     }
   };
 
-  window.Metamorph = Metamorph;
-})(this);
+  return Metamorph;
+});
 
 
 })();
@@ -17643,6 +17691,7 @@ Ember.Handlebars.resolvePaths = function(options) {
 */
 
 var set = Ember.set, get = Ember.get;
+var Metamorph = requireModule('metamorph');
 
 // DOMManager should just abstract dom manipulation between jquery and metamorph
 var DOMManager = {
@@ -17761,6 +17810,7 @@ Ember._SimpleMetamorphView = Ember.CoreView.extend(Ember._Metamorph);
 */
 
 var get = Ember.get, set = Ember.set, handlebarsGet = Ember.Handlebars.get;
+var Metamorph = requireModule('metamorph');
 function SimpleHandlebarsView(path, pathRoot, isEscaped, templateData) {
   this.path = path;
   this.pathRoot = pathRoot;
@@ -20581,7 +20631,7 @@ Ember.Select = Ember.View.extend(
         content = get(this, 'content'),
         prompt = get(this, 'prompt');
 
-    if (!content) { return; }
+    if (!get(content, 'length')) { return; }
     if (prompt && selectedIndex === 0) { set(this, 'selection', null); return; }
 
     if (prompt) { selectedIndex -= 1; }
@@ -21211,7 +21261,7 @@ define("route-recognizer",
       to: function(target, callback) {
         var delegate = this.delegate;
 
-        if (!callback && delegate && delegate.willAddRoute) {
+        if (delegate && delegate.willAddRoute) {
           target = delegate.willAddRoute(this.matcher.target, target);
         }
 
@@ -22048,9 +22098,12 @@ function setupRouter(emberRouter, router, location) {
 function setupRouterDelegate(router, namespace) {
   router.delegate = {
     willAddRoute: function(context, handler) {
+      if (!context) { return handler; }
+
       if (context === 'application' || context === undefined) {
         return handler;
       } else {
+        context = context.split('.').slice(-1)[0];
         return context + '.' + handler;
       }
     },
@@ -22749,7 +22802,7 @@ Ember.onLoad('Ember.Handlebars', function(Handlebars) {
     }
 
     if (controller && context) {
-      controller.set('context', context);
+      controller.set('model', context);
     }
 
     options.hash.viewName = name;
@@ -24267,6 +24320,10 @@ function resolverFor(namespace) {
       }
     }
 
+    if (type === 'controller' || type === 'route' || type === 'view') {
+      name = name.replace(/\./g, '_');
+    }
+
     var className = classify(name) + classify(type);
     var factory = get(namespace, className);
 
@@ -25545,8 +25602,8 @@ Ember States
 
 
 })();
-// Version: v1.0.0-pre.2-345-g53a61ce
-// Last commit: 53a61ce (2013-01-09 13:12:41 -0800)
+// Version: v1.0.0-pre.2-366-g4772b18
+// Last commit: 4772b18 (2013-01-09 18:56:47 -0800)
 
 
 (function() {
