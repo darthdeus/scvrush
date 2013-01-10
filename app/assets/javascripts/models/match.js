@@ -6,6 +6,6 @@ Scvrush.Match = DS.Model.extend({
   player2_score: DS.attr("number"),
   completed:     DS.attr("boolean"),
 
-  round: DS.belongsTo("Scvrush.Models.Round")
+  round: DS.belongsTo("Scvrush.Round")
 });
 

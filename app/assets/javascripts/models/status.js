@@ -1,6 +1,6 @@
-Scvrush.Models.Status = DS.Model.extend({
+Scvrush.Status = DS.Model.extend({
   text:     DS.attr("string"),
-  user:     DS.belongsTo("Scvrush.Models.User"),
+  user:     DS.belongsTo("Scvrush.User"),
   createdAt: DS.attr("date"),
 
   postDate: function() {

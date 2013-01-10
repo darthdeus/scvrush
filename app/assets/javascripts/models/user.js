@@ -1,12 +1,12 @@
-Scvrush.Models.User = DS.Model.extend({
+Scvrush.User = DS.Model.extend({
   username:  DS.attr("string"),
   race:      DS.attr("string"),
   image:     DS.attr("string"),
   bnetInfo:  DS.attr("string"),
 
-  statuses:   DS.hasMany("Scvrush.Models.Status"),
-  followers:  DS.hasMany("Scvrush.Models.User"),
-  following: DS.hasMany("Scvrush.Models.User"),
+  statuses:   DS.hasMany("Scvrush.Status"),
+  followers:  DS.hasMany("Scvrush.User"),
+  following: DS.hasMany("Scvrush.User"),
 
   hasFollowers: function() {
     if (this.get("followers")) {
@@ -40,7 +40,7 @@ Scvrush.Models.User = DS.Model.extend({
     var url = "/users/" + user.get("id") + "/unfollow";
 
     $.post(url, { "_method": "DELETE" }, function(data) {
-      Scvrush.store.loadMany(Scvrush.Models.User, data.users);
+      Scvrush.store.loadMany(Scvrush.User, data.users);
     });
   },
 
@@ -51,17 +51,17 @@ Scvrush.Models.User = DS.Model.extend({
 });
 
 
-Scvrush.Models.User.reopenClass({
+Scvrush.User.reopenClass({
 
   findByUsername: function(username) {
-    var filtered = Scvrush.store.filter(Scvrush.Models.User, function(user) {
+    var filtered = Scvrush.store.filter(Scvrush.User, function(user) {
       return user.username == username;
     });
 
     if (filtered.get("length") > 0) {
       return filtered.get("firstObject");
     } else {
-      var users = Scvrush.Models.User.find({ username: username });
+      var users = Scvrush.User.find({ username: username });
 
       users.one("didLoad", function() {
         users.resolve(users.get("firstObject"));

@@ -1,27 +1,27 @@
-Scvrush.Models.Tournament = DS.Model.extend({
+Scvrush.Tournament = DS.Model.extend({
   name:              DS.attr("string"),
   imageName:         DS.attr("string"),
   participantCount:  DS.attr("number"),
   startsAt:          DS.attr("string"),
-  winner:            DS.belongsTo("Scvrush.Models.User"),
+  winner:            DS.belongsTo("Scvrush.User"),
   seeded:            DS.attr("boolean"),
   maxPlayers:        DS.attr("number"),
 
-  users:             DS.hasMany("Scvrush.Models.User"),
-  brackets:          DS.hasMany("Scvrush.Models.Bracket"),
+  users:             DS.hasMany("Scvrush.User"),
+  brackets:          DS.hasMany("Scvrush.Bracket"),
   isRegistered:      DS.attr("boolean"),
 
-  rounds:            DS.hasMany("Scvrush.Models.Round"),
+  rounds:            DS.hasMany("Scvrush.Round"),
 
   increaseRounds: function() {
     var rounds = this.get("rounds"),
         newRound;
 
     if (rounds.get("length") == 0) {
-      newRound = Scvrush.Models.Round.createRecord({ number: 2 });
+      newRound = Scvrush.Round.createRecord({ number: 2 });
     } else {
       var lastRoundNumber = rounds.get("lastObject.number");
-      newRound = Scvrush.Models.Round.createRecord({ number: lastRoundNumber * 2 });
+      newRound = Scvrush.Round.createRecord({ number: lastRoundNumber * 2 });
     }
 
     rounds.pushObject(newRound);
