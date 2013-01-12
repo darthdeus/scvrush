@@ -1,6 +1,6 @@
 <!-- TODO - display register now only if not started, maybe even as a direct clickable button -->
-{{#if view.content.is_registered}}
-  <a {{bindAttr class="view.cancelLinkClass"}} {{action cancel view.content target="view"}}>Cancel your registration</a>
+{{#if view.content.isRegistered}}
+  <a {{bindAttr class="view.cancelLinkClass"}} {{action "cancel" view.content target="view"}}>Cancel your registration</a>
 {{else}}
-  <a {{bindAttr class="view.registerLinkClass"}} {{action register view.content target="view"}}>register now!</a>
+  <a {{bindAttr class="view.registerLinkClass"}} {{action "register" view.content target="view"}}>register now!</a>
 {{/if}}

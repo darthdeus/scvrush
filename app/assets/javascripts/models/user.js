@@ -69,6 +69,8 @@ Scvrush.User.reopenClass({
 
       return users;
     }
-  }
+  },
+
+  ALL_RACES: [ "Zerg", "Terran", "Protoss", "Random" ]
 
 });

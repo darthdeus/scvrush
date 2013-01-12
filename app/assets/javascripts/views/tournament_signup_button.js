@@ -3,13 +3,13 @@ Scvrush.TournamentSignupButton = Em.View.extend({
 
   tagName: "span",
 
-  register: function(event) {
-    event.context.set("is_registered", true);
+  register: function(model) {
+    model.set("isRegistered", true);
     Scvrush.store.commit();
   },
 
-  cancel: function(event) {
-    event.context.set("is_registered", false);
+  cancel: function(model) {
+    model.set("isRegistered", false);
     Scvrush.store.commit();
   }
 

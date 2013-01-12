@@ -1,6 +1,11 @@
 <p>There are already {{participant_count}} players signed up</p>
 
-{{view Scvrush.TournamentSignupButton contentBinding="controller.content" registerLinkClass="btn btn-success" cancelLinkClass="btn btn-danger"}}
+{{#if controller.isRegistered}}
+  <p>Your race is {{view Ember.Select contentBinding="Scvrush.User.ALL_RACES" valueBinding="Scvrush.currentUser.race"}}</p>
+  <p>Make sure that this is correct, since you are not allowed to change the race when the tournament begins.</p>
+{{/if}}
+
+{{view Scvrush.TournamentSignupButton contentBinding="content" registerLinkClass="btn btn-success" cancelLinkClass="btn btn-danger"}}
 
 {{#if users.isLoaded}}
   <h4>Registered players</h2>
