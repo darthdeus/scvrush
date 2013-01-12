@@ -35,6 +35,10 @@ Scvrush.Tournament = DS.Model.extend({
     return this.get("name.length") < 3;
   }.property("name"),
 
+  isInvalid: function() {
+    return this.get("nameInvalid");
+  }.property("nameInvalid"),
+
   startsAtInvalid: function() {
     return !/^\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}(:\d{2})?Z?$/.test(this.get("startsAt"));
   }.property("startsAt"),

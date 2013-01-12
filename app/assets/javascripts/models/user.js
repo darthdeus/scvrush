@@ -14,6 +14,10 @@ Scvrush.User = DS.Model.extend({
     }
   },
 
+  imageOrDefault: function() {
+    return this.get("image") || "default.png";
+  }.property("image"),
+
   raceClass: function() {
     if (this.get("race")) {
       return "race-" + this.get("race").toLowerCase();

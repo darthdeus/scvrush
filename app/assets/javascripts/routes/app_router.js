@@ -34,6 +34,24 @@ Scvrush.TournamentsNewRoute = Em.Route.extend({
     return Scvrush.Tournament.createRecord({
       startsAt: oneHourFromNow.format("YYYY-MM-DD HH:mm")
     });
+  },
+
+  events: {
+    save: function(tournament) {
+      var router = this;
+
+      if (tournament.get("isInvalid")) {
+        return;
+      }
+
+      tournament.one("didCreate", function() {
+        Ember.run.next(function() {
+          router.transitionTo("tournaments.show", tournament);
+        });
+      });
+
+      this.get("store").commit();
+    }
   }
 });
 
