@@ -6,6 +6,3 @@ Scvrush = Ember.Application.create({
     Scvrush.currentUser = Scvrush.User.find(userId);
   }
 });
-
-Scvrush.Models = Ember.Namespace.extend({
-});
