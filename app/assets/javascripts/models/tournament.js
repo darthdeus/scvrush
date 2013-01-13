@@ -16,8 +16,10 @@ Scvrush.Tournament = DS.Model.extend({
   rounds:            DS.hasMany("Scvrush.Round"),
 
   startNow: function() {
+    var model = this;
+
     $.post("/tournaments/" + this.get("id") + "/start", function(data) {
-      debugger
+      model.get("store").load(Scvrush.Tournament, data.tournament);
     });
   },
 

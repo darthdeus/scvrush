@@ -1,18 +1,15 @@
 Scvrush.TournamentsShowController = Em.ObjectController.extend({
 
-  seed: function(event) {
-    Scvrush.Bracket.createRecord({ tournament: event.context });
+  seed: function() {
+    Scvrush.Bracket.createRecord({ tournament: this.get("content") });
     this.get("store").commit();
   },
 
   unseed: function(event) {
-    $.post("/brackets/" + event.context.id, { _method: "DELETE" }, function(data) {
-      Scvrush.store.load(Scvrush.Tournament, data.tournament);
+    var self = this;
+    $.post("/brackets/" + this.get("content.id"), { _method: "DELETE" }, function(data) {
+      self.get("store").load(Scvrush.Tournament, data.tournament);
     });
-  },
-
-  foo: function() {
-    console.log("from controller", this.get("store").toString());
   },
 
   isAdmin: function() {

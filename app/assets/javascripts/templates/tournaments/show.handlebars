@@ -1,10 +1,16 @@
 <h1>{{name}}</h1>
 
 {{#if isAdmin}}
-  <span class="meta">
-    {{#unless isStarted}}
+  <span class="meta btn-group">
+    {{#if isStarted}}
+      {{#if content.seeded}}
+        <button class="btn" {{action "unseed"}}>unseed the tournament</button>
+      {{else}}
+        <button class="btn" {{action "seed"}}>seed the tournament</button>
+      {{/if}}
+    {{else}}
       <button class="btn" {{action "start"}}>Start the tournament</button>
-    {{/unless}}
+    {{/if}}
   </span>
 {{/if}}
 
