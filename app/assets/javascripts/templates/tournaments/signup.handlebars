@@ -1,7 +1,5 @@
-<p>There are already {{participant_count}} players signed up</p>
-
-{{#if controller.isRegistered}}
-  <p>Your race is {{view Ember.Select contentBinding="Scvrush.User.ALL_RACES" valueBinding="Scvrush.currentUser.race"}}</p>
+{{#if isRegistered}}
+  <p>Your race is {{view Scvrush.RaceSelectionView contentBinding="Scvrush.User.ALL_RACES" valueBinding="Scvrush.currentUser.race" modelBinding="Scvrush.currentUser"}}</p>
   <p>Make sure that this is correct, since you are not allowed to change the race when the tournament begins.</p>
 {{/if}}
 
@@ -9,6 +7,8 @@
 
 {{#if users.isLoaded}}
   <h4>Registered players</h2>
+
+  <p>There are already {{participant_count}} players signed up</p>
 
   <div class="registered-players">
     <ul class="unstyled tournament-players">

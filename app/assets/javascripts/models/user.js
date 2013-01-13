@@ -8,6 +8,8 @@ Scvrush.User = DS.Model.extend({
   followers: DS.hasMany("Scvrush.User"),
   following: DS.hasMany("Scvrush.User"),
 
+  tournaments: DS.hasMany("Scvrush.Tournament"),
+
   hasFollowers: function() {
     if (this.get("followers")) {
       return this.get("followers.length") > 0;

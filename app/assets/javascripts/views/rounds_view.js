@@ -9,18 +9,6 @@ Scvrush.RoundsView = Em.View.extend({
     Ember.run.later(function() {
       $(".bracket").applyDimensions(window.dimensions);
     }, 500);
-  },
-
-//   willDestroyElement: function() {
-//     console.log("willDestroyElement");
-//   },
-//
-//   willInsertElement: function() {
-//     console.log("willInsertElement");
-//   },
-//
-//   willClearRender: function() {
-//     console.log("view rerendered");
-//   },
+  }
 
 });

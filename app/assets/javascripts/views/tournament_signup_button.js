@@ -5,12 +5,12 @@ Scvrush.TournamentSignupButton = Em.View.extend({
 
   register: function(model) {
     model.set("isRegistered", true);
-    Scvrush.store.commit();
+    this.get("controller.store").commit();
   },
 
   cancel: function(model) {
     model.set("isRegistered", false);
-    Scvrush.store.commit();
+    this.get("controller.store").commit();
   }
 
 });

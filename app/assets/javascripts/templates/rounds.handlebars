@@ -3,13 +3,15 @@
     <p>{{view.tournament.winner.username}} is the winner</p>
   {{/if}}
 
-  <p>
-    {{#if view.tournament.seeded}}
-      <a {{action "unseed" view.tournament target="controller"}}>unseed the tournament</a>
-    {{else}}
-      <a {{action "seed" view.tournament target="controller"}}>seed the tournament</a>
-    {{/if}}
-  </p>
+  {{#if isAdmin}}
+    <p>
+      {{#if view.tournament.seeded}}
+        <a {{action "unseed" view.tournament target="controller"}}>unseed the tournament</a>
+      {{else}}
+        <a {{action "seed" view.tournament target="controller"}}>seed the tournament</a>
+      {{/if}}
+    </p>
+  {{/if}}
 
   {{#if hasRounds}}
     {{#each round in view.tournament.rounds}}
@@ -42,6 +44,5 @@
       <!-- TODO - display last reloaded at -->
     </div>
   {{/if}}
-
 
 </div>

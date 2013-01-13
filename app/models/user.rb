@@ -16,6 +16,8 @@ class User < ActiveRecord::Base
   has_many :tournaments, through: :signups
   has_many :won_tournaments, class_name: "Tournament", foreign_key: "winner_id"
 
+  has_many :owned_tournaments, class_name: "Tournament", foreign_key: "user_id"
+
   has_many :statuses
 
   has_many :posts
@@ -31,7 +33,8 @@ class User < ActiveRecord::Base
                   :password_reset_token, :avatar, :race, :league, :server,
                   :favorite_player, :skype, :display_skype, :msn,
                   :display_msn, :display_email, :about, :avatar,
-                  :bnet_code, :bnet_username, :twitter, :time_zone, :practice
+                  :bnet_code, :bnet_username, :twitter, :time_zone, :practice,
+                  :image, :bnet_info
 
   acts_as_followable
 
@@ -106,16 +109,16 @@ class User < ActiveRecord::Base
     self.raffle_signups.where(raffle_id: raffle.id).first
   end
 
-  def to_param
-    "#{id}-#{username.parameterize}"
-  end
-
   def to_s
     if bnet_info?
       "#{username} - #{bnet_info}"
     else
       username
     end
+  end
+
+  def bnet_info=(value)
+    self.bnet_username, self.bnet_code = value.split(".")
   end
 
   before_save :encrypt_password

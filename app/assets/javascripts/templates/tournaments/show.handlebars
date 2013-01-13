@@ -1,4 +1,13 @@
 <h1>{{name}}</h1>
+
+{{#if isAdmin}}
+  <span class="meta">
+    {{#unless isStarted}}
+      <button class="btn" {{action "start"}}>Start the tournament</button>
+    {{/unless}}
+  </span>
+{{/if}}
+
 <h4>{{#linkTo "tournaments"}}back to tournaments{{/linkTo}}</h4>
 
 {{#if isStarted}}

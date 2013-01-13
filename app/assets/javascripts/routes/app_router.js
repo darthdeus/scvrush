@@ -55,6 +55,16 @@ Scvrush.TournamentsNewRoute = Em.Route.extend({
   }
 });
 
+Scvrush.TournamentsShowRoute = Em.Route.extend({
+
+  events: {
+    foo: function() {
+      console.log("from the router", this.get("store").toString());
+    }
+  }
+
+});
+
 Scvrush.UsersIndexRoute = Em.Route.extend({
   model: function() {
     return Scvrush.User.find();

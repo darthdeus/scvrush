@@ -7,11 +7,19 @@ Scvrush.Tournament = DS.Model.extend({
   seeded:            DS.attr("boolean"),
   maxPlayers:        DS.attr("number"),
 
+  user:              DS.belongsTo("Scvrush.User"),
   users:             DS.hasMany("Scvrush.User"),
   brackets:          DS.hasMany("Scvrush.Bracket"),
   isRegistered:      DS.attr("boolean"),
 
+  tournamentDay: DS.belongsTo("Scvrush.TournamentDay"),
   rounds:            DS.hasMany("Scvrush.Round"),
+
+  startNow: function() {
+    $.post("/tournaments/" + this.get("id") + "/start", function(data) {
+      debugger
+    });
+  },
 
   increaseRounds: function() {
     var rounds = this.get("rounds"),
@@ -73,5 +81,4 @@ Scvrush.Tournament = DS.Model.extend({
     return time.format("LT") + " (" + time.fromNow() + ")";
   }.property("startsAt"),
 
-  tournamentDay: DS.belongsTo("Scvrush.TournamentDay")
 });

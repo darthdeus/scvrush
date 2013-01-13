@@ -40,13 +40,9 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    @user.update_attributes(params[:user])
-    if @user.save
-      flash[:notice] = "Your profile was successfully updated."
-      redirect_back_or @user
-    else
-      render 'edit'
-    end
+    @user.update_attributes(params[:user].extract!(:race))
+    sleep 5
+    respond_with @user
   end
 
   def follow

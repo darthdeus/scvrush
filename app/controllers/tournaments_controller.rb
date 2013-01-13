@@ -97,13 +97,13 @@ class TournamentsController < ApplicationController
     authorize! :start, @tournament
 
     if @tournament.started?
-      flash[:error] = "Tournament was already started."
+      # TODO - figure out a better way to handle this
+      raise "Tournament was already started"
     else
       @tournament.start
-      flash[:success] = "Tournament was started."
     end
 
-    redirect_to @tournament
+    respond_with @tournament
   end
 
   def emails
