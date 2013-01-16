@@ -8,8 +8,14 @@ Scvrush.TournamentSignupButton = Em.View.extend({
     this.get("controller.store").commit();
   },
 
+  checkin: function(model) {
+    model.set("isChecked", true);
+    this.get("controller.store").commit();
+  },
+
   cancel: function(model) {
     model.set("isRegistered", false);
+    model.set("isChecked", false);
     this.get("controller.store").commit();
   }
 

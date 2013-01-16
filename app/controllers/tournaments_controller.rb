@@ -44,9 +44,11 @@ class TournamentsController < ApplicationController
     tournament = Tournament.find(params[:id])
 
     if params[:tournament][:is_registered]
-      # TODO - beware of duplicates
-      signup = Signup.for(current_user, tournament)
-      signup.signup!
+      registrator = UserRegistrator.new(current_user, tournament)
+      registrator.signup
+    elsif params[:tournament][:is_checked]
+      registrator = UserRegistrator.new(current_user, tournament)
+      registrator.checkin
     else
       tournament.unregister(current_user)
     end

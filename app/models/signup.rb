@@ -19,7 +19,8 @@ class Signup < ActiveRecord::Base
 
   # Create a new signup for a user and a tournament
   def self.for(user, tournament)
-    instance = new(user: user, tournament: tournament)
+    signup = where(user_id: user.id, tournament_id: tournament.id).first
+    signup || new(user: user, tournament: tournament)
   end
 
   def checked?

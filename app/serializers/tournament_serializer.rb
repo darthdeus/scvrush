@@ -12,7 +12,8 @@ class TournamentSerializer < ActiveModel::Serializer
     hash = super
     if scope
       player = TournamentPlayerDecorator.new(scope, self)
-      hash["is_registered"] = player.registered?
+      hash["is_registered"] = player.registered? || player.checked_in?
+      hash["is_checked"] = player.checked_in?
     end
 
     hash

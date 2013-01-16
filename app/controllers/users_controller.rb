@@ -41,7 +41,6 @@ class UsersController < ApplicationController
   def update
     @user = current_user
     @user.update_attributes(params[:user].extract!(:race))
-    sleep 5
     respond_with @user
   end
 

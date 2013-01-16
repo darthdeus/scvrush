@@ -2,5 +2,9 @@
 {{#if view.content.isRegistered}}
   <a {{bindAttr class="view.cancelLinkClass"}} {{action "cancel" view.content target="view"}}>Cancel your registration</a>
 {{else}}
-  <a {{bindAttr class="view.registerLinkClass"}} {{action "register" view.content target="view"}}>register now!</a>
+  {{#if view.content.shouldCheckin}}
+    <a {{bindAttr class="view.registerLinkClass"}} {{action "checkin" view.content target="view"}}>Check in!</a>
+  {{else}}
+    <a {{bindAttr class="view.registerLinkClass"}} {{action "register" view.content target="view"}}>Register now!</a>
+  {{/if}}
 {{/if}}
