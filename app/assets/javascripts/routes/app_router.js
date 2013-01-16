@@ -1,17 +1,17 @@
-Scvrush.Router.map(function(match) {
-  match("/").to("home");
+Scvrush.Router.map(function() {
+  this.route("home", { path: "/" });
 
-  match("/posts").to("posts", function(match) {
-    match("/:post_id").to("post");
+  this.resource("posts", { path: "/posts" }, function() {
+    this.route("post", { path: "/:post_id" });
   });
 
-  match("/tournaments").to("tournaments", function(match) {
-    match("/new").to("new");
-    match("/:tournament_id").to("show");
+  this.resource("tournaments", { path: "/tournaments" }, function() {
+    this.resource("tournament", { path: "/:tournament_id" });
+    this.route("new", { path: "/new" });
   });
 
-  match("/users").to("users", function(match) {
-    match("/:user_id").to("user");
+  this.resource("users", { path: "/users" }, function() {
+    this.route("user", { path: "/:user_id" });
   });
 
 });
@@ -46,7 +46,7 @@ Scvrush.TournamentsNewRoute = Em.Route.extend({
 
       tournament.one("didCreate", function() {
         Ember.run.next(function() {
-          router.transitionTo("tournaments.show", tournament);
+          router.transitionTo("tournament", tournament);
         });
       });
 
@@ -55,14 +55,16 @@ Scvrush.TournamentsNewRoute = Em.Route.extend({
   }
 });
 
-Scvrush.TournamentsShowRoute = Em.Route.extend({
+Scvrush.TournamentRoute = Em.Route.extend({
+  renderTemplate: function() {
+    this.render("tournaments/tournament");
+  },
 
   events: {
     foo: function() {
       console.log("from the router", this.get("store").toString());
     }
   }
-
 });
 
 Scvrush.UsersIndexRoute = Em.Route.extend({

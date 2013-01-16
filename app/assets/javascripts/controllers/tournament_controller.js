@@ -1,4 +1,4 @@
-Scvrush.TournamentsShowController = Em.ObjectController.extend({
+Scvrush.TournamentController = Em.ObjectController.extend({
 
   seed: function() {
     Scvrush.Bracket.createRecord({ tournament: this.get("content") });

@@ -1,0 +1,30 @@
+<h1>{{name}}</h1>
+
+{{#unless isEmpty}}
+  {{#if isAdmin}}
+    <span class="meta btn-group">
+      {{#if isStarted}}
+        {{#if content.seeded}}
+          <button class="btn" {{action "unseed"}}>unseed the tournament</button>
+        {{else}}
+          <button class="btn" {{action "seed"}}>seed the tournament</button>
+        {{/if}}
+      {{else}}
+        <button class="btn" {{action "start"}}>Start the tournament</button>
+      {{/if}}
+    </span>
+  {{/if}}
+{{/unless}}
+
+<h4>{{#linkTo "tournaments"}}back to tournaments{{/linkTo}}</h4>
+
+{{#if isStarted}}
+  {{#if isEmpty}}
+    <p class="alert alert-notice">No players were signed up for this tournament when it started</p>
+  {{else}}
+    {{view Scvrush.RoundsView tournamentBinding="content"}}
+  {{/if}}
+
+{{else}}
+  {{view Scvrush.TournamentSignupView}}
+{{/if}}
