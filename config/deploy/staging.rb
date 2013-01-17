@@ -1,4 +1,4 @@
-set :domain, "beta.scvrush.com"
+set :domain, "185.14.184.148"
 set :branch, "ember-profiles"
 
 role :web, domain
