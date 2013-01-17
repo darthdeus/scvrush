@@ -13,11 +13,8 @@ namespace :db do
     user.grant :admin
 
     10.times do
-      attributes = { username: user.username, user_id: user.id, text: Faker::Lorem.sentences(3).join }
-      FactoryGirl.create(:status, attributes)
+      FactoryGirl.create(:status)
     end
-
-    FactoryGirl.create(:status, username: user.username, user_id: user.id)
 
     salt = BCrypt::Engine.generate_salt
 
