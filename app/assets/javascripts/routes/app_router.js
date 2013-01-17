@@ -40,6 +40,7 @@ Scvrush.TournamentsNewRoute = Em.Route.extend({
     save: function(tournament) {
       var router = this;
 
+      tournament.revalidate();
       if (tournament.get("isInvalid")) {
         return;
       }
