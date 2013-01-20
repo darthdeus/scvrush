@@ -13,7 +13,7 @@ Scvrush.Tournament = DS.Model.extend({
   isRegistered:      DS.attr("boolean"),
   isChecked:         DS.attr("boolean"),
 
-  tournamentDay: DS.belongsTo("Scvrush.TournamentDay"),
+  tournamentDay:     DS.belongsTo("Scvrush.TournamentDay"),
   rounds:            DS.hasMany("Scvrush.Round"),
 
   startNow: function() {
@@ -59,7 +59,7 @@ Scvrush.Tournament = DS.Model.extend({
   }.property("startsAt"),
 
   isStarted: function() {
-    return new Date(this.get("startsAt")) > new Date();
+    return new Date(this.get("startsAt")) < new Date();
   }.property("startsAt"),
 
   shouldCheckin: function() {
@@ -67,7 +67,7 @@ Scvrush.Tournament = DS.Model.extend({
   }.property("tournament"),
 
   checkinOpen: function() {
-    var start = moment(this.get("startsAt")),
+    var start = moment(new Date(this.get("startsAt"))),
         checkin = start.subtract("minutes", 30);
 
     return start < moment() && moment() > checkin;

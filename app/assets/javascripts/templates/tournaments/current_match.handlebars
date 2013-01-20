@@ -1,0 +1,15 @@
+{{#if currentMatch.isPending}}
+  You are currently plaing against {{currentOpponent}}
+
+  <form class="form-horizontal"{{action "submitResult" score currentOpponent on="submit"}}>
+    <div {{bindAttr class="scoreError:error :control-group"}}>
+      {{view Ember.TextField valueBinding="score" placeholder="Your score, for example 1:3" class="control"}}
+      <button type="submit" class="btn btn-success">I won!</button>
+
+      <span class="faded">do not submit match result if you lost</span>
+    </div>
+
+  </form>
+{{else}}
+  Please wait for your next opponent <a href="#" {{action reload}}><i class="icon-repeat"></i></a>
+{{/if}}

@@ -1,6 +1,8 @@
 class MatchesController < ApplicationController
   before_filter :require_login
 
+  respond_to :json
+
   def index
     # authorize! :manage, Match
     # @matches = Match.limit(20).order("updated_at DESC")
@@ -15,24 +17,23 @@ class MatchesController < ApplicationController
       redirect_to bracket.tournament and return
     end
 
-    begin
-      # TODO - use hash instead of an id
-      winner = bracket.set_score_for(current_user, params[:score], false, params[:opponent_id])
+    match = bracket.current_match_for current_user
+    # TODO - use hash instead of an id
+    winner = bracket.set_score_for(current_user, params[:score], false, params[:opponent_id])
 
-      if winner == current_user
-        flash[:success] = "Congratulations, you won the tournament!"
-      else
-        flash[:success] = "Match result was submitted"
-      end
+    # FIXME - this is never met
+    # if winner == current_user
+    #   flash[:success] = "Congratulations, you won the tournament!"
+    # else
+    #   flash[:success] = "Match result was submitted"
+    # end
 
-    rescue Bracket::AlreadySubmitted
-      flash[:error] = "You can't change the match result. Please contact any of the tournament admins if the result is incorrect."
-    rescue Bracket::NotStartedYet
-      flash[:error] = "You can't submit a match result before you have an opponent"
-    end
-    # TODO - display possible error messages
-
-    redirect_to bracket.tournament
+    render json: bracket.tournament.matches.reload
+    # TODO - don't use flash messages for this
+  rescue Bracket::AlreadySubmitted
+    flash[:error] = "You can't change the match result. Please contact any of the tournament admins if the result is incorrect."
+  rescue Bracket::NotStartedYet
+    flash[:error] = "You can't submit a match result before you have an opponent"
   end
 
 

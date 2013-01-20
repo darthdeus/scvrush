@@ -62,8 +62,28 @@ Scvrush.TournamentRoute = Em.Route.extend({
   },
 
   events: {
-    foo: function() {
-      console.log("from the router", this.get("store").toString());
+    submitResult: function(score, opponentId) {
+      var controller = this.controllerFor("tournament"),
+          route = this;
+
+      controller.propertyDidChange("score");
+
+      if (controller.get("scoreInvalid")) {
+        return;
+      }
+
+      // TODO - also validate the opposite case of user submitting
+      // score as if he lost, like 1:3
+
+
+      $.post("/matches", {
+        score: score,
+        opponent_id: opponentId,
+        tournament_id: controller.get("content.id")
+      }, function(data) {
+        route.get("store").loadMany(Scvrush.Match, data.matches);
+      });
+      console.log("submitted", score);
     }
   }
 });

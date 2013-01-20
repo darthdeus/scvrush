@@ -130,7 +130,8 @@ class Bracket < Struct.new(:tournament)
       raise NotStartedYet unless match.can_submit?
     end
 
-    if opponent_id && match.opponent_for(user).id != opponent_id.to_i
+    # TODO - figure out if some tests break this
+    if opponent_id && match.opponent_for(user).bnet_info != opponent_id
       raise AlreadySubmitted
     end
 

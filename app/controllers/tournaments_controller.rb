@@ -19,6 +19,8 @@ class TournamentsController < ApplicationController
     tournament.user = current_user
     tournament.bo_preset = "1"
 
+    sleep 5
+
     tournament.save
 
     respond_with tournament
@@ -38,6 +40,11 @@ class TournamentsController < ApplicationController
   def edit
     @tournament = Tournament.find(params[:id])
     authorize! :edit, @tournament
+  end
+
+  def destroy
+    @tournament = current_user.tournaments.find(params[:id])
+    @tournament.destroy
   end
 
   def update
@@ -106,16 +113,6 @@ class TournamentsController < ApplicationController
     end
 
     respond_with @tournament
-  end
-
-  def emails
-    @tournament = TournamentDecorator.find(params[:id])
-    if current_user.has_role? :tournament_admin, @tournament
-      render text: @tournament.checked_players.map(&:email).join("<br>")
-    else
-      flash[:error] = "Access denied! Only tournament administrators can view emails."
-      redirect_to root_path
-    end
   end
 
 end
