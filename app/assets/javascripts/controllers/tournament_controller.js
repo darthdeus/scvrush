@@ -50,28 +50,6 @@ Scvrush.TournamentController = Em.ObjectController.extend({
     this.get("content").startNow();
   },
 
-  register: function() {
-    debugger
-    this.set("content.isRegistered", true);
-    this.get("store").commit();
-  },
-
-  checkin: function() {
-    this.set("content.isChecked", true);
-    this.get("store").commit();
-  },
-
-  cancel: function() {
-    this.set("content.isRegistered", false);
-    this.set("content.isChecked", false);
-    this.get("store").commit();
-  },
-
-  deleteTournament: function() {
-    this.get("content").deleteRecord();
-    this.get("store").commit();
-  },
-
   isPlaying: function() {
     return this.get("content.users").contains(Scvrush.currentUser);
   }.property("content.users.@each"),

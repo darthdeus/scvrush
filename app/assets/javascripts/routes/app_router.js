@@ -22,6 +22,32 @@ Scvrush.PostsIndexRoute = Em.Route.extend({
   }
 });
 
+Scvrush.TournamentsRoute = Em.Route.extend({
+  events: {
+    register: function(model) {
+      model.set("isRegistered", true);
+      this.get("store").commit();
+    },
+
+    checkin: function(model) {
+      model.set("isChecked", true);
+      this.get("store").commit();
+    },
+
+    cancel: function(model) {
+      model.set("isRegistered", false);
+      model.set("isChecked", false);
+      this.get("store").commit();
+    },
+
+    deleteTournament: function(model) {
+      model.deleteRecord();
+      this.get("store").commit();
+    },
+  }
+
+});
+
 Scvrush.TournamentsIndexRoute = Em.Route.extend({
   model: function() {
     return Scvrush.TournamentDay.find();
