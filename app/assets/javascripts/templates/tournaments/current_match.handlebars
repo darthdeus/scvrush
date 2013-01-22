@@ -1,3 +1,7 @@
+<p>
+  <a class="btn" href="#" {{action reloadMatches content}}><i class="icon-repeat"></i> Reload</a>
+</p>
+
 {{#if currentMatch.isPending}}
   You are currently plaing against {{currentOpponent}}
 
@@ -11,5 +15,5 @@
 
   </form>
 {{else}}
-  Please wait for your next opponent <a href="#" {{action reload}}><i class="icon-repeat"></i></a>
+  Please wait for your next opponent.
 {{/if}}

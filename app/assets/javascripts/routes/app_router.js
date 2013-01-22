@@ -44,6 +44,16 @@ Scvrush.TournamentsRoute = Em.Route.extend({
       model.deleteRecord();
       this.get("store").commit();
     },
+
+    reloadMatches: function(tournament) {
+      var store = this.get("store");
+
+      tournament.reload();
+
+      $.get("/matches?tournament_id=" + tournament.get("id"), function(data) {
+        store.loadMany(Scvrush.Match, data.matches);
+      });
+    },
   }
 
 });
