@@ -4,9 +4,15 @@ class MatchesController < ApplicationController
   respond_to :json
 
   def index
+    if params[:ids]
+      render json: Match.find(params[:ids])
+    elsif params[:tournament_id]
+      render json: Tournament.find(params[:tournament_id]).matches
+    else
+      raise ArgumentError, "Invalid params for matches"
+    end
     # authorize! :manage, Match
     # @matches = Match.limit(20).order("updated_at DESC")
-    render json: Match.find(params[:ids])
   end
 
   def create

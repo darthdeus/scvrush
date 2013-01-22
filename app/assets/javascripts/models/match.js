@@ -2,8 +2,8 @@ Scvrush.Match = DS.Model.extend({
   number:        DS.attr("number"),
   player1:       DS.attr("string"),
   player2:       DS.attr("string"),
-  player1Score: DS.attr("number"),
-  player2Score: DS.attr("number"),
+  player1_score:  DS.attr("number"),
+  player2_score:  DS.attr("number"),
   score:         DS.attr("string"),
   completed:     DS.attr("boolean"),
 

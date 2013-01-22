@@ -17,8 +17,8 @@ Scvrush.TournamentController = Em.ObjectController.extend({
 
     var result = window.r = rounds.map(function(round) {
       return round.get("matches").filter(function(match) {
-        return match.get("player1") == "darthdeus.989";
-      }).get("firstObject");
+        return match.get("player1") == Scvrush.currentUser.get("bnetInfo");
+      }).get("lastObject");
     });
 
     return result.get("firstObject");
