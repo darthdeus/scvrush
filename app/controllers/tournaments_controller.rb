@@ -19,8 +19,6 @@ class TournamentsController < ApplicationController
     tournament.user = current_user
     tournament.bo_preset = "1"
 
-    sleep 5
-
     tournament.save
 
     respond_with tournament

@@ -19,9 +19,11 @@ Scvrush.TournamentController = Em.ObjectController.extend({
       return round.get("matches").filter(function(match) {
         return match.get("player1") == Scvrush.currentUser.get("bnetInfo");
       }).get("lastObject");
+    }).filter(function(item) {
+      return !!item;
     });
 
-    return result.get("firstObject");
+    return result.get("lastObject");
   }.property("content.rounds.@each.allMatches"),
 
   currentOpponent: function() {
