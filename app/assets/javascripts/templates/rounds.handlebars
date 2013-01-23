@@ -12,6 +12,7 @@
 
         <div class="round">
           {{#each match in round.matches}}
+          {{#linkTo "match.edit" match}}edit{{/linkTo}}
           <div class="match">
             <div class="player">
               <div class="name">{{match.player1}}</div>
