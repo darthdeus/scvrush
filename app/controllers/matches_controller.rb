@@ -42,6 +42,9 @@ class MatchesController < ApplicationController
     flash[:error] = "You can't submit a match result before you have an opponent"
   end
 
+  def show
+    render json: Match.find(params[:id])
+  end
 
   def edit
     authorize! :manage, Match

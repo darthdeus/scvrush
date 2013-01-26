@@ -7,16 +7,16 @@ Scvrush.Router.map(function() {
 
   this.resource("tournaments", { path: "/tournaments" }, function() {
     this.route("new", { path: "/new" });
-    this.resource("tournament", { path: "/:tournament_id" }, function() {
 
+    this.resource("tournament", { path: "/:tournament_id" }, function() {
       this.resource("matches", { path: "/matches" }, function() {
         this.resource("match", { path: "/:match_id" }, function() {
           this.route("edit", { path: "/edit" });
         });
       });
-
     });
   });
+
 
   this.resource("users", { path: "/users" }, function() {
     this.route("user", { path: "/:user_id" });
@@ -24,11 +24,11 @@ Scvrush.Router.map(function() {
 
 });
 
-Scvrush.PostsIndexRoute = Em.Route.extend({
-  model: function() {
-    return Scvrush.Post.find();
-  }
-});
+// Scvrush.PostsIndexRoute = Em.Route.extend({
+//   model: function() {
+//     return Scvrush.Post.find();
+//   }
+// });
 
 Scvrush.TournamentsRoute = Em.Route.extend({
   events: {
@@ -53,6 +53,22 @@ Scvrush.TournamentsRoute = Em.Route.extend({
       this.get("store").commit();
     },
 
+    start: function(model) {
+      model.startNow();
+    },
+
+    seed: function(tournament) {
+      Scvrush.Bracket.createRecord({ tournament: tournament });
+      this.get("store").commit();
+    },
+
+    unseed: function(tournament) {
+      var self = this;
+      $.post("/brackets/" + tournament.get("id"), { _method: "DELETE" }, function(data) {
+        self.get("store").load(Scvrush.Tournament, data.tournament);
+      });
+    },
+
     reloadMatches: function(tournament) {
       var store = this.get("store");
 
@@ -62,6 +78,13 @@ Scvrush.TournamentsRoute = Em.Route.extend({
         store.loadMany(Scvrush.Match, data.matches);
       });
     },
+
+    randomize: function(tournament) {
+      $.post("/tournaments/" + tournament.get("id") + "/randomize", function(data) {
+        tournament.reload();
+      })
+    },
+
   }
 
 });
@@ -100,14 +123,11 @@ Scvrush.TournamentsNewRoute = Em.Route.extend({
   }
 });
 
-Scvrush.TournamentRoute = Em.Route.extend({
-  renderTemplate: function() {
-    this.render("tournaments/tournament");
-  },
+Scvrush.TournamentIndexRoute = Em.Route.extend({
 
   events: {
     submitResult: function(score, opponentId) {
-      var controller = this.controllerFor("tournament"),
+      var controller = this.controllerFor("tournamentIndex"),
           route = this;
 
       controller.propertyDidChange("score");
@@ -119,7 +139,6 @@ Scvrush.TournamentRoute = Em.Route.extend({
       // TODO - also validate the opposite case of user submitting
       // score as if he lost, like 1:3
 
-
       $.post("/matches", {
         score: score,
         opponent_id: opponentId,
@@ -129,6 +148,12 @@ Scvrush.TournamentRoute = Em.Route.extend({
       });
       console.log("submitted", score);
     }
+  }
+});
+
+Scvrush.MatchEditRoute = Ember.Route.extend({
+  setupController: function(controller, model) {
+    controller.set("model", this.controllerFor("match").get("content"));
   }
 });
 

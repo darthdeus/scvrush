@@ -62,6 +62,7 @@ Scvrush::Application.routes.draw do
       post :seed
       post :unseed
       get :emails
+      post :randomize
     end
   end
   resources :signups

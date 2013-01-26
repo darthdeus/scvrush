@@ -3,20 +3,23 @@
 {{#if isAdmin}}
   <div class="meta btn-group">
     {{#if isStarted}}
-      {{#if content.seeded}}
-        <button class="btn" {{action "unseed"}}>Destroy seed</button>
+      {{#if seeded}}
+        <button class="btn" {{action "unseed" content}}>Destroy seed</button>
       {{else}}
-        <button class="btn" {{action "seed"}}>Seed</button>
+        <button class="btn" {{action "seed" content}}>Seed</button>
       {{/if}}
     {{else}}
-      <button class="btn" {{action "start"}}>Start now</button>
+      <button class="btn" {{action "start" content}}>Start now</button>
     {{/if}}
 
-    <button class="btn" {{action "deleteTournament"}}>Delete the tournament</button>
+    <button class="btn" {{action "deleteTournament" content}}>Delete the tournament</button>
+    <button class="btn" {{action "randomize" content}}>Randomize players</button>
   </div>
 {{/if}}
 
 <h4>{{#linkTo "tournaments"}}back to tournaments{{/linkTo}}</h4>
+
+{{outlet}}
 
 {{#if isStarted}}
   {{#if isEmpty}}

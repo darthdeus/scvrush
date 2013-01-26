@@ -113,4 +113,13 @@ class TournamentsController < ApplicationController
     respond_with @tournament
   end
 
+  def randomize
+    users = User.where("bnet_username IS NOT NULL").limit(10)
+    tournament = Tournament.find(params[:id])
+    tournament.users = users
+    tournament.users.each { |u| u.check_in(tournament) }
+
+    respond_with tournament.reload
+  end
+
 end
