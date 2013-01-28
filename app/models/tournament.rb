@@ -135,10 +135,6 @@ class Tournament < ActiveRecord::Base
     winner.won_tournament!
   end
 
-  def to_param
-    "#{id}-#{name.parameterize}"
-  end
-
   # return random tournament info for test purposes
   def self.random_info
     [

@@ -117,6 +117,7 @@ class TournamentsController < ApplicationController
     users = User.where("bnet_username IS NOT NULL").limit(10)
     tournament = Tournament.find(params[:id])
     tournament.users = users
+    tournament.users << current_user
     tournament.users.each { |u| u.check_in(tournament) }
 
     respond_with tournament.reload
