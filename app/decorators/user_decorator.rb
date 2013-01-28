@@ -19,7 +19,7 @@ class UserDecorator < Draper::Base
 
   # Link to the user's twitter
   def twitter_link
-    if user.twitter.present?
+    if user.twitter?
       h.link_to h.image_tag("glyphicons_392_twitter.png"), user.twitter
     end
   end

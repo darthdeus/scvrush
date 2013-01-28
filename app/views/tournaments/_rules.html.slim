@@ -15,7 +15,7 @@
       div class="accordion-inner"
         = m @tournament.map_info
 
-  - if @tournament.channel.present?
+  - if @tournament.channel?
     .accordion-group
       .accordion-heading
         .accordion-toggle

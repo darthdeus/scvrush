@@ -19,7 +19,7 @@ class ApiController < ApplicationController
     user_authenticator = UserAuthenticator.new(user)
 
     if user_authenticator.authenticate(params[:password])
-      user_authenticator.generate_api_key unless user.api_key.present?
+      user_authenticator.generate_api_key unless user.api_key?
       user.save!
 
       render json: { key: user.api_key }

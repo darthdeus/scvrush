@@ -7,21 +7,21 @@
         - if logged_in?
           - if current_user.participating_in? @raffle
             p You are already participating in this raffle.
-          - else    
+          - else
             = button_to "Join the raffle!", :controller => :raffle_signups, :action => :create, :id => @raffle.id
         - else
-          p 
-            | You have to 
+          p
+            | You have to
             = link_to "log in", login_path
             |  to join the raffle.
       - else
         p The raffle is closed!
-        
+
       - if @raffle.winner.present?
-        h2 
-          | The winner is 
+        h2
+          | The winner is
           = link_to @raffle.winner.username, @raffle.winner
-      
+
       h2 Currently registered players
 
       ul
@@ -30,8 +30,8 @@
 
       - if logged_in? && current_user.is_admin?
         h2 Admin actions
-        p 
+        p
           = link_to "edit raffle", edit_raffle_path(@raffle)
-        p 
+        p
           = button_to "select winner", :controller => :raffles, :action => :close, :id => @raffle.id
           |  - this will close the raffle
