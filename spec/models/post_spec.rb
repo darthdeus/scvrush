@@ -14,11 +14,6 @@ describe Post do
     }.not_to change { Comment.count }
   end
 
-  it 'has a parameterized name' do
-    post = build(:post, title: 'foo')
-    post.to_param.should == "#{post.id}-#{post.title}"
-  end
-
   specify :draft? do
     build(:post, status: Post::DRAFT).should be_draft
     build(:post, status: Post::PUBLISHED).should_not be_draft
