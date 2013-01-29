@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :race, :image, :bnet_info, :statuses, :expires_at
+  attributes :id, :username, :email, :race, :image, :bnet_info, :statuses, :expires_at
 
   def statuses
     Timeline.for_user(object).map(&:id)

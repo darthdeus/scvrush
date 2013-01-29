@@ -1,7 +1,6 @@
 Scvrush.TournamentRoute = Em.Route.extend({
 
   events: {
-
     submitResult: function(score, opponentId) {
       var controller = this.controllerFor("tournament"),
           route = this;
@@ -35,6 +34,6 @@ Scvrush.TournamentRoute = Em.Route.extend({
       window.m = match;
     },
 
-  },
+  }
 
 });

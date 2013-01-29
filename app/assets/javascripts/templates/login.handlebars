@@ -7,7 +7,9 @@
 
     <p>
       <strong>If you like us you can
-        <button class="btn btn-mini"><strong>activate your account</strong></button>
+        {{#linkTo "user.edit" Scvrush.currentUser class="btn btn-mini"}}
+          <strong>activate your account</strong>
+        {{/linkTo}}
       to keep it forever and become a member of our community</strong>
     </p>
   </div>

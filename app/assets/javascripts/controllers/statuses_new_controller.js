@@ -11,9 +11,7 @@ Scvrush.StatusesNewController = Ember.Controller.extend({
     }
 
     transaction.add(user);
-
     user.get("statuses").createRecord({ text: text, user: user });
-
     transaction.commit();
 
     this.set("text", "");

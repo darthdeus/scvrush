@@ -1,0 +1,69 @@
+{{#with controllers.user}}
+  <div class="row user-profile">
+    <div class="span3 user-info">
+      <div class="avatar">
+        <img {{bindAttr src="image"}}>
+      </div>
+
+      {{#if hasFollowers}}
+        <h3>Followers</h3>
+
+        {{#each follower in controller.followers}}
+          {{#linkTo "user" follower}}{{follower.username}}{{/linkTo}}
+          <br>
+        {{/each}}
+      {{else}}
+        <div class="alert alert-info">This user has no followers.</div>
+      {{/if}}
+
+
+      <h3>Following</h3>
+
+      {{#each follower in following}}
+        {{#linkTo "user" follower}}{{follower.username}}{{/linkTo}}
+        <br>
+      {{/each}}
+
+    </div>
+
+    <div class="span9">
+      <h2>
+        {{username}} ({{bnetInfo}})
+        {{#linkTo "users.index" class="help-inline"}}back to users{{/linkTo}}
+
+        {{#unless isCurrentUser}}
+          {{#if controller.isFollowingUser}}
+            <a class="btn btn-danger"  {{action "unfollow" content}}>Unfollow</a>
+          {{else}}
+            <a class="btn btn-success" {{action "follow" content}}>Follow</a>
+          {{/if}}
+        {{/unless}}
+      </h2>
+
+      {{#if isCurrentUser}}
+        {{render "statuses.new"}}
+      {{/if}}
+
+      <div class="statuses">
+
+        {{#each status in timelineStatuses}}
+          <div class="status">
+            <div class="author">
+              {{#linkTo "user" status.user}}@{{status.user.username}}{{/linkTo}}
+            </div>
+
+            <div class="content">
+              <div class="text">{{view Scvrush.UserLinksView contentBinding="status.text"}}</div>
+            </div>
+
+            <div class="meta">
+            </div>
+
+          </div>
+        {{/each}}
+
+      </div>
+
+    </div>
+  </div>
+{{/with}}

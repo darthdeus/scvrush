@@ -39,9 +39,19 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = current_user
-    @user.update_attributes(params[:user].extract!(:race))
-    respond_with @user
+    user = current_user
+    attributes = {
+      username: params[:user][:username],
+      email: params[:user][:email],
+      race: params[:user][:race],
+      password: params[:user][:password],
+      password_confirmation: params[:user][:password_confirmation],
+      expires_at: nil
+    }
+
+    user.update_attributes(attributes)
+
+    render json: user
   end
 
   def follow

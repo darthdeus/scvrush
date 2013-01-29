@@ -21,7 +21,9 @@ Scvrush.Router.map(function() {
   });
 
   this.resource("users", { path: "/users" }, function() {
-    this.resource("user", { path: "/:user_id" });
+    this.resource("user", { path: "/:user_id" }, function() {
+      this.route("edit", { path: "/edit" });
+    });
   });
 
 });
