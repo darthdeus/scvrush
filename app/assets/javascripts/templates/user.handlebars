@@ -40,11 +40,7 @@
     </h2>
 
     {{#if isCurrentUser}}
-      <form class="status-form">
-        <!-- TODO - display different placeholder if it's the current user's profile -->
-        {{view Scvrush.NewStatusView class="span8" placeholder="Tell us what's on your mind"}}
-
-      </form>
+      {{render "statuses.new"}}
     {{/if}}
 
     <div class="statuses">
@@ -60,9 +56,6 @@
           </div>
 
           <div class="meta">
-            <span>
-              1 person liked this
-            </span>
           </div>
 
         </div>

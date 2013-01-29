@@ -2,7 +2,6 @@
   <div id="logo"><img src="/assets/logo.png"></div>
 
   <section>
-    {{view Scvrush.NewStatusView class="sidebar-status-input" placeholder="Post a new status"}}
     {{#linkTo "user" Scvrush.currentUser}}<i class="icon-user icon-white"></i>{{/linkTo}}
 
     {{#each status in Scvrush.currentUser.recentStatuses}}
