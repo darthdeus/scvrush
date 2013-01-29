@@ -10,13 +10,28 @@ class SessionsController < ApplicationController
   def create
     user = User.with_login(params[:username])
 
-    if UserAuthenticator.new(user).authenticate(params[:password])
-      session[:user_id] = user.id
-      flash[:success] = "You are now logged in. Enjoy the community!"
-      redirect_back_or_default
-    else
-      flash.now.alert = "Invalid username or password."
-      render "new"
+    authenticated = UserAuthenticator.new(user).authenticate(params[:password])
+
+    respond_to do |format|
+      format.html do
+        if authenticated
+          session[:user_id] = user.id
+          flash[:success] = "You are now logged in. Enjoy the community!"
+          redirect_back_or_default
+        else
+          flash.now.alert = "Invalid username or password."
+          render "new"
+        end
+      end
+
+      format.json do
+        if authenticated
+          session[:user_id] = user.id
+          render json: user
+        else
+          render json: { error: "Invalid credentials" }, status: 402
+        end
+      end
     end
   end
 

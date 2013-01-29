@@ -99,6 +99,8 @@ Scvrush::Application.routes.draw do
   get "logout" => "sessions#destroy", as: "logout"
   get "signup" => "users#new", as: "signup"
 
+  resources :sessions, only: [:new, :create, :destroy]
+
   root to: "home#index"
 
   resources :users do
@@ -116,8 +118,6 @@ Scvrush::Application.routes.draw do
       post :like
     end
   end
-
-  resources :sessions, only: [:new, :create, :destroy]
 
 
   # The priority is based upon order of creation:
