@@ -1,6 +1,4 @@
 class PostsController < ApplicationController
-  # before_filter :require_writer, :except => [:index, :tag, :show]
-
   respond_to :json
 
   def index
@@ -9,7 +7,7 @@ class PostsController < ApplicationController
     else
       @posts = Post.published.first(20)
     end
-    # @posts = @posts.where(["title ILIKE ?", "%#{params[:query]}%"]) if params[:query]
+
     respond_with @posts
   end
 
@@ -24,7 +22,6 @@ class PostsController < ApplicationController
   end
 
   def content
-
   end
 
   def tagged_with

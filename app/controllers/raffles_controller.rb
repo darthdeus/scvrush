@@ -1,5 +1,4 @@
 class RafflesController < ApplicationController
-  # before_filter :require_writer, :except => :show
 
   def new
     authorize! :manage, Raffle

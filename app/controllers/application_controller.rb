@@ -21,15 +21,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def require_writer
-    if !logged_in?
-      flash[:error] = "You must be logged in to access this section"
-      redirect_to login_path
-    else
-      require_role(:writer)
-    end
-  end
-
   def require_admin
     require_role(:admin)
   end

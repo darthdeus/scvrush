@@ -1,4 +1,5 @@
 class ImagesController < ApplicationController
+  # TODO - replace this
   before_filter :require_writer
 
   def create

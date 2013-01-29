@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
 
   mount_uploader :avatar, AvatarUploader
 
-  scope :practice,   where(practice: true).order('created_at DESC')
+  scope :practice, where(practice: true).order('created_at DESC')
 
   # Return a user either by his username or by email.
   # Used mostly for authentication purposes.
@@ -165,6 +165,10 @@ class User < ActiveRecord::Base
 
   def avatar_image
     avatar.url(:thumb)
+  end
+
+  def trial?
+    self.expires_at?
   end
 
 end
