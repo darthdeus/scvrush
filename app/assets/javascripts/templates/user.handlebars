@@ -8,7 +8,7 @@
       <h3>Followers</h3>
 
       {{#each follower in controller.followers}}
-        {{#linkTo "users.user" follower}}{{follower.username}}{{/linkTo}}
+        {{#linkTo "user" follower}}{{follower.username}}{{/linkTo}}
         <br>
       {{/each}}
     {{else}}
@@ -19,7 +19,7 @@
     <h3>Following</h3>
 
     {{#each follower in following}}
-      {{#linkTo "users.user" follower}}{{follower.username}}{{/linkTo}}
+      {{#linkTo "user" follower}}{{follower.username}}{{/linkTo}}
       <br>
     {{/each}}
 
