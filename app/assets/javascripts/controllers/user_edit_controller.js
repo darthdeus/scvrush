@@ -11,7 +11,10 @@ Scvrush.UserEditController = Ember.Controller.extend({
   }.property("controllers.user.isSaving"),
 
   expiresIn: function() {
-    return moment(this.get("controllers.user.expiresAt")).calendar();
+    var time = moment(this.get("controllers.user.expiresAt"));
+    if (time) {
+      return time.calendar();
+    }
   }.property("controllers.user.expiresAt"),
 
 });

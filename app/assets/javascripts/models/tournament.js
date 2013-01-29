@@ -59,7 +59,7 @@ Scvrush.Tournament = DS.Model.extend({
   }.property("startsAt"),
 
   isStarted: function() {
-    return new Date(this.get("startsAt")) < new Date();
+    return moment(this.get("startsAt"), "YYYY-MM-DD hh:mm") < moment();
   }.property("startsAt"),
 
   shouldCheckin: function() {
@@ -67,7 +67,7 @@ Scvrush.Tournament = DS.Model.extend({
   }.property("tournament"),
 
   checkinOpen: function() {
-    var start = moment(new Date(this.get("startsAt"))),
+    var start = moment(this.get("startsAt"), "YYYY-MM-DD hh:mm"),
         checkin = start.subtract("minutes", 30);
 
     return start < moment() && moment() > checkin;
@@ -82,7 +82,7 @@ Scvrush.Tournament = DS.Model.extend({
   }.property("rounds.@each"),
 
   isOpen: function() {
-    return !(new Date(this.get("startsAt")) < new Date());
+    return !this.get("isStarted");
   }.property("startsAt"),
 
   hasWinner: function() {
