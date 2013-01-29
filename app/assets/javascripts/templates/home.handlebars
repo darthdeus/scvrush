@@ -1,8 +1,10 @@
-<div class="row">
+<h2>Welcome to SCV Rush {{Scvrush.currentUser.username}}</h2>
 
+{{#if Scvrush.currentUser.isTrial}}
   {{render "login"}}
+{{/if}}
 
-  You are {{Scvrush.currentUser.username}}
+<div class="row">
 
   <div class="carousel slide span8" id="home-carousel">
     <div class="carousel-inner">

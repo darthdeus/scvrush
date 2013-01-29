@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
                   :favorite_player, :skype, :display_skype, :msn,
                   :display_msn, :display_email, :about, :avatar,
                   :bnet_code, :bnet_username, :twitter, :time_zone, :practice,
-                  :image, :bnet_info
+                  :image, :bnet_info, :expires_at
 
   acts_as_followable
 

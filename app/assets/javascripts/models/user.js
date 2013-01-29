@@ -3,6 +3,7 @@ Scvrush.User = DS.Model.extend({
   race:      DS.attr("string"),
   image:     DS.attr("string"),
   bnetInfo:  DS.attr("string"),
+  expiresAt: DS.attr("date"),
 
   statuses:  DS.hasMany("Scvrush.Status"),
   followers: DS.hasMany("Scvrush.User"),
@@ -15,6 +16,10 @@ Scvrush.User = DS.Model.extend({
       return this.get("followers.length") > 0;
     }
   },
+
+  isTrial: function() {
+    return !!this.get("expiresAt");
+  }.property("expiresAt"),
 
   imageOrDefault: function() {
     return this.get("image") || "default.png";
