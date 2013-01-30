@@ -36,9 +36,9 @@ jQuery(function($) {
   // TODO - do this via Angular callback on when
   // the DOM is compiled, still not sure how to
   // do it properly though
-  setTimeout(function() {
-    $("[rel=tooltip]").tooltip();
-  }, 1000);
+  // setTimeout(function() {
+  //   $("[rel=tooltip]").tooltip();
+  // }, 2000);
 
   $(".chosen").select2({ width: "element" });
 

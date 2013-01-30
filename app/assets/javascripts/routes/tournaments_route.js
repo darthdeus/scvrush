@@ -34,17 +34,16 @@ Scvrush.TournamentsNewRoute = Em.Route.extend({
 
 Scvrush.TournamentsRoute = Em.Route.extend({
   events: {
-    register: function(model) {
+    register: function(tournament) {
       if (Scvrush.currentUser.get("isTournamentReady")) {
-        model.set("isRegistered", true);
+        tournament.set("isRegistered", true);
         this.get("store").commit();
       }
     },
 
-    checkin: function(model, user) {
-      console.log(user);
+    checkin: function(tournament) {
       if (Scvrush.currentUser.get("isTournamentReady")) {
-        model.set("isChecked", true);
+        tournament.set("isChecked", true);
         this.get("store").commit();
       }
     },

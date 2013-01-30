@@ -1,23 +1,26 @@
 <!-- TODO - display register now only if not started, maybe even as a direct clickable button -->
 <form class="form-inline">
 
-  <div class="control-group" {{bindAttr class="user.isNotTournamentReady:error"}}>
-    {{#if isRegistered}}
-      <a class="btn btn-danger" {{action "cancel" content}}>Cancel your registration</a>
-    {{else}}
+  {{#if isRegistered}}
+    <a class="btn btn-danger" {{action "cancel" content}}>Cancel your registration</a>
+  {{else}}
 
+    <span {{bindAttr class="user.isNotTournamentReady:error"}}>
       {{view Ember.TextField valueBinding="user.bnetInfo"}}
+    </span>
+
+    <span {{bindAttr class="user.isNotTournamentReady:error"}}>
       {{view Ember.Select modelBinding="user" contentBinding="Scvrush.User.ALL_RACES" valueBinding="user.race"}}
+    </span>
 
-      <i class="icon-info-sign" rel="tooltip" title="Your battle.net username, for example Vogin.132"></i>
-
-      {{#if shouldCheckin}}
-        <a {{bindAttr disabled="user.isNotTournamentReady"}} class="btn btn-success" {{action "checkin" content user}}>Check in!</a>
-      {{else}}
-        <a {{bindAttr disabled="user.isNotTournamentReady"}} class="btn btn-success" {{action "register" content user}}>Register now!</a>
-      {{/if}}
-
+    {{#if shouldCheckin}}
+      <a {{bindAttr disabled="user.isNotTournamentReady"}} class="btn btn-success" {{action "checkin" content user}}>Check in!</a>
+    {{else}}
+      <a {{bindAttr disabled="user.isNotTournamentReady"}} class="btn btn-success" {{action "register" content user}}>Register now!</a>
     {{/if}}
-  </div>
+
+    <i class="icon-info-sign" rel="tooltip" title="Your battle.net username, for example Vogin.132"></i>
+
+  {{/if}}
 
 </form>
