@@ -1,10 +1,10 @@
 <div class="bracket">
-  {{#if view.tournament.winner}}
-    <p>{{view.tournament.winner.username}} is the winner</p>
+  {{#if winner}}
+    <p>{{winner.username}} is the winner</p>
   {{/if}}
 
   {{#if hasRounds}}
-    {{#each round in view.tournament.rounds}}
+    {{#each round in rounds}}
       <div class="round-wrap">
         <div class="round-info-wrap">
           <div class="round-info">Round of {{round.number}}</div>

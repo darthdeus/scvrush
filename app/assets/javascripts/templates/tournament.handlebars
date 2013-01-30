@@ -26,12 +26,13 @@
     <p class="alert alert-notice">No players were signed up for this tournament when it started</p>
   {{else}}
     {{#if isPlaying}}
+      {{render "tournament.current_match"}}
       {{view Scvrush.TournamentsCurrentMatch}}
     {{/if}}
 
-    {{view Scvrush.RoundsView tournamentBinding="content"}}
+    {{render "tournament.rounds" content}}
   {{/if}}
 
 {{else}}
-  {{render "tournament.signup"}}
+  {{render "tournament.signup" content}}
 {{/if}}

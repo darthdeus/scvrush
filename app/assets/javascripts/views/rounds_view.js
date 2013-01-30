@@ -1,9 +1,9 @@
-Scvrush.RoundsView = Em.View.extend({
+Scvrush.TournamentRoundsView = Em.View.extend({
   templateName: "rounds",
 
   roundsChanged: function() {
     this.rerender();
-  }.observes("tournament.rounds.length"),
+  }.observes("content.rounds.length"),
 
   didInsertElement: function() {
     Ember.run.later(function() {

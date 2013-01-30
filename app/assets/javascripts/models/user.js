@@ -15,6 +15,18 @@ Scvrush.User = DS.Model.extend({
 
   tournaments: DS.hasMany("Scvrush.Tournament"),
 
+  bnetInfoValid: function() {
+    return /.+\.\d{3}/.test(this.get("bnetInfo"));
+  }.property("bnetInfo"),
+
+  isTournamentReady: function() {
+    return !!this.get("bnetInfoValid") && !!this.get("race");
+  }.property("bnetInfoValid", "race"),
+
+  isNotTournamentReady: function() {
+    return !this.get("isTournamentReady");
+  }.property("isTournamentReady"),
+
   hasFollowers: function() {
     if (this.get("followers")) {
       return this.get("followers.length") > 0;

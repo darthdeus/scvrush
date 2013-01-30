@@ -117,6 +117,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def bnet_info
+    @bnet_info == "." ? nil : @bnet_info
+  end
+
   def bnet_info=(value)
     self.bnet_username, self.bnet_code = value.split(".")
   end
