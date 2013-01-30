@@ -3,7 +3,7 @@ Scvrush.TournamentController = Em.ObjectController.extend({
   currentMatch: function() {
     var rounds = this.get("content.rounds");
 
-    var result = window.r = rounds.map(function(round) {
+    var result = rounds.map(function(round) {
       return round.get("matches").filter(function(match) {
         return match.get("player1") == Scvrush.currentUser.get("bnetInfo");
       }).get("lastObject");
