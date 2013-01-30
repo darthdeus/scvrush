@@ -41,7 +41,8 @@ Scvrush.TournamentsRoute = Em.Route.extend({
       }
     },
 
-    checkin: function(model) {
+    checkin: function(model, user) {
+      console.log(user);
       if (Scvrush.currentUser.get("isTournamentReady")) {
         model.set("isChecked", true);
         this.get("store").commit();

@@ -7,13 +7,14 @@
     {{else}}
 
       {{view Ember.TextField valueBinding="user.bnetInfo"}}
+      {{view Ember.Select modelBinding="user" contentBinding="Scvrush.User.ALL_RACES" valueBinding="user.race"}}
 
       <i class="icon-info-sign" rel="tooltip" title="Your battle.net username, for example Vogin.132"></i>
 
       {{#if shouldCheckin}}
-        <a {{bindAttr disabled="user.isNotTournamentReady"}} class="btn btn-success" {{action "checkin" content}}>Check in!</a>
+        <a {{bindAttr disabled="user.isNotTournamentReady"}} class="btn btn-success" {{action "checkin" content user}}>Check in!</a>
       {{else}}
-        <a {{bindAttr disabled="user.isNotTournamentReady"}} class="btn btn-success" {{action "register" content}}>Register now!</a>
+        <a {{bindAttr disabled="user.isNotTournamentReady"}} class="btn btn-success" {{action "register" content user}}>Register now!</a>
       {{/if}}
 
     {{/if}}
