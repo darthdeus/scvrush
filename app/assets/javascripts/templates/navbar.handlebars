@@ -1,6 +1,15 @@
 <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
+
+      <div class="nav-collapse pull-left">
+        {{#if Scvrush.currentUser.isTrial}}
+          {{#linkTo "user.edit" Scvrush.currentUser class="btn btn-mini"}}
+            <strong>Activate your account</strong>
+          {{/linkTo}}
+        {{/if}}
+      </div>
+
       <div class="nav-collapse pull-right">
 
         <ul class="nav">
