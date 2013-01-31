@@ -4,11 +4,11 @@
 
 <form class="form-horizontal" {{action "save" content on="submit"}}>
 
-  <div {{bindAttr class="content.nameInvalid:error :control-group"}}>
+  <div {{bindAttr class="nameInvalid:error :control-group"}}>
     <label class="control-label">Name</label>
 
     <div class="controls">
-      {{view Em.TextField valueBinding="content.name"}}
+      {{view Em.TextField valueBinding="name"}}
     </div>
   </div>
 
@@ -16,15 +16,15 @@
     <label class="control-label">Number of players</label>
 
     <div class="controls">
-      {{view Em.TextField valueBinding="content.maxPlayers" class="control"}}
+      {{view Em.TextField valueBinding="maxPlayers" class="control"}}
     </div>
   </div>
 
-  <div {{bindAttr class="content.startsAtInvalid:error :control-group"}}>
+  <div {{bindAttr class="startsAtInvalid:error :control-group"}}>
     <label class="control-label">Starts at</label>
 
     <div class="controls">
-      {{view Scvrush.DateTimeView valueBinding="content.startsAt" class="control"}}
+      {{view Scvrush.DateTimeView valueBinding="startsAt" class="control"}}
     </div>
   </div>
 
@@ -34,7 +34,7 @@
     </div>
 
     <div class="span1">
-      {{#each round in content.reverseRounds}}
+      {{#each round in reverseRounds}}
         {{round.number}}
       {{/each}}
     </div>

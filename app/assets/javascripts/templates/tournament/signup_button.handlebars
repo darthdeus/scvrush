@@ -16,7 +16,7 @@
     {{#if shouldCheckin}}
       <a {{bindAttr disabled="user.isNotTournamentReady"}} class="btn btn-success" {{action "checkin" content user}}>Check in!</a>
     {{else}}
-      <a {{bindAttr disabled="user.isNotTournamentReady"}} class="btn btn-success" {{action "register" content user}}>Register now!</a>
+      <a {{bindAttr disabled="user.isNotTournamentReady" class="user.isTournamentReady:btn-success :btn"}} {{action "register" content user}}>Register now!</a>
     {{/if}}
 
     <i class="icon-info-sign" rel="tooltip" title="Your battle.net username, for example Vogin.132"></i>

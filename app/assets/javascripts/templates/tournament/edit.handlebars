@@ -1,0 +1,26 @@
+<h2>Edit tournament</h2>
+
+<p>You can change the name of your tournament and when it begins</p>
+
+<form class="form-horizontal">
+
+  <div {{bindAttr class="nameInvalid:error :control-group"}}>
+    <label class="control-label">Name</label>
+
+    <div class="controls">
+      {{view Em.TextField valueBinding="name"}}
+    </div>
+  </div>
+
+  <div {{bindAttr class="startsAtInvalid:error :control-group"}}>
+    <label class="control-label">Starts at</label>
+
+    <div class="controls">
+      {{view Scvrush.DateTimeView valueBinding="startsAt" class="control"}}
+    </div>
+  </div>
+
+  <div class="controls">
+  </div>
+
+</form>

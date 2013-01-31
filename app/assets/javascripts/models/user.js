@@ -23,9 +23,7 @@ Scvrush.User = DS.Model.extend({
     return !!this.get("bnetInfoValid") && !!this.get("race");
   }.property("bnetInfoValid", "race"),
 
-  isNotTournamentReady: function() {
-    return !this.get("isTournamentReady");
-  }.property("isTournamentReady"),
+  isNotTournamentReady: Ember.computed.not("isTournamentReady"),
 
   hasFollowers: function() {
     if (this.get("followers")) {
