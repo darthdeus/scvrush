@@ -8,9 +8,6 @@ Scvrush.UserEditRoute = Ember.Route.extend({
 
   setupController: function(controller, model) {
     var user = this.controllerFor("user").get("content");
-
-    controller.set("username", user.get("username"));
-    controller.set("email", user.get("email"));
   },
 
   events: {

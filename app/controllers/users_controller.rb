@@ -46,6 +46,7 @@ class UsersController < ApplicationController
       race: params[:user][:race],
       password: params[:user][:password],
       password_confirmation: params[:user][:password_confirmation],
+      bnet_info: params[:user][:bnet_info],
       expires_at: nil
     }
 

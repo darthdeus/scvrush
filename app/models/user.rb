@@ -118,7 +118,7 @@ class User < ActiveRecord::Base
   end
 
   def bnet_info
-    @bnet_info == "." ? nil : @bnet_info
+    bnet_username + "." + bnet_code
   end
 
   def bnet_info=(value)

@@ -1,4 +1,4 @@
-Scvrush.TournamentRoute = Em.Route.extend({
+Scvrush.TournamentRoute = Ember.Route.extend({
 
   events: {
     submitResult: function(score, opponentId) {
@@ -31,9 +31,30 @@ Scvrush.TournamentRoute = Em.Route.extend({
 
     saveMatch: function(match) {
       match.get("store").commit();
-      window.m = match;
     },
 
+  }
+
+});
+
+Scvrush.TournamentEditRoute = Ember.Route.extend({
+
+  // renderTemplate: function() {
+  //   this.render("tournament/edit", { into: "application" });
+  // },
+
+  events: {
+    saveTournament: function(tournament) {
+      var route = this;
+
+      tournament.one("didUpdate", function() {
+        Ember.run.next(function() {
+          route.transitionTo("tournament.index", tournament);
+        });
+      });
+
+      tournament.get("transaction").commit();
+    }
   }
 
 });

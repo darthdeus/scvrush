@@ -2,13 +2,17 @@
 
 <p>You can change the name of your tournament and when it begins</p>
 
-<form class="form-horizontal">
+{{#if controllers.tournament.isLoaded}}
+  {{#linkTo "tournament" controllers.tournament.content}}back to the tournament{{/linkTo}}
+{{/if}}
+
+<form class="form-horizontal" {{action "saveTournament" controllers.tournament.content on="submit"}}>
 
   <div {{bindAttr class="nameInvalid:error :control-group"}}>
     <label class="control-label">Name</label>
 
     <div class="controls">
-      {{view Em.TextField valueBinding="name"}}
+      {{view Em.TextField valueBinding="controllers.tournament.name"}}
     </div>
   </div>
 
@@ -16,11 +20,12 @@
     <label class="control-label">Starts at</label>
 
     <div class="controls">
-      {{view Scvrush.DateTimeView valueBinding="startsAt" class="control"}}
+      {{view Scvrush.DateTimeView valueBinding="controllers.tournament.startsAt" class="control"}}
     </div>
   </div>
 
   <div class="controls">
+    <button type="submit" class="btn btn-success">Save changes</button>
   </div>
 
 </form>

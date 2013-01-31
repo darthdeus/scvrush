@@ -14,7 +14,7 @@ Scvrush.TournamentsNewRoute = Em.Route.extend({
 
   events: {
     save: function(tournament) {
-      var router = this;
+      var route = this;
 
       tournament.revalidate();
       if (tournament.get("isInvalid")) {
@@ -23,7 +23,7 @@ Scvrush.TournamentsNewRoute = Em.Route.extend({
 
       tournament.one("didCreate", function() {
         Ember.run.next(function() {
-          router.transitionTo("tournament", tournament);
+          route.transitionTo("tournament", tournament);
         });
       });
 
