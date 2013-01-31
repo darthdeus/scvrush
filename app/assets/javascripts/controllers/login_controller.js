@@ -1,13 +1,13 @@
 Scvrush.LoginController = Ember.Controller.extend({
 
   login: function() {
-    var controller = this;
+    var controller = this.get("store");
 
     $.post("/sessions.json", {
       username: this.get("username"),
       password: this.get("password")
     }, function(data) {
-      controller.get("store").load(Scvrush.User, data.user);
+      store.load(Scvrush.User, data.user);
       Scvrush.set("currentUser", Scvrush.User.find(data.user.id));
     });
   }

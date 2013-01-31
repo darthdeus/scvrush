@@ -5,8 +5,7 @@ Scvrush.StatusesNewController = Ember.Controller.extend({
         text = this.get("text"),
         user = Scvrush.currentUser;
 
-    // TODO - forbid empty strings such as " "
-    if (Ember.isEmpty(text)) {
+    if (/^\W+$/.test(text)) {
       return;
     }
 
