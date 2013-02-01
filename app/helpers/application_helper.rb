@@ -88,6 +88,9 @@ module ApplicationHelper
   rescue Twitter::Error::Unauthorized => e
     Rails.logger.error e
     []
+  rescue Twitter::Error::InternalServerError => e
+    Rails.logger.error e
+    []
   end
 
   def gravatar(email)
