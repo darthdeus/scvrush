@@ -118,10 +118,11 @@ class User < ActiveRecord::Base
   end
 
   def bnet_info
-    bnet_username + "." + bnet_code
+    "#{bnet_username}.#{bnet_code}"
   end
 
-  def bnet_info=(value)
+  # TODO - check for this on the client as well
+  def bnet_info=(value = "")
     self.bnet_username, self.bnet_code = value.split(".")
   end
 
