@@ -7,5 +7,3 @@
 //= require_tree ./templates
 //= require_tree ./routes
 //= require_self
-
-Scvrush.initialize();
