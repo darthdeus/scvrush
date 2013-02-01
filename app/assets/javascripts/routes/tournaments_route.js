@@ -59,8 +59,8 @@ Scvrush.TournamentsRoute = Em.Route.extend({
       this.get("store").commit();
     },
 
-    start: function(model) {
-      model.startNow();
+    start: function(tournament) {
+      tournament.startNow();
     },
 
     seed: function(tournament) {
