@@ -34,7 +34,8 @@ Scvrush.TournamentsNewRoute = Em.Route.extend({
 
 Scvrush.TournamentsRoute = Em.Route.extend({
   events: {
-    register: function(tournament) {
+    register: function(tournament, user) {
+      debugger
       if (Scvrush.currentUser.get("isTournamentReady")) {
         tournament.set("isRegistered", true);
         this.get("store").commit();
@@ -59,8 +60,8 @@ Scvrush.TournamentsRoute = Em.Route.extend({
       this.get("store").commit();
     },
 
-    start: function(tournament) {
-      tournament.startNow();
+    start: function(model) {
+      model.startNow();
     },
 
     seed: function(tournament) {

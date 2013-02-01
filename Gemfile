@@ -10,7 +10,7 @@ gem 'coffee-rails',             '~> 3.2.2'
 gem 'pg',                       '~> 0.14.0'
 
 # Frontend
-gem 'slim-rails',              '~> 1.0.3'
+gem 'slim-rails',              '~> 1.1.0'
 gem 'sass-rails',              '~> 3.2.5'
 gem 'jquery-datatables-rails', '~> 1.11.1'
 gem 'bootstrap-sass',          '~> 2.2.2.0'

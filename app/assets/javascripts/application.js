@@ -8,7 +8,7 @@
 
 //= require ./bracket
 
-//= require ./vendor/ember-latest
+//= require ./vendor/ember
 //= require ./vendor/ember-data-11
 //= require ./scvrush
 
