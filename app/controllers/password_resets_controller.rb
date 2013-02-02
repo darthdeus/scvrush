@@ -1,4 +1,5 @@
 class PasswordResetsController < ApplicationController
+
   def new
   end
 
@@ -30,4 +31,5 @@ class PasswordResetsController < ApplicationController
       render :edit
     end
   end
+
 end

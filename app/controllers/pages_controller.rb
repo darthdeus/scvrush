@@ -1,4 +1,5 @@
 class PagesController < ApplicationController
+
   def show
     if params[:id] == "staff"
       page = Page.find_or_create_by_name("staff")

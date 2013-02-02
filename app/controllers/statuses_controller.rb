@@ -15,9 +15,10 @@ class StatusesController < ApplicationController
   end
 
   def create
-    status = StatusCreator.create(params[:status], current_user)
-    # TODO - figure out how to return a proper error here
-    status.save
+    status = Status.new(params[:status])
+    status.user_id = curent_user.id
+
+    status.save!
     respond_with status
   end
 

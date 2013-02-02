@@ -1,4 +1,5 @@
 class RolesController < ApplicationController
+
   def index
     authorize! :manage, Role
     @users = UserSearch.search(params[:search]).page(params[:page])
