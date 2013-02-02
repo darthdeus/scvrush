@@ -1,8 +1,3 @@
-{{#if isRegistered}}
-  <p>Your race is {{view Scvrush.RaceSelectionView contentBinding="Scvrush.User.ALL_RACES" valueBinding="Scvrush.currentUser.race" modelBinding="Scvrush.currentUser"}}</p>
-  <p>Make sure that this is correct, since you are not allowed to change the race when the tournament begins.</p>
-{{/if}}
-
 {{render "tournament.signup_button" content}}
 
 {{#if users.isLoaded}}
