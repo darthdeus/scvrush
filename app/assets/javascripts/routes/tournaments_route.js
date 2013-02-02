@@ -35,11 +35,11 @@ Scvrush.TournamentsNewRoute = Em.Route.extend({
 Scvrush.TournamentsRoute = Em.Route.extend({
   events: {
     register: function(tournament, user) {
-      debugger
-      if (Scvrush.currentUser.get("isTournamentReady")) {
+      tournament.set("stateManager.enableLogging", true);
+      // if (Scvrush.currentUser.get("isTournamentReady")) {
         tournament.set("isRegistered", true);
         this.get("store").commit();
-      }
+      // }
     },
 
     checkin: function(tournament) {

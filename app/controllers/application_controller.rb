@@ -84,7 +84,7 @@ class ApplicationController < ActionController::Base
   end
 
   def export_user_id
-    gon.user_id = current_user.id if logged_in?
+    sleep 1
   end
 
 end

@@ -2,7 +2,7 @@
 <form class="form-inline">
 
   {{#if isRegistered}}
-    <a class="btn btn-danger" {{action "cancel" content}}>Cancel your registration</a>
+    <button class="btn btn-danger" {{action "cancel" content}}>Cancel your registration</button>
   {{else}}
 
     <span {{bindAttr class="user.isNotTournamentReady:error"}}>
@@ -14,9 +14,9 @@
     </span>
 
     {{#if shouldCheckin}}
-      <a {{bindAttr disabled="user.isNotTournamentReady"}} class="btn btn-success" {{action "checkin" content}}>Check in!</a>
+      <button {{bindAttr disabled="user.isNotTournamentReady"}} class="btn btn-success" {{action "checkin" content}}>Check in!</button>
     {{else}}
-      <a {{bindAttr disabled="user.isNotTournamentReady" class="user.isTournamentReady:btn-success :btn"}} {{action "register" content}}>Register now!</a>
+      <button {{bindAttr disabled="user.isNotTournamentReady" class="user.isTournamentReady:btn-success :btn"}} {{action "register" content}}>Register now!</button>
     {{/if}}
 
     <i class="icon-info-sign" rel="tooltip" title="Your battle.net username, for example Vogin.132"></i>

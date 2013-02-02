@@ -9,7 +9,7 @@
 //= require ./bracket
 
 //= require handlebars
-//= require ember
+//= require ./vendor/ember
 //= require ember-data
 //= require ./scvrush
 

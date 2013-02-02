@@ -1,21 +1,19 @@
 <h1>{{name}}</h1>
 
-{{isStarted}}
-
 {{#if isAdmin}}
   <div class="meta btn-group">
     {{#if isStarted}}
       {{#if seeded}}
-        <button class="btn" {{action "unseed" content}}>Destroy seed</button>
+        <button {{bindAttr disabled="isSaving"}} class="btn" {{action "unseed" content}}>Destroy seed</button>
       {{else}}
-        <button class="btn" {{action "seed" content}}>Seed</button>
+        <button {{bindAttr disabled="isSaving"}} class="btn" {{action "seed" content}}>Seed</button>
       {{/if}}
     {{else}}
-      <button class="btn" {{action "start" content}}>Start now</button>
+      <button {{bindAttr disabled="isSaving"}} class="btn" {{action "start" content}}>Start now</button>
     {{/if}}
 
-    <button class="btn" {{action "deleteTournament" content}}>Delete the tournament</button>
-    <button class="btn" {{action "randomize" content}}>Randomize players</button>
+    <button {{bindAttr disabled="isSaving"}} class="btn" {{action "deleteTournament" content}}>Delete the tournament</button>
+    <button {{bindAttr disabled="isSaving"}} class="btn" {{action "randomize" content}}>Randomize players</button>
     {{#linkTo "tournament.edit" content class="btn"}}Edit{{/linkTo}}
   </div>
 {{/if}}
