@@ -8,8 +8,9 @@
 
 //= require ./bracket
 
-//= require ./vendor/ember
-//= require ./vendor/ember-data-11
+//= require handlebars
+//= require ember
+//= require ember-data
 //= require ./scvrush
 
 Handlebars.registerHelper("debug", function(optionalValue) {
