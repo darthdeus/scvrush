@@ -13,35 +13,35 @@
   <div class="control-group">
     <label class="control-label">Username</label>
     <div class="controls">
-      {{view Ember.TextField valueBinding="Scvrush.currentUser.username"}}
+      {{view Ember.TextField valueBinding="user.username"}}
     </div>
   </div>
 
   <div class="control-group">
     <label class="control-label">E-mail</label>
     <div class="controls">
-      {{view Ember.TextField valueBinding="Scvrush.currentUser.email"}}
+      {{view Ember.TextField valueBinding="user.email"}}
     </div>
   </div>
 
   <div class="control-group">
     <label class="control-label">Password</label>
     <div class="controls">
-      {{view Ember.TextField valueBinding="Scvrush.currentUser.password" type="password"}}
+      {{view Ember.TextField valueBinding="user.password" type="password"}}
     </div>
   </div>
 
   <div class="control-group">
     <label class="control-label">Password Confirmation</label>
     <div class="controls">
-      {{view Ember.TextField valueBinding="Scvrush.currentUser.passwordConfirmation" type="password"}}
+      {{view Ember.TextField valueBinding="user.passwordConfirmation" type="password"}}
     </div>
   </div>
 
   <div class="control-group">
     <div class="controls">
 
-      <button type="submit" {{bindAttr disabled="isSaving"}} class="btn btn-primary">
+      <button type="submit" {{bindAttr disabled="user.isSaving"}} class="btn btn-primary">
         {{#if isSaving}}
           Saving ...
         {{else}}

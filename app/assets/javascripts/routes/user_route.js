@@ -6,10 +6,6 @@ Scvrush.UserIndexRoute = Ember.Route.extend({
 
 Scvrush.UserEditRoute = Ember.Route.extend({
 
-  setupController: function(controller, model) {
-    var user = this.controllerFor("user").get("content");
-  },
-
   events: {
 
     saveProfile: function() {
