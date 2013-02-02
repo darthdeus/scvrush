@@ -2,14 +2,9 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require ./vendor/manifest
-//= require dataTables/jquery.dataTables
-//= require dataTables/jquery.dataTables.bootstrap
-//= require login
-
-//= require ./bracket
 
 //= require handlebars
-//= require ./vendor/ember
+//= require ember
 //= require ember-data
 //= require ./scvrush
 

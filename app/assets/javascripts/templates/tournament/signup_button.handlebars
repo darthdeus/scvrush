@@ -10,7 +10,7 @@
     </span>
 
     <span {{bindAttr class="user.isNotTournamentReady:error"}}>
-      {{view Ember.Select contentBinding="Scvrush.User.ALL_RACES" valueBinding="user.race"}}
+      {{partial "race_picker"}}
     </span>
 
     {{#if shouldCheckin}}

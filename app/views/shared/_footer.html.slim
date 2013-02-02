@@ -106,7 +106,3 @@ script type="text/template" id="login_form"
       $zopim.livechat.setName("#{current_user.username}");
       $zopim.livechat.setEmail("#{current_user.email}");
     });
-
-
-  - if logged_in?
-    = render 'shared/intercom'
