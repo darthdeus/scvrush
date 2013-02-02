@@ -1,6 +1,0 @@
-.timeline-item.tournament-item
-  h2= link_to tournament.name, tournament
-  - if not tournament.started?
-    .meta starts in #{tournament.checkin_at}
-  - else
-    .meta finished #{tournament.start_at} ago
