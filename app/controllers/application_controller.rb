@@ -84,7 +84,6 @@ class ApplicationController < ActionController::Base
   end
 
   def export_user_id
-    sleep 1
   end
 
 end
