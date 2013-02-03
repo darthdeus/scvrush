@@ -26,9 +26,8 @@ gem 'active_model_serializers'
 gem 'rdiscount',          '~> 1.6.8'
 gem 'kaminari',           '~> 0.13.0'
 
-gem 'draper',             '~> 0.17.0'
+gem 'draper',             '~> 1.1.0'
 gem 'twitter',            '~> 4.1.0'
-
 
 gem 'fog',                '~> 1.6.0'
 gem 'carrierwave',        '~> 0.6.2'
@@ -52,9 +51,8 @@ gem 'party_boy',            '~> 0.3.4'
 gem 'acts-as-taggable-on',  '~> 2.1.0'
 
 gem 'rest-client',          '~> 1.6.7'
-gem 'gon',                  '~> 4.0.0'
 
-gem 'execjs', '~> 1.3.0'
+gem 'execjs', '~> 1.4.0'
 
 group :development, :test do
   gem 'rb-fsevent', '~> 0.9.1'
@@ -75,15 +73,13 @@ end
 group :test do
   gem 'database_cleaner',   '~> 0.7.2'
   gem 'simplecov',          '~> 0.6.1'
-  gem 'rspec-rails',        '~> 2.12.0'
-  gem 'capybara',           '~> 1.1.2'
-  gem 'factory_girl_rails', '~> 4.1.0'
+  gem 'rspec-rails',        '~> 2.12.1'
+  gem 'capybara',           '~> 2.0.2'
+  gem 'factory_girl_rails', '~> 4.2.0'
   gem 'launchy',            '~> 2.1.1'
 end
 
 gem 'rails_autolink'
 
-gem 'unicorn',        '~> 4.3.1'
-gem 'capistrano',     '~> 2.13.0'
-gem 'rvm-capistrano', '~> 1.2.5', require: false
-
+gem 'unicorn',        '~> 4.5.0'
+gem 'capistrano',     '~> 2.14.1'
