@@ -2,7 +2,7 @@
 
 <p>Every SCV Rush user can create custom tournaments and invite friends to play.</p>
 
-<form class="form-horizontal" {{action "save" content on="submit"}}>
+<form class="form-horizontal" {{action "create" content on="submit"}}>
 
   <div {{bindAttr class="nameInvalid:error :control-group"}}>
     <label class="control-label">Name</label>
@@ -12,16 +12,6 @@
     </div>
   </div>
 
-  <!--
-  <div {{bindAttr class=":control-group"}}>
-    <label class="control-label">Number of players</label>
-
-    <div class="controls">
-      {{view Em.TextField valueBinding="maxPlayers" class="control"}}
-    </div>
-  </div>
-  -->
-
   <div {{bindAttr class="startsAtInvalid:error :control-group"}}>
     <label class="control-label">Starts at</label>
 
@@ -29,20 +19,6 @@
       {{view Scvrush.DateTimeView valueBinding="startsAt" class="control"}}
     </div>
   </div>
-
-  <!--
-  <div class="row">
-    <div class="span1">
-      <button class="btn" {{action "addRound"}}>add round</button>
-    </div>
-
-    <div class="span1">
-      {{#each round in reverseRounds}}
-        {{round.number}}
-      {{/each}}
-    </div>
-  </div>
-  -->
 
   <div class="controls">
     <button class="btn btn-primary">Create tournament</button>

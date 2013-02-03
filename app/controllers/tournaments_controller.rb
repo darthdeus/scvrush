@@ -43,16 +43,14 @@ class TournamentsController < ApplicationController
     elsif params[:tournament][:is_checked]
       registrator = UserRegistrator.new(current_user, tournament)
       registrator.checkin
-    else
+    elsif !params[:tournament][:is_checked] && !params[:tournament][:is_registered]
       tournament.unregister(current_user)
     end
 
-    # TODO - check user
     if params[:tournament][:starts_at]
       tournament.update_attributes(params[:tournament].extract!(:starts_at, :name))
     end
 
-    # TODO - check impl of respond_with, since it returns 204 instead of 200
     render json: tournament
   end
 

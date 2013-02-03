@@ -75,23 +75,7 @@ Scvrush.TournamentsNewRoute = Em.Route.extend({
     return Scvrush.Tournament.createRecord({
       startsAt: oneHourFromNow.format("YYYY-MM-DD HH:mm")
     });
-  },
-
-  events: {
-    save: function(tournament) {
-      var route = this;
-
-      tournament.revalidate();
-      if (tournament.get("isInvalid")) {
-        return;
-      }
-
-      tournament.one("didCreate", function() {
-        route.transitionTo("tournament", tournament);
-      });
-
-      tournament.get("transaction").commit();
-    }
   }
+
 });
 
