@@ -3,44 +3,17 @@ class PostsController < ApplicationController
 
   def index
     if params[:query]
-      @posts = Post.search(params[:query], load: true).to_a if params[:query]
+      posts = Post.search(params[:query], load: true).to_a if params[:query]
     else
-      @posts = Post.published.first(20)
+      posts = Post.published.first(20)
     end
 
-    respond_with @posts
-  end
-
-  def tag
-    if params[:id]
-      @posts = Post.published.page(params[:page]).tagged_with(params[:id])
-      render :index
-    else
-      flash[:error] = "Tag doesn't exist"
-      redirect_to action: :index
-    end
-  end
-
-  def content
-  end
-
-  def tagged_with
-    @tag = params[:tag]
-    @tags = @tag.downcase.split("/")
-    @posts = Post.where("status=1").tagged_with(@tags)
-    respond_to do |format|
-      format.js
-    end
+    render json: posts
   end
 
   def show
-    @post = Post.find(params[:id])
-    respond_with @post
-  end
-
-  def new
-    authorize! :create, Post
-    @post = Post.new
+    post = Post.find(params[:id])
+    render json: post
   end
 
   def create
@@ -52,14 +25,6 @@ class PostsController < ApplicationController
     else
       render "new"
     end
-  end
-
-  def edit
-    @post = Post.find(params[:id])
-    authorize! :update, @post
-
-    @image = Image.new
-    @images = Image.last(5)
   end
 
   def update

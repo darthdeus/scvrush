@@ -28,7 +28,7 @@ Scvrush.TournamentsNewRoute = Em.Route.extend({
         });
       });
 
-      this.get("store").commit();
+      tournament.get("transaction").commit();
     }
   }
 });
@@ -37,25 +37,25 @@ Scvrush.TournamentsRoute = Em.Route.extend({
   events: {
     register: function(tournament, user) {
       tournament.set("isRegistered", true);
-      this.get("store").commit();
+      tournament.get("transaction").commit();
     },
 
     checkin: function(tournament) {
       if (Scvrush.currentUser.get("isTournamentReady")) {
         tournament.set("isChecked", true);
-        this.get("store").commit();
+        tournament.get("transaction").commit();
       }
     },
 
-    cancel: function(model) {
-      model.set("isRegistered", false);
-      model.set("isChecked", false);
-      this.get("store").commit();
+    cancel: function(tournament) {
+      tournament.set("isRegistered", false);
+      tournament.set("isChecked", false);
+      tournament.get("transaction").commit();
     },
 
-    deleteTournament: function(model) {
-      model.deleteRecord();
-      this.get("store").commit();
+    deleteTournament: function(tournament) {
+      tournament.deleteRecord();
+      tournament.get("transaction").commit();
     },
 
     start: function(model) {
@@ -64,23 +64,20 @@ Scvrush.TournamentsRoute = Em.Route.extend({
 
     seed: function(tournament) {
       Scvrush.Bracket.createRecord({ tournament: tournament });
-      this.get("store").commit();
+      tournament.get("transaction").commit();
     },
 
     unseed: function(tournament) {
-      var self = this;
       $.post("/brackets/" + tournament.get("id"), { _method: "DELETE" }, function(data) {
-        self.get("store").load(Scvrush.Tournament, data.tournament);
+        tournament.get("store").load(Scvrush.Tournament, data.tournament);
       });
     },
 
     reloadMatches: function(tournament) {
-      var store = this.get("store");
-
       tournament.reload();
 
       $.get("/matches?tournament_id=" + tournament.get("id"), function(data) {
-        store.loadMany(Scvrush.Match, data.matches);
+        tournament.get("store").loadMany(Scvrush.Match, data.matches);
       });
     },
 

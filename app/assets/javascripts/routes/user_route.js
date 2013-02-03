@@ -14,15 +14,14 @@ Scvrush.UserEditRoute = Ember.Route.extend({
     }
   },
 
-  enter: function() {
+  activate: function() {
     var user = this.modelFor("user");
         transaction = user.get("store").transaction();
 
     transaction.add(user);
   },
 
-  exit: function() {
-    this._super();
+  deactivate: function() {
     this.modelFor("user").get("transaction").rollback();
   },
 

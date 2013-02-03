@@ -1,13 +1,17 @@
-Scvrush.UserController = Ember.ObjectController.extend({
-  needs: ["user"],
+Scvrush.UserIndexController = Ember.ObjectController.extend({
+  needs: "user",
+
+  user: function() {
+    return this.get("controllers.user.content");
+  }.property("controllers.user.content"),
 
   isCurrentUser: function() {
-    return this.get("content") === Scvrush.currentUser;
+    return this.get("user") === Scvrush.currentUser;
   }.property("content"),
 
   isFollowingUser: function() {
-    return Scvrush.currentUser.isFollowing(this.get("content"));
-  }.property("content.followers.@each.username", "Scvrush.currentUser.following.@each.username"),
+    return Scvrush.currentUser.isFollowing(this.get("user"));
+  }.property("user.followers.@each.username", "Scvrush.currentUser.following.@each.username"),
 
   follow: function(user) {
     Scvrush.currentUser.follow(user);
@@ -15,6 +19,11 @@ Scvrush.UserController = Ember.ObjectController.extend({
 
   unfollow: function(user) {
     Scvrush.currentUser.unfollow(user);
+  },
+
+  deleteStatus: function(status) {
+    status.deleteRecord();
+    status.get("transaction").commit();
   },
 
 });

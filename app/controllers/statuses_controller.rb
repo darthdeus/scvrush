@@ -4,14 +4,14 @@ class StatusesController < ApplicationController
 
   def index
     if params[:ids]
-      respond_with Status.find(params[:ids])
+      render json: Status.find(params[:ids])
     else
-      respond_with Timeline.for_user(current_user)
+      render json: Timeline.for_user(current_user)
     end
   end
 
   def show
-    respond_with Status.find(params[:id])
+    render json: Status.find(params[:id])
   end
 
   def create
@@ -19,7 +19,13 @@ class StatusesController < ApplicationController
     status.user_id = current_user.id
 
     status.save!
-    respond_with status
+    render json: status
+  end
+
+  def destroy
+    status = Status.find(params[:id])
+    status.destroy
+    render json: nil, status: :ok
   end
 
 end

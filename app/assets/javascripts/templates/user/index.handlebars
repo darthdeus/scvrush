@@ -1,4 +1,4 @@
-{{#with controllers.user}}
+{{#with user}}
   <div class="row user-profile">
     <div class="span3 user-info">
       <div class="avatar">
@@ -53,10 +53,15 @@
             </div>
 
             <div class="content">
-              <div class="text">{{view Scvrush.UserLinksView contentBinding="status.text"}}</div>
+              <div class="text">{{status.text}}</div>
             </div>
 
             <div class="meta">
+              {{#if isCurrentUser}}
+                <button {{action "deleteStatus" status}} class="btn btn-mini">
+                  <i class="icon-remove"></i>
+                </button>
+              {{/if}}
             </div>
 
           </div>
