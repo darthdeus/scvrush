@@ -6,9 +6,9 @@ Scvrush.PostsIndexController = Em.ArrayController.extend({
     var posts;
 
     if (this.get("query") === "") {
-      posts = Scvrush.get("store").find(Scvrush.Post);
+      posts = Scvrush.Post.find();
     } else {
-      posts = Scvrush.get("store").find(Scvrush.Post, { query: this.get("query") });
+      posts = Scvrush.Post.find({ query: this.get("query") });
     }
 
     this.set("content", posts);
