@@ -3,6 +3,7 @@
 
 Scvrush.Router.map(function() {
   this.route("home", { path: "/" });
+  this.route("meet_scvrush", { path: "/meet-scvrush" });
 
   this.resource("posts", { path: "/posts" }, function() {
     this.route("post", { path: "/:post_id" });
