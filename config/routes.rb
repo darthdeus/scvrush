@@ -56,8 +56,6 @@ Scvrush::Application.routes.draw do
   resources :brackets
   resources :tournaments do
     member do
-      get :matches
-      get :rounds
       post :start
       post :seed
       post :unseed

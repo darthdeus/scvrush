@@ -29,8 +29,9 @@ class UsersController < ApplicationController
       password: params[:user][:password],
       password_confirmation: params[:user][:password_confirmation],
       bnet_info: params[:user][:bnet_info],
-      expires_at: nil
     }
+
+    attributes[:expires_at] = nil if attributes[:password]
 
     user.update_attributes(attributes)
 

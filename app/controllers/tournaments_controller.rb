@@ -27,13 +27,6 @@ class TournamentsController < ApplicationController
     respond_with Tournament.find(params[:id])
   end
 
-  def rounds
-    @tournament = Tournament.find(params[:id])
-    # TODO - display the last round too
-    rounds = @tournament.rounds[0..-2].map(&:to_simple_json)
-    render json: rounds
-  end
-
   def destroy
     tournament = Tournament.find(params[:id])
     tournament.destroy
@@ -65,7 +58,6 @@ class TournamentsController < ApplicationController
 
   def seed
     tournament = TournamentDecorator.find(params[:id])
-    # authorize! :seed, tournament
 
     bracket = Bracket.new(tournament)
     bracket.create_bracket_rounds
@@ -75,29 +67,19 @@ class TournamentsController < ApplicationController
     tournament.seeded = true
     tournament.save!
 
-    respond_with tournament
+    render json: tournament.reload
   end
 
   def unseed
     tournament = TournamentDecorator.find(params[:id])
-    # authorize! :seed, tournament
 
     tournament.seeded = false
     tournament.winner = nil
     tournament.rounds.destroy_all
 
-    if tournament.save
-      flash[:success] = "The seed was destroyed. Please seed the tournament again before players can submit their match results"
-    else
-      flash[:error] = "The tournament wasn't created properly"
-    end
+    tournament.save!
 
-    redirect_to tournament
-  end
-
-  def matches
-    @tournament = TournamentDecorator.find(params[:id])
-    @matches = @tournament.matches.where("score IS NOT NULL")
+    render json: tournament.reload
   end
 
   def start
