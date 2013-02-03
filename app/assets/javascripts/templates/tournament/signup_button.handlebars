@@ -10,7 +10,7 @@
     </span>
 
     <span {{bindAttr class="user.isNotTournamentReady:error"}}>
-      {{partial "race_picker"}}
+      {{control "race_picker" user}}
     </span>
 
     {{#if shouldCheckin}}

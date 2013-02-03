@@ -1,4 +1,6 @@
-<span class="zerg-button"></span>
-<span class="protoss-button"></span>
-<span class="terran-button"></span>
-<span class="random-button"></span>
+<div class="race-picker">
+  <span {{action "selectRace" "zerg"}} {{bindAttr class="isZerg:active :race-zerg"}}></span>
+  <span {{action "selectRace" "terran"}} {{bindAttr class="isTerran:active :race-terran"}}></span>
+  <span {{action "selectRace" "protoss"}} {{bindAttr class="isProtoss:active :race-protoss"}}></span>
+  <span {{action "selectRace" "random"}} {{bindAttr class="isRandom:active :race-random"}}></span>
+</div>

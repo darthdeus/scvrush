@@ -4,7 +4,7 @@
 //= require ./vendor/manifest
 
 //= require handlebars
-//= require ember
+//= require ./vendor/ember
 //= require ember-data
 //= require ./scvrush
 

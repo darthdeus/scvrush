@@ -1,0 +1,23 @@
+.race-picker {
+
+  display: inline-block;
+
+  span {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-repeat: no-repeat;
+
+    opacity: 0.5;
+
+    &.active {
+      opacity: 1;
+    }
+  }
+
+
+  .race-zerg    { background: url("race_zerg_icon.png"); }
+  .race-terran  { background: url("race_terran_icon.png"); }
+  .race-protoss { background: url("race_protoss_icon.png"); }
+  .race-random  { background: url("race_random_icon.png"); }
+}

@@ -560,10 +560,8 @@ li.stream {
 .ui-timepicker-rtl dl dd { margin: 0 65px 10px 10px; }
 
 @import "posts";
-// @import "progress_bar";
 @import "users";
-// @import "dashboard";
 @import "bracket";
 @import "jquery-ui.custom";
 @import "fancybox/jquery.fancybox";
-@import "./vendor/select2";
+@import "tournaments";
