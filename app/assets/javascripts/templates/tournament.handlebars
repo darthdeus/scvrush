@@ -1,7 +1,6 @@
 <h1>{{name}}</h1>
 
 {{#if isAdmin}}
-{{/if}}
   <div class="meta btn-group">
     {{#if isStarted}}
       {{#if seeded}}
@@ -17,6 +16,7 @@
     <button {{bindAttr disabled="isSaving"}} class="btn" {{action "randomize" content}}>Randomize players</button>
     {{#linkTo "tournament.edit" content class="btn"}}Edit{{/linkTo}}
   </div>
+{{/if}}
 
 <h4>{{#linkTo "tournaments"}}back to tournaments{{/linkTo}}</h4>
 

@@ -39,10 +39,6 @@ Scvrush.TournamentRoute = Ember.Route.extend({
 
 Scvrush.TournamentEditRoute = Ember.Route.extend({
 
-  // renderTemplate: function() {
-  //   this.render("tournament/edit", { into: "application" });
-  // },
-
   events: {
     saveTournament: function(tournament) {
       var route = this;

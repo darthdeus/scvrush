@@ -1,5 +1,4 @@
 class TournamentsController < ApplicationController
-  before_filter :require_login, only: [ :new, :create, :seed, :unseed, :start, :edit, :update, :emails ]
 
   respond_to :json
 
@@ -35,14 +34,11 @@ class TournamentsController < ApplicationController
     render json: rounds
   end
 
-  def edit
-    @tournament = Tournament.find(params[:id])
-    authorize! :edit, @tournament
-  end
-
   def destroy
-    @tournament = current_user.tournaments.find(params[:id])
-    @tournament.destroy
+    tournament = Tournament.find(params[:id])
+    tournament.destroy
+
+    render json: tournament
   end
 
   def update
@@ -69,7 +65,7 @@ class TournamentsController < ApplicationController
 
   def seed
     tournament = TournamentDecorator.find(params[:id])
-    authorize! :seed, tournament
+    # authorize! :seed, tournament
 
     bracket = Bracket.new(tournament)
     bracket.create_bracket_rounds
@@ -84,7 +80,7 @@ class TournamentsController < ApplicationController
 
   def unseed
     tournament = TournamentDecorator.find(params[:id])
-    authorize! :seed, tournament
+    # authorize! :seed, tournament
 
     tournament.seeded = false
     tournament.winner = nil
@@ -105,17 +101,17 @@ class TournamentsController < ApplicationController
   end
 
   def start
-    @tournament = Tournament.find(params[:id])
-    authorize! :start, @tournament
+    tournament = Tournament.find(params[:id])
+    # authorize! :start, tournament
 
-    if @tournament.started?
+    if tournament.started?
       # TODO - figure out a better way to handle this
       raise "Tournament was already started"
     else
-      @tournament.start
+      tournament.start
     end
 
-    respond_with @tournament
+    render json: tournament.reload
   end
 
   def randomize
