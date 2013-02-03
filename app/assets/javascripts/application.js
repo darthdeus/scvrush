@@ -2,6 +2,7 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require ./vendor/manifest
+//= require ./bracket
 
 //= require handlebars
 //= require ember
