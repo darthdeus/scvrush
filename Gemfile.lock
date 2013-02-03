@@ -33,9 +33,10 @@ GEM
     acts-as-taggable-on (2.1.1)
       rails
     addressable (2.3.2)
-    airbrake (3.0.9)
+    airbrake (3.1.7)
       activesupport
       builder
+      json
     arel (3.0.2)
     barber (0.2.0)
       execjs
@@ -290,7 +291,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   acts-as-taggable-on (~> 2.1.0)
-  airbrake (~> 3.0.9)
+  airbrake (~> 3.1.6)
   bcrypt-ruby (~> 3.0.1)
   bootstrap-sass (~> 2.2.2.0)
   bourbon (~> 1.4.0)

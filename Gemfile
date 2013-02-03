@@ -33,7 +33,7 @@ gem 'twitter',            '~> 4.1.0'
 gem 'fog',                '~> 1.6.0'
 gem 'carrierwave',        '~> 0.6.2'
 gem 'mini_magick',        '~> 3.4'
-gem 'airbrake',           '~> 3.0.9'
+gem 'airbrake',           '~> 3.1.6'
 gem 'newrelic_rpm',       '~> 3.5.5'
 
 group :assets do
