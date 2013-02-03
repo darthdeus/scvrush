@@ -1,4 +1,5 @@
 class TournamentDecorator < Draper::Decorator
+  delegate_all
   decorates :tournament
 
   delegate :as_json, to: :model
