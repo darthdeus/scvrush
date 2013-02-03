@@ -18,6 +18,7 @@ gem 'simple_form',             '~> 2.0.1'
 gem 'bourbon',                 '~> 3.0.1'
 gem 'font-awesome-sass-rails', '~> 3.0.0.1'
 
+gem 'kaminari'
 gem 'tire'
 
 gem 'ember-rails'
