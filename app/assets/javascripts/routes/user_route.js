@@ -1,15 +1,8 @@
-Scvrush.UserIndexRoute = Ember.Route.extend({
-  // setupController: function(controller, model) {
-  //   controller.set("content", controller.get("controllers.users"));
-  // },
-});
-
 Scvrush.UserEditRoute = Ember.Route.extend({
 
   events: {
-
     saveProfile: function() {
-      var user = this.controllerFor("user").get("content"),
+      var user = this.modelFor("user");
           route = this;
 
       user.one("didUpdate", function() {
@@ -17,10 +10,20 @@ Scvrush.UserEditRoute = Ember.Route.extend({
         route.transitionTo("home");
       });
 
-      user.get("store").commit();
+      user.get("transaction").commit();
     }
+  },
 
-  }
+  enter: function() {
+    var user = this.modelFor("user");
+        transaction = user.get("store").transaction();
 
+    transaction.add(user);
+  },
+
+  exit: function() {
+    this._super();
+    this.modelFor("user").get("transaction").rollback();
+  },
 
 });

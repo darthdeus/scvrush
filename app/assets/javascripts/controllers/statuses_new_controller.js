@@ -15,4 +15,5 @@ Scvrush.StatusesNewController = Ember.Controller.extend({
 
     this.set("text", "");
   },
+
 });
