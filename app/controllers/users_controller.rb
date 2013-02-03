@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    respond_with UserDecorator.new(@user)
+    respond_with @user
   end
 
   def update

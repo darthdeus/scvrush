@@ -118,7 +118,7 @@ class User < ActiveRecord::Base
   end
 
   def bnet_info
-    "#{bnet_username}.#{bnet_code}"
+    (bnet_username && bnet_code) ? "#{bnet_username}.#{bnet_code}" : nil
   end
 
   # TODO - check for this on the client as well

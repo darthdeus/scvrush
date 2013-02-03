@@ -3,12 +3,12 @@ Scvrush.TournamentRoundsView = Em.View.extend({
 
   roundsChanged: function() {
     this.rerender();
-  }.observes("content.rounds.length"),
+  }.observes("controller.rounds.length"),
 
   didInsertElement: function() {
     Ember.run.later(function() {
       $(".bracket").applyDimensions(window.dimensions);
-    }, 1000);
+    }, 500);
   }
 
 });
