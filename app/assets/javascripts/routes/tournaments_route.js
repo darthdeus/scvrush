@@ -1,38 +1,3 @@
-Scvrush.TournamentsIndexRoute = Em.Route.extend({
-  model: function() {
-    return Scvrush.TournamentDay.find();
-  }
-});
-
-Scvrush.TournamentsNewRoute = Em.Route.extend({
-
-  model: function() {
-    var oneHourFromNow = moment().add("hours", 2);
-    return Scvrush.Tournament.createRecord({
-      startsAt: oneHourFromNow.format("YYYY-MM-DD HH:mm")
-    });
-  },
-
-  events: {
-    save: function(tournament) {
-      var route = this;
-
-      tournament.revalidate();
-      if (tournament.get("isInvalid")) {
-        return;
-      }
-
-      tournament.one("didCreate", function() {
-        Ember.run.next(function() {
-          route.transitionTo("tournament", tournament);
-        });
-      });
-
-      tournament.get("transaction").commit();
-    }
-  }
-});
-
 Scvrush.TournamentsRoute = Em.Route.extend({
   events: {
     register: function(tournament, user) {
@@ -96,3 +61,37 @@ Scvrush.TournamentsRoute = Em.Route.extend({
   }
 
 });
+
+Scvrush.TournamentsIndexRoute = Em.Route.extend({
+  model: function() {
+    return Scvrush.TournamentDay.find();
+  }
+});
+
+Scvrush.TournamentsNewRoute = Em.Route.extend({
+
+  model: function() {
+    var oneHourFromNow = moment().add("hours", 2);
+    return Scvrush.Tournament.createRecord({
+      startsAt: oneHourFromNow.format("YYYY-MM-DD HH:mm")
+    });
+  },
+
+  events: {
+    save: function(tournament) {
+      var route = this;
+
+      tournament.revalidate();
+      if (tournament.get("isInvalid")) {
+        return;
+      }
+
+      tournament.one("didCreate", function() {
+        route.transitionTo("tournament", tournament);
+      });
+
+      tournament.get("transaction").commit();
+    }
+  }
+});
+
