@@ -16,7 +16,7 @@ class StatusesController < ApplicationController
 
   def create
     status = Status.new(params[:status])
-    status.user_id = curent_user.id
+    status.user_id = current_user.id
 
     status.save!
     respond_with status
