@@ -1,5 +1,5 @@
-// Version: v1.0.0-pre.4-137-g0f14b34
-// Last commit: 0f14b34 (2013-02-01 09:05:31 -0800)
+// Version: v1.0.0-pre.4-145-gb4df03b
+// Last commit: b4df03b (2013-02-01 19:40:26 -0800)
 
 
 (function() {
@@ -150,8 +150,8 @@ Ember.deprecateFunc = function(message, func) {
 
 })();
 
-// Version: v1.0.0-pre.4-137-g0f14b34
-// Last commit: 0f14b34 (2013-02-01 09:05:31 -0800)
+// Version: v1.0.0-pre.4-145-gb4df03b
+// Last commit: b4df03b (2013-02-01 19:40:26 -0800)
 
 
 (function() {
@@ -10171,9 +10171,10 @@ CoreObject.PrototypeMixin = Mixin.create({
     @return {Ember.Object} receiver
   */
   destroy: function() {
-    if (this.isDestroying) { return; }
+    if (this._didCallDestroy) { return; }
 
     this.isDestroying = true;
+    this._didCallDestroy = true;
 
     if (this.willDestroy) { this.willDestroy(); }
 
@@ -13488,7 +13489,10 @@ Ember.CoreView = Ember.Object.extend(Ember.Evented, {
 
     // Register the view for event handling. This hash is used by
     // Ember.EventDispatcher to dispatch incoming events.
-    if (!this.isVirtual) Ember.View.views[this.elementId] = this;
+    if (!this.isVirtual) {
+      Ember.assert("Attempted to register a view with an id already in use: "+this.elementId, !Ember.View.views[this.elementId]);
+      Ember.View.views[this.elementId] = this;
+    }
 
     this.addBeforeObserver('elementId', function() {
       throw new Error("Changing a view's elementId after creation is not allowed");
@@ -16800,6 +16804,10 @@ Ember.CollectionView = Ember.ContainerView.extend(
     if (content) { content.removeArrayObserver(this); }
 
     this._super();
+
+    if (this._createdEmptyView) {
+      this._createdEmptyView.destroy();
+    }
   },
 
   arrayWillChange: function(content, start, removedCount) {
@@ -16869,9 +16877,13 @@ Ember.CollectionView = Ember.ContainerView.extend(
       var emptyView = get(this, 'emptyView');
       if (!emptyView) { return; }
 
+      var isClass = Ember.CoreView.detect(emptyView);
+
       emptyView = this.createChildView(emptyView);
       addedViews.push(emptyView);
       set(this, 'emptyView', emptyView);
+
+      if (isClass) { this._createdEmptyView = emptyView; }
     }
     this.replace(start, 0, addedViews);
   },
@@ -23269,6 +23281,10 @@ Ember.Route = Ember.Object.extend({
     if (options.outlet === 'main') { this.lastRenderedTemplate = name; }
 
     appendView(this, view, options);
+  },
+
+  willDestroy: function() {
+    teardownView(this);
   }
 });
 
@@ -23355,7 +23371,7 @@ function appendView(route, view, options) {
 }
 
 function teardownTopLevel(view) {
-  return function() { view.remove(); };
+  return function() { view.destroy(); };
 }
 
 function teardownOutlet(parentView, outlet) {
@@ -23555,45 +23571,6 @@ Ember.onLoad('Ember.Handlebars', function(Handlebars) {
 
     return Handlebars.helpers.view.call(this, Handlebars.OutletView, options);
   });
-
-  Ember.View.reopen({
-    init: function() {
-      set(this, '_outlets', {});
-      this._super();
-    },
-
-    connectOutlet: function(outletName, view) {
-      var outlets = get(this, '_outlets'),
-          container = get(this, 'container'),
-          router = container && container.lookup('router:main'),
-          oldView = get(outlets, outletName),
-          renderedName = get(view, 'renderedName');
-
-      set(outlets, outletName, view);
-
-      if (router) {
-        if (oldView) {
-          router._disconnectActiveView(oldView);
-        }
-        if (renderedName) {
-          router._connectActiveView(renderedName, view);
-        }
-      }
-    },
-
-    disconnectOutlet: function(outletName) {
-      var outlets = get(this, '_outlets'),
-          container = get(this, 'container'),
-          router = container && container.lookup('router:main'),
-          view = get(outlets, outletName);
-
-      set(outlets, outletName, null);
-
-      if (router && view) {
-        router._disconnectActiveView(view);
-      }
-    }
-  });
 });
 
 })();
@@ -23609,17 +23586,17 @@ Ember.onLoad('Ember.Handlebars', function(Handlebars) {
 var get = Ember.get, set = Ember.set;
 Ember.onLoad('Ember.Handlebars', function(Handlebars) {
 
-  Ember.Handlebars.registerHelper('render', function(name, context, options) {
+  Ember.Handlebars.registerHelper('render', function(name, contextString, options) {
     Ember.assert("You must pass a template to render", arguments.length >= 2);
-    var container, router, controller, view;
+    var container, router, controller, view, context;
 
     if (arguments.length === 2) {
-      options = context;
-      context = undefined;
+      options = contextString;
+      contextString = undefined;
     }
 
-    if (typeof context === 'string') {
-      context = Ember.Handlebars.get(options.contexts[1], context, options);
+    if (typeof contextString === 'string') {
+      context = Ember.Handlebars.get(options.contexts[1], contextString, options);
     }
 
     name = name.replace(/\//g, '.');
@@ -23638,6 +23615,14 @@ Ember.onLoad('Ember.Handlebars', function(Handlebars) {
 
     if (controller && context) {
       controller.set('model', context);
+    }
+
+    var root = options.contexts[1];
+
+    if (root) {
+      view.registerObserver(root, contextString, function() {
+        controller.set('model', Ember.Handlebars.get(root, contextString, options));
+      });
     }
 
     controller.set('target', options.data.keywords.controller);
@@ -26604,8 +26589,8 @@ Ember States
 
 
 })();
-// Version: v1.0.0-pre.4-137-g0f14b34
-// Last commit: 0f14b34 (2013-02-01 09:05:31 -0800)
+// Version: v1.0.0-pre.4-145-gb4df03b
+// Last commit: b4df03b (2013-02-01 19:40:26 -0800)
 
 
 (function() {
