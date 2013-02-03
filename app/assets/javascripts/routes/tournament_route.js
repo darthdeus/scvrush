@@ -57,7 +57,7 @@ Scvrush.TournamentEditRoute = Ember.Route.extend({
     var tournament = this.modelFor("tournament"),
         transaction = tournament.get("store").transaction();
 
-    transaction.add(tournamnet);
+    transaction.add(tournament);
   },
 
   deactivate: function() {
