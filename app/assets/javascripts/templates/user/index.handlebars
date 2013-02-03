@@ -33,9 +33,9 @@
 
         {{#unless isCurrentUser}}
           {{#if controller.isFollowingUser}}
-            <a class="btn btn-danger"  {{action "unfollow" content}}>Unfollow</a>
+            <a class="btn btn-danger" {{action "unfollow" this}}>Unfollow</a>
           {{else}}
-            <a class="btn btn-success" {{action "follow" content}}>Follow</a>
+            <a class="btn btn-success" {{action "follow" this}}>Follow</a>
           {{/if}}
         {{/unless}}
       </h2>
