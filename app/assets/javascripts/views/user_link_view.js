@@ -11,11 +11,11 @@ Scvrush.UserLinkView = Ember.View.extend({
     return Scvrush.currentUser;
   }.property(),
 
-  usersChanged: function() {
-    Em.run.next(this, function() {
-      this.rerender();
-    });
-  }.observes("users.@each"),
+  // usersChanged: function() {
+  //   Em.run.next(this, function() {
+  //     this.rerender();
+  //   });
+  // }.observes("users.@each"),
 
   template: Ember.Handlebars.compile('<a {{action showUser view.user href=true}}>@{{view.username}}</a>')
 });

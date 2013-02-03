@@ -10,8 +10,8 @@ Scvrush.UserLinksView = Ember.View.extend({
     return Ember.Handlebars.compile(template || "");
   }.property("content"),
 
-  contentChanged: function() {
-    this.rerender();
-  }.observes("content"),
+  // contentChanged: function() {
+  //   this.rerender();
+  // }.observes("content"),
 
 });
