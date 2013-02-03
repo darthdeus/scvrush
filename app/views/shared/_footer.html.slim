@@ -1,57 +1,10 @@
-#footer
-  .container
-    .row
-      .span4
-        h2 Blog
-        ul.unstyled.blog_posts
-          - BlogPost.recent.each do |post|
-            li
-              .date = post.created_at.strftime("%D")
-              .text = link_to post.title, post.url
-
-      .span4.tweets-wrap
-        h2 Recent tweets
-        ul.tweets class="unstyled"
-          - if Rails.env.production? # To speed up development on local
-            - cache "tweets/v1", expires_in: 5.minutes do
-              - tweet_timeline.each do |tweet|
-                li = twitter_autolinks(auto_link(tweet.text).html_safe)
-
-      .span4
-        h2 Follow us
-
-        .content
-          a href="https://twitter.com/theSCVRush" class="twitter-follow-button" data-show-count="false" data-lang="en" data-size="large" Follow @theSCVRush
-          javascript:
-              !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-
-        / .content
-        /   iframe src="http://www.facebook.com/plugins/likebox.php?href=https%3A%2F%2Fwww.facebook.com%2F%23%21%2Fpages%2FSCV-Rush%2F169114036472308&amp;width=292&amp;colorscheme=light&amp;show_faces=false&amp;stream=false&amp;header=false&amp;height=65" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height: 65px;" allowtransparency="true"
-
-    .row
-      .footer
-        ' Copyright &copy; 2012 SCVRush.com
-        - if logged_in? && current_user.is_admin?
-          ' |
-          = link_to "dashboard", dashboard_path
-
-script type="text/template" id="login_form"
-  form class="well"
-    fieldset
-      legend Login to your account
-
-      .control-group
-        input type="text" name="username" placeholder="Username"
-      .control-group
-        input type="password" name="password" placeholder="Password"
-
-      button type="submit" class="btn btn-primary" Log in
-      = link_to 'Create a new account', signup_path, class: 'btn'
-
 
 #fb-root
 
 - if Rails.env.production?
+  script src="http://www.bugsense.com/static/js/global/bugsense.js" type='text/javascript'
+  javascript:
+    var bugsense = new Bugsense( { apiKey: '78f10690' } );
 
   javascript:
     (function(d, s, id) {
