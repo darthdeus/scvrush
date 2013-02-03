@@ -4,6 +4,7 @@
 //= require ./vendor/manifest
 //= require ./bracket
 
+//= require bootstrap
 //= require handlebars
 //= require ember
 //= require ember-data
