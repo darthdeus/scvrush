@@ -1,5 +1,6 @@
-Scvrush.UserIndexController = Ember.ObjectController.extend({
-  needs: "user",
+Scvrush.UserIndexController = Ember.Controller.extend({
+
+  needs: ["user"],
 
   user: function() {
     return this.get("controllers.user.content");
@@ -7,7 +8,7 @@ Scvrush.UserIndexController = Ember.ObjectController.extend({
 
   isCurrentUser: function() {
     return this.get("user") === Scvrush.currentUser;
-  }.property("content"),
+  }.property("user"),
 
   isFollowingUser: function() {
     return Scvrush.currentUser.isFollowing(this.get("user"));

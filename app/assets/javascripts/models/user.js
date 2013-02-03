@@ -16,7 +16,7 @@ Scvrush.User = DS.Model.extend({
   tournaments: DS.hasMany("Scvrush.Tournament"),
 
   bnetInfoValid: function() {
-    return /.+\.\d{3}/.test(this.get("bnetInfo"));
+    return /^.+\.\d{3,4}$/.test(this.get("bnetInfo"));
   }.property("bnetInfo"),
 
   isTournamentReady: function() {

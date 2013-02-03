@@ -31,7 +31,8 @@ class TournamentsController < ApplicationController
     tournament = Tournament.find(params[:id])
     tournament.destroy
 
-    render json: {}, status: :ok
+    respond_with tournament
+    # render json: {}, status: :ok
   end
 
   def update

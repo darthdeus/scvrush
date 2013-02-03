@@ -1,74 +1,72 @@
-{{#with user}}
-  <div class="row user-profile">
-    <div class="span3 user-info">
-      <div class="avatar">
-        <img {{bindAttr src="image"}}>
-      </div>
+<div class="row user-profile">
+  <div class="span3 user-info">
+    <div class="avatar">
+      <img {{bindAttr src="user.image"}}>
+    </div>
 
-      {{#if hasFollowers}}
-        <h3>Followers</h3>
+    {{#if user.hasFollowers}}
+      <h3>Followers</h3>
 
-        {{#each follower in controller.followers}}
-          {{#linkTo "user" follower}}{{follower.username}}{{/linkTo}}
-          <br>
-        {{/each}}
-      {{else}}
-        <div class="alert alert-info">This user has no followers.</div>
-      {{/if}}
-
-
-      <h3>Following</h3>
-
-      {{#each follower in following}}
+      {{#each follower in user.followers}}
         {{#linkTo "user" follower}}{{follower.username}}{{/linkTo}}
         <br>
+      {{/each}}
+    {{else}}
+      <div class="alert alert-info">This user has no followers.</div>
+    {{/if}}
+
+
+    <h3>Following</h3>
+
+    {{#each follower in user.following}}
+      {{#linkTo "user" follower}}{{follower.username}}{{/linkTo}}
+      <br>
+    {{/each}}
+
+  </div>
+
+  <div class="span9">
+    <h2>
+      {{user.username}} ({{user.bnetInfo}})
+      {{#linkTo "users.index" class="help-inline"}}back to users{{/linkTo}}
+
+      {{#unless isCurrentUser}}
+        {{#if isFollowingUser}}
+          <a class="btn btn-danger" {{action "unfollow" user}}>Unfollow</a>
+        {{else}}
+          <a class="btn btn-success" {{action "follow" user}}>Follow</a>
+        {{/if}}
+      {{/unless}}
+    </h2>
+
+    {{#if isCurrentUser}}
+      {{render "statuses.new"}}
+    {{/if}}
+
+    <div class="statuses">
+
+      {{#each status in user.timelineStatuses}}
+        <div class="status">
+          <div class="author">
+            {{#linkTo "user" status.user}}@{{status.user.username}}{{/linkTo}}
+          </div>
+
+          <div class="content">
+            <div class="text">{{status.text}}</div>
+          </div>
+
+          <div class="meta">
+            {{#if isCurrentUser}}
+              <button {{action "deleteStatus" status}} class="btn btn-mini">
+                <i class="icon-remove"></i>
+              </button>
+            {{/if}}
+          </div>
+
+        </div>
       {{/each}}
 
     </div>
 
-    <div class="span9">
-      <h2>
-        {{username}} ({{bnetInfo}})
-        {{#linkTo "users.index" class="help-inline"}}back to users{{/linkTo}}
-
-        {{#unless isCurrentUser}}
-          {{#if controller.isFollowingUser}}
-            <a class="btn btn-danger" {{action "unfollow" this}}>Unfollow</a>
-          {{else}}
-            <a class="btn btn-success" {{action "follow" this}}>Follow</a>
-          {{/if}}
-        {{/unless}}
-      </h2>
-
-      {{#if isCurrentUser}}
-        {{render "statuses.new"}}
-      {{/if}}
-
-      <div class="statuses">
-
-        {{#each status in timelineStatuses}}
-          <div class="status">
-            <div class="author">
-              {{#linkTo "user" status.user}}@{{status.user.username}}{{/linkTo}}
-            </div>
-
-            <div class="content">
-              <div class="text">{{status.text}}</div>
-            </div>
-
-            <div class="meta">
-              {{#if isCurrentUser}}
-                <button {{action "deleteStatus" status}} class="btn btn-mini">
-                  <i class="icon-remove"></i>
-                </button>
-              {{/if}}
-            </div>
-
-          </div>
-        {{/each}}
-
-      </div>
-
-    </div>
   </div>
-{{/with}}
+</div>

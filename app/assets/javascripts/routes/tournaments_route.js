@@ -21,12 +21,13 @@ Scvrush.TournamentsRoute = Em.Route.extend({
     deleteTournament: function(tournament) {
       var route = this;
 
-      tournament.one("didDelete", function() {
-        route.transitionTo("tournaments");
-      });
+      // tournament.one("didDelete", function() {
+        // route.transitionTo("tournaments");
+      // });
 
       tournament.deleteRecord();
       tournament.get("transaction").commit();
+      route.transitionTo("tournaments");
     },
 
     start: function(model) {
