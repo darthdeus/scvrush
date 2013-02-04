@@ -52,7 +52,9 @@
           </div>
 
           <div class="content">
-            <div class="text">{{status.text}}</div>
+            <div class="text">
+              {{view Scvrush.UserLinksView contentBinding="status.text"}}
+            </div>
           </div>
 
           <div class="meta">

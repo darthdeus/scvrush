@@ -2,21 +2,30 @@ Scvrush.UserLinkView = Ember.View.extend({
   tagName: "span",
 
   users: function() {
-    // return Scvrush.store.find(Scvrush.User, { username: this.get("username") });
-    return Scvrush.currentUser;
-  }.property(),
+    var users = Scvrush.User.find({ username: this.get("username") });
+
+    // users.one("didLoad", function() {
+    //   users.resolve(users.get("firstObject"));
+    // });
+
+    return users;
+  }.property("username"),
 
   user: function() {
-    // return this.get("users.firstObject");
-    return Scvrush.currentUser;
-  }.property(),
+    return this.get("users.firstObject") || Scvrush.currentUser;
+  }.property("users.@each.length"),
 
-  // usersChanged: function() {
-  //   Em.run.next(this, function() {
-  //     this.rerender();
-  //   });
-  // }.observes("users.@each"),
+  usersChanged: function() {
+    Em.run.next(this, function() {
+      this.rerender();
+    });
+  }.observes("users.@each"),
 
-  template: Ember.Handlebars.compile('<a {{action showUser view.user href=true}}>@{{view.username}}</a>')
+  usernameChanged: function() {
+    console.log("username = ", this.get("username"));
+  }.property("username"),
+
+  // template: Ember.Handlebars.compile("{{#linkTo 'user' user}}@{{username}}{{/linkTo}}")
+  template: Ember.Handlebars.compile("{{user}}")
 });
 
