@@ -27,7 +27,10 @@ class User < ActiveRecord::Base
   has_many :raffle_signups
   has_many :raffles, through: :raffle_signups
 
+  has_many :following_relationships, class_name: "Relationship", foreign_key: "requestor_id"
   has_many :notifications, dependent: :destroy, order: "created_at DESC"
+  # ActiveRecord reputation system
+  has_many :evaluations, class_name: "RSEvaluation", as: :source
 
   attr_accessible :username, :email, :password, :password_confirmation,
                   :password_reset_token, :avatar, :race, :league, :server,
@@ -36,24 +39,29 @@ class User < ActiveRecord::Base
                   :bnet_code, :bnet_username, :twitter, :time_zone, :practice,
                   :image, :bnet_info, :expires_at
 
-  acts_as_followable
-
-  has_many :following_relationships, class_name: "Relationship", foreign_key: "requestor_id"
-
   attr_accessor :password
+  acts_as_followable
 
   mount_uploader :avatar, AvatarUploader
 
-  scope :practice, where(practice: true).order('created_at DESC')
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
+  mapping do
+    indexes :id
+    indexes :username, analyzer: "snowball", boost: 10
+    indexes :race,     analyzer: "snowball"
+    indexes :league,   analyzer: "snowball"
+  end
+
+  def to_indexed_json
+    to_json(only: [:username, :race, :league])
+  end
 
   # Return a user either by his username or by email.
   # Used mostly for authentication purposes.
   def self.with_login(login)
     where('username ILIKE ? OR email ILIKE ?', login, login).first
   end
-
-  # ActiveRecord reputation system
-  has_many :evaluations, class_name: "RSEvaluation", as: :source
 
   def self.find_all_by_username(username)
     where('username ILIKE ?', username)
@@ -88,7 +96,6 @@ class User < ActiveRecord::Base
         errors[:bnet_username] << 'isn\'t a link to your battle.net profile'
       end
     end
-
   end
 
   validate :bnet_username_is_string
