@@ -1,3 +1,6 @@
+// Last commit: 35ce2be (2013-02-09 16:40:08 -0800)
+
+
 (function() {
 window.DS = Ember.Namespace.create({
   // this one goes to 11
@@ -5996,10 +5999,10 @@ DS.Serializer = Ember.Object.extend({
   registerEnumTransform: function(type, objects) {
     var transform = {
       deserialize: function(deserialized) {
-        return objects.objectAt(deserialized);
+        return Ember.A(objects).objectAt(deserialized);
       },
       serialize: function(serialized) {
-        return objects.indexOf(serialized);
+        return Ember.EnumerableUtils.indexOf(objects, serialized);
       },
       values: objects
     };
@@ -7299,7 +7302,7 @@ DS.FixtureAdapter = DS.Adapter.extend({
     Ember.assert("Unable to find fixtures for model type "+type.toString(), !!fixtures);
 
     if (fixtures) {
-      fixtures = fixtures.findProperty('id', id);
+      fixtures = Ember.A(fixtures).findProperty('id', id);
     }
 
     if (fixtures) {
@@ -7380,10 +7383,14 @@ DS.FixtureAdapter = DS.Adapter.extend({
     @private
   */
   simulateRemoteCall: function(callback, store, type, record) {
+    function response() {
+      Ember.run(callback);
+    }
+
     if (get(this, 'simulateRemoteResponse')) {
-      setTimeout(callback, get(this, 'latency'));
+      setTimeout(response, get(this, 'latency'));
     } else {
-      callback();
+      response();
     }
   }
 });
