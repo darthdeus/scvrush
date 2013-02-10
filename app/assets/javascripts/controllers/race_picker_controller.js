@@ -17,6 +17,7 @@ Scvrush.RacePickerController = Ember.ObjectController.extend({
   }.property("race"),
 
   selectRace: function(race) {
+    console.log("tried to select", race);
     this.set("content.race", race);
   },
 

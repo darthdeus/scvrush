@@ -21,7 +21,8 @@ gem 'font-awesome-sass-rails', '~> 3.0.0.1'
 gem 'kaminari'
 gem 'tire'
 
-gem 'ember-rails'
+gem 'barber', github: 'machty/barber'
+gem 'ember-rails', github: "machty/ember-rails"
 gem 'active_model_serializers'
 
 gem 'rdiscount',          '~> 1.6.8'
