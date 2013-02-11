@@ -3,7 +3,7 @@ class PostsController < ApplicationController
 
   def index
     if params[:query]
-      posts = Post.search(params[:query], load: true).to_a if params[:query]
+      posts = Post.search(params[:query], load: true).to_a
     else
       posts = Post.published.first(20)
     end

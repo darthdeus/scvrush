@@ -1,4 +1,4 @@
-Scvrush.PostsIndexController = Em.ArrayController.extend({
+Scvrush.PostsIndexController = Ember.ArrayController.extend({
 
   query: null,
 

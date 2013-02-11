@@ -39,6 +39,7 @@ class User < ActiveRecord::Base
                   :bnet_code, :bnet_username, :twitter, :time_zone, :practice,
                   :image, :bnet_info, :expires_at
 
+
   attr_accessor :password
   acts_as_followable
 
@@ -46,15 +47,38 @@ class User < ActiveRecord::Base
 
   include Tire::Model::Search
   include Tire::Model::Callbacks
+
+  # settings analysis: {
+  #   filter: {
+  #     ngram_filter: {
+  #       type: "nGram",
+  #       min_gram: 3,
+  #       max_gram: 8
+  #     }
+  #   },
+  #   analyzer: {
+  #     ngram_analyzer: {
+  #       tokenizer: "lowercase",
+  #       filter: ["ngram_filter"],
+  #       type: "custom"
+  #     }
+  #   }
+  # } do
+  #   mapping do
+  #     indexes :username, type: 'string', analyzer: 'ngram_analyzer', boost: 100
+  #   end
+  # end
+
   mapping do
-    indexes :id
-    indexes :username, analyzer: "snowball", boost: 10
+    indexes :id,       index: :not_analyzed
+    indexes :username, analyzer: "snowball", boost: 100
     indexes :race,     analyzer: "snowball"
-    indexes :league,   analyzer: "snowball"
+    indexes :league,   analyzer: "snowball", boost: 50
+    indexes :server,   analyzer: "snowball", boost: 50
   end
 
   def to_indexed_json
-    to_json(only: [:username, :race, :league])
+    to_json(only: [:username, :race, :league, :server])
   end
 
   # Return a user either by his username or by email.
