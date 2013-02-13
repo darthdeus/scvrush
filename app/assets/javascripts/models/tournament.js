@@ -63,8 +63,8 @@ Scvrush.Tournament = DS.Model.extend({
   }.property("startsAt"),
 
   shouldCheckin: function() {
-    return !this.get("content.isChecked") && this.get("checkinOpen");
-  }.property("tournament"),
+    return !this.get("isChecked") && this.get("checkinOpen");
+  }.property("startsAt"),
 
   checkinOpen: function() {
     var start = moment(this.get("startsAt"), "YYYY-MM-DD hh:mm"),

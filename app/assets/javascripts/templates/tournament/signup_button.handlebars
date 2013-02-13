@@ -2,7 +2,15 @@
 <form class="form-inline">
 
   {{#if isRegistered}}
-    <button class="btn btn-danger" {{action "cancel" content}}>Cancel your registration</button>
+    {{#if shouldCheckin}}
+      <button {{bindAttr disabled="user.isNotTournamentReady"}} class="btn btn-success" {{action "checkin" content}}>Check in!</button>
+    {{/if}}
+
+    {{#if isChecked}}
+      <button disabled class="btn btn-success">You are checked in</button>
+    {{/if}}
+
+    <button class="btn" {{action "cancel" content}}>Cancel registration</button>
   {{else}}
 
     <span {{bindAttr class="user.isNotTournamentReady:error"}}>

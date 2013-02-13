@@ -38,12 +38,12 @@ class TournamentsController < ApplicationController
   def update
     tournament = Tournament.find(params[:id])
 
-    if params[:tournament][:is_registered]
-      registrator = UserRegistrator.new(current_user, tournament)
-      registrator.signup
-    elsif params[:tournament][:is_checked]
+    if params[:tournament][:is_checked]
       registrator = UserRegistrator.new(current_user, tournament)
       registrator.checkin
+    elsif params[:tournament][:is_registered]
+      registrator = UserRegistrator.new(current_user, tournament)
+      registrator.signup
     elsif !params[:tournament][:is_checked] && !params[:tournament][:is_registered]
       tournament.unregister(current_user)
     end
