@@ -14,7 +14,7 @@
   {{else}}
 
     <span {{bindAttr class="user.isNotTournamentReady:error"}}>
-      {{view Ember.TextField valueBinding="user.bnetInfo"}}
+      {{view Ember.TextField valueBinding="user.bnetInfo" placeholder="Your battle.net username, e.g Vogin.123"}}
     </span>
 
     <span {{bindAttr class="user.isNotTournamentReady:error"}}>

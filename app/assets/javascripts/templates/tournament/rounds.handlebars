@@ -30,9 +30,19 @@
 
   {{else}}
     <div class="row">
-      <p class="alert alert-info span5">The bracket wasnt yet generated, please wait</p>
+      <p class="alert alert-info span7">
+        The tournament is already started. While waiting for the bracket to be
+        generated, you can watch this awesome sheep video
+      </p>
+
+
       <!-- TODO - display last reloaded at -->
     </div>
+
+      <iframe width="560" height="315" src="http://www.youtube.com/embed/SIaFtAKnqBU"
+              frameborder="0" allowfullscreen></iframe>
+
+    {{render "tournament.players" users}}
   {{/if}}
 
 </div>
