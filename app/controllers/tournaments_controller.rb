@@ -23,6 +23,7 @@ class TournamentsController < ApplicationController
     tournament = Tournament.find(params[:id])
     tournament.destroy
 
+    # FIXME - figure out what is the correct response here since ember doesn't care about 204
     respond_with tournament
     # render json: {}, status: :ok
   end

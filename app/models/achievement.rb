@@ -4,8 +4,7 @@ class Achievement < ActiveRecord::Base
 
   before_save :set_slug
 
-  # TODO - is description really necessary?
-  validates_presence_of :name#, :description
+  validates_presence_of :name
 
   private
 
