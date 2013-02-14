@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130214155519) do
+ActiveRecord::Schema.define(:version => 20130214155826) do
 
   create_table "achievements", :force => true do |t|
     t.string   "name"
@@ -94,19 +94,6 @@ ActiveRecord::Schema.define(:version => 20130214155519) do
     t.string "name",    :null => false
     t.text   "content"
   end
-
-  create_table "points", :force => true do |t|
-    t.integer  "value"
-    t.string   "reason_type"
-    t.integer  "reason_id"
-    t.integer  "user_id"
-    t.string   "note"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  add_index "points", ["reason_id"], :name => "index_points_on_reason_id"
-  add_index "points", ["user_id"], :name => "index_points_on_user_id"
 
   create_table "posts", :force => true do |t|
     t.string   "title"

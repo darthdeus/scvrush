@@ -34,7 +34,8 @@ class UsersController < ApplicationController
 
     attributes[:expires_at] = nil if attributes[:password]
 
-    user.update_attributes(attributes)
+    # TODO - check the bang ! here
+    user.update_attributes!(attributes)
 
     render json: user
   end
