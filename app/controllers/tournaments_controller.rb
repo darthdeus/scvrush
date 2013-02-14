@@ -9,15 +9,7 @@ class TournamentsController < ApplicationController
   end
 
   def create
-    tournament = Tournament.new
-    tournament.name = params[:tournament][:name]
-    tournament.starts_at = params[:tournament][:starts_at]
-    tournament.max_players = params[:tournament][:max_players]
-
-    tournament.tournament_type = Tournament.types[:user]
-    tournament.user = current_user
-    tournament.bo_preset = "1"
-
+    tournament = Tournament.factory(params[:tournament], current_user)
     tournament.save
 
     respond_with tournament
@@ -31,6 +23,7 @@ class TournamentsController < ApplicationController
     tournament = Tournament.find(params[:id])
     tournament.destroy
 
+    # FIXME - figure out what is the correct response here since ember doesn't care about 204
     respond_with tournament
     # render json: {}, status: :ok
   end

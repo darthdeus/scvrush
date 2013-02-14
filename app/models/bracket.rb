@@ -92,6 +92,7 @@ class Bracket < Struct.new(:tournament)
         self.seed_next_match_with(match.player1, match)
       end
 
+      # TODO - this isn't right
       match.save(validate: false)
     end
   end

@@ -1,4 +1,4 @@
-= simple_form_for [:admin, @tournament], class: "well tournament-form" do |f|
+= simple_form_for [:admin, tournament], class: "well tournament-form" do |f|
 
   = f.input :name
   = f.input :starts_at, input_html: { class: "span2" }
@@ -16,9 +16,9 @@
       = f.input :description
     .span3
       = f.label :rules
-      = text_area_tag "tournament[rules]", @tournament.rules || I18n.t("tournament.rules"), rows: 20
+      = text_area_tag "tournament[rules]", tournament.rules || I18n.t("tournament.rules"), rows: 20
     .span3
       = f.label :map_info
-      = text_area_tag "tournament[map_info]", @tournament.map_info || I18n.t("tournament.map_info"), rows: 20
+      = text_area_tag "tournament[map_info]", tournament.map_info || I18n.t("tournament.map_info"), rows: 20
 
   = f.button :submit

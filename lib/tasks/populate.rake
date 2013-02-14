@@ -51,7 +51,7 @@ namespace :db do
 
     Post.all.each do |post|
       post.tag_list = %w{zerg terran protoss}.sample
-      post.save
+      post.save!
     end
 
     6.times do

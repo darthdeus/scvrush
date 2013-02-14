@@ -15,8 +15,7 @@ class StatusesController < ApplicationController
   end
 
   def create
-    status = Status.new(params[:status])
-    status.user_id = current_user.id
+    status = current_user.statuses.build(params[:status])
 
     status.save!
     render json: status

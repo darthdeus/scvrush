@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130129101117) do
+ActiveRecord::Schema.define(:version => 20130214143256) do
 
   create_table "achievements", :force => true do |t|
     t.string   "name"
@@ -132,16 +132,6 @@ ActiveRecord::Schema.define(:version => 20130129101117) do
   add_index "raffle_signups", ["raffle_id"], :name => "index_raffle_signups_on_raffle_id"
   add_index "raffle_signups", ["user_id", "raffle_id"], :name => "index_raffle_signups_on_user_id_and_raffle_id"
   add_index "raffle_signups", ["user_id"], :name => "index_raffle_signups_on_user_id"
-
-  create_table "raffles", :force => true do |t|
-    t.integer  "status",     :default => 0
-    t.integer  "winner_id"
-    t.string   "title"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-  end
-
-  add_index "raffles", ["winner_id"], :name => "index_raffles_on_winner_id"
 
   create_table "relationships", :force => true do |t|
     t.integer  "requestor_id",                     :null => false

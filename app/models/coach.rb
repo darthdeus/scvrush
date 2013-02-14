@@ -2,6 +2,8 @@ class Coach < ActiveRecord::Base
   belongs_to :post
   validates_presence_of :post
 
+  attr_accessible :order, :title, :post_id
+
   include ActionView::Helpers
 
   def tags

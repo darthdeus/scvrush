@@ -3,17 +3,6 @@
 require "digest/md5"
 
 module ApplicationHelper
-  def arrowed_header(text, cls = "")
-    "<h2 class='arrowed #{cls}'>#{text}<span class='arrows'>»</span></h2>".html_safe
-  end
-
-  def coach(tags)
-    tag_path("coach," + tags)
-  end
-
-  def m(string)
-    RDiscount.new(string).to_html.html_safe if string
-  end
 
   def meta_description(&block)
     if content_for?(:description)
@@ -32,7 +21,6 @@ module ApplicationHelper
     name = name.upcase if %w(Na Eu Sea Kr).include? name
     link_to name, coach(tag.name)
   end
-
 
   def flash_class(type)
     case type
@@ -80,7 +68,7 @@ module ApplicationHelper
     ctrl = params[:controller].sub(/^admin\//, '')
 
     cls = "active" if current_controllers.include?(ctrl)
-    content_tag(:li, link_to(text, path), :class => cls)
+    content_tag(:li, link_to(text, path), class: cls)
   end
 
   def tweet_timeline
@@ -104,13 +92,6 @@ module ApplicationHelper
 
   def gravatar_raw(digest)
     image_tag("http://www.gravatar.com/avatar/" + digest)
-  end
-
-  def twitter_autolinks(html)
-    html = html.gsub(/#(\w+)/, '<a href="https://twitter.com/search?q=%23\1">#\1</a>')
-    html = html.gsub(/@(\w+)/, '<a href="https://twitter.com/\1">@\1</a>')
-
-    html.html_safe
   end
 
 end

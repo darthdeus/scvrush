@@ -155,6 +155,20 @@ class Tournament < ActiveRecord::Base
     signups.count
   end
 
+  def self.factory(params, user)
+    tournament = new
+    tournament.name = params[:name]
+    tournament.starts_at = params[:starts_at]
+    tournament.max_players = params[:max_players]
+
+    tournament.tournament_type = self.types[:user]
+    tournament.user = user
+    tournament.bo_preset = "1"
+
+    tournament
+  end
+
+
   class DoubleRegistration < Error; end
 
 end
