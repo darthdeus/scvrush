@@ -29,15 +29,12 @@
 
   {{outlet}}
 
-  {{currentMatch}}
-  {{rounds}}
-
   {{#if isStarted}}
     {{#if isEmpty}}
       <p class="alert alert-notice">No players were signed up for this tournament when it started</p>
     {{else}}
       {{#if isPlaying}}
-        {{render "tournament.current_match"}}
+        {{view Scvrush.TournamentCurrentMatchView}}
       {{/if}}
 
       {{render "tournament.rounds" content}}

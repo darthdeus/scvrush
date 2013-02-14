@@ -1,9 +1,30 @@
-Scvrush.Adapter = DS.RESTAdapter.extend();
+Scvrush.Adapter = DS.RESTAdapter.extend({
+  serializer: DS.RESTSerializer.extend({
+    init: function() {
+      this._super();
+
+      // this.map("Scvrush.Tournament", {
+      //   rounds: { embedded: "load" }
+      // });
+
+//       this.map("Scvrush.Round", {
+//         matches: { embedded: "load" }
+//       });
+
+    }
+  }),
+
+});
 
 Scvrush.Adapter.configure("plurals", {
   status: "statuses",
   match: "matches"
 });
+
+
+// Scvrush.Adapter.configure("Scvrush.Tournament", {
+//   sideloadAs: "tournament"
+// });
 
 Scvrush.Store = DS.Store.extend({
   revision: 11,
@@ -38,4 +59,4 @@ Scvrush.Store = DS.Store.extend({
 //   matches: { embedded: 'load' }
 // });
 
-// Em.LOG_BINDINGS = true;
+Em.LOG_BINDINGS = true;

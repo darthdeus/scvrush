@@ -3,16 +3,18 @@ Scvrush.TournamentController = Ember.ObjectController.extend({
   currentMatch: function() {
     var rounds = this.get("rounds");
 
-    // rounds.then(function() {
-    //
-    // });
-
     var result = rounds.map(function(round) {
       return round.get("matches").filter(function(match) {
-        return match.get("player1") == Scvrush.currentUser.get("bnetInfo");
+        return match.get("player1") == Scvrush.currentUser.get("bnetInfo")
+              || match.get("player2") == Scvrush.currentUser.get("bnetInfo");
       }).get("lastObject");
     }).filter(function(item) {
       return !!item;
+    });
+
+    var self = this;
+    Ember.run.next(function() {
+      self.notifyPropertyChange("currentMatch");
     });
 
     return result.get("lastObject");
