@@ -30,13 +30,6 @@ Scvrush::Application.routes.draw do
 
   resources :pages, only: :show
 
-  # TODO - make this post
-  get "practice/join"
-  get "practice/quit"
-  match "/practice" => "practice#index", via: :get
-  match "/content" => "posts#content"
-
-  resources :reply_votes
   resources :raffle_signups
   resources :raffles do
     post :close, on: :member
