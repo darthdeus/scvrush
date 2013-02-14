@@ -1,3 +1,29 @@
+.tournament {
+  header {
+    overflow: hidden;
+
+    h1 {
+      float: left;
+      font-size: 32px;
+      margin-bottom: 0;
+
+      .back {
+        display: none;
+      }
+
+      &:hover .back {
+        display: inline;
+      }
+    }
+
+    .admin {
+      margin-top: 16px;
+      float: right;
+    }
+
+  }
+}
+
 .race-picker {
 
   display: inline-block;
@@ -14,7 +40,6 @@
       opacity: 1;
     }
   }
-
 
   .race-zerg    { background: url("race_zerg_icon.png"); }
   .race-terran  { background: url("race_terran_icon.png"); }

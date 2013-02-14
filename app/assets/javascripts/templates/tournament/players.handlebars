@@ -1,0 +1,12 @@
+<div class="registered-players">
+  <ul class="unstyled tournament-players">
+    {{#each player in controller}}
+      <li>
+        {{#linkTo "user" player}}
+          <div {{bindAttr class="player.raceClass :race"}}>{{player.race_class}}</div>
+          <div class="name">{{player.username}}</div>
+        {{/linkTo}}
+      </li>
+    {{/each}}
+  </ul>
+</div>

@@ -1,38 +1,46 @@
-<h1>{{name}}</h1>
+<div class="tournament">
+  <header>
+    <h1>
+      {{name}}
+      <span class="back">
+        {{#linkTo "tournaments" class="btn btn-mini" activeClass=""}}all tournaments{{/linkTo}}
+      </span>
+    </h1>
 
-{{#if isAdmin}}
-  <div class="meta btn-group">
-    {{#if isStarted}}
-      {{#if seeded}}
-        <button {{bindAttr disabled="isSaving"}} class="btn" {{action "unseed" content}}>Destroy seed</button>
-      {{else}}
-        <button {{bindAttr disabled="isSaving"}} class="btn" {{action "seed" content}}>Seed</button>
-      {{/if}}
+    {{#if isAdmin}}
+      <div class="admin btn-group">
+        {{#if isStarted}}
+          {{#if seeded}}
+            <button {{bindAttr disabled="isSaving"}} class="btn btn-small" {{action "unseed" content}}>Destroy seed</button>
+          {{else}}
+            <button {{bindAttr disabled="isSaving"}} class="btn btn-small" {{action "seed" content}}>Seed</button>
+          {{/if}}
+        {{else}}
+          <button {{bindAttr disabled="isSaving"}} class="btn btn-small" {{action "start" content}}>Start now</button>
+        {{/if}}
+
+        <button {{bindAttr disabled="isSaving"}} class="btn btn-small" {{action "deleteTournament" content}}>Delete the tournament</button>
+        <button {{bindAttr disabled="isSaving"}} class="btn btn-small" {{action "randomize" content}}>Randomize players</button>
+        {{#linkTo "tournament.edit" content class="btn btn-small"}}Edit{{/linkTo}}
+      </div>
+    {{/if}}
+
+  </header>
+
+  {{outlet}}
+
+  {{#if isStarted}}
+    {{#if isEmpty}}
+      <p class="alert alert-notice">No players were signed up for this tournament when it started</p>
     {{else}}
-      <button {{bindAttr disabled="isSaving"}} class="btn" {{action "start" content}}>Start now</button>
+      {{#if isPlaying}}
+        {{view Scvrush.TournamentCurrentMatchView}}
+      {{/if}}
+
+      {{render "tournament.rounds" content}}
     {{/if}}
 
-    <button {{bindAttr disabled="isSaving"}} class="btn" {{action "deleteTournament" content}}>Delete the tournament</button>
-    <button {{bindAttr disabled="isSaving"}} class="btn" {{action "randomize" content}}>Randomize players</button>
-    {{#linkTo "tournament.edit" content class="btn"}}Edit{{/linkTo}}
-  </div>
-{{/if}}
-
-<h4>{{#linkTo "tournaments"}}back to tournaments{{/linkTo}}</h4>
-
-{{outlet}}
-
-{{#if isStarted}}
-  {{#if isEmpty}}
-    <p class="alert alert-notice">No players were signed up for this tournament when it started</p>
   {{else}}
-    {{#if isPlaying}}
-      {{render "tournament.current_match"}}
-    {{/if}}
-
-    {{render "tournament.rounds" content}}
+    {{render "tournament.signup" content}}
   {{/if}}
-
-{{else}}
-  {{render "tournament.signup" content}}
-{{/if}}
+</div>

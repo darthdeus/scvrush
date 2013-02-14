@@ -1,3 +1,3 @@
-Scvrush.TournamentsCurrentMatchView = Em.View.extend({
-  templateName: "tournaments/current_match"
+Scvrush.TournamentCurrentMatchView = Em.View.extend({
+  templateName: "tournament/current_match"
 });

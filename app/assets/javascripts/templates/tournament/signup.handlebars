@@ -5,16 +5,5 @@
 
   <p>There are already {{participant_count}} players signed up</p>
 
-  <div class="registered-players">
-    <ul class="unstyled tournament-players">
-      {{#each player in users}}
-        <li>
-          <a {{action showUser player href="true"}}>
-            <div {{bindAttr class="player.raceClass :race"}}>{{player.race_class}}</div>
-            <div class="name">{{player.username}}</div>
-          </a>
-        </li>
-      {{/each}}
-    </ul>
-  </div>
+  {{render "tournament.players" users}}
 {{/if}}
