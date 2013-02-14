@@ -1,11 +1,10 @@
 class UserInfoDecorator < Draper::Decorator
-  decorates :user
 
-  def as_json
+  def as_json(options = {})
     data = {
-      race:     user.race,
-      league:   user.league,
-      friends:  user.friends
+      race:     model.race,
+      league:   model.league,
+      friends:  model.friends
     }
   end
 

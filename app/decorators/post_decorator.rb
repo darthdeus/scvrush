@@ -3,12 +3,12 @@ class PostDecorator < Draper::Decorator
 
   def link_with_image
     h.link_to post, class: "block" do
-      h.image_tag post.featured_image.url
+      h.image_tag model.featured_image.url
     end
   end
 
   def coach_post?
-    post.tag_list.include? "coach"
+    model.tag_list.include? "coach"
   end
 
   def as_json(options = {})
