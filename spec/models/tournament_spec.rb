@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Tournament do
+
   describe "validations" do
     it "has a valid factory" do
       build(:tournament).should be_valid
@@ -22,16 +23,6 @@ describe Tournament do
         t.destroy
       }.not_to change{ Signup.count }
     end
-
-    it 'has a post' do
-      tournament = create(:tournament)
-      tournament.post.should_not be_nil
-    end
-
-    it 'has a parameterized name' do
-      tournament = build(:tournament, :name => 'foo')
-      tournament.to_param.should == "#{tournament.id}-#{tournament.name}"
-    end
   end
 
   describe :unregister do
@@ -45,7 +36,7 @@ describe Tournament do
     end
   end
 
-  it 'has a winner' do
+  it "can have a winner" do
     tournament = create(:tournament)
     user = create(:user)
     tournament.winner = user

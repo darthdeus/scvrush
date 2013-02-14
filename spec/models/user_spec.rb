@@ -29,49 +29,6 @@ describe User do
     build(:user, bnet_code: '123')   .should be_valid
   end
 
-  it "has a factory that allows to sign up for a tournament" do
-    build(:user).should have_bnet_username
-  end
-
-  describe "#send_password_reset" do
-    let(:user) { create(:user) }
-
-    it "generates a unique password_reset_token each time" do
-      user.send_password_reset
-      last_token = user.password_reset_token
-      user.send_password_reset
-      user.password_reset_token.should_not eq(last_token)
-    end
-
-    it "saves the time the password reset was sent" do
-      user.send_password_reset
-      user.reload.password_reset_sent_at.should be_present
-    end
-
-    it "delivers email to the user" do
-      user.send_password_reset
-      last_email.to.should include(user.email)
-    end
-  end
-
-  describe "#participating_in?" do
-    it "returns true if user is participating in a raffle" do
-      user   = create(:user)
-      raffle = create(:raffle)
-      create(:raffle_signup, user: user, raffle: raffle)
-
-      user.participating_in?(raffle).should be_true
-    end
-
-    it "returns true if user is not participating in a raffle" do
-      RaffleSignup.destroy_all
-      user   = create(:user)
-      raffle = create(:raffle)
-
-      user.participating_in?(raffle).should be_false
-    end
-  end
-
   describe "#sign_up" do
     before(:each) { [User, Signup, Tournament].each(&:destroy_all) }
 

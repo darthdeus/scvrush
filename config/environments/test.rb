@@ -27,6 +27,7 @@ Scvrush::Application.configure do
   # Tell Action Mailer not to deliver emails to the real world.
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
+  config.action_mailer.default_url_options = { :host => "www.example.com" }
   config.action_mailer.delivery_method = :test
 
   # Use SQL instead of Active Record's schema dumper when creating the test database.
@@ -37,7 +38,7 @@ Scvrush::Application.configure do
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
 
-  config.action_mailer.default_url_options = { :host => "www.example.com" }
-
   config.active_record.mass_assignment_sanitizer = :strict
+
+  config.ember.variant = :development
 end
