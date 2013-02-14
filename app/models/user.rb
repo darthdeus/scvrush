@@ -127,19 +127,6 @@ class User < ActiveRecord::Base
             format: { with: /^\d+$/, message: 'can contain only numbers' },
             if: lambda { |u| u.bnet_username? }
 
-
-  def is_admin?
-    self.has_role? :admin
-  end
-
-  def is_writer?
-    self.has_role? :writer
-  end
-
-  def participating_in?(raffle)
-    self.raffle_signups.where(raffle_id: raffle.id).first
-  end
-
   def to_s
     if bnet_info?
       "#{username} - #{bnet_info}"
