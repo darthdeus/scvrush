@@ -1,7 +1,11 @@
-Scvrush.TournamentController = Em.ObjectController.extend({
+Scvrush.TournamentController = Ember.ObjectController.extend({
 
   currentMatch: function() {
-    var rounds = this.get("content.rounds");
+    var rounds = this.get("rounds");
+
+    // rounds.then(function() {
+    //
+    // });
 
     var result = rounds.map(function(round) {
       return round.get("matches").filter(function(match) {
@@ -12,7 +16,7 @@ Scvrush.TournamentController = Em.ObjectController.extend({
     });
 
     return result.get("lastObject");
-  }.property("content.rounds.@each.allMatches"),
+  }.property("rounds.@each.allMatches"),
 
   currentOpponent: function() {
     var match = this.get("currentMatch");
@@ -33,11 +37,11 @@ Scvrush.TournamentController = Em.ObjectController.extend({
   }.property("score"),
 
   isAdmin: function() {
-    return this.get("content.user") == Scvrush.currentUser;
-  }.property("content.user"),
+    return this.get("user") == Scvrush.currentUser;
+  }.property("user"),
 
   isPlaying: function() {
     return this.get("content.users").contains(Scvrush.currentUser);
-  }.property("content.users.@each"),
+  }.property("users.@each"),
 
 });

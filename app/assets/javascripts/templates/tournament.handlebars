@@ -1,6 +1,11 @@
 <div class="tournament">
   <header>
-    <h1>{{name}}</h1>
+    <h1>
+      {{name}}
+      <span class="back">
+        {{#linkTo "tournaments" class="btn btn-mini" activeClass=""}}all tournaments{{/linkTo}}
+      </span>
+    </h1>
 
     {{#if isAdmin}}
       <div class="admin btn-group">
@@ -20,10 +25,12 @@
       </div>
     {{/if}}
 
-    <div class="back">{{#linkTo "tournaments" class="btn btn-mini" activeClass=""}}all tournaments{{/linkTo}}</div>
   </header>
 
   {{outlet}}
+
+  {{currentMatch}}
+  {{rounds}}
 
   {{#if isStarted}}
     {{#if isEmpty}}

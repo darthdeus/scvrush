@@ -6,16 +6,19 @@
       float: left;
       font-size: 32px;
       margin-bottom: 0;
+
+      .back {
+        display: none;
+      }
+
+      &:hover .back {
+        display: inline;
+      }
     }
 
     .admin {
       margin-top: 16px;
       float: right;
-    }
-
-    .back {
-      clear: both;
-      display: block;
     }
 
   }
