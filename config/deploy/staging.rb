@@ -1,7 +1,7 @@
 set :domain, "beta.scvrush.com"
-set :branch, "ember-profiles"
+set :branch, "develop"
 
 role :web, domain
 role :app, domain
-role :db,  domain, :primary => true
+role :db,  domain, primary: true
 
