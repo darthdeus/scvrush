@@ -1,7 +1,4 @@
 class UsersController < ApplicationController
-  # before_filter :require_login, only: [:edit, :update, :follow, :unfollow]
-  before_filter :load_user, only: [:show, :follow, :unfollow, :info, :friends]
-
   respond_to :json
 
   def index
