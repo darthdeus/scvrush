@@ -150,8 +150,8 @@ Ember.deprecateFunc = function(message, func) {
 
 })();
 
-// Version: v1.0.0-pre.4-196-g05f3ca0
-// Last commit: 05f3ca0 (2013-02-09 22:19:19 -0800)
+// Version: v1.0.0-pre.4-213-g2093ec2
+// Last commit: 2093ec2 (2013-02-13 19:53:48 -0800)
 
 
 (function() {
@@ -12392,6 +12392,7 @@ Ember.ArrayController = Ember.ArrayProxy.extend(Ember.ControllerMixin,
 
   init: function() {
     this._super();
+    if (!this.get('content')) { this.set('content', Ember.A()); }
     this._resetSubContainers();
   },
 
@@ -17798,7 +17799,7 @@ Ember.Handlebars.registerHelper('helperMissing', function(path, options) {
 Ember.Handlebars.registerBoundHelper = function(name, fn) {
   var dependentKeys = slice.call(arguments, 2);
 
-  Ember.Handlebars.registerHelper(name, function() {
+  function helper() {
     var properties = slice.call(arguments, 0, -1),
       numProperties = properties.length,
       options = arguments[arguments.length - 1],
@@ -17860,7 +17861,10 @@ Ember.Handlebars.registerBoundHelper = function(name, fn) {
     for (var i=0, l=dependentKeys.length; i<l; i++) {
       view.registerObserver(pathRoot, path + '.' + dependentKeys[i], bindView, rerenderBoundHelperView);
     }
-  });
+  }
+
+  helper._rawFunction = fn;
+  Ember.Handlebars.registerHelper(name, helper);
 };
 
 /**
@@ -19782,6 +19786,8 @@ Ember.Handlebars.EachView = Ember.CollectionView.extend(Ember._Metamorph, {
       set(controller, 'itemController', itemController);
       set(controller, 'container', get(this, 'controller.container'));
       set(controller, '_eachView', this);
+      set(controller, 'target', get(this, 'controller'));
+
       this.disableContentObservers(function() {
         set(this, 'content', controller);
         binding = new Ember.Binding('content', '_eachView.dataSource').oneWay();
@@ -22707,7 +22713,7 @@ Ember.Router = Ember.Object.extend({
   didTransition: function(infos) {
     // Don't do any further action here if we redirected
     for (var i=0, l=infos.length; i<l; i++) {
-      if (infos[i].handler.transitioned) { return; }
+      if (infos[i].handler.redirected) { return; }
     }
 
     var appController = this.container.lookup('controller:application'),
@@ -22908,7 +22914,14 @@ var get = Ember.get, set = Ember.set,
     classify = Ember.String.classify,
     decamelize = Ember.String.decamelize;
 
+/**
+  The `Ember.Route` class is used to define individual routes. Refer to
+  the [routing guide](http://emberjs.com/guides/routing/) for documentation.
 
+  @class Route
+  @namespace Ember
+  @extends Ember.Object
+*/
 Ember.Route = Ember.Object.extend({
   exit: function() {
     this.deactivate();
@@ -22922,12 +22935,16 @@ Ember.Route = Ember.Object.extend({
   /**
     This hook is executed when the router completely exits this route. It is
     not executed when the model for the route changes.
+
+    @method deactivate
   */
   deactivate: Ember.K,
 
   /**
     This hook is executed when the router enters the route for the first time.
     It is not executed when the model for the route changes.
+
+    @method activate
   */
   activate: Ember.K,
 
@@ -22941,7 +22958,7 @@ Ember.Route = Ember.Object.extend({
     @param {...Object} models the
   */
   transitionTo: function() {
-    this.transitioned = true;
+    if (this._checkingRedirect) { this.redirected = true; }
     return this.router.transitionTo.apply(this.router, arguments);
   },
 
@@ -22954,7 +22971,7 @@ Ember.Route = Ember.Object.extend({
     @param {...Object} models the
   */
   replaceWith: function() {
-    this.transitioned = true;
+    if (this._checkingRedirect) { this.redirected = true; }
     return this.router.replaceWith.apply(this.router, arguments);
   },
 
@@ -22970,10 +22987,13 @@ Ember.Route = Ember.Object.extend({
     @method setup
   */
   setup: function(context) {
-    this.transitioned = false;
+    this.redirected = false;
+    this._checkingRedirect = true;
+
     this.redirect(context);
 
-    if (this.transitioned) { return false; }
+    this._checkingRedirect = false;
+    if (this.redirected) { return false; }
 
     var controller = this.controllerFor(this.routeName, context);
 
@@ -23409,6 +23429,11 @@ function teardownView(route) {
 
 
 (function() {
+/**
+@module ember
+@submodule ember-routing
+*/
+
 var get = Ember.get, set = Ember.set;
 Ember.onLoad('Ember.Handlebars', function(Handlebars) {
 
@@ -23494,6 +23519,13 @@ Ember.onLoad('Ember.Handlebars', function(Handlebars) {
 
   LinkView.toString = function() { return "LinkView"; };
 
+  /**
+    @method linkTo
+    @for Ember.Handlebars.helpers
+    @param {String} routeName
+    @param {Object} [context]*
+    @return {String} HTML string
+  */
   Ember.Handlebars.registerHelper('linkTo', function(name) {
     var options = [].slice.call(arguments, -1)[0];
     var params = [].slice.call(arguments, 1, -1);
@@ -23920,7 +23952,7 @@ Ember.onLoad('Ember.Handlebars', function(Handlebars) {
     @method action
     @for Ember.Handlebars.helpers
     @param {String} actionName
-    @param {Object...} contexts
+    @param {Object} [context]*
     @param {Hash} options
   */
   EmberHandlebars.registerHelper('action', function(actionName) {
@@ -23967,8 +23999,22 @@ Ember.onLoad('Ember.Handlebars', function(Handlebars) {
 
 
 (function() {
+/**
+@module ember
+@submodule ember-routing
+*/
+
+
 var get = Ember.get, set = Ember.set;
 
+/**
+  @method control
+  @for Ember.Handlebars.helpers
+  @param {String} path
+  @param {String} modelPath
+  @param {Hash} options
+  @return {String} HTML string
+*/
 Ember.Handlebars.registerHelper('control', function(path, modelPath, options) {
   if (arguments.length === 2) {
     options = modelPath;
@@ -24790,8 +24836,7 @@ var get = Ember.get, set = Ember.set,
   @namespace Ember
   @extends Ember.Namespace
 */
-var Application = Ember.Application = Ember.Namespace.extend(
-/** @scope Ember.Application.prototype */{
+var Application = Ember.Application = Ember.Namespace.extend({
 
   /**
     The root DOM element of the Application. This can be specified as an
@@ -25250,7 +25295,7 @@ Ember.Application.reopenClass({
   */
   buildContainer: function(namespace) {
     var container = new Ember.Container();
-    Ember.Container.defaultContainer = container;
+    Ember.Container.defaultContainer = Ember.Container.defaultContainer || container;
 
     container.set = Ember.set;
     container.resolver = resolverFor(namespace);
@@ -26660,8 +26705,8 @@ Ember States
 
 
 })();
-// Version: v1.0.0-pre.4-196-g05f3ca0
-// Last commit: 05f3ca0 (2013-02-09 22:19:19 -0800)
+// Version: v1.0.0-pre.4-213-g2093ec2
+// Last commit: 2093ec2 (2013-02-13 19:53:48 -0800)
 
 
 (function() {
