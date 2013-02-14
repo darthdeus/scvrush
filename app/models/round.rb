@@ -13,10 +13,6 @@ class Round < ActiveRecord::Base
     parent
   end
 
-  def next?
-    !!self.next
-  end
-
   # Return a match with given seed
   def match_with_seed(seed)
     self.matches.order(:id).where(seed: seed).first
