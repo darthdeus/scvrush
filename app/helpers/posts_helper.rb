@@ -40,32 +40,6 @@ module PostsHelper
     (user && user.time_zone) ? res : (res + " GMT")
   end
 
-  def format_time(time)
-    time.strftime("%A %b st, %l:%M%P").sub('st', time.day.ordinalize)
-  end
-
-  def vote_link(user, comment)
-    if comment.user == user
-      "" # no link for your own comment
-    elsif user.voted_on?(comment)
-      downvote_link(comment)
-    else
-      upvote_link(comment)
-    end
-  end
-
-  def upvote_link(comment)
-    link_to :controller => :votes, :action => :create, :id => comment.id do
-      "<i class='icon-ok'></i>".html_safe
-    end
-  end
-
-  def downvote_link(comment)
-    link_to "<i class='icon-remove'></i>",
-      { :controller => :votes, :action => :destroy, :id => comment.id },
-      :method => :delete
-  end
-
   def tag_by_name(name)
     link_to name.gsub('-', ' '), "/posts/tag/#{name}"
   end

@@ -5,6 +5,7 @@ class Achievement < ActiveRecord::Base
   before_save :set_slug
 
   validates_presence_of :name
+  attr_accessible :name
 
   private
 
