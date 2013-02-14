@@ -34,7 +34,6 @@ Scvrush::Application.routes.draw do
   resources :raffles do
     post :close, on: :member
   end
-  resources :avatars
 
   resources :images, only: :create
   get "dashboard/index", as: 'dashboard'
