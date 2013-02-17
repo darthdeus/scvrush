@@ -1,5 +1,5 @@
 set :domain, "beta.scvrush.com"
-set :branch, "develop"
+set :branch, "beta"
 
 role :web, domain
 role :app, domain

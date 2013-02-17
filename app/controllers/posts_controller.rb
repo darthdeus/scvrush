@@ -5,7 +5,7 @@ class PostsController < ApplicationController
     if params[:query]
       posts = Post.search(params[:query], load: true).to_a
     else
-      posts = Post.published.first(20)
+      posts = Post.published.limit(20)
     end
 
     render json: posts
