@@ -20,9 +20,9 @@
         {{/if}}
 
         <button {{bindAttr disabled="isSaving"}} class="btn btn-small" {{action "deleteTournament" content}}>Delete the tournament</button>
-        <button {{bindAttr disabled="isSaving"}} class="btn btn-small" {{action "randomize" content}}>Randomize players</button>
 
         {{#unless seeded}}
+          <button {{bindAttr disabled="isSaving"}} class="btn btn-small" {{action "randomize" content}}>Randomize players</button>
           {{#linkTo "tournament.edit" content class="btn btn-small"}}Edit{{/linkTo}}
         {{/unless}}
       </div>
