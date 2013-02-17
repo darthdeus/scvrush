@@ -19,15 +19,11 @@ Scvrush.TournamentsRoute = Em.Route.extend({
     },
 
     deleteTournament: function(tournament) {
-      var route = this;
-
-      // tournament.one("didDelete", function() {
-        // route.transitionTo("tournaments");
-      // });
-
-      tournament.deleteRecord();
-      tournament.get("transaction").commit();
-      route.transitionTo("tournaments");
+      if (confirm("Are you sure?")) {
+        tournament.deleteRecord();
+        tournament.get("transaction").commit();
+        this.transitionTo("tournaments");
+      }
     },
 
     start: function(model) {
