@@ -7,7 +7,7 @@ class Relationship < ActiveRecord::Base
   scope :from_type, lambda { |rtype| rtype = [rtype].flatten.compact; rtype.size > 0 && { conditions: ['relationships.requestor_type IN (?)', [rtype].flatten] } || {} }
 
 
-  attr_accessible :requestor_id, :requestor_type
+  attr_accessible :requestor, :requestee, :restricted
 
   default_scope order: "created_at DESC"
 
