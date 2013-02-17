@@ -43,7 +43,7 @@ Scvrush.Tournament = DS.Model.extend({
   }.property("rounds.@each"),
 
   nameInvalid: function() {
-    return this.get("name.length") < 3;
+    return this.get("name.length") < 3 || this.get("name.length") > 100;
   }.property("name"),
 
   isInvalid: function() {
