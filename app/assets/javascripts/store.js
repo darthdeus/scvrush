@@ -5,6 +5,14 @@ Scvrush.Adapter.configure("plurals", {
   match: "matches"
 });
 
+Scvrush.Adapter.configure("Scvrush.User", {
+  sideloadAs: "users"
+});
+
+Scvrush.Adapter.configure("Scvrush.Round", {
+  sideloadAs: "rounds"
+});
+
 Scvrush.Adapter.configure("Scvrush.Match", {
   sideloadAs: "matches"
 });
