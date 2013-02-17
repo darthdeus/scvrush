@@ -141,7 +141,9 @@ class User < ActiveRecord::Base
 
   # TODO - check for this on the client as well
   def bnet_info=(value = "")
-    self.bnet_username, self.bnet_code = value.split(".")
+    if value
+      bnet_username, bnet_code = value.split(".")
+    end
   end
 
   before_save :encrypt_password

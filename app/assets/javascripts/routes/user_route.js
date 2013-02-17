@@ -1,17 +1,7 @@
 Scvrush.UserEditRoute = Ember.Route.extend({
 
-  events: {
-    saveProfile: function() {
-      var user = this.modelFor("user");
-          route = this;
-
-      user.one("didUpdate", function() {
-        alert("Your account was activated. Welcome to SCV Rush!");
-        route.transitionTo("home");
-      });
-
-      user.get("transaction").commit();
-    }
+  setupController: function(controller) {
+    controller.set("content", this.modelFor("user"));
   },
 
   activate: function() {
