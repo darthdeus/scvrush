@@ -4,7 +4,7 @@
       <li>
         {{#linkTo "user" player}}
           <div {{bindAttr class="player.raceClass :race"}}>{{player.race_class}}</div>
-          <div class="name">{{player.username}}</div>
+          <div class="name">{{player.bnetInfo}}</div>
         {{/linkTo}}
       </li>
     {{/each}}

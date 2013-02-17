@@ -142,7 +142,7 @@ class User < ActiveRecord::Base
   # TODO - check for this on the client as well
   def bnet_info=(value = "")
     if value
-      bnet_username, bnet_code = value.split(".")
+      self.bnet_username, self.bnet_code = value.split(".")
     end
   end
 
