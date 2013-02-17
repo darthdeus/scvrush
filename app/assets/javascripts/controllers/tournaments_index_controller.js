@@ -1,4 +1,4 @@
-Scvrush.TournamentsIndexController = Em.ArrayController.extend({
+Scvrush.TournamentsIndexController = Ember.ArrayController.extend({
 
   weeks: [
     { days: [ 1, 2, 3, 4, 5, 6, 7 ] },

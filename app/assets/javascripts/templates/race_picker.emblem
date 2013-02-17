@@ -3,4 +3,3 @@
   span{bindAttr class="isProtoss:active :race-protoss"}{action selectRace "Protoss"}
   span{bindAttr class="isTerran:active :race-terran"}{action selectRace "Terran"}
   span{bindAttr class="isRandom:active :race-random"}{action selectRace "Random"}
-

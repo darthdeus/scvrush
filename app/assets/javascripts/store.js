@@ -13,5 +13,3 @@ Scvrush.Store = DS.Store.extend({
   revision: 11,
   adapter: Scvrush.Adapter
 });
-
-Em.LOG_BINDINGS = true;
