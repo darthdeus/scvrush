@@ -2,13 +2,19 @@ class PostsController < ApplicationController
   respond_to :json
 
   def index
+    posts = Post.scoped
+
     if params[:query]
-      posts = Post.search(params[:query], load: true).to_a
+      posts = posts.search(params[:query], load: true)
     else
-      posts = Post.published.limit(20)
+      posts = Post.published.limit(50)
     end
 
-    render json: posts
+    if params[:page]
+      posts = posts.published.page(params[:page]).per(50)
+    end
+
+    render json: posts.to_a
   end
 
   def show

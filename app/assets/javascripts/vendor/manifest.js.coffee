@@ -3,3 +3,4 @@
 #= require ./moment
 #= require ./underscore
 #= require ./jquery-ui-timepicker-addon
+#= require ./jquery.inview
