@@ -1,4 +1,4 @@
-// Last commit: c1cc65a (2013-02-13 10:49:02 -0800)
+// Last commit: 8801f2e (2013-02-15 13:53:27 -0800)
 
 
 (function() {
@@ -6519,6 +6519,24 @@ DS.JSONSerializer = DS.Serializer.extend({
     return (plurals && plurals[name]) || name + "s";
   },
 
+  // use the same plurals hash to determine
+  // special-case singularization
+  singularize: function(name) {
+    var plurals = this.configurations.get('plurals');
+    if (plurals) {
+      for (var i in plurals) {
+        if (plurals[i] === name) {
+          return i;
+        }
+      }
+    }
+    if (name.lastIndexOf('s') === name.length - 1) {
+      return name.substring(0, name.length - 1);
+    } else {
+      return name;
+    }
+  },
+
   rootForType: function(type) {
     var typeString = type.toString();
 
@@ -7499,6 +7517,16 @@ DS.RESTSerializer = DS.JSONSerializer.extend({
     }
 
     return key + "_id";
+  },
+
+  keyForHasMany: function(type, name) {
+    var key = this.keyForAttributeName(type, name);
+
+    if (this.embeddedType(type, name)) {
+      return key;
+    }
+
+    return this.singularize(key) + "_ids";
   }
 });
 

@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "rails",        "~> 3.2.11"
+gem "rails",        "~> 3.2.12"
 
 gem "jquery-rails", "~> 2.2.0"
 gem "bcrypt-ruby",  "~> 3.0.1", require: "bcrypt"
@@ -13,16 +13,19 @@ gem "pg",                       "~> 0.14.0"
 gem "slim-rails",              "~> 1.1.0"
 gem "sass-rails",              "~> 3.2.5"
 gem "jquery-datatables-rails", "~> 1.11.1"
-gem "bootstrap-sass",          "~> 2.2.2.0"
+gem "bootstrap-sass",          "~> 2.3.0.0"
 gem "simple_form",             "~> 2.0.1"
-gem "bourbon",                 "~> 3.0.1"
-gem "font-awesome-sass-rails", "~> 3.0.0.1"
+gem "bourbon",                 "~> 3.1.0"
+gem "font-awesome-sass-rails", "~> 3.0.2.1"
 
 gem "kaminari"
 gem "tire"
 
-gem "barber", github: "machty/barber"
-gem "ember-rails", github: "machty/ember-rails"
+# gem "barber", github: "machty/barber"
+gem "ember-rails", github: "emberjs/ember-rails"
+
+gem "emblem-rails"
+
 gem "active_model_serializers"
 
 gem "rdiscount",          "~> 1.6.8"
@@ -78,7 +81,7 @@ group :test do
   gem "rspec-rails",        "~> 2.12.1"
   gem "capybara",           "~> 2.0.2"
   gem "factory_girl_rails", "~> 4.2.0"
-  gem "launchy",            "~> 2.1.1"
+  gem "launchy",            "~> 2.2.0"
 end
 
 gem "rails_autolink"
