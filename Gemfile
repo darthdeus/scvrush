@@ -23,7 +23,7 @@ gem "tire"
 
 # gem "barber", github: "machty/barber"
 gem "ember-rails", github: "emberjs/ember-rails"
-
+gem "barber-emblem", github: "machty/barber-emblem"
 gem "emblem-rails"
 
 gem "active_model_serializers"

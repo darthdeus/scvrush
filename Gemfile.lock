@@ -8,6 +8,13 @@ GIT
       execjs (>= 1.2)
       railties (>= 3.1)
 
+GIT
+  remote: git://github.com/machty/barber-emblem.git
+  revision: 08bba7051cfacd3248c11699f880f5d0b63bf2a2
+  specs:
+    barber-emblem (0.0.5)
+      barber (>= 0.2.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -51,8 +58,6 @@ GEM
     awesome_print (1.1.0)
     barber (0.3.0)
       execjs
-    barber-emblem (0.0.4)
-      barber (>= 0.2.1)
     bcrypt-ruby (3.0.1)
     better_errors (0.6.0)
       coderay (>= 1.0.0)
@@ -323,6 +328,7 @@ DEPENDENCIES
   active_model_serializers
   acts-as-taggable-on (~> 2.3.3)
   airbrake (~> 3.1.6)
+  barber-emblem!
   bcrypt-ruby (~> 3.0.1)
   better_errors
   binding_of_caller
