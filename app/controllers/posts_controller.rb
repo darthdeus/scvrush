@@ -4,13 +4,10 @@ class PostsController < ApplicationController
   def index
     posts = Post.scoped
 
-    if params[:query]
-      posts = posts.search(params[:query], load: true)
-    else
-      posts = Post.published.limit(50)
-    end
-
-    if params[:page]
+    if params[:query].present?
+      posts = posts.search(params[:query], page: params[:page] || 1, load: true)
+      posts.each { |post| post.query = params[:query] }
+    elsif params[:page]
       posts = posts.published.page(params[:page]).per(50)
     end
 

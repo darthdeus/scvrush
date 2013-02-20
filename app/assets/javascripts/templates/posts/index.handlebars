@@ -4,13 +4,15 @@
 
   {{#each post in controller}}
     <div class="post">
-      {{#linkTo "posts.post" post class="image"}}
-        <img {{bindAttr src="post.image"}}>
-      {{/linkTo}}
+      {{#if post.isLoaded}}
+        {{#linkTo "posts.post" post class="image"}}
+          <img {{bindAttr src="post.image"}}>
+        {{/linkTo}}
 
-      <h2>
-        {{#linkTo "posts.post" post}}{{post.title}}{{/linkTo}}
-      </h2>
+        <h2>
+          {{#linkTo "posts.post" post}}{{post.title}}{{/linkTo}}
+        </h2>
+      {{/if}}
     </div>
   {{/each}}
 

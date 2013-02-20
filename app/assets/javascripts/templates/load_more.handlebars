@@ -1,9 +1,5 @@
-{{#if isLoading}}
-  fetching some more stuff <img width="10" src="img/ajax-loader.gif" >
+{{#if isSearching}}
+  <button {{action "loadMore"}}>Load more results</button>
 {{else}}
-  {{#if canLoadMore}}
-    <a {{action "loadMore" target="controller" }}>click to load more items</a>
-  {{else}}
-    <i>no more items</i>
-  {{/if}}
+  fetching some more stuff <img width="10" src="img/ajax-loader.gif" >
 {{/if}}
