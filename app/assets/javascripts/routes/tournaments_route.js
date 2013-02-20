@@ -42,11 +42,7 @@ Scvrush.TournamentsRoute = Em.Route.extend({
     },
 
     reloadMatches: function(tournament) {
-      tournament.reload();
-
-      $.get("/matches?tournament_id=" + tournament.get("id"), function(data) {
-        tournament.get("store").loadMany(Scvrush.Match, data.matches);
-      });
+      Scvrush.TournamentService.reload(tournament);
     },
 
     randomize: function(tournament) {
@@ -59,7 +55,7 @@ Scvrush.TournamentsRoute = Em.Route.extend({
 
 });
 
-Scvrush.TournamentsIndexRoute = Em.Route.extend({
+Scvrush.TournamentsIndexRoute = Ember.Route.extend({
   model: function() {
     return Scvrush.TournamentDay.find();
   }
