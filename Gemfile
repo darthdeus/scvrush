@@ -26,7 +26,7 @@ gem "ember-rails", github: "emberjs/ember-rails"
 gem "barber-emblem", github: "machty/barber-emblem"
 gem "emblem-rails"
 
-gem "active_model_serializers"
+gem "active_model_serializers", github: "rails-api/active_model_serializers"
 
 gem "rdiscount",          "~> 1.6.8"
 
