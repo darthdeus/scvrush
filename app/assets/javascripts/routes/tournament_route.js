@@ -25,8 +25,11 @@ Scvrush.TournamentRoute = Ember.Route.extend({
     },
 
     adminEdit: function(match) {
-      // TODO - if admin
-      this.transitionTo("match.edit", match);
+      var controller = this.controllerFor("tournament");
+
+      if (controller.get("isAdmin")) {
+        this.transitionTo("match.edit", match);
+      }
     },
 
     saveMatch: function(match) {

@@ -9,7 +9,6 @@ Scvrush.TournamentsNewController = Em.ObjectController.extend({
     }
 
     tournament.addObserver("id", this, "afterCreate");
-
     tournament.get("transaction").commit();
   },
 
