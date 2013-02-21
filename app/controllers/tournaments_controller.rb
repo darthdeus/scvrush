@@ -78,10 +78,7 @@ class TournamentsController < ApplicationController
     tournament = Tournament.find(params[:id])
     # authorize! :start, tournament
 
-    if tournament.started?
-      # TODO - figure out a better way to handle this
-      raise "Tournament was already started"
-    else
+    unless tournament.started?
       tournament.start
     end
 
