@@ -79,18 +79,18 @@ Scvrush.User = DS.Model.extend({
 Scvrush.User.reopenClass({
 
   findByUsername: function(username) {
-    var filtered = Scvrush.store.filter(Scvrush.User, function(user) {
+    var filtered = Scvrush.User.filter(function(user) {
       return user.username == username;
     });
 
     if (filtered.get("length") > 0) {
-      return filtered.get("firstObject");
+      return filtered;
     } else {
       var users = Scvrush.User.find({ username: username });
 
-      users.then(function() {
-        users.resolve(users.get("firstObject"));
-      });
+      // users.then(function() {
+      //   users.resolve(users.get("firstObject"));
+      // });
 
       return users;
     }
