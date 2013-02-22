@@ -6,7 +6,6 @@ class PostsController < ApplicationController
 
     if params[:query].present?
       posts = posts.search(params[:query], page: params[:page] || 1, load: true)
-      posts.each { |post| post.query = params[:query] }
     elsif params[:page]
       posts = posts.published.page(params[:page]).per(50)
     end
