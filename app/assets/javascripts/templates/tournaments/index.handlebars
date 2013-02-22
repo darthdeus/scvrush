@@ -4,30 +4,34 @@
     {{#each day in controller}}
       <div class="tournament-day">
         <h2>{{day.humanDate}}</h2>
-        {{#each tournament in day.tournaments}}
-          <div class="tournament">
 
-            <div class="time">
-              {{tournament.startTime}}
+        {{#if day.tournaments.isLoaded}}
+          {{#each tournament in day.tournaments}}
+            <div class="tournament">
+
+              <div class="time">
+                {{tournament.startTime}}
+              </div>
+
+              <img {{bindAttr src="tournament.imageUrl"}}>
+
+              <div class="description">
+                <h3>
+                  {{#linkTo "tournament" tournament}}{{tournament.name}}{{/linkTo}}
+                </h3>
+
+                <p>
+                  <i class="icon-user"></i>
+                  {{tournament.participantCount}}
+                  {{#if tournament.onePerson}}person{{else}}people{{/if}}
+                </p>
+
+              </div>
+
             </div>
+          {{/each}}
+        {{/if}}
 
-            <img {{bindAttr src="tournament.imageUrl"}}>
-
-            <div class="description">
-              <h3>
-                {{#linkTo "tournament" tournament}}{{tournament.name}}{{/linkTo}}
-              </h3>
-
-              <p>
-                <i class="icon-user"></i>
-                {{tournament.participantCount}}
-                {{#if tournament.onePerson}}person{{else}}people{{/if}}
-              </p>
-
-            </div>
-
-          </div>
-        {{/each}}
       </div>
     {{/each}}
   </div>
@@ -36,9 +40,6 @@
     <input type="text" placeholder="Search">
 
     {{#linkTo "tournaments.new" class="btn btn-primary"}}Create your own tournament{{/linkTo}}
-
-    {{view Scvrush.CalendarView weeksBinding="controller.weeks"}}
-    and these are the calendars
   </div>
 
 </div>
