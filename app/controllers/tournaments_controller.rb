@@ -14,7 +14,7 @@ class TournamentsController < ApplicationController
     elsif params[:page]
       tournaments = tournaments.page(params[:page]).per(50)
     else
-      tournaments = tournaments.limit(20)
+      tournaments = tournaments.order("created_at DESC").limit(20)
     end
 
     render json: tournaments.to_a
@@ -35,9 +35,7 @@ class TournamentsController < ApplicationController
     tournament = Tournament.find(params[:id])
     tournament.destroy
 
-    # FIXME - figure out what is the correct response here since ember doesn't care about 204
     respond_with tournament
-    # render json: {}, status: :ok
   end
 
   def update

@@ -7738,8 +7738,8 @@ DS.RESTAdapter = DS.Adapter.extend({
 
     this.ajax(this.buildURL(root, id), "DELETE", {
       context: this,
-      success: function(json) {
-        Ember.run(this, function(){
+      success: function(json, status, foo) {
+        Ember.run(this, function() {
           this.didSaveRecord(store, type, record, json);
         });
       }
