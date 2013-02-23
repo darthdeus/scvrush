@@ -1,0 +1,9 @@
+header.heading
+  h3 Your tournaments
+
+section
+  ul
+    each tournament in controller
+      li
+        = linkTo "tournament" tournament
+          = tournament.name
