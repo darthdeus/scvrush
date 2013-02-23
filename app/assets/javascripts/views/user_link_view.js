@@ -2,21 +2,31 @@ Scvrush.UserLinkView = Ember.View.extend({
   tagName: "span",
 
   didInsertElement: function() {
+    Scvrush.User.find({ username: this.get("username") });
     this.get("users");
   },
 
+  user: null,
   users: function() {
-    var users = Scvrush.User.find({ username: this.get("username") }),
-    // var users = Scvrush.User.findByUsername(this.get("username"));
-        view = this;
+    var self = this;
 
-    users.then(function(response) {
-      view.set("user", response.get("firstObject"));
+    return Scvrush.User.filter(function(user) {
+      if (self.get("username") && user.get("username")) {
+        return user.get("username").toLowerCase() === self.get("username").toLowerCase();
+      } else {
+        return false;
+      }
     });
-
-    return users;
   }.property("username"),
 
-  template: Ember.Handlebars.compile("{{#if view.user}}{{#linkTo 'user' view.user}}@{{view.user.username}}{{/linkTo}}{{else}}{{view.username}}{{/if}}")
+  usersChanged: function() {
+    var self = this;
+
+    Ember.run.next(function() {
+      self.set("user", self.get("users.lastObject"));
+    });
+  }.observes("users.length"),
+
+  template: Ember.Handlebars.compile("{{#if view.user}}{{#linkTo 'user' view.user}}@{{view.user.username}}{{/linkTo}}{{else}}@{{view.username}}{{/if}}")
 });
 

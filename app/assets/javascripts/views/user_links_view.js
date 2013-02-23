@@ -4,7 +4,6 @@ Scvrush.UserLinksView = Ember.View.extend({
     var template = this.get("content");
 
     if (template) {
-      // template = template.replace(/@(\w+)/, '<a href="#/users/$1">@$1</a>');
       template = template.replace(/@(\w+)/, "{{view Scvrush.UserLinkView username='$1'}}");
     }
 
