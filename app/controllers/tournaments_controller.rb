@@ -4,8 +4,20 @@ class TournamentsController < ApplicationController
 
   def index
     if params[:ids]
-      respond_with Tournament.find(params[:ids])
+      respond_with Tournament.find(params[:ids]) and return
     end
+
+    tournaments = Tournament.scoped
+
+    if params[:query].present?
+      tournaments = tournaments.search(params[:query], page: params[:page] || 1, load: true)
+    elsif params[:page]
+      tournaments = tournaments.page(params[:page]).per(50)
+    else
+      tournaments = tournaments.limit(20)
+    end
+
+    render json: tournaments.to_a
   end
 
   def create

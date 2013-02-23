@@ -54,21 +54,3 @@ Scvrush.TournamentsRoute = Em.Route.extend({
   }
 
 });
-
-Scvrush.TournamentsIndexRoute = Ember.Route.extend({
-  model: function() {
-    return Scvrush.TournamentDay.find();
-  }
-});
-
-Scvrush.TournamentsNewRoute = Em.Route.extend({
-
-  model: function() {
-    var oneHourFromNow = moment().add("hours", 2);
-    return Scvrush.Tournament.createRecord({
-      startsAt: oneHourFromNow.format("YYYY-MM-DD HH:mm")
-    });
-  }
-
-});
-

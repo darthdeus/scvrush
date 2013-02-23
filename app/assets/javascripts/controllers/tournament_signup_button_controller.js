@@ -1,13 +1,11 @@
 Scvrush.TournamentSignupButtonController = Ember.ObjectController.extend({
 
   init: function() {
-    var controller = this;
-
-    Ember.run.next(function() {
-      controller.set("user", Scvrush.currentUser);
-    });
-
     this._super();
+
+    Ember.run.next(this, function() {
+      this.set("user", Scvrush.currentUser);
+    });
   },
 
 });

@@ -30,5 +30,3 @@ Scvrush.Router.map(function() {
   });
 
 });
-
-Scvrush.MatchEditController = Ember.ObjectController.extend();

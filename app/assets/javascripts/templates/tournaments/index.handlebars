@@ -1,43 +1,34 @@
 <div class="tournaments row">
 
   <div class="span9">
-    {{#each day in controller}}
-      <div class="tournament-day">
-        <h2>{{day.humanDate}}</h2>
+    {{#each tournament in controller}}
+      <div class="tournament">
 
-        {{#if day.tournaments.isLoaded}}
-          {{#each tournament in day.tournaments}}
-            <div class="tournament">
+        <div class="time">
+          {{tournament.startTime}}
+        </div>
 
-              <div class="time">
-                {{tournament.startTime}}
-              </div>
+        <img {{bindAttr src="tournament.imageUrl"}}>
 
-              <img {{bindAttr src="tournament.imageUrl"}}>
+        <div class="description">
+          <h3>
+            {{#linkTo "tournament" tournament}}{{tournament.name}}{{/linkTo}}
+          </h3>
 
-              <div class="description">
-                <h3>
-                  {{#linkTo "tournament" tournament}}{{tournament.name}}{{/linkTo}}
-                </h3>
+          <p>
+            <i class="icon-user"></i>
+            {{tournament.participantCount}}
+            {{#if tournament.onePerson}}person{{else}}people{{/if}}
+          </p>
 
-                <p>
-                  <i class="icon-user"></i>
-                  {{tournament.participantCount}}
-                  {{#if tournament.onePerson}}person{{else}}people{{/if}}
-                </p>
-
-              </div>
-
-            </div>
-          {{/each}}
-        {{/if}}
+        </div>
 
       </div>
     {{/each}}
   </div>
 
   <div class="span3">
-    <input type="text" placeholder="Search">
+    {{view Ember.TextField valueBinding="query" placeholder="Search"}}
 
     {{#linkTo "tournaments.new" class="btn btn-primary"}}Create your own tournament{{/linkTo}}
   </div>

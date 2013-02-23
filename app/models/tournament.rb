@@ -27,6 +27,18 @@ class Tournament < ActiveRecord::Base
   #mounting the logo
   mount_uploader :logo, LogoUploader
 
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
+
+  mapping do
+    indexes :id,       index: :not_analyzed
+    indexes :name,     analyzer: "snowball", boost: 100
+  end
+
+  def to_indexed_json
+    to_json(only: [:name])
+  end
+
   def self.calendar
     tournaments = Tournament.where("starts_at > ? AND starts_at < ?", 1.month.ago, 1.month.from_now)
     tournaments.group_by { |n| n.starts_at.to_date }

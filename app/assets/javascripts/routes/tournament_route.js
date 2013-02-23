@@ -39,32 +39,3 @@ Scvrush.TournamentRoute = Ember.Route.extend({
   }
 
 });
-
-Scvrush.TournamentEditRoute = Ember.Route.extend({
-
-  events: {
-    saveTournament: function(tournament) {
-      var route = this;
-
-      tournament.one("didUpdate", function() {
-        Ember.run.next(function() {
-          route.transitionTo("tournament.index", tournament);
-        });
-      });
-
-      tournament.get("transaction").commit();
-    }
-  },
-
-  activate: function() {
-    var tournament = this.modelFor("tournament"),
-        transaction = tournament.get("store").transaction();
-
-    transaction.add(tournament);
-  },
-
-  deactivate: function() {
-    this.modelFor("tournament").get("transaction").rollback();
-  }
-
-});
