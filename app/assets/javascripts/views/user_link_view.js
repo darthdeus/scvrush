@@ -2,7 +2,7 @@ Scvrush.UserLinkView = Ember.View.extend({
   tagName: "span",
 
   didInsertElement: function() {
-    Scvrush.User.find({ username: this.get("username") });
+    Scvrush.User.findByUsername(this.get("username"));
     this.get("users");
   },
 

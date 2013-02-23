@@ -78,21 +78,23 @@ Scvrush.User = DS.Model.extend({
 
 Scvrush.User.reopenClass({
 
-  findByUsername: function(username) {
-    var filtered = Scvrush.User.filter(function(user) {
-      return user.username == username;
-    });
+  usernameFilter: function(username) {
+    return Scvrush.User.filter(function(user) {
+      if (username && user.get("username")) {
+        return user.get("username").toLowerCase() === username.toLowerCase();
+      } else {
+        return false;
+      }
+    })
+  },
 
-    if (filtered.get("length") > 0) {
+  findByUsername: function(username) {
+    var filtered = this.usernameFilter(username).get("firstObject");
+
+    if (filtered) {
       return filtered;
     } else {
-      var users = Scvrush.User.find({ username: username });
-
-      // users.then(function() {
-      //   users.resolve(users.get("firstObject"));
-      // });
-
-      return users;
+      return Scvrush.User.find({ username: username });
     }
   },
 
