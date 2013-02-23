@@ -6,7 +6,6 @@ Scvrush.UserLinkView = Ember.View.extend({
     this.get("users");
   },
 
-  user: null,
   users: function() {
     var self = this;
 
@@ -19,13 +18,9 @@ Scvrush.UserLinkView = Ember.View.extend({
     });
   }.property("username"),
 
-  usersChanged: function() {
-    var self = this;
-
-    Ember.run.next(function() {
-      self.set("user", self.get("users.lastObject"));
-    });
-  }.observes("users.length"),
+  user: function() {
+    return this.get("users.lastObject");
+  }.property("users.lastObject"),
 
   template: Ember.Handlebars.compile("{{#if view.user}}{{#linkTo 'user' view.user}}@{{view.user.username}}{{/linkTo}}{{else}}@{{view.username}}{{/if}}")
 });
