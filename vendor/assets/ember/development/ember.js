@@ -150,8 +150,8 @@ Ember.deprecateFunc = function(message, func) {
 
 })();
 
-// Version: v1.0.0-rc.1-46-g052062c
-// Last commit: 052062c (2013-02-18 19:32:17 -0800)
+// Version: v1.0.0-rc.1-61-ge590dea
+// Last commit: e590dea (2013-02-22 11:29:15 -0800)
 
 
 (function() {
@@ -6123,7 +6123,6 @@ define("container",
       register: function(type, name, factory, options) {
         var fullName;
 
-
         if (type.indexOf(':') !== -1){
           options = factory;
           factory = name;
@@ -6133,15 +6132,23 @@ define("container",
           fullName = type + ":" + name;
         }
 
-        this.registry.set(fullName, factory);
-        this._options.set(fullName, options || {});
+        var normalizedName = this.normalize(fullName);
+
+        this.registry.set(normalizedName, factory);
+        this._options.set(normalizedName, options || {});
       },
 
       resolve: function(fullName) {
         return this.resolver(fullName) || this.registry.get(fullName);
       },
 
+      normalize: function(fullName) {
+        return fullName;
+      },
+
       lookup: function(fullName, options) {
+        fullName = this.normalize(fullName);
+
         options = options || {};
 
         if (this.cache.has(fullName) && options.singleton !== false) {
@@ -6270,7 +6277,8 @@ define("container",
     }
 
     function factoryFor(container, fullName) {
-      return container.resolve(fullName);
+      var name = container.normalize(fullName);
+      return container.resolve(name);
     }
 
     function instantiate(container, fullName) {
@@ -11125,39 +11133,7 @@ Ember.Mixin.prototype.toString = classToString;
 
 
 (function() {
-/**
-@module ember
-@submodule ember-runtime
-*/
-
-/**
-  Defines a namespace that will contain an executable application. This is
-  very similar to a normal namespace except that it is expected to include at
-  least a 'ready' function which can be run to initialize the application.
-
-  Currently `Ember.Application` is very similar to `Ember.Namespace.`  However,
-  this class may be augmented by additional frameworks so it is important to
-  use this instance when building new applications.
-
-  # Example Usage
-
-  ```javascript
-  MyApp = Ember.Application.create({
-    VERSION: '1.0.0',
-    store: Ember.Store.create().from(Ember.fixtures)
-  });
-
-  MyApp.ready = function() {
-    //..init code goes here...
-  }
-  ```
-
-  @class Application
-  @namespace Ember
-  @extends Ember.Namespace
-*/
 Ember.Application = Ember.Namespace.extend();
-
 
 })();
 
@@ -12440,7 +12416,8 @@ Ember.ArrayController = Ember.ArrayProxy.extend(Ember.ControllerMixin,
 
   objectAtContent: function(idx) {
     var length = get(this, 'length'),
-        object = get(this,'arrangedContent').objectAt(idx);
+        arrangedContent = get(this,'arrangedContent'),
+        object = arrangedContent && arrangedContent.objectAt(idx);
 
     if (idx >= 0 && idx < length) {
       var controllerClass = this.lookupItemController(object);
@@ -23555,6 +23532,32 @@ function teardownView(route) {
 
 
 (function() {
+Ember.onLoad('Ember.Handlebars', function() {
+  var handlebarsResolve = Ember.Handlebars.resolveParams,
+      map = Ember.ArrayPolyfills.map,
+      get = Ember.get;
+
+  function resolveParams(context, params, options) {
+    var resolved = handlebarsResolve(context, params, options);
+    return map.call(resolved, unwrap);
+  }
+
+  function unwrap(object) {
+    if (Ember.ControllerMixin.detect(object)) {
+      return unwrap(get(object, 'model'));
+    } else {
+      return object;
+    }
+  }
+
+  Ember.Router.resolveParams = resolveParams;
+});
+
+})();
+
+
+
+(function() {
 /**
 @module ember
 @submodule ember-routing
@@ -23563,7 +23566,7 @@ function teardownView(route) {
 var get = Ember.get, set = Ember.set;
 Ember.onLoad('Ember.Handlebars', function(Handlebars) {
 
-  var resolveParams = Ember.Handlebars.resolveParams,
+  var resolveParams = Ember.Router.resolveParams,
       isSimpleClick = Ember.ViewUtils.isSimpleClick;
 
   function fullRouteName(router, name) {
@@ -23846,7 +23849,7 @@ Ember.onLoad('Ember.Handlebars', function(Handlebars) {
 */
 Ember.onLoad('Ember.Handlebars', function(Handlebars) {
 
-  var resolveParams = Ember.Handlebars.resolveParams,
+  var resolveParams = Ember.Router.resolveParams,
       isSimpleClick = Ember.ViewUtils.isSimpleClick;
 
   var EmberHandlebars = Ember.Handlebars,
@@ -24472,7 +24475,7 @@ Ember.HashLocation = Ember.Object.extend({
 
         set(self, 'lastSetURL', null);
 
-        callback(location.hash.substr(1));
+        callback(path);
       });
     });
   },
@@ -24850,10 +24853,13 @@ var get = Ember.get, set = Ember.set,
   ```
 
   By default, calling `Ember.Application.create()` will automatically initialize
-  your  application by calling the `Ember.Application.initialize()` method. If
+  your application by calling the `Ember.Application.initialize()` method. If
   you need to delay initialization, you can call your app's `deferReadiness()`
   method. When you are ready for your app to be initialized, call its
   `advanceReadiness()` method.
+
+  You can define a `ready` method on the `Ember.Application` instance, which
+  will be run by Ember when the application is initialized.
 
   Because `Ember.Application` inherits from `Ember.Namespace`, any classes
   you create will have useful string representations when calling `toString()`.
@@ -25413,6 +25419,7 @@ Ember.Application.reopenClass({
     Ember.Container.defaultContainer = Ember.Container.defaultContainer || container;
 
     container.set = Ember.set;
+    container.normalize = normalize;
     container.resolver = resolverFor(namespace);
     container.optionsForType('view', { singleton: false });
     container.optionsForType('template', { instantiate: false });
@@ -25452,6 +25459,7 @@ function resolverFor(namespace) {
 
     if (type === 'template') {
       var templateName = name.replace(/\./g, '/');
+
       if (Ember.TEMPLATES[templateName]) {
         return Ember.TEMPLATES[templateName];
       }
@@ -25482,8 +25490,30 @@ function resolverFor(namespace) {
   };
 }
 
-Ember.runLoadHooks('Ember.Application', Ember.Application);
+function normalize(fullName) {
+  var split = fullName.split(':'),
+      type = split[0],
+      name = split[1];
 
+
+  if (type !== 'template') {
+    var result = name;
+
+    if (result.indexOf('.') > -1) {
+      result = result.replace(/\.(.)/g, function(m) { return m[1].toUpperCase(); });
+    }
+
+    if (name.indexOf('_') > -1) {
+      result = result.replace(/_(.)/g, function(m) { return m[1].toUpperCase(); });
+    }
+
+    return type + ':' + result;
+  } else {
+    return fullName;
+  }
+}
+
+Ember.runLoadHooks('Ember.Application', Ember.Application);
 
 })();
 
@@ -26830,8 +26860,8 @@ Ember States
 
 
 })();
-// Version: v1.0.0-rc.1-46-g052062c
-// Last commit: 052062c (2013-02-18 19:32:17 -0800)
+// Version: v1.0.0-rc.1-61-ge590dea
+// Last commit: e590dea (2013-02-22 11:29:15 -0800)
 
 
 (function() {
