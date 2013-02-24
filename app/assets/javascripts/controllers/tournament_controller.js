@@ -13,7 +13,7 @@ Scvrush.TournamentController = Ember.ObjectController.extend({
     });
 
     Ember.run.next(this, function() {
-      self.notifyPropertyChange("currentMatch");
+      this.notifyPropertyChange("currentMatch");
     });
 
     return result.get("lastObject");
@@ -44,10 +44,6 @@ Scvrush.TournamentController = Ember.ObjectController.extend({
   isPlaying: function() {
     return this.get("content.users").contains(Scvrush.currentUser);
   }.property("users.@each"),
-
-  allUsers: function() {
-    return Scvrush.User.filter(function() { return true });
-  }.property(),
 
   lastUser: function() {
     return this.get("allUsers.lastObject");

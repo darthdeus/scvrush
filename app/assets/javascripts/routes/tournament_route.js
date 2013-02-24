@@ -33,8 +33,8 @@ Scvrush.TournamentRoute = Ember.Route.extend({
     },
 
     saveMatch: function(match) {
-      match.get("store").commit();
-    },
+      match.get("transaction").commit();
+    }
 
   }
 
