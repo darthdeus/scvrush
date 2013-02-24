@@ -6,7 +6,7 @@
     <div class="post">
       {{#if post.isLoaded}}
         {{#linkTo "posts.post" post class="image"}}
-          <img {{bindAttr src="post.image"}}>
+          {{view Scvrush.ImageView srcBinding="post.image"}}
         {{/linkTo}}
 
         <h2>
