@@ -150,8 +150,8 @@ Ember.deprecateFunc = function(message, func) {
 
 })();
 
-// Version: v1.0.0-rc.1-61-ge590dea
-// Last commit: e590dea (2013-02-22 11:29:15 -0800)
+// Version: v1.0.0-rc.1-68-g0756836
+// Last commit: 0756836 (2013-02-24 21:46:44 -0800)
 
 
 (function() {
@@ -296,6 +296,15 @@ Ember.LOG_STACKTRACE_ON_DEPRECATION = (Ember.ENV.LOG_STACKTRACE_ON_DEPRECATION !
   @default Ember.EXTEND_PROTOTYPES
 */
 Ember.SHIM_ES5 = (Ember.ENV.SHIM_ES5 === false) ? false : Ember.EXTEND_PROTOTYPES;
+
+/**
+  Determines whether Ember logs info about version of used libraries
+
+  @property LOG_VERSION
+  @type Boolean
+  @default true
+*/
+Ember.LOG_VERSION = (Ember.ENV.LOG_VERSION === false) ? false : true;
 
 /**
   Empty function. Useful for some operations.
@@ -6755,6 +6764,20 @@ Ember.Error.prototype = Ember.create(Error.prototype);
 
 (function() {
 /**
+  Expose RSVP implementation
+
+  @class RSVP
+  @namespace Ember
+  @constructor
+*/
+Ember.RSVP = requireModule('rsvp');
+
+})();
+
+
+
+(function() {
+/**
 @module ember
 @submodule ember-runtime
 */
@@ -11517,6 +11540,25 @@ Ember.ObjectProxy = Ember.Object.extend(
     var content = get(this, 'content');
     Ember.assert(fmt("Cannot delegate set('%@', %@) to the 'content' property of object proxy %@: its 'content' is undefined.", [key, value, this]), content);
     return set(content, key, value);
+  }
+});
+
+Ember.ObjectProxy.reopenClass({
+  create: function () {
+    var mixin, prototype, i, l, properties, keyName;
+    if (arguments.length) {
+      prototype = this.proto();
+      for (i = 0, l = arguments.length; i < l; i++) {
+        properties = arguments[i];
+        for (keyName in properties) {
+          if (!properties.hasOwnProperty(keyName) || keyName in prototype) { continue; }
+          if (!mixin) mixin = {};
+          mixin[keyName] = null;
+        }
+      }
+      if (mixin) this._initMixins([mixin]);
+    }
+    return this._super.apply(this, arguments);
   }
 });
 
@@ -25055,11 +25097,13 @@ var Application = Ember.Application = Ember.Namespace.extend({
       this.scheduleInitialize();
     }
 
-    Ember.debug('-------------------------------');
-    Ember.debug('Ember.VERSION : ' + Ember.VERSION);
-    Ember.debug('Handlebars.VERSION : ' + Ember.Handlebars.VERSION);
-    Ember.debug('jQuery.VERSION : ' + Ember.$().jquery);
-    Ember.debug('-------------------------------');
+    if ( Ember.LOG_VERSION ) {
+      Ember.debug('-------------------------------');
+      Ember.debug('Ember.VERSION : ' + Ember.VERSION);
+      Ember.debug('Handlebars.VERSION : ' + Ember.Handlebars.VERSION);
+      Ember.debug('jQuery.VERSION : ' + Ember.$().jquery);
+      Ember.debug('-------------------------------');
+    }
   },
 
   /**
@@ -26860,8 +26904,8 @@ Ember States
 
 
 })();
-// Version: v1.0.0-rc.1-61-ge590dea
-// Last commit: e590dea (2013-02-22 11:29:15 -0800)
+// Version: v1.0.0-rc.1-68-g0756836
+// Last commit: 0756836 (2013-02-24 21:46:44 -0800)
 
 
 (function() {
