@@ -459,6 +459,16 @@ li.stream {
   top: 45% !important;
 }
 
+.user-info {
+  .avatar {
+    width: 60px;
+  }
+
+  input[type=text] {
+    width: 190px;
+  }
+}
+
 .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
 .ui-timepicker-div dl { text-align: left; }
 .ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }

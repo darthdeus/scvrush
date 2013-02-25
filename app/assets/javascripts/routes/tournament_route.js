@@ -38,6 +38,16 @@ Scvrush.TournamentRoute = Ember.Route.extend({
       match.get("transaction").commit();
     }
 
+  },
+
+  setupController: function(controller, model) {
+    this.set("reloader", setInterval(function() {
+      model.reload();
+    }, 10000));
+  },
+
+  deactivate: function() {
+    clearInterval(this.get("reloader"));
   }
 
 });
