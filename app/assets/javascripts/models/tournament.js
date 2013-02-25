@@ -20,7 +20,9 @@ Scvrush.Tournament = DS.Model.extend({
     var model = this;
 
     $.post("/tournaments/" + this.get("id") + "/start", function(data) {
-      model.get("store").load(Scvrush.Tournament, data.tournament);
+      Ember.run(function() {
+        model.get("store").load(Scvrush.Tournament, data.tournament);
+      });
     });
   },
 

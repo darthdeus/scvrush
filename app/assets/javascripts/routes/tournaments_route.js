@@ -40,7 +40,9 @@ Scvrush.TournamentsRoute = Em.Route.extend({
 
     unseed: function(tournament) {
       $.post("/brackets/" + tournament.get("id"), { _method: "DELETE" }, function(data) {
-        tournament.get("store").load(Scvrush.Tournament, data.tournament);
+        Ember.run(function() {
+          tournament.get("store").load(Scvrush.Tournament, data.tournament);
+        });
       });
     },
 

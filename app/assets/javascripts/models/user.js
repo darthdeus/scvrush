@@ -57,7 +57,9 @@ Scvrush.User = DS.Model.extend({
     var url = "/users/" + user.get("id") + "/follow";
 
     $.post(url, function(data) {
-      user.get("store").loadMany(Scvrush.User, data.users);
+      Ember.run(function() {
+        user.get("store").loadMany(Scvrush.User, data.users);
+      });
     });
   },
 
@@ -65,7 +67,9 @@ Scvrush.User = DS.Model.extend({
     var url = "/users/" + user.get("id") + "/unfollow";
 
     $.post(url, { "_method": "DELETE" }, function(data) {
-      user.get("store").loadMany(Scvrush.User, data.users);
+      Ember.run(function() {
+        user.get("store").loadMany(Scvrush.User, data.users);
+      });
     });
   },
 

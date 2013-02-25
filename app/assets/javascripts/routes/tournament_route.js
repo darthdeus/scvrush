@@ -19,7 +19,9 @@ Scvrush.TournamentRoute = Ember.Route.extend({
         opponent_id: opponentId,
         tournament_id: controller.get("content.id")
       }, function(data) {
-        route.get("store").loadMany(Scvrush.Match, data.matches);
+        Ember.run(function() {
+          route.get("store").loadMany(Scvrush.Match, data.matches);
+        });
       });
       console.log("submitted", score);
     },

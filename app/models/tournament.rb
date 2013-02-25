@@ -17,9 +17,9 @@ class Tournament < ActiveRecord::Base
   validates :tournament_type, inclusion: TYPES
   validates :bo_preset, format: { with: /^[\d ]+$/ }
 
-  # TODO - remove this so users can't create official tournaments
   attr_accessible :name, :starts_at, :tournament_type, :description,
-    :rules, :map_info, :bo_preset, :map_preset, :visible, :channel, :admin_names, :logo
+                  :rules, :map_info, :bo_preset, :map_preset, :visible,
+                  :channel, :admin_names, :logo
 
   scope :recent, order('starts_at DESC').limit(5)
   scope :upcoming, lambda { where("starts_at > ? AND tournament_type <> 'User'", Time.now).order(:starts_at) }

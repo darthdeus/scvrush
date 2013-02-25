@@ -41,12 +41,6 @@ namespace :db do
       post.content      = Populator.paragraphs(2..5)
       post.status       = Post::PUBLISHED
       post.published_at = Time.now
-
-      Comment.populate 5 do |comment|
-        comment.content = Populator.paragraphs(1..3)
-        comment.post_id = post.id
-        comment.user_id = users.sample.id
-      end
     end
 
     Post.all.each do |post|
@@ -68,6 +62,7 @@ namespace :db do
       tournament.tournament_type = Tournament::TYPES
       tournament.bo_preset = "1"
       tournament.map_preset = "foo"
+      tournament.user_id = User.all.sample.id
     end
 
     Tournament.all.each do |tournament|

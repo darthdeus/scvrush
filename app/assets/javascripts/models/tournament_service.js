@@ -7,7 +7,9 @@ Scvrush.TournamentService.reopenClass({
     var promise = $.get("/matches?tournament_id=" + tournament.get("id"));
 
     promise.then(function(data) {
-      tournament.get("store").loadMany(Scvrush.Match, data.matches);
+      Ember.run(function() {
+        tournament.get("store").loadMany(Scvrush.Match, data.matches);
+      });
     });
 
     return promise;

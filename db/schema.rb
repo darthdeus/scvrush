@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130214155826) do
+ActiveRecord::Schema.define(:version => 20130214205722) do
 
   create_table "achievements", :force => true do |t|
     t.string   "name"
@@ -38,18 +38,6 @@ ActiveRecord::Schema.define(:version => 20130214155826) do
   end
 
   add_index "coaches", ["post_id"], :name => "index_coaches_on_post_id"
-
-  create_table "comments", :force => true do |t|
-    t.text     "content"
-    t.integer  "post_id"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.integer  "parent_id"
-  end
-
-  add_index "comments", ["post_id"], :name => "index_comments_on_post_id"
-  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "games", :force => true do |t|
     t.integer  "winner",     :null => false

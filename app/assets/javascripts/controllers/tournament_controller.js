@@ -43,7 +43,7 @@ Scvrush.TournamentController = Ember.ObjectController.extend({
 
   isPlaying: function() {
     return this.get("content.users").contains(Scvrush.currentUser);
-  }.property("users.@each"),
+  }.property("users.@each.id"),
 
   lastUser: function() {
     return this.get("allUsers.lastObject");
