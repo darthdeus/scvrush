@@ -21,11 +21,9 @@ gem "font-awesome-sass-rails", "~> 3.0.2.1"
 gem "kaminari"
 gem "tire"
 
-# gem "barber", github: "machty/barber"
 gem "ember-rails", github: "emberjs/ember-rails"
 gem "barber-emblem", github: "machty/barber-emblem"
 gem "emblem-rails"
-
 gem "active_model_serializers", github: "rails-api/active_model_serializers"
 
 gem "rdiscount",          "~> 1.6.8"
@@ -38,6 +36,7 @@ gem "carrierwave",        "~> 0.8.0"
 gem "mini_magick",        "~> 3.4"
 gem "airbrake",           "~> 3.1.6"
 gem "newrelic_rpm",       "~> 3.5.5"
+gem "party_foul"
 
 group :assets do
   gem "uglifier",         "~> 1.3.0"
