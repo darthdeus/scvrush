@@ -54,7 +54,6 @@ GEM
       multi_json (~> 1.0)
     acts-as-taggable-on (2.3.3)
       rails (~> 3.0)
-    addressable (2.3.2)
     airbrake (3.1.8)
       activesupport
       builder
@@ -105,6 +104,7 @@ GEM
       execjs
     coffee-script-source (1.4.0)
     colored (1.2)
+    colorize (0.5.8)
     dalli (2.6.2)
     database_cleaner (0.9.1)
     debug_inspector (0.0.2)
@@ -167,8 +167,13 @@ GEM
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     kgio (2.8.0)
+    konacha (2.5.0)
+      actionpack (>= 3.1, < 5)
+      capybara
+      colorize
+      railties (>= 3.1, < 5)
+      sprockets
     launchy (2.2.0)
-      addressable (~> 2.3)
     listen (0.7.2)
     lumberjack (1.0.2)
     mail (2.4.4)
@@ -358,6 +363,7 @@ DEPENDENCIES
   jquery-datatables-rails (~> 1.11.1)
   jquery-rails (~> 2.2.0)
   kaminari
+  konacha
   launchy (~> 2.2.0)
   mini_magick (~> 3.4)
   newrelic_rpm (~> 3.5.5)

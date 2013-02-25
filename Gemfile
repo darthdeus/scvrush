@@ -73,6 +73,7 @@ group :development, :test do
   gem "faker",              "~> 1.1.1"
   gem "better_errors"
   gem "binding_of_caller"
+  gem "konacha"
 end
 
 group :test do
