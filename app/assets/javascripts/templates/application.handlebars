@@ -1,20 +1,7 @@
 <div class="span3 sidebar">
   <div id="logo"><img src="/assets/logo.png"></div>
 
-  <section class="user-info">
-    <img {{bindAttr src="Scvrush.currentUser.image"}} class="avatar">
-    {{#linkTo "user" Scvrush.currentUser}}{{Scvrush.currentUser.username}}{{/linkTo}}
-
-    {{control "statuses.new"}}
-
-    {{#each status in Scvrush.currentUser.recentStatuses}}
-      <p>
-        {{view Scvrush.UserLinksView contentBinding="status.text"}}
-      </p>
-    {{/each}}
-
-  </section>
-
+  {{render "user.recent_statuses" Scvrush.currentUser}}
   {{render "tournaments.upcoming"}}
 
 </div>

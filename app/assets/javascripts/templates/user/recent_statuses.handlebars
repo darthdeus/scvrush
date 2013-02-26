@@ -1,0 +1,17 @@
+<section class="user-info">
+  <div class="clearfix">
+    <img {{bindAttr src="image"}} class="avatar">
+
+    <div class="username">
+      {{#linkTo "user" this}}{{username}}{{/linkTo}}
+    </div>
+  </div>
+
+  {{control "statuses.new"}}
+
+  {{#each status in recentStatuses}}
+    <p>
+      {{view Scvrush.UserLinksView contentBinding="status.text"}}
+    </p>
+  {{/each}}
+</section>
