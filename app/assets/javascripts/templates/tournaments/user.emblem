@@ -1,0 +1,10 @@
+unless tournaments.isEmpty
+  header.heading
+    h3 Your Tournaments
+
+  section
+    ul
+      each tournament in tournaments
+        li
+          = linkTo "tournament" tournament
+            = tournament.name

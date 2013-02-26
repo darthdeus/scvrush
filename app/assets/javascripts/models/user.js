@@ -75,12 +75,6 @@ Scvrush.User = DS.Model.extend({
 
   isFollowing: function(anotherUser) {
     return this.get("following").contains(anotherUser);
-  },
-
-  upcomingTournaments: function() {
-    return Scvrush.Tournament.filter(function(tournament) {
-      return tournament.get("isRegistered");
-    });
   }
 
 });

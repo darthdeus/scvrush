@@ -2,11 +2,12 @@
   <div id="logo"><img src="/assets/logo.png"></div>
 
   {{render "user.recent_statuses" Scvrush.currentUser}}
+  {{render "tournaments.user" Scvrush.currentUser}}
   {{render "tournaments.upcoming"}}
 
 </div>
 
 <div class="span12 content">
-  {{view Scvrush.NavbarView}}
+  {{render "navbar"}}
   {{outlet}}
 </div>
