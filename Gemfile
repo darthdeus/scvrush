@@ -67,7 +67,6 @@ group :development, :test do
 
   # gem "rack-mini-profiler", "~> 0.1.9"
 
-  gem "rails_best_practices"
   gem "populator",          "~> 1.0.0"
   gem "faker",              "~> 1.1.1"
   gem "better_errors"
@@ -78,13 +77,14 @@ end
 group :test do
   gem "database_cleaner",   "~> 0.9.1"
   gem "simplecov",          "~> 0.7.1"
-  gem "rspec-rails",        "~> 2.12.1"
+  gem "rspec-rails",        "~> 2.13.0"
   gem "capybara",           "~> 2.0.2"
+  gem "poltergeist"
   gem "factory_girl_rails", "~> 4.2.0"
   gem "launchy",            "~> 2.2.0"
 end
 
 gem "rails_autolink"
 
-gem "unicorn",        "~> 4.5.0"
+gem "unicorn",        "~> 4.6.0"
 gem "capistrano",     "~> 2.14.1"
