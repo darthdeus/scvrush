@@ -8,7 +8,7 @@
   </p>
 </div>
 
-<form class="form-horizontal" {{action "saveProfile" on="submit"}}>
+<form id="account-activation" class="form-horizontal" {{action "saveProfile" on="submit"}}>
 
   <div class="control-group">
     <label class="control-label">Username</label>
@@ -25,16 +25,16 @@
   </div>
 
   <div {{bindAttr class="passwordInvalid:error :control-group"}}>
-    <label class="control-label">Password</label>
+    <label class="control-label" for="password">Password</label>
     <div class="controls">
-      {{view Ember.TextField valueBinding="password" type="password"}}
+      {{view Ember.TextField valueBinding="password" type="password" class="password"}}
     </div>
   </div>
 
   <div {{bindAttr class="passwordConfirmationInvalid:error :control-group"}}>
-    <label class="control-label">Password Confirmation</label>
+    <label class="control-label" for="password_confirmation">Password Confirmation</label>
     <div class="controls">
-      {{view Ember.TextField valueBinding="passwordConfirmation" type="password"}}
+      {{view Ember.TextField valueBinding="passwordConfirmation" type="password" class="password_confirmation"}}
     </div>
   </div>
 
