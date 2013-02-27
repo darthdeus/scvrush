@@ -4,7 +4,7 @@ Scvrush.UserLinksView = Ember.View.extend({
     var template = this.get("content");
 
     if (template) {
-      template = template.replace(/@(\w+)/, "{{view Scvrush.UserLinkView username='$1'}}");
+      template = template.replace(/@([\w\-_]+)/, "{{view Scvrush.UserLinkView username='$1'}}");
     }
 
     return Ember.Handlebars.compile(template || "");
