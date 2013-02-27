@@ -452,11 +452,9 @@ li.stream {
       padding-right: 13px;
     }
   }
-
 }
 
-
-.user-info {
+.sidebar .user-info {
 
   .avatar {
     width: 40px;
@@ -485,6 +483,12 @@ li.stream {
     }
   }
 
+}
+
+.comic {
+  img {
+    width: 460px;
+  }
 }
 
 .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }

@@ -4,61 +4,37 @@
   {{render "login"}}
 {{/if}}
 
-<div class="row">
+<div class="comic">
+  {{#linkTo "home"}}
+  <img src="http://i.imgur.com/GyxMb.png">
+  {{/linkTo}}
 
-  <div class="carousel slide span8" id="home-carousel">
-    <div class="carousel-inner">
-      <div class="item">
-        <a href="/we-are-scvrush" title="SCV Rush Comic Iintro">
-          <img alt="Slider_comic" src="/assets/slider_comic.png">
-        </a>
-      </div>
-      <div class="item">
-        <a href="/posts/tag/ipl" title="IPL recap">
-          <img alt="IPL recap" src="http://i.imgur.com/I7Vcb.png">
-        </a>
-      </div>
-      <div class="item active">
-        <a href="http://scvrush.com/posts/9936-upcoming-events">
-          <img alt="Slider_1_upcoming" src="/assets/slider_1_upcoming.png">
-        </a>
-      </div>
-      <div class="item">
-        <a href="http://scvrush.com/posts/10035-scv-rush-free-positions">
-          <img alt="Joinus" src="/assets/joinus.png">
-        </a>
-      </div>
-      <div class="item">
-        <a href="http://eepurl.com/iZbzv">
-          <img alt="Slider_2_news" src="/assets/slider_2_news.png">
-        </a>
-      </div>
-      <div class="item">
-        <a href="http://scvrush.com/practice">
-          <img alt="Slider_3_buddy" src="/assets/slider_3_buddy.png">
-        </a>
-      </div>
-      <div class="item">
-        <a href="http://scvrush.com/posts/9724-advertise-with-us/">
-          <img alt="Slider_4_advertise" src="/assets/slider_4_advertise.png">
-        </a>
-      </div>
-      <div class="item">
-        <a href="http://scvrush.com/posts/9937-affiliates">
-          <img alt="Slider_5_grow" src="/assets/slider_5_grow.png">
-        </a>
-      </div>
-    </div>
+  {{#linkTo "home"}}
+  <img src="http://i.imgur.com/AsOCU.png">
+  {{/linkTo}}
 
-    <a class="carousel-control left" data-slide="prev" href="#home-carousel">&lsaquo;</a>
-    <a class="carousel-control right" data-slide="next" href="#home-carousel">&rsaquo;</a>
-  </div>
+  {{#linkTo "tournaments"}}
+  <img src="http://i.imgur.com/018R3.png">
+  {{/linkTo}}
 
-  <div class="span3">
-    {{#linkTo "meet_scvrush"}}
-      <img src="/assets/scv_chick.png" alt="Meet SCV Rush">
-    {{/linkTo}}
-  </div>
+  <a href="http://chat.scvrush.com/">
+    <img src="http://i.imgur.com/Ub1NZ.png">
+  </a>
 
+  {{#linkTo "user" Scvrush.currentUser}}
+  <img src="http://i.imgur.com/tqjje.png">
+  {{/linkTo}}
+
+  {{#linkTo "users"}}
+  <img src="http://i.imgur.com/HNP9o.png">
+  {{/linkTo}}
+
+  {{#linkTo "home"}}
+  <img src="http://i.imgur.com/Z4sSF.png">
+  {{/linkTo}}
+
+  {{#linkTo "user.edit" Scvrush.currentUser}}
+  <img src="http://i.imgur.com/Fxy6F.png">
+  {{/linkTo}}
 
 </div>
