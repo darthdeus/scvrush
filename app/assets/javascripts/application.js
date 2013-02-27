@@ -9,6 +9,8 @@
 //= require handlebars
 //= require ember
 //= require ember-data
+//= require ./vendor/ember-easyForm-0.1.1
+//= require ./vendor/ember-validations-0.2.0
 //= require ./scvrush
 
 ENV = {};
@@ -18,14 +20,14 @@ ENV.EXPERIMENTAL_CONTROL_HELPER = true;
 //   console.log("Current Context");
 //   console.log("====================");
 //   console.log(this);
-// 
+//
 //   if (optionalValue) {
 //     console.log("Value");
 //     console.log("====================");
 //     console.log(optionalValue);
 //   }
 // });
-// 
+//
 // window.c = Ember.c = function(name) {
 //   return Scvrush.__container__.lookup("controller:" + name);
 // }

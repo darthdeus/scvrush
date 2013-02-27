@@ -1,9 +1,9 @@
-// Last commit: c5a8536 (2013-02-21 11:28:28 -0500)
+// Last commit: a87ddc0 (2013-02-26 23:44:56 -0500)
 
 
 (function() {
 Ember.EasyForm = Ember.Namespace.create({
-  VERSION: '0.0.1'
+  VERSION: '0.1.1'
 });
 
 })();
@@ -12,8 +12,7 @@ Ember.EasyForm = Ember.Namespace.create({
 
 (function() {
 Ember.Handlebars.registerHelper('error', function(property, options) {
-  if (this.errors) {
-    options.hash.context = this;
+  if (this.get('errors')) {
     options.hash.property = property;
     return Ember.Handlebars.helpers.view.call(this, Ember.EasyForm.Error, options);
   }
@@ -25,7 +24,6 @@ Ember.Handlebars.registerHelper('error', function(property, options) {
 
 (function() {
 Ember.Handlebars.registerBoundHelper('formFor', function(object, options) {
-  options.hash.context = object;
   return Ember.Handlebars.helpers.view.call(object, Ember.EasyForm.Form, options);
 });
 
@@ -36,7 +34,6 @@ Ember.Handlebars.registerBoundHelper('formFor', function(object, options) {
 (function() {
 Ember.Handlebars.registerHelper('input', function(property, options) {
   options.hash.inputOptions = Ember.copy(options.hash);
-  options.hash.context = this;
   options.hash.property = property;
   return Ember.Handlebars.helpers.view.call(this, Ember.EasyForm.Input, options);
 });
@@ -106,7 +103,9 @@ Ember.EasyForm.Form = Ember.View.extend({
   attributeBindings: ['novalidate'],
   novalidate: 'novalidate',
   submit: function(event) {
-    if (this.get('context').validate === undefined || this.get('context').validate()) {
+    var object = this.get('context').get('content');
+
+    if (object.validate === undefined || object.validate()) {
       this.get('controller').send('submit');
     }
     if (event) {
@@ -121,23 +120,22 @@ Ember.EasyForm.Form = Ember.View.extend({
 
 (function() {
 Ember.EasyForm.Input = Ember.View.extend({
-  tagName: 'div',
-  classNames: ['input', 'string'],
-  classNameBindings: ['error:field_with_errors'],
   init: function() {
     this._super();
-    this.set('model', this._context);
     this.set('template', Ember.Handlebars.compile('<label for="'+this.labelFor()+'"}}>'+this.labelText()+'</label>\n{{'+this.inputHelper()+' '+this.property+this.printInputOptions()+'}}{{error '+this.property+'}}'));
-    if(this.model.errors) {
+    if(this.get('context').get('errors') !== undefined) {
       this.reopen({
         error: function() {
-          return this.model.errors.get(this.property) !== undefined;
-        }.property('model.errors.'+this.property)
+          return this.get('context').get('errors').get(this.property) !== undefined;
+        }.property('context.errors.'+this.property)
       });
     }
   },
+  tagName: 'div',
+  classNames: ['input', 'string'],
+  classNameBindings: ['error:field_with_errors'],
   labelFor: function() {
-    return Ember.guidFor(this.model);
+    return Ember.guidFor(this.get('context').get(this.property));
   },
   labelText: function() {
     return this.label || this.property.underscore().split('_').join(' ').capitalize();
@@ -161,22 +159,16 @@ Ember.EasyForm.Input = Ember.View.extend({
     }
   },
   prepareInputOptions: function(options) {
-    var context;
+    var object = this.get('context').get('content');
     if (!options.type) {
       if (this.property.match(/password/)) {
         options.type = 'password';
       } else if (this.property.match(/email/)) {
         options.type = 'email';
       } else {
-        // controller
-        if (this._context.content) {
-          context = this._context.content;
-        } else {
-          context = this._context;
-        }
-        if ((typeof(context.constructor.metaForProperty) === 'function' && context.constructor.metaForProperty(this.property).type === 'number') || typeof(context[this.property]) === 'number') {
+        if (this.propertyType(object, this.property) === 'number' || typeof(object.get(this.property)) === 'number') {
           options.type = 'number';
-        } else if ((typeof(context.constructor.metaForProperty) === 'function' && context.constructor.metaForProperty(this.property).type === 'date') || (context[this.property] !== undefined && context[this.property].constructor === Date)) {
+        } else if (this.propertyType(object, this.property) === 'date' || (object.get(this.property) !== undefined && object.get(this.property).constructor === Date)) {
           options.type = 'date';
         }
       }
@@ -184,8 +176,15 @@ Ember.EasyForm.Input = Ember.View.extend({
     return options;
   },
   focusOut: function() {
-    if (this.model.validate) {
-      this.model.validate(this.property);
+    if (this.get('context').get('content').validate) {
+      this.get('context').get('content').validate(this.property);
+    }
+  },
+  propertyType: function(object, property) {
+    try {
+      return object.constructor.metaForProperty(property);
+    } catch(e) {
+      return null;
     }
   }
 });

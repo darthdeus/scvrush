@@ -5,6 +5,5 @@ Scvrush.Status = DS.Model.extend({
 
   postDate: function() {
     return moment(this.get("createdAt")).fromNow();
-  }.property("createdAt"),
-
+  }.property("createdAt")
 });
