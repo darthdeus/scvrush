@@ -17,7 +17,7 @@
 
 <p>In case you already have your own account, please log in here.</p>
 
-<form {{action "login" on="submit"}}>
+<form class="form-horizontal" {{action "login" on="submit"}}>
 
   {{view Ember.TextField valueBinding="username" placeholder="Username"}}
   {{view Ember.TextField valueBinding="password" placeholder="Password" type="password"}}
