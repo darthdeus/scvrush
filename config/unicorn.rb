@@ -25,7 +25,7 @@ worker_processes 4
 
 # Help ensure your application will always spawn in the symlinked
 # "current" directory that Capistrano sets up.
-working_directory "/var/apps/scvrush.com/current"
+working_directory "/var/apps/#{application}/current"
 
 # listen on both a Unix domain socket and a TCP port,
 # we use a shorter backlog for quicker failover when busy
@@ -36,16 +36,14 @@ listen "/tmp/unicorn.scvrush.sock", backlog: 64
 timeout 30
 
 # feel free to point this anywhere accessible on the filesystem
-pid "/var/apps/scvrush.com/shared/pids/unicorn.pid"
+pid "/var/apps/#{application}/shared/pids/unicorn.pid"
 # pid "/var/www/autodily/shared/pids/unicorn.pid"
 
 # By default, the Unicorn logger will write to stderr.
 # Additionally, ome applications/frameworks log to stderr or stdout,
 # so prevent them from going to /dev/null when daemonized here:
-# stderr_path "/var/www/autodily/shared/log/unicorn.stderr.log"
-# stdout_path "/var/www/autodily/shared/log/unicorn.stdout.log"
-stderr_path "/var/apps/scvrush.com/shared/log/unicorn.log"
-stdout_path "/var/apps/scvrush.com/shared/log/unicorn.log"
+stderr_path "/var/apps/#{application}/shared/log/unicorn.log"
+stdout_path "/var/apps/#{application}/shared/log/unicorn.log"
 
 
 # combine Ruby 2.0.0dev or REE with "preload_app true" for memory savings
