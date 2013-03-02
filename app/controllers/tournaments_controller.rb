@@ -22,7 +22,7 @@ class TournamentsController < ApplicationController
 
   def create
     tournament = Tournament.factory(params[:tournament], current_user)
-    tournament.save!
+    tournament.save
 
     respond_with tournament
   end
