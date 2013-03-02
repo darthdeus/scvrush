@@ -32,22 +32,18 @@ Scvrush.TournamentRoute = Ember.Route.extend({
       if (controller.get("isAdmin")) {
         this.transitionTo("match.edit", match);
       }
-    },
-
-    saveMatch: function(match) {
-      match.get("transaction").commit();
     }
 
   },
 
   setupController: function(controller, model) {
-    this.set("reloader", setInterval(function() {
-      model.reload();
-    }, 10000));
+    // this.set("reloader", setInterval(function() {
+    //   model.reload();
+    // }, 10000));
   },
 
   deactivate: function() {
-    clearInterval(this.get("reloader"));
+    // clearInterval(this.get("reloader"));
   }
 
 });

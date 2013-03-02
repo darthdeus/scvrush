@@ -4,7 +4,7 @@ Scvrush.TournamentEditController = Ember.ObjectController.extend({
   saveTournament: function(tournament) {
     tournament.one("didUpdate", this, function() {
       Ember.run.next(this, function() {
-        this.transitionTo("tournament.index", tournament);
+        this.transitionToRoute("tournament", tournament);
       });
     });
 
