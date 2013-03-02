@@ -19,7 +19,7 @@ Scvrush.Tournament = DS.Model.extend(Ember.Validations.Mixin, {
   validations: {
     name: {
       presence: true,
-      length: { minimum: 3, maximum: 50 }
+      length: { minimum: 6, maximum: 50 }
     }
   },
 
