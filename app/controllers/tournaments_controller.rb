@@ -38,6 +38,7 @@ class TournamentsController < ApplicationController
     respond_with tournament
   end
 
+  # TODO - match submission should be extracted into a separate action
   def update
     tournament = Tournament.find(params[:id])
     status = nil
