@@ -62,8 +62,8 @@ class TournamentsController < ApplicationController
 
     if status
       render json: {
-        tournament: TournamentSerializer.new(tournament).as_json(root: false),
-        statuses: [StatusSerializer.new(status).as_json(root: false)]
+        tournament: TournamentSerializer.new(tournament.reload, scope: current_user).as_json(root: false),
+        statuses: [StatusSerializer.new(status, scope: current_user).as_json(root: false)]
       }
     else
       render json: tournament
