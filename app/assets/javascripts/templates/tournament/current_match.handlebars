@@ -15,5 +15,9 @@
 
   </form>
 {{else}}
-  Please wait for your next opponent.
+  {{#if isLost}}
+    You&apos;ve lost against {{#linkTo "user" lostAgainst}}{{lostAgainst.bnetInfo}}{{/linkTo}}.
+  {{else}}
+    Please wait for your next opponent.
+  {{/if}}
 {{/if}}

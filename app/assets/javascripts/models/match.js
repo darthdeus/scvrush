@@ -31,6 +31,18 @@ Scvrush.Match = DS.Model.extend(Ember.Validations.Mixin, {
     }
   },
 
+  winner: function() {
+    if (this.get("score")) {
+      var score = this.get("score").split(":");
+
+      if (score[0] > score[1]) {
+        return this.get("player1");
+      } else {
+        return this.get("player2");
+      }
+    }
+  }.property("score"),
+
   isPending: function() {
     return !this.get("score") && !!this.get("player1") && !!this.get("player2");
   }.property("player1", "player2", "score"),
