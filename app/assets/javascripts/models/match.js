@@ -22,9 +22,9 @@ Scvrush.Match = DS.Model.extend(Ember.Validations.Mixin, {
   },
 
   opponentFor: function(user) {
-    if (this.get("player1") == user.get("bnetInfo")) {
+    if (this.get("player1") == user) {
       return this.get("player2");
-    } else if (this.get("player2") == user.get("bnetInfo")) {
+    } else if (this.get("player2") == user) {
       return this.get("player1");
     } else {
       throw new Error("User doesn't exist");

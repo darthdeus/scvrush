@@ -149,6 +149,8 @@
     opacity: 0.7;
 
     cursor: pointer;
+    font-size: 10px;
+    line-height: 20px;
 
     &:hover { opacity: 1; }
 
@@ -161,13 +163,11 @@
 
     .name {
       float: left;
-      width: 95px;
-      font-size: 10px;
-      line-height: 20px;
+      width: 85px;
     }
 
     .score {
-      float: left;
+      float: right;
       width: 10px;
       color: #000;
       font-weight: bold;

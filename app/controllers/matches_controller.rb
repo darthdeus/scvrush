@@ -1,6 +1,4 @@
 class MatchesController < ApplicationController
-  before_filter :require_login
-
   respond_to :json
 
   def index
@@ -37,9 +35,9 @@ class MatchesController < ApplicationController
     render json: bracket.tournament.matches.reload
     # TODO - don't use flash messages for this
   rescue Bracket::AlreadySubmitted
-    flash[:error] = "You can't change the match result. Please contact any of the tournament admins if the result is incorrect."
+    render json: { error: "You can't change the match result. Please contact any of the tournament admins if the result is incorrect." }
   rescue Bracket::NotStartedYet
-    flash[:error] = "You can't submit a match result before you have an opponent"
+    render json: { error: "You can't submit a match result before you have an opponent" }
   end
 
   def show

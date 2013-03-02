@@ -1,12 +1,39 @@
 Scvrush.TournamentIndexController = Ember.ObjectController.extend({
 
+  submitResult: function(score, opponent) {
+    if (this.get("scoreInvalid")) {
+      return;
+    }
+
+    // TODO - also validate the opposite case of user submitting
+    // score as if he lost, like 1:3
+
+    $.ajax({
+      url: "/matches",
+      method: "post",
+      data: {
+        score: score,
+        opponent_id: opponent.get("id"),
+        tournament_id: this.get("content.id")
+      },
+      context: this,
+      success: this._matchSubmitted
+    });
+  },
+
+  _matchSubmitted: function(data) {
+    Ember.run(this, function() {
+      this.get("store").loadMany(Scvrush.Match, data.matches);
+    });
+  },
+
   currentMatch: function() {
     var rounds = this.get("rounds");
 
     var result = rounds.map(function(round) {
       return round.get("matches").filter(function(match) {
-        return match.get("player1") == Scvrush.currentUser.get("bnetInfo")
-              || match.get("player2") == Scvrush.currentUser.get("bnetInfo");
+        return match.get("player1") == Scvrush.currentUser
+              || match.get("player2") == Scvrush.currentUser;
       }).get("lastObject");
     }).filter(function(item) {
       return !!item;

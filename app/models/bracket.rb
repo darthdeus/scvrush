@@ -132,7 +132,7 @@ class Bracket < Struct.new(:tournament)
     end
 
     # TODO - figure out if some tests break this
-    if opponent_id && match.opponent_for(user).bnet_info != opponent_id
+    if opponent_id && match.opponent_for(user).id != opponent_id.to_i
       raise AlreadySubmitted
     end
 
