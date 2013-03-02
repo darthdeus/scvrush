@@ -27,16 +27,20 @@
 
   <div class="span9">
     <h2>
+      <img {{bindAttr src="user.raceIcon"}}>
       {{user.username}} ({{user.bnetInfo}})
-      {{#linkTo "users.index" class="help-inline"}}back to users{{/linkTo}}
 
-      {{#unless isCurrentUser}}
-        {{#if isFollowingUser}}
-          <a class="btn btn-danger" {{action "unfollow" user}}>Unfollow</a>
-        {{else}}
-          <a class="btn btn-success" {{action "follow" user}}>Follow</a>
-        {{/if}}
-      {{/unless}}
+      <div class="follow-box">
+        {{#linkTo "users.index" class="help-inline"}}back to users{{/linkTo}}
+
+        {{#unless isCurrentUser}}
+          {{#if isFollowingUser}}
+            <a class="btn btn-danger" {{action "unfollow" user}}>Unfollow</a>
+          {{else}}
+            <a class="btn btn-success" {{action "follow" user}}>Follow</a>
+          {{/if}}
+        {{/unless}}
+      </div>
     </h2>
 
     {{#if isCurrentUser}}

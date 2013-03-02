@@ -7,8 +7,16 @@
     }
   }
 
-  h2 .help-inline {
-    font-size: 12px;
+  h2 {
+    font-size: 22px;
+
+    .help-inline {
+      font-size: 12px;
+    }
+
+    .follow-box {
+      float: right;
+    }
   }
 
   .avatar img, .followers img {
