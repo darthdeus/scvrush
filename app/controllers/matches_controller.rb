@@ -55,9 +55,16 @@ class MatchesController < ApplicationController
   def update
     match = Match.find(params[:id])
     match.score = params[:match][:score]
-    match.save!
 
-    render json: match.reload
+    bracket = Bracket.new(match.round.tournament)
+
+    if match.save
+      bracket.seed_next_match_with(match.winner, match)
+      render json: match.round.tournament.matches
+    else
+      raise ActiveRecord::RecordInvalid, "Invalid match, this shouldn't happen"
+    end
+    # render json: match.reload
     # authorize! :manage, Match
     # @match = Match.find(params[:id])
 

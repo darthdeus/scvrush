@@ -1,0 +1,7 @@
+.single-post
+  h1 = title
+
+  div == content_html
+
+  .watch-pros
+    a target="blank" class="btn" href="http://chat.scvrush.com/" Watch Pros Play

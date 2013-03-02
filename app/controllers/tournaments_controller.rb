@@ -40,13 +40,18 @@ class TournamentsController < ApplicationController
 
   def update
     tournament = Tournament.find(params[:id])
+    status = nil
 
     if params[:tournament][:is_checked]
       registrator = UserRegistrator.new(current_user, tournament)
-      registrator.checkin
+      signup = registrator.checkin
+
+      status = registrator.post_status(signup)
     elsif params[:tournament][:is_registered]
       registrator = UserRegistrator.new(current_user, tournament)
-      registrator.signup
+      signup = registrator.signup
+
+      status = registrator.post_status(signup)
     elsif !params[:tournament][:is_checked] && !params[:tournament][:is_registered]
       tournament.unregister(current_user)
     end
@@ -55,7 +60,14 @@ class TournamentsController < ApplicationController
       tournament.update_attributes(params[:tournament].extract!(:starts_at, :name))
     end
 
-    render json: tournament
+    if status
+      render json: {
+        tournament: TournamentSerializer.new(tournament).as_json(root: false),
+        statuses: [StatusSerializer.new(status).as_json(root: false)]
+      }
+    else
+      render json: tournament
+    end
   end
 
   def seed

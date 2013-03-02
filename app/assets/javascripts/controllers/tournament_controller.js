@@ -12,10 +12,6 @@ Scvrush.TournamentController = Ember.ObjectController.extend({
       return !!item;
     });
 
-    Ember.run.next(this, function() {
-      this.notifyPropertyChange("currentMatch");
-    });
-
     return result.get("lastObject");
   }.property("rounds.@each.allMatches"),
 

@@ -5,7 +5,7 @@ Scvrush.Round = DS.Model.extend({
 
   allMatches: function() {
     return this.get("matches");
-  }.property("matches.@each.player1"),
+  }.property("matches.@each.score"),
 
   matchesFor: function(user) {
     return this.get("matches").filter(function(match) {
