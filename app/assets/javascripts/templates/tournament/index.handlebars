@@ -30,8 +30,6 @@
 
   </header>
 
-  {{outlet}}
-
   {{#if isStarted}}
     {{#if isEmpty}}
       <p class="alert alert-notice">No players were signed up for this tournament when it started</p>
@@ -47,3 +45,4 @@
     {{render "tournament.signup" content}}
   {{/if}}
 </div>
+

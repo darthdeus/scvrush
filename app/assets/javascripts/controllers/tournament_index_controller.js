@@ -1,4 +1,4 @@
-Scvrush.TournamentController = Ember.ObjectController.extend({
+Scvrush.TournamentIndexController = Ember.ObjectController.extend({
 
   currentMatch: function() {
     var rounds = this.get("rounds");

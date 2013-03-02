@@ -39,3 +39,11 @@ Scvrush.TournamentRoute = Ember.Route.extend({
   }
 
 });
+
+Scvrush.TournamentIndexRoute = Ember.Route.extend({
+
+  model: function() {
+    return this.modelFor("tournament");
+  }
+
+});
