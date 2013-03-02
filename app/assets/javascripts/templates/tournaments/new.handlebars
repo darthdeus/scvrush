@@ -4,12 +4,14 @@
 
 <form class="form-horizontal" {{action "create" content on="submit"}}>
 
-  <div {{bindAttr class="nameInvalid:error :control-group"}}>
+  <div {{bindAttr class="errors.name:error :control-group"}}>
     <label class="control-label">Name</label>
 
     <div class="controls">
       {{view Em.TextField valueBinding="name"}}
+      <span class="help-inline">{{errors.name.firstObject}}</span>
     </div>
+
   </div>
 
   <div {{bindAttr class="startsAtInvalid:error :control-group"}}>

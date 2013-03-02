@@ -1,9 +1,9 @@
-// Last commit: f9958c6 (2013-02-26 16:07:24 -0500)
+// Last commit: f16740a (2013-02-27 16:14:05 -0500)
 
 
 (function() {
 Ember.Validations = Ember.Namespace.create({
-  VERSION: '0.2.0'
+  VERSION: '0.2.1'
 });
 
 })();
@@ -99,6 +99,7 @@ Ember.Validations.Errors = Ember.Object.extend({
 (function() {
 Ember.Validations.Mixin = Ember.Mixin.create({
   init: function() {
+    this._super();
     this.set('errors', Ember.Validations.Errors.create());
     if (this.get('validations') === undefined) {
       this.set('validations', {});
@@ -131,7 +132,7 @@ Ember.Validations.Mixin = Ember.Mixin.create({
       }
     }
 
-    Ember.RSVP.all(deferreds).then(function() {
+    return Ember.RSVP.all(deferreds).then(function() {
       object.set('isValid', Object.keys(object.errors).length === 0);
     });
   }

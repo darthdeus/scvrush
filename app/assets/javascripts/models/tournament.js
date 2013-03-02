@@ -1,4 +1,4 @@
-Scvrush.Tournament = DS.Model.extend({
+Scvrush.Tournament = DS.Model.extend(Ember.Validations.Mixin, {
   name:              DS.attr("string"),
   imageName:         DS.attr("string"),
   participantCount:  DS.attr("number"),
@@ -15,6 +15,13 @@ Scvrush.Tournament = DS.Model.extend({
 
   tournamentDay:     DS.belongsTo("Scvrush.TournamentDay"),
   rounds:            DS.hasMany("Scvrush.Round"),
+
+  validations: {
+    name: {
+      presence: true,
+      length: { minimum: 3, maximum: 50 }
+    }
+  },
 
   startNow: function() {
     var model = this;

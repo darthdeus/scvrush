@@ -1,13 +1,15 @@
 Scvrush.TournamentsNewController = Em.ObjectController.extend({
 
   create: function(tournament) {
-    tournament.revalidate();
-    if (tournament.get("isInvalid")) {
-      return;
-    }
+    var self = this;
 
-    tournament.addObserver("id", this, "afterCreate");
-    tournament.get("transaction").commit();
+    tournament.validate().then(function() {
+      if (tournament.get("isValid")) {
+        tournament.addObserver("id", self, "afterCreate");
+        tournament.get("transaction").commit();
+      }
+    });
+
   },
 
   afterCreate: function() {

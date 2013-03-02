@@ -6,3 +6,7 @@ Scvrush = Ember.Application.create({
     Scvrush.currentUser = Scvrush.User.find(userId);
   }
 });
+
+window.c = Ember.c = function(name) {
+  return Scvrush.__container__.lookup("controller:" + name);
+}

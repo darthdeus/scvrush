@@ -10,7 +10,7 @@
 //= require ember
 //= require ember-data
 //= require ./vendor/ember-easyForm-0.1.1
-//= require ./vendor/ember-validations-0.2.0
+//= require ./vendor/ember-validations
 //= require ./scvrush
 
 ENV = {};
@@ -28,6 +28,3 @@ ENV.EXPERIMENTAL_CONTROL_HELPER = true;
 //   }
 // });
 //
-// window.c = Ember.c = function(name) {
-//   return Scvrush.__container__.lookup("controller:" + name);
-// }
