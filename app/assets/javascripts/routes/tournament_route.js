@@ -24,14 +24,6 @@ Scvrush.TournamentRoute = Ember.Route.extend({
         });
       });
       console.log("submitted", score);
-    },
-
-    adminEdit: function(match) {
-      var controller = this.controllerFor("tournament");
-
-      if (controller.get("isAdmin")) {
-        this.transitionTo("match.edit", match);
-      }
     }
 
   },

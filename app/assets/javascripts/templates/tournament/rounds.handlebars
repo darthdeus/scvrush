@@ -12,13 +12,13 @@
 
         <div class="round">
           {{#each match in round.matches}}
-            <div class="match" {{action "adminEdit" match}}>
-              <div class="player">
+            <div class="match">
+              <div class="player" {{action "userIfPresent" match.player1}}>
                 <img {{bindAttr class=":race-icon" src="match.player1.raceIcon"}}>
                 <div class="name">{{match.player1.bnetInfo}}</div>
                 <div class="score">{{match.player1_score}}</div>
               </div>
-              <div class="player">
+              <div class="player" {{action "userIfPresent" match.player1}}>
                 <img {{bindAttr class=":race-icon" src="match.player2.raceIcon"}}>
                 <div class="name">{{match.player2.bnetInfo}}</div>
                 <div class="score">{{match.player2_score}}</div>
