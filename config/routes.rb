@@ -94,13 +94,16 @@ Scvrush::Application.routes.draw do
   root to: "home#index"
 
   resources :users do
+    collection do
+      get :validate
+    end
+
     member do
       post    :follow
       delete  :unfollow
       get     :info
       get     :friends
     end
-
   end
 
   resources :statuses do

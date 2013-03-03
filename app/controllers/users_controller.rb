@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
     attributes[:expires_at] = nil if attributes[:password]
 
-    # TODO - check the bang ! here
+    # The validation should never really fail here
     user.update_attributes!(attributes)
 
     render json: user
@@ -72,6 +72,17 @@ class UsersController < ApplicationController
       render json: { friends: user.friends.map(&:username) }
     else
       render json: { error: 404 }, status: 404
+    end
+  end
+
+  def validate
+    username = User.exists?(username: params[:username])
+    email = User.exists?(email: params[:email])
+
+    if username || email
+      render json: { username: username, email: email }, status: 400
+    else
+      render json: {}, status: 200
     end
   end
 

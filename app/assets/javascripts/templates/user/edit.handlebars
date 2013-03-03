@@ -10,17 +10,20 @@
 
 <form id="account-activation" class="form-horizontal" {{action "saveProfile" on="submit"}}>
 
-  <div class="control-group">
+  <div {{bindAttr class="usernameTaken:error :control-group"}}>
     <label class="control-label">Username</label>
     <div class="controls">
       {{view Ember.TextField valueBinding="username"}}
+
+      {{#if usernameTaken}}<span class="help-inline">Username is already taken</span>{{/if}}
     </div>
   </div>
 
-  <div class="control-group">
+  <div {{bindAttr class="emailTaken:error :control-group"}}>
     <label class="control-label">E-mail</label>
     <div class="controls">
       {{view Ember.TextField valueBinding="email"}}
+      {{#if emailTaken}}<span class="help-inline">Email is already taken</span>{{/if}}
     </div>
   </div>
 

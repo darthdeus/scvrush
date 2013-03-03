@@ -13,8 +13,38 @@ Scvrush.UserEditController = Ember.ObjectController.extend({
   }.property("passwordInvalid", "passwordConfirmationInvalid"),
 
   saveProfile: function() {
-    var user = this.get("content"),
-        controller = this;
+    var user = this.get("content");
+
+    user.set("usernameTaken", false);
+    user.set("emailTaken", false);
+
+    $.ajax({
+      url: "/users/validate",
+      data: {
+        username: user.get("username"),
+        email: user.get("email")
+      },
+      context: this,
+      success: this._saveUser,
+      error: function(response) {
+        var data = JSON.parse(response.responseText);
+
+        user.set("usernameTaken", !!data.username);
+        user.set("emailTaken", !!data.email);
+      }
+    });
+
+  },
+
+  expiresIn: function() {
+    var time = moment(this.get("expiresAt"));
+    if (time) {
+      return time.calendar();
+    }
+  }.property("expiresAt"),
+
+  _saveUser: function() {
+    var user = this.get("content");
 
     this.notifyPropertyChange("invalid");
     this.notifyPropertyChange("passwordInvalid");
@@ -24,19 +54,12 @@ Scvrush.UserEditController = Ember.ObjectController.extend({
       return;
     }
 
-    user.one("didUpdate", function() {
+    user.one("didUpdate", this, function() {
       alert("Your account was activated. Welcome to SCV Rush!");
-      controller.transitionToRoute("home");
+      this.transitionToRoute("home");
     });
 
     user.get("transaction").commit();
-  },
-
-  expiresIn: function() {
-    var time = moment(this.get("expiresAt"));
-    if (time) {
-      return time.calendar();
-    }
-  }.property("expiresAt"),
+  }
 
 });
