@@ -1,0 +1,12 @@
+.span3.sidebar
+  #logo
+    linkTo "home"
+      img src="/assets/logo.png"
+
+  = render "user.recent_statuses" Scvrush.currentUser
+  = render "tournaments.user" Scvrush.currentUser
+  = render "tournaments.upcoming"
+
+.span12.content
+  = render "navbar"
+  = outlet

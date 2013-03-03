@@ -8,7 +8,9 @@
           {{tournament.startTime}}
         </div>
 
-        <img {{bindAttr src="tournament.imageUrl"}}>
+        {{#linkTo "tournament" tournament}}
+          <img {{bindAttr src="tournament.imageUrl"}}>
+        {{/linkTo}}
 
         <div class="description">
           <h3>
