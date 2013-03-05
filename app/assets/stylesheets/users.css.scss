@@ -23,17 +23,6 @@
     @include box-shadow(0 0 3px #666);
   }
 
-  .user-info {
-    h3 {
-      border-bottom: 1px solid #ededed;
-      margin: 20px 0 5px 0;
-    }
-  }
-
-  .practice-info {
-    margin-top: 35px;
-  }
-
   .user_league_icon {
     height: 47px;
   }
@@ -49,6 +38,12 @@
     margin-bottom: 10px;
     margin-right: 10px;
     display: inline-block;
+  }
+}
+
+.statuses .status-form {
+  input {
+    width: 680px;
   }
 }
 

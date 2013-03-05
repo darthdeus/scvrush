@@ -1,0 +1,9 @@
+.user-info
+  .clearfix
+    linkTo "user" this
+      img.avatar src=image
+
+    .username = linkTo "user" this | {{username}}
+
+  .inverse
+    = control "statuses.new"

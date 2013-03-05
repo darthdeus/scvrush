@@ -1,7 +1,7 @@
 .navbar.navbar-inverse.navbar-fixed-top
   .navbar-inner
     .container
-      a.brand href="/"
+      = linkTo .brand "home"
         img.logo src="/assets/logo_only.png"
 
       .nav-collapse.collapse

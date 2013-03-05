@@ -9,11 +9,10 @@
 // $navbarBackgroundHighlight: #4B4C4E;
 // $navbarLinkColor: #E3E3E3;
 // $navbarLinkColorHover: #C3C3C3;
-// 
+//
 // $linkBlue: #08C;
 // $linkBlueHover: #005580;
 
-@import "jquery-ui.custom";
 @import "fancybox/jquery.fancybox";
 @import "bourbon";
 @import "bootstrap";
@@ -21,6 +20,8 @@
 @import "dataTables/jquery.dataTables.bootstrap";
 
 @import "flat-ui/flat-ui";
+
+$sidebar: #34495e;
 
 body {
   // font-family: "Lato", sans-serif;
@@ -34,6 +35,12 @@ body {
 
 .navbar .navbar-inner .container {
   width: 1140px;
+}
+
+input.inverse, .inverse input {
+  border-color: lighten($base, 20%);
+  background: $base;
+  color: $inverse;
 }
 
 .navbar-inner {
@@ -59,58 +66,77 @@ body {
   min-height: 800px;
   overflow: hidden;
 
-  .content, .sidebar {
-    padding-top: 20px;
+  .main-content, .sidebar {
+    padding-top: 30px;
   }
 }
 
 
 .sidebar {
-  background: #1e1e1e;
+  background: $sidebar;
+  color: scale-color($inverse, $lightness: 20%);
+
+  a {
+    color: scale-color($inverse, $lightness: 20%)
+  }
 
   width: 210px;
 
   padding-left: 20px;
-  padding: 0 5px 9999px 5px;
+  padding: 0 0 9999px 0;
 
   margin-left: 0;
   margin-bottom: -9999px;
 
-}
+  .user-info {
 
-.sidebar .user-info {
-
-  .avatar {
-    width: 40px;
-    float: left;
-  }
-
-  .username {
-    float: left;
-    padding: 8px 0 8px 6px;
-
-    a {
-      color: white;
+    .avatar {
+      width: 40px;
+      float: left;
     }
-  }
 
-  .status-form {
-    margin-bottom: 0;
-    margin-top: 5px;
+    .username {
+      float: left;
+      padding: 8px 0 8px 6px;
 
-    input[type=text] {
-      color: #aaa;
-      width: 190px;
-      background: #333;
-      border: 1px solid #222;
+      a {
+        text-decoration: none;
+        font-size: 16px;
+        color: scale-color($inverse, $lightness: 20%);
+      }
+    }
+
+    .status-form {
       margin-bottom: 0;
+      margin-top: 10px;
+
+      input[type=text] {
+        width: 190px;
+      }
+
     }
   }
 
-}
+  .profile-list {
+    header {
+      outline: none;
+    }
 
-.faded {
-  opacity: 0.5;
+    .group {
+      padding: 15px 15px;
+      border-bottom: 2px solid darken(#2E4257, 5%);
+      border-left: 2px solid darken(#2E4257, 5%);
+
+      &:first {
+        border-top: 2px solid darken(#2E4257, 5%);
+      }
+
+      .icon {
+        padding: 0 15px 0 0;
+      }
+    }
+  }
+
 }
 
 .tags {

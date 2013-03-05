@@ -1,5 +1,5 @@
 <div class="row user-profile">
-  <div class="span3 user-info">
+  <div class="span3">
     <div class="avatar">
       <img {{bindAttr src="user.image"}}>
     </div>
@@ -43,11 +43,10 @@
       </div>
     </h2>
 
-    {{#if isCurrentUser}}
-      {{render "statuses.new"}}
-    {{/if}}
-
     <div class="statuses">
+      {{#if isCurrentUser}}
+        {{render "statuses.new"}}
+      {{/if}}
 
       {{#each status in user.timelineStatuses}}
         <div class="status">

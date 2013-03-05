@@ -1,0 +1,23 @@
+.profile-list
+  .group
+    header
+      span.icon.fui-man-16
+      span My Tournaments
+    .content
+      p These are your tournaments
+
+  .group
+    header
+      span.icon.fui-man-16
+      span Upcoming Tournaments
+
+    .content
+      p These are the upcoming tournaments
+
+  .group
+    header
+      span.icon.fui-settings-16
+      span Settings
+
+    .content
+      p These are your settings
