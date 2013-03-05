@@ -1,0 +1,31 @@
+.row
+  .span7
+
+    h2 Step 1 - What is your race?
+
+    img style="opacity: 0.5" src="/assets/race_zerg_icon.png"
+    img style="opacity: 0.5" src="/assets/race_protoss_icon.png"
+    img src="/assets/race_terran_icon.png"
+
+    h3
+      | You are now known as
+      strong  happy-marine-12
+
+
+    h2 Step 2 - Where do you play?
+
+    h1 EU&nbsp;&nbsp;&nbsp;NA&nbsp;&nbsp;&nbsp;SEA
+
+    h2 Step 3 - Activate your account
+
+    linkTo .btn.btn-large "user.edit" Scvrush.currentUser | Activate!
+
+  .span5
+
+    h2 Featured Articles
+
+    img src="/assets/grubby_darkforce.png"
+
+    h2 Upcoming tournaments
+
+    img src="/assets/tournament_eu_bsg.png"
