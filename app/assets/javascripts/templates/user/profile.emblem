@@ -2,9 +2,18 @@
   .group
     header
       span.icon.fui-man-16
-      span My Tournaments
+      span Statuses
     .content
-      p These are your tournaments
+      each statuses
+        p = text
+
+  .group
+    header
+      span.icon.fui-man-16
+      span My Tournaments ({{playingTournaments.length}})
+    .content
+      each playingTournaments
+        p = linkTo "tournament" | name
 
   .group
     header

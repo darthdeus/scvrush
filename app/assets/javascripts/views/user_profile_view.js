@@ -2,7 +2,7 @@ Scvrush.UserProfileView = Ember.View.extend({
   templateName: "user/profile",
 
   didInsertElement: function() {
-    this.$().accordion({ header: "header" })
+    this.$().accordion({ header: "header", heightStyle: "content" });
   }
 
 });

@@ -26,15 +26,10 @@ $sidebar: #34495e;
 body {
   // font-family: "Lato", sans-serif;
   padding-top: 50px;
-  background: url("/assets/background.png") repeat-y center center;
 }
 
 .navbar {
   border-bottom: 5px solid #72C8E9;
-}
-
-.navbar .navbar-inner .container {
-  width: 1140px;
 }
 
 input.inverse, .inverse input {
@@ -47,7 +42,7 @@ input.inverse, .inverse input {
   padding: 5px 0;
 
   .brand {
-    padding: 5px 0;
+    padding: 5px 0 5px 40px;
   }
 
   .logo {
@@ -60,9 +55,7 @@ input.inverse, .inverse input {
   }
 }
 
-.container-wrap .container {
-  background: #FFF;
-  width: 1200px;
+.container-wrap {
   min-height: 800px;
   overflow: hidden;
 
@@ -80,13 +73,17 @@ input.inverse, .inverse input {
     color: scale-color($inverse, $lightness: 20%)
   }
 
-  width: 210px;
+  width: 260px;
 
   padding-left: 20px;
   padding: 0 0 9999px 0;
 
   margin-left: 0;
   margin-bottom: -9999px;
+
+  .sidebar-wrap {
+    padding: 0 15px;
+  }
 
   .user-info {
 
@@ -111,7 +108,7 @@ input.inverse, .inverse input {
       margin-top: 10px;
 
       input[type=text] {
-        width: 190px;
+        width: 220px;
       }
 
     }

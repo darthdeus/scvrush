@@ -15,6 +15,12 @@ Scvrush.User = DS.Model.extend({
 
   tournaments: DS.hasMany("Scvrush.Tournament"),
 
+  playingTournaments: function() {
+    return Scvrush.Tournament.filter(function(tournament) {
+      return tournament.get("isRegistered") || tournament.get("isChecked");
+    });
+  }.property(),
+
   raceIcon: function() {
     if (this.get("race")) {
       return "/assets/race_" + this.get("race").toLowerCase() + "_icon.png";

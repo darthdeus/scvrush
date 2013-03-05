@@ -1,12 +1,11 @@
 = render "navbar"
 
 .container-wrap
-  .container
-    .span3.sidebar
+  .span3.sidebar
 
+    .sidebar-wrap
       = render "user.recent_statuses" Scvrush.currentUser
+      = render "user.profile" Scvrush.currentUser
 
-      Scvrush.UserProfileView
-
-    .span12.main-content
-      = outlet
+  .span12.main-content
+    = outlet
