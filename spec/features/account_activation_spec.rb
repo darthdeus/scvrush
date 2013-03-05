@@ -8,6 +8,8 @@ describe "Account activation", js: true do
     page.should have_content("You currently have a trial account")
 
     within "#account-activation" do
+      find(".username").set("user")
+      find(".email").set("user@example.com")
       find(".password").set("secret")
       find(".password_confirmation").set("secret")
     end

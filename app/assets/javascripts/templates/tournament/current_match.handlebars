@@ -3,7 +3,8 @@
 </p>
 
 {{#if currentMatch.isPending}}
-  You are currently plaing against {{currentOpponent}}
+  You are currently plaing against
+  {{#linkTo "user" currentOpponent}}{{currentOpponent.username}}{{/linkTo}}
 
   <form class="form-horizontal" {{action "submitResult" score currentOpponent on="submit"}}>
     <div {{bindAttr class="scoreError:error :control-group"}}>

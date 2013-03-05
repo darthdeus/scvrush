@@ -9,7 +9,7 @@
 
     <p>
       If you like us you can
-        {{#linkTo "user.edit" Scvrush.currentUser class="btn btn-mini"}}
+        {{#linkTo "user.edit" Scvrush.currentUser class="btn"}}
           <strong>activate your account</strong>
         {{/linkTo}}
       to keep it forever and become a member of our community
@@ -24,5 +24,5 @@
   {{view Ember.TextField valueBinding="username" placeholder="Username"}}
   {{view Ember.TextField valueBinding="password" placeholder="Password" type="password"}}
 
-  <button type="submit" class="btn btn-primary">Log in!</button>
+  <button type="submit" class="btn btn-large">Log in!</button>
 </form>

@@ -1,0 +1,155 @@
+@import "mixins"
+
+$base-font-family: 'Lato', sans-serif
+$base-font-size:   14px
+
+$base:      #34495e
+$firm:      #1abc9c
+
+$gray:      #95a5a6
+$lightgray: #ecf0f1
+$inverse:   #fff
+
+$success:   #2ecc71
+$danger:    #e74c3c
+$warning:   #f1c40f
+$info:      #3498db
+
+=button-states($color)
+  background-color: $color
+  &:hover,
+  &:focus
+    background-color: scale-color($color, $lightness: 20%)
+  &:active,
+  &.active
+    background-color: scale-color($color, $lightness: -15%)
+
+// Buttons -----------------------
+.btn
+  border: none
+  background: $base
+  color: $inverse
+  font-size: 16.5px
+  text-decoration: none
+  text-shadow: none
+  +box-shadow(none)
+  +transition(.25s)
+
+  &:hover,
+  &:focus
+    background-color: scale-color($base, $lightness: 20%)
+    color: $inverse
+    +transition(.25s)
+
+  &:active,
+  &.active
+    background-color: scale-color($base, $lightness: -15%)
+    color: rgba($inverse, .75)
+    +box-shadow(none)
+
+  &.disabled,
+  &[disabled]
+    background-color: $gray
+    color: $inverse
+
+  // Sizes -----------------------
+  &.btn-large
+    padding-bottom: 10px
+    padding-top: 11px
+
+  // Colors -----------------------
+  &.btn-primary
+    +button-states($firm)
+
+  &.btn-info
+    +button-states($info)
+
+  &.btn-danger
+    +button-states($danger)
+
+  &.btn-success
+    +button-states($success)
+
+  &.btn-warning
+    +button-states($warning)
+
+  // Button with icon inside
+  .btn-toolbar &
+    font-size: 18px
+    padding: 10px 14px 9px
+
+    &:first-child
+      +border-radius(6px 0 0 6px)
+
+    &:last-child
+      +border-radius(0 6px 6px 0)
+
+.btn-toolbar
+  .btn.active
+    color: $inverse
+
+=input-states($color)
+  border-color: $color
+  color: $color
+  +box-shadow(none)
+  &:focus
+    +box-shadow(none)
+
+// Text fields
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input
+  border: 2px solid scale-color($base, $lightness: 85%)
+  color: $base
+  font-family: $base-font-family
+  font-size: $base-font-size
+  padding: 8px 0 9px 10px
+  text-indent: 1px
+  +border-radius(6px)
+  +box-shadow(none)
+  +placeholder-color(desaturate(scale-color($base, $lightness: 60%), 15%))
+
+  &:focus
+    border-color: $firm
+    +box-shadow(none)
+
+  .control-group.error &
+    +input-states($danger)
+
+  .control-group.success &
+    +input-states($success)
+
+  .control-group.warning &
+    +input-states($warning)
+
+  .control-group.info &
+    +input-states($info)
+
+// Disabled state -----------------
+input[disabled],
+input[readonly],
+textarea[disabled],
+textarea[readonly]
+  background-color: scale-color($gray, $lightness: 80%)
+  border-color: transparent
+  color: scale-color($gray, $lightness: 50%)
+  cursor: default
+
+// Text field grids -----------------
+input,
+textarea,
+.uneditable-input
+  width: 192px

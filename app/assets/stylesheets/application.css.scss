@@ -5,10 +5,13 @@
  *= require_self
  */
 
-$navbarBackground: #3B3C3E;
-$navbarBackgroundHighlight: #4B4C4E;
-$navbarLinkColor: #E3E3E3;
-$navbarLinkColorHover: #C3C3C3;
+// $navbarBackground: #3B3C3E;
+// $navbarBackgroundHighlight: #4B4C4E;
+// $navbarLinkColor: #E3E3E3;
+// $navbarLinkColorHover: #C3C3C3;
+// 
+// $linkBlue: #08C;
+// $linkBlueHover: #005580;
 
 @import "jquery-ui.custom";
 @import "fancybox/jquery.fancybox";
@@ -17,163 +20,97 @@ $navbarLinkColorHover: #C3C3C3;
 @import "font-awesome";
 @import "dataTables/jquery.dataTables.bootstrap";
 
-$linkBlue: #08C;
-$linkBlueHover: #005580;
+@import "flat-ui/flat-ui";
 
 body {
-  background: #3B3C3E;
+  // font-family: "Lato", sans-serif;
+  padding-top: 50px;
+  background: url("/assets/background.png") repeat-y center center;
+}
 
-  & > .container {
-    background: #F3F3F3;
-    width: 1200px;
-    overflow: hidden;
-    min-height: 800px;
+.navbar {
+  border-bottom: 5px solid #72C8E9;
+}
+
+.navbar .navbar-inner .container {
+  width: 1140px;
+}
+
+.navbar-inner {
+  padding: 5px 0;
+
+  .brand {
+    padding: 5px 0;
+  }
+
+  .logo {
+    margin-right: 10px;
+  }
+
+  .btn {
+    margin-top: 0;
+    margin-right: 3px;
+  }
+}
+
+.container-wrap .container {
+  background: #FFF;
+  width: 1200px;
+  min-height: 800px;
+  overflow: hidden;
+
+  .content, .sidebar {
+    padding-top: 20px;
+  }
+}
+
+
+.sidebar {
+  background: #1e1e1e;
+
+  width: 210px;
+
+  padding-left: 20px;
+  padding: 0 5px 9999px 5px;
+
+  margin-left: 0;
+  margin-bottom: -9999px;
+
+}
+
+.sidebar .user-info {
+
+  .avatar {
+    width: 40px;
+    float: left;
+  }
+
+  .username {
+    float: left;
+    padding: 8px 0 8px 6px;
+
+    a {
+      color: white;
+    }
+  }
+
+  .status-form {
+    margin-bottom: 0;
+    margin-top: 5px;
+
+    input[type=text] {
+      color: #aaa;
+      width: 190px;
+      background: #333;
+      border: 1px solid #222;
+      margin-bottom: 0;
+    }
   }
 
 }
 
 .faded {
   opacity: 0.5;
-}
-
-.btn-group > .btn:first-of-type {
-  margin-left: 0;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-}
-.btn-group > .btn:last-of-type,
-.btn-group > .dropdown-toggle {
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-
-.tournaments {
-
-  .tournament-day {
-    margin-bottom: 40px;
-
-    h2 {
-      font-size: 14px;
-      border-bottom: 1px solid #c0c0c0;
-    }
-  }
-
-  .tournament {
-    overflow: hidden;
-    padding: 5px 0;
-
-    .time {
-      float: left;
-      width: 180px;
-    }
-
-    img {
-      width: 150px;
-      float: left;
-      display: block;
-      margin-right: 15px;
-      box-shadow: 0 0 3px #666;
-    }
-
-    .description {
-      float: left;
-
-      h3 {
-        font-size: 16px;
-        font-weight: normal;
-        line-height: 1;
-      }
-    }
-
-  }
-
-}
-
-.navbar {
-  position: relative;
-  width: 980px;
-  margin-left: -20px;
-
-  .navbar-inner {
-    border-radius: 0;
-  }
-
-}
-
-#footer {
-  background: #252525;
-
-  a, li {
-    color: #fafafa;
-  }
-
-  li {
-    min-height: 40px;
-  }
-
-  .blog_posts {
-    clear: both;
-
-    .date {
-      font-size: 12px;
-      background: #fafafa;
-      color: #252525;
-      @include border-radius(5px);
-      float: left;
-      width: 50px;
-      padding: 5px 10px;
-      margin-right: 10px;
-      width: 50px;
-    }
-  }
-
-  h2 {
-    color: #fafafa;
-    border-bottom: 1px solid #fafafa;
-  }
-
-  .footer {
-    padding: 15px 0 10px;
-    text-align: center;
-    color: #999;
-  }
-}
-
-.coach {
-  border-bottom: 1px solid #dedede;
-  display: block;
-  height: 45px;
-  float: left;
-
-  @include transition (background 0.2s ease-in-out);
-
-  &:hover {
-    background: #efefef;
-  }
-
-  a {
-    text-decoration: none;
-    color: #333;
-    font-size: 16px;
-    float: left;
-    line-height: 42px;
-  }
-
-  .name {
-    font-size: 14px;
-    font-weight: normal;
-    padding: 0 0 2px 4px;
-  }
-
-  .tags {
-    float: right;
-    margin-top: 20px;
-    a {
-      color: #999;
-      background: none;
-      margin-right: 0;
-    }
-  }
 }
 
 .tags {
@@ -230,20 +167,6 @@ body {
 li.stream {
   margin-right: 35px;
 }
-
-.field_with_errors {
-  display: inline;
-  input, textarea { color: #B94A48; border-color: #B94A48; }
-
-  input:focus, textarea:focus {
-    border-color: #953b39;
-    -webkit-box-shadow: 0 0 6px #d59392;
-    -moz-box-shadow: 0 0 6px #d59392;
-    box-shadow: 0 0 6px #d59392;
-  }
-}
-
-.help-inline { color: #999; }
 
 .alert-info a {
   color: #094463;
@@ -420,69 +343,6 @@ li.stream {
 
 .carousel-control {
   top: 45% !important;
-}
-
-.sidebar {
-  width: 210px;
-
-  background: #3B3C3E;
-  padding: 0 5px 9999px 5px;
-  margin-bottom: -9999px;
-  box-shadow: inset -4px 0 4px -2px rgba(0, 0, 0, .75), 3px 0 3px -2px rgba(0, 0, 0, .3);
-
-  h1, h2, h3, h4, p, ul, li, & {
-    color: #F3F3F3;
-  }
-
-  #logo img {
-    padding: 20px 40px;
-    padding-left: 999px;
-    margin-left: -970px;
-    // background: rgba(0, 0, 0, 0.2);
-  }
-
-  header.heading {
-    background: url("bg-heading.gif") repeat-x 0 28px;
-    margin-right: 18px;
-
-    h3 {
-      font-size: 18px;
-      display: inline-block;
-      background: #3B3C3E;
-      padding-right: 13px;
-    }
-  }
-}
-
-.sidebar .user-info {
-
-  .avatar {
-    width: 40px;
-    float: left;
-  }
-
-  .username {
-    float: left;
-    padding: 8px 0 8px 6px;
-
-    a {
-      color: white;
-    }
-  }
-
-  .status-form {
-    margin-bottom: 0;
-    margin-top: 5px;
-
-    input[type=text] {
-      color: #aaa;
-      width: 190px;
-      background: #333;
-      border: 1px solid #222;
-      margin-bottom: 0;
-    }
-  }
-
 }
 
 .comic {

@@ -1,0 +1,22 @@
+.navbar.navbar-inverse.navbar-fixed-top
+  .navbar-inner
+    .container
+      a.brand href="/"
+        img.logo src="/assets/logo_only.png"
+
+      .nav-collapse.collapse
+
+        ul.nav
+          if Scvrush.currentUser.isTrial
+            li = linkTo "user.edit" Scvrush.currentUser | Activate your account
+            li = linkTo "home" | Log in
+
+          li
+            a href="http://chat.scvrush.com" Visit our chat
+
+      .nav-collapse.pull-right
+        ul.nav
+          li = linkTo "home" | Home
+          li = linkTo "posts" | Content
+          li = linkTo "tournaments" | Tournaments
+          li = linkTo "users" | Users
