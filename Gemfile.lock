@@ -18,9 +18,9 @@ GIT
 
 GIT
   remote: git://github.com/rails-api/active_model_serializers.git
-  revision: 0114e492388ff84defcd1afbbb315e547849cb96
+  revision: 85a7529dc98653d9112d9408bb518a3d5a9b61d5
   specs:
-    active_model_serializers (0.5.2)
+    active_model_serializers (0.7.0)
       activemodel (>= 3.0)
 
 GEM
@@ -171,7 +171,7 @@ GEM
     hike (1.2.1)
     http_parser.rb (0.5.3)
     httpauth (0.2.0)
-    i18n (0.6.2)
+    i18n (0.6.4)
     journey (1.0.4)
     jquery-datatables-rails (1.11.2)
       jquery-rails

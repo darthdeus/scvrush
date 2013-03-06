@@ -119,13 +119,28 @@ input.inverse, .inverse input {
       outline: none;
     }
 
-    .group {
-      padding: 15px 15px;
-      border-bottom: 2px solid darken(#2E4257, 5%);
-      border-left: 2px solid darken(#2E4257, 5%);
+    $border-color: darken(#2E4257, 5%);
 
-      &:first {
-        border-top: 2px solid darken(#2E4257, 5%);
+    .group {
+      padding: 15px 15px 5px;
+      border-bottom: 2px solid $border-color;
+      border-left: 2px solid $border-color;
+
+      &:first-child {
+        border-top: 2px solid $border-color;
+      }
+
+      &:hover {
+        background: $border-color;
+      }
+
+      header {
+        cursor: pointer;
+        padding-bottom: 5px;
+      }
+
+      .content {
+        padding-top: 20px;
       }
 
       .icon {

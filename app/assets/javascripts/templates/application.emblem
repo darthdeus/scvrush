@@ -5,7 +5,8 @@
 
     .sidebar-wrap
       = render "user.recent_statuses" Scvrush.currentUser
-      = render "user.profile" Scvrush.currentUser
+
+    = render "user.profile" Scvrush.currentUser
 
   .span12.main-content
     = outlet

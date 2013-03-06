@@ -13,7 +13,7 @@
       span My Tournaments ({{playingTournaments.length}})
     .content
       each playingTournaments
-        p = linkTo "tournament" | name
+        p = linkTo "tournament" this | name
 
   .group
     header
