@@ -10,3 +10,4 @@ b.log
 config/database.yml
 tags
 gems.tags
+.env
