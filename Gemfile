@@ -20,6 +20,7 @@ gem "font-awesome-sass-rails", "~> 3.0.2.1"
 
 gem "kaminari"
 gem "tire"
+gem "catsocket_client", github: "darthdeus/catsocket_client"
 
 gem "ember-rails", github: "emberjs/ember-rails"
 gem "barber-emblem", github: "machty/barber-emblem"

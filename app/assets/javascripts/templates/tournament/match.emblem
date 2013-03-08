@@ -1,9 +1,9 @@
 .match
-  .player{action "userIfPresent" match.player1}
-    img{bindAttr class=":race-icon" src="match.player1.raceIcon"}
-    .name = match.player1.bnetInfo
-    .score = match.player1_score
-  .player{action "userIfPresent" match.player2}
-    img{bindAttr class=":race-icon" src="match.player2.raceIcon"}
-    .name = match.player1.bnetInfo
-    .score = match.player1_score
+  .player{action "userIfPresent" player1}
+    img{bindAttr class=":race-icon" src="player1.raceIcon"}
+    .name = player1.bnetInfo
+    .score = player1_score
+  .player{action "userIfPresent" player2}
+    img{bindAttr class=":race-icon" src="player2.raceIcon"}
+    .name = player1.bnetInfo
+    .score = player1_score

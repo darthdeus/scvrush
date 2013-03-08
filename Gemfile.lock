@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/darthdeus/catsocket_client.git
+  revision: 05ace3fea2f030733d1680ea4d64c682ed9bf74b
+  specs:
+    catsocket_client (0.0.1)
+      rest-client
+
+GIT
   remote: git://github.com/emberjs/ember-rails.git
   revision: 692c459c444841cf74a6f108d50865960ee91ec8
   specs:
@@ -371,6 +378,7 @@ DEPENDENCIES
   capistrano (~> 2.14.1)
   capybara (~> 2.0.2)
   carrierwave (~> 0.8.0)
+  catsocket_client!
   coffee-rails (~> 3.2.2)
   dalli
   database_cleaner (~> 0.9.1)
