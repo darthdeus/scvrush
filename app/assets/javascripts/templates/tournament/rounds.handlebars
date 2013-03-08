@@ -11,9 +11,7 @@
         </div>
 
         <div class="round">
-          {{#each match in round.matches}}
-            {{view Scvrush.TournamentMatchView matchBidning="match"}}
-          {{/each}}
+          {{each round.matches itemController="tournamentMatch" itemViewClass="Scvrush.TournamentMatchView"}}
         </div>
 
       </div>
