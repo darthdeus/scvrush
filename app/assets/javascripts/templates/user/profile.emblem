@@ -1,11 +1,11 @@
-.profile-list
+.sidebar-profile
   .group
     header
       span.icon.fui-man-16
       span Statuses
     .content
-      each statuses
-        p = text
+      each recentStatuses
+        .status = text
 
   .group
     header
