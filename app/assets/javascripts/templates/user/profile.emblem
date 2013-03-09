@@ -5,7 +5,7 @@
       span Statuses
     .content
       each recentStatuses
-        .status = text
+        .status = view Scvrush.UserLinksView contentBinding="text"
 
   .group
     header
