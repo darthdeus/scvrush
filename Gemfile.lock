@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/darthdeus/catsocket_client.git
+  revision: aabf48f2d03c1faf314bb5f064830a2d7781463d
+  specs:
+    catsocket_client (0.0.2)
+      rest-client
+
+GIT
   remote: git://github.com/emberjs/ember-rails.git
   revision: 16fa749e1e4dc17dd1d651ad504a00644db7cdae
   specs:
@@ -24,12 +31,6 @@ GIT
   specs:
     active_model_serializers (0.7.0)
       activemodel (>= 3.0)
-
-PATH
-  remote: ../catsocket_client
-  specs:
-    catsocket_client (0.0.1)
-      rest-client
 
 GEM
   remote: https://rubygems.org/
