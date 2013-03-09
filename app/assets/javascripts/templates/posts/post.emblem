@@ -1,4 +1,4 @@
-.single-post
+.single-post.span8
   h1 = title
 
   div == content_html

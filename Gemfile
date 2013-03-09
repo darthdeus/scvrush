@@ -30,7 +30,6 @@ gem "active_model_serializers", github: "rails-api/active_model_serializers"
 gem "rdiscount",          "~> 1.6.8"
 
 gem "draper",             "~> 1.1.0"
-gem "twitter",            "~> 4.5.0"
 
 gem "fog",                "~> 1.9.0"
 gem "carrierwave",        "~> 0.8.0"

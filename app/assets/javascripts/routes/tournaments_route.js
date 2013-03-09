@@ -34,16 +34,11 @@ Scvrush.TournamentsRoute = Em.Route.extend({
     },
 
     seed: function(tournament) {
-      Scvrush.Bracket.createRecord({ tournament: tournament });
-      tournament.get("transaction").commit();
+      Scvrush.Bracket.seed(tournament);
     },
 
     unseed: function(tournament) {
-      $.post("/brackets/" + tournament.get("id"), { _method: "DELETE" }, function(data) {
-        Ember.run(function() {
-          tournament.get("store").load(Scvrush.Tournament, data.tournament);
-        });
-      });
+      Scvrush.Bracket.unseed(tournament);
     },
 
     reloadMatches: function(tournament) {
