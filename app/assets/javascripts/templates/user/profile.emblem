@@ -13,7 +13,7 @@
       span My Tournaments ({{playingTournaments.length}})
     .content
       each playingTournaments
-        p = linkTo "tournament" this | name
+        p = linkTo "tournament" this | {{name}}
 
   .group
     header
@@ -21,7 +21,8 @@
       span Upcoming Tournaments
 
     .content
-      p These are the upcoming tournaments
+      each upcomingTournaments
+        p = linkTo "tournament" this | {{name}}
 
   .group
     header
@@ -29,4 +30,4 @@
       span Settings
 
     .content
-      p These are your settings
+      p = linkTo "user.edit" this | Edit your profile
