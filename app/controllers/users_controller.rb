@@ -80,7 +80,7 @@ class UsersController < ApplicationController
     email = User.exists?(email: params[:email])
 
     if username || email
-      render json: { username: username, email: email }, status: 400
+      render json: { username: username, email: email }, status: 422
     else
       render json: {}, status: 200
     end
