@@ -3,5 +3,7 @@
 
   div == content_html
 
-  .watch-pros
+  .btn-group
     a target="blank" class="btn" href="http://chat.scvrush.com/" Watch Pros Play
+
+    = linkTo .btn.btn-info "tournaments" | Play Free Tournaments
