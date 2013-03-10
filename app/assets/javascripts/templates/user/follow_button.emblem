@@ -1,4 +1,7 @@
-if isFollowingUser
-  a class="btn btn-mini" click="unfollow this" Unfollow
+if Scvrush.keyboard.altKey
+  if isFollowingUser
+    a class="btn btn-mini" click="unfollow this allowed-keys='alt'" Unfollow {{username}}
+  else
+    a class="btn btn-mini" click="follow this allowed-keys='alt'" Follow {{username}}
 else
-  a class="btn btn-mini" click="follow this" Follow
+  linkTo "user" this | {{username}}

@@ -19,7 +19,7 @@
           <button {{bindAttr disabled="isSaving"}} class="btn btn-small" {{action "start" content}}>Start now</button>
         {{/if}}
 
-        <button {{bindAttr disabled="isSaving"}} class="btn btn-small" {{action "deleteTournament" content}}>Delete the tournament</button>
+        <button {{bindAttr disabled="isSaving"}} class="btn btn-small" {{action "deleteTournament" content allowed-keys="alt"}}>Delete the tournament</button>
 
         {{#unless seeded}}
           <button {{bindAttr disabled="isSaving"}} class="btn btn-small" {{action "randomize" content}}>Randomize players</button>

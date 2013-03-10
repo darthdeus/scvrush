@@ -26251,13 +26251,36 @@ Ember.onLoad('Ember.Handlebars', function(Handlebars) {
     registeredActions: {}
   };
 
+  var isAllowedClick = function(event, allowedKeys) {
+    if (isSimpleClick(event)) {
+      return true;
+    } else {
+      var allowed = true;
+
+      var keys = ["alt", "shift", "meta", "ctrl"];
+
+      keys.forEach(function(key) {
+        if (event[key + "Key"] && allowedKeys.indexOf(key) == -1) {
+          allowed = false;
+        }
+      });
+
+      return allowed;
+    }
+  };
+
   ActionHelper.registerAction = function(actionName, options) {
     var actionId = (++Ember.uuid).toString();
 
     ActionHelper.registeredActions[actionId] = {
       eventName: options.eventName,
       handler: function(event) {
-        if (!isSimpleClick(event)) { return true; }
+        var modifier = event.shiftKey || event.metaKey || event.altKey || event.ctrlKey,
+        secondaryClick = event.which > 1; // IE9 may return undefined
+
+        var allowedKeys = options.parameters.options.hash["allowed-keys"];
+
+        if (!isAllowedClick(event, allowedKeys)) { return true; }
         event.preventDefault();
 
         if (options.bubbles === false) {

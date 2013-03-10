@@ -1,7 +1,6 @@
 if currentMatch.isPending
   p
     ' You are currently plaing against
-    linkTo "user" currentOpponent | {{currentOpponent.username}}
     ' &nbsp;
     = control "user.follow_button" currentOpponent
 
