@@ -17,6 +17,7 @@
 @import "bourbon";
 @import "bootstrap";
 @import "font-awesome";
+@import "jquery-ui.custom";
 @import "dataTables/jquery.dataTables.bootstrap";
 
 @import "flat-ui/flat-ui";
@@ -26,6 +27,10 @@ $sidebar: #34495e;
 body {
   // font-family: "Lato", sans-serif;
   padding-top: 50px;
+}
+
+.hidden {
+  display: none;
 }
 
 .navbar {
@@ -121,13 +126,13 @@ input.inverse, .inverse input {
 
     $border-color: darken(#2E4257, 5%);
 
+    :first-child .group {
+      border-top: 2px solid $border-color;
+    }
+
     .group {
       border-bottom: 2px solid $border-color;
       border-left: 2px solid $border-color;
-
-      &:first-child {
-        border-top: 2px solid $border-color;
-      }
 
       &:hover {
         background: $border-color;

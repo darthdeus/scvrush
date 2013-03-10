@@ -10,12 +10,23 @@ function guid() {
 }
 
 var Catsocket = function(guid) {
-  this._pollUrl = "http://" + document.location.hostname + ":5100/";
+  if (/localhost/.test(document.location.hostname) || /dev/.test(document)) {
+    this._pollUrl = "http://catsocket_server.dev";
+  } else {
+    this._pollUrl = "http://catsocket.com:5100";
+  }
+
   this._postUrl = this._pollUrl;
 
   this._observers = [];
   // We use this to filter requests when doing broadcast
   this._guid = guid;
+
+  this._api_key = $("meta[name=catsocket-api-key]").attr("content");
+
+  if (!this._api_key) {
+    console.error("You need to provide an API key, check our documentation http://catsocket.com/tour");
+  }
 
   this._polling = false;
 
@@ -46,7 +57,6 @@ Catsocket.prototype._fireObservers = function(body) {
       body.messages.forEach(function(message) {
         // guid 0 means the client wants to receive it's own broadcast
         if (message.guid === "0" || message.guid !== this._guid) {
-          // TODO - do we really want to parse JSON here?
           observer.call(this, JSON.parse(message.data));
         }
       }, this);

@@ -1,33 +1,41 @@
 .sidebar-profile
-  .group
-    header
-      span.icon.fui-man-16
-      span Statuses
-    .content
-      each recentStatuses
-        .status = view Scvrush.UserLinksView contentBinding="text"
 
-  .group
-    header
-      span.icon.fui-man-16
-      span My Tournaments ({{playingTournaments.length}})
-    .content
-      each playingTournaments
-        p = linkTo "tournament" this | {{name}}
+  view Scvrush.TabView
+    .group
+      header
+        span.icon.fui-man-16
+        span Statuses
 
-  .group
-    header
-      span.icon.fui-man-16
-      span Upcoming Tournaments
+      div class={view.isActive::hidden :content}
+        each recentStatuses
+          .status = view Scvrush.UserLinksView contentBinding="text"
 
-    .content
-      each upcomingTournaments
-        p = linkTo "tournament" this | {{name}}
+  view Scvrush.TabView
+    .group
+      header
+        span.icon.fui-man-16
+        span My Tournaments ({{playingTournaments.length}})
 
-  .group
-    header
-      span.icon.fui-settings-16
-      span Settings
+      div class={view.isActive::hidden :content}
+        each playingTournaments
+          p = linkTo "tournament" this | {{name}}
 
-    .content
-      p = linkTo "user.edit" this | Edit your profile
+  view Scvrush.TabView
+    .group
+      header
+        span.icon.fui-man-16
+        span Upcoming Tournaments
+
+      div class={view.isActive::hidden :content}
+        each upcomingTournaments
+          p = linkTo "tournament" this | {{name}}
+
+  view Scvrush.TabView
+    .group
+      header
+        span.icon.fui-settings-16
+        span Settings
+
+      div class={view.isActive::hidden :content}
+        p = linkTo "user.edit" this | Edit your profile
+
