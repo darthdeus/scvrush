@@ -1,16 +1,13 @@
-a.btn href="#" click="reloadMatches content"
-  i class="icon-repeat"
-  | Reload
-
 if currentMatch.isPending
   p
-    | You are currently plaing against
+    ' You are currently plaing against
     linkTo "user" currentOpponent | {{currentOpponent.username}}
+    = control "user.follow_button" currentOpponent
 
   form.form-horizontal{action "submitResult" score currentOpponent on="submit"}
     div{bindAttr class="scoreError:error :control-group"}
       view Ember.TextField valueBinding="score" placeholder="Report Your Win, e.g. 1:0" class="control"
-      button.btn.btn-success type="submit" I won!
+      button.btn.btn-success.btn-large type="submit" I won!
 
       span.faded do not submit match result if you lost
 
