@@ -5,5 +5,5 @@
     .score = player1_score
   .player{action "userIfPresent" player2}
     img{bindAttr class=":race-icon" src="player2.raceIcon"}
-    .name = player1.bnetInfo
-    .score = player1_score
+    .name = player2.bnetInfo
+    .score = player2_score
