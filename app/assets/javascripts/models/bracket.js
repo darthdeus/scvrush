@@ -16,6 +16,14 @@ Scvrush.Bracket.reopenClass({
         tournament.get("store").load(Scvrush.Tournament, data.tournament);
       });
     });
+  },
+
+  randomize: function(tournament) {
+    $.post("/tournaments/" + tournament.get("id") + "/randomize", function(data) {
+      Ember.run(function() {
+        tournament.reload();
+      });
+    });
   }
 
 });

@@ -41,14 +41,8 @@ Scvrush.TournamentsRoute = Em.Route.extend({
       Scvrush.Bracket.unseed(tournament);
     },
 
-    reloadMatches: function(tournament) {
-      Scvrush.TournamentService.reload(tournament);
-    },
-
     randomize: function(tournament) {
-      $.post("/tournaments/" + tournament.get("id") + "/randomize", function(data) {
-        tournament.reload();
-      })
+      Scvrush.Bracket.randomize(tournament);
     },
 
   }
