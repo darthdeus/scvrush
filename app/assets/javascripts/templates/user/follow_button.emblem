@@ -1,4 +1,4 @@
 if isFollowingUser
-  a class="btn btn-mini btn-danger" click="unfollow this" Unfollow
+  a class="btn btn-mini" click="unfollow this" Unfollow
 else
-  a class="btn btn-mini btn-success" click="follow this" Follow
+  a class="btn btn-mini" click="follow this" Follow

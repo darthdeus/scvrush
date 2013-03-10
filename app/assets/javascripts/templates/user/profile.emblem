@@ -3,7 +3,7 @@
   view Scvrush.TabView
     .group
       header
-        span.icon.fui-man-16
+        i.icon.icon-user
         span Statuses
 
       div class={view.isActive::hidden :content}
@@ -13,7 +13,7 @@
   view Scvrush.TabView
     .group
       header
-        span.icon.fui-man-16
+        i.icon.icon-bookmark
         span My Tournaments ({{playingTournaments.length}})
 
       div class={view.isActive::hidden :content}
@@ -23,7 +23,7 @@
   view Scvrush.TabView
     .group
       header
-        span.icon.fui-man-16
+        i.icon.icon-globe
         span Upcoming Tournaments
 
       div class={view.isActive::hidden :content}
@@ -33,7 +33,7 @@
   view Scvrush.TabView
     .group
       header
-        span.icon.fui-settings-16
+        i.icon.icon-cog
         span Settings
 
       div class={view.isActive::hidden :content}
