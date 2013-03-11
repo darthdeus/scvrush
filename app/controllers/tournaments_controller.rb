@@ -60,14 +60,8 @@ class TournamentsController < ApplicationController
       tournament.update_attributes(params[:tournament].extract!(:starts_at, :name))
     end
 
-    if status
-      render json: {
-        tournament: TournamentSerializer.new(tournament.reload, scope: current_user).as_json(root: false),
-        statuses: [StatusSerializer.new(status, scope: current_user).as_json(root: false)]
-      }
-    else
-      render json: tournament
-    end
+    # TODO - status should be sideloaded
+    render json: tournament
   end
 
   def seed

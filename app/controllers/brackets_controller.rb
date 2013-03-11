@@ -10,7 +10,7 @@ class BracketsController < ApplicationController
     tournament.seeded = true
     tournament.save!
 
-    render json: TournamentSerializer.new(tournament)
+    render json: TournamentSerializer.new(tournament, scope: current_user)
   end
 
   def destroy
@@ -23,7 +23,7 @@ class BracketsController < ApplicationController
 
     tournament.save!
 
-    render json: TournamentSerializer.new(tournament)
+    render json: TournamentSerializer.new(tournament, scope: current_user)
   end
 
 end

@@ -10,7 +10,7 @@
           <div class="round-info">Round of {{round.number}}</div>
         </div>
 
-        <div class="round">
+        <div {{bindAttr class="round.numberClass :round"}}>
           {{each round.matches itemController="tournamentMatch" itemViewClass="Scvrush.TournamentMatchView"}}
         </div>
 

@@ -107,12 +107,13 @@
 
       .round-info {
         @include border-radius(3px);
-        margin-right: 6px;
+        margin: 0 5px 20px 0;
         padding: 3px 6px;
         color: #000;
         font-weight: bold;
         background: #FAFAFA;
         border: 1px solid #999;
+        border-bottom: 1px solid #666;
 
         &:hover {
           background: #F0F0F0;
@@ -126,15 +127,43 @@
       @include border-radius(3px);
     }
 
-
-    .round-info {
-      margin: 0 5px 20px 0;
-      border: 1px solid #999;
-      border-bottom: 1px solid #666;
-      font-weight: bold;
-      padding: 3px 6px;
-    }
   }
+
+  .round-32 {
+    margin-top: 0;
+
+    .match { margin-bottom: 10px; }
+    .player:first-of-type { margin-bottom: 3px; }
+  }
+
+  .round-16 {
+    margin-top: 16px;
+
+    .match { margin-bottom: 40px; }
+    .player:first-of-type { margin-bottom: 42px; }
+  }
+
+  .round-8 {
+    margin-top: 50px;
+
+    .match { margin-bottom: 111px; }
+    .player:first-of-type { margin-bottom: 110px; }
+  }
+
+  .round-4 {
+    margin-top: 121px;
+
+    .match { margin-bottom: 250px; }
+    .player:first-of-type { margin-bottom: 248px; }
+  }
+
+  .round-2 {
+    margin-top: 261px;
+
+    .match { margin-bottom: 230px; }
+    .player:first-of-type { margin-bottom: 518px; }
+  }
+
 
   .player {
     line-height: 24px;

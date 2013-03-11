@@ -13,4 +13,8 @@ Scvrush.Round = DS.Model.extend({
     });
   },
 
+  numberClass: function() {
+    return "round-" + this.get("number");
+  }.property("number")
+
 });

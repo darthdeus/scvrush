@@ -16,11 +16,11 @@ Scvrush.Adapter.configure("plurals", {
 // Scvrush.Adapter.configure("Scvrush.User", {
 //   sideloadAs: "users"
 // });
-//
-// Scvrush.Adapter.configure("Scvrush.User", {
-//   sideloadAs: "users"
-// });
-//
+
+Scvrush.Adapter.configure("Scvrush.User", {
+  sideloadAs: "users"
+});
+
 // Scvrush.Adapter.configure("Scvrush.Round", {
 //   sideloadAs: "rounds"
 // });
