@@ -13,6 +13,9 @@
       li
         a href="http://chat.scvrush.com" Visit our chat
 
+      if Scvrush.currentUser.currentOpponent
+        li = linkTo "user" Scvrush.currentUser.currentOpponent | You're currently playing against #{Scvrush.currentUser.currentOpponent.username}
+
     .pull-right
       ul.nav
         li = linkTo "home" | Home

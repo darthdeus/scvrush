@@ -34,11 +34,7 @@
         {{#linkTo "users.index" class="help-inline"}}back to users{{/linkTo}}
 
         {{#unless isCurrentUser}}
-          {{#if isFollowingUser}}
-            <a class="btn btn-danger" {{action "unfollow" user}}>Unfollow</a>
-          {{else}}
-            <a class="btn btn-success" {{action "follow" user}}>Follow</a>
-          {{/if}}
+          {{control "user.follow_button" user}}
         {{/unless}}
       </div>
     </h2>

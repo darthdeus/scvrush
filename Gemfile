@@ -20,6 +20,7 @@ gem "font-awesome-sass-rails", "~> 3.0.2.1"
 
 gem "kaminari"
 gem "tire"
+gem "catsocket_client", github: "darthdeus/catsocket_client"
 
 gem "ember-rails", github: "emberjs/ember-rails"
 gem "barber-emblem", github: "machty/barber-emblem"
@@ -29,7 +30,6 @@ gem "active_model_serializers", github: "rails-api/active_model_serializers"
 gem "rdiscount",          "~> 1.6.8"
 
 gem "draper",             "~> 1.1.0"
-gem "twitter",            "~> 4.5.0"
 
 gem "fog",                "~> 1.9.0"
 gem "carrierwave",        "~> 0.8.0"

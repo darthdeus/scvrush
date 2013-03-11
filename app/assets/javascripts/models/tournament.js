@@ -9,7 +9,6 @@ Scvrush.Tournament = DS.Model.extend(Ember.Validations.Mixin, {
 
   user:              DS.belongsTo("Scvrush.User"),
   users:             DS.hasMany("Scvrush.User"),
-  brackets:          DS.hasMany("Scvrush.Bracket"),
   isRegistered:      DS.attr("boolean"),
   isChecked:         DS.attr("boolean"),
 

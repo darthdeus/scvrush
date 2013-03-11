@@ -94,6 +94,14 @@ Scvrush.User = DS.Model.extend({
 });
 
 
+var usersSet = new Ember.Set();
+
+usersSet.reopen({
+  enumerableContentDidChange: function(start, removing, adding) {
+    Scvrush.User.find({ username: removing[0] })
+  }
+});
+
 Scvrush.User.reopenClass({
 
   usernameFilter: function(username) {
@@ -104,6 +112,10 @@ Scvrush.User.reopenClass({
         return false;
       }
     })
+  },
+
+  checkUsername: function(username) {
+    usersSet.addObject(username);
   },
 
   findByUsername: function(username) {

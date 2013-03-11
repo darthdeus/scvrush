@@ -13,32 +13,56 @@
 // $linkBlue: #08C;
 // $linkBlueHover: #005580;
 
+@import url("http://fonts.googleapis.com/css?family=Lato:400,700,900,400italic");
+
+// Colors
+$base:      #243241;
+// original 34495e
+$firm:      #1a89bc;
+
+$gray:      #95a5a6;
+$lightgray: #ecf0f1;
+$inverse:   #fff;
+
+$success:   #2ecc71;
+$danger:    #e74c3c;
+$warning:   #f1c40f;
+$info:      #3498db;
+
+// Font
+$base-font-family: 'Lato', sans-serif;
+$base-font-size:   14px;
+
 @import "fancybox/jquery.fancybox";
 @import "bourbon";
 @import "bootstrap";
 @import "font-awesome";
+@import "jquery-ui.custom";
 @import "dataTables/jquery.dataTables.bootstrap";
-
-@import "flat-ui/flat-ui";
+// @import "flat-ui/flat-ui";
 
 $sidebar: #34495e;
 
 body {
-  // font-family: "Lato", sans-serif;
+  font-family: $base-font-family;
+  font-size: $base-font-size;
   padding-top: 50px;
+}
+
+.hidden {
+  display: none;
+}
+
+.btn.margined {
+  margin: 0 3px;
 }
 
 .navbar {
   border-bottom: 5px solid #72C8E9;
 }
 
-input.inverse, .inverse input {
-  border-color: lighten($base, 20%);
-  background: $base;
-  color: $inverse;
-}
-
-.navbar-inner {
+.navbar-inverse .navbar-inner {
+  background: #253242;
   padding: 5px 0;
 
   .brand {
@@ -49,9 +73,11 @@ input.inverse, .inverse input {
     margin-right: 10px;
   }
 
-  .btn {
-    margin-top: 0;
-    margin-right: 3px;
+  ul.nav li {
+    a {
+      color: #fff;
+      padding: 15px;
+    }
   }
 }
 
@@ -114,21 +140,20 @@ input.inverse, .inverse input {
     }
   }
 
-  .profile-list {
+  .sidebar-profile {
     header {
       outline: none;
     }
 
     $border-color: darken(#2E4257, 5%);
 
+    :first-child .group {
+      border-top: 2px solid $border-color;
+    }
+
     .group {
-      padding: 15px 15px 5px;
       border-bottom: 2px solid $border-color;
       border-left: 2px solid $border-color;
-
-      &:first-child {
-        border-top: 2px solid $border-color;
-      }
 
       &:hover {
         background: $border-color;
@@ -136,11 +161,11 @@ input.inverse, .inverse input {
 
       header {
         cursor: pointer;
-        padding-bottom: 5px;
+        padding: 15px 15px 10px;
       }
 
       .content {
-        padding-top: 20px;
+        padding: 5px 15px 10px;
       }
 
       .icon {

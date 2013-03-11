@@ -1,32 +1,41 @@
-.profile-list
-  .group
-    header
-      span.icon.fui-man-16
-      span Statuses
-    .content
-      each statuses
-        p = text
+.sidebar-profile
 
-  .group
-    header
-      span.icon.fui-man-16
-      span My Tournaments ({{playingTournaments.length}})
-    .content
-      each playingTournaments
-        p = linkTo "tournament" this | name
+  view Scvrush.TabView
+    .group
+      header
+        i.icon.icon-user
+        span Statuses
 
-  .group
-    header
-      span.icon.fui-man-16
-      span Upcoming Tournaments
+      div class={view.isActive::hidden :content}
+        each recentStatuses
+          .status = view Scvrush.UserLinksView contentBinding="text"
 
-    .content
-      p These are the upcoming tournaments
+  view Scvrush.TabView
+    .group
+      header
+        i.icon.icon-bookmark
+        span My Tournaments ({{playingTournaments.length}})
 
-  .group
-    header
-      span.icon.fui-settings-16
-      span Settings
+      div class={view.isActive::hidden :content}
+        each playingTournaments
+          p = linkTo "tournament" this | {{name}}
 
-    .content
-      p These are your settings
+  view Scvrush.TabView
+    .group
+      header
+        i.icon.icon-globe
+        span Upcoming Tournaments
+
+      div class={view.isActive::hidden :content}
+        each upcomingTournaments
+          p = linkTo "tournament" this | {{name}}
+
+  view Scvrush.TabView
+    .group
+      header
+        i.icon.icon-cog
+        span Settings
+
+      div class={view.isActive::hidden :content}
+        p = linkTo "user.edit" this | Edit your profile
+

@@ -34,26 +34,15 @@ Scvrush.TournamentsRoute = Em.Route.extend({
     },
 
     seed: function(tournament) {
-      Scvrush.Bracket.createRecord({ tournament: tournament });
-      tournament.get("transaction").commit();
+      Scvrush.Bracket.seed(tournament);
     },
 
     unseed: function(tournament) {
-      $.post("/brackets/" + tournament.get("id"), { _method: "DELETE" }, function(data) {
-        Ember.run(function() {
-          tournament.get("store").load(Scvrush.Tournament, data.tournament);
-        });
-      });
-    },
-
-    reloadMatches: function(tournament) {
-      Scvrush.TournamentService.reload(tournament);
+      Scvrush.Bracket.unseed(tournament);
     },
 
     randomize: function(tournament) {
-      $.post("/tournaments/" + tournament.get("id") + "/randomize", function(data) {
-        tournament.reload();
-      })
+      Scvrush.Bracket.randomize(tournament);
     },
 
   }
