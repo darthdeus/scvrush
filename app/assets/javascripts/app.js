@@ -21,3 +21,7 @@ Scvrush.keyboard = Ember.Object.create();
 window.c = Ember.c = function(name) {
   return Scvrush.__container__.lookup("controller:" + name);
 }
+
+Ember.Handlebars.registerBoundHelper("index", function(item, collection) {
+  return collection.indexOf(item);
+});

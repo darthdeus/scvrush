@@ -4,13 +4,14 @@
   {{/if}}
 
   {{#if hasRounds}}
-    {{#each round in rounds}}
+    {{#each round in rounds itemController="roundItem" itemViewClass="Scvrush.RoundItemView"}}
+
       <div class="round-wrap">
         <div class="round-info-wrap">
           <div class="round-info">Round of {{round.number}}</div>
         </div>
 
-        <div {{bindAttr class="round.numberClass :round"}}>
+        <div {{bindAttr class="indexClass :round"}}>
           {{each round.matches itemController="tournamentMatch" itemViewClass="Scvrush.TournamentMatchView"}}
         </div>
 
