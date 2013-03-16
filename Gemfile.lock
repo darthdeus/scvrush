@@ -162,6 +162,7 @@ GEM
       railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
     formatador (0.2.4)
+    geoip (1.2.1)
     github_api (0.8.11)
       faraday (~> 0.8.1)
       hashie (~> 1.2.0)
@@ -394,6 +395,7 @@ DEPENDENCIES
   faker (~> 1.1.1)
   fog (~> 1.9.0)
   font-awesome-sass-rails (~> 3.0.2.1)
+  geoip
   guard-ctags-bundler (~> 0.1.6)
   jquery-datatables-rails (~> 1.11.1)
   jquery-rails (~> 2.2.0)

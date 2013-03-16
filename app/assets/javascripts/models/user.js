@@ -4,6 +4,7 @@ Scvrush.User = DS.Model.extend({
   race:      DS.attr("string"),
   image:     DS.attr("string"),
   bnetInfo:  DS.attr("string"),
+  server:    DS.attr("string"),
   expiresAt: DS.attr("date"),
 
   password:  DS.attr("string"),

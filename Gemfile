@@ -52,10 +52,10 @@ gem "rolify", "~> 3.2.0"
 gem "party_boy",            "~> 0.3.4"
 
 gem "acts-as-taggable-on",  "~> 2.3.3"
-
 gem "rest-client",          "~> 1.6.7"
 
 gem "execjs", "~> 1.4.0"
+gem "geoip"
 
 group :development, :test do
   gem "rb-fsevent", "~> 0.9.1"

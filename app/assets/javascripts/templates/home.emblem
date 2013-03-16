@@ -14,7 +14,8 @@
 
     h2 Step 2 - Where do you play?
 
-    h1 EU&nbsp;&nbsp;&nbsp;NA&nbsp;&nbsp;&nbsp;SEA
+    = if Scvrush.currentUser.server
+      p We think you're playing on #{Scvrush.currentUser.server}
 
     h2 Step 3 - Activate your account
 
