@@ -1,0 +1,5 @@
+h2
+  = linkTo "posts" | All posts
+
+p Listing all the related posts
+

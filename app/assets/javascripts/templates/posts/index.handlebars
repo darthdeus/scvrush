@@ -5,12 +5,12 @@
   {{#each post in controller}}
     <div class="post">
       {{#if post.isLoaded}}
-        {{#linkTo "posts.post" post class="image"}}
+        {{#linkTo "post.index" post class="image"}}
           {{view Scvrush.ImageView srcBinding="post.image"}}
         {{/linkTo}}
 
         <h2>
-          {{#linkTo "posts.post" post}}{{post.title}}{{/linkTo}}
+          {{#linkTo "post.index" post}}{{post.title}}{{/linkTo}}
         </h2>
       {{/if}}
     </div>

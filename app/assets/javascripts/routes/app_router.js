@@ -7,7 +7,8 @@ Scvrush.Router.map(function() {
   this.route("contact", { path: "/contact" });
 
   this.resource("posts", { path: "/posts" }, function() {
-    this.route("post", { path: "/:post_id" });
+    this.resource("post", { path: "/:post_id" }, function() {
+    });
   });
 
   this.resource("tournaments", { path: "/tournaments" }, function() {

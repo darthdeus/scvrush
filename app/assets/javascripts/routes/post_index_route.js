@@ -1,12 +1,12 @@
-Scvrush.PostsIndexRoute = Em.Route.extend({
+Scvrush.PostIndexRoute = Ember.Route.extend({
 
   model: function() {
-    return Scvrush.Post.all();
+    return this.modelFor("post");
   },
 
   renderTemplate: function() {
     this.render();
-    this.render("user/timeline", {
+    this.render("posts/list", {
       outlet: "sidebar"
     });
   }

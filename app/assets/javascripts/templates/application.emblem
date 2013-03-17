@@ -4,11 +4,7 @@
 
 .container-wrap
   .span3.sidebar
-
-    .sidebar-wrap
-      = render "user.recent_statuses" Scvrush.currentUser
-
-    = render "user.profile" Scvrush.currentUser
+    = outlet sidebar
 
   .span12.main-content
     = outlet

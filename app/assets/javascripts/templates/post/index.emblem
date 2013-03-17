@@ -1,7 +1,7 @@
 .single-post.span8
   h1 = title
 
-  div == content_html
+  div == contentHtml
 
   .btn-group
     a target="blank" class="btn" href="http://chat.scvrush.com/" Watch Pros Play
