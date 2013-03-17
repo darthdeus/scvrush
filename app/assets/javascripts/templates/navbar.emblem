@@ -10,6 +10,8 @@
       li = linkTo "posts" | Content
       li = linkTo "tournaments" | Tournaments
       li = linkTo "users" | Users
+      if Scvrush.currentUser.isTrial
+        li = linkTo "user.edit" Scvrush.currentUser | Activate your account
 
       li
         a href="http://chat.scvrush.com" Visit our chat
@@ -18,7 +20,5 @@
         li = linkTo "user" Scvrush.currentUser.currentOpponent | You're currently playing against #{Scvrush.currentUser.currentOpponent.username}
 
     ul.nav.pull-right
-      if Scvrush.currentUser.isTrial
-        li = linkTo "user.edit" Scvrush.currentUser | Activate your account
-        li = linkTo "home" | Log in
-
+      li = linkTo "meet_scvrush" | About us
+      li = linkTo "contact" | Contact
