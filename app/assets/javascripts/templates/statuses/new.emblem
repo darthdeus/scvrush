@@ -1,2 +1,2 @@
 form.new-status{action "createStatus" on="submit"}
-  Ember.TextField placeholder="Tell us what's on your mind" valueBinding=text
+  Ember.TextField placeholder="Post a status" valueBinding=text

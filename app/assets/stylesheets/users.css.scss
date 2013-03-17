@@ -39,63 +39,64 @@
     margin-right: 10px;
     display: inline-block;
   }
-}
 
-.statuses .status-form {
-  input {
-    width: 680px;
-  }
-}
-
-.statuses .status {
-  padding: 10px;
-  border-bottom: 1px solid #f9f9f9;
-  overflow: hidden;
-  position: relative;
-
-  &:hover {
-    background: #fff;
+  .statuses .status-form {
+    input {
+      width: 680px;
+    }
   }
 
-  a {
-    @include transition(color 0.2s ease-in-out);
-    &:hover { text-decoration: none; }
-  }
+  .statuses .status {
+    padding: 10px;
+    border-bottom: 1px solid #f9f9f9;
+    overflow: hidden;
+    position: relative;
 
-  .author {
-    float: left;
-    color: #999;
-    margin-right: 65px;
+    &:hover {
+      background: #fff;
+    }
 
-    .user-info, .avatar { float: left; }
-    .date { font-size: 12px; }
+    a {
+      @include transition(color 0.2s ease-in-out);
+      &:hover { text-decoration: none; }
+    }
 
-    .avatar {
-      margin-right: 15px;
-      @include transition(box-shadow 0.2s ease-in-out);
+    .author {
+      float: left;
+      color: #999;
+      margin-right: 65px;
 
-      &:hover {
-        box-shadow: 0 0 6px #666;
+      .user-info, .avatar { float: left; }
+      .date { font-size: 12px; }
+
+      .avatar {
+        margin-right: 15px;
+        @include transition(box-shadow 0.2s ease-in-out);
+
+        &:hover {
+          box-shadow: 0 0 6px #666;
+        }
+      }
+
+      .user-info .username {
+        font-size: 18px;
+        font-weight: bold;
       }
     }
 
-    .user-info .username {
-      font-size: 18px;
-      font-weight: bold;
+    .content {
+      float: left;
+      width: 300px;
     }
-  }
 
-  .content {
-    float: left;
-    width: 300px;
-  }
+    .meta {
+      font-size: 12px;
+      color: #999;
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+    }
 
-  .meta {
-    font-size: 12px;
-    color: #999;
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
   }
 
 }

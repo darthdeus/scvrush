@@ -1,6 +1,13 @@
-.timeline
+.timeline.sidebar-list
+  h2 Timeline
+
   = control "statuses.new"
 
-  .statuses
+  .items
     each recentStatuses
-      .status = view Scvrush.UserLinksView contentBinding="text"
+      .item
+        .image
+          linkTo "user" user
+            img src=user.image
+
+        .text = view Scvrush.UserLinksView contentBinding="text"

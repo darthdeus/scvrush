@@ -1,5 +1,12 @@
-h2
-  = linkTo "posts" | All posts
+.related-posts.sidebar-list
+  h2
+    = linkTo "posts" | Back to all posts
 
-p Listing all the related posts
+  .items
+    each controller
+      .item
+        .image
+          linkTo "post" this
+            img src=image
 
+        .text = linkTo "post" this | {{title}}
