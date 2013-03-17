@@ -65,7 +65,7 @@ Scvrush.User = DS.Model.extend({
   }.property("statuses.@each.item"),
 
   recentStatuses: function() {
-    return this.get("statuses").toArray().reverse().slice(0, 5);
+    return this.get("statuses").toArray().reverse().slice(0, 10);
   }.property("statuses.@each.item"),
 
   follow: function(user) {

@@ -87,3 +87,74 @@
   .race-protoss { background: url("race_protoss_icon.png"); }
   .race-random  { background: url("race_random_icon.png"); }
 }
+
+
+.tourwin {
+  position: absolute;
+  top: -120px;
+  left: 590px;
+}
+
+.tournament-name {
+  font-size: 22px;
+  padding: 16px 10px 12px;
+  line-height: 47px;
+  width: 450px;
+  margin-bottom: 15px;
+}
+
+.tournament-descriptions {
+  .span4 {
+    width: 280px;
+  }
+
+  textarea {
+    width: 250px;
+    height: 360px;
+  }
+}
+
+.tournament-edit {
+  h1 { width: 620px; }
+}
+
+.calendar {
+  td {
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: center;
+    padding: 0;
+
+    &.today {
+      background: #f3f3f3;
+      .tournament {
+        background: #bdb;
+      }
+    }
+
+    &.notmonth {
+      opacity: 0.7;
+    }
+
+    .tournament {
+      background: #dfd;
+      width: 22px;
+      opacity: 0.8;
+      @include transition(opacity 0.2s ease-in-out);
+
+      a {
+        color: black;
+      }
+
+      &:hover {
+        opacity: 1;
+        background: #cec;
+        a { text-decoration: none; }
+      }
+
+    }
+  }
+}
+

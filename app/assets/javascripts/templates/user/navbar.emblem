@@ -3,7 +3,7 @@
     linkTo "user" this
       img.avatar src=image
 
-    input.new-status type="text" placeholder="Type a status ..."
+    username
 
   .notifications
     linkTo "user.edit" this

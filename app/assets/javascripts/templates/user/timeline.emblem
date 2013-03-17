@@ -1,6 +1,6 @@
-.items
-  .item Lorem ipsum dolor sit amet
-  .item Lorem ipsum dolor sit amet
-  .item Lorem ipsum dolor sit amet
-  .item Lorem ipsum dolor sit amet
-  .item Lorem ipsum dolor sit amet
+.timeline
+  = control "statuses.new"
+
+  .statuses
+    each recentStatuses
+      .status = view Scvrush.UserLinksView contentBinding="text"

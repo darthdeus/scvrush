@@ -1,18 +1,3 @@
-/*
- * This is a manifest file that'll automatically include all the stylesheets available in this directory
- * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
- * the top of the compiled file, but it's generally better to create a new file per style scope.
- *= require_self
- */
-
-// $navbarBackground: #3B3C3E;
-// $navbarBackgroundHighlight: #4B4C4E;
-// $navbarLinkColor: #E3E3E3;
-// $navbarLinkColorHover: #C3C3C3;
-//
-// $linkBlue: #08C;
-// $linkBlueHover: #005580;
-
 @import url("http://fonts.googleapis.com/css?family=Lato:400,700,900,400italic");
 
 // Colors
@@ -60,61 +45,10 @@ body {
   overflow: hidden;
 
   .main-content, .sidebar {
-    padding-top: 30px;
+    padding-top: 20px;
   }
 }
 
-
-.sidebar {
-  background: $sidebar;
-  color: #666;
-
-  a {
-    color: #666;
-  }
-
-  width: 260px;
-
-  padding-left: 20px;
-  padding: 0 0 9999px 0;
-
-  margin-left: 0;
-  margin-bottom: -9999px;
-
-  .sidebar-wrap {
-    padding: 0 15px;
-  }
-
-  .sidebar-profile {
-    header {
-      outline: none;
-    }
-
-    $border-color: #ddd;
-
-    :first-child .group {
-      border-top: 2px solid $border-color;
-    }
-
-    .group {
-      border-bottom: 2px solid $border-color;
-
-      header {
-        cursor: pointer;
-        padding: 15px 15px 10px;
-      }
-
-      .content {
-        padding: 5px 15px 10px;
-      }
-
-      .icon {
-        padding: 0 15px 0 0;
-      }
-    }
-  }
-
-}
 
 .tags {
   margin: 0;
@@ -167,48 +101,9 @@ body {
   top: 4px;
 }
 
-li.stream {
-  margin-right: 35px;
-}
-
 .alert-info a {
   color: #094463;
   font-weight: bold;
-}
-
-.staff-group h1 {
-  margin: 40px 0 10px 20px;
-  border-bottom: 1px solid #DDD;
-}
-
-.staff-member {
-  min-height: 120px;
-  margin-bottom: 10px;
-  margin-left: 20px;
-
-  h2 { margin-top: 5px; }
-
-  img {
-    width: 100px;
-    float: left;
-    @include box-shadow(0 0 3px #000);
-    margin: 10px 20px 0 5px;
-  }
-
-  .info {
-    padding-top: 5px;
-    float: left;
-  }
-}
-
-.staff:nth-child(even) {
-  background: white;
-  text-align: right;
-  img {
-    float: right;
-    margin: 10px 10px 0 20px;
-  }
-
 }
 
 .add-on + .help-inline {
@@ -236,7 +131,6 @@ li.stream {
 }
 
 .carousel {
-
   box-shadow: 0 0 3px #333;
 
   .carousel-control {
@@ -252,102 +146,6 @@ li.stream {
   padding: 10px;
   border-bottom: 1px solid #aaa;
 }
-
-.tourwin {
-  position: absolute;
-  top: -120px;
-  left: 590px;
-}
-
-.tournament-name {
-  font-size: 22px;
-  padding: 16px 10px 12px;
-  line-height: 47px;
-  width: 450px;
-  margin-bottom: 15px;
-}
-
-.tournament-descriptions {
-  .span4 {
-    width: 280px;
-  }
-
-  textarea {
-    width: 250px;
-    height: 360px;
-  }
-}
-
-.tournament-edit {
-  h1 { width: 620px; }
-}
-
-.calendar {
-  td {
-    width: 20px;
-    height: 20px;
-    font-size: 12px;
-    line-height: 20px;
-    text-align: center;
-    padding: 0;
-
-    &.today {
-      background: #f3f3f3;
-      .tournament {
-        background: #bdb;
-      }
-    }
-
-    &.notmonth {
-      opacity: 0.7;
-    }
-
-    .tournament {
-      background: #dfd;
-      width: 22px;
-      opacity: 0.8;
-      @include transition(opacity 0.2s ease-in-out);
-
-      a {
-        color: black;
-      }
-
-      &:hover {
-        opacity: 1;
-        background: #cec;
-        a { text-decoration: none; }
-      }
-
-    }
-  }
-}
-
-.tweets-wrap h2 { margin-bottom: 0; }
-
-.tweets {
-  li {
-    padding: 5px 10px;
-    border-bottom: 1px solid #ccc;
-    @include transition(background 0.2s ease-in-out);
-
-    a {
-      color: #0bb3f1!important;
-    }
-
-    &:hover {
-      background: #353535;
-    }
-  }
-}
-
-.timeline-header {
-  display:none!important;
-}
-
-.carousel-control {
-  top: 45% !important;
-}
-
 .comic {
   img {
     width: 460px;
@@ -365,6 +163,7 @@ li.stream {
 .ui-timepicker-rtl dl { text-align: right; }
 .ui-timepicker-rtl dl dd { margin: 0 65px 10px 10px; }
 
+@import "sidebar";
 @import "navbar";
 @import "posts";
 @import "users";

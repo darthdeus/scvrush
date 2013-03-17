@@ -1,0 +1,50 @@
+.sidebar {
+  background: $sidebar;
+  color: #666;
+
+  a {
+    color: #666;
+  }
+
+  width: 260px;
+
+  padding-left: 20px;
+  padding: 0 0 9999px 0;
+
+  margin-left: 0;
+  margin-bottom: -9999px;
+
+  .sidebar-wrap {
+    padding: 0 15px;
+  }
+
+  .sidebar-profile {
+    header {
+      outline: none;
+    }
+
+    $border-color: #ddd;
+
+    :first-child .group {
+      border-top: 2px solid $border-color;
+    }
+
+    .group {
+      border-bottom: 2px solid $border-color;
+
+      header {
+        cursor: pointer;
+        padding: 15px 15px 10px;
+      }
+
+      .content {
+        padding: 5px 15px 10px;
+      }
+
+      .icon {
+        padding: 0 15px 0 0;
+      }
+    }
+  }
+
+}
