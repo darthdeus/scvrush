@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git://github.com/emberjs/ember-rails.git
-  revision: 16fa749e1e4dc17dd1d651ad504a00644db7cdae
+  revision: acdbe5660540d4312b7a5b4b2a648085b90daf5e
   specs:
     ember-rails (0.11.1)
       active_model_serializers
@@ -27,7 +27,7 @@ GIT
 
 GIT
   remote: git://github.com/rails-api/active_model_serializers.git
-  revision: a546a942c5042fc5d2ed872adeedbd3f7a123273
+  revision: 9fef47db4dd492e39909c0a7bc43becfea13d57b
   specs:
     active_model_serializers (0.7.0)
       activemodel (>= 3.0)
@@ -125,7 +125,7 @@ GEM
       request_store (~> 1.0.3)
     ember-data-source (0.0.5)
       ember-source
-    ember-source (0.0.1)
+    ember-source (0.0.2)
       handlebars-source (>= 1.0.0.rc3, < 1.0.0.rc4)
     emblem-rails (0.1.0)
       barber-emblem (~> 0.1.1)
@@ -216,7 +216,7 @@ GEM
     mime-types (1.21)
     mini_magick (3.5.0)
       subexec (~> 0.2.1)
-    multi_json (1.6.1)
+    multi_json (1.7.0)
     multi_xml (0.5.3)
     multipart-post (1.2.0)
     net-scp (1.0.4)

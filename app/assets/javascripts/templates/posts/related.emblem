@@ -1,6 +1,7 @@
 .related-posts.sidebar-list
-  h2
-    = linkTo "posts" | Back to all posts
+  h2 Articles
+
+  Ember.TextField placeholder="Search by keywords..." class="search"
 
   .items
     each controller

@@ -1,7 +1,6 @@
 .related-posts {
 
-  .posts .post {
-    padding-left: 20px;
-    margin-bottom: 10px;
+  .search {
+    @include flat-input;
   }
 }

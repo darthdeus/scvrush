@@ -1,4 +1,4 @@
-Scvrush.PostsListController = Ember.ArrayController.extend({
+Scvrush.PostsRelatedController = Ember.ArrayController.extend({
 
   init: function() {
     this._super();

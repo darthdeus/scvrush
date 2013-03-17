@@ -6,7 +6,7 @@ Scvrush.PostIndexRoute = Ember.Route.extend({
 
   renderTemplate: function() {
     this.render();
-    this.render("posts/list", {
+    this.render("posts/related", {
       outlet: "sidebar"
     });
   }

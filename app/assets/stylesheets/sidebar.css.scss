@@ -47,21 +47,7 @@
     padding-left: 20px;
 
     input {
-      border-radius: 0;
-
-      background: #ccc;
-      border: 1px solid #aaa;
-      color: #333;
-      box-shadow: none;
-
-      @include placeholder {
-        color: #777;
-      }
-
-      &:active, &:focus {
-        box-shadow: none;
-        border-color: #999;
-      }
+      @include flat-input;
     }
   }
 
