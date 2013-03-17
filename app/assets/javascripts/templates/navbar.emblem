@@ -1,14 +1,15 @@
-.navbar.navbar-inverse.navbar-fixed-top
-  .navbar-inner
+.navbar.navbar-inverse
+  .container
 
     = linkTo .brand "home"
       img.logo src="/assets/logo_only.png"
 
 
     ul.nav
-      if Scvrush.currentUser.isTrial
-        li = linkTo "user.edit" Scvrush.currentUser | Activate your account
-        li = linkTo "home" | Log in
+      li = linkTo "home" | Home
+      li = linkTo "posts" | Content
+      li = linkTo "tournaments" | Tournaments
+      li = linkTo "users" | Users
 
       li
         a href="http://chat.scvrush.com" Visit our chat
@@ -16,9 +17,8 @@
       if Scvrush.currentUser.currentOpponent
         li = linkTo "user" Scvrush.currentUser.currentOpponent | You're currently playing against #{Scvrush.currentUser.currentOpponent.username}
 
-    .pull-right
-      ul.nav
-        li = linkTo "home" | Home
-        li = linkTo "posts" | Content
-        li = linkTo "tournaments" | Tournaments
-        li = linkTo "users" | Users
+    ul.nav.pull-right
+      if Scvrush.currentUser.isTrial
+        li = linkTo "user.edit" Scvrush.currentUser | Activate your account
+        li = linkTo "home" | Log in
+

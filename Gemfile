@@ -15,7 +15,7 @@ gem "sass-rails",              "~> 3.2.5"
 gem "jquery-datatables-rails", "~> 1.11.1"
 gem "bootstrap-sass",          "~> 2.3.0.0"
 gem "simple_form",             "~> 2.0.1"
-gem "bourbon",                 "~> 3.1.0"
+gem "bourbon",                 "~> 3.1.1"
 gem "font-awesome-sass-rails", "~> 3.0.2.1"
 
 gem "kaminari"

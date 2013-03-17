@@ -34,19 +34,17 @@ $base-font-family: 'Lato', sans-serif;
 $base-font-size:   14px;
 
 @import "fancybox/jquery.fancybox";
-@import "bourbon";
 @import "bootstrap";
 @import "font-awesome";
 @import "jquery-ui.custom";
 @import "dataTables/jquery.dataTables.bootstrap";
-// @import "flat-ui/flat-ui";
+@import "bourbon";
 
-$sidebar: #34495e;
+$sidebar: #f2f2f2;
 
 body {
   font-family: $base-font-family;
   font-size: $base-font-size;
-  padding-top: 50px;
 }
 
 .hidden {
@@ -57,13 +55,13 @@ body {
   margin: 0 3px;
 }
 
-.navbar {
-  border-bottom: 5px solid #72C8E9;
-}
-
-.navbar-inverse .navbar-inner {
-  background: #253242;
+.main-navbar .navbar-inverse {
+  background: #333333;
   padding: 5px 0;
+  margin-bottom: 44px;
+
+  .container {
+  }
 
   .brand {
     padding: 5px 0 5px 40px;
@@ -81,6 +79,54 @@ body {
   }
 }
 
+.user-navbar {
+  top: 60px;
+  height: 30px;
+  padding: 7px 20px;
+  background: #9FC057;
+
+  a {
+    color: #313131;
+  }
+
+  img.avatar {
+    height: 30px;
+    margin-right: 5px;
+  }
+
+  $inputBackground: #C4D898;
+
+  input.new-status {
+    font-size: 12px;
+    background: $inputBackground;
+
+    margin-bottom: 0;
+
+    border: 1px solid darken($inputBackground, 30%);
+    box-shadow: none;
+
+    color: darken($inputBackground, 50%);
+
+    @include placeholder {
+      color: darken($inputBackground, 30%);
+    }
+
+    &:active, &:focus {
+      border: 1px solid darken($inputBackground, 50%);
+      box-shadow: none;
+    }
+  }
+
+  .username {
+    display: inline-block;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+}
+
 .container-wrap {
   min-height: 800px;
   overflow: hidden;
@@ -93,10 +139,10 @@ body {
 
 .sidebar {
   background: $sidebar;
-  color: scale-color($inverse, $lightness: 20%);
+  color: #666;
 
   a {
-    color: scale-color($inverse, $lightness: 20%)
+    color: #666;
   }
 
   width: 260px;
@@ -111,41 +157,12 @@ body {
     padding: 0 15px;
   }
 
-  .user-info {
-
-    .avatar {
-      width: 40px;
-      float: left;
-    }
-
-    .username {
-      float: left;
-      padding: 8px 0 8px 6px;
-
-      a {
-        text-decoration: none;
-        font-size: 16px;
-        color: scale-color($inverse, $lightness: 20%);
-      }
-    }
-
-    .status-form {
-      margin-bottom: 0;
-      margin-top: 10px;
-
-      input[type=text] {
-        width: 220px;
-      }
-
-    }
-  }
-
   .sidebar-profile {
     header {
       outline: none;
     }
 
-    $border-color: darken(#2E4257, 5%);
+    $border-color: #ddd;
 
     :first-child .group {
       border-top: 2px solid $border-color;
@@ -153,11 +170,6 @@ body {
 
     .group {
       border-bottom: 2px solid $border-color;
-      border-left: 2px solid $border-color;
-
-      &:hover {
-        background: $border-color;
-      }
 
       header {
         cursor: pointer;

@@ -1,0 +1,5 @@
+.user-navbar.navbar-fixed-top
+  linkTo "user" this
+    img.avatar src=image
+
+  input.new-status type="text" placeholder="Type a status ..."

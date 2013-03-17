@@ -1,4 +1,6 @@
-= render "navbar"
+.main-navbar
+  = render "navbar"
+= render "user/navbar" Scvrush.currentUser
 
 .container-wrap
   .span3.sidebar
