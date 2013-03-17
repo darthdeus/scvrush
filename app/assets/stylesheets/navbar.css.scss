@@ -1,0 +1,89 @@
+.main-navbar .navbar-inverse {
+  background: #333333;
+  padding: 5px 0;
+  margin-bottom: 44px;
+
+  .container {
+  }
+
+  .brand {
+    padding: 5px 0 5px 40px;
+  }
+
+  .logo {
+    margin-right: 10px;
+  }
+
+  ul.nav li {
+    a {
+      color: #fff;
+      padding: 15px;
+    }
+  }
+}
+
+.user-navbar {
+  top: 60px;
+  height: 30px;
+  line-height: 30px;
+
+  padding: 7px 20px;
+  background: #9FC057;
+
+  a {
+    color: #313131;
+  }
+
+  .user-info {
+    float: left;
+
+    img.avatar {
+      height: 30px;
+      margin-right: 5px;
+    }
+
+    $inputBackground: #C4D898;
+
+    input.new-status {
+      font-size: 12px;
+      background: $inputBackground;
+
+      margin-bottom: 0;
+
+      border: 1px solid darken($inputBackground, 30%);
+      box-shadow: none;
+
+      color: darken($inputBackground, 50%);
+
+      @include placeholder {
+        color: darken($inputBackground, 30%);
+      }
+
+      &:active, &:focus {
+        border: 1px solid darken($inputBackground, 50%);
+        box-shadow: none;
+      }
+    }
+  }
+
+  .notifications {
+    float: left;
+  }
+
+  .user-actions {
+  }
+
+  .icon {
+    line-height: 30px;
+    font-size: 26px;
+    margin: 0 8px;
+    color: #666;
+
+    &:hover {
+      color: #000;
+      text-decoration: none;
+    }
+  }
+}
+
+

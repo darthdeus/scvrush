@@ -1,5 +1,18 @@
 .user-navbar.navbar-fixed-top
-  linkTo "user" this
-    img.avatar src=image
+  .user-info
+    linkTo "user" this
+      img.avatar src=image
 
-  input.new-status type="text" placeholder="Type a status ..."
+    input.new-status type="text" placeholder="Type a status ..."
+
+  .notifications
+    linkTo "user.edit" this
+      i.icon.icon-envelope title="Notifications"
+
+  .pull-right.user-actions
+
+    linkTo "user.edit" this
+      i.icon.icon-cog title="Settings"
+
+    linkTo "user.edit" this
+      i.icon.icon-signout title="Log out"
