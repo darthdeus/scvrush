@@ -1,13 +1,15 @@
 <div class="row user-profile">
   <div class="span3">
     <div class="avatar">
-      <img {{bindAttr src="user.image"}}>
+      <img {{bindAttr src="image"}}>
     </div>
 
-    {{#if user.hasFollowers}}
+    {{about}}
+
+    {{#if hasFollowers}}
       <h3>Followers</h3>
 
-      {{#each follower in user.followers}}
+      {{#each follower in followers}}
         {{#linkTo "user" follower}}{{follower.username}}{{/linkTo}}
         <br>
       {{/each}}
@@ -18,7 +20,7 @@
 
     <h3>Following</h3>
 
-    {{#each follower in user.following}}
+    {{#each follower in following}}
       {{#linkTo "user" follower}}{{follower.username}}{{/linkTo}}
       <br>
     {{/each}}
@@ -27,8 +29,8 @@
 
   <div class="span9">
     <h2>
-      <img {{bindAttr src="user.raceIcon"}}>
-      {{user.username}} ({{user.bnetInfo}})
+      <img {{bindAttr src="raceIcon"}}>
+      {{username}} ({{bnetInfo}})
 
       <div class="follow-box">
         {{#linkTo "users.index" class="help-inline"}}back to users{{/linkTo}}
@@ -44,7 +46,7 @@
         {{render "statuses.new"}}
       {{/if}}
 
-      {{#each status in user.timelineStatuses}}
+      {{#each status in timelineStatuses}}
         <div class="status">
           <div class="author">
             {{#linkTo "user" status.user}}@{{status.user.username}}{{/linkTo}}

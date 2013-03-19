@@ -1,13 +1,7 @@
-Scvrush.UserIndexController = Ember.Controller.extend({
-
-  needs: ["user"],
-
-  user: function() {
-    return this.get("controllers.user.content");
-  }.property("controllers.user.content"),
+Scvrush.UserIndexController = Ember.ObjectController.extend({
 
   isCurrentUser: function() {
-    return this.get("user") === Scvrush.currentUser;
+    return this.get("content") === Scvrush.currentUser;
   }.property("user"),
 
   deleteStatus: function(status) {
