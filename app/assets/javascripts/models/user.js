@@ -1,4 +1,4 @@
-Scvrush.User = DS.Model.extend({
+Scvrush.User = DS.Model.extend(Ember.Validations.Mixin, {
   username:  DS.attr("string"),
   email:     DS.attr("string"),
   race:      DS.attr("string"),
@@ -6,6 +6,7 @@ Scvrush.User = DS.Model.extend({
   bnetInfo:  DS.attr("string"),
   server:    DS.attr("string"),
   expiresAt: DS.attr("date"),
+  about:     DS.attr("string"),
 
   password:  DS.attr("string"),
   passwordConfirmation: DS.attr("string"),
