@@ -1,5 +1,7 @@
-Scvrush.TournamentsRoute = Em.Route.extend({
+Scvrush.TournamentsRoute = Scvrush.Route.extend({
+
   events: {
+
     register: function(tournament, user) {
       tournament.set("isRegistered", true);
       tournament.get("transaction").commit();

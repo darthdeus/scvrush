@@ -1,4 +1,4 @@
-Scvrush.TournamentsNewRoute = Em.Route.extend({
+Scvrush.TournamentsNewRoute = Scvrush.Route.extend({
 
   model: function() {
     var oneHourFromNow = moment().add("hours", 2);

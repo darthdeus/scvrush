@@ -1,5 +1,7 @@
-Scvrush.TournamentsIndexRoute = Ember.Route.extend({
+Scvrush.TournamentsIndexRoute = Scvrush.Route.extend({
+
   model: function() {
     return Scvrush.Tournament.find();
   }
+
 });

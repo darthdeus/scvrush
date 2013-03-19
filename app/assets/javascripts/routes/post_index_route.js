@@ -1,4 +1,4 @@
-Scvrush.PostIndexRoute = Ember.Route.extend({
+Scvrush.PostIndexRoute = Scvrush.Route.extend({
 
   model: function() {
     return this.modelFor("post");

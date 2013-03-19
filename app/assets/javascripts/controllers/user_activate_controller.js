@@ -1,4 +1,4 @@
-Scvrush.UserEditController = Ember.ObjectController.extend({
+Scvrush.UserActivateController = Ember.ObjectController.extend({
 
   passwordInvalid: function() {
     return this.get("password.length") < 1;

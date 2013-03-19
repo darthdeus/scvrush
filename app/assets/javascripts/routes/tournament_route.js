@@ -1,4 +1,4 @@
-Scvrush.TournamentRoute = Ember.Route.extend({
+Scvrush.TournamentRoute = Scvrush.Route.extend({
 
   setupController: function(controller, model) {
     // this.set("reloader", setInterval(function() {
@@ -12,7 +12,7 @@ Scvrush.TournamentRoute = Ember.Route.extend({
 
 });
 
-Scvrush.TournamentIndexRoute = Ember.Route.extend({
+Scvrush.TournamentIndexRoute = Scvrush.Route.extend({
 
   model: function() {
     return this.modelFor("tournament");

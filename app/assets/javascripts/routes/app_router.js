@@ -25,9 +25,13 @@ Scvrush.Router.map(function() {
     });
   });
 
+  this.resource("notifications", { path: "/notifications" });
+
   this.resource("users", { path: "/users" }, function() {
     this.resource("user", { path: "/:user_id" }, function() {
       this.route("edit", { path: "/edit" });
+      this.route("login", { path: "/login" });
+      this.route("activate", { path: "/activate" });
     });
   });
 

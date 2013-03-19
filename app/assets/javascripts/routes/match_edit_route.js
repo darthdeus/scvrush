@@ -1,4 +1,4 @@
-Scvrush.MatchEditRoute = Ember.Route.extend({
+Scvrush.MatchEditRoute = Scvrush.Route.extend({
 
   setupController: function(controller, model) {
     controller.set("content", this.controllerFor("match").get("content"));

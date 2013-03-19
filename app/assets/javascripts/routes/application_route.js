@@ -10,7 +10,6 @@ Scvrush.ApplicationRoute = Ember.Route.extend({
     if (user.get("isTrial") && user.get("statuses.length") === 0) {
 
       this.sayHi();
-
     }
   },
 
@@ -40,6 +39,17 @@ Scvrush.ApplicationRoute = Ember.Route.extend({
     CS.subscribe("scvrush", function(message) {
       var type = Ember.get(Ember.lookup, message.type);
       store.load(type, message.data);
+    });
+  }
+
+});
+
+Scvrush.Route = Ember.Route.extend({
+
+  renderTemplate: function() {
+    this.render();
+    this.render("user/timeline", {
+      outlet: "sidebar"
     });
   }
 

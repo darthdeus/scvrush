@@ -1,5 +1,7 @@
-Scvrush.UsersIndexRoute = Ember.Route.extend({
+Scvrush.UsersIndexRoute = Scvrush.Route.extend({
+
   model: function() {
     return Scvrush.User.find();
   }
+
 });

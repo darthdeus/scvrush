@@ -1,4 +1,4 @@
-Scvrush.TournamentEditRoute = Ember.Route.extend({
+Scvrush.TournamentEditRoute = Scvrush.Route.extend({
 
   activate: function() {
     var tournament = this.modelFor("tournament"),

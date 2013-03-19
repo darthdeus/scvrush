@@ -1,7 +1,7 @@
-Scvrush.UserEditRoute = Ember.Route.extend({
+Scvrush.UserActivateRoute = Scvrush.Route.extend({
 
-  setupController: function(controller) {
-    controller.set("content", this.modelFor("user"));
+  model: function() {
+    return this.modelFor("user");
   },
 
   activate: function() {
@@ -13,6 +13,6 @@ Scvrush.UserEditRoute = Ember.Route.extend({
 
   deactivate: function() {
     this.modelFor("user").get("transaction").rollback();
-  },
+  }
 
 });

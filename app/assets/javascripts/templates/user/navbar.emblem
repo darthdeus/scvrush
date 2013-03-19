@@ -3,10 +3,10 @@
     linkTo "user" this
       img.avatar src=image
 
-    username
+      = username
 
   .notifications
-    linkTo "user.edit" this
+    linkTo "notifications"
       i.icon.icon-envelope title="Notifications"
 
   .pull-right.user-actions
@@ -14,5 +14,9 @@
     linkTo "user.edit" this
       i.icon.icon-cog title="Settings"
 
-    linkTo "user.edit" this
-      i.icon.icon-signout title="Log out"
+    if isTrial
+      linkTo "user.login" this
+        i.icon.icon-signin title="Log in"
+    else
+      linkTo "user.edit" this
+        i.icon.icon-signout title="Log out"
