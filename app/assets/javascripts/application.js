@@ -9,7 +9,7 @@
 //= require handlebars
 //= require ember
 //= require ember-data
-//= require ./vendor/ember-easyForm-0.1.1
+//= require ./vendor/ember-easyForm
 //= require ./vendor/ember-validations
 //= require ./scvrush
 
