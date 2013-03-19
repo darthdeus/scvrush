@@ -1,1 +1,7 @@
-Scvrush.HomeRoute = Scvrush.Route.extend();
+Scvrush.HomeRoute = Scvrush.Route.extend({
+
+  model: function() {
+    return Scvrush.currentUser;
+  }
+
+});

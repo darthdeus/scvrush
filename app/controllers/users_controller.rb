@@ -27,6 +27,7 @@ class UsersController < ApplicationController
       username: params[:user][:username],
       email: params[:user][:email],
       race: params[:user][:race],
+      server: params[:user][:server],
       password: params[:user][:password],
       password_confirmation: params[:user][:password_confirmation],
       bnet_info: params[:user][:bnet_info],

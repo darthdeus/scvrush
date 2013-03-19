@@ -1,4 +1,4 @@
-Scvrush.RacePickerController = Ember.ObjectController.extend({
+Scvrush.UserRacePickerController = Ember.ObjectController.extend({
 
   isZerg: function() {
     return this.get("race") == "Zerg";
@@ -17,8 +17,8 @@ Scvrush.RacePickerController = Ember.ObjectController.extend({
   }.property("race"),
 
   selectRace: function(race) {
-    console.log("tried to select", race);
-    this.set("content.race", race);
-  },
+    this.set("race", race);
+    this.get("transaction").commit()
+  }
 
 });

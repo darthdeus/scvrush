@@ -3,9 +3,7 @@
 
     h2 Step 1 - What is your race?
 
-    img style="opacity: 0.5" src="/assets/race_zerg_icon.png"
-    img style="opacity: 0.5" src="/assets/race_protoss_icon.png"
-    img src="/assets/race_terran_icon.png"
+    = render "user.race_picker" this
 
     h3
       | You are now known as
@@ -14,8 +12,10 @@
 
     h2 Step 2 - Where do you play?
 
-    = if Scvrush.currentUser.server
-      p We think you're playing on #{Scvrush.currentUser.server}
+    = if server
+      p We think you're playing on #{server}
+
+    = render "user.server_picker" this
 
     h2 Step 3 - Activate your account
 
