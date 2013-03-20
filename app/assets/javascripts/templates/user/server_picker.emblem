@@ -1,4 +1,4 @@
-.server-picker
+.server-picker.btn-group
   span{bindAttr class="isEU:active :btn :server-eu"}{action selectServer "EU"} EU
   span{bindAttr class="isNA:active :btn :server-na"}{action selectServer "NA"} NA
   span{bindAttr class="isKR:active :btn :server-kr"}{action selectServer "KR"} KR
