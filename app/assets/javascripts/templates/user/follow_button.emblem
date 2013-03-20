@@ -4,4 +4,4 @@ if Scvrush.keyboard.altKey
   else
     a class="btn btn-mini" click="follow this allowed-keys='alt'" Follow {{username}}
 else
-  linkTo "user" this | {{username}}
+  = linkTo "user" this | {{username}}

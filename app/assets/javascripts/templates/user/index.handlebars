@@ -30,14 +30,17 @@
   <div class="span9">
     <h2>
       <img {{bindAttr src="raceIcon"}}>
-      {{username}} ({{bnetInfo}})
+      {{#if isCurrentUser}}
+        {{username}}
+      {{else}}
+        {{control "user.follow_button" content}}
+      {{/if}}
+
+      ({{bnetInfo}})
 
       <div class="follow-box">
         {{#linkTo "users.index" class="help-inline"}}back to users{{/linkTo}}
 
-        {{#unless isCurrentUser}}
-          {{control "user.follow_button" user}}
-        {{/unless}}
       </div>
     </h2>
 
