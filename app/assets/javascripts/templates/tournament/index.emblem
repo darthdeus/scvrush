@@ -2,7 +2,9 @@
   header
     h1
       = name
-      span.back = linkTo .btn.btn-mini activeClass="" "tournaments" | All tournaments
+      if region
+        | @
+        = region
 
     if isAdmin
       = render "tournament/admin_box" this
