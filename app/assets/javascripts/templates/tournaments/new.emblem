@@ -8,8 +8,15 @@ form{action "create" content on="submit"} class="form-horizontal"
     label.control-label Name
 
     .controls
-      Em.TextField valueBinding="name"
+      Ember.TextField valueBinding="name"
       span.help-inline = errors.name.firstObject
+
+  div{bindAttr class="errors.maxPlayers:error :control-group"}
+    label.control-label Maximum Players
+
+    .controls
+      Ember.TextField valueBinding="maxPlayers"
+      span.help-inline = errors.maxPlayers.firstObject
 
   div{bindAttr class="startsAtInvalid:error :control-group"}
     label.control-label Starts at
