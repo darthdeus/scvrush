@@ -3,10 +3,11 @@ Scvrush.Tournament = DS.Model.extend(Ember.Validations.Mixin, {
   imageName:         DS.attr("string"),
   participantCount:  DS.attr("number"),
   startsAt:          DS.attr("string"),
-  winner:            DS.belongsTo("Scvrush.User"),
   seeded:            DS.attr("boolean"),
   maxPlayers:        DS.attr("number"),
+  leagues:           DS.attr("string"),
 
+  winner:            DS.belongsTo("Scvrush.User"),
   user:              DS.belongsTo("Scvrush.User"),
   users:             DS.hasMany("Scvrush.User"),
   isRegistered:      DS.attr("boolean"),
@@ -38,35 +39,9 @@ Scvrush.Tournament = DS.Model.extend(Ember.Validations.Mixin, {
     });
   },
 
-  increaseRounds: function() {
-    var rounds = this.get("rounds"),
-        newRound;
-
-    if (rounds.get("length") == 0) {
-      newRound = Scvrush.Round.createRecord({ number: 2 });
-    } else {
-      var lastRoundNumber = rounds.get("lastObject.number");
-      newRound = Scvrush.Round.createRecord({ number: lastRoundNumber * 2 });
-    }
-
-    rounds.pushObject(newRound);
-  },
-
   reverseRounds: function() {
     return this.get("rounds");
   }.property("rounds.@each"),
-
-  nameInvalid: function() {
-    return this.get("name.length") < 3 || this.get("name.length") > 100;
-  }.property("name"),
-
-  isInvalid: function() {
-    return this.get("nameInvalid");
-  }.property("nameInvalid"),
-
-  revalidate: function () {
-    this.notifyPropertyChange("nameInvalid");
-  },
 
   startsAtInvalid: function() {
     return !/^\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}(:\d{2})?Z?$/.test(this.get("startsAt"));

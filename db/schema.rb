@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130214205722) do
+ActiveRecord::Schema.define(:version => 20130320190957) do
 
   create_table "achievements", :force => true do |t|
     t.string   "name"
@@ -184,6 +184,7 @@ ActiveRecord::Schema.define(:version => 20130214205722) do
     t.string   "channel"
     t.string   "logo"
     t.integer  "max_players"
+    t.string   "leagues"
   end
 
   add_index "tournaments", ["post_id"], :name => "index_tournaments_on_post_id"

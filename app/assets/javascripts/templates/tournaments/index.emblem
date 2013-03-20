@@ -1,0 +1,29 @@
+.tournaments.row
+
+  .span9
+    each tournament in controller
+      .tournament
+
+        .time = tournament.startTime
+
+        = linkTo "tournament" tournament
+          img{bindAttr src="tournament.imageUrl"}
+
+        .description
+          h3 = linkTo "tournament" tournament | {{tournament.name}}
+
+          p
+            i.icon-user
+            '
+            = tournament.participantCount
+            '
+            if tournament.onePerson
+              | person
+            else
+              | people
+
+
+  .span3
+    Ember.TextField valueBinding="query" placeholder="Search"
+
+    = linkTo .btn.btn-primary "tournaments.new" | Create your own tournament

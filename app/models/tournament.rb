@@ -172,6 +172,7 @@ class Tournament < ActiveRecord::Base
     tournament.name = params[:name]
     tournament.starts_at = params[:starts_at]
     tournament.max_players = params[:max_players]
+    tournament.leagues = params[:leagues]
 
     tournament.tournament_type = self.types[:user]
     tournament.user = user
