@@ -11,6 +11,12 @@ form{action "create" content on="submit"} class="form-horizontal"
       Ember.TextField valueBinding="name"
       span.help-inline = errors.name.firstObject
 
+  .control-group
+    label.control-label Region
+
+    .controls
+      Ember.Select valueBinding="region" contentBinding="Scvrush.Tournament.REGIONS"
+
   div{bindAttr class="errors.maxPlayers:error :control-group"}
     label.control-label Maximum Players
 

@@ -1,0 +1,20 @@
+.tournament
+  header
+    h1
+      = name
+      span.back = linkTo .btn.btn-mini activeClass="" "tournaments" | All tournaments
+
+    if isAdmin
+      = render "tournament/admin_box" this
+
+  if isStarted
+    if isEmpty
+      p.alert.alert-info No players were signed up for this tournament when it started
+    else
+      if isPlaying
+        Scvrush.TournamentCurrentMatchView
+
+      = render "tournament.rounds" this
+
+  else
+    = render "tournament.signup" this

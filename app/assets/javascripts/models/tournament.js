@@ -6,6 +6,7 @@ Scvrush.Tournament = DS.Model.extend(Ember.Validations.Mixin, {
   seeded:            DS.attr("boolean"),
   maxPlayers:        DS.attr("number"),
   leagues:           DS.attr("string"),
+  region:            DS.attr("string"),
 
   winner:            DS.belongsTo("Scvrush.User"),
   user:              DS.belongsTo("Scvrush.User"),
@@ -92,4 +93,8 @@ Scvrush.Tournament = DS.Model.extend(Ember.Validations.Mixin, {
     return time.format("LT") + " (" + time.fromNow() + ")";
   }.property("startsAt"),
 
+});
+
+Scvrush.Tournament.reopenClass({
+  REGIONS: ["EU", "NA", "KR", "SEA"]
 });
