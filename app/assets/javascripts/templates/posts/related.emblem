@@ -1,7 +1,8 @@
 .related-posts.sidebar-list
   h2 Articles
 
-  Ember.TextField placeholder="Search by keywords..." class="search"
+  .sidebar-form
+    Ember.TextField placeholder="Search by keywords..." class="search"
 
   .items
     each controller

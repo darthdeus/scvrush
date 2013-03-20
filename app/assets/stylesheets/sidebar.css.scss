@@ -41,16 +41,12 @@
   }
 }
 
-.timeline {
+.sidebar-form {
+  padding-left: 20px;
 
-  .new-status {
-    padding-left: 20px;
-
-    input {
-      @include flat-input;
-    }
+  input {
+    @include flat-input;
   }
-
 }
 
 @import "related_posts";
