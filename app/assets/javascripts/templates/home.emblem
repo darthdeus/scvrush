@@ -9,17 +9,18 @@
       | You are now known as
       strong  happy-marine-12
 
+    if step2
+      h2 Step 2 - Where do you play?
 
-    h2 Step 2 - Where do you play?
+      if server
+        p We think you're playing on #{server}
 
-    = if server
-      p We think you're playing on #{server}
+      = render "user.server_picker" this
 
-    = render "user.server_picker" this
+    if step3
+      h2 Step 3 - Activate your account
 
-    h2 Step 3 - Activate your account
-
-    linkTo .btn.btn-large "user.edit" Scvrush.currentUser | Activate!
+      linkTo .btn.btn-large "user.edit" Scvrush.currentUser | Activate!
 
   .span5
 
