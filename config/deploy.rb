@@ -18,7 +18,7 @@ set :runner,    user
 set :rails_env, "production"
 set :use_sudo,  false
 
-set :deploy_to, "/var/apps/#{application}"
+set :deploy_to, "/opt/apps/#{application}"
 set :deploy_via, :remote_cache
 
 namespace :deploy do
