@@ -4,7 +4,8 @@ set :stages, %w(production staging)
 set :default_stage, "staging"
 require 'capistrano/ext/multistage'
 
-set :application, "scvrush.com"
+set :application, "scvrush"
+set :domain, "beta.scvrush.com"
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
