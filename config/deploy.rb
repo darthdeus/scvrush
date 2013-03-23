@@ -22,6 +22,11 @@ set :use_sudo,  false
 set :deploy_to, "/opt/apps/#{application}"
 set :deploy_via, :remote_cache
 
+
+set :default_environment, {
+    "PATH" => "/home/deploy/.rbenv/shims:/home/deploy/.rbenv/bin:$PATH"
+}
+
 namespace :deploy do
 
   task :start, :roles => :app, :except => { :no_release => true } do
