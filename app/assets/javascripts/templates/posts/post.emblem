@@ -5,5 +5,9 @@
 
     h2
       = linkTo "post.index" this | {{title}}
+
+    .tags
+      = each tagList itemController="tag"
+        span.tag click="filterTag this" = content
   else
     p The posts are being loaded

@@ -13,4 +13,4 @@
 //= require ./scvrush
 
 ENV = {};
-ENV.EXPERIMENTAL_CONTROL_HELPER = true;
+// ENV.EXPERIMENTAL_CONTROL_HELPER = true;

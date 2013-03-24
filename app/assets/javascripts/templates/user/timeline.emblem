@@ -2,7 +2,7 @@
   h2 Timeline
 
   .sidebar-form
-    = control "statuses.new"
+    = render "statuses.new"
 
   .items
     each recentStatuses
