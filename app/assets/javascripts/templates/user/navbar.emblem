@@ -1,8 +1,7 @@
 .user-navbar.navbar-fixed-top
-  .user-info
-    linkTo "user" this
-      img.avatar src=image
-      .username = username
+  linkTo .user-info "user" this
+    img.avatar src=image
+    .username = username
 
   .notifications
     linkTo "notifications"

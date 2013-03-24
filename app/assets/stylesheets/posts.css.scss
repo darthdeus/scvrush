@@ -41,17 +41,19 @@
       }
     }
 
-    .tags {
-      span.tag {
-        padding: 2px 5px;
-        margin-right: 3px;
-        background: #ccc;
-        border-radius: 2px;
-        cursor: pointer;
+    .tag {
+      padding: 2px 5px;
+      margin-right: 3px;
+      background: #eee;
+      border-radius: 2px;
+      cursor: pointer;
+    }
 
-        &:hover {
-          background: #aaa;
-        }
+    &:hover .tag {
+      background: #ccc;
+
+      &:hover {
+        background: #aaa;
       }
     }
 

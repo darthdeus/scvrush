@@ -48,13 +48,16 @@
     $inputBackground: #C4D898;
 
     img.avatar {
-      display: inline-block;
+      display: block;
+      float: left;
       height: 30px;
+      width: 30px;
+      margin-right: 5px;
     }
 
     .username {
-      display: inline-block;
-      padding-left: 5px;
+      display: block;
+      float: left;
     }
 
   }
