@@ -8,9 +8,8 @@ Scvrush.ImageView = Ember.View.extend({
     var self = this;
 
     this.$()[0].onerror = function() {
-      if (!self.get("failed")) {
+      if (!self.get("failed") && self.get("state") !== "isDestroyed") {
         self.set("failed", true);
-
         this.src = "https://s3.amazonaws.com/scvrush/uploads/post/featured_image/100x100_dark.png";
       }
     };

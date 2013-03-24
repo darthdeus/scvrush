@@ -1,13 +1,9 @@
-.row
+.row.home
   .span7
 
     h2 Step 1 - What is your race?
 
     = render "user.race_picker" this
-
-    h3
-      | You are now known as
-      strong  happy-marine-12
 
     if step2
       h2 Step 2 - Where do you play?
@@ -24,10 +20,20 @@
 
   .span5
 
-    h2 Featured Articles
 
-    img src="/assets/grubby_darkforce.png"
+    .featured
+      if featuredPost
+        = linkTo "post" featuredPost
+          img src=featuredPost.image
 
-    h2 Upcoming tournaments
+          h3.title = featuredPost.title
 
-    img src="/assets/tournament_eu_bsg.png"
+    if featuredTournament
+      h2 Upcoming Tournaments
+
+      = linkTo "tournament" featuredTournament
+        img src=featuredPost.image
+
+      hr
+
+      = linkTo .btn "tournaments" | See more

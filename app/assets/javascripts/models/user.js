@@ -12,10 +12,11 @@ Scvrush.User = DS.Model.extend(Ember.Validations.Mixin, {
   passwordConfirmation: DS.attr("string"),
 
   statuses:  DS.hasMany("Scvrush.Status"),
+
   followers: DS.hasMany("Scvrush.User"),
   following: DS.hasMany("Scvrush.User"),
 
-  tournaments: DS.hasMany("Scvrush.Tournament"),
+  // tournaments: DS.hasMany("Scvrush.Tournament"),
 
   playingTournaments: function() {
     return Scvrush.Tournament.filter(function(tournament) {

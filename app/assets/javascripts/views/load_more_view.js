@@ -3,8 +3,8 @@ Scvrush.LoadMoreView = Ember.View.extend({
 
   didInsertElement: function() {
     var view = this;
-    this.$().bind("inview", function(event, isInView, visiblePartX, visiblePartY) {
-      if (isInView) Ember.tryInvoke(view.get("controller"), "loadMore");
-    });
+    // this.$().bind("inview", function(event, isInView, visiblePartX, visiblePartY) {
+    //   if (isInView) Ember.tryInvoke(view.get("controller"), "loadMore");
+    // });
   }
 });

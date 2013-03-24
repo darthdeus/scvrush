@@ -96,5 +96,10 @@ Scvrush.Tournament = DS.Model.extend(Ember.Validations.Mixin, {
 });
 
 Scvrush.Tournament.reopenClass({
-  REGIONS: ["EU", "NA", "KR", "SEA"]
+  REGIONS: ["EU", "NA", "KR", "SEA"],
+
+  featuredTournament: function() {
+    return Scvrush.Tournament.all().get("firstObject");
+  }
+
 });

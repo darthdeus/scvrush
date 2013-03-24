@@ -3,7 +3,7 @@ class TournamentSerializer < ActiveModel::Serializer
               :region, :leagues, :max_players
 
   has_many :rounds, embed: :ids
-  has_many :users, embed: :ids, include: true
+  has_many :users, embed: :ids#, include: true
 
   def starts_at
     object.starts_at.strftime "%Y-%m-%d %H:%M"

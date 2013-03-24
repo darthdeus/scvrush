@@ -1,0 +1,19 @@
+.home {
+
+  .featured {
+    @include clearfix;
+
+    img {
+      float: left;
+      margin-right: 10px;
+    }
+
+    h3.title {
+      float: left;
+      width: 200px;
+      font-size: 16px;
+    }
+
+  }
+}
+
