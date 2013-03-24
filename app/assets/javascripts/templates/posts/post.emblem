@@ -1,0 +1,9 @@
+.post
+  if isLoaded
+    = linkTo "post.index" this class="image"
+      view Scvrush.ImageView srcBinding="image"
+
+    h2
+      = linkTo "post.index" this | {{title}}
+  else
+    p The posts are being loaded

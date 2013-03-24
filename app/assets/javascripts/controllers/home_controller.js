@@ -1,5 +1,8 @@
 Scvrush.HomeController = Ember.ObjectController.extend({
 
+  featuredPost: null,
+  featuredTournament: null,
+
   init: function() {
     this._super();
 
@@ -8,6 +11,11 @@ Scvrush.HomeController = Ember.ObjectController.extend({
     var response = Scvrush.Post.featuredPost();
     response.then(function() {
       controller.set("featuredPost", response.get("firstObject"));
+    });
+
+    var tournaments = Scvrush.Tournament.featuredTournament();
+    tournaments.then(function() {
+      controller.set("featuredTournament", tournaments.get("firstObject"));
     });
   },
 

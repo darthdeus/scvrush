@@ -99,7 +99,7 @@ Scvrush.Tournament.reopenClass({
   REGIONS: ["EU", "NA", "KR", "SEA"],
 
   featuredTournament: function() {
-    return Scvrush.Tournament.all().get("firstObject");
+    return Scvrush.Tournament.query();
   }
 
 });

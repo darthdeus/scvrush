@@ -1,6 +1,7 @@
 .home {
 
   .featured {
+    margin-bottom: 10px;
     @include clearfix;
 
     img {
@@ -15,5 +16,5 @@
     }
 
   }
-}
 
+}

@@ -20,7 +20,6 @@
 
   .span5
 
-
     .featured
       if featuredPost
         = linkTo "post" featuredPost
@@ -28,12 +27,11 @@
 
           h3.title = featuredPost.title
 
-    if featuredTournament
-      h2 Upcoming Tournaments
-
-      = linkTo "tournament" featuredTournament
-        img src=featuredPost.image
+    .featured
+      if featuredTournament
+        = linkTo "tournament" featuredTournament
+          img src=featuredTournament.imageUrl
 
       hr
 
-      = linkTo .btn "tournaments" | See more
+    = linkTo .btn "tournaments" | See More Tournaments
