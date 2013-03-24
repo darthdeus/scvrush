@@ -12,3 +12,8 @@
             img src=user.image
 
         .text = view Scvrush.UserLinksView contentBinding="text"
+
+    else
+      .first-status
+        i.icon-pencil
+        |  Create your first status!
