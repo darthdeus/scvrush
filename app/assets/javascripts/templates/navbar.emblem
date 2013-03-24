@@ -4,7 +4,6 @@
     = linkTo .brand "home"
       img.logo src="/assets/logo_only.png"
 
-
     ul.nav
       li = linkTo "home" | Home
       li = linkTo "posts" | Content

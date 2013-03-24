@@ -152,22 +152,11 @@ body {
   margin-top: 6px;
 }
 
-.carousel {
-  box-shadow: 0 0 3px #333;
-
-  .carousel-control {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    display: none;
-    margin-top: 0;
-  }
-
-  &:hover .carousel-control { display: block; }
-}
-
 .timeline-item {
   padding: 10px;
   border-bottom: 1px solid #aaa;
 }
+
 .comic {
   img {
     width: 460px;

@@ -2,8 +2,7 @@
   .user-info
     linkTo "user" this
       img.avatar src=image
-
-      = username
+      .username = username
 
   .notifications
     linkTo "notifications"
