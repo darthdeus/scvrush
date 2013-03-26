@@ -1,22 +1,14 @@
 source "https://rubygems.org"
 
-gem "rails",        "~> 3.2.12"
+gem "rails",        "~> 3.2.13"
 
-gem "jquery-rails", "~> 2.2.0"
 gem "bcrypt-ruby",  "~> 3.0.1", require: "bcrypt"
 
-gem "coffee-rails",             "~> 3.2.2"
 
 gem "pg",                       "~> 0.14.0"
 
 # Frontend
-gem "slim-rails",              "~> 1.1.0"
-gem "sass-rails",              "~> 3.2.5"
-gem "jquery-datatables-rails", "~> 1.11.1"
-gem "bootstrap-sass",          "~> 2.3.0.0"
 gem "simple_form",             "~> 2.0.1"
-gem "bourbon",                 "~> 3.1.1"
-gem "font-awesome-sass-rails", "~> 3.0.2.1"
 
 gem "kaminari"
 gem "tire"
@@ -40,6 +32,14 @@ gem "party_foul"
 
 group :assets do
   gem "uglifier",         "~> 1.3.0"
+  gem "slim-rails",              "~> 1.1.0"
+  gem "sass-rails",              "~> 3.2.5"
+  gem "jquery-datatables-rails", "~> 1.11.1"
+  gem "bootstrap-sass",          "~> 2.3.0.0"
+  gem "font-awesome-sass-rails", "~> 3.0.2.1"
+  gem "jquery-rails", "~> 2.2.0"
+  gem "coffee-rails",             "~> 3.2.2"
+  gem "bourbon",                 "~> 3.1.1"
 end
 
 gem "dalli"
@@ -49,8 +49,6 @@ gem "redis",              "~> 3.0.2"
 gem "cancan", "~> 1.6.7"
 gem "rolify", "~> 3.2.0"
 
-gem "party_boy",            "~> 0.3.4"
-
 gem "acts-as-taggable-on",  "~> 2.3.3"
 gem "rest-client",          "~> 1.6.7"
 
@@ -58,10 +56,6 @@ gem "execjs", "~> 1.4.0"
 gem "geoip"
 
 group :development, :test do
-  gem "rb-fsevent", "~> 0.9.1"
-  gem "guard-ctags-bundler", "~> 0.1.6"
-  gem "pry",        "~> 0.9.9"
-  gem "pry-doc",    "~> 0.4.2"
   gem "pry-rails",  "~> 0.2.2"
   gem "pry-nav",    "~> 0.2.1"
   gem "thin"

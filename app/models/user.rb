@@ -7,10 +7,6 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :roles, join_table: :users_roles
 
-  has_many :user_achievements
-  has_many :achievements, through: :user_achievements
-
-  has_many :comments
   has_many :replies
   has_many :signups, dependent: :destroy
   has_many :tournaments, through: :signups
@@ -21,13 +17,7 @@ class User < ActiveRecord::Base
   has_many :statuses
 
   has_many :posts
-  has_many :won_raffles, class_name: "Raffle", foreign_key: "winner_id"
-  has_many :votes
 
-  has_many :raffle_signups
-  has_many :raffles, through: :raffle_signups
-
-  has_many :following_relationships, class_name: "Relationship", foreign_key: "requestor_id"
   has_many :notifications, dependent: :destroy, order: "created_at DESC"
   # ActiveRecord reputation system
   has_many :evaluations, class_name: "RSEvaluation", as: :source
@@ -41,7 +31,6 @@ class User < ActiveRecord::Base
 
 
   attr_accessor :password
-  acts_as_followable
 
   mount_uploader :avatar, AvatarUploader
 
@@ -125,14 +114,6 @@ class User < ActiveRecord::Base
             format: { with: /^\d+$/, message: 'can contain only numbers' },
             if: lambda { |u| u.bnet_username? }
 
-  def to_s
-    if bnet_info?
-      "#{username} - #{bnet_info}"
-    else
-      username
-    end
-  end
-
   def bnet_info
     (bnet_username && bnet_code) ? "#{bnet_username}.#{bnet_code}" : nil
   end
@@ -158,32 +139,6 @@ class User < ActiveRecord::Base
     begin
       self[column] = SecureRandom.urlsafe_base64
     end while User.exists?(column => self[column])
-  end
-
-  def following_ids
-    # TODO - make this more performant
-    following.map(&:id)
-  end
-
-  def won_tournament!
-    achievement = Achievement.find_or_create_by_name("Tournament winner")
-    self.achievements << achievement unless self.achievements.include?(achievement)
-    self.save!
-  end
-
-  # Users are friends if they are following eachother
-  def friends
-    self.followers & self.followings.map(&:requestor)
-  end
-
-  def friend?(user)
-    self.following?(user) && user.following?(self)
-  end
-
-  # Return all ids from the users the current user is following,
-  # include his own. Used to query statuses for user's timeline.
-  def timeline_ids
-    self.following.map(&:id) << self.id
   end
 
   def avatar_image
