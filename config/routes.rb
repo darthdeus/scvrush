@@ -8,7 +8,6 @@ Scvrush::Application.routes.draw do
     end
     resources :posts
     resources :coaches
-    resources :blog_posts
     resources :users
 
     match "/staff" => "staff#index"
@@ -28,18 +27,7 @@ Scvrush::Application.routes.draw do
     end
   end
 
-  resources :pages, only: :show
-
-  resources :raffle_signups
-  resources :raffles do
-    post :close, on: :member
-  end
-
   resources :images, only: :create
-  get "dashboard/index", as: 'dashboard'
-  get "dashboard/ggbet"
-
-  resources :tournament_days
 
   resources :rounds
   resources :matches
@@ -66,13 +54,6 @@ Scvrush::Application.routes.draw do
   end
 
   get "home/index"
-
-  # FIXME - this causes acts_as_taggable to bug any rake tasks,
-  # including migrations, as it loads the model and fails on a missing
-  # tags table
-
-  get "posts/tag/:id" => "posts#tag", :as => "tag"
-  match "posts/tags/*tag" => "posts#tagged_with"
 
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :posts do
@@ -112,61 +93,4 @@ Scvrush::Application.routes.draw do
     end
   end
 
-
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
-
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
-
-  # See how all your routes lay out with "rake routes"
-
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id(.:format)))'
 end

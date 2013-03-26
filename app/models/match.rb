@@ -14,7 +14,6 @@ end
 class Match < ActiveRecord::Base
   class UnknownPlayer < Exception; end
 
-  has_many :games, dependent: :destroy
   belongs_to :round
 
   belongs_to :player1, class_name: "User"
