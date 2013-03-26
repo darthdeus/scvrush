@@ -50,7 +50,6 @@ gem "cancan", "~> 1.6.7"
 gem "rolify", "~> 3.2.0"
 
 gem "acts-as-taggable-on",  "~> 2.3.3"
-gem "rest-client",          "~> 1.6.7"
 
 gem "execjs", "~> 1.4.0"
 gem "geoip"
@@ -64,9 +63,6 @@ group :development, :test do
 
   gem "populator",          "~> 1.0.0"
   gem "faker",              "~> 1.1.1"
-  gem "better_errors"
-  gem "binding_of_caller"
-  gem "konacha"
 end
 
 group :test do
@@ -78,8 +74,6 @@ group :test do
   gem "factory_girl_rails", "~> 4.2.0"
   gem "launchy",            "~> 2.2.0"
 end
-
-gem "rails_autolink"
 
 gem "unicorn",        "~> 4.6.0"
 gem "capistrano",     "~> 2.14.1"

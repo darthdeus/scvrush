@@ -1,5 +1,4 @@
 class RoundsController < ApplicationController
-  before_filter :require_login, except: [:index]
 
   respond_to :json
 
