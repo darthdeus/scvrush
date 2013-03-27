@@ -1,5 +1,4 @@
 class StatusesController < ApplicationController
-  # include ApplicationHelper
   respond_to :json
 
   def index

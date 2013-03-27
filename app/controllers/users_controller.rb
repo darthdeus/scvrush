@@ -7,7 +7,6 @@ class UsersController < ApplicationController
     elsif params[:username]
       users = User.find_all_by_username(params[:username])
     elsif params[:query]
-      # users = User.search(params[:query], load: true).to_a
       users = User.find_all_by_username("%#{params[:query]}%").limit(20)
     else
       users = User.first(20)
