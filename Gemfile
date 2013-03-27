@@ -35,7 +35,6 @@ gem "fog",                "~> 1.9.0"
 gem "carrierwave",        "~> 0.8.0"
 gem "mini_magick",        "~> 3.4"
 gem "airbrake",           "~> 3.1.6"
-gem "newrelic_rpm",       "~> 3.5.5"
 gem "party_foul"
 
 group :assets do

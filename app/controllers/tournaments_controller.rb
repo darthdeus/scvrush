@@ -60,7 +60,6 @@ class TournamentsController < ApplicationController
       tournament.update_attributes(params[:tournament].extract!(:starts_at, :name))
     end
 
-    # TODO - status should be sideloaded
     render json: tournament
   end
 

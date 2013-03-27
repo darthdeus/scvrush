@@ -1,5 +1,5 @@
 class Tournament < ActiveRecord::Base
-  has_many :signups, dependent: :destroy
+  has_many :signups, dependent: :destroy, counter_cache: true
   has_many :users, through: :signups
 
   has_many :rounds, order: "number DESC", dependent: :destroy
@@ -163,10 +163,6 @@ class Tournament < ActiveRecord::Base
     ]
   end
 
-  def participant_count
-    signups.count
-  end
-
   def self.factory(params, user)
     tournament = new
     tournament.name = params[:name]
@@ -181,7 +177,6 @@ class Tournament < ActiveRecord::Base
 
     tournament
   end
-
 
   class DoubleRegistration < Error; end
 
