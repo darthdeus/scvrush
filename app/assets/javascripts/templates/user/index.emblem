@@ -1,0 +1,55 @@
+.row.user-profile
+  .span3
+    .avatar
+      img src={image}
+
+    = about
+
+    if hasFollowers
+      h3 Followers
+
+      each follower in followers
+        = linkTo "user" follower | {{follower.username}}
+        br
+
+    else
+      .alert.alert-info This user has no followers.
+
+
+    h3 Following
+
+    each follower in following
+      = linkTo "user" follower | {{follower.username}}
+      br
+
+  .span9
+    h2
+      img src=raceIcon
+      if isCurrentUser
+        = username
+      else
+        = control "user.follow_button" content
+
+      | ({{bnetInfo}})
+
+      .follow-box
+        = linkTo .help-inline "users.index" | back to users
+
+
+    .statuses
+      if isCurrentUser
+        = render "statuses.new"
+
+      each status in timelineStatuses
+        .status
+          .author
+            = linkTo "user" status.user | @{{status.user.username}}
+
+          .content
+            .text
+              = Scvrush.UserLinksView contentBinding="status.text"
+
+          .meta
+            if isCurrentUser
+              button.btn.btn-mini click="deleteStatus" status"
+                i.icon-remove
