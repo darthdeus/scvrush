@@ -1,7 +1,9 @@
+$navbarOffset: 70px;
+
 .main-navbar .navbar-inverse {
   background: #333333;
   padding: 0;
-  height: 60px;
+  height: $navbarOffset;
   margin-bottom: 44px;
 
   .container {
@@ -31,7 +33,7 @@
 }
 
 .user-navbar {
-  top: 60px;
+  top: $navbarOffset;
   height: 30px;
   line-height: 30px;
 
