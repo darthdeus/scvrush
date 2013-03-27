@@ -19,8 +19,6 @@ class User < ActiveRecord::Base
   has_many :posts
 
   has_many :notifications, dependent: :destroy, order: "created_at DESC"
-  # ActiveRecord reputation system
-  has_many :evaluations, class_name: "RSEvaluation", as: :source
 
   attr_accessible :username, :email, :password, :password_confirmation,
                   :password_reset_token, :avatar, :race, :league, :server,
@@ -84,14 +82,6 @@ class User < ActiveRecord::Base
     find_all_by_username(username).first
   end
 
-  def self.filtered(params)
-    res = self
-    res = res.where(race:   params[:race]) if params[:race] && params[:race] != 'Any'
-    res = res.where(server: params[:server]) if params[:server]
-    res = res.where(league: params[:league]) if params[:league]
-    return res
-  end
-
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
   validates :password, confirmation: true
@@ -118,7 +108,6 @@ class User < ActiveRecord::Base
     (bnet_username && bnet_code) ? "#{bnet_username}.#{bnet_code}" : nil
   end
 
-  # TODO - check for this on the client as well
   def bnet_info=(value = "")
     if value
       self.bnet_username, self.bnet_code = value.split(".")

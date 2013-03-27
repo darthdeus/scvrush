@@ -6,9 +6,9 @@ Scvrush = Ember.Application.create({
     Scvrush.currentUser = Scvrush.User.find(userId);
 
     var bindKeys = function(event) {
-      Scvrush.set("keyboard.shiftKey", event.shiftKey);
-      Scvrush.set("keyboard.altKey", event.altKey);
-      Scvrush.set("keyboard.ctrlKey", event.ctrlKey);
+      Ember.set("Scvrush.keyboard.shiftKey", event.shiftKey);
+      Ember.set("Scvrush.keyboard.altKey", event.altKey);
+      Ember.set("Scvrush.keyboard.ctrlKey", event.ctrlKey);
     };
 
     $(document).keydown(bindKeys);

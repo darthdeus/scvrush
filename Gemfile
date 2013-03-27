@@ -43,7 +43,6 @@ group :assets do
 end
 
 gem "dalli"
-gem "redis",              "~> 3.0.2"
 
 # Role management
 gem "cancan", "~> 1.6.7"
@@ -70,7 +69,6 @@ group :test do
   gem "simplecov",          "~> 0.7.1"
   gem "rspec-rails",        "~> 2.13.0"
   gem "capybara",           "~> 2.0.2"
-  gem "poltergeist"
   gem "factory_girl_rails", "~> 4.2.0"
   gem "launchy",            "~> 2.2.0"
 end
