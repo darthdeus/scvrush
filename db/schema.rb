@@ -11,15 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130326130515) do
-
-  create_table "blog_posts", :force => true do |t|
-    t.string   "title"
-    t.string   "url"
-    t.integer  "order"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20130327233008) do
 
   create_table "coaches", :force => true do |t|
     t.integer  "order"
@@ -30,15 +22,6 @@ ActiveRecord::Schema.define(:version => 20130326130515) do
   end
 
   add_index "coaches", ["post_id"], :name => "index_coaches_on_post_id"
-
-  create_table "games", :force => true do |t|
-    t.integer  "winner",     :null => false
-    t.integer  "match_id",   :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "games", ["match_id"], :name => "index_games_on_match_id"
 
   create_table "images", :force => true do |t|
     t.string   "image"
@@ -168,6 +151,7 @@ ActiveRecord::Schema.define(:version => 20130326130515) do
     t.integer  "max_players"
     t.string   "leagues"
     t.string   "region"
+    t.integer  "signups_count",   :default => 0
   end
 
   add_index "tournaments", ["post_id"], :name => "index_tournaments_on_post_id"

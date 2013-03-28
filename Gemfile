@@ -4,13 +4,8 @@ gem "rails",        "~> 3.2.13"
 
 gem "bcrypt-ruby",  "~> 3.0.1", require: "bcrypt"
 
-
-gem "pg",                       "~> 0.14.0"
-
-# Frontend
-gem "simple_form",             "~> 2.0.1"
-
 gem "kaminari"
+gem "pg",                       "~> 0.14.0"
 gem "tire"
 gem "catsocket_client", github: "darthdeus/catsocket_client"
 
@@ -19,9 +14,8 @@ gem "barber-emblem", github: "machty/barber-emblem"
 gem "emblem-rails"
 gem "active_model_serializers", github: "rails-api/active_model_serializers"
 
-gem "rdiscount",          "~> 1.6.8"
-
 gem "draper",             "~> 1.1.0"
+gem "simple_form",        "~> 2.0.1"
 
 gem "fog",                "~> 1.9.0"
 gem "carrierwave",        "~> 0.8.0"
@@ -67,7 +61,6 @@ group :test do
   gem "database_cleaner",   "~> 0.9.1"
   gem "simplecov",          "~> 0.7.1"
   gem "rspec-rails",        "~> 2.13.0"
-  gem "capybara",           "~> 2.0.2"
   gem "factory_girl_rails", "~> 4.2.0"
   gem "launchy",            "~> 2.2.0"
 end

@@ -15,7 +15,7 @@
           p
             i.icon-user
             '
-            = tournament.participantCount
+            = tournament.signupsCount
             '
             if tournament.onePerson
               | person

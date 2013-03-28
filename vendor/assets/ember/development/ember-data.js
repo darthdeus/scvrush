@@ -1,4 +1,4 @@
-// Last commit: 9d6686c (2013-03-22 19:26:49 -0700)
+// Last commit: 5fd6d65 (2013-03-28 01:13:50 +0100)
 
 
 (function() {
@@ -4331,6 +4331,7 @@ DS.Model.reopenClass({
         }
 
         if (!types.contains(type)) {
+          Ember.assert("Trying to sideload " + name + " on " + this.toString() + " but the type doesn't exist.", !!type);
           types.push(type);
         }
       }

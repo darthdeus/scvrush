@@ -9,7 +9,7 @@ class Signup < ActiveRecord::Base
   # TODO - remove signup from here, potentital security risk
   attr_accessible :tournament, :user, :signup
 
-  belongs_to :tournament
+  belongs_to :tournament, counter_cache: true
   belongs_to :user
 
   has_many :statuses, as: :statusable

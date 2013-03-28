@@ -1,7 +1,7 @@
 Scvrush.Tournament = DS.Model.extend(Ember.Validations.Mixin, {
   name:              DS.attr("string"),
   imageName:         DS.attr("string"),
-  participantCount:  DS.attr("number"),
+  signupsCount:      DS.attr("number"),
   startsAt:          DS.attr("string"),
   seeded:            DS.attr("boolean"),
   maxPlayers:        DS.attr("number"),
@@ -14,7 +14,6 @@ Scvrush.Tournament = DS.Model.extend(Ember.Validations.Mixin, {
   isRegistered:      DS.attr("boolean"),
   isChecked:         DS.attr("boolean"),
 
-  tournamentDay:     DS.belongsTo("Scvrush.TournamentDay"),
   rounds:            DS.hasMany("Scvrush.Round"),
 
   validations: {
@@ -64,8 +63,8 @@ Scvrush.Tournament = DS.Model.extend(Ember.Validations.Mixin, {
   }.property("startsAt"),
 
   isEmpty: function() {
-    return !(this.get("participantCount") > 0);
-  }.property("participantCount"),
+    return !(this.get("signupsCount") > 0);
+  }.property("signupsCount"),
 
   hasRounds: function() {
     return this.get("rounds.length") > 0;
@@ -80,8 +79,8 @@ Scvrush.Tournament = DS.Model.extend(Ember.Validations.Mixin, {
   }.property("winnerId"),
 
   onePerson: function() {
-    return this.get("participantCount") == 1;
-  }.property("participantCount"),
+    return this.get("signupsCount") == 1;
+  }.property("signupsCount"),
 
   imageUrl: function() {
     return "/assets/" + this.get("imageName");
