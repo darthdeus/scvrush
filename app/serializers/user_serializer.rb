@@ -3,6 +3,7 @@ class UserSerializer < ActiveModel::Serializer
 
   has_many :tournaments, embed: :ids, include: true
   has_many :statuses, embed: :ids
+  has_many :notifications, embed: :ids
 
   def include_tournaments?
     scope.id == object.id if scope

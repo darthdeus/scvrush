@@ -16,6 +16,8 @@ Scvrush.User = DS.Model.extend(Ember.Validations.Mixin, {
   followers: DS.hasMany("Scvrush.User"),
   following: DS.hasMany("Scvrush.User"),
 
+  notifications: DS.hasMany("Scvrush.Notification"),
+
   // tournaments: DS.hasMany("Scvrush.Tournament"),
 
   playingTournaments: function() {

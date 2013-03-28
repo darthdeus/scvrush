@@ -28,6 +28,7 @@ Scvrush::Application.routes.draw do
   end
 
   resources :images, only: :create
+  resources :notifications
 
   resources :rounds
   resources :matches
