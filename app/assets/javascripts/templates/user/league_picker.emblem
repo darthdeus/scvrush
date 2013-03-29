@@ -1,0 +1,8 @@
+.league-picker
+  span{bindAttr class="isBronze:active :league-bronze"}{action selectLeague "bronze"}
+  span{bindAttr class="isSilver:active :league-silver"}{action selectLeague "silver"}
+  span{bindAttr class="isGold:active :league-gold"}{action selectLeague "gold"}
+  span{bindAttr class="isPlatinum:active :league-platinum"}{action selectLeague "platinum"}
+  span{bindAttr class="isDiamond:active :league-diamond"}{action selectLeague "diamond"}
+  span{bindAttr class="isMasters:active :league-masters"}{action selectLeague "masters"}
+

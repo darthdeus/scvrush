@@ -1,10 +1,11 @@
 Scvrush.User = DS.Model.extend(Ember.Validations.Mixin, {
   username:  DS.attr("string"),
   email:     DS.attr("string"),
-  race:      DS.attr("string"),
   image:     DS.attr("string"),
   bnetInfo:  DS.attr("string"),
   server:    DS.attr("string"),
+  race:      DS.attr("string"),
+  league:    DS.attr("string"),
   expiresAt: DS.attr("date"),
   about:     DS.attr("string"),
 
@@ -25,6 +26,14 @@ Scvrush.User = DS.Model.extend(Ember.Validations.Mixin, {
       return tournament.get("isRegistered") || tournament.get("isChecked");
     });
   }.property(),
+
+  leagueIcon: function() {
+    if (this.get("league")) {
+      return "/assets/league_" + this.get("league").toLowerCase() + "_icon.png";
+    } else {
+      return "/assets/league_bronze_icon.png";
+    }
+  }.property("race"),
 
   raceIcon: function() {
     if (this.get("race")) {

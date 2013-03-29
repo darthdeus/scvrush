@@ -1,6 +1,9 @@
 .user-navbar.navbar-fixed-top
   linkTo .user-info "user" this
-    img.avatar src=image
+    img src=image
+    img src=raceIcon
+    img src=leagueIcon
+
     .username = username
 
   .notifications

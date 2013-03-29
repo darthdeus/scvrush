@@ -25,8 +25,9 @@ class UsersController < ApplicationController
     attributes = {
       username: params[:user][:username],
       email: params[:user][:email],
-      race: params[:user][:race],
       about: params[:user][:about],
+      race: params[:user][:race],
+      league: params[:user][:league],
       server: params[:user][:server],
       password: params[:user][:password],
       password_confirmation: params[:user][:password_confirmation],

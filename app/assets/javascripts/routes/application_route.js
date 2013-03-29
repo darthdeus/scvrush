@@ -1,7 +1,7 @@
 Scvrush.ApplicationRoute = Ember.Route.extend({
 
   setupController: function() {
-    this.setupCatsocket();
+    // this.setupCatsocket();
     // Scvrush.currentUser.addObserver("statuses.length", this, "userLoaded");
   },
 

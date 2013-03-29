@@ -13,6 +13,8 @@
 
       = render "user.server_picker" this
 
+      = render "user.league_picker" this
+
     if step3
       h2 Step 3 - Activate your account
 
