@@ -37,8 +37,9 @@ Scvrush.ApplicationRoute = Ember.Route.extend({
     var store = this.get("store");
 
     CS.subscribe("scvrush", function(message) {
-      var type = Ember.get(Ember.lookup, message.type);
-      store.load(type, message.data);
+      console.log(message)
+      // var type = Ember.get(Ember.lookup, message.type);
+      // store.load(type, message.data);
     });
   }
 
