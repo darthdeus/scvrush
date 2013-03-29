@@ -10,10 +10,12 @@ function guid() {
 }
 
 var Catsocket = function(guid) {
-  if (/localhost/.test(document.location.hostname) || /dev/.test(document)) {
-    this._pollUrl = "http://catsocket_server.dev";
+  var self = this;
+
+  if (/localhost/.test(document.location.hostname) || /dev/.test(document.location.hostname)) {
+    this._pollUrl = "http://localhost:5000";
   } else {
-    this._pollUrl = "http://catsocket.com:5100";
+    this._pollUrl = "http://catsocket.com:5000";
   }
 
   this._postUrl = this._pollUrl;
@@ -30,8 +32,22 @@ var Catsocket = function(guid) {
 
   this._polling = false;
 
+  var retryCount = 0, retryTimeout = 5000;
+
+
   this._errback = function(response) {
-    console.error("There was an error while connecting to the server");
+    if (retryCount > 2) {
+      retryTimeout = 60000;
+      console.error("There was an error while connecting to the server, retrying in 1 minute");
+    } else {
+      console.error("There was an error while connecting to the server, retrying in 5 seconds");
+    }
+
+    setTimeout(function() {
+      self.fetch(self._last);
+      retryCount++;
+    }, retryTimeout);
+
   };
 };
 
@@ -41,11 +57,13 @@ Catsocket.prototype.fetch = function(channel, callback) {
     dataType: "json",
     data: {
       channel: channel,
-      timestamp: this._timestamp
+      timestamp: this._timestamp,
+      guid: this._guid,
+      api_key: this._api_key
     },
     context: this,
     success: callback,
-    // error: this._errback
+    error: this._errback
   });
 
   return request;
@@ -53,12 +71,12 @@ Catsocket.prototype.fetch = function(channel, callback) {
 
 Catsocket.prototype._fireObservers = function(body) {
   this._observers.forEach(function(observer) {
-    if (body.messages.length > 0) {
-      body.messages.forEach(function(message) {
+    if (body.data.length > 0) {
+      body.data.forEach(function(message) {
         // guid 0 means the client wants to receive it's own broadcast
-        if (message.guid === "0" || message.guid !== this._guid) {
-          observer.call(this, JSON.parse(message.data));
-        }
+        // if (message.guid === "0" || message.guid !== this._guid) {
+          observer.call(this, message);
+        // }
       }, this);
     }
   }, this);
@@ -66,6 +84,7 @@ Catsocket.prototype._fireObservers = function(body) {
 
 Catsocket.prototype.poll = function(channel) {
   this._polling = true;
+  this._last = channel;
 
   this.fetch(channel, function(body, status, response) {
     var self = this;
@@ -77,7 +96,7 @@ Catsocket.prototype.poll = function(channel) {
     this._fireObservers(body);
 
     if (this._polling) {
-      setTimeout(function () { self.poll(channel) }, 100);
+      setTimeout(function () { self.poll(channel) }, 1000);
     }
   });
 };
@@ -107,7 +126,8 @@ Catsocket.prototype.publish = function(channel, payload, includeSelf) {
     data: {
       channel: channel,
       data: payload,
-      guid: guid
+      guid: guid,
+      api_key: this._api_key
     }
   });
 };
