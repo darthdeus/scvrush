@@ -45,7 +45,6 @@ namespace :deploy do
     run "ln -nfs #{shared_path}/config/database.yml  #{release_path}/config/database.yml"
     run "ln -nfs #{shared_path}/config/newrelic.yml  #{release_path}/config/newrelic.yml"
     run "ln -nfs #{shared_path}/config/unicorn.rb  #{release_path}/config/unicorn.rb"
-    run "ln -nfs #{shared_path}/bin/unicorn #{release_path}/bin/unicorn"
   end
 
   # recompile assets only if needed
