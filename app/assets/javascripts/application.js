@@ -12,5 +12,5 @@
 //= require ./vendor/ember-validations
 //= require ./scvrush
 
-ENV = {};
+window.ENV = {};
 ENV.EXPERIMENTAL_CONTROL_HELPER = true;

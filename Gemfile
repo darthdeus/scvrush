@@ -23,9 +23,10 @@ gem "mini_magick",        "~> 3.4"
 gem "airbrake",           "~> 3.1.6"
 gem "party_foul"
 
+gem "slim-rails",              "~> 1.1.0"
+
 group :assets do
   gem "uglifier",         "~> 1.3.0"
-  gem "slim-rails",              "~> 1.1.0"
   gem "sass-rails",              "~> 3.2.5"
   gem "jquery-datatables-rails", "~> 1.11.1"
   gem "bootstrap-sass",          "~> 2.3.0.0"
