@@ -1,5 +1,9 @@
 .main-navbar
+  = linkTo "home"
+    img.big_logo src="/assets/big_logo.png"
+
   = render "navbar"
+
 = render "user/navbar" Scvrush.currentUser
 
 .container-wrap

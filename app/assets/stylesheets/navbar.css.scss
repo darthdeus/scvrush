@@ -1,24 +1,21 @@
-$navbarOffset: 60px;
+$navbarOffset: 180px;
 
-.main-navbar .navbar-inverse {
-  background: #333333;
-  padding: 0;
-  height: $navbarOffset;
-  margin-bottom: 44px;
+.main-navbar {
+  position: relative;
 
-  .container {
+  .big_logo {
+    position: absolute;
+    z-index: 10;
+    left: 40%;
   }
 
-  .brand {
-    padding: 5px 0 5px 40px;
-  }
+  .navbar-inverse {
+    background: url("/assets/header_bg.png") repeat-x #333333;
+    padding-top: 120px;
+    margin-bottom: 44px;
+    height: 60px;
 
-  .logo {
-    margin-right: 10px;
-  }
-
-  ul.nav li {
-    a {
+    ul.nav li a {
       color: #fff;
       padding: 20px;
       background: #333;
@@ -29,7 +26,9 @@ $navbarOffset: 60px;
         background: #222;
       }
     }
+
   }
+
 }
 
 .user-navbar {
