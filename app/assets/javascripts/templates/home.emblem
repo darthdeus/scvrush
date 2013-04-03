@@ -1,39 +1,16 @@
-.row.home
-  .span7
+.home
 
-    h2 Step 1 - What is your race?
+  h2 Select your race
+  = render "user.race_picker" this
 
-    = render "user.race_picker" this
+  if step2
+    h2 Select your league
+    = render "user.league_picker" this
 
-    if step2
-      h2 Step 2 - Where do you play?
+    if server
+      p We think you're playing on #{server}
+    = render "user.server_picker" this
 
-      if server
-        p We think you're playing on #{server}
-
-      = render "user.server_picker" this
-
-      = render "user.league_picker" this
-
-    if step3
-      h2 Step 3 - Activate your account
-
-      linkTo .btn.btn-large "user.edit" Scvrush.currentUser | Activate!
-
-  .span5
-
-    .featured
-      if featuredPost
-        = linkTo "post" featuredPost
-          img src=featuredPost.image
-
-          h3.title = featuredPost.title
-
-    .featured
-      if featuredTournament
-        = linkTo "tournament" featuredTournament
-          img src=featuredTournament.imageUrl
-
-      hr
-
-    = linkTo .btn "tournaments" | See More Tournaments
+  if step3
+    hr
+    linkTo .btn.btn-large "user.edit" Scvrush.currentUser | Activate!

@@ -4,5 +4,6 @@
   span{bindAttr class="isGold:active :league-gold"}{action selectLeague "gold"}
   span{bindAttr class="isPlatinum:active :league-platinum"}{action selectLeague "platinum"}
   span{bindAttr class="isDiamond:active :league-diamond"}{action selectLeague "diamond"}
-  span{bindAttr class="isMasters:active :league-masters"}{action selectLeague "masters"}
+  span{bindAttr class="isMaster:active :league-master"}{action selectLeague "master"}
+  span{bindAttr class="isGrandmaster:active :league-grandmaster"}{action selectLeague "grandmaster"}
 

@@ -1,5 +1,10 @@
 .home {
 
+  h2 {
+    font-size: 24px;
+    font-weight: normal;
+  }
+
   .featured {
     margin-bottom: 10px;
     @include clearfix;
@@ -15,6 +20,47 @@
       font-size: 16px;
     }
 
+  }
+
+  .race-picker {
+    span {
+      display: inline-block;
+      margin-right: 10px;
+      width: 200px;
+      height: 200px;
+      background-repeat: no-repeat;
+    }
+
+    .race-zerg    { background: url("icon_zerg.png"); }
+    .race-terran  { background: url("icon_terran.png"); }
+    .race-protoss { background: url("icon_protoss.png"); }
+    .race-random  { background: url("icon_random.png"); }
+
+    .active.race-zerg    { background: url("icon_zerg_selected.png"); }
+    .active.race-terran  { background: url("icon_terran_selected.png"); }
+    .active.race-protoss { background: url("icon_protoss_selected.png"); }
+    .active.race-random  { background: url("icon_random_selected.png"); }
+  }
+
+  .league-picker {
+    span {
+      display: inline-block;
+      margin-right: 3px;
+      width: 130px;
+      height: 130px;
+      background-repeat: no-repeat;
+
+      opacity: 0.43;
+      &.active { opacity: 1; }
+    }
+
+    .league-bronze      { background: url("icon_bronze.png"); }
+    .league-silver      { background: url("icon_silver.png"); }
+    .league-gold        { background: url("icon_gold.png"); }
+    .league-platinum    { background: url("icon_platinum.png"); }
+    .league-diamond     { background: url("icon_diamond.png"); }
+    .league-master      { background: url("icon_master.png"); }
+    .league-grandmaster { background: url("icon_grandmaster.png"); }
   }
 
 }

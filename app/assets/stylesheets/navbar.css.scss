@@ -22,6 +22,18 @@ $navbarOffset: 180px;
 
       @include transition(all 0.2s ease-in-out);
 
+      &.chat {
+        background: url("/assets/chat_button_bg.png") repeat-x;
+        box-shadow: inset 1px 0 0 #575757, inset -1px 0 0 #575757;
+        border-left: 1px solid #090909;
+        border-right: 1px solid #090909;
+        padding: 0 10px;
+
+        &:hover {
+          background: #000;
+        }
+      }
+
       &:hover {
         background: #222;
       }
@@ -32,15 +44,20 @@ $navbarOffset: 180px;
 }
 
 .user-navbar {
+
+  $userNavbarLinkHover: #b7c5e2;
+
   top: $navbarOffset;
   height: 30px;
   line-height: 30px;
 
   padding: 7px 20px;
-  background: #8CC6D5;
+  background: url("/assets/user_navbar_bg.png") repeat-x;
 
   a {
-    color: #313131;
+    color: #fff;
+
+    &:hover { color: $userNavbarLinkHover; }
   }
 
   .user-info {
@@ -74,10 +91,10 @@ $navbarOffset: 180px;
     line-height: 30px;
     font-size: 26px;
     margin: 0 8px;
-    color: #666;
+    color: #ddd;
 
     &:hover {
-      color: #000;
+      color: $userNavbarLinkHover;
       text-decoration: none;
     }
   }

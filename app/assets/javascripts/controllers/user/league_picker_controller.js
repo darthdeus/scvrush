@@ -20,8 +20,12 @@ Scvrush.UserLeaguePickerController = Ember.ObjectController.extend({
     return this.get("league") == "diamond";
   }.property("league"),
 
-  isMasters: function() {
-    return this.get("league") == "masters";
+  isMaster: function() {
+    return this.get("league") == "master";
+  }.property("league"),
+
+  isGrandmaster: function() {
+    return this.get("league") == "grandmaster";
   }.property("league"),
 
   selectLeague: function(league) {

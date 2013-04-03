@@ -6,12 +6,12 @@ Scvrush.UserNavbarView = Ember.View.extend({
     $(window).scroll(function(event) {
       var scrollTop = $(window).scrollTop();
 
-      if (scrollTop > 0 && scrollTop < 60) {
-        navbar.css("top", 60 - scrollTop);
-      } else if (scrollTop >= 60) {
+      if (scrollTop > 0 && scrollTop < 180) {
+        navbar.css("top", 180 - scrollTop);
+      } else if (scrollTop >= 180) {
         navbar.css("top", 0);
       } else {
-        navbar.css("top", 60);
+        navbar.css("top", 180);
       }
     });
   }

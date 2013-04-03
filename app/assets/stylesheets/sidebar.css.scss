@@ -1,6 +1,6 @@
 .sidebar {
   background: $sidebar;
-  color: #666;
+  color: #fff;
 
   a {
     color: #666;
@@ -45,7 +45,22 @@
   padding-left: 20px;
 
   input {
-    @include flat-input;
+    $background: #1c2537;
+    $borderColor: #38445d;
+
+    padding: 10px;
+    background: $background;
+    border: 3px solid $borderColor;
+    border-radius: 6px;
+
+    @include placeholder {
+      color: #38445d;
+    }
+
+    &:active, &:focus {
+      box-shadow: none;
+      border-color: lighten($borderColor, 40%);
+    }
   }
 }
 

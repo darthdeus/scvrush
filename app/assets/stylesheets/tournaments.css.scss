@@ -65,7 +65,7 @@
   }
 }
 
-.race-picker, .league-picker {
+.tournament .race-picker, .tournament .league-picker {
 
   display: inline-block;
 
@@ -81,11 +81,6 @@
       opacity: 1;
     }
   }
-
-  .race-zerg    { background: url("race_zerg_icon.png"); }
-  .race-terran  { background: url("race_terran_icon.png"); }
-  .race-protoss { background: url("race_protoss_icon.png"); }
-  .race-random  { background: url("race_random_icon.png"); }
 
   .league-bronze   { background: url("league_bronze_icon.png"); }
   .league-silver   { background: url("league_silver_icon.png"); }
