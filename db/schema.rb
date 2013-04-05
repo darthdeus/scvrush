@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130327233008) do
+ActiveRecord::Schema.define(:version => 20130405102843) do
 
   create_table "coaches", :force => true do |t|
     t.integer  "order"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(:version => 20130327233008) do
   end
 
   add_index "coaches", ["post_id"], :name => "index_coaches_on_post_id"
+
+  create_table "followings", :force => true do |t|
+    t.integer  "follower_id"
+    t.integer  "followee_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
 
   create_table "images", :force => true do |t|
     t.string   "image"
@@ -135,7 +142,6 @@ ActiveRecord::Schema.define(:version => 20130327233008) do
     t.datetime "starts_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "post_id"
     t.integer  "winner_id"
     t.boolean  "seeded",          :default => false
     t.string   "tournament_type"
@@ -154,7 +160,6 @@ ActiveRecord::Schema.define(:version => 20130327233008) do
     t.integer  "signups_count",   :default => 0
   end
 
-  add_index "tournaments", ["post_id"], :name => "index_tournaments_on_post_id"
   add_index "tournaments", ["winner_id"], :name => "index_tournaments_on_winner_id"
 
   create_table "users", :force => true do |t|

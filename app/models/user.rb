@@ -7,6 +7,12 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :roles, join_table: :users_roles
 
+  has_many :follower_followings, foreign_key: "follower_id", class_name: "Following"
+  has_many :followers, through: :follower_followings, source: :follower
+
+  has_many :followee_followings, foreign_key: "followee_id", class_name: "Following"
+  has_many :followees, through: :followee_followings, source: :followee
+
   has_many :replies
   has_many :signups, dependent: :destroy
   has_many :tournaments, through: :signups
@@ -136,6 +142,26 @@ class User < ActiveRecord::Base
 
   def trial?
     self.expires_at?
+  end
+
+  def followed_by?(user)
+    followers.include?(user)
+  end
+
+  def following?(user)
+    followees.include?(user)
+  end
+
+  def follow(user)
+    unless following?(user)
+      Following.create!(follower: self, followee: user)
+    end
+  end
+
+  def unfollow(user)
+    if following?(user)
+      Following.where(follower: self, followee: user).destroy
+    end
   end
 
 end

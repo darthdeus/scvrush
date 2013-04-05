@@ -5,7 +5,6 @@ FactoryGirl.define do
     sequence(:name) { |n| "SCV Rush ##{n}" }
     starts_at { Time.now }
     tournament_type Tournament::TYPES.sample
-    association :post
     bo_preset "1"
   end
 end

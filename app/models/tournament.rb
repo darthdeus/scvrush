@@ -5,7 +5,6 @@ class Tournament < ActiveRecord::Base
   has_many :rounds, order: "number DESC", dependent: :destroy
   has_many :matches, through: :rounds, order: "id"
 
-  belongs_to :post
   belongs_to :winner, class_name: 'User', foreign_key: 'winner_id'
   belongs_to :user
 
@@ -37,11 +36,6 @@ class Tournament < ActiveRecord::Base
 
   def to_indexed_json
     to_json(only: [:name])
-  end
-
-  def self.calendar
-    tournaments = Tournament.where("starts_at > ? AND starts_at < ?", 1.month.ago, 1.month.from_now)
-    tournaments.group_by { |n| n.starts_at.to_date }
   end
 
   def admin_names

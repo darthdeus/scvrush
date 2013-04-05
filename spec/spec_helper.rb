@@ -7,14 +7,6 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'factory_girl_rails'
 
-require 'capybara/rspec'
-require 'capybara/poltergeist'
-Capybara.javascript_driver = :poltergeist
-Capybara.server_port = 3001
-Capybara.app_host = "http://localhost:3001"
-Capybara.default_wait_time = 15
-# Capybara::Screenshot.autosave_on_failure = true
-
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
