@@ -1,5 +1,5 @@
 .race-picker
-  span{bindAttr class="isZerg:active :race-zerg"}{action selectRace "zerg"}
-  span{bindAttr class="isProtoss:active :race-protoss"}{action selectRace "protoss"}
-  span{bindAttr class="isTerran:active :race-terran"}{action selectRace "terran"}
-  span{bindAttr class="isRandom:active :race-random"}{action selectRace "random"}
+  span class={isZerg:active :race-zerg} click='selectRace "zerg"'
+  span class={isProtoss:active :race-protoss} click='selectRace "protoss"'
+  span class={isTerran:active :race-terran} click='selectRace "terran"'
+  span class={isRandom:active :race-random} click='selectRace "random"'
