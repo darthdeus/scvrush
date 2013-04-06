@@ -20,7 +20,7 @@ $navbarOffset: 180px;
       padding: 20px;
       background: #333;
 
-      @include transition(all 0.2s ease-in-out);
+      @include transition(all 0.1s ease-in-out);
 
       &.chat {
         background: url("/assets/chat_button_bg.png") repeat-x;
@@ -35,6 +35,7 @@ $navbarOffset: 180px;
       }
 
       &:hover {
+        line-height: 35px;
         background: #222;
       }
     }

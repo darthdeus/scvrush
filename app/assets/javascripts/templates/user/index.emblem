@@ -18,7 +18,7 @@
 
     h3 Following
 
-    each follower in following
+    each follower in followees
       = linkTo "user" follower | {{follower.username}}
       br
 

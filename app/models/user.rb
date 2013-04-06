@@ -155,13 +155,23 @@ class User < ActiveRecord::Base
   def follow(user)
     unless following?(user)
       Following.create!(follower: self, followee: user)
+      self.update_follower_ids
+      user.update_follower_ids
     end
   end
 
   def unfollow(user)
     if following?(user)
       Following.where(follower_id: self.id, followee_id: user.id).destroy_all
+      self.update_follower_ids
+      user.update_follower_ids
     end
+  end
+
+  def update_follower_ids
+    self.follower_ids = followers.pluck(:id).join(" ")
+    self.followee_ids = followees.pluck(:id).join(" ")
+    save!
   end
 
 end

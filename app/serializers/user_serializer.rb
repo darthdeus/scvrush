@@ -1,6 +1,6 @@
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :username, :email, :race, :image, :bnet_info, :expires_at,
-             :server, :about, :league
+             :server, :about, :league, :follower_ids, :followee_ids
 
   has_many :tournaments, embed: :ids, include: true
   has_many :statuses, embed: :ids

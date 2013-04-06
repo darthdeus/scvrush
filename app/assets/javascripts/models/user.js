@@ -15,7 +15,7 @@ Scvrush.User = DS.Model.extend(Ember.Validations.Mixin, {
   statuses:  DS.hasMany("Scvrush.Status"),
 
   followers: DS.hasMany("Scvrush.User"),
-  following: DS.hasMany("Scvrush.User"),
+  followees: DS.hasMany("Scvrush.User"),
 
   notifications: DS.hasMany("Scvrush.Notification"),
 
@@ -102,7 +102,7 @@ Scvrush.User = DS.Model.extend(Ember.Validations.Mixin, {
   },
 
   isFollowing: function(anotherUser) {
-    return this.get("following").contains(anotherUser);
+    return this.get("followees").contains(anotherUser);
   }
 
 });
