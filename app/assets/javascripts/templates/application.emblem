@@ -7,7 +7,7 @@
 = render "user/navbar" Scvrush.currentUser
 
 .container-wrap
-  .span3.sidebar
+  div class={Scvrush.currentUser.race :span3 :sidebar}
     = outlet sidebar
 
   .span12.main-content

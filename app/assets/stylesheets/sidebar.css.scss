@@ -1,5 +1,6 @@
+$sidebar: #343d50;
+
 .sidebar {
-  background: $sidebar url("/assets/sidebar_terran_bg.png") no-repeat 0 300px;
   color: #fff;
 
   a {
@@ -19,6 +20,41 @@
     margin: 0;
   }
 
+  &.terran {
+    background: #343d50 url("/assets/sidebar_terran_bg.png") no-repeat 0 300px;
+
+    .sidebar-form input {
+      border-color: #38445d;
+      background: #1c2537;
+    }
+  }
+
+  &.zerg {
+    background: #3f3551 url("/assets/sidebar_zerg_bg.png") no-repeat 0 300px;
+
+    .sidebar-form input {
+      border-color: #4e4166;
+      background: #20192c;
+    }
+  }
+
+  &.protoss {
+    background: #d6bf61 url("/assets/sidebar_protoss_bg.png") no-repeat 0 300px;
+
+    .sidebar-form input {
+      border-color: #a49856;
+      background: #decf79;
+    }
+  }
+
+  &.random {
+    background: #505050 url("/assets/sidebar_random_bg.png") no-repeat 0 300px;
+
+    .sidebar-form input {
+      border-color: #3a3a3a;
+      background: #7d7d7d;
+    }
+  }
 }
 
 .sidebar-list {
@@ -62,6 +98,7 @@
       border-color: lighten($borderColor, 40%);
     }
   }
+
 }
 
 .timeline .first-status {

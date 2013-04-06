@@ -39,9 +39,7 @@ $navbarOffset: 180px;
         background: #222;
       }
     }
-
   }
-
 }
 
 .user-navbar {
@@ -49,11 +47,14 @@ $navbarOffset: 180px;
   $userNavbarLinkHover: #b7c5e2;
 
   top: $navbarOffset;
-  height: 30px;
-  line-height: 30px;
+  height: 31px;
+  line-height: 31px;
 
   padding: 7px 20px;
-  background: url("/assets/user_navbar_bg.png") repeat-x;
+  &.zerg    { background: url("/assets/user_navbar_zerg_bg.png") repeat-x; }
+  &.terran  { background: url("/assets/user_navbar_terran_bg.png") repeat-x; }
+  &.protoss { background: url("/assets/user_navbar_protoss_bg.png") repeat-x; }
+  &.random  { background: url("/assets/user_navbar_random_bg.png") repeat-x; }
 
   a {
     color: #fff;
@@ -100,5 +101,3 @@ $navbarOffset: 180px;
     }
   }
 }
-
-
