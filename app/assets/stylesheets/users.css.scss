@@ -1,49 +1,80 @@
 .user-profile {
+  @include clearfix;
+
+  .left { float: left; }
+}
+
+.user-profile .user-sidebar {
+  float: left;
+  width: 300px;
+  margin: 15px 0 0 15px;
+  border-right: 1px solid #c9c9c9;
+
   .avatar {
-    margin-bottom: 10px;
+    position: relative;
+    width: 100px;
 
     img {
-      width: 220px;
+      width: 100px;
+      &.avatar { @include box-shadow(0 0 3px #666); }
+
+      &.race {
+        width: 60px;
+        position: absolute;
+        right: -20px;
+        bottom: -20px;
+      }
     }
   }
+
+  dl {
+    width: 200px;
+
+    dt { width: 100px; }
+    dd { margin-left: 110px; }
+  }
+
+  .about {
+    margin-top: 20px;
+  }
+
+  .followers img {
+    @include box-shadow(0 0 3px #666);
+    width: 30px;
+  }
+}
+
+.user-profile .content {
+  float: left;
+  width: 540px;
+  margin-top: 15px;
+  border-right: 1px solid #c9c9c9;
 
   h2 {
+    padding: 10px 15px;
     font-size: 22px;
+    border-bottom: 1px solid #c9c9c9;
+    margin: 0;
+  }
 
-    .help-inline {
-      font-size: 12px;
+  nav.user-sections {
+    padding: 10px 15px;
+    border-bottom: 1px solid #c9c9c9;
+
+    .btn {
+      margin-right: 5px;
     }
-
-    .follow-box {
-      float: right;
-    }
   }
 
-  .avatar img, .followers img {
-    @include box-shadow(0 0 3px #666);
+  .statuses {
+    padding: 10px 15px;
   }
 
-  .user_league_icon {
-    height: 47px;
-  }
-
-  .status-form input {
+  form.new-status input {
     font-size: 18px;
     height: 30px;
     line-height: 30px;
-  }
-
-  .followers a {
-    width: 80px;
-    margin-bottom: 10px;
-    margin-right: 10px;
-    display: inline-block;
-  }
-
-  .statuses .status-form {
-    input {
-      width: 680px;
-    }
+    width: 500px;
   }
 
   .statuses .status {

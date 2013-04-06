@@ -1,40 +1,19 @@
-.row.user-profile
-  .span3
-    .avatar
-      img src={image}
+.user-profile
+  = partial "user/sidebar"
 
-    = about
+  .content
+    header
+      h2
+        if isCurrentUser
+          = username
+        else
+          = control "user.follow_button" content
 
-    if hasFollowers
-      h3 Followers
-
-      each follower in followers
-        = linkTo "user" follower | {{follower.username}}
-        br
-
-    else
-      .alert.alert-info This user has no followers.
-
-
-    h3 Following
-
-    each follower in followees
-      = linkTo "user" follower | {{follower.username}}
-      br
-
-  .span9
-    h2
-      img src=raceIcon
-      if isCurrentUser
-        = username
-      else
-        = control "user.follow_button" content
-
-      | ({{bnetInfo}})
-
-      .follow-box
-        = linkTo .help-inline "users.index" | back to users
-
+    nav.user-sections
+      = linkTo .btn "user" this activeClass=false | Feed
+      = linkTo .btn "user" this activeClass=false | Content
+      = linkTo .btn "user.tournaments" this activeClass=false | Tournaments
+      = linkTo .btn "user.edit" this activeClass=false | Account
 
     .statuses
       if isCurrentUser
@@ -46,10 +25,11 @@
             = linkTo "user" status.user | @{{status.user.username}}
 
           .content
-            .text
-              = Scvrush.UserLinksView contentBinding="status.text"
+            = status.text
+            /*.text*/
+              /*= Scvrush.UserLinksView contentBinding="status.text"*/
 
           .meta
             if isCurrentUser
-              button.btn.btn-mini click="deleteStatus" status"
+              button.btn.btn-mini click="deleteStatus status"
                 i.icon-remove

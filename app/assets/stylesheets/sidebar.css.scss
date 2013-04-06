@@ -8,9 +8,7 @@ $sidebar: #343d50;
   }
 
   width: 260px;
-
   padding: 0 0 9999px 0;
-
   margin-left: 0;
   margin-bottom: -9999px;
 
@@ -26,6 +24,7 @@ $sidebar: #343d50;
     .sidebar-form input {
       border-color: #38445d;
       background: #1c2537;
+      color: #fff;
     }
   }
 
@@ -35,15 +34,18 @@ $sidebar: #343d50;
     .sidebar-form input {
       border-color: #4e4166;
       background: #20192c;
+      color: #eee;
     }
   }
 
   &.protoss {
     background: #d6bf61 url("/assets/sidebar_protoss_bg.png") no-repeat 0 300px;
+    color: #666;
 
     .sidebar-form input {
       border-color: #a49856;
       background: #decf79;
+      color: #666;
     }
   }
 
@@ -53,6 +55,7 @@ $sidebar: #343d50;
     .sidebar-form input {
       border-color: #3a3a3a;
       background: #7d7d7d;
+      color: #000;
     }
   }
 }

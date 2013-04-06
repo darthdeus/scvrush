@@ -1,5 +1,5 @@
 .race-picker
-  span class={isZerg:active :race-zerg} click='selectRace "zerg"'
-  span class={isProtoss:active :race-protoss} click='selectRace "protoss"'
-  span class={isTerran:active :race-terran} click='selectRace "terran"'
-  span class={isRandom:active :race-random} click='selectRace "random"'
+  span disabled={isSaving} class={isZerg:active :race-zerg} click='selectRace "zerg"'
+  span disabled={isSaving} class={isProtoss:active :race-protoss} click='selectRace "protoss"'
+  span disabled={isSaving} class={isTerran:active :race-terran} click='selectRace "terran"'
+  span disabled={isSaving} class={isRandom:active :race-random} click='selectRace "random"'

@@ -1,0 +1,37 @@
+.user-sidebar
+  .clearfix
+    .left.avatar
+      img.avatar src={image}
+      img.race src={raceIcon}
+
+    dl.dl-horizontal.info.left
+      dt Username
+      dd = username
+
+      dt Battle.net ID
+      dd = bnetInfo
+
+      dt League
+      dd = league
+
+      dt Server
+      dd = server
+
+  .about = about
+
+  if hasFollowers
+    h3 Followers
+
+    .followers
+      each follower in followers
+        = linkTo "user" follower
+          img src=follower.image
+
+  else
+    .alert.alert-info This user has no followers.
+
+  h3 Following
+
+  each follower in followees
+    = linkTo "user" follower | {{follower.username}}
+    br

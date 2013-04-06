@@ -1,5 +1,5 @@
 .server-picker.btn-group
-  span{bindAttr class="isEU:active :btn :server-eu"}{action selectServer "EU"} EU
-  span{bindAttr class="isNA:active :btn :server-na"}{action selectServer "NA"} NA
-  span{bindAttr class="isKR:active :btn :server-kr"}{action selectServer "KR"} KR
-  span{bindAttr class="isSEA:active :btn :server-sea"}{action selectServer "SEA"} SEA
+  span disabled={isSaving} class={isEU:active :btn :server-eu} click='selectServer "EU"' EU
+  span disabled={isSaving} class={isNA:active :btn :server-na} click='selectServer "NA"' NA
+  span disabled={isSaving} class={isKR:active :btn :server-kr} click='selectServer "KR"' KR
+  span disabled={isSaving} class={isSEA:active :btn :server-sea} click='selectServer "SEA"' SEA

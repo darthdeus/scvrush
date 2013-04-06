@@ -1,9 +1,8 @@
 .league-picker
-  span{bindAttr class="isBronze:active :league-bronze"}{action selectLeague "bronze"}
-  span{bindAttr class="isSilver:active :league-silver"}{action selectLeague "silver"}
-  span{bindAttr class="isGold:active :league-gold"}{action selectLeague "gold"}
-  span{bindAttr class="isPlatinum:active :league-platinum"}{action selectLeague "platinum"}
-  span{bindAttr class="isDiamond:active :league-diamond"}{action selectLeague "diamond"}
-  span{bindAttr class="isMaster:active :league-master"}{action selectLeague "master"}
-  span{bindAttr class="isGrandmaster:active :league-grandmaster"}{action selectLeague "grandmaster"}
-
+  span disabled={isSaving} class={isBronze:active :league-bronze} click='selectLeague "bronze"'
+  span disabled={isSaving} class={isSilver:active :league-silver} click='selectLeague "silver"'
+  span disabled={isSaving} class={isGold:active :league-gold} click='selectLeague "gold"'
+  span disabled={isSaving} class={isPlatinum:active :league-platinum} click='selectLeague "platinum"'
+  span disabled={isSaving} class={isDiamond:active :league-diamond} click='selectLeague "diamond"'
+  span disabled={isSaving} class={isMaster:active :league-master} click='selectLeague "master"'
+  span disabled={isSaving} class={isGrandmaster:active :league-grandmaster} click='selectLeague "grandmaster"'
