@@ -173,5 +173,4 @@ class Tournament < ActiveRecord::Base
   end
 
   class DoubleRegistration < Error; end
-
 end
