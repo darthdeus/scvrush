@@ -2,15 +2,19 @@ $sidebar: #343d50;
 
 .sidebar {
   color: #fff;
-
-  a {
-    color: #666;
-  }
-
   width: 260px;
   padding: 0 0 9999px 0;
   margin-left: 0;
   margin-bottom: -9999px;
+
+  @include transition(all 0.3s ease-in-out);
+  .sidebar-form input {
+    @include transition(all 0.3s ease-in-out);
+  }
+
+  a {
+    color: #666;
+  }
 
   h2 {
     padding-left: 20px;

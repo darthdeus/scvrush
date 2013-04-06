@@ -12,3 +12,9 @@
 
   .span12.main-content
     = outlet
+
+.hidden
+  img src="/assets/icon_zerg_selected.png"
+  img src="/assets/icon_terran_selected.png"
+  img src="/assets/icon_protoss_selected.png"
+  img src="/assets/icon_random_selected.png"
