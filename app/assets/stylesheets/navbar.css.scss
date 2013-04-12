@@ -53,6 +53,8 @@ $navbarOffset: 180px;
 
   @include transition(background 0.3s ease-in-out);
 
+  background: url("/assets/user_navbar_random_bg.png") repeat-x;
+
   &.zerg    { background: url("/assets/user_navbar_zerg_bg.png") repeat-x; }
   &.terran  { background: url("/assets/user_navbar_terran_bg.png") repeat-x; }
   &.protoss { background: url("/assets/user_navbar_protoss_bg.png") repeat-x; }
