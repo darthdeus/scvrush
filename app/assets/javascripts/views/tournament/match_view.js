@@ -4,10 +4,6 @@ Scvrush.TournamentMatchView = Ember.View.extend({
   didInsertElement: function() {
   },
 
-  click: function(event) {
-    debugger
-  }
-
 });
 
 Scvrush.TournamentMatchController = Ember.ObjectController.extend();

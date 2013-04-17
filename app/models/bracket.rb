@@ -65,7 +65,6 @@ class Bracket < Struct.new(:tournament)
   # 1, 3
   # 2, 4
   def linear_seed
-    Rails.logger.info "starting linear seed for tournament #{tournament.id}"
     tournament.reload
     round   = tournament.rounds.first
     matches = round.matches

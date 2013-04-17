@@ -9,10 +9,9 @@ gem "pg",                       "~> 0.14.0"
 gem "tire"
 gem "catsocket_client", github: "darthdeus/catsocket_client"
 
-gem "ember-rails", github: "emberjs/ember-rails"
-gem "barber-emblem", github: "machty/barber-emblem"
+gem "ember-rails"
 gem "emblem-rails"
-gem "active_model_serializers", github: "rails-api/active_model_serializers"
+gem "active_model_serializers"
 
 gem "draper",             "~> 1.1.0"
 gem "simple_form",        "~> 2.0.1"

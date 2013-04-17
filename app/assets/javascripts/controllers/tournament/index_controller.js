@@ -38,6 +38,8 @@ Scvrush.TournamentIndexController = Ember.ObjectController.extend({
   currentMatch: function() {
     var rounds = this.get("rounds");
 
+    if (!rounds) return null;
+
     var result = rounds.map(function(round) {
       return round.get("matches").filter(function(match) {
         return match.get("player1") == Scvrush.currentUser
@@ -61,6 +63,14 @@ Scvrush.TournamentIndexController = Ember.ObjectController.extend({
     Scvrush.currentUser.set("currentOpponent", value);
 
     return value;
+  }.property("currentMatch"),
+
+  currentMatchChanged: function() {
+    Scvrush.currentUser.notifyPropertyChange("currentOpponent");
+  }.observes("currentMatch"),
+
+  currentTournament: function() {
+    return this.get("currentMatch.round.tournament");
   }.property("currentMatch"),
 
   scoreError: function() {

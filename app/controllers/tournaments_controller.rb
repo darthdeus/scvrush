@@ -27,7 +27,7 @@ class TournamentsController < ApplicationController
   end
 
   def show
-    respond_with Tournament.find(params[:id])
+    render json: Tournament.find(params[:id])
   end
 
   def destroy

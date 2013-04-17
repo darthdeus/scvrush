@@ -1,5 +1,5 @@
 class MatchSerializer < ActiveModel::Serializer
-  attributes :id, :player1_score, :player2_score, :completed, :score
+  attributes :id, :player1_score, :player2_score, :completed, :score, :round_id
 
   has_one :player1, embed: :ids
   has_one :player2, embed: :ids

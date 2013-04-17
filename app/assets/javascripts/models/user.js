@@ -59,6 +59,10 @@ Scvrush.User = DS.Model.extend(Ember.Validations.Mixin, {
     }
   },
 
+  currentOpponent: function() {
+    return Scvrush.__container__.lookup("controller:tournament.index").get("currentOpponent");
+  }.property(),
+
   isTrial: function() {
     return !!this.get("expiresAt");
   }.property("expiresAt"),

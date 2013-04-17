@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user, :logged_in?
 
-  protected
+  private
 
   def require_login
     unless logged_in?

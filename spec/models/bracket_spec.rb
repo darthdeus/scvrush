@@ -15,7 +15,6 @@ describe Bracket do
     return [bracket, players]
   end
 
-
   let(:bracket) { Bracket.new([]) }
 
   it "can create a bracket for given tournament id" do
@@ -60,25 +59,22 @@ describe Bracket do
     t.should have(3).rounds
   end
 
-  describe "score reporting" do
+  it "sets score in proper order" do
+    t = create(:tournament)
+    bracket = Bracket.new(t)
+    p1, p2, p3, p4 = *4.times.inject([]) { |v,i| v << create(:user) }
+    t.users << p1 << p2 << p3 << p4
+    [p1, p2, p3, p4].each { |u| u.check_in(t) }
 
-    it "sets score in proper order" do
-      t = create(:tournament)
-      bracket = Bracket.new(t)
-      p1, p2, p3, p4 = *4.times.inject([]) { |v,i| v << create(:user) }
-      t.users << p1 << p2 << p3 << p4
-      [p1, p2, p3, p4].each { |u| u.check_in(t) }
+    bracket.create_bracket_rounds
+    bracket.create_matches
+    bracket.linear_seed
 
-      bracket.create_bracket_rounds
-      bracket.create_matches
-      bracket.linear_seed
+    bracket.set_score_for(p2, "3:1", false)
 
-      bracket.set_score_for(p2, "3:1", false)
-
-      expect do
-        bracket.set_score_for(p1, "1:3", false, p1.id)
-      end.to raise_error(Bracket::AlreadySubmitted)
-    end
+    expect do
+      bracket.set_score_for(p1, "1:3", false, p1.id)
+    end.to raise_error(Bracket::AlreadySubmitted)
   end
 
   it "seeds players to the bracket" do
@@ -172,42 +168,51 @@ describe Bracket do
     bracket.next_round_number(1).should == nil
   end
 
-  context "walkover" do
-    it "automatically seeds the player to the next match if he has no opponent" do
-      bracket, players = seeded_with(3)
+  it "automatically seeds the player to the next match if he has no opponent" do
+    bracket, players = seeded_with(3)
 
-      bracket.create_bracket_rounds
-      bracket.create_matches
-      bracket.linear_seed
+    bracket.create_bracket_rounds
+    bracket.create_matches
+    bracket.linear_seed
 
-      matches = bracket.matches.order(:id)
+    matches = bracket.matches.order(:id)
 
-      matches[1].should be_completed
-      bracket.current_match_for(players[1]).should == matches[2]
-    end
+    matches[1].should be_completed
+    bracket.current_match_for(players[1]).should == matches[2]
   end
 
-  context "result reset" do
-    it "should delete the user from all followup matches when he's deleted from a match" do
-      User.destroy_all
-      Match.destroy_all
+  it "should delete the user from all followup matches when he's deleted from a match" do
+    User.destroy_all
+    Match.destroy_all
 
-      bracket, players = seeded_with(8)
+    bracket, players = seeded_with(11)
+    bracket.create_bracket_rounds
+    bracket.create_matches
+    bracket.linear_seed
 
-      bracket.create_bracket_rounds
-      bracket.create_matches
-      bracket.linear_seed
+    players = bracket.matches.map { |m| [m.player1, m.player2] }.flatten.compact
+    players.uniq.size.should == 11
+  end
 
-      bracket.set_score_for(players[0], "1:0")
-      bracket.set_score_for(players[2], "1:0")
-      bracket.set_score_for(players[0], "1:0")
+  it "should delete the user from all followup matches when he's deleted from a match" do
+    User.destroy_all
+    Match.destroy_all
 
-      matches = bracket.matches
+    bracket, players = seeded_with(8)
 
-      m = matches.first
-      m.unset_score
-      m.next.player1.should == nil
-    end
+    bracket.create_bracket_rounds
+    bracket.create_matches
+    bracket.linear_seed
+
+    bracket.set_score_for(players[0], "1:0")
+    bracket.set_score_for(players[2], "1:0")
+    bracket.set_score_for(players[0], "1:0")
+
+    matches = bracket.matches
+
+    m = matches.first
+    m.unset_score
+    m.next.player1.should == nil
   end
 
 end

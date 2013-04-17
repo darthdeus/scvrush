@@ -14,7 +14,8 @@
           img src="/assets/chat_button_text.png"
 
       if Scvrush.currentUser.currentOpponent
-        li = linkTo "user" Scvrush.currentUser.currentOpponent | You're currently playing against #{Scvrush.currentUser.currentOpponent.username}
+        li
+          ' You're currently playing against
 
     ul.nav.pull-right
       li = linkTo "meet_scvrush" | About us

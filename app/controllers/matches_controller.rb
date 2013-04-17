@@ -62,33 +62,6 @@ class MatchesController < ApplicationController
     else
       raise ActiveRecord::RecordInvalid, "Invalid match, this shouldn't happen"
     end
-    # render json: match.reload
-    # authorize! :manage, Match
-    # @match = Match.find(params[:id])
-
-    # @match.player1_id = params[:match][:player1_id]
-    # @match.player2_id = params[:match][:player2_id]
-
-    # @match.score = params[:match][:score]
-
-    # if @match.save
-    #   if !@match.player1_id? && !@match.player2_id?
-    #     @match.score = nil
-    #     @match.save!
-    #   end
-
-    #   bracket = Bracket.new(@match.round.tournament)
-
-    #   if !@match.winner.present?
-    #     @match.unset_score
-    #   end
-    #   bracket.seed_next_match_with(@match.winner, @match)
-
-    #   redirect_to @match.round.tournament, notice: "Match results were updated"
-    # else
-    #   @players = @match.round.tournament.registered_players
-    #   render :edit
-    # end
   end
 
   def destroy
