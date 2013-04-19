@@ -1,0 +1,18 @@
+.user-profile
+  = partial "user/sidebar"
+
+  .content
+    header
+      h2
+        if isCurrentUser
+          = username
+        else
+          = control "user.follow_button" content
+
+    nav.user-sections
+      = linkTo .btn "user" this activeClass=false | Feed
+      = linkTo .btn "user" this activeClass=false | Content
+      = linkTo .btn "user.tournaments" this activeClass=false | Tournaments
+      = linkTo .btn "user.edit" this activeClass=false | Account
+
+    = outlet

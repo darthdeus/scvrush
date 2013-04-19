@@ -1,35 +1,14 @@
-.user-profile
-  = partial "user/sidebar"
+.statuses
+  if isCurrentUser
+    = render "statuses.new"
 
-  .content
-    header
-      h2
+  each status in timelineStatuses
+    .status
+      .text
+        = status.text
+        /*= Scvrush.UserLinksView contentBinding="status.text"*/
+
+      .meta
         if isCurrentUser
-          = username
-        else
-          = control "user.follow_button" content
-
-    nav.user-sections
-      = linkTo .btn "user" this activeClass=false | Feed
-      = linkTo .btn "user" this activeClass=false | Content
-      = linkTo .btn "user.tournaments" this activeClass=false | Tournaments
-      = linkTo .btn "user.edit" this activeClass=false | Account
-
-    .statuses
-      if isCurrentUser
-        = render "statuses.new"
-
-      each status in timelineStatuses
-        .status
-          .author
-            = linkTo "user" status.user | @{{status.user.username}}
-
-          .content
-            = status.text
-            /*.text*/
-              /*= Scvrush.UserLinksView contentBinding="status.text"*/
-
-          .meta
-            if isCurrentUser
-              button.btn.btn-mini click="deleteStatus status"
-                i.icon-remove
+          button.btn.btn-mini click="deleteStatus status"
+            i.icon-remove
