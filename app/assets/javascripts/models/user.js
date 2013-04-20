@@ -22,6 +22,8 @@ Scvrush.User = DS.Model.extend(Ember.Validations.Mixin, {
   // tournaments: DS.hasMany("Scvrush.Tournament"),
 
   playingTournaments: function() {
+    Scvrush.Tournament.query();
+
     return Scvrush.Tournament.filter(function(tournament) {
       return tournament.get("isRegistered") || tournament.get("isChecked");
     });
