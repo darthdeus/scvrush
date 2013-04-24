@@ -1,9 +1,10 @@
-.posts-index
-  h1 Search articles
+.main-content
+  .posts-index
+    h1 Search articles
 
-  Ember.TextField class="span8 post-search" valueBinding=controller.query
+    Ember.TextField class="span8 post-search" valueBinding=controller.query
 
-  each item in controller
-    = render "posts/post" item
+    each item in controller
+      = render "posts/post" item
 
-view Scvrush.LoadMoreView
+  view Scvrush.LoadMoreView

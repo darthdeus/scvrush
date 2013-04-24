@@ -1,4 +1,4 @@
-.tournaments.row
+.main-content: .tournaments.row
 
   .span9
     each tournament in controller

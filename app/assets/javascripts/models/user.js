@@ -18,15 +18,19 @@ Scvrush.User = DS.Model.extend(Ember.Validations.Mixin, {
   followees: DS.hasMany("Scvrush.User"),
 
   notifications: DS.hasMany("Scvrush.Notification"),
+  achievements: DS.hasMany("Scvrush.Achievement"),
 
   // tournaments: DS.hasMany("Scvrush.Tournament"),
+  allTournaments: function() {
+    Scvrush.Tournament.query();
+  }.property(),
 
   playingTournaments: function() {
-    Scvrush.Tournament.query();
+    var user = this;
 
     return Scvrush.Tournament.filter(function(tournament) {
-      return tournament.get("isRegistered") || tournament.get("isChecked");
-    });
+      return tournament.get("users").contains(user);
+    }.bind(this));
   }.property(),
 
   leagueIcon: function() {

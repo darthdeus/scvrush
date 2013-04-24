@@ -1,0 +1,5 @@
+.user-list
+  each controller
+    .item
+      ' Won a tournament
+      = linkTo "tournament" this | {{name}}

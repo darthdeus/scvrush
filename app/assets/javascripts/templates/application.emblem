@@ -10,7 +10,7 @@
   div class={Scvrush.currentUser.race :span3 :sidebar}
     = outlet sidebar
 
-  .span12.main-content
+  .span12
     = outlet
 
 .hidden

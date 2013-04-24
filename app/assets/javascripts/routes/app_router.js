@@ -31,6 +31,7 @@ Scvrush.Router.map(function() {
     this.resource("user", { path: "/:user_id" }, function() {
       this.route("edit", { path: "/edit" });
       this.route("tournaments", { path: "/tournaments" });
+      this.route("achievements", { path: "/achievements" });
       this.route("login", { path: "/login" });
       this.route("activate", { path: "/activate" });
     });

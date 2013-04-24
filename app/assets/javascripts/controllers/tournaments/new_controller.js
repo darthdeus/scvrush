@@ -11,7 +11,6 @@ Scvrush.TournamentsNewController = Em.ObjectController.extend({
     var self = this;
 
     tournament.validate().then(function() {
-
       var leagues = self.selectedLeagues.toArray().join(",");
       tournament.set("leagues", leagues);
 

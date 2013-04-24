@@ -10,9 +10,12 @@
           = control "user.follow_button" content
 
     nav.user-sections
-      = linkTo .btn "user" this activeClass=false | Feed
-      = linkTo .btn "user" this activeClass=false | Content
-      = linkTo .btn "user.tournaments" this activeClass=false | Tournaments
-      = linkTo .btn "user.edit" this activeClass=false | Account
+      = linkTo .btn "user.index" this | Feed
+      = linkTo .btn "user.achievements" this | Achievements
+      = linkTo .btn "user.tournaments" this | Tournaments
+      if isTrial
+        = linkTo .btn "user.activate" this | Activate
+      else
+        = linkTo .btn "user.edit" this | Account
 
     = outlet

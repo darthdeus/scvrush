@@ -7,7 +7,7 @@
 .user-profile .user-sidebar {
   float: left;
   width: 300px;
-  margin: 15px 0 0 15px;
+  padding: 15px 0 0 15px;
   border-right: 1px solid #c9c9c9;
 
   .avatar {
@@ -47,7 +47,6 @@
 .user-profile .content {
   float: left;
   width: 540px;
-  margin-top: 15px;
   border-right: 1px solid #c9c9c9;
 
   h2 {
@@ -130,4 +129,10 @@
 
   }
 
+}
+
+.user-list {
+  .item {
+    padding: 5px 20px;
+  }
 }

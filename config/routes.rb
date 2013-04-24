@@ -29,6 +29,7 @@ Scvrush::Application.routes.draw do
 
   resources :images, only: :create
   resources :notifications
+  resources :achievements
 
   resources :rounds
   resources :matches

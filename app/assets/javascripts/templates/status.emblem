@@ -1,0 +1,3 @@
+p
+  = status.interpolatedText
+  span.help-inline = status.postDate
