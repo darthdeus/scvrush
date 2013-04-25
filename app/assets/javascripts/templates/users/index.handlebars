@@ -8,7 +8,7 @@
         <img {{bindAttr src="user.imageOrDefault"}}>
         <div {{bindAttr class="user.raceClass :race"}}>{{player.race_class}}</div>
 
-        <div class="name">{{user.username}}</div>
+        <div class="name">{{view Scvrush.ShortTextView textBinding="user.username" max="10"}}</div>
       {{/linkTo}}
     </li>
   {{/each}}
