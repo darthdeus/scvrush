@@ -24,6 +24,12 @@ form.form-horizontal{action "create" content on="submit"}
       Ember.TextField valueBinding="maxPlayers"
       span.help-inline = errors.maxPlayers.firstObject
 
+  div
+    label.control-label Tournament Channel
+
+    .controls
+      Ember.TextField valueBinding="channel"
+
   div{bindAttr class="startsAtInvalid:error :control-group"}
     label.control-label Starts at
 

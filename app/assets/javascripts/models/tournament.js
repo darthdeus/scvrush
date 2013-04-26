@@ -13,6 +13,7 @@ Scvrush.Tournament = DS.Model.extend(Ember.Validations.Mixin, {
   users:             DS.hasMany("Scvrush.User"),
   isRegistered:      DS.attr("boolean"),
   isChecked:         DS.attr("boolean"),
+  channel:           DS.attr("string"),
 
   rounds:            DS.hasMany("Scvrush.Round"),
 
