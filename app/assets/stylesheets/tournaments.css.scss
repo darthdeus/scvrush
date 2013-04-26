@@ -1,4 +1,5 @@
 @import "tournaments/new";
+@import "tournaments/show";
 
 .tournaments {
 
@@ -40,63 +41,6 @@
 
   }
 }
-
-.tournament {
-  header {
-    overflow: hidden;
-
-    h1 {
-      float: left;
-      font-size: 32px;
-      margin-bottom: 0;
-
-      .back {
-        display: none;
-      }
-
-      &:hover .back {
-        display: inline;
-      }
-    }
-
-    .admin {
-      margin-top: 16px;
-      float: right;
-    }
-
-  }
-}
-
-.tournament .race-picker, .tournament .league-picker {
-
-  display: inline-block;
-
-  span {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    background-repeat: no-repeat;
-
-    opacity: 0.5;
-
-    &.active {
-      opacity: 1;
-    }
-  }
-
-  .race-zerg    { background: url("race_zerg_icon.png"); }
-  .race-terran  { background: url("race_terran_icon.png"); }
-  .race-protoss { background: url("race_protoss_icon.png"); }
-  .race-random  { background: url("race_random_icon.png"); }
-
-  .league-bronze   { background: url("league_bronze_icon.png"); }
-  .league-silver   { background: url("league_silver_icon.png"); }
-  .league-gold     { background: url("league_gold_icon.png"); }
-  .league-platinum { background: url("league_platinum_icon.png"); }
-  .league-diamond  { background: url("league_diamond_icon.png"); }
-  .league-masters  { background: url("league_masters_icon.png"); }
-}
-
 
 .tourwin {
   position: absolute;
