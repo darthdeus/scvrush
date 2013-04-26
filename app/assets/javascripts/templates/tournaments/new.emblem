@@ -1,49 +1,59 @@
-h2 Create your own custom tournament
+.tournaments-new
+  h2 Create your own custom tournament
 
-p Every SCV Rush user can create custom tournaments and invite friends to play.
+  p Every SCV Rush user can create custom tournaments and invite friends to play.
 
-form.form-horizontal{action "create" content on="submit"}
+  img.tournament-logo src="/assets/tourwin.png"
 
-  div{bindAttr class="errors.name:error :control-group"}
-    label.control-label Name
+  form{action "create" content on="submit"}
+
+    div{bindAttr class="errors.name:error :control-group"}
+      label.control-label Name
+
+      .controls
+        Ember.TextField valueBinding="name"
+        span.help-inline = errors.name.firstObject
+
+    .control-group
+      label.control-label Region
+
+      .controls
+        Ember.Select valueBinding="region" contentBinding="Scvrush.Tournament.REGIONS"
+
+    div{bindAttr class="errors.maxPlayers:error :control-group"}
+      label.control-label Maximum Players
+
+      .controls
+        Ember.TextField valueBinding="maxPlayers"
+        span.help-inline = errors.maxPlayers.firstObject
+
+    div
+      label.control-label Tournament Channel
+
+      .controls
+        Ember.TextField valueBinding="channel"
+
+    div
+      label.control-label Description
+
+      .controls
+        Ember.TextArea valueBinding="description"
+
+
+    div{bindAttr class="startsAtInvalid:error :control-group"}
+      label.control-label Starts at
+
+      .controls
+        Scvrush.DateTimeView valueBinding="startsAt" class="control"
+
+    .control-group
+      .controls.btn-group
+        button{bindAttr class="selectedBronze:active :btn"} click="toggle 'Bronze'" Bronze
+        button{bindAttr class="selectedSilver:active :btn"} click="toggle 'Silver'" Silver
+        button{bindAttr class="selectedGold:active :btn"} click="toggle 'Gold'" Gold
+        button{bindAttr class="selectedPlatinum:active :btn"} click="toggle 'Platinum'" Platinum
+        button{bindAttr class="selectedDiamond:active :btn"} click="toggle 'Diamond'" Diamond
+        button{bindAttr class="selectedMaster:active :btn"} click="toggle 'Master'" Master
 
     .controls
-      Ember.TextField valueBinding="name"
-      span.help-inline = errors.name.firstObject
-
-  .control-group
-    label.control-label Region
-
-    .controls
-      Ember.Select valueBinding="region" contentBinding="Scvrush.Tournament.REGIONS"
-
-  div{bindAttr class="errors.maxPlayers:error :control-group"}
-    label.control-label Maximum Players
-
-    .controls
-      Ember.TextField valueBinding="maxPlayers"
-      span.help-inline = errors.maxPlayers.firstObject
-
-  div
-    label.control-label Tournament Channel
-
-    .controls
-      Ember.TextField valueBinding="channel"
-
-  div{bindAttr class="startsAtInvalid:error :control-group"}
-    label.control-label Starts at
-
-    .controls
-      Scvrush.DateTimeView valueBinding="startsAt" class="control"
-
-  .control-group
-    .controls.btn-group
-      button{bindAttr class="selectedBronze:active :btn"} click="toggle 'Bronze'" Bronze
-      button{bindAttr class="selectedSilver:active :btn"} click="toggle 'Silver'" Silver
-      button{bindAttr class="selectedGold:active :btn"} click="toggle 'Gold'" Gold
-      button{bindAttr class="selectedPlatinum:active :btn"} click="toggle 'Platinum'" Platinum
-      button{bindAttr class="selectedDiamond:active :btn"} click="toggle 'Diamond'" Diamond
-      button{bindAttr class="selectedMaster:active :btn"} click="toggle 'Master'" Master
-
-  .controls
-    button.btn.btn-primary Create Tournament
+      button.btn.btn-primary Create Tournament
