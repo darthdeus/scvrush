@@ -134,6 +134,7 @@
 .user-list {
   .item {
     padding: 5px 20px;
+    @include clearfix;
 
     img {
       width: 150px;
