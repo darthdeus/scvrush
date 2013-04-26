@@ -1,0 +1,9 @@
+.main-content
+  h2 Editing match {{player1.bnetInfo}} vs {{player2.bnetInfo}}
+
+  form{action saveMatch content on="submit"}
+
+    Ember.TextField valueBinding="score"
+    button.btn type="submit" Update
+
+    = linkTo "tournament" tournament | stop editing

@@ -1,5 +1,5 @@
 .match
-  if Scvrush.keyboard.shiftKey
+  if controller.adminView
     = linkTo .overlay-edit "match.edit" this | Edit
     .player{action "userIfPresent" player1}
       img{bindAttr class=":race-icon" src="player1.raceIcon"}

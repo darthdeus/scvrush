@@ -2,6 +2,7 @@
   {{#if isStarted}}
     {{#if seeded}}
       <button {{bindAttr disabled="isSaving"}} class="btn btn-small" {{action "unseed" this}}>Destroy seed</button>
+      <button class="btn btn-small" {{action "adminToggle"}}>Admin View</button>
     {{else}}
       <button {{bindAttr disabled="isSaving"}} class="btn btn-small" {{action "seed" this}}>Seed</button>
     {{/if}}

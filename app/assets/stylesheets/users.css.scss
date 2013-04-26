@@ -6,7 +6,7 @@
 
 .user-profile .user-sidebar {
   float: left;
-  width: 300px;
+  width: 350px;
   padding: 15px 0 0 15px;
   border-right: 1px solid #c9c9c9;
 
@@ -134,5 +134,18 @@
 .user-list {
   .item {
     padding: 5px 20px;
+
+    img {
+      width: 150px;
+      float: left;
+    }
+
+    .name {
+      padding: 5px 10px;
+      font-size: 22px;
+      font-weight: bold;
+      color: #000;
+      float: left;
+    }
   }
 }

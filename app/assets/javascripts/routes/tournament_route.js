@@ -8,6 +8,12 @@ Scvrush.TournamentRoute = Scvrush.Route.extend({
 
   deactivate: function() {
     // clearInterval(this.get("reloader"));
-  }
+  },
+
+  events: {
+    adminToggle: function() {
+      this.controllerFor("tournament").toggleProperty("adminView");
+    }
+  },
 
 });

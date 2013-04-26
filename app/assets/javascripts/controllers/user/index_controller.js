@@ -5,8 +5,10 @@ Scvrush.UserIndexController = Ember.ObjectController.extend({
   }.property("user"),
 
   deleteStatus: function(status) {
-    status.deleteRecord();
-    status.get("transaction").commit();
+    if (confirm("Are you sure?")) {
+      status.deleteRecord();
+      status.get("transaction").commit();
+    }
   },
 
   users: function() {

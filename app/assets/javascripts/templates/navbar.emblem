@@ -10,7 +10,7 @@
         li = linkTo "user.edit" Scvrush.currentUser | Activate your account
 
       li
-        a.chat href="http://chat.scvrush.com"
+        a.chat href="http://chat.scvrush.com" target="_blank"
           img src="/assets/chat_button_text.png"
 
       if Scvrush.currentUser.currentOpponent

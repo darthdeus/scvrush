@@ -1,3 +1,5 @@
 .user-list
   each controller
-    .item = linkTo "tournament" this | {{name}}
+    .item = linkTo "tournament" this
+      img src=imageUrl
+      .name = name
