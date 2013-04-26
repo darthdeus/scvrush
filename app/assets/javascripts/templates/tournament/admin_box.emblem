@@ -1,0 +1,15 @@
+.admin.btn-group
+  if isStarted
+    if seeded
+      button.btn.btn-small.btn-info click="adminToggle" title="Switch to admin view where you can edit matches" Admin View
+      button.btn.btn-small disabled=isSaving click="unseed this" Destroy seed
+    else
+      button.btn.btn-small disabled=isSaving click="seed this" Seed
+  else
+    button.btn.btn-small disabled=isSaving click="start this" Start Now
+
+  button.btn.btn-small disabled=isSaving click="deleteTournament this" Delete Tournament
+
+  unless seeded
+    button.btn.btn-small disabled=isSaving click="randomize this" Randomize Players
+    = linkTo .btn.btn-small "tournament.edit" this | Edit

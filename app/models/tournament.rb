@@ -164,6 +164,8 @@ class Tournament < ActiveRecord::Base
     tournament.max_players = params[:max_players]
     tournament.leagues = params[:leagues]
     tournament.region = params[:region]
+    tournament.channel = params[:region]
+    tournament.description = params[:region]
 
     tournament.tournament_type = self.types[:user]
     tournament.user = user

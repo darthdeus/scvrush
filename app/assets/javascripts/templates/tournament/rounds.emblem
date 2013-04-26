@@ -1,0 +1,23 @@
+.bracket
+  if winner
+    p | {{winner.username}} is the winner
+
+  if hasRounds
+    each round in rounds itemController="roundItem" itemViewClass="Scvrush.RoundItemView"
+
+      .round-wrap
+        .round-info-wrap
+          .round-info | Round of {{round.number}}
+
+        div class={indexClass :round}
+          each round.matches itemViewClass="Scvrush.TournamentMatchView"
+
+  else
+    .row
+      p.alert.alert-info.span7
+        ' The tournament is already started. While waiting for the bracket to be
+        ' generated, you can watch this awesome sheep video
+
+      /*<!-- TODO - display last reloaded at -->*/
+
+    = render "tournament.players" users

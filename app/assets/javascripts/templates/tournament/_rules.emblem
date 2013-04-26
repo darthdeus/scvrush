@@ -1,0 +1,47 @@
+.info.accordion#tournament-accordion
+  .accordion-group
+    .accordion-heading
+      a.accordion-toggle data-parent="#tournament-accordion" data-toggle="collapse" href="#rules" Tournament Rules
+
+    #rules.accordion-body.in.collapse style="height: 0;"
+      div class="accordion-inner"
+        ul
+          li You are not allowed to change your race during the event
+          li If your opponent doesn't show, report him to admin
+          li Observers are allowed given both players allow it
+          li All replays must be saved
+          li The game will be restarted if a player disconnects within the first 5 minutes
+          li Hateful, racial, sexual or otherwise offending content will result in a warning
+          li Failure to rectify the bad manner will then result in disqualification.
+          li **The tournament admins reserve the right to judge what is offensive and what is not.**
+
+  .accordion-group
+    .accordion-heading
+      a.accordion-toggle data-parent="#tournament-accordion" data-toggle="collapse" href="#contact" Tournament Map info
+    #contact.accordion-body.in.collapse style="height: 0;"
+      div class="accordion-inner"
+        strong All rounds until Quarter Finals BO1, the rest BO3, no Loser's Bracket
+
+        p Map pool:
+
+        ul
+          li MLG Antiga Shipyard
+          li MLG Cloud Kingdom
+          li GSL Daybreak
+          li MLG Entombed Valley
+          li ESV Korhal Compound TE
+          li GSL Metropolis
+          li ESV Ohana LE
+
+        p In BO1 rounds, you and your opponent each veto one map and you play the game on the remaining one.
+
+        p In BO3 rounds, the loser picks from the pool. Maps don't repeat, winner can veto one map.
+
+  if hasChannel
+    .accordion-group
+      .accordion-heading
+        .accordion-toggle
+          ' The meeting channel for the tournament is
+          strong = channel
+          | .
+
