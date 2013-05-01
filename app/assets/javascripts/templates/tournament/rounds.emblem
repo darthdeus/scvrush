@@ -7,7 +7,7 @@
 
       .round-wrap
         .round-info-wrap
-          .round-info Round of {{round.number}}
+          .round-info = round.displayText
 
         div class={indexClass :round}
           each round.matches itemViewClass="Scvrush.TournamentMatchView"

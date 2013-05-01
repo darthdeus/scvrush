@@ -15,6 +15,17 @@ Scvrush.Round = DS.Model.extend({
 
   numberClass: function() {
     return "round-" + this.get("number");
+  }.property("number"),
+
+  displayText: function() {
+    var number = this.get("number");
+    switch (number) {
+      case 1: return "Champion";
+      case 2: return "Finals";
+      case 4: return "Semifinals";
+      default: return "Round of " + number;
+    };
   }.property("number")
+
 
 });
