@@ -14,15 +14,10 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    raise "Implement me"
-
     session[:user_id] = nil
     flash[:success] = "You have been logged out. Come back again at any time!"
-    if params[:r].present?
-      redirect_to params[:r]
-    else
-      redirect_to root_path
-    end
+
+    render nothing: true
   end
 
 end

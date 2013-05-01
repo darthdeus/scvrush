@@ -1,8 +1,4 @@
-Scvrush.UserIndexController = Ember.ObjectController.extend({
-
-  isCurrentUser: function() {
-    return this.get("content") === Scvrush.currentUser;
-  }.property("user"),
+Scvrush.UserController = Ember.ObjectController.extend({
 
   deleteStatus: function(status) {
     if (confirm("Are you sure?")) {

@@ -6,9 +6,10 @@ div class={race :user-navbar :navbar-fixed-top}
 
     .username = username
 
-  .notifications
-    linkTo "notifications"
-      i.icon.icon-envelope title="Notifications"
+  if hasNotifications
+    .notifications
+      linkTo "notifications"
+        i.icon.icon-envelope title="Notifications"
 
   .pull-right.user-actions
 
@@ -19,5 +20,5 @@ div class={race :user-navbar :navbar-fixed-top}
       linkTo "user.login" this
         i.icon.icon-signin title="Log in"
     else
-      linkTo "user.edit" this
+      a click="logout"
         i.icon.icon-signout title="Log out"

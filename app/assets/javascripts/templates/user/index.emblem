@@ -1,6 +1,6 @@
 .statuses
   if isCurrentUser
-    = render "statuses.new"
+    = render "statuses.new" this
 
   each status in timelineStatuses
     .status

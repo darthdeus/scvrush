@@ -113,7 +113,15 @@ Scvrush.User = DS.Model.extend(Ember.Validations.Mixin, {
 
   isFollowing: function(anotherUser) {
     return this.get("followees").contains(anotherUser);
-  }
+  },
+
+  isCurrentUser: function() {
+    return this === Scvrush.currentUser;
+  }.property("Scvrush.currentUser"),
+
+  hasNotifications: function() {
+    return this.get("notifications.length") > 0;
+  }.property("notifications.length")
 
 });
 
