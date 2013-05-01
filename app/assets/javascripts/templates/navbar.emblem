@@ -19,4 +19,3 @@
 
     ul.nav.pull-right
       li = linkTo "meet_scvrush" | About us
-      li = linkTo "contact" | Contact

@@ -1,4 +1,4 @@
-Scvrush.UserLoginController = Ember.Controller.extend({
+Scvrush.LoginController = Ember.Controller.extend({
 
   login: function() {
     var store = this.get("store");

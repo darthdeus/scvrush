@@ -4,7 +4,7 @@
 Scvrush.Router.map(function() {
   this.route("home", { path: "/" });
   this.route("meet_scvrush", { path: "/meet-scvrush" });
-  this.route("contact", { path: "/contact" });
+  this.route("login", { path: "/login" });
 
   this.resource("posts", { path: "/posts" }, function() {
     this.resource("post", { path: "/:post_id" }, function() {
@@ -32,7 +32,6 @@ Scvrush.Router.map(function() {
       this.route("edit", { path: "/edit" });
       this.route("tournaments", { path: "/tournaments" });
       this.route("achievements", { path: "/achievements" });
-      this.route("login", { path: "/login" });
       this.route("activate", { path: "/activate" });
     });
   });

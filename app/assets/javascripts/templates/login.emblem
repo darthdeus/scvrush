@@ -1,4 +1,6 @@
-p In case you already have your own account, please log in here.
+h1 Login
+
+p Use your SCV Rush credentials to log in.
 
 form.form-horizontal submit="login"
 

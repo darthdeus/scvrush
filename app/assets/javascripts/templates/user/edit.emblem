@@ -1,15 +1,18 @@
-.home
+.user-edit
   h2 Edit your profile
 
   = render "user.race_picker" this
+  hr
   = render "user.server_picker" this
 
   h3 Tell us about yourself
 
   form{action submit on="submit"}
-    Ember.TextArea valueBinding="about"
 
-    button.btn{bindAttr disabled="isSaving"} type="submit" Save
+    Ember.TextArea valueBinding="about" rows="5" cols="50"
+
+    .actions
+      button.btn disabled={isSaving} type="submit" Save
 
     if saved
       span.help-inline saved

@@ -17,7 +17,7 @@ div class={race :user-navbar :navbar-fixed-top}
       i.icon.icon-cog title="Settings"
 
     if isTrial
-      linkTo "user.login" this
+      linkTo "login"
         i.icon.icon-signin title="Log in"
     else
       a click="logout"

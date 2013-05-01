@@ -23,6 +23,7 @@ Scvrush.Round = DS.Model.extend({
       case 1: return "Champion";
       case 2: return "Finals";
       case 4: return "Semifinals";
+      case 8: return "Quarter Finals";
       default: return "Round of " + number;
     };
   }.property("number")
