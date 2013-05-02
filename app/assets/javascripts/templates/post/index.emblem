@@ -18,5 +18,3 @@
       img src="/assets/post_nav_contents.png"
     = linkTo "home"
       img src="/assets/post_nav_coaches.png"
-
-

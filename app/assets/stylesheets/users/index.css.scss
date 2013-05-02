@@ -1,0 +1,152 @@
+.user-profile {
+  @include clearfix;
+
+  .left { float: left; }
+}
+
+.user-profile .user-sidebar {
+  float: left;
+  width: 350px;
+  padding: 15px 0 0 15px;
+  border-right: 1px solid #c9c9c9;
+
+  .avatar {
+    position: relative;
+    width: 100px;
+
+    img {
+      width: 100px;
+      &.avatar { @include box-shadow(0 0 3px #666); }
+
+      &.race {
+        width: 60px;
+        position: absolute;
+        right: -20px;
+        bottom: -20px;
+      }
+    }
+  }
+
+  dl {
+    width: 200px;
+
+    dt { width: 100px; }
+    dd { margin-left: 110px; }
+  }
+
+  .about {
+    margin-top: 20px;
+  }
+
+  .followers img {
+    @include box-shadow(0 0 3px #666);
+    width: 30px;
+  }
+}
+
+.user-profile .content {
+  float: left;
+  width: 540px;
+  border-right: 1px solid #c9c9c9;
+
+  h2 {
+    padding: 10px 15px;
+    font-size: 22px;
+    border-bottom: 1px solid #c9c9c9;
+    margin: 0;
+  }
+
+  nav.user-sections {
+    padding: 10px 15px;
+    border-bottom: 1px solid #c9c9c9;
+
+    .btn {
+      margin-right: 5px;
+    }
+  }
+
+  .statuses {
+    padding: 10px 15px;
+  }
+
+  form.new-status input {
+    font-size: 18px;
+    height: 30px;
+    line-height: 30px;
+    width: 500px;
+  }
+
+  .statuses .status {
+    padding: 10px;
+    border-bottom: 1px solid #f9f9f9;
+    overflow: hidden;
+    position: relative;
+
+    &:hover {
+      background: #fff;
+    }
+
+    a {
+      @include transition(color 0.2s ease-in-out);
+      &:hover { text-decoration: none; }
+    }
+
+    .author {
+      float: left;
+      color: #999;
+      margin-right: 65px;
+
+      .user-info, .avatar { float: left; }
+      .date { font-size: 12px; }
+
+      .avatar {
+        margin-right: 15px;
+        @include transition(box-shadow 0.2s ease-in-out);
+
+        &:hover {
+          box-shadow: 0 0 6px #666;
+        }
+      }
+
+      .user-info .username {
+        font-size: 18px;
+        font-weight: bold;
+      }
+    }
+
+    .text {
+      float: left;
+      width: 460px;
+    }
+
+    .meta {
+      font-size: 12px;
+      color: #999;
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+    }
+
+  }
+
+}
+
+.user-list {
+  .item {
+    padding: 5px 20px;
+    @include clearfix;
+
+    img {
+      width: 150px;
+      float: left;
+    }
+
+    .name {
+      padding: 5px 10px;
+      font-size: 22px;
+      font-weight: bold;
+      color: #000;
+      float: left;
+    }
+  }
+}

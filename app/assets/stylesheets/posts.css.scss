@@ -1,2 +1,9 @@
 @import "posts/index";
 @import "posts/show";
+
+.related-posts {
+
+  .search {
+    @include flat-input;
+  }
+}
