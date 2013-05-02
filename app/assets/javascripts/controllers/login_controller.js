@@ -12,7 +12,7 @@ Scvrush.LoginController = Ember.Controller.extend({
 
       var user = Scvrush.User.find(data.user.id)
 
-      Scvrush.set("currentUser", user);
+      Scvrush.set("currentUser.content", user);
       controller.transitionToRoute("user", user);
     });
   }

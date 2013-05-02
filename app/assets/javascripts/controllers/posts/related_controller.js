@@ -1,8 +1,7 @@
-Scvrush.PostsRelatedController = Ember.ArrayController.extend({
+Scvrush.PostsRelatedController = Ember.Controller.extend({
 
-  init: function() {
-    this._super();
-    this.set("content", Scvrush.Post.all());
-  }
+  needs: "postIndex",
+
+  postsBinding: "controllers.postIndex.relatedPosts"
 
 });

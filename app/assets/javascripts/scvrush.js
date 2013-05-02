@@ -12,7 +12,9 @@ Scvrush = Ember.Application.create({
   rootElement: "#ember-app",
   ready: function() {
     var userId = this.$(this.rootElement).data("user-id");
-    Scvrush.currentUser = Scvrush.User.find(userId);
+    var user = Scvrush.User.find(userId);
+
+    Scvrush.currentUser = Scvrush.CurrentUser.create({ content: user });
 
     var bindKeys = function(event) {
       Ember.set("Scvrush.keyboard.shiftKey", event.shiftKey);

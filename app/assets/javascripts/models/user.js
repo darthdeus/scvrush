@@ -59,6 +59,7 @@ Scvrush.User = DS.Model.extend(Ember.Validations.Mixin, {
 
   isNotTournamentReady: Ember.computed.not("isTournamentReady"),
 
+  // TODO - check this
   hasFollowers: function() {
     if (this.get("followers")) {
       return this.get("followers.length") > 0;
@@ -91,32 +92,8 @@ Scvrush.User = DS.Model.extend(Ember.Validations.Mixin, {
     return this.get("statuses").toArray().reverse().slice(0, 10);
   }.property("statuses.@each.item"),
 
-  follow: function(user) {
-    var url = "/users/" + user.get("id") + "/follow";
-
-    $.post(url, function(data) {
-      Ember.run(function() {
-        user.get("store").loadMany(Scvrush.User, data.users);
-      });
-    });
-  },
-
-  unfollow: function(user) {
-    var url = "/users/" + user.get("id") + "/unfollow";
-
-    $.post(url, { "_method": "DELETE" }, function(data) {
-      Ember.run(function() {
-        user.get("store").loadMany(Scvrush.User, data.users);
-      });
-    });
-  },
-
-  isFollowing: function(anotherUser) {
-    return this.get("followees").contains(anotherUser);
-  },
-
   isCurrentUser: function() {
-    return this === Scvrush.currentUser;
+    return this === Scvrush.currentUser.get("content");
   }.property("Scvrush.currentUser"),
 
   hasNotifications: function() {

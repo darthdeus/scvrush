@@ -5,10 +5,10 @@
   //  Ember.TextField placeholder="Search by keywords..." class="search"
 
   .items
-    each controller
+    each posts
       .item
         .image
           linkTo "post" this
-            img src=image
+            Scvrush.ImageView srcBinding="image"
 
         .text = linkTo "post" this | {{title}}
