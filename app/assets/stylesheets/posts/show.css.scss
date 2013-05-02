@@ -1,19 +1,37 @@
 .single-post {
 
-  h1 {
-    font-size: 22px;
+  .post-content {
+    float: left;
+
+    h1 {
+      font-size: 22px;
+    }
+
+    p {
+      line-height: 1.4;
+    }
+
+    img {
+      display: block;
+      box-shadow: 0 0 3px #333;
+      max-height: 250px;
+      margin: 0 10px;
+    }
+
   }
 
-  p {
-    line-height: 1.4;
-  }
+  .post-nav {
+    float: right;
+    margin-top: 60px;
 
-  img {
-    display: block;
-    box-shadow: 0 0 3px #333;
-    max-height: 250px;
-    margin: 0 10px;
-  }
+    img {
+      display: block;
+      margin-bottom: 30px;
 
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
 }
 

@@ -1,9 +1,22 @@
-.single-post.span8
-  h1 = title
+.single-post
+  .post-content
+    h1 = title
 
-  div = markdown content.content
+    div = markdown content.content
 
-  .btn-group
-    a target="blank" class="btn" href="http://chat.scvrush.com/" Watch Pros Play
+    .btn-group
+      a target="blank" class="btn" href="http://chat.scvrush.com/" Watch Pros Play
 
-    = linkTo .btn.btn-info "tournaments" | Play Free Tournaments
+      = linkTo .btn.btn-info "tournaments" | Play Free Tournaments
+
+  .post-nav
+    a href="http://chat.scvrush.com/" target="_blank"
+      img src="/assets/post_nav_chat.png"
+    = linkTo "home"
+      img src="/assets/post_nav_partners.png"
+    = linkTo "posts.index"
+      img src="/assets/post_nav_contents.png"
+    = linkTo "home"
+      img src="/assets/post_nav_coaches.png"
+
+
