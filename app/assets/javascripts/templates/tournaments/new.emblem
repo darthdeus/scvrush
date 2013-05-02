@@ -24,7 +24,7 @@
       label.control-label Maximum Players
 
       .controls
-        Ember.TextField valueBinding="maxPlayers"
+        Ember.Select valueBinding="maxPlayers" contentBinding="maxPlayerValues"
         span.help-inline = errors.maxPlayers.firstObject
 
     div

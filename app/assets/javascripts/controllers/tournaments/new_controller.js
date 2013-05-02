@@ -26,6 +26,10 @@ Scvrush.TournamentsNewController = Em.ObjectController.extend({
     this.transitionToRoute("tournament", this.get("content"));
   },
 
+  maxPlayerValues: function() {
+    return ["4", "8", "16", "32", "64", "128"];
+  }.property(),
+
   toggle: function(league) {
     var set = this.get("selectedLeagues");
 
