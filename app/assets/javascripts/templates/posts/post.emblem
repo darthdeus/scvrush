@@ -3,11 +3,15 @@
     = linkTo "post.index" this class="image"
       Scvrush.ImageView srcBinding="image"
 
-    h2
-      = linkTo "post.index" this | {{title}}
+    .content
+      h2
+        = linkTo "post.index" this | {{title}}
 
-    .tags
-      = each tagList itemController="tag"
-        span.tag click="filterTag this" = content
+      .text = markdown content.shortContent
+
+      .tags
+        = each tagList itemController="tag"
+          span.tag click="filterTag this" = content
+
   else
-    p The posts are being loaded
+    p The post is being loaded

@@ -23,7 +23,15 @@ Scvrush.Post = DS.Model.extend({
 
       return contains;
     });
-  }.property("tagList")
+  }.property("tagList"),
+
+  shortContent: function() {
+    var content = this.get("content");
+
+    if (content) {
+      return content.slice(0, 400);
+    }
+  }.property("content")
 
 });
 
