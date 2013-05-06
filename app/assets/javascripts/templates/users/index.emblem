@@ -1,0 +1,13 @@
+Ember.TextField valueBinding="controller.query" placeholder="Search the users"
+
+ul.tournament-players.unstyled
+
+  each controller
+    li class="user"
+      linkTo "user" this
+        img src={imageOrDefault}
+        div class={raceClass :race}
+          = player.race_class
+
+        .name
+          Scvrush.ShortTextView textBinding="username" max="10"
