@@ -4,10 +4,25 @@ Scvrush.TournamentSignupButtonController = Ember.ObjectController.extend({
 
   init: function() {
     this._super();
-
-    Ember.run.next(this, function() {
-      this.set("user", Scvrush.currentUser);
-    });
+    this.set("user", Scvrush.currentUser);
   },
+
+  register: function(tournament, user) {
+    tournament.set("isRegistered", true);
+    tournament.get("transaction").commit();
+  },
+
+  checkin: function(tournament) {
+    if (Scvrush.currentUser.get("isTournamentReady")) {
+      tournament.set("isChecked", true);
+      tournament.get("transaction").commit();
+    }
+  },
+
+  cancel: function(tournament) {
+    tournament.set("isRegistered", false);
+    tournament.set("isChecked", false);
+    tournament.get("transaction").commit();
+  }
 
 });

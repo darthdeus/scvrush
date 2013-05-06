@@ -30,7 +30,8 @@ Scvrush.TournamentIndexController = Ember.ObjectController.extend({
   },
 
   isLost: function() {
-    return this.get("currentMatch.winner") !== Scvrush.currentUser && this.get("currentMatch.winner");
+    return this.get("currentMatch.winner") !== Scvrush.currentUser.get("content")
+            && this.get("currentMatch.winner");
   }.property("currentMatch.score"),
 
   lostAgainst: function() {
@@ -44,8 +45,8 @@ Scvrush.TournamentIndexController = Ember.ObjectController.extend({
 
     var result = rounds.map(function(round) {
       return round.get("matches").filter(function(match) {
-        return match.get("player1") == Scvrush.currentUser
-              || match.get("player2") == Scvrush.currentUser;
+        return match.get("player1") === Scvrush.currentUser.get("content")
+              || match.get("player2") === Scvrush.currentUser.get("content");
       }).get("lastObject");
     }).filter(function(item) {
       return !!item;
@@ -59,7 +60,7 @@ Scvrush.TournamentIndexController = Ember.ObjectController.extend({
         value = null
 
     if (match) {
-      value = match.opponentFor(Scvrush.currentUser);
+      value = match.opponentFor(Scvrush.currentUser.get("content"));
     }
 
     Scvrush.currentUser.set("currentOpponent", value);
@@ -84,11 +85,11 @@ Scvrush.TournamentIndexController = Ember.ObjectController.extend({
   }.property("score"),
 
   isAdmin: function() {
-    return this.get("user") == Scvrush.currentUser;
+    return this.get("user") == Scvrush.currentUser.get("content");
   }.property("user"),
 
   isPlaying: function() {
-    return this.get("content.users").contains(Scvrush.currentUser);
+    return this.get("content.users").contains(Scvrush.currentUser.get("content"));
   }.property("users.@each.id"),
 
   lastUser: function() {

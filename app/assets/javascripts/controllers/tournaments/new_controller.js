@@ -11,10 +11,10 @@ Scvrush.TournamentsNewController = Em.ObjectController.extend({
     var self = this;
 
     tournament.validate().then(function() {
-      var leagues = self.selectedLeagues.toArray().join(",");
+      var leagues = self.get("selectedLeagues").toArray().join(",");
       tournament.set("leagues", leagues);
 
-      if (tournament.get("isValid")) {
+      if (tournament.get("isValid") && leagues !== "") {
         tournament.addObserver("id", self, "afterCreate");
         tournament.get("transaction").commit();
       }

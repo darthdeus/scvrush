@@ -1,9 +1,0 @@
-{{render "tournament.signup_button" content}}
-
-{{#if users.isLoaded}}
-  <h4>Registered players</h2>
-
-  <p>There are already {{signupsCount}} players signed up</p>
-
-  {{render "tournament.players" users}}
-{{/if}}

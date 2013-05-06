@@ -1,0 +1,9 @@
+= render "tournament.signup_button" content
+
+if users.isLoaded
+  h4 Registered players
+
+  /* TODO - this seems to be broken
+  p There are already {{signupsCount}} players signed up
+
+  = render "tournament.players" users

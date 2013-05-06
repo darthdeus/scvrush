@@ -2,7 +2,7 @@
   h2 Edit your profile
 
   = render "user.race_picker" this
-  hr
+  = render "user.league_picker" this
   = render "user.server_picker" this
 
   h3 Tell us about yourself

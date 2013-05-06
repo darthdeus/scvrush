@@ -7,7 +7,7 @@
       li = linkTo "tournaments" | Tournaments
       li = linkTo "users" | Users
       if Scvrush.currentUser.isTrial
-        li = linkTo "user.edit" Scvrush.currentUser | Activate your account
+        li = linkTo "user.edit" Scvrush.currentUser.content | Activate your account
 
       li
         a.chat href="http://chat.scvrush.com" target="_blank"

@@ -5,4 +5,3 @@ Scvrush.TournamentIndexRoute = Scvrush.Route.extend({
   }
 
 });
-
