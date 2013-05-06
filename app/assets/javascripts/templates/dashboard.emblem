@@ -15,13 +15,12 @@
       .moods
         a href="http://chat.scvrush.com/" target="_blank"
           img src="/assets/post_nav_chat.png"
-        = linkTo "home"
+        = linkTo "users.index"
           img src="/assets/post_nav_partners.png"
         = linkTo "posts.index"
           img src="/assets/post_nav_contents.png"
-        = linkTo "home"
+        a click="gotoCoaches"
           img src="/assets/post_nav_coaches.png"
-
 
     .carousel.slide
       .carousel-inner
