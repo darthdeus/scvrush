@@ -1,5 +1,7 @@
 Scvrush.CurrentUser = Ember.ObjectProxy.extend({
 
+  content: null,
+
   follow: function(user) {
     var url = "/users/" + user.get("id") + "/follow";
 
@@ -21,7 +23,20 @@ Scvrush.CurrentUser = Ember.ObjectProxy.extend({
   },
 
   isFollowing: function(anotherUser) {
-    return this.get("followees").contains(anotherUser);
+    var array = this.get("followees");
+    return array && array.contains(anotherUser);
   },
+
+  changeUser: function(user) {
+    this.set("content", user);
+
+    if (user) {
+      CS.unsubscribe("user-" + this.get("username"));
+      CS.subscribe("user-" + user.get("username"), this._loadStuff);
+    }
+  },
+
+  _loadStuff: function(data) {
+  }
 
 });

@@ -1,5 +1,26 @@
 Ember.TextField valueBinding="controller.query" placeholder="Search the users"
 
+.button-group
+  button.btn click="search 'terran'" Terran
+  button.btn click="search 'zerg'" Zerg
+  button.btn click="search 'protoss'" Protoss
+  button.btn click="search 'random'" Random
+
+.button-group
+  button.btn click="search 'na'" NA
+  button.btn click="search 'eu'" EU
+  button.btn click="search 'sea'" SEA
+  button.btn click="search 'kr'" KR
+
+.button-group
+  button.btn click="search 'bronze'" Bronze
+  button.btn click="search 'silver'" Silver
+  button.btn click="search 'gold'" Gold
+  button.btn click="search 'platinum'" Platinum
+  button.btn click="search 'diamond'" Diamond
+  button.btn click="search 'master'" Master
+
+
 ul.tournament-players.unstyled
 
   each controller

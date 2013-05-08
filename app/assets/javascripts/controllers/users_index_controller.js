@@ -1,6 +1,6 @@
 Scvrush.UsersIndexController = Ember.ArrayController.extend({
 
-  query: null,
+  query: "",
 
   updateUsers: _.debounce(function(value) {
     var posts;
@@ -16,6 +16,10 @@ Scvrush.UsersIndexController = Ember.ArrayController.extend({
 
   queryChanged:function (value) {
     this.updateUsers()
-  }.observes("query")
+  }.observes("query"),
+
+  search: function(query) {
+    this.set("query", this.get("query") + " " + query);
+  }
 
 });

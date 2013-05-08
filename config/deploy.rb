@@ -29,16 +29,17 @@ set :default_environment, {
 
 namespace :deploy do
 
-  task :start, :roles => :app, :except => { :no_release => true } do
-    run "/etc/init.d/unicorn_scvrush start"
+  task :start do
+    run "cd #{current_path} && RAILS_ENV=#{rails_env} bundle exec unicorn -D -c config/unicorn.rb -E production"
   end
-  task :stop, :roles => :app, :except => { :no_release => true } do
-    run "/etc/init.d/unicorn_scvrush stop"
+
+  task :stop do
+    run "cd #{current_path} && kill $(cat tmp/pids/unicorn.pid)"
   end
-  task :restart, :roles => :app, :except => { :no_release => true } do
-    run "/etc/init.d/unicorn_scvrush restart"
-    # run "#{try_sudo} service unicorn stop"
-    # run "cd #{current_path}; bundle exec ./bin/unicorn -D -c config/unicorn.rb -E production"
+
+  task :restart do
+    stop
+    start
   end
 
   task :symlink_shared do
