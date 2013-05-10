@@ -29,6 +29,8 @@ class UserRegistrator < Struct.new(:user, :tournament)
       type: "Scvrush.Status",
       data: json
     })
+  rescue Errno::ECONNREFUSED => e
+    Rails.logger.error e
   end
 
   def publish(tournament, user)
@@ -37,8 +39,6 @@ class UserRegistrator < Struct.new(:user, :tournament)
     #   type: "Scvrush.Tournament",
     #   data: json
     # })
-  rescue Errno::ECONNREFUSED => e
-    Rails.logger.error e
   end
 
 end
