@@ -1,7 +1,4 @@
 .bracket
-  if winner
-    p | {{winner.username}} is the winner
-
   if hasRounds
     each round in rounds itemController="roundItem" itemViewClass="Scvrush.RoundItemView"
 
@@ -11,6 +8,11 @@
 
         div class={indexClass :round}
           each round.matches itemViewClass="Scvrush.TournamentMatchView"
+          unless round.matches
+            with round.tournament.winner
+              .winner
+                img{bindAttr class=":race-icon" src="raceIcon"}
+                = username
 
   else
     .row

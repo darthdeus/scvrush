@@ -1,7 +1,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
-//= require_self
+//= require ./env
 //= require ./vendor/manifest
 
 //= require bootstrap
@@ -12,6 +12,8 @@
 //= require ./vendor/ember-validations
 //= require ./scvrush
 
-window.ENV = {};
-window.CATSOCKET_PRODUCTION = true;
-ENV.EXPERIMENTAL_CONTROL_HELPER = true;
+window.onerror = function(message) {
+  if (confirm("Something went wrong: " + message)) {
+    window.location.reload();
+  }
+};

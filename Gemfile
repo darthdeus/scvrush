@@ -7,7 +7,8 @@ gem "bcrypt-ruby",  "~> 3.0.1", require: "bcrypt"
 gem "kaminari"
 gem "pg",                       "~> 0.14.0"
 gem "tire"
-gem "catsocket_client", github: "darthdeus/catsocket_client"
+# gem "catsocket_client", github: "darthdeus/catsocket_client"
+gem "catsocket_client", path: "../catsocket_client"
 
 gem "ember-rails"
 gem "emblem-rails"
@@ -49,6 +50,7 @@ gem "geoip"
 group :development, :test do
   gem "pry-rails",  "~> 0.2.2"
   gem "pry-nav",    "~> 0.2.1"
+  gem "pry-remote"
   gem "thin"
 
   # gem "rack-mini-profiler", "~> 0.1.9"

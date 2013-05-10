@@ -1,6 +1,5 @@
-GIT
-  remote: git://github.com/darthdeus/catsocket_client.git
-  revision: aabf48f2d03c1faf314bb5f064830a2d7781463d
+PATH
+  remote: ../catsocket_client
   specs:
     catsocket_client (0.0.2)
       rest-client
@@ -200,6 +199,9 @@ GEM
       pry (~> 0.9.10)
     pry-rails (0.2.2)
       pry (>= 0.9.10)
+    pry-remote (0.1.7)
+      pry (~> 0.9)
+      slop (~> 3.0)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -332,6 +334,7 @@ DEPENDENCIES
   populator (~> 1.0.0)
   pry-nav (~> 0.2.1)
   pry-rails (~> 0.2.2)
+  pry-remote
   rails (~> 3.2.13)
   rolify (~> 3.2.0)
   rspec-rails (~> 2.13.0)

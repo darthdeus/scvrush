@@ -108,9 +108,9 @@
         @include border-radius(3px);
         margin: 0 5px 20px 0;
         padding: 3px 6px;
-        color: #000;
+        color: #fff;
         font-weight: bold;
-        background: #FAFAFA;
+        background: #4997c9;
         border: 1px solid #999;
         border-bottom: 1px solid #666;
 
@@ -175,6 +175,13 @@
     .player:first-of-type { margin-bottom: 518px; }
   }
 
+  .winner {
+    background: url("/assets/winner_ribbon.png") no-repeat;
+    width: 244px;
+    height: 58px;
+    padding: 11px 0 0 44px;
+    font-weight: bold;
+  }
 
   .player {
     line-height: 24px;
