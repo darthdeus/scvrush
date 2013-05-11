@@ -3,6 +3,7 @@
 //= require jquery-ui
 //= require ./env
 //= require ./vendor/manifest
+//= require pnotify
 
 //= require bootstrap
 //= require handlebars
@@ -13,7 +14,8 @@
 //= require ./scvrush
 
 window.onerror = function(message) {
-  if (confirm("Something went wrong: " + message)) {
-    window.location.reload();
-  }
+  $.pnotify({
+    title: "Something went wrong",
+    text: "We've been notified about this, please reload the page. If the error persists, please contact us via our customer supprt or at jakub@scvrush.com"
+  });
 };

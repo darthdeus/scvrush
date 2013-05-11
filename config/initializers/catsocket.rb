@@ -1,6 +1,6 @@
 require "catsocket_client/publisher"
 
-CATSOCKET_PRODUCTION = false
+CATSOCKET_PRODUCTION = true
 
 if CATSOCKET_PRODUCTION
   CATSOCKET_API_KEY = "1053424174bca9fa8e7f3324abac29a5c0639fb0dcdd00120f3207bfb47feb0b"

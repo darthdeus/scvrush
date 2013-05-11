@@ -24,6 +24,7 @@ gem "airbrake",           "~> 3.1.6"
 gem "party_foul"
 
 gem "slim-rails",              "~> 1.1.0"
+gem "pnotify-rails"
 
 group :assets do
   gem "uglifier",         "~> 1.3.0"

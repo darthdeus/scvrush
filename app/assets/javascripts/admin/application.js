@@ -3,6 +3,7 @@
 //= require jquery-ui
 //= require ../vendor/manifest
 
+
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap
 
