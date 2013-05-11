@@ -11,6 +11,12 @@ Scvrush.DashboardController = Ember.ObjectController.extend({
   gotoCoaches: function() {
     this.transitionToRoute("posts");
     this.set("controllers.postsIndex.query", Scvrush.currentUser.get("race") + " coach");
-  }
+  },
+
+  isTrialChanged: function() {
+    if (this.get("isTrial")) {
+      this.transitionToRoute("home");
+    }
+  }.observes("isTrial")
 
 });

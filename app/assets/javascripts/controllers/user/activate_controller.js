@@ -57,7 +57,7 @@ Scvrush.UserActivateController = Ember.ObjectController.extend({
         return;
       }
 
-      user.one("didUpdate", this, function() {
+      user.get("content").one("didUpdate", this, function() {
         alert("Your account was activated. Welcome to SCV Rush!");
         this.transitionToRoute("home");
       });
