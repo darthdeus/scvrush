@@ -1,5 +1,17 @@
 Scvrush.ApplicationRoute = Ember.Route.extend({
 
+  events: {
+    logout: function() {
+      $.ajax({
+        url: "/logout",
+        method: "DELETE",
+        success: function() {
+          document.location = "/";
+        }
+      });
+    }
+  },
+
   setupController: function() {
     this.setupCatsocket();
     // Scvrush.currentUser.addObserver("statuses.length", this, "userLoaded");
