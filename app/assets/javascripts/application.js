@@ -20,6 +20,6 @@ $(function() {
       title: "Something went wrong",
       text: "We've been notified about this, please reload the page. If the error persists, please contact us via our customer supprt or at jakub@scvrush.com"
     });
-    orig(arguments);
+    orig.apply(arguments);
   };
 });
