@@ -17,7 +17,7 @@ Scvrush.UserEditController = Ember.ObjectController.extend({
   }.observes("about"),
 
   submit: function() {
-    this.get("transaction").commit();
+    this.get("content").save();
   }
 
 });

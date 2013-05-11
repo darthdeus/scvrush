@@ -30,7 +30,4 @@
   else
     h4 Tournament Signup
 
-    if canParticipate
-      = render "tournament.signup" this
-    else
-      p You can't participate in this tournament.
+    = render "tournament.signup" this

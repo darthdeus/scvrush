@@ -1,4 +1,7 @@
-= render "tournament.signup_button" content
+if canParticipate
+  = render "tournament.signup_button" content
+else
+  p You can't participate in this tournament.
 
 if users.isLoaded
   h4 Registered players
