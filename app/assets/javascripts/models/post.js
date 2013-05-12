@@ -21,7 +21,7 @@ Scvrush.Post = DS.Model.extend({
         }
       }
 
-      return contains;
+      return contains && post !== this;
     });
   }.property("tagList"),
 
