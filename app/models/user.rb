@@ -160,7 +160,9 @@ class User < ActiveRecord::Base
   end
 
   def follow(user)
-    unless following?(user)
+    if following?(user)
+      raise "Already following this user"
+    else
       Following.create!(follower: self, followee: user)
       self.update_follower_ids
       user.update_follower_ids
@@ -172,6 +174,8 @@ class User < ActiveRecord::Base
       Following.where(follower_id: self.id, followee_id: user.id).destroy_all
       self.update_follower_ids
       user.update_follower_ids
+    else
+      raise "It's not possible to unfollow without following first"
     end
   end
 
