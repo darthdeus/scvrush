@@ -33,13 +33,16 @@ class User < ActiveRecord::Base
                   :bnet_code, :bnet_username, :twitter, :time_zone, :practice,
                   :image, :bnet_info, :expires_at
 
-
   attr_accessor :password
 
   mount_uploader :avatar, AvatarUploader
 
   include Tire::Model::Search
   include Tire::Model::Callbacks
+
+  before_save do
+    Rails.logger.error "\n\nUser #{username} #{id} is invalid\n\n" unless self.valid
+  end
 
   # settings analysis: {
   #   filter: {
