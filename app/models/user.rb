@@ -80,6 +80,10 @@ class User < ActiveRecord::Base
     where('username ILIKE ? OR email ILIKE ?', login, login).first
   end
 
+  def self.find_all_by_query(query)
+    where('username ILIKE ? OR race = ? OR server = ? OR league = ?', query, query, query, query)
+  end
+
   def self.find_all_by_username(username)
     where('username ILIKE ?', username)
   end
