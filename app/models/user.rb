@@ -152,11 +152,11 @@ class User < ActiveRecord::Base
   end
 
   def followed_by?(user)
-    followers.include?(user)
+    Following.exists?("followee_id = ? AND follower_id = ?", user.id, self.id)
   end
 
   def following?(user)
-    followees.include?(user)
+    Following.exists?("followee_id = ? AND follower_id = ?", self.id, user.id)
   end
 
   def follow(user)
