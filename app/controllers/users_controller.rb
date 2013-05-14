@@ -48,14 +48,14 @@ class UsersController < ApplicationController
       render json: { error: "You can't follow yourself" }, status: 400
     else
       current_user.follow user
-      render json: [ current_user, user ]
+      render json: [ current_user.reload, user.reload ]
     end
   end
 
   def unfollow
     user = User.find(params[:id])
     current_user.unfollow user
-    render json: [ current_user, user ]
+    render json: [ current_user.reload, user.reload ]
   end
 
   # API for chat
