@@ -13,7 +13,7 @@
           h2
             = linkTo "post.index" this | {{title}}
 
-          .text = markdown content.shortContent
+          .text = markdown shortContent
 
           .tags
             = each tagList itemController="tag"
