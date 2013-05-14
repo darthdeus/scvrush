@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
   include Tire::Model::Callbacks
 
   before_save do
-    Rails.logger.error "\n\nUser #{username} #{id} is invalid\n\n" unless self.valid
+    Rails.logger.error "\n\nUser #{username} #{id} is invalid\n\n" unless self.valid?
   end
 
   # settings analysis: {
