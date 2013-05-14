@@ -5,9 +5,3 @@
 require File.expand_path('../config/application', __FILE__)
 
 Scvrush::Application.load_tasks
-
-unless Rails.env.production?
-  require "rspec/core/rake_task"
-  RSpec::Core::RakeTask.new
-  task default: :spec
-end
