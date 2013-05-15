@@ -18,10 +18,10 @@ Scvrush.DashboardController = Ember.ObjectController.extend({
     this.set("controllers.postsIndex.query", query);
   },
 
-  isTrialChanged: function() {
-    if (this.get("isTrial")) {
-      this.transitionToRoute("home");
-    }
-  }.observes("isTrial")
+  // isTrialChanged: function() {
+  //   if (this.get("isTrial")) {
+  //     this.transitionToRoute("home");
+  //   }
+  // }.observes("isTrial")
 
 });

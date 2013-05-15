@@ -20,7 +20,6 @@ Scvrush.ApplicationRoute = Ember.Route.extend({
   userLoaded: function() {
     var user = Scvrush.currentUser;
     if (user.get("isTrial") && user.get("statuses.length") === 0) {
-
       this.sayHi();
     }
   },
