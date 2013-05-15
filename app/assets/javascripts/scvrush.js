@@ -16,15 +16,6 @@ Scvrush = Ember.Application.create({
 
     Scvrush.currentUser = Scvrush.CurrentUser.create();
     Scvrush.currentUser.changeUser(user);
-
-    var bindKeys = function(event) {
-      Ember.set("Scvrush.keyboard.shiftKey", event.shiftKey);
-      Ember.set("Scvrush.keyboard.altKey", event.altKey);
-      Ember.set("Scvrush.keyboard.ctrlKey", event.ctrlKey);
-    };
-
-    $(document).keydown(bindKeys);
-    $(document).keyup(bindKeys);
   }
 });
 

@@ -129,6 +129,7 @@ class Tournament < ActiveRecord::Base
 
   def unregister(user)
     self.signups.where(user_id: user.id).each(&:destroy)
+    Tournament.reset_counters(self.id, :signups)
   end
 
   def signup_for(user)

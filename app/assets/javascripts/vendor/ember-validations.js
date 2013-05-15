@@ -1,4 +1,4 @@
-// Last commit: 28bec07 (2013-03-22 02:10:16 -0400)
+// Last commit: a68db19 (2013-05-15 00:43:45 -0400)
 
 
 (function() {
@@ -85,7 +85,22 @@ Ember.Validations.Errors = Ember.Object.extend({
   },
   clear: function() {
     var keys = Object.keys(this);
+    var only = null;
+    if ( arguments.length > 1 )
+    {
+      only = Array.prototype.slice.apply(arguments);
+    }
+    else if (arguments.length === 1)
+    {
+      if ( arguments[0] instanceof Array )
+        only = arguments[0];
+      else
+        only = [arguments[0]];
+    }
     for(var i = 0; i < keys.length; i++) {
+      if ( only && only.indexOf(keys[i]) < 0 )
+        continue;
+
       this.set(keys[i], undefined);
       delete this[keys[i]];
     }
@@ -110,14 +125,14 @@ Ember.Validations.Mixin = Ember.Mixin.create({
     var object = this;
     var canValidate = function(options, validator) {
       if (typeof(options) === 'object') {
-        if (options.if) {
-          if (typeof(options.if) === 'function') {
-            return options.if(object, validator);
-          } else if (typeof(options.if) === 'string') {
-            if (typeof(object[options.if]) === 'function') {
-              return object[options.if]();
+        if (options['if']) {
+          if (typeof(options['if']) === 'function') {
+            return options['if'](object, validator);
+          } else if (typeof(options['if']) === 'string') {
+            if (typeof(object[options['if']]) === 'function') {
+              return object[options['if']]();
             } else {
-              return object.get(options.if);
+              return object.get(options['if']);
             }
           }
         } else if (options.unless) {
@@ -157,7 +172,11 @@ Ember.Validations.Mixin = Ember.Mixin.create({
           if (canValidate(value[index2], validator)) {
             var deferredObject = new Ember.Deferred();
             deferreds = deferreds.concat(deferredObject);
-            message = Ember.Validations.validators.local[validator](object, property, value[index2], deferredObject);
+            if (!Ember.isNone(Ember.Validations.validators.local[validator])) {
+              Ember.Validations.validators.local[validator](object, property, value[index2], deferredObject);
+            } else if (!Ember.isNone(Ember.Validations.validators.remote[validator])) {
+              Ember.Validations.validators.remote[validator](object, property, value[index2], deferredObject);
+            }
           }
         }
       }
@@ -166,7 +185,9 @@ Ember.Validations.Mixin = Ember.Mixin.create({
     return Ember.RSVP.all(deferreds).then(function() {
       if (object.get('stateManager')) {
         if (Object.keys(object.errors).length === 0) {
-          object.get('stateManager').transitionTo('uncommitted');
+          if (object.get('isDirty')) {
+            object.get('stateManager').transitionTo('uncommitted');
+          }
         } else {
           object.get('stateManager').transitionTo('invalid');
         }
@@ -408,11 +429,11 @@ Ember.Validations.validators.local.reopen({
     keys = Object.keys(MESSAGES);
     for (index = 0; index < keys.length; index++) {
       key = keys[index];
-      if (options[key] !== undefined && options.messages[key] === undefined) {
+      if (options[key] !== undefined && options.messages[MESSAGES[key]] === undefined) {
         if (Ember.$.inArray(key, Object.keys(CHECKS)) !== -1) {
           options.count = options[key];
         }
-        options.messages[key] = Ember.Validations.messages.render(MESSAGES[key], options);
+        options.messages[MESSAGES[key]] = Ember.Validations.messages.render(MESSAGES[key], options);
         if (options.count !== undefined) {
           delete options.count;
         }
@@ -424,13 +445,13 @@ Ember.Validations.validators.local.reopen({
 
     allowBlankOptions = {};
     if (options.is) {
-      allowBlankOptions.message = options.messages.is;
+      allowBlankOptions.message = options.messages.wrongLength;
     } else if (options.minimum) {
-      allowBlankOptions.message = options.messages.minimum;
+      allowBlankOptions.message = options.messages.tooShort;
     }
 
     if (Ember.Validations.Utilities.isBlank(model.get(property))) {
-      if (options.allowBlank === undefined) {
+      if (options.allowBlank === undefined && (options.is || options.minimum)) {
         model.errors.add(property, allowBlankOptions.message);
       }
     } else {
@@ -442,7 +463,7 @@ Ember.Validations.validators.local.reopen({
 
         fn = new Function("return " + tokenizedLength + " " + operator + " " + options[check]);
         if (!fn()) {
-          model.errors.add(property, options.messages[check]);
+          model.errors.add(property, options.messages[MESSAGES[check]]);
         }
       }
     }
@@ -556,16 +577,6 @@ Ember.Validations.validators.local.reopen({
     }
 
     deferredObject && deferredObject.resolve();
-  }
-});
-
-})();
-
-
-
-(function() {
-Ember.Validations.validators.local.reopen({
-  uniqueness: function(model, property, options) {
   }
 });
 

@@ -1,0 +1,25 @@
+form class="form-inline tournament-signup"
+
+  if isSaving
+    p Saving ...
+  else
+    if isRegistered
+      if shouldCheckin
+        button.btn.btn-success disabled={user.isNotTournamentReady} click="checkin this" Check in!
+
+      if isChecked
+        button.btn.btn-success disabled="true" You are checked in
+
+      button.btn click="cancel this" Cancel registration
+    else
+      span class={user.isNotTournamentReady:error}
+        Ember.TextField valueBinding="user.bnetInfo" placeholder="Your battle.net username, e.g Vogin.123" class="span4"
+
+      span class={user.isNotTournamentReady:error}
+        = render "user.race_picker" user
+
+      if shouldCheckin
+        button.btn.btn-success disabled={user.isNotTournamentReady} click="checkin this" Check in!
+      else
+        button disabled={user.isNotTournamentReady} class={user.isTournamentReady:btn-success :btn} click="register this" Register now!
+

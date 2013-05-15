@@ -25,11 +25,14 @@ class UserRegistrator < Struct.new(:user, :tournament)
 
     json = StatusSerializer.new(status).as_json(root: false)
 
+    # TODO - fix why this is throwing 422
     CS.publish("scvrush", {
       type: "Scvrush.Status",
       data: json
     })
   rescue Errno::ECONNREFUSED => e
+    Rails.logger.error e
+  rescue RestClient::UnprocessableEntity => e
     Rails.logger.error e
   end
 
