@@ -30,7 +30,9 @@ Scvrush.CurrentUser = Ember.ObjectProxy.extend({
   changeUser: function(user) {
     this.set("content", user);
 
-    if (user) {
+    // TODO - this should add beforeObserver on the username and resubscribe
+    // whenever it changes
+    if (user && user.get("username")) {
       CS.unsubscribe("user-" + this.get("username"));
       CS.subscribe("user-" + user.get("username"), this._loadStuff);
     }
