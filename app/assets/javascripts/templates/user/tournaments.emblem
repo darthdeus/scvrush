@@ -3,3 +3,6 @@
     .item = linkTo "tournament" this
       img src=imageUrl
       .name = name
+
+  else
+    p This user hasn't participated in any tournaments, yet.

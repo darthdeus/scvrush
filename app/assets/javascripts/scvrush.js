@@ -14,6 +14,8 @@ Scvrush = Ember.Application.create({
     var userId = this.$(this.rootElement).data("user-id");
     var user = Scvrush.User.find(userId);
 
+    user.set("stateManager.enableLogging", true);
+
     Scvrush.currentUser = Scvrush.CurrentUser.create();
     Scvrush.currentUser.changeUser(user);
   }

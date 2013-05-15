@@ -20,7 +20,7 @@ Scvrush.User = DS.Model.extend(Ember.Validations.Mixin, {
   notifications: DS.hasMany("Scvrush.Notification"),
   achievements: DS.hasMany("Scvrush.Achievement"),
 
-  // tournaments: DS.hasMany("Scvrush.Tournament"),
+  tournaments: DS.hasMany("Scvrush.Tournament"),
   allTournaments: function() {
     Scvrush.Tournament.query();
   }.property(),

@@ -30,23 +30,23 @@ Scvrush.Adapter.registerTransform("object", {
 });
 
 Scvrush.Adapter.configure("Scvrush.Tournament", {
-  sideloadAs: "tournaments"
+  alias: "tournaments"
 });
 
 Scvrush.Adapter.configure("Scvrush.Status", {
-  sideloadAs: "statuses"
+  alias: "statuses"
 });
 
 Scvrush.Adapter.configure("Scvrush.User", {
-  sideloadAs: "users"
+  alias: "users"
 });
 
 Scvrush.Adapter.configure("Scvrush.Round", {
-  sideloadAs: "rounds"
+  alias: "rounds"
 });
 
 Scvrush.Adapter.configure("Scvrush.Match", {
-  sideloadAs: "matches"
+  alias: "matches"
 });
 
 Scvrush.Store = DS.Store.extend({

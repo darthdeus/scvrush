@@ -3,6 +3,7 @@ class UserRegistrator < Struct.new(:user, :tournament)
   def signup
     signup = Signup.for(user, tournament)
     signup.signup!
+    Tournament.reset_counters(tournament.id, :signups)
     publish(tournament, user)
     signup
   end
@@ -10,11 +11,13 @@ class UserRegistrator < Struct.new(:user, :tournament)
   def checkin
     signup = Signup.for(user, tournament)
     signup.checkin!
+    Tournament.reset_counters(tournament.id, :signups)
     publish(tournament, user)
     signup
   end
 
   def post_status(signup)
+    return
     status = nil
 
     if signup.checked?
