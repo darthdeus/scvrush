@@ -13,12 +13,12 @@ class UserSerializer < ActiveModel::Serializer
 
   def followee_ids
     ids = object.followee_ids_cache
-    ids && ids.split(" ").map(&:to_i)
+    ids ? ids.split(" ").map(&:to_i) : []
   end
 
   def follower_ids
     ids = object.follower_ids_cache
-    ids && ids.split(" ").map(&:to_i)
+    ids ? ids.split(" ").map(&:to_i) : []
   end
 
   def include_tournaments?
