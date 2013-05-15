@@ -1,6 +1,6 @@
 = linkTo "user" this | {{username}}
 
 if isFollowingUser
-  a class="btn btn-mini" click="unfollow this allowed-keys='alt'" Unfollow {{username}}
+  button class="btn btn-mini" click="unfollow this" Unfollow {{username}}
 else
-  a class="btn btn-mini" click="follow this allowed-keys='alt'" Follow {{username}}
+  button class="btn btn-mini" click="follow this" Follow {{username}}
