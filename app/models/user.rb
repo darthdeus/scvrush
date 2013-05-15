@@ -152,11 +152,11 @@ class User < ActiveRecord::Base
   end
 
   def followed_by?(user)
-    Following.exists?(["followee_id = ? AND follower_id = ?", user.id, self.id])
+    Following.exists?(["followee_id = ? AND follower_id = ?", self.id, user.id])
   end
 
   def following?(user)
-    Following.exists?(["followee_id = ? AND follower_id = ?", self.id, user.id])
+    Following.exists?(["followee_id = ? AND follower_id = ?", user.id, self.id])
   end
 
   def follow(user)
@@ -180,8 +180,8 @@ class User < ActiveRecord::Base
   end
 
   def update_follower_ids
-    self.follower_ids = followers.pluck(:id).join(" ")
-    self.followee_ids = followees.pluck(:id).join(" ")
+    self.follower_ids_cache = followers.pluck(:id).join(" ")
+    self.followee_ids_cache = followees.pluck(:id).join(" ")
     save!
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130405102843) do
+ActiveRecord::Schema.define(:version => 20130515093210) do
 
   create_table "coaches", :force => true do |t|
     t.integer  "order"
@@ -190,6 +190,8 @@ ActiveRecord::Schema.define(:version => 20130405102843) do
     t.string   "time_zone"
     t.string   "api_key"
     t.datetime "expires_at"
+    t.text     "follower_ids_cache"
+    t.text     "followee_ids_cache"
   end
 
   add_index "users", ["expires_at"], :name => "index_users_on_expires_at"

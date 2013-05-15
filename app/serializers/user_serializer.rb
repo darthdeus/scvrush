@@ -11,6 +11,16 @@ class UserSerializer < ActiveModel::Serializer
     Tournament.limit(6).pluck(:id)
   end
 
+  def followee_ids
+    ids = object.followee_ids_cache
+    ids && ids.split(" ").map(&:to_i)
+  end
+
+  def follower_ids
+    ids = object.follower_ids_cache
+    ids && ids.split(" ").map(&:to_i)
+  end
+
   def include_tournaments?
     scope.id == object.id if scope
   end
