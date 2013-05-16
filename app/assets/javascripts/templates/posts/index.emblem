@@ -2,12 +2,14 @@
   .posts-index
     h1 Search articles
 
-    Ember.TextField class="span8 post-search" valueBinding=controller.query
+    form.form-horizontal submit="search"
+      Ember.TextField class="span8 post-search" valueBinding="controller.query"
+      button.btn.btn-primary type="submit" disabled=isLoading Search
 
     each controller
       .post
         = linkTo "post.index" this class="image"
-          Scvrush.ImageView srcBinding="image"
+          img src={image}
 
         .content
           h2
