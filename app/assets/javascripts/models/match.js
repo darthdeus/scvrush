@@ -16,6 +16,10 @@ Scvrush.Match = DS.Model.extend(Ember.Validations.Mixin, {
     }
   },
 
+  isLost: function() {
+    return this.get("winner") !== Scvrush.currentUser.get("content");
+  }.property("winner"),
+
   hasPlayer: function(user) {
     var bnet = user.get("bnetInfo");
     return this.get("player1") == bnet || this.get("player2") == bnet;

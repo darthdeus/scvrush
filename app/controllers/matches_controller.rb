@@ -23,7 +23,7 @@ class MatchesController < ApplicationController
 
     bracket.seed_next_match_with(match.winner, match)
 
-    render json: bracket.tournament, serializer: TournamentMatchReportSerializer, scope: current_user
+    render json: match, serializer: TournamentAdminMatchReportSerializer, scope: current_user
   rescue Bracket::AlreadySubmitted
     render json: { error: "You can't change the match result. Please contact any of the tournament admins if the result is incorrect." }
   rescue Bracket::NotStartedYet

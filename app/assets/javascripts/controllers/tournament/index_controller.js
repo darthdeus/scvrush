@@ -26,7 +26,7 @@ Scvrush.TournamentIndexController = Ember.ObjectController.extend({
   _matchSubmitted: function(data) {
     Ember.run(this, function() {
       this.get("store").loadMany(Scvrush.Match, data.matches);
-      this.get("store").load(Scvrush.Tournament, data.tournament);
+      this.get("store").loadMany(Scvrush.Tournament, data.tournaments);
       console.log(data.tournament);
     });
   },
@@ -44,6 +44,10 @@ Scvrush.TournamentIndexController = Ember.ObjectController.extend({
     var rounds = this.get("rounds");
 
     if (!rounds) return null;
+
+    rounds = rounds.toArray().sort(function(a, b) {
+      return a.get("number") < b.get("number");
+    });
 
     var result = rounds.map(function(round) {
       return round.get("matches").filter(function(match) {

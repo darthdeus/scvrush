@@ -1,5 +1,3 @@
-= linkTo "user" this | {{username}}
-
 if isFollowingUser
   button class="btn btn-mini" click="unfollow this" Unfollow {{username}}
 else
