@@ -59,12 +59,14 @@ class MatchesController < ApplicationController
     if match.save
       bracket.seed_next_match_with(match.winner, match)
 
-      tournament_json = TournamentSerializer.new(match.round.tournament)
+      render json: match.round.tournament, serializer: TournamentMatchReportSerializer
+      # tournament_json = TournamentSerializer.new(match.round.tournament, scope: current_user)
+      # matches_json = MatchSerializer.new(match.round.tournament.matches, scope: current_user)
 
-      render json: {
-        matches: match.round.tournament.matches,
-        tournaments: [tournament_json.as_json(root: false)]
-      }
+      # render json: {
+      #   matches: [matches_json.as_json(root: false)],
+      #   tournaments: [tournament_json.as_json(root: false)]
+      # }
     else
       raise ActiveRecord::RecordInvalid, "Invalid match, this shouldn't happen"
     end
