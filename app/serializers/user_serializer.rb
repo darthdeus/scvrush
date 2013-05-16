@@ -27,7 +27,7 @@ class UserSerializer < ActiveModel::Serializer
 
   def image
     object.avatar.url(:thumb)
-    "/assets/LogoBig.png"
+    "/assets/default_avatar.png"
   end
 
 end

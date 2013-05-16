@@ -4,6 +4,6 @@
   form{action saveMatch content on="submit"}
 
     Ember.TextField valueBinding="score"
-    button.btn type="submit" Update
+    button.btn type="submit" disable=isSaving Update
 
     = linkTo "tournament" tournament | stop editing

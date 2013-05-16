@@ -1,18 +1,20 @@
 .user-edit
   h2 Edit your profile
 
-  = render "user.race_picker" this
-  = render "user.league_picker" this
-  = render "user.server_picker" this
+  .user-edit-content
 
-  h3 Tell us about yourself
+    = render "user.race_picker" this
+    = render "user.league_picker" this
+    = render "user.server_picker" this
 
-  form{action submit on="submit"}
+    h3 Tell us about yourself
 
-    Ember.TextArea valueBinding="about" rows="5" cols="50"
+    form{action submit on="submit"}
 
-    .actions
-      button.btn disabled={isSaving} type="submit" Save
+      Ember.TextArea valueBinding="about" rows="5" cols="50"
 
-    if saved
-      span.help-inline saved
+      .actions
+        button.btn disabled={isSaving} type="submit" Save
+
+      if saved
+        span.help-inline saved

@@ -13,9 +13,10 @@
       = linkTo .btn "user.index" this | Feed
       = linkTo .btn "user.achievements" this | Achievements
       = linkTo .btn "user.tournaments" this | Tournaments
-      if isTrial
-        = linkTo .btn "user.activate" this | Activate
-      else
-        = linkTo .btn "user.edit" this | Account
+      if isCurrentUser
+        if isTrial
+          = linkTo .btn "user.activate" this | Activate
+        else
+          = linkTo .btn "user.edit" this | Account
 
     = outlet
