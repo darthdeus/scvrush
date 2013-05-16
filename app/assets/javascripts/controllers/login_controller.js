@@ -1,20 +1,38 @@
 Scvrush.LoginController = Ember.Controller.extend({
 
+  username: "",
+  password: "",
+  loginFailed: false,
+
   login: function() {
-    var store = this.get("store");
-    var controller = this;
+    this.set("loginFailed", false);
+    this._request();
+  },
 
-    $.post("/sessions.json", {
-      username: this.get("username"),
-      password: this.get("password")
-    }, function(data) {
-      store.load(Scvrush.User, data.user);
+  _request: function() {
+    Ember.$.ajax({
+      url: "/sessions.json",
+      method: "POST",
 
-      var user = Scvrush.User.find(data.user.id)
+      context: this,
+      data: {
+        username: this.get("username"),
+        password: this.get("password")
+      },
 
-      Scvrush.currentUser.changeUser(user);
-      controller.transitionToRoute("user", user);
+      success: this._success,
+      error: function() { this.set("loginFailed", true); }
     });
+  },
+
+  _success: function(data) {
+    this.get("store").load(Scvrush.User, data.user);
+
+    var user = Scvrush.User.find(data.user.id)
+
+    Scvrush.currentUser.changeUser(user);
+    this.transitionToRoute("user", user);
   }
+
 
 });

@@ -4,6 +4,9 @@ p Use your SCV Rush credentials to log in.
 
 form.form-horizontal submit="login"
 
+  if loginFailed
+    .alert.alert-error Login failed, invalid username or password.
+
   .control-group
     .control-label
       label Username
