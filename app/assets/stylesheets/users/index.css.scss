@@ -1,152 +1,55 @@
-.user-profile {
-  @include clearfix;
-
-  .left { float: left; }
-}
-
-.user-profile .user-sidebar {
+.users-index .user-list .user {
+  @include border-radius(3px);
   float: left;
-  width: 350px;
-  padding: 15px 0 0 15px;
-  border-right: 1px solid #c9c9c9;
+  width: 166px;
+  border: 1px solid #ddd;
+  margin: 10px 20px 10px 0;
 
-  .avatar {
-    position: relative;
-    width: 100px;
-
-    img {
-      width: 100px;
-      &.avatar { @include box-shadow(0 0 3px #666); }
-
-      &.race {
-        width: 60px;
-        position: absolute;
-        right: -20px;
-        bottom: -20px;
-      }
-    }
+  &.checked {
+    background: #d1eee1;
   }
 
-  dl {
-    width: 200px;
+  a {
+    display: block;
+    color: black;
+    padding: 5px;
+    opacity: 0.7;
+    text-align: center;
 
-    dt { width: 100px; }
-    dd { margin-left: 110px; }
-  }
-
-  .about {
-    margin-top: 20px;
-  }
-
-  .followers img {
-    @include box-shadow(0 0 3px #666);
-    width: 30px;
-  }
-}
-
-.user-profile .content {
-  float: left;
-  width: 540px;
-  border-right: 1px solid #c9c9c9;
-
-  h2 {
-    padding: 10px 15px;
-    font-size: 22px;
-    border-bottom: 1px solid #c9c9c9;
-    margin: 0;
-  }
-
-  nav.user-sections {
-    padding: 10px 15px;
-    border-bottom: 1px solid #c9c9c9;
-
-    .btn {
-      margin-right: 5px;
-    }
-  }
-
-  .statuses {
-    padding: 10px 15px;
-  }
-
-  form.new-status input {
-    font-size: 18px;
-    height: 30px;
-    line-height: 30px;
-    width: 500px;
-  }
-
-  .statuses .status {
-    padding: 10px;
-    border-bottom: 1px solid #f9f9f9;
-    overflow: hidden;
-    position: relative;
+    @include transition (all 0.2s ease-in-out);
 
     &:hover {
-      background: #fff;
+      background: #f0f0f0;
+      opacity: 1;
     }
-
-    a {
-      @include transition(color 0.2s ease-in-out);
-      &:hover { text-decoration: none; }
-    }
-
-    .author {
-      float: left;
-      color: #999;
-      margin-right: 65px;
-
-      .user-info, .avatar { float: left; }
-      .date { font-size: 12px; }
-
-      .avatar {
-        margin-right: 15px;
-        @include transition(box-shadow 0.2s ease-in-out);
-
-        &:hover {
-          box-shadow: 0 0 6px #666;
-        }
-      }
-
-      .user-info .username {
-        font-size: 18px;
-        font-weight: bold;
-      }
-    }
-
-    .text {
-      float: left;
-      width: 460px;
-    }
-
-    .meta {
-      font-size: 12px;
-      color: #999;
-      position: absolute;
-      bottom: 5px;
-      right: 5px;
-    }
-
   }
 
-}
-
-.user-list {
-  .item {
-    padding: 5px 20px;
-    @include clearfix;
+  .info {
+    overflow: hidden;
 
     img {
-      width: 150px;
+      margin: 0 auto;
+    }
+
+    .race, .name {
+      display: block;
       float: left;
+      height: 50px;
     }
 
     .name {
-      padding: 5px 10px;
-      font-size: 22px;
-      font-weight: bold;
-      color: #000;
-      float: left;
+      padding-left: 5px;
+      line-height: 55px;
+      font-size: 15px;
+    }
+
+    .race {
+      width: 50px;
+
+      &.race-random  { background: url("/assets/race_random_icon.png") no-repeat; }
+      &.race-zerg    { background: url("/assets/race_zerg_icon.png") no-repeat; }
+      &.race-terran  { background: url("/assets/race_terran_icon.png") no-repeat; }
+      &.race-protoss { background: url("/assets/race_protoss_icon.png") no-repeat; }
     }
   }
 }

@@ -4,6 +4,7 @@
 
     form.form-horizontal submit="search"
       Ember.TextField class="span8 post-search" valueBinding="controller.query"
+      '
       button.btn.btn-primary type="submit" disabled=isLoading Search
 
     each controller
@@ -14,8 +15,6 @@
         .content
           h2
             = linkTo "post.index" this | {{title}}
-
-          .text = markdown shortContent
 
           .tags
             = each tagList itemController="tag"

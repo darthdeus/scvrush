@@ -19,7 +19,7 @@ Scvrush.PostsIndexController = Ember.ArrayController.extend({
     this.set("content", results);
 
     results.then(function() {
-      this.set("isLoading", true);
+      this.set("isLoading", false);
     }.bind(this));
   }
 
