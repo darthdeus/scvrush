@@ -43,6 +43,11 @@
       a class="carousel-control left" href="#home-carousel" data-slide="prev" &lsaquo;
       a class="carousel-control right" href="#home-carousel" data-slide="next" &rsaquo;
 
+    each upcomingTournaments
+      .upcoming-tournament
+        = linkTo "tournament" this
+          img src=imageUrl
+
   .dashboard-posts
     h3 News
 

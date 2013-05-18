@@ -95,7 +95,13 @@ Scvrush.User = DS.Model.extend(Ember.Validations.Mixin, {
 
   hasNotifications: function() {
     return this.get("notifications.length") > 0;
-  }.property("notifications.length")
+  }.property("notifications.length"),
+
+  hasRandomPost: false,
+
+  randomPosts: function() {
+    return Scvrush.Post.query({ query: this.get("race"), limit: 1 });
+  }.property("race"),
 
 });
 
@@ -135,5 +141,4 @@ Scvrush.User.reopenClass({
   },
 
   ALL_RACES: [ "Zerg", "Terran", "Protoss", "Random" ]
-
 });

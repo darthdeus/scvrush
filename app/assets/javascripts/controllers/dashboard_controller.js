@@ -5,8 +5,18 @@ Scvrush.DashboardController = Ember.ObjectController.extend({
 
   init: function() {
     this._super();
-    this.set("posts", Scvrush.Post.query());
+
+    var self = this;
+
+    Scvrush.Post.query().then(function(result) {
+      self.set("posts", result.slice(0, 3));
+    });
   },
+
+  upcomingTournaments: function() {
+    return Scvrush.Tournament.query({ league: this.get("league") });
+  }.property("league")
+
 
   // isTrialChanged: function() {
   //   if (this.get("isTrial")) {

@@ -17,3 +17,14 @@
       .first-status
         i.icon-pencil
         |  Create your first status!
+
+  h2 Random piece of content
+
+  .items
+    each randomPosts
+      .item
+        .image
+          linkTo "post" this
+            Scvrush.ImageView srcBinding="image"
+
+        .text = linkTo "post" this | {{title}}

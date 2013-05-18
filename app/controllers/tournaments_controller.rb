@@ -2,6 +2,13 @@ class TournamentsController < ApplicationController
   respond_to :json
 
   def index
+
+    if params[:league]
+      t =  Tournament.where("starts_at > ? AND leagues LIKE ?", Time.now, "%#{params[:league].titleize}%").first
+      render json: [t]
+      return
+    end
+
     if params[:ids]
       respond_with Tournament.find(params[:ids]) and return
     end

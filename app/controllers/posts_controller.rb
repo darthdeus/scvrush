@@ -10,6 +10,10 @@ class PostsController < ApplicationController
       posts = posts.published.page(params[:page]).per(15)
     end
 
+    if params[:limit]
+      posts = posts[0, params[:limit].to_i]
+    end
+
     render json: posts.to_a
   end
 

@@ -38,4 +38,3 @@
 
       div class={view.isActive::hidden :content}
         p = linkTo "user.edit" this | Edit your profile
-

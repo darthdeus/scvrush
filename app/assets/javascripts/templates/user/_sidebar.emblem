@@ -24,14 +24,15 @@
 
     .followers
       each follower in followers
-        = linkTo "user" follower
-          img src=follower.image
+        = linkTo "user" this
+          img src=image
 
   else
     .alert.alert-info This user has no followers.
 
   h3 Following
 
-  each follower in followees
-    = linkTo "user" follower | {{follower.username}}
-    br
+  .followers
+    each followees
+      = linkTo "user" this
+        img src=image

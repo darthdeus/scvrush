@@ -9,7 +9,7 @@ Scvrush.Post = DS.Model.extend({
 
     var self = this;
 
-    return Scvrush.Post.filter(function(post) {
+    var posts = Scvrush.Post.filter(function(post) {
       var tags = post.get("tagList"), i, l;
       var contains = false;
 
@@ -23,6 +23,8 @@ Scvrush.Post = DS.Model.extend({
 
       return contains && post !== this;
     });
+
+    return posts.slice(0, 3);
   }.property("tagList"),
 
   shortContent: function() {

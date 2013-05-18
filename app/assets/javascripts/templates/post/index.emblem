@@ -20,5 +20,5 @@
       img src="/assets/post_nav_practice.png"
     = linkTo "posts.index"
       img src="/assets/post_nav_content.png"
-    = linkTo "home"
+    a click="gotoCoaches"
       img src="/assets/post_nav_coaches.png"
