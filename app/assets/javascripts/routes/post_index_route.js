@@ -11,6 +11,6 @@ Scvrush.PostIndexRoute = Scvrush.Route.extend({
       into: "application",
       outlet: "sidebar"
     });
-  }
+  },
 
 });

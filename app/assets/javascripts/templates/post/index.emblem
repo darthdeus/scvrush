@@ -16,9 +16,9 @@
   .post-nav
     a href="http://chat.scvrush.com/" target="_blank"
       img src="/assets/post_nav_chat.png"
-    = linkTo "home"
+    = linkTo "users.index"
       img src="/assets/post_nav_practice.png"
     = linkTo "posts.index"
       img src="/assets/post_nav_content.png"
-    a click="gotoCoaches"
+    a href="#" click="gotoCoaches"
       img src="/assets/post_nav_coaches.png"
