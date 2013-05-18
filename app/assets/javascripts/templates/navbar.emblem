@@ -6,6 +6,7 @@
       li = linkTo "posts" | Content
       li = linkTo "tournaments" | Tournaments
       li = linkTo "users" | Users
+      li: a href="#" click="gotoCoaches" Coaches
       if Scvrush.currentUser.isTrial
         li = linkTo "user.edit" Scvrush.currentUser.content | Activate your account
 

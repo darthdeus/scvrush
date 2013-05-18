@@ -9,6 +9,16 @@ Scvrush.ApplicationRoute = Ember.Route.extend({
           document.location = "/";
         }
       });
+    },
+
+    gotoCoaches: function() {
+      this.transitionTo("posts");
+
+      var query = Scvrush.currentUser.get("race") +
+        " " + Scvrush.currentUser.get("server") +
+        " coach";
+
+      this.controllerFor("postsIndex").set("query", query);
     }
   },
 
