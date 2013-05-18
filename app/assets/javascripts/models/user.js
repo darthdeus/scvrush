@@ -7,6 +7,7 @@ Scvrush.User = DS.Model.extend(Ember.Validations.Mixin, {
   race:      DS.attr("string"),
   league:    DS.attr("string"),
   expiresAt: DS.attr("date"),
+  isTrial: DS.attr("boolean"),
   about:     DS.attr("string"),
 
   password:  DS.attr("string"),
@@ -69,10 +70,6 @@ Scvrush.User = DS.Model.extend(Ember.Validations.Mixin, {
   currentOpponent: function() {
     return Scvrush.__container__.lookup("controller:tournament.index").get("currentOpponent");
   }.property(),
-
-  isTrial: function() {
-    return !!this.get("expiresAt");
-  }.property("expiresAt"),
 
   imageOrDefault: function() {
     return this.get("image") || "default.png";

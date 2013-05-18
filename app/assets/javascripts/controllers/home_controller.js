@@ -25,6 +25,15 @@ Scvrush.HomeController = Ember.ObjectController.extend({
 
   step3: function() {
     return !!this.get("server") && this.get("step2");
-  }.property("server")
+  }.property("server"),
+
+  isTrialChanged: function() {
+    console.log("redirecting");
+    if (this.get("isTrial") === false) {
+      Ember.run.next(this, function() {
+        this.transitionToRoute("dashboard");
+      });
+    }
+  }.observes("isTrial")
 
 });

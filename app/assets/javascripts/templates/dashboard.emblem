@@ -44,6 +44,8 @@
       a class="carousel-control right" href="#home-carousel" data-slide="next" &rsaquo;
 
   .dashboard-posts
+    h3 News
+
     = each posts
       .post
         = linkTo "post.index" this class="image"
