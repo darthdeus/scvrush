@@ -29,6 +29,7 @@ Scvrush.HomeController = Ember.ObjectController.extend({
 
   isTrialChanged: function() {
     console.log("redirecting");
+
     if (this.get("isTrial") === false) {
       Ember.run.next(this, function() {
         this.transitionToRoute("dashboard");

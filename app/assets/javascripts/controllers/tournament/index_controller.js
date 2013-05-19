@@ -27,6 +27,7 @@ Scvrush.TournamentIndexController = Ember.ObjectController.extend({
     Ember.run(this, function() {
       this.get("store").loadMany(Scvrush.Match, data.matches);
       this.get("store").loadMany(Scvrush.Tournament, data.tournaments);
+      Scvrush.currentUser.reload();
       console.log(data.tournament);
     });
   },

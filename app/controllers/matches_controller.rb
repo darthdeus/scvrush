@@ -21,6 +21,8 @@ class MatchesController < ApplicationController
 
     match.reload
 
+    match.winner.statuses.create!(text: "I just advanced against #{match.loser.bnet_info} in round of #{match.round.number}")
+
     bracket.seed_next_match_with(match.winner, match)
 
     render json: match, serializer: TournamentAdminMatchReportSerializer, scope: current_user

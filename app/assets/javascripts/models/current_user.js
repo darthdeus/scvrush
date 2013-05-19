@@ -39,6 +39,11 @@ Scvrush.CurrentUser = Ember.ObjectProxy.extend({
   },
 
   _loadStuff: function(data) {
+    console.log("load call");
+  },
+
+  reload: function() {
+    this.get("content").reload();
   }
 
 });
