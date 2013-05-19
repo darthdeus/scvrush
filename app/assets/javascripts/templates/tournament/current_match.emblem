@@ -4,7 +4,7 @@
 
     .row
       .span5.box
-        = currentOpponent.bnetInfo
+        strong = currentOpponent.bnetInfo
         .pull-right = render "user.follow_button" currentOpponent
 
     hr
@@ -22,12 +22,12 @@
           |  Submit the score
 
   else
-    if isLost
-      p
-        ` You've lost against
-        linkTo "user" lostAgainst | {{lostAgainst.bnetInfo}}
-        | .
+    .row
+      .span5.box
+        if isLost
+          ' You've lost against
+          strong = lostAgainst.bnetInfo
+          .pull-right = render "user.follow_button" currentOpponent
 
-        = control "user.follow_button" lostAgainst
-    else
-      p Please wait for your next opponent.
+        else
+          | Please wait for your next opponent.
