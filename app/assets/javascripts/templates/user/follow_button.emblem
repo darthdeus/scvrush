@@ -1,4 +1,4 @@
 if isFollowingUser
-  button class="btn btn-mini" click="unfollow this" Unfollow {{username}}
+  button class="btn btn-mini" click="unfollow this" Unfollow
 else
-  button class="btn btn-mini" click="follow this" Follow {{username}}
+  button class="btn btn-mini" click="follow this" Follow
