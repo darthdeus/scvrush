@@ -17,7 +17,6 @@ class UserRegistrator < Struct.new(:user, :tournament)
   end
 
   def post_status(signup)
-    return
     status = nil
 
     if signup.checked?
@@ -28,7 +27,6 @@ class UserRegistrator < Struct.new(:user, :tournament)
 
     json = StatusSerializer.new(status).as_json(root: false)
 
-    # TODO - fix why this is throwing 422
     CS.publish("scvrush", {
       type: "Scvrush.Status",
       data: json

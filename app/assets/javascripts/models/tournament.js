@@ -23,12 +23,6 @@ Scvrush.Tournament = DS.Model.extend(Ember.Validations.Mixin, {
       presence: true,
       length: { minimum: 6, maximum: 50 }
     },
-
-    maxPlayers: {
-      numericality: {
-        lessThanOrEqualTo: 64
-      }
-    }
   },
 
   startNow: function() {

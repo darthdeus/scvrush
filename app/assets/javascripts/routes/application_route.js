@@ -23,7 +23,7 @@ Scvrush.ApplicationRoute = Ember.Route.extend({
   },
 
   setupController: function() {
-    // this.setupCatsocket();
+    this.setupCatsocket();
   },
 
   userLoaded: function() {
@@ -58,8 +58,6 @@ Scvrush.ApplicationRoute = Ember.Route.extend({
 
     CS.subscribe("scvrush", function(json) {
       var message = JSON.parse(json);
-
-      console.log(message)
 
       var type = Ember.get(Ember.lookup, message.type);
       store.load(type, message.data);

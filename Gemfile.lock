@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/darthdeus/catsocket_client.git
-  revision: b5d1d25a698d63560b038e03112c08f1b411ef66
+  revision: fbfc3fcff0822fa8ff14fd2ce2ba88cca97678c1
   specs:
     catsocket_client (0.0.2)
       rest-client
