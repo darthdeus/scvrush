@@ -3,7 +3,9 @@
     h4 You are currently plaing against
 
     .row
-      .span5.box = currentOpponent.bnetInfo
+      .span5.box
+        = currentOpponent.bnetInfo
+        .pull-right = render "user.follow_button" currentOpponent
 
     hr
 
