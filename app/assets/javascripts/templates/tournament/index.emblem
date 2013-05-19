@@ -17,13 +17,11 @@
       = partial "tournament/rules"
 
   if isStarted
-    h4 Tournament Rounds
-
     if isEmpty
       p.alert.alert-info No players were signed up for this tournament when it started
     else
       if isPlaying
-        Scvrush.TournamentCurrentMatchView
+        view Scvrush.TournamentCurrentMatchView
 
       = render "tournament.rounds" this
 

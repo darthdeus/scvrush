@@ -1,5 +1,7 @@
 .bracket
   if hasRounds
+    h4 Brackets
+
     each round in rounds itemController="roundItem" itemViewClass="Scvrush.RoundItemView"
 
       .round-wrap

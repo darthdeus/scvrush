@@ -45,3 +45,5 @@
           strong = channel
           | .
 
+  a href="#"
+    img src="/assets/tournament_view_full_rules.png"

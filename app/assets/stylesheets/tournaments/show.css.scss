@@ -48,6 +48,19 @@
       top: 20px;
     }
   }
+
+  .current-match {
+    .box {
+      padding: 10px;
+      border: 1px solid #b3b3b3;
+      border-radius: 3px;
+      background: #f3f3f3;
+    }
+
+    .score-form {
+      margin: 20px 0;
+    }
+  }
 }
 
 .user-edit .race-picker, .tournament .race-picker, .tournament .league-picker {
@@ -79,5 +92,3 @@
   .league-diamond  { background: url("league_diamond_icon.png"); }
   .league-masters  { background: url("league_masters_icon.png"); }
 }
-
-

@@ -1,23 +1,31 @@
-if currentMatch.isPending
-  p
-    ' You are currently plaing against
-    ' &nbsp;
-    = control "user.follow_button" currentOpponent
+.current-match
+  if currentMatch.isPending
+    h4 You are currently plaing against
 
-  form.form-horizontal{action "submitResult" score currentOpponent on="submit"}
-    div{bindAttr class="scoreError:error :control-group"}
-      Ember.TextField valueBinding="score" placeholder="Report Your Win, e.g. 1:0" class="control"
-      button.btn.btn-success.margined type="submit" I won!
+    .row
+      .span5.box = currentOpponent.bnetInfo
 
-      span.faded do not submit match result if you lost
+    hr
 
-else
-  if isLost
-    p
-      ` You've lost against
-      linkTo "user" lostAgainst | {{lostAgainst.bnetInfo}}
-      | .
+    h4 Submit results
 
-      = control "user.follow_button" lostAgainst
+    img src="/assets/tournament_score_submission_notice.png"
+
+    form.form-horizontal.score-form submit="submitResult score currentOpponent"
+      div{bindAttr class="scoreError:error :control-group"}
+        Ember.TextField valueBinding="score" placeholder="Report Your Win, e.g. 1:0" class="control"
+        '
+        button.btn.btn-success type="submit"
+          i.icon-ok
+          |  Submit the score
+
   else
-    p Please wait for your next opponent.
+    if isLost
+      p
+        ` You've lost against
+        linkTo "user" lostAgainst | {{lostAgainst.bnetInfo}}
+        | .
+
+        = control "user.follow_button" lostAgainst
+    else
+      p Please wait for your next opponent.
