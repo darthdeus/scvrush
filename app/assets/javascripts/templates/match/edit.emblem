@@ -1,9 +1,15 @@
 .main-content
-  h2 Editing match {{player1.bnetInfo}} vs {{player2.bnetInfo}}
+  h4 Editing match {{player1.bnetInfo}} vs {{player2.bnetInfo}}
 
-  form{action saveMatch content on="submit"}
+  form submit="saveMatch content"
 
-    Ember.TextField valueBinding="score"
-    button.btn type="submit" disable=isSaving Update
+    .control-group
+      .control-label
+        label Enter new score, or nothing to clear the result
+      .controls
+        Ember.TextField valueBinding="score"
 
-    = linkTo "tournament" tournament | stop editing
+    .form-actions
+      button.btn.btn-primary type="submit" disable=isUpdating Update match
+      '
+      = linkTo .btn "tournament" tournament activeClass="" | Cancel
