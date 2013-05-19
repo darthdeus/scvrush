@@ -6,9 +6,7 @@
       h2
         = bnetInfo
 
-        if isCurrentUser
-          = username
-        else
+        unless isCurrentUser
           = control "user.follow_button" content
 
     nav.user-sections

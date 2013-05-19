@@ -1,4 +1,13 @@
-.user-list
+.padded
+  h4 Achievements are temporarily unavailable
+
+  p
+    ' We are working like SCVs to give you user achievements as soon as possible.
+    ' Here's a little teaser of what we'll have for you
+
+  img src="http://i.imgur.com/cq6EOUj.png"
+
+/*.user-list
   each controller
     .item
       ' Won a tournament
