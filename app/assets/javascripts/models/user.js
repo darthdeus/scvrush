@@ -100,7 +100,7 @@ Scvrush.User = DS.Model.extend(Ember.Validations.Mixin, {
   hasRandomPost: false,
 
   randomPosts: function() {
-    return Scvrush.Post.query({ query: this.get("race"), limit: 1 });
+    return Scvrush.Post.query({ query: this.get("race"), limit: 2 });
   }.property("race"),
 
 });
