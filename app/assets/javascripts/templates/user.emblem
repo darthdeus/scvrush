@@ -4,6 +4,8 @@
   .content
     header
       h2
+        = bnetInfo
+
         if isCurrentUser
           = username
         else

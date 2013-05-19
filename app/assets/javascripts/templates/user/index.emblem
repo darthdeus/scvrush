@@ -6,7 +6,6 @@
     .status
       .text
         = status.text
-        /*= Scvrush.UserLinksView contentBinding="status.text"*/
 
       .meta
         if isCurrentUser
