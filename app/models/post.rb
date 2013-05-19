@@ -31,7 +31,7 @@ class Post < ActiveRecord::Base
     indexes :id,          index: :not_analyzed
     indexes :title,       analyzer: "snowball", boost: 100
     indexes :content,     analyzer: "snowball"
-    indexes :tag_names,   analyzer: "snowball", boost: 50
+    indexes :tag_names,   analyzer: "snowball", boost: 200
     indexes :author_name, analyzer: "snowball", boost: 50
   end
 

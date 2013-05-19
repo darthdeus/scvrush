@@ -1,6 +1,6 @@
 .main-content
   .posts-index
-    h1 Search articles
+    h2 Search Articles
 
     form.form-horizontal submit="search"
       Ember.TextField class="span8 post-search" valueBinding="controller.query"

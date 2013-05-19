@@ -1,40 +1,42 @@
-.users-index
-  Ember.TextField valueBinding="controller.query" placeholder="Search the users"
+.main-content
+  h2 All Users
 
-  hr
+  .users-index
+    form.form-horizontal submit="search"
+      Ember.TextField class="span8 post-search" valueBinding="controller.query" placeholder="Search"
+      '
+      button.btn.btn-primary type="submit" disabled=isLoading Search
 
-  .button-group
-    button.btn click="search 'terran'" Terran
-    button.btn click="search 'zerg'" Zerg
-    button.btn click="search 'protoss'" Protoss
-    button.btn click="search 'random'" Random
+    h4 Filter the results
 
-  br
+    .btn-group style="margin-bottom: 10px; display: block;"
+      button.btn click="search 'terran'" Terran
+      button.btn click="search 'zerg'" Zerg
+      button.btn click="search 'protoss'" Protoss
+      button.btn click="search 'random'" Random
 
-  .button-group
-    button.btn click="search 'na'" NA
-    button.btn click="search 'eu'" EU
-    button.btn click="search 'sea'" SEA
-    button.btn click="search 'kr'" KR
+    .btn-group style="margin-bottom: 10px; display: block;"
+      button.btn click="search 'na'" NA
+      button.btn click="search 'eu'" EU
+      button.btn click="search 'sea'" SEA
+      button.btn click="search 'kr'" KR
 
-  br
-
-  .button-group
-    button.btn click="search 'bronze'" Bronze
-    button.btn click="search 'silver'" Silver
-    button.btn click="search 'gold'" Gold
-    button.btn click="search 'platinum'" Platinum
-    button.btn click="search 'diamond'" Diamond
-    button.btn click="search 'master'" Master
+    .btn-group style="display: block;"
+      button.btn click="search 'bronze'" Bronze
+      button.btn click="search 'silver'" Silver
+      button.btn click="search 'gold'" Gold
+      button.btn click="search 'platinum'" Platinum
+      button.btn click="search 'diamond'" Diamond
+      button.btn click="search 'master'" Master
 
 
-  .user-list
-    each controller
-      .user
-        linkTo "user" this
-          img src={imageOrDefault}
+    .user-list
+      each controller
+        .user
+          linkTo "user" this
+            img src={imageOrDefault}
 
-          .info
-            div class={raceClass :race} = player.race_class
-            .name
-              Scvrush.ShortTextView textBinding="username" max="10"
+            .info
+              div class={raceClass :race} = player.race_class
+              .name
+                Scvrush.ShortTextView textBinding="username" max="10"
