@@ -10,24 +10,24 @@
     h4 Filter the results
 
     .btn-group style="margin-bottom: 10px; display: block;"
-      button.btn click="search 'terran'" Terran
-      button.btn click="search 'zerg'" Zerg
-      button.btn click="search 'protoss'" Protoss
-      button.btn click="search 'random'" Random
+      button.btn disabled={isSearching} click="filter 'terran'" Terran
+      button.btn disabled={isSearching} click="filter 'zerg'" Zerg
+      button.btn disabled={isSearching} click="filter 'protoss'" Protoss
+      button.btn disabled={isSearching} click="filter 'random'" Random
 
     .btn-group style="margin-bottom: 10px; display: block;"
-      button.btn click="search 'na'" NA
-      button.btn click="search 'eu'" EU
-      button.btn click="search 'sea'" SEA
-      button.btn click="search 'kr'" KR
+      button.btn disabled={isSearching} click="filter 'na'" NA
+      button.btn disabled={isSearching} click="filter 'eu'" EU
+      button.btn disabled={isSearching} click="filter 'sea'" SEA
+      button.btn disabled={isSearching} click="filter 'kr'" KR
 
     .btn-group style="display: block;"
-      button.btn click="search 'bronze'" Bronze
-      button.btn click="search 'silver'" Silver
-      button.btn click="search 'gold'" Gold
-      button.btn click="search 'platinum'" Platinum
-      button.btn click="search 'diamond'" Diamond
-      button.btn click="search 'master'" Master
+      button.btn disabled={isSearching} click="filter 'bronze'" Bronze
+      button.btn disabled={isSearching} click="filter 'silver'" Silver
+      button.btn disabled={isSearching} click="filter 'gold'" Gold
+      button.btn disabled={isSearching} click="filter 'platinum'" Platinum
+      button.btn disabled={isSearching} click="filter 'diamond'" Diamond
+      button.btn disabled={isSearching} click="filter 'master'" Master
 
 
     .user-list

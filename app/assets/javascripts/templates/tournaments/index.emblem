@@ -1,6 +1,6 @@
 .main-content: .tournaments.row
   .span9
-    h2 Tournaments
+    h2 Upcoming Tournaments
 
     each tournament in controller
       .tournament
