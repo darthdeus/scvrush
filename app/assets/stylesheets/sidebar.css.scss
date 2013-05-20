@@ -52,7 +52,11 @@ $sidebar: #343d50;
 
   &.protoss {
     background: #d6bf61 url("/assets/sidebar_protoss_bg.png") no-repeat 0 300px;
-    color: #666;
+    color: #000;
+
+    .item a {
+      color: #000;
+    }
 
     .sidebar-form input {
       border-color: #a49856;
@@ -92,7 +96,7 @@ $sidebar: #343d50;
       width: 195px;
 
       a {
-        color: #fff;
+        // color: #fff;
       }
     }
   }

@@ -530,7 +530,7 @@ var bugsense;
     *
     */
   Bugsense.prototype.onerror = function bugsenseonerror(exception, url, line, custom_data) {
-      console.error(exception);
+      throw exception;
 
       $.pnotify({
         title: "Something went wrong",

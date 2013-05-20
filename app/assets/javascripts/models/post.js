@@ -16,7 +16,7 @@ Scvrush.Post = DS.Model.extend({
       for (i = 0, l = tags.length; i < l; i ++) {
         var tag = tags[i];
 
-        if (self.get("tagList").contains(tag)) {
+        if (self.get("tagList") && self.get("tagList").contains(tag)) {
           contains = true;
         }
       }

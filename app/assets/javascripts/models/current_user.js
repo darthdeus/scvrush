@@ -28,6 +28,7 @@ Scvrush.CurrentUser = Ember.ObjectProxy.extend({
   },
 
   changeUser: function(user) {
+    Scvrush.Tournament.query();
     this.set("content", user);
 
     // TODO - this should add beforeObserver on the username and resubscribe
@@ -44,6 +45,6 @@ Scvrush.CurrentUser = Ember.ObjectProxy.extend({
 
   reload: function() {
     this.get("content").reload();
-  }
+  },
 
 });

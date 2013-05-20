@@ -13,6 +13,10 @@ div class={race :user-navbar :navbar-fixed-top}
 
   .pull-right.user-actions
 
+    if currentTournament
+      = linkTo "tournament" currentTournament
+        | Your current tournament - {{currentTournament.name}}
+
     linkTo "user.edit" this
       i.icon.icon-cog title="Settings"
 
