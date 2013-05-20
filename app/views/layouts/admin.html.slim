@@ -3,7 +3,7 @@ html ng-app="scvrush-admin"
   head
     title SCV Rush admin
     = stylesheet_link_tag    "admin/application", media: "all"
-    = javascript_include_tag "admin/application"
+    //= javascript_include_tag "admin/application"
     = csrf_meta_tags
   body
 
@@ -13,7 +13,6 @@ html ng-app="scvrush-admin"
           ul.nav
             = main_nav_link "Home", root_path, "home"
             = main_nav_link "Users", admin_users_path, "users"
-            = main_nav_link "Blog posts", admin_blog_posts_path, "blog_posts"
             = main_nav_link "Coaches", admin_coaches_path, "coaches"
             = main_nav_link "Posts", admin_posts_path, "posts"
             = main_nav_link "Tournaments", admin_tournaments_path, "tournaments", "signups"

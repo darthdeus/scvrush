@@ -1,25 +1,37 @@
 module Admin
   class PostsController < AdminController
     def index
-      @posts = Post.includes(:tournament)
+      @posts = Post.all
+    end
+
+    def new
+      @post = Post.new
+    end
+
+    def create
+      @post = Post.new(params[:post])
+
+      if @post.save
+        flash[:success] = "Post was successfuly created."
+        redirect_to admin_posts_path
+      else
+        render :new
+      end
     end
 
     def edit
       @post = Post.find(params[:id])
-      @tournaments = Tournament.all
     end
 
     def update
       @post = Post.find(params[:id])
-      if params[:tournament_id].empty?
-        @post.tournament = nil
-      else
-        @post.tournament = Tournament.find(params[:tournament_id])
-      end
 
-      @post.save!
-      flash[:success] = "Post was successfuly updated."
-      redirect_to admin_posts_path
+      if @post.update_attributes(params[:post])
+        flash[:success] = "Post was successfuly updated."
+        redirect_to admin_posts_path
+      else
+        render :new
+      end
     end
 
     def destroy

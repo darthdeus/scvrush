@@ -10,11 +10,9 @@ section.data-table-client
     thead
       tr
         th Title
-        th Tournament URL
         th Actions
     tbody
       - @posts.each do |post|
         tr
-          td = link_to post.title, post
-          td = link_to post.tournament.name, post.tournament if post.tournament
+          td = link_to post.title, "/#/posts/#{post.id}" target="_blank"
           td = get_action_buttons(post)
