@@ -14,5 +14,5 @@ section.data-table-client
     tbody
       - @posts.each do |post|
         tr
-          td = link_to post.title, "/#/posts/#{post.id}" target="_blank"
+          td = link_to post.title, "/#/posts/#{post.id}", target: "_blank"
           td = get_action_buttons(post)

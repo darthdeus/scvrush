@@ -22,13 +22,13 @@ Scvrush = Ember.Application.create({
 Scvrush.keyboard = Ember.Object.create();
 
 window.a = function() {
-    return d().get("content");
+  return d().get("content");
 };
 
 window.d = function() {
-    return c(c("application").get("currentPath").split(".").slice(-2).join("."));
+  return c(c("application").get("currentPath").split(".").slice(-2).join("."));
 };
 
 window.c = function(name) {
-    return Scvrush.__container__.lookup("controller:" + name);
+  return Scvrush.__container__.lookup("controller:" + name);
 };
