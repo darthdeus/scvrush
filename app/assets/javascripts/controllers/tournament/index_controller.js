@@ -104,8 +104,12 @@ Scvrush.TournamentIndexController = Ember.ObjectController.extend({
   }.property("allUsers.length"),
 
   canParticipate: function() {
-    return this.get("leagues").split(",").contains(Scvrush.currentUser.get("league")) &&
-      this.get("region") === Scvrush.currentUser.get("server");
+    if (this.get("leagues")) {
+      return this.get("leagues").split(",").contains(Scvrush.currentUser.get("league")) &&
+        this.get("region") === Scvrush.currentUser.get("server");
+    } else {
+      return true;
+    }
   }.property("leagues", "region", "Scvrush.currentUser.league", "Scvrush.currentUser.server")
 
 });
