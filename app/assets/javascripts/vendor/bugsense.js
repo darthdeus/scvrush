@@ -530,6 +530,8 @@ var bugsense;
     *
     */
   Bugsense.prototype.onerror = function bugsenseonerror(exception, url, line, custom_data) {
+      console.error(exception);
+
       $.pnotify({
         title: "Something went wrong",
         text: "We've been notified about this, please reload the page. If the error persists, please contact us via our customer supprt or at jakub@scvrush.com"
