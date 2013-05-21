@@ -8,7 +8,7 @@ Scvrush.DashboardController = Ember.ObjectController.extend({
 
     var self = this;
 
-    Scvrush.Post.query().then(function(result) {
+    Scvrush.Post.query({ query: "scene-news" }).then(function(result) {
       self.set("posts", result.slice(0, 3));
     });
   },
