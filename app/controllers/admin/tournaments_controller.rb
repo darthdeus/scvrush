@@ -9,12 +9,10 @@ module Admin
           fields  = %w[name]
           columns = %w[name starts_at]
           table   = Datable.new(Tournament, fields, columns, params) do |tournament|
-            tournament = TournamentDecorator.new(tournament)
-
             [
-              tournament.name,
+              "<a href='/#/tournaments/#{tournament.id}' target='_blank'>#{tournament.name}</a>",
               tournament.starts_at.to_s,
-              tournament.action_buttons
+              "<a href='/admin/tournaments/#{tournament.id}/edit' target='_blank'>edit</a>"
             ]
           end
 
