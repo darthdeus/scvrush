@@ -9,8 +9,9 @@ form class="form-inline tournament-signup"
 
       if isChecked
         button.btn.btn-success disabled="true" You are checked in
+        '
 
-      button.btn click="cancel this" Cancel registration
+      button.btn.btn-danger click="cancel this" Cancel registration
     else
       span class={user.isNotTournamentReady:error}
         Ember.TextField valueBinding="user.bnetInfo" placeholder="Your battle.net username, e.g Vogin.123" class="span4"
