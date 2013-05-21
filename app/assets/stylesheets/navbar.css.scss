@@ -62,8 +62,12 @@ $navbarOffset: 180px;
 
   a {
     color: #fff;
-
     &:hover { color: $userNavbarLinkHover; }
+  }
+
+  &.protoss a {
+    color: #404040;
+    &:hover { color: #555; }
   }
 
   .user-info {
@@ -90,9 +94,6 @@ $navbarOffset: 180px;
     float: left;
   }
 
-  .user-actions {
-  }
-
   .icon {
     line-height: 30px;
     font-size: 26px;
@@ -103,5 +104,10 @@ $navbarOffset: 180px;
       color: $userNavbarLinkHover;
       text-decoration: none;
     }
+  }
+
+  &.protoss .icon {
+    color: #404040;
+    &:hover { color: #555; }
   }
 }
