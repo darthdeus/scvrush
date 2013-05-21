@@ -95,12 +95,12 @@ $sidebar: #343d50;
       float: left;
       width: 195px;
 
-      a {
-        // color: #fff;
-      }
+      a { color: #fff; }
     }
   }
 }
+
+.protoss .sidebar-list .items .item a { color: #404040; }
 
 .sidebar-form {
   padding-left: 20px;
