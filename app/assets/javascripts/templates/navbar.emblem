@@ -8,7 +8,7 @@
         li = linkTo "dashboard" | Home
 
       li = linkTo "posts" | Content
-      li: a click="gotoTournamentsTemp" Tournaments
+      li: a href="#" click="gotoTournamentsTemp" Tournaments
       li = linkTo "users" | Users
       li: a href="#" click="gotoCoaches" Coaches
       if Scvrush.currentUser.isTrial
