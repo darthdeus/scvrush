@@ -55,7 +55,7 @@ Scvrush.Tournament = DS.Model.extend(Ember.Validations.Mixin, {
     var start = moment(this.get("startsAt"), "YYYY-MM-DD hh:mm"),
         checkin = start.subtract("minutes", 30);
 
-    return start < moment() && moment() > checkin;
+    return start < moment.utc() && moment.utc() > checkin;
   }.property("startsAt"),
 
   isEmpty: function() {
