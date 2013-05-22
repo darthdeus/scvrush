@@ -78,7 +78,7 @@ class Tournament < ActiveRecord::Base
       "NA_Friday"   => "tournament_na_friday.png"
     }
 
-    images[tournament_type] || "tournament_eu_bsg.png"
+    images[tournament_type] || "post_default_image.png"
   end
 
   def registered_players
