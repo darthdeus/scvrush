@@ -83,10 +83,22 @@ Scvrush.Tournament = DS.Model.extend(Ember.Validations.Mixin, {
   }.property("imageName"),
 
   startTime: function() {
-    var time = moment(this.get("startsAt"))
+    var time = moment.utc(this.get("startsAt"))
     if (!time) { return ""; }
     return time.format("LT") + " (" + time.fromNow() + ")";
   }.property("startsAt"),
+
+  startTimeFull: function() {
+    return moment.utc(this.get("startsAt"));
+  }.property("startsAt"),
+
+  currentUserTime: function() {
+    return moment();
+  }.property(),
+
+  currentUserTimeUTC: function() {
+    return moment.utc();
+  }.property(),
 
 });
 
