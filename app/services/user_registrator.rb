@@ -20,9 +20,9 @@ class UserRegistrator < Struct.new(:user, :tournament)
     status = nil
 
     if signup.checked?
-      status = Status.create!(user: user, text: "I just checked in for #{signup.tournament.name}")
+      status = Status.create!(user: user, text: "I've just checked in for #{signup.tournament.name}")
     else
-      status = Status.create!(user: user, text: "I just registered for #{signup.tournament.name}")
+      status = Status.create!(user: user, text: "I've just signed up for #{signup.tournament.name}")
     end
 
     json = StatusSerializer.new(status).as_json(root: false)

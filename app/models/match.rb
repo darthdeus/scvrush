@@ -32,6 +32,14 @@ class Match < ActiveRecord::Base
 
   before_save :check_if_completed
 
+  def matchup(target)
+    if target == player1
+      "#{player1.race[0].upcase}v#{player2.race[0].upcase}"
+    else
+      "#{player2.race[0].upcase}v#{player1.race[0].upcase}"
+    end
+  end
+
   # Set the score for a current match and advance
   # the winner to the next match
   def set_score_and_advance(user, score)
