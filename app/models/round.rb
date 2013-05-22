@@ -32,4 +32,8 @@ class Round < ActiveRecord::Base
     end
   end
 
+  def map_pool
+    tournament.maps[tournament.rounds.index(self)]
+  end
+
 end

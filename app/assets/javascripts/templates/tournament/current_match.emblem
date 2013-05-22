@@ -2,10 +2,16 @@
   if currentMatch.isPending
     h4 You are currently plaing against
 
-    .row
-      .span5.box
-        strong = currentOpponent.bnetInfo
-        .pull-right = render "user.follow_button" currentOpponent
+    .row: .span5.box
+      strong = currentOpponent.bnetInfo
+      .pull-right = render "user.follow_button" currentOpponent
+
+    .row: .span5.box
+      p: strong Map pool
+      p = mapPool
+
+    .row: .span5.box
+      p = bo
 
     hr
 

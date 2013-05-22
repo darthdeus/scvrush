@@ -1,8 +1,12 @@
 Scvrush.Round = DS.Model.extend({
   number:     DS.attr("number"),
   humanName:  DS.attr("string"),
+  mapPool:    DS.attr("string"),
+  bo:         DS.attr("number"),
+
   tournament: DS.belongsTo("Scvrush.Tournament"),
   matches:    DS.hasMany("Scvrush.Match"),
+
 
   allMatches: function() {
     return this.get("matches");

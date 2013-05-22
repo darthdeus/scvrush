@@ -28,6 +28,8 @@ module Admin
 
     def create
       @tournament = Tournament.new(params[:tournament])
+      @tournament.user = current_user
+
       if @tournament.save
         flash[:success] = "Tournament was created."
         bracket = Bracket.new(@tournament)

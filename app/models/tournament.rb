@@ -177,5 +177,9 @@ class Tournament < ActiveRecord::Base
     tournament
   end
 
+  def maps
+    map_preset.split("\r\n\r\n")
+  end
+
   class DoubleRegistration < Error; end
 end
