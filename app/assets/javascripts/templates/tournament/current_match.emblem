@@ -11,7 +11,7 @@
       p = mapPool
 
     .row: .span5.box
-      p = bo
+      p Playing in best of {{bo}}
 
     hr
 

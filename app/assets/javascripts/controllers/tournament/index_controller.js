@@ -45,6 +45,10 @@ Scvrush.TournamentIndexController = Ember.ObjectController.extend({
     return this.get("currentMatch.round.mapPool");
   }.property("currentMatch"),
 
+  bo: function() {
+    return this.get("currentMatch.round.bo");
+  }.property("currentMatch"),
+
   currentMatch: function() {
     var rounds = this.get("rounds");
 
