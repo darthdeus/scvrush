@@ -6,7 +6,8 @@ class PostSerializer < ActiveModel::Serializer
   end
 
   def image
-    object.featured_image_url(:thumb)
+    # object.featured_image_url(:thumb)
+    "/assets/post_default_image.png"
   end
 
 end
