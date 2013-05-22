@@ -18,10 +18,21 @@
         i.icon-pencil
         |  Create your first status!
 
-  h2 Random piece of content
+  h2 Suggested articles
 
   .items
-    each randomPosts
+    each suggestedPosts
+      .item
+        .image
+          linkTo "post" this
+            Scvrush.ImageView srcBinding="image"
+
+        .text = linkTo "post" this | {{title}}
+
+  h2 Coaches
+
+  .items
+    each suggestedCoaches
       .item
         .image
           linkTo "post" this

@@ -7,6 +7,14 @@ Scvrush.UserTimelineController = Ember.ObjectController.extend({
 
   users: function() {
     return Scvrush.User.filter();
-  }.property()
+  }.property(),
+
+  suggestedPosts: function() {
+    return Scvrush.Post.query({ query: this.get("race"), limit: 3 });
+  }.property("race"),
+
+  suggestedCoaches: function() {
+    return Scvrush.Post.query({ query: this.get("race") + " coach", limit: 3 });
+  }.property("race"),
 
 });
