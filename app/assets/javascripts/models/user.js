@@ -1,6 +1,5 @@
 Scvrush.User = DS.Model.extend(Ember.Validations.Mixin, {
   username:  DS.attr("string"),
-  email:     DS.attr("string"),
   image:     DS.attr("string"),
   bnetInfo:  DS.attr("string"),
   server:    DS.attr("string"),
