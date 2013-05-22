@@ -41,6 +41,9 @@
   p Show us a screenshot of this page if you're having trouble during the tournament
 
   dl
+    dt Until start
+    dd = untilStart
+
     dt Start time
     dd = startTime
 

@@ -88,6 +88,10 @@ Scvrush.Tournament = DS.Model.extend(Ember.Validations.Mixin, {
     return time.format("LT") + " (" + time.fromNow() + ")";
   }.property("startsAt"),
 
+  untilStart: function() {
+    return moment.utc(moment.utc() - moment.utc(this.get("startsAt")));
+  }.property("startsAt"),
+
   startTimeFull: function() {
     return moment.utc(this.get("startsAt"));
   }.property("startsAt"),
