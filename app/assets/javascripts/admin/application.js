@@ -18,6 +18,6 @@ $(function() {
     sPaginationType: 'bootstrap'
   });
 
-  $('.admin-form select').select2();
+  $('.admin-form select').select2({ width: "element" });
 
 });

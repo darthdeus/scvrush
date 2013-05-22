@@ -11,7 +11,7 @@ class Tournament < ActiveRecord::Base
   validates :name, presence: true
   validates :starts_at, presence: true
 
-  TYPES = %w(EU_BSG EU_BS EU_GP EU_D NA_Friday EU_PD NA_BSG NA_PD EU_Masters User Bronze_Week)
+  TYPES = %w(EU_BSG EU_BS EU_GP EU_D EU_DM EU_PD EU_Masters NA_Friday NA_BSG NA_PD User Bronze_Week)
 
   validates :tournament_type, inclusion: TYPES
   validates :bo_preset, format: { with: /^[\d ]+$/ }
@@ -57,6 +57,7 @@ class Tournament < ActiveRecord::Base
     {
       eu_bsg:      "EU_BSG",
       eu_pd:       "EU_PD",
+      eu_dm:       "EU_DM",
       na_bsg:      "NA_BSG",
       na_pd:       "NA_PD",
       eu_masters:  "EU_Masters",
@@ -70,6 +71,7 @@ class Tournament < ActiveRecord::Base
       "EU_BSG"      => "tournament_eu_bsg.png",
       "EU_BS"       => "tournament_eu_bs.png",
       "EU_PD"       => "tournament_eu_pd.png",
+      "EU_DM"       => "tournament_eu_dm.png",
       "EU_GP"       => "tournament_eu_gp.png",
       "EU_D"        => "tournament_eu_d.jpg",
       "NA_BSG"      => "tournament_na_bsg.png",
