@@ -22,4 +22,14 @@ class Round < ActiveRecord::Base
     self.tournament.rounds.first == self
   end
 
+  def human_name
+    case self.number
+    when 1 then "Champion"
+    when 2 then "Finals"
+    when 4 then "Semifinals"
+    when 8 then "Quarter finals"
+    else "Ro#{self.number}"
+    end
+  end
+
 end

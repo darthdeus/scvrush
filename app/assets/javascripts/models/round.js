@@ -1,5 +1,6 @@
 Scvrush.Round = DS.Model.extend({
   number:     DS.attr("number"),
+  humanName:  DS.attr("string"),
   tournament: DS.belongsTo("Scvrush.Tournament"),
   matches:    DS.hasMany("Scvrush.Match"),
 
@@ -16,17 +17,5 @@ Scvrush.Round = DS.Model.extend({
   numberClass: function() {
     return "round-" + this.get("number");
   }.property("number"),
-
-  displayText: function() {
-    var number = this.get("number");
-    switch (number) {
-      case 1: return "Champion";
-      case 2: return "Finals";
-      case 4: return "Semifinals";
-      case 8: return "Quarter Finals";
-      default: return "Round of " + number;
-    };
-  }.property("number")
-
 
 });

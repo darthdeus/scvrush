@@ -1,6 +1,7 @@
 class TournamentSerializer < ActiveModel::Serializer
   attributes :id, :name, :image_name, :starts_at, :seeded, :user_id, :winner_id,
-              :region, :max_players, :signups_count, :leagues, :channel, :description
+              :region, :max_players, :signups_count, :leagues, :channel, :description,
+              :bo_preset, :map_preset
 
   has_many :rounds, embed: :ids
   has_many :users, embed: :ids
