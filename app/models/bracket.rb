@@ -107,6 +107,10 @@ class Bracket < Struct.new(:tournament)
     next_round = match.round.next
 
     if next_round.number == 1
+      if user
+        user.statuses.create!(text: "I've just won #{tournament.name} beating #{match.loser.bnet_info} in the finals, hooray!")
+      end
+
       self.mark_winner(user)
       return user
     end

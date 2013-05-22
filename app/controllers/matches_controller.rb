@@ -22,7 +22,7 @@ class MatchesController < ApplicationController
     match.reload
 
     match.winner.statuses.create!(text: "I've just advanced against #{match.loser.bnet_info} in #{match.matchup(match.winner)} in #{match.round.human_name}")
-    match.loser.statuses.create!(text: "I've just lost against #{match.loser.bnet_info} in #{match.matchup(match.loser)} and I'm out of #{match.round.human_name}")
+    match.loser.statuses.create!(text: "I've just lost against #{match.loser.bnet_info} in #{match.matchup(match.loser)} and I'm out of #{match.round.human_name} :(")
 
     bracket.seed_next_match_with(match.winner, match)
 
