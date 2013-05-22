@@ -44,7 +44,7 @@ Scvrush.Tournament = DS.Model.extend(Ember.Validations.Mixin, {
   }.property("startsAt"),
 
   isStarted: function() {
-    return moment(this.get("startsAt"), "YYYY-MM-DD hh:mm") < moment();
+    return moment.utc(this.get("startsAt"), "YYYY-MM-DD hh:mm") < moment.utc();
   }.property("startsAt"),
 
   shouldCheckin: function() {
@@ -52,7 +52,7 @@ Scvrush.Tournament = DS.Model.extend(Ember.Validations.Mixin, {
   }.property("startsAt"),
 
   checkinOpen: function() {
-    var start = moment(this.get("startsAt"), "YYYY-MM-DD hh:mm"),
+    var start = moment.utc(this.get("startsAt"), "YYYY-MM-DD hh:mm"),
         checkin = start.subtract("minutes", 30);
 
     return start < moment.utc() && moment.utc() > checkin;
@@ -93,7 +93,7 @@ Scvrush.Tournament = DS.Model.extend(Ember.Validations.Mixin, {
   }.property("startsAt"),
 
   currentUserTime: function() {
-    return moment();
+    return moment.utc();
   }.property(),
 
   currentUserTimeUTC: function() {

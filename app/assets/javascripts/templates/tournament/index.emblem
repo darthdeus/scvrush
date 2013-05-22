@@ -35,19 +35,20 @@
     = render "tournament.signup" this
 
 
-h4 Time info
+.row: .span12
+  h4 Time info
 
-p Show us a screenshot of this page if you're having trouble during the tournametn
+  p Show us a screenshot of this page if you're having trouble during the tournament
 
-dl
-  dt Start time
-  dd = startTime
+  dl
+    dt Start time
+    dd = startTime
 
-  dt Start time full
-  dd = startTimeFull
+    dt Start time full
+    dd = startTimeFull
 
-  dt Your current time
-  dd = currentUserTime
+    dt Your current time
+    dd = currentUserTime
 
-  dt Your current time in UTC
-  dd = currentUserTimeUTC
+    dt Your current time in UTC
+    dd = currentUserTimeUTC
