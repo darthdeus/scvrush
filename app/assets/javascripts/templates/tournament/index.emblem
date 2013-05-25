@@ -33,25 +33,3 @@
     h4 Tournament Signup
 
     = render "tournament.signup" this
-
-
-.row: .span12
-  h4 Time info
-
-  p Show us a screenshot of this page if you're having trouble during the tournament
-
-  dl
-    dt Until start
-    dd = untilStart
-
-    dt Start time
-    dd = startTime
-
-    dt Start time full
-    dd = startTimeFull
-
-    dt Your current time
-    dd = currentUserTime
-
-    dt Your current time in UTC
-    dd = currentUserTimeUTC
