@@ -31,7 +31,7 @@ Scvrush.Post = DS.Model.extend({
     var content = this.get("content");
 
     if (content) {
-      return content.slice(0, 400);
+      return content.slice(0, 400).replace(/</g, "");
     }
   }.property("content")
 

@@ -14,6 +14,7 @@ gem "ember-rails"
 gem "emblem-rails"
 gem "active_model_serializers"
 
+gem "rdiscount"
 gem "draper",             "~> 1.1.0"
 gem "simple_form",        "~> 2.0.1"
 

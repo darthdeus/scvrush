@@ -5,9 +5,9 @@ class PostSerializer < ActiveModel::Serializer
     object.to_param
   end
 
-  def content
-    object.content
-  end
+  # def content
+  #   RDiscount.new(object.content).to_html
+  # end
 
   def image
     # object.featured_image_url(:thumb)

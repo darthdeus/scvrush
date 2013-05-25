@@ -8,6 +8,15 @@ Scvrush.PostsIndexRoute = Scvrush.Route.extend({
     Ember.run.next(this, function() {
       this.controllerFor("postsIndex").set("query", "");
     });
-  }
+  },
+
+  renderTemplate: function() {
+    this.render();
+    this.render("posts/timeline", {
+      into: "application",
+      outlet: "sidebar"
+    });
+  },
+
 
 });

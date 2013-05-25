@@ -1,4 +1,4 @@
-// Last commit: dfeb9e6 (2013-05-14 03:17:52 -0700)
+// Last commit: efe6d20 (2013-05-23 16:32:29 -0700)
 
 
 (function() {
@@ -1020,7 +1020,7 @@ var transformMapValue = function(key, value) {
 
 DS._Mappable = Ember.Mixin.create({
   createInstanceMapFor: function(mapName) {
-    var instanceMeta = Ember.metaPath(this, ['DS.Mappable'], true);
+    var instanceMeta = getMappableMeta(this);
 
     instanceMeta.values = instanceMeta.values || {};
 
@@ -1040,7 +1040,7 @@ DS._Mappable = Ember.Mixin.create({
   },
 
   _copyMap: function(mapName, klass, instanceMap) {
-    var classMeta = Ember.metaPath(klass, ['DS.Mappable'], true);
+    var classMeta = getMappableMeta(klass);
 
     var classMap = classMeta[mapName];
     if (classMap) {
@@ -1067,7 +1067,8 @@ DS._Mappable = Ember.Mixin.create({
 
 DS._Mappable.generateMapFunctionFor = function(mapName, transform) {
   return function(key, value) {
-    var meta = Ember.metaPath(this, ['DS.Mappable'], true);
+    var meta = getMappableMeta(this);
+
     var map = meta[mapName] || Ember.MapWithDefault.create({
       defaultValue: function() { return {}; }
     });
@@ -1077,6 +1078,20 @@ DS._Mappable.generateMapFunctionFor = function(mapName, transform) {
     meta[mapName] = map;
   };
 };
+
+function getMappableMeta(obj) {
+  var meta = Ember.meta(obj, true),
+      keyName = 'DS.Mappable',
+      value = meta[keyName];
+
+  if (!value) { meta[keyName] = {}; }
+
+  if (!meta.hasOwnProperty(keyName)) {
+    meta[keyName] = Ember.create(meta[keyName]);
+  }
+
+  return meta[keyName];
+}
 
 })();
 
@@ -3498,6 +3513,7 @@ var retrieveFromCurrentState = Ember.computed(function(key, value) {
   @extends Ember.Object
   @constructor
 */
+
 DS.Model = Ember.Object.extend(Ember.Evented, LoadPromise, {
   isLoading: retrieveFromCurrentState,
   isLoaded: retrieveFromCurrentState,
@@ -3957,7 +3973,23 @@ var storeAlias = function(methodName) {
 };
 
 DS.Model.reopenClass({
-  isLoaded: storeAlias('recordIsLoaded'),
+
+  /** @private
+    Alias DS.Model's `create` method to `_create`. This allows us to create DS.Model
+    instances from within the store, but if end users accidentally call `create()`
+    (instead of `createRecord()`), we can raise an error.
+  */
+  _create: DS.Model.create,
+
+  /** @private
+
+    Override the class' `create()` method to raise an error. This prevents end users
+    from inadvertently calling `create()` instead of `createRecord()`. The store is
+    still able to create instances by calling the `_create()` method.
+  */
+  create: function() {
+    throw new Ember.Error("You should not call `create` on a model. Instead, call `createRecord` with the attributes you would like to set.");
+  },
 
   /**
     See {{#crossLink "DS.Store/find:method"}}`DS.Store.find()`{{/crossLink}}.
@@ -3993,12 +4025,6 @@ DS.Model.reopenClass({
     @return {DS.FilteredRecordArray}
   */
   filter: storeAlias('filter'),
-
-  _create: DS.Model.create,
-
-  create: function() {
-    throw new Ember.Error("You should not call `create` on a model. Instead, call `createRecord` with the attributes you would like to set.");
-  },
 
   /**
     See {{#crossLink "DS.Store/createRecord:method"}}`DS.Store.createRecord()`{{/crossLink}}.
@@ -4459,7 +4485,7 @@ DS.RelationshipChange.prototype = {
   /**
     Get the name of the relationship on the belongsTo side.
 
-    @returns {String}
+    @return {String}
   */
   getFirstRecordName: function() {
     var name = this.firstRecordName;
@@ -6753,7 +6779,7 @@ DS.Serializer = Ember.Object.extend({
 
 
 (function() {
-var none = Ember.isNone, empty = Ember.isEmpty;
+var isNone = Ember.isNone, isEmpty = Ember.isEmpty;
 
 /**
   @module data
@@ -6770,21 +6796,21 @@ var none = Ember.isNone, empty = Ember.isEmpty;
 DS.JSONTransforms = {
   string: {
     deserialize: function(serialized) {
-      return none(serialized) ? null : String(serialized);
+      return isNone(serialized) ? null : String(serialized);
     },
 
     serialize: function(deserialized) {
-      return none(deserialized) ? null : String(deserialized);
+      return isNone(deserialized) ? null : String(deserialized);
     }
   },
 
   number: {
     deserialize: function(serialized) {
-      return empty(serialized) ? null : Number(serialized);
+      return isEmpty(serialized) ? null : Number(serialized);
     },
 
     serialize: function(deserialized) {
-      return empty(deserialized) ? null : Number(deserialized);
+      return isEmpty(deserialized) ? null : Number(deserialized);
     }
   },
 
@@ -7191,7 +7217,7 @@ DS.JSONSerializer = DS.Serializer.extend({
 
     @param {String} name the association name to convert into a key
 
-    @returns {String} the key
+    @return {String} the key
   */
   keyForPolymorphicId: function(key){
     return key;
@@ -7203,7 +7229,7 @@ DS.JSONSerializer = DS.Serializer.extend({
 
     @param {String} name the association name to convert into a key
 
-    @returns {String} the key
+    @return {String} the key
   */
   keyForPolymorphicType: function(key){
     return this.keyForPolymorphicId(key) + '_type';
@@ -7213,9 +7239,9 @@ DS.JSONSerializer = DS.Serializer.extend({
     A hook you can use in your serializer subclass to customize
     the key used to store the type of a record of an embedded polymorphic association.
 
-    By default, this method returns 'type'.
+    By default, this method return 'type'.
 
-    @returns {String} the key
+    @return {String} the key
   */
   keyForEmbeddedType: function() {
     return 'type';
@@ -7233,7 +7259,7 @@ DS.JSONSerializer = DS.Serializer.extend({
     `user_group`.
 
     @param {DS.Model subclass} type
-    @returns {String} name of the root element
+    @return {String} name of the root element
   */
   rootForType: function(type) {
     var typeString = type.toString();
@@ -7252,7 +7278,7 @@ DS.JSONSerializer = DS.Serializer.extend({
     The default root name for a particular sideloaded type.
 
     @param {DS.Model subclass} type
-    @returns {String} name of the root element
+    @return {String} name of the root element
   */
   defaultSideloadRootForType: function(type) {
     return this.pluralize(this.rootForType(type));
@@ -8113,7 +8139,7 @@ DS.FixtureSerializer = DS.Serializer.extend({
 
   extractBelongsTo: function(type, hash, key) {
     var val = hash[key];
-    if (val !== null && val !== undefined) {
+    if (val != null) {
       val = val + '';
     }
     return val;
@@ -8722,7 +8748,7 @@ DS.RESTAdapter = DS.Adapter.extend({
 
     This method serializes a list of IDs using `serializeId`
 
-    @returns {Array} an array of serialized IDs
+    @return {Array} an array of serialized IDs
   */
   serializeIds: function(ids) {
     var serializer = get(this, 'serializer');

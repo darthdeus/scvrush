@@ -95,8 +95,8 @@ GEM
       ember-source (>= 1.0.0.rc2.2)
       execjs (>= 1.2)
       railties (>= 3.1)
-    ember-source (1.0.0.rc3.3)
-      handlebars-source (>= 1.0.0.rc3, < 1.0.0.rc4)
+    ember-source (1.0.0.rc3.4)
+      handlebars-source (= 1.0.0.rc4)
     emblem-rails (0.1.1)
       barber-emblem (~> 0.1.1)
       ember-rails (>= 0.11.1)
@@ -136,7 +136,7 @@ GEM
       multi_json (~> 1.4)
       nokogiri (~> 1.5.2)
       oauth2
-    handlebars-source (1.0.0.rc3)
+    handlebars-source (1.0.0.rc4)
     hashie (2.0.3)
     hashr (0.0.22)
     highline (1.6.16)
@@ -225,6 +225,7 @@ GEM
       thor (>= 0.14.6, < 2.0)
     raindrops (0.10.0)
     rake (10.0.4)
+    rdiscount (2.0.7.1)
     rdoc (3.12.2)
       json (~> 1.4)
     request_store (1.0.5)
@@ -336,6 +337,7 @@ DEPENDENCIES
   pry-rails (~> 0.2.2)
   pry-remote
   rails (~> 3.2.13)
+  rdiscount
   rolify (~> 3.2.0)
   rspec-rails (~> 2.13.0)
   sass-rails (~> 3.2.5)

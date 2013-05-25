@@ -18,7 +18,7 @@ Scvrush.ApplicationRoute = Ember.Route.extend({
         " " + Scvrush.currentUser.get("server") +
         " coach";
 
-      this.controllerFor("postsIndex").set("query", query);
+      // this.controllerFor("postsIndex").set("query", query);
     }
   },
 

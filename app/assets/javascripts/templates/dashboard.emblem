@@ -51,7 +51,7 @@
   .dashboard-posts
     h3 News
 
-    = each posts
+    each posts
       .post
         = linkTo "post.index" this class="image"
           Scvrush.ImageView srcBinding="image"

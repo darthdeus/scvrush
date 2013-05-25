@@ -5,7 +5,6 @@ Scvrush.PostIndexRoute = Scvrush.Route.extend({
   },
 
   renderTemplate: function() {
-    console.log("rendering outlet");
     this.render();
     this.render("posts/related", {
       into: "application",

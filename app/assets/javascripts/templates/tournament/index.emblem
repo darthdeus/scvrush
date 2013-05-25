@@ -11,7 +11,7 @@
 
   .info
     .description
-      = markdown description
+      == description
 
       if Scvrush.currentUser.isTrial
         = linkTo "home"

@@ -7,6 +7,8 @@ Scvrush.Tournament = DS.Model.extend(Ember.Validations.Mixin, {
   maxPlayers:        DS.attr("number"),
   leagues:           DS.attr("string"),
   region:            DS.attr("string"),
+  mapInfo:           DS.attr("string"),
+  rules:             DS.attr("string"),
 
   winner:            DS.belongsTo("Scvrush.User"),
   user:              DS.belongsTo("Scvrush.User"),
