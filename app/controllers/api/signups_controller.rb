@@ -1,4 +1,4 @@
-class SignupsController < ApplicationController
+class Api::SignupsController < ApplicationController
 
   respond_to :json
 

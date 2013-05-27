@@ -1,4 +1,4 @@
-class BracketsController < ApplicationController
+class Api::BracketsController < ApplicationController
 
   def update
     tournament = Tournament.find(params[:id])

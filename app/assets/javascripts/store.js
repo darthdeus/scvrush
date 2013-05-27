@@ -1,4 +1,6 @@
-Scvrush.Adapter = DS.RESTAdapter.extend();
+Scvrush.Adapter = DS.RESTAdapter.extend({
+  namespace: "api"
+});
 
 Scvrush.Adapter.configure("plurals", {
   status: "statuses",

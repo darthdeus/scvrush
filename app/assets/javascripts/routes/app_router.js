@@ -1,6 +1,10 @@
 //= require_self
 //= require_tree .
 
+Scvrush.Router.reopen({
+  location: "history"
+});
+
 Scvrush.Router.map(function() {
   this.route("home", { path: "/" });
   this.route("meet_scvrush", { path: "/meet-scvrush" });

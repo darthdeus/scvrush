@@ -1,4 +1,4 @@
-class StatusesController < ApplicationController
+class Api::StatusesController < ApplicationController
   respond_to :json
 
   def index

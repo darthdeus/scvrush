@@ -10,6 +10,7 @@
 Scvrush = Ember.Application.create({
   LOG_TRANSITIONS: true,
   rootElement: "#ember-app",
+
   ready: function() {
     var userId = this.$(this.rootElement).data("user-id");
     var user = Scvrush.User.find(userId);
@@ -17,6 +18,7 @@ Scvrush = Ember.Application.create({
     Scvrush.currentUser = Scvrush.CurrentUser.create();
     Scvrush.currentUser.changeUser(user);
   }
+
 });
 
 Scvrush.keyboard = Ember.Object.create();

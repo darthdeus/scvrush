@@ -21,78 +21,50 @@ Scvrush::Application.routes.draw do
   get "api/user_data"
   get "api/streams"
 
-  resources :roles do
-    collection do
-      get :with_roles
+  namespace :api, format: :json do
+
+    resources :notifications
+    resources :achievements
+
+    resources :rounds
+    resources :matches
+    resources :votes, only: [:create, :destroy]
+
+    resources :brackets
+    resources :tournaments do
+      member do
+        post :start
+        post :seed
+        post :unseed
+        get :emails
+        post :randomize
+      end
+    end
+    resources :signups
+
+    resources :posts
+    resources :statuses
+
+    get "login" => "sessions#new", as: "login"
+    delete "logout" => "sessions#destroy", as: "logout"
+    get "signup" => "users#new", as: "signup"
+
+    resources :sessions, only: [:new, :create, :destroy]
+
+    resources :users do
+      collection do
+        get :validate
+      end
+
+      member do
+        post    :follow
+        delete  :unfollow
+        get     :info
+        get     :friends
+      end
     end
   end
 
-  resources :images, only: :create
-  resources :notifications
-  resources :achievements
-
-  resources :rounds
-  resources :matches
-  resources :votes, only: [:create, :destroy]
-
-  resources :brackets
-  resources :tournaments do
-    member do
-      post :start
-      post :seed
-      post :unseed
-      get :emails
-      post :randomize
-    end
-  end
-  resources :signups
-
-  resources :sections, only: :index do
-    resources :topics, only: [:new, :create, :index]
-  end
-
-  resources :topics, only: :show do
-    resources :replies, only: [:index, :create, :destroy]
-  end
-
-  get "home/index"
-
-  resources :password_resets, only: [:new, :create, :edit, :update]
-  resources :posts do
-    resources :comments, only: [:index, :create, :destroy]
-    member do
-      post :publish
-    end
-    collection do
-      get :tag
-    end
-  end
-
-  get "login" => "sessions#new", as: "login"
-  delete "logout" => "sessions#destroy", as: "logout"
-  get "signup" => "users#new", as: "signup"
-
-  resources :sessions, only: [:new, :create, :destroy]
-
+  match "*path" => "home#index"
   root to: "home#index"
-
-  resources :users do
-    collection do
-      get :validate
-    end
-
-    member do
-      post    :follow
-      delete  :unfollow
-      get     :info
-      get     :friends
-    end
-  end
-
-  resources :statuses do
-    member do
-      post :like
-    end
-  end
-
 end

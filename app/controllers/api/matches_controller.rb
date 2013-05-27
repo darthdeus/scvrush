@@ -1,4 +1,4 @@
-class MatchesController < ApplicationController
+class Api::MatchesController < ApplicationController
   respond_to :json
 
   def index
