@@ -113,10 +113,6 @@ class Tournament < ActiveRecord::Base
     true
   end
 
-  def maps
-    self.map_preset.gsub("\r", "").split("\n\n") if self.map_preset
-  end
-
   def registration_open?
     self.starts_at > Time.now
   end
@@ -178,8 +174,15 @@ class Tournament < ActiveRecord::Base
   end
 
   def maps
-    map_preset.split("\r\n\r\n")
+    map_preset.split("\r\n\r\n") if map_preset
   end
+
+#   def maps
+#     if self.map_preset
+#       lines = self.map_preset.gsub("\r", "")
+#       lines.split("\n\n") if lines
+#     end
+#   end
 
   class DoubleRegistration < Error; end
 end

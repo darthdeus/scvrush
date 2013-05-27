@@ -3,7 +3,7 @@ Scvrush.ApplicationRoute = Ember.Route.extend({
   events: {
     logout: function() {
       $.ajax({
-        url: "/logout",
+        url: "/api/logout",
         method: "DELETE",
         success: function() {
           document.location = "/";

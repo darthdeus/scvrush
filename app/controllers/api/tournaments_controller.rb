@@ -10,7 +10,7 @@ class Api::TournamentsController < ApplicationController
     end
 
     if params[:ids]
-      respond_with Tournament.find(params[:ids]) and return
+      render json: Tournament.find(params[:ids]) and return
     end
 
     tournaments = Tournament.scoped
@@ -30,7 +30,7 @@ class Api::TournamentsController < ApplicationController
     tournament = Tournament.factory(params[:tournament], current_user)
     tournament.save
 
-    respond_with tournament
+    render json: tournament
   end
 
   def show
@@ -41,7 +41,7 @@ class Api::TournamentsController < ApplicationController
     tournament = Tournament.find(params[:id])
     tournament.destroy
 
-    respond_with tournament
+    render json: {}
   end
 
   # TODO - match submission should be extracted into a separate action

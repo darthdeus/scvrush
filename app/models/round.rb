@@ -33,7 +33,7 @@ class Round < ActiveRecord::Base
   end
 
   def map_pool
-    tournament.maps[tournament.rounds.index(self)]
+    tournament.maps[tournament.rounds.index(self)] if tournament.maps
   end
 
 end

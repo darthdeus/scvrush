@@ -13,7 +13,6 @@ Scvrush.HomeRoute = Scvrush.Route.extend({
   },
 
   _gotoDashboard: function() {
-    console.log("route redirect");
     if (this.modelFor("home").get("isTrial") === false) {
       Ember.run.next(this, function() {
         this.transitionTo("dashboard");

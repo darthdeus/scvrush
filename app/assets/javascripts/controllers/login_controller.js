@@ -11,7 +11,7 @@ Scvrush.LoginController = Ember.Controller.extend({
 
   _request: function() {
     Ember.$.ajax({
-      url: "/sessions.json",
+      url: "/api/sessions.json",
       method: "POST",
 
       context: this,

@@ -11,7 +11,7 @@ Scvrush.TournamentIndexController = Ember.ObjectController.extend({
     // score as if he lost, like 1:3
 
     $.ajax({
-      url: "/matches",
+      url: "/api/matches",
       method: "post",
       data: {
         score: score,

@@ -3,7 +3,7 @@ Scvrush.CurrentUser = Ember.ObjectProxy.extend({
   content: null,
 
   follow: function(user) {
-    var url = "/users/" + user.get("id") + "/follow";
+    var url = "/api/users/" + user.get("id") + "/follow";
 
     $.post(url, function(data) {
       Ember.run(function() {
@@ -13,7 +13,7 @@ Scvrush.CurrentUser = Ember.ObjectProxy.extend({
   },
 
   unfollow: function(user) {
-    var url = "/users/" + user.get("id") + "/unfollow";
+    var url = "/api/users/" + user.get("id") + "/unfollow";
 
     $.post(url, { "_method": "DELETE" }, function(data) {
       Ember.run(function() {
