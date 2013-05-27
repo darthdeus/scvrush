@@ -1,0 +1,7 @@
+.registered-players
+  ul.unstyled.tournament-players
+    each controller
+      li class={isCurrentUser:current-player}
+        linkTo "user" this
+          div class={raceClass :race} = race_class
+          div.name = bnetInfo

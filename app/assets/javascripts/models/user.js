@@ -90,7 +90,7 @@ Scvrush.User = DS.Model.extend(Ember.Validations.Mixin, {
 
   isCurrentUser: function() {
     return this === Scvrush.currentUser.get("content");
-  }.property("Scvrush.currentUser"),
+  }.property("Scvrush.currentUser.content"),
 
   hasNotifications: function() {
     return this.get("notifications.length") > 0;

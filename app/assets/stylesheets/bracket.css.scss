@@ -41,10 +41,6 @@
   .icon-ok, .icon-remove { margin-top: 2px; margin-right: 3px; }
 }
 
-// TODO - This needs to go after we change the whole
-// layout to Twitter bootstrap
-.registered-players .row { margin-left: 0; }
-
 .tournament-players li {
   @include border-radius(3px);
   float: left;
@@ -70,6 +66,9 @@
       opacity: 1;
     }
   }
+
+  &.current-player a { background: #d1eee1; }
+  &.current-player a:hover { background: #c1ded1; }
 
   .race, .name {
     display: block;
