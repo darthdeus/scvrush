@@ -22,10 +22,9 @@ Scvrush.Router.map(function() {
     this.resource("tournament", { path: "/:tournament_id" }, function() {
       this.route("edit", { path: "/edit" });
 
-      this.resource("matches", { path: "/matches" }, function() {
-        this.resource("match", { path: "/:match_id" }, function() {
-          this.route("edit", { path: "/edit" });
-        });
+      this.resource("matches", { path: "/matches" });
+      this.resource("match", { path: "/matches/:match_id" }, function() {
+        this.route("edit", { path: "/edit" });
       });
     });
   });

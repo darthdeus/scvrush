@@ -1,1 +1,7 @@
-= outlet
+h3
+  | {{name}} matches
+  = linkTo .btn.btn-mini "tournament" this activeClass="" | Back
+
+ul
+  each matches
+    li player1.bnetInfo

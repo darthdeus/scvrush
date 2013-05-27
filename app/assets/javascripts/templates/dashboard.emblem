@@ -48,20 +48,21 @@
         = linkTo "tournament" this
           img src=imageUrl
 
-  .dashboard-posts
-    h3 News
+  if false
+    .dashboard-posts
+      h3 News
 
-    each posts
-      .post
-        = linkTo "post.index" this class="image"
-          Scvrush.ImageView srcBinding="image"
+      each posts
+        .post
+          = linkTo "post.index" this class="image"
+            Scvrush.ImageView srcBinding="image"
 
-        .content
-          h2
-            = linkTo "post.index" this | {{title}}
+          .content
+            h2
+              = linkTo "post.index" this | {{title}}
 
-          .text = markdown shortContent
+            .text = markdown shortContent
 
-          .tags
-            = each tagList itemController="tag"
-              span.tag click="filterTag this" = content
+            .tags
+              = each tagList itemController="tag"
+                span.tag click="filterTag this" = content

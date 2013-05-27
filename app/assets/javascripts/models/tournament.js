@@ -30,7 +30,7 @@ Scvrush.Tournament = DS.Model.extend(Ember.Validations.Mixin, {
   startNow: function() {
     var model = this;
 
-    $.post("/tournaments/" + this.get("id") + "/start", function(data) {
+    $.post("/api/tournaments/" + this.get("id") + "/start", function(data) {
       Ember.run(function() {
         model.get("store").load(Scvrush.Tournament, data.tournament);
       });
@@ -92,8 +92,6 @@ Scvrush.Tournament = DS.Model.extend(Ember.Validations.Mixin, {
     if (!time) { return ""; }
     return time.format("LT") + " (" + time.fromNow() + ")";
   }.property("startsAt"),
-
-
 
   untilStart: function() {
     return moment.utc().diff(moment.utc(this.get("startsAt"))) > 0;

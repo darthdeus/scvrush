@@ -1,4 +1,5 @@
 .admin.btn-group
+  = linkTo .btn.btn-small "matches" this | Matches
   if isStarted
     if seeded
       button.btn.btn-small.btn-info click="adminToggle" title="Switch to admin view where you can edit matches" Admin View
