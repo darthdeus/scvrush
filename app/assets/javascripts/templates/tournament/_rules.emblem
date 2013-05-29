@@ -3,7 +3,7 @@
     .accordion-heading
       a.accordion-toggle data-parent="#tournament-accordion" data-toggle="collapse" href="#rules" Tournament Rules
 
-    #rules.accordion-body.in.collapse
+    #rules.accordion-body.collapse
       .accordion-inner
         = markdown rules
 

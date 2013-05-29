@@ -7,7 +7,7 @@
       .pull-right = render "user.follow_button" currentOpponent
 
     .row: .span5.box
-      p: strong Map pool
+      p: strong Map pool for this round
       p = mapPool
 
     .row: .span5.box
