@@ -177,12 +177,9 @@ class Tournament < ActiveRecord::Base
     map_preset.split("\r\n\r\n") if map_preset
   end
 
-#   def maps
-#     if self.map_preset
-#       lines = self.map_preset.gsub("\r", "")
-#       lines.split("\n\n") if lines
-#     end
-#   end
+  def check_in_all
+    users.each { |u| u.check_in(self) }
+  end
 
   class DoubleRegistration < Error; end
 end

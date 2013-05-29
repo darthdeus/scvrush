@@ -48,7 +48,7 @@
         = linkTo "tournament" this
           img src=imageUrl
 
-  if false
+  if nothing
     .dashboard-posts
       h3 News
 

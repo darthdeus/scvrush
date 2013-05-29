@@ -22,9 +22,9 @@ Scvrush.ApplicationRoute = Ember.Route.extend({
     }
   },
 
-  setupController: function() {
-    this.setupCatsocket();
-  },
+  // setupController: function() {
+    // this.setupCatsocket();
+  // },
 
   userLoaded: function() {
     var user = Scvrush.currentUser;
