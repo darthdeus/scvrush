@@ -8,17 +8,45 @@ Scvrush.SignupsController = Ember.ObjectController.extend({
   }.observes("query"),
 
   updateUsers: _.debounce(function() {
-    this.set("users", Scvrush.User.query({ bnet_info: this.get("query") }));
+    var self = this,
+        tournament = this.get("model");
+
+    Scvrush.User.query({ bnet_info: this.get("query") }).then(function(results) {
+      var filter = results.filter(function(user) {
+        return !tournament.get("signups").mapProperty("user").contains(user);
+      });
+
+      self.set("users", filter);
+    });
   }, 300),
+
+  reload: function() {
+    this.get("model").reload();
+    this.updateUsers();
+  },
 
   checkin: function(signup) {
     signup.set("status", "checked");
-    signup.save().then();
+    signup.get("transaction").commit();
   },
 
-  delete: function(signup) {
-    signup.set("status", "canceled");
-    signup.save();
-  }
+  cancel: function(signup) {
+    if (confirm("Are you sure?")) {
+      signup.deleteRecord();
+      signup.one("didDelete", this, "reload");
+      signup.get("transaction").commit();
+    }
+  },
 
+  register: function(user) {
+    var self = this;
+
+    var signup = Scvrush.Signup.createRecord({
+      user: user,
+      tournament: this.get("model")
+    });
+
+    signup.one("didCreate", this, "reload");
+    signup.get("transaction").commit();
+  },
 });

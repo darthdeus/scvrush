@@ -9,21 +9,22 @@
 
       table.table.table-bordered.table-striped
         thead: tr
-          th Name
+          th Username
+          th Battle.net info
           th Status
           th Actions
 
         tbody
           each signups
             tr class={isChecked:checked}
+              td = linkTo "user" user | {{user.username}}
               td = user.bnetInfo
               td = status
               td
                 unless isChecked
-                  button.btn.btn-mini click="checkin this" Check in
+                  button.btn.btn-mini.btn-success click="checkin this" Check in
                 unless isCanceled
-                  button.btn.btn-mini click="delete this" Delete
-
+                  button.btn.btn-mini.btn-danger click="cancel this" Delete
 
     .span6
       h4 Manual registration
@@ -44,8 +45,6 @@
                 td = username
                 td = bnetInfo
                 td = status
-                td: button.btn.btn-mini Register
-
-
+                td: button.btn.btn-mini click="register this" Register
 
   h1 Work in progress

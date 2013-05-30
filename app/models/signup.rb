@@ -14,8 +14,11 @@ class Signup < ActiveRecord::Base
 
   has_many :statuses, as: :statusable
 
-  validates :tournament, presence: true
-  validates :user, presence: true
+  validates_presence_of :status, :tournament, :user
+
+  before_save do
+    self.status = Signup::REGISTERED unless self.status
+  end
 
   # Create a new signup for a user and a tournament
   def self.for(user, tournament)

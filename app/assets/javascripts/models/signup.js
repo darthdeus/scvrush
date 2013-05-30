@@ -10,6 +10,6 @@ Scvrush.Signup = DS.Model.extend({
 
   isCanceled: function() {
     return this.get("status") === "canceled";
-  }.property("status")
+  }.property("status"),
 
 });
