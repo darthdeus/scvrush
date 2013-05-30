@@ -5,8 +5,10 @@ Scvrush.ApplicationRoute = Ember.Route.extend({
       $.ajax({
         url: "/api/logout",
         method: "DELETE",
+        type: "json",
         success: function() {
           document.location = "/";
+          document.location.reload();
         }
       });
     },

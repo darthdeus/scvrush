@@ -5,6 +5,7 @@ class TournamentSerializer < ActiveModel::Serializer
 
   has_many :rounds, embed: :ids
   has_many :users, embed: :ids
+  has_many :signups, embed: :ids
 
   def leagues
     object.leagues.try(:downcase)

@@ -16,7 +16,7 @@
 
     img {
       width: 100px;
-      &.avatar { @include box-shadow(0 0 3px #666); }
+      &.avatar { box-shadow: 0 0 3px #666; }
 
       &.race {
         width: 60px;
@@ -39,7 +39,7 @@
   }
 
   .followers img {
-    @include box-shadow(0 0 3px #666);
+    box-shadow: 0 0 3px #666;
     width: 30px;
   }
 }

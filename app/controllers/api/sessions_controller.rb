@@ -15,9 +15,7 @@ class Api::SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    flash[:success] = "You have been logged out. Come back again at any time!"
-
-    render nothing: true
+    render json: {}
   end
 
 end
