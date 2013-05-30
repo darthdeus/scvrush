@@ -10,13 +10,15 @@ Scvrush.Tournament = DS.Model.extend(Ember.Validations.Mixin, {
   mapInfo:           DS.attr("string"),
   rules:             DS.attr("string"),
 
-  winner:            DS.belongsTo("Scvrush.User"),
-  user:              DS.belongsTo("Scvrush.User"),
-  users:             DS.hasMany("Scvrush.User"),
   isRegistered:      DS.attr("boolean"),
   isChecked:         DS.attr("boolean"),
   channel:           DS.attr("string"),
   description:       DS.attr("string"),
+
+  winner:            DS.belongsTo("Scvrush.User"),
+  user:              DS.belongsTo("Scvrush.User"),
+  users:             DS.hasMany("Scvrush.User"),
+  signups:           DS.hasMany("Scvrush.Signup"),
 
   rounds:            DS.hasMany("Scvrush.Round"),
 

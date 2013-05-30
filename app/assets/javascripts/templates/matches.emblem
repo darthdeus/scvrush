@@ -4,4 +4,6 @@ h3
 
 ul
   each matches
-    li player1.bnetInfo
+    li = player1.bnetInfo
+
+h1 Work in progress

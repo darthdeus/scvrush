@@ -79,6 +79,12 @@ class User < ActiveRecord::Base
 
   # Return a user either by his username or by email.
   # Used mostly for authentication purposes.
+  def self.username_or_bnet_info(query)
+    where('username ILIKE ? OR bnet_username ILIKE ?', "%#{query}%", "%#{query}%")
+  end
+
+  # Return a user either by his username or by email.
+  # Used mostly for authentication purposes.
   def self.with_login(login)
     where('username ILIKE ? OR email ILIKE ?', login, login).first
   end

@@ -7,7 +7,7 @@ class Signup < ActiveRecord::Base
   scope :checked,    where(status: CHECKED)
 
   # TODO - remove signup from here, potentital security risk
-  attr_accessible :tournament, :user, :signup
+  attr_accessible :tournament, :user, :signup, :status, :user_id, :tournament_id
 
   belongs_to :tournament, counter_cache: true
   belongs_to :user
@@ -39,13 +39,24 @@ class Signup < ActiveRecord::Base
     self.save!
   end
 
+  def checkin
+    self.status = CHECKED
+    self.save
+  end
+
   def checkin!
     self.status = CHECKED
     self.save!
+  end
+
+  def cancel
+    self.status = CANCELED
+    self.save
   end
 
   def cancel_checkin
     self.status = REGISTERED
     self.save!
   end
+
 end

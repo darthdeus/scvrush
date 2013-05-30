@@ -93,3 +93,9 @@
   .league-diamond  { background: url("league_diamond_icon.png"); }
   .league-masters  { background: url("league_masters_icon.png"); }
 }
+
+.tournament-signups {
+  table.table-stripped tr td .checked {
+    background: #d1eee1;
+  }
+}
