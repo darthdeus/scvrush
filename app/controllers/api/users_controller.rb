@@ -9,7 +9,7 @@ class Api::UsersController < ApplicationController
     elsif params[:query]
       users = User.search(params[:query], load: true).results
     elsif params[:bnet_info]
-      users = User.username_or_bnet_info(params[:bnet_info])
+      users = User.username_or_bnet_info(params[:bnet_info]).limit(10)
     else
       users = User.first(20)
     end

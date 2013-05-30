@@ -11,6 +11,8 @@ Scvrush.SignupsController = Ember.ObjectController.extend({
     var self = this,
         tournament = this.get("model");
 
+    if (Ember.isEmpty(this.get("query"))) return;
+
     Scvrush.User.query({ bnet_info: this.get("query") }).then(function(results) {
       var filter = results.filter(function(user) {
         return !tournament.get("signups").mapProperty("user").contains(user);

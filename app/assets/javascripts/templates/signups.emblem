@@ -23,6 +23,7 @@
               td
                 unless isChecked
                   button.btn.btn-mini.btn-success click="checkin this" Check in
+                '
                 unless isCanceled
                   button.btn.btn-mini.btn-danger click="cancel this" Delete
 
