@@ -41,4 +41,6 @@ Scvrush.Router.map(function() {
     });
   });
 
+  this.route("notFound", { path: "*:" });
+
 });

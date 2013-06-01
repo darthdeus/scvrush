@@ -64,7 +64,8 @@ class Api::TournamentsController < ApplicationController
     end
 
     if params[:tournament][:starts_at]
-      tournament.update_attributes(params[:tournament].extract!(:starts_at, :name))
+      attributes = params[:tournament].extract!(:starts_at, :name, :bo_preset, :map_preset)
+      tournament.update_attributes(attributes)
     end
 
     render json: tournament

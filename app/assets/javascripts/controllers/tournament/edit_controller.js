@@ -1,11 +1,12 @@
 Scvrush.TournamentEditController = Ember.ObjectController.extend({
-  needs: "tournament",
 
   notSavable: function() {
     return !this.get("isDirty") || this.get("isSaving");
-  }.property("isUpdating", "isDirty"),
+  }.property("isSaving", "isDirty"),
 
-  saveTournament: function(tournament) {
+  save: function() {
+    var tournament = this.get("model");
+
     tournament.one("didUpdate", this, function() {
       Ember.run.next(this, function() {
         this.transitionToRoute("tournament", tournament);
@@ -14,4 +15,5 @@ Scvrush.TournamentEditController = Ember.ObjectController.extend({
 
     tournament.get("transaction").commit();
   }
+
 });

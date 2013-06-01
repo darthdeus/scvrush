@@ -9,6 +9,8 @@ Scvrush.Tournament = DS.Model.extend(Ember.Validations.Mixin, {
   region:            DS.attr("string"),
   mapInfo:           DS.attr("string"),
   rules:             DS.attr("string"),
+  mapPreset:         DS.attr("string"),
+  boPreset:          DS.attr("string"),
 
   isRegistered:      DS.attr("boolean"),
   isChecked:         DS.attr("boolean"),

@@ -2,16 +2,18 @@ class Api::UsersController < ApplicationController
   respond_to :json
 
   def index
+    users = User.scoped
+
     if params[:ids]
-      users = User.find_all_by_id(params[:ids])
+      users = users.find_all_by_id(params[:ids])
     elsif params[:username]
-      users = User.find_all_by_username(params[:username])
+      users = users.find_all_by_username(params[:username])
     elsif params[:query]
-      users = User.search(params[:query], load: true).results
+      users = users.search(params[:query], load: true).results
     elsif params[:bnet_info]
-      users = User.username_or_bnet_info(params[:bnet_info]).limit(10)
+      users = users.username_or_bnet_info(params[:bnet_info]).limit(10)
     else
-      users = User.first(20)
+      users = users.first(20)
     end
 
     render json: users

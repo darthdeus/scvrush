@@ -1,0 +1,38 @@
+.tournament-edit
+  h2 Edit tournament
+
+  p You can change the name of your tournament and when it begins
+
+  if controllers.tournament.isLoaded
+    = linkTo "tournament" controllers.tournament.content | back to the tournament
+
+  form.form-horizontal submit="save"
+
+    div{bindAttr class="nameInvalid:error :control-group"}
+      label.control-label Name
+
+      .controls
+        = input value=name type="text"
+
+    div{bindAttr class="startsAtInvalid:error :control-group"}
+      label.control-label Starts at
+
+      .controls
+        Scvrush.DateTimeView valueBinding="startsAt" class="control"
+
+    .control-group
+      label.control-label Bo preset
+
+      .controls
+        = input value=boPreset type="text"
+
+    .control-group
+      label.control-label Map Preset
+
+      .controls
+        = textarea value=mapPreset
+
+    .controls
+      button.btn.btn-success{bindAttr disabled="notSavable"} type="submit" Save changes
+      '
+      = linkTo .btn "tournament.index" content | Cancel
