@@ -17,12 +17,9 @@ div class={race :user-navbar :navbar-fixed-top}
       = linkTo "tournament" currentTournament
         | Your current tournament - {{currentTournament.name}}
 
-    linkTo "user.edit" this
-      i.icon.icon-cog title="Settings"
+    = linkTo "user.edit" this  | Settings
 
     if isTrial
-      linkTo "login"
-        i.icon.icon-signin title="Log in"
+      = linkTo "login" | Log in
     else
-      a click="logout" href="#"
-        i.icon.icon-signout title="Log out"
+      a click="logout" href="#" Log out
