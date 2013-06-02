@@ -13,13 +13,16 @@ div class={race :user-navbar :navbar-fixed-top}
 
   .pull-right.user-actions
 
-    if currentTournament
-      = linkTo "tournament" currentTournament
-        | Your current tournament - {{currentTournament.name}}
+    ul.horizontal
+      if currentTournament
+        li = linkTo "tournament" currentTournament
+          | Your current tournament - {{currentTournament.name}}
 
-    = linkTo "user.edit" this  | Settings
+      li
+        = linkTo "user.edit" this  | Settings
 
-    if isTrial
-      = linkTo "login" | Log in
-    else
-      a click="logout" href="#" Log out
+      li
+        if isTrial
+          = linkTo "login" | Log in
+        else
+          a click="logout" href="#" Log out

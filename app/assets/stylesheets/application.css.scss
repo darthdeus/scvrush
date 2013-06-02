@@ -101,6 +101,14 @@ a { cursor: pointer; }
   }
 }
 
+ul.horizontal {
+  @include clearfix;
+
+  li {
+    list-style: none;
+    float: left;
+  }
+}
 
 .tags {
   margin: 0;

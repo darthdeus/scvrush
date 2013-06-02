@@ -110,4 +110,12 @@ $navbarOffset: 180px;
     color: #404040;
     &:hover { color: #555; }
   }
+
+  .user-actions {
+    padding-top: 7px;
+
+    li {
+      padding: 0 5px;
+    }
+  }
 }
