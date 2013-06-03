@@ -1,0 +1,17 @@
+.main-content: .coaches-page.coaches-index
+  h1 Coaches
+
+  each controller
+    = linkTo .coach "coach" this tagName="div"
+      .races
+        each raceIcons
+          img src=this
+      ul.languages.unstyled
+        each languageFlags
+          li: img src=this
+
+      h4.name = name
+
+      .servers.tags
+        each servers
+          span.tag = this

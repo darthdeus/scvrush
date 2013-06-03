@@ -4,7 +4,8 @@ Scvrush.Adapter = DS.RESTAdapter.extend({
 
 Scvrush.Adapter.configure("plurals", {
   status: "statuses",
-  match: "matches"
+  match: "matches",
+  coach: "coaches"
 });
 
 Scvrush.Adapter.registerTransform("object", {

@@ -1,0 +1,24 @@
+.main-content: .coaches-page.coaches-show
+  h1
+    ' Coach: {{name}}
+    span.servers.tags
+      each servers
+        span.tag = this
+
+  .about = about
+
+  hr
+
+  .row
+    .span12
+      .pull-left
+        each raceIcons
+          img src=this
+
+      .pull-left
+        each languageFlags
+          img src=this
+
+  hr
+
+  = linkTo .btn "coaches" | All coaches

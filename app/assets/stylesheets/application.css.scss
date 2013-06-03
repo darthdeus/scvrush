@@ -25,6 +25,18 @@ $base-font-size:   14px;
 @import "dataTables/jquery.dataTables.bootstrap";
 @import "bourbon";
 
+h1 {
+  font-size: 24px;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+h3 {
+  font-size: 16px;
+}
+
 .btn-primary {
   color: #FFFFFF;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
@@ -219,3 +231,4 @@ ul.horizontal {
 @import "users";
 @import "bracket";
 @import "tournaments";
+@import "coaches";

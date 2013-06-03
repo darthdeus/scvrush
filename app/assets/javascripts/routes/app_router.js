@@ -30,6 +30,9 @@ Scvrush.Router.map(function() {
     });
   });
 
+  this.resource("coaches");
+  this.resource("coach", { path: "/coaches/:coach_id" });
+
   this.resource("notifications");
 
   this.resource("users", { path: "/users" }, function() {

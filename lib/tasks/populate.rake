@@ -30,12 +30,6 @@ namespace :db do
 
     users = User.all
 
-    BlogPost.populate 4 do |post|
-      post.title = Populator.words(3..7)
-      post.url   = "http://example.com"
-      post.order = 0
-    end
-
     Post.populate 10 do |post|
       post.title        = Populator.words(3..7)
       post.content      = Populator.paragraphs(2..5)

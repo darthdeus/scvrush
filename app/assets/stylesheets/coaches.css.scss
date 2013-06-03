@@ -1,0 +1,45 @@
+.coaches-page .tag {
+  padding: 2px 5px;
+  margin-right: 3px;
+  background: #eee;
+  border-radius: 2px;
+  cursor: pointer;
+
+  &:hover { background: #ccc; }
+}
+
+.coaches-index {
+  .coach {
+    opacity: 0.6;
+    cursor: pointer;
+    @include clearfix;
+
+    &:hover { opacity: 1.0; }
+
+    .races {
+      float: left;
+    }
+
+    .name {
+      float: left;
+      margin-left: 20px;
+    }
+
+    .servers {
+      margin-left: 20px;
+      float: left;
+      padding-top: 10px;
+
+    }
+
+    ul.languages {
+      float: left;
+    }
+  }
+}
+
+.coaches-show {
+  h1 .tags {
+    font-size: 14px;
+  }
+}

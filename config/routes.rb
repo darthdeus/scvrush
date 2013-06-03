@@ -44,6 +44,7 @@ Scvrush::Application.routes.draw do
 
     resources :posts
     resources :statuses
+    resources :coaches
 
     get "login" => "sessions#new", as: "login"
     delete "logout" => "sessions#destroy", as: "logout"

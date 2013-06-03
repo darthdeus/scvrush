@@ -6,6 +6,7 @@ gem "bcrypt-ruby",  "~> 3.0.1", require: "bcrypt"
 
 gem "kaminari"
 gem "pg",                       "~> 0.14.0"
+gem "postgres_ext"
 gem "tire"
 gem "catsocket_client", github: "darthdeus/catsocket_client"
 # gem "catsocket_client", path: "../catsocket_client"

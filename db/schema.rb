@@ -11,17 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130515093210) do
+ActiveRecord::Schema.define(:version => 20130602101551) do
 
   create_table "coaches", :force => true do |t|
-    t.integer  "order"
-    t.string   "title"
-    t.integer  "post_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string "name"
+    t.text   "about"
+    t.string "races",     :array => true
+    t.string "servers",   :array => true
+    t.string "languages", :array => true
   end
-
-  add_index "coaches", ["post_id"], :name => "index_coaches_on_post_id"
 
   create_table "followings", :force => true do |t|
     t.integer  "follower_id"
