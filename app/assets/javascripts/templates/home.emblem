@@ -14,3 +14,6 @@
   if step3
     hr
     linkTo .btn.btn-large "user.edit" Scvrush.currentUser | Activate!
+
+  if isSaving
+    hr: span.help-inline Saving...

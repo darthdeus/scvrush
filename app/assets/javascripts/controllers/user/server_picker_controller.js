@@ -17,8 +17,10 @@ Scvrush.UserServerPickerController = Ember.ObjectController.extend({
   }.property("server"),
 
   selectServer: function(server) {
-    this.set("server", server);
-    this.get("transaction").commit()
+    if (!this.get("isSaving")) {
+      this.set("server", server);
+      this.get("transaction").commit()
+    }
   }
 
 });
