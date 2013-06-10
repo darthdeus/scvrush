@@ -85,7 +85,7 @@ Scvrush.User = DS.Model.extend(Ember.Validations.Mixin, {
   }.property("statuses.@each.item"),
 
   recentStatuses: function() {
-    return this.get("statuses").toArray().reverse().slice(0, 10);
+    return this.get("statuses").toArray().reverse().slice(0, 5);
   }.property("statuses.@each.item"),
 
   isCurrentUser: function() {
