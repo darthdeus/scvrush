@@ -23,4 +23,5 @@
           ' You're currently playing against
 
     ul.nav.pull-right
+      li = linkTo "contact" | Contact
       li = linkTo "meet_scvrush" | About us

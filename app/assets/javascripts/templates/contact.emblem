@@ -1,0 +1,9 @@
+.main-content
+  h1 Contact us
+
+  p
+    ' You can either send us an email at <a href="mailto:jakub@scvrush.com">jakub@scvrush.com</a>
+    ' or use the contact form in the bottom right corner of the page to send us a message.
+
+
+
