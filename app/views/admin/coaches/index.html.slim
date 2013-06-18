@@ -8,12 +8,10 @@ section.data-table-client
   table.table.table-bordered.table-striped
     thead
       tr
-        th Title
-        th Order
+        th Name
         th Actions
     tbody
       - @coaches.each do |coach|
         tr
-          td = coach.title
-          td = coach.order
+          td = coach.name
           td = get_action_buttons(coach)
