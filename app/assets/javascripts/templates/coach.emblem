@@ -5,7 +5,7 @@
       each servers
         span.tag = this
 
-  .about = about
+  .about = markdown about
 
   hr
 
