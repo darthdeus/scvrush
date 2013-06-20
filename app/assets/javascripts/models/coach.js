@@ -6,6 +6,14 @@ Scvrush.Coach = DS.Model.extend({
   servers: DS.attr("object"),
   languages: DS.attr("object"),
 
+  primaryServer: function() {
+    return this.get("servers.firstObject");
+  }.property("servers.[]"),
+
+  primaryServerIcon: function() {
+    return "/assets/coaches_" + this.get("primaryServer") + ".png";
+  }.property("primaryServer"),
+
   raceIcon: function(race) {
     if (race) {
       return "/assets/race_" + race.toLowerCase() + "_icon.png";

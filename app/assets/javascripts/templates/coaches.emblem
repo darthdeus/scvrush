@@ -1,17 +1,16 @@
 .main-content: .coaches-page.coaches-index
   h1 Coaches
 
-  each controller
-    = linkTo .coach "coach" this tagName="div"
-      .races
-        each raceIcons
-          img src=this
-      ul.languages.unstyled
-        each languageFlags
-          li: img src=this
+  .row
+    each group in groupedContent
 
-      h4.name = name
+      .span3
+        img src=group.firstObject.primaryServerIcon
 
-      .servers.tags
-        each servers
-          span.tag = this
+        each group
+          = linkTo .coach "coach" this tagName="div"
+            .races
+              each raceIcons
+                img src=this
+
+            h4.name = name
