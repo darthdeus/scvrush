@@ -9,7 +9,21 @@
       .controls
         Ember.TextField valueBinding="score"
 
+    .control-group
+      .control-label
+        label Player1:
+      .controls
+        Ember.Select contentBinding="players" selectionBinding="player1" optionLabelPath="content.bnetInfo"
+
+    .control-group
+      .control-label
+        label Player2:
+      .controls
+        Ember.Select contentBinding="players" selectionBinding="player2" optionLabelPath="content.bnetInfo"
+
     .form-actions
       button.btn.btn-primary type="submit" disable=isUpdating Update match
       '
       = linkTo .btn "tournament" tournament activeClass="" | Cancel
+
+  h3 Edit players

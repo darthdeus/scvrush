@@ -14,6 +14,9 @@ class Api::RoundsController < ApplicationController
     render json: rounds
   end
 
+  def show
+    render json: Round.find(params[:id])
+  end
 
   def edit
     authorize! :manage, Round

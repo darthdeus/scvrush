@@ -16,6 +16,10 @@ Scvrush.Match = DS.Model.extend(Ember.Validations.Mixin, {
     }
   },
 
+  players: function() {
+    return this.get("round.tournament.users");
+  }.property("round.tournament.users.[]"),
+
   isLost: function() {
     return this.get("winner") !== Scvrush.currentUser.get("content");
   }.property("winner"),

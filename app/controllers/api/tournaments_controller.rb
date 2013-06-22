@@ -2,7 +2,6 @@ class Api::TournamentsController < ApplicationController
   respond_to :json
 
   def index
-
     if params[:league]
       t =  Tournament.where("starts_at > ? AND leagues LIKE ?", Time.now, "%#{params[:league].titleize}%").first
       render json: [t]
@@ -115,7 +114,7 @@ class Api::TournamentsController < ApplicationController
     tournament.users << current_user
     tournament.users.each { |u| u.check_in(tournament) }
 
-    respond_with tournament.reload
+    render json: tournament.reload
   end
 
 end

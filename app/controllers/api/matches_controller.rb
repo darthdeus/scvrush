@@ -40,6 +40,8 @@ class Api::MatchesController < ApplicationController
   def update
     match = Match.find(params[:id])
     match.score = params[:match][:score]
+    match.player1_id = params[:match][:player1_id]
+    match.player2_id = params[:match][:player2_id]
 
     bracket = Bracket.new(match.round.tournament)
 
