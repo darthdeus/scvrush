@@ -4,22 +4,27 @@
     span {
       display: inline-block;
       margin-right: 3px;
-      width: 130px;
-      height: 130px;
       background-repeat: no-repeat;
 
       opacity: 0.43;
       &.active { opacity: 1; }
     }
 
-    span { @include transition(all 0.3s ease-in-out); }
-    .league-bronze      { background: url("icon_bronze.png"); }
-    .league-silver      { background: url("icon_silver.png"); }
-    .league-gold        { background: url("icon_gold.png"); }
-    .league-platinum    { background: url("icon_platinum.png"); }
-    .league-diamond     { background: url("icon_diamond.png"); }
-    .league-master      { background: url("icon_master.png"); }
-    .league-grandmaster { background: url("icon_grandmaster.png"); }
+    span {
+      background-size: 100% auto;
+      background-repeat: no-repeat;
+      width: 50px;
+      height: 50px;
+      @include transition(all 0.3s ease-in-out);
+    }
+
+    .league-bronze      { background-image: url("icon_bronze.png"); }
+    .league-silver      { background-image: url("icon_silver.png"); }
+    .league-gold        { background-image: url("icon_gold.png"); }
+    .league-platinum    { background-image: url("icon_platinum.png"); }
+    .league-diamond     { background-image: url("icon_diamond.png"); }
+    .league-master      { background-image: url("icon_master.png"); }
+    .league-grandmaster { background-image: url("icon_grandmaster.png"); }
   }
 
   .user-edit-content {
