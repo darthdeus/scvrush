@@ -24,7 +24,9 @@ Scvrush.TournamentAdminBoxController = Ember.ObjectController.extend({
   },
 
   randomize: function(tournament) {
-    Scvrush.Bracket.randomize(tournament);
+    if (confirm("Are you sure? This will remove all of the current signups")) {
+      Scvrush.Bracket.randomize(tournament);
+    }
   },
 
 
