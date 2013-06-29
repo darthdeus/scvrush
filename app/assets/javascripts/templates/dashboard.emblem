@@ -10,7 +10,7 @@
     hr
 
     .mood-box
-      header: p Select your mood and we'll personalize your experience
+      header: p Shortcuts
 
       .moods
         a href="http://chat.scvrush.com/" target="_blank"
@@ -25,23 +25,23 @@
     .carousel.slide
       .carousel-inner
         .item.active
-          a href="/we-are-scvrush" title="SCV Rush Comic Iintro"
+          a href="/meet-scvrush" title="SCV Rush Comic Iintro"
             img src="/assets/slider_comic.png"
-        .item
-          a href="/posts/tag/ipl" title="IPL recap"
-            img src="http://i.imgur.com/I7Vcb.png" alt="IPL recap"
-        .item
-          a href="http://scvrush.com/posts/9936-upcoming-events"
-            img src="/assets/slider_1_upcoming.png"
-        .item
-          a href="http://scvrush.com/posts/10035-scv-rush-free-positions"
-            img src="/assets/joinus.png"
-        .item
-          a href="http://scvrush.com/practice"
-            img src="/assets/slider_3_buddy.png"
+        /*.item*/
+        /*  a href="/posts/tag/ipl" title="IPL recap"*/
+        /*    img src="http://i.imgur.com/I7Vcb.png" alt="IPL recap"*/
+        /*.item*/
+        /*  a href="http://scvrush.com/posts/9936-upcoming-events"*/
+        /*    img src="/assets/slider_1_upcoming.png"*/
+        /*.item*/
+        /*  a href="http://scvrush.com/posts/10035-scv-rush-free-positions"*/
+        /*    img src="/assets/joinus.png"*/
+        /*.item*/
+        /*  a href="http://scvrush.com/practice"*/
+        /*    img src="/assets/slider_3_buddy.png"*/
 
-      a class="carousel-control left" href="#home-carousel" data-slide="prev" &lsaquo;
-      a class="carousel-control right" href="#home-carousel" data-slide="next" &rsaquo;
+      /*a class="carousel-control left" href="#home-carousel" data-slide="prev" &lsaquo;*/
+      /*a class="carousel-control right" href="#home-carousel" data-slide="next" &rsaquo;*/
 
     each upcomingTournaments
       .upcoming-tournament
