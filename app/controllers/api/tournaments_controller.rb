@@ -117,4 +117,18 @@ class Api::TournamentsController < ApplicationController
     render json: tournament.reload
   end
 
+  def emails
+    results = []
+
+    if current_user.has_role?(:admin)
+      tournament = Tournament.find(params[:id])
+
+      users = tournament.signups.includes(:user).all.
+      checked_users = select { |signup| signup.status == 1 }
+      results = checked_users.map(&:email)
+    end
+
+    render json: results
+  end
+
 end
