@@ -123,12 +123,12 @@ class Api::TournamentsController < ApplicationController
     if current_user.has_role?(:admin)
       tournament = Tournament.find(params[:id])
 
-      users = tournament.signups.includes(:user).all.
-      checked_users = select { |signup| signup.status == 1 }
-      results = checked_users.map(&:email)
+      users = tournament.signups.includes(:user).all
+      checked_users = users.select { |signup| signup.status == 1 }
+      results = checked_users.map { |signup| signup.user.email }
     end
 
-    render json: results
+    render json: results.to_json
   end
 
 end

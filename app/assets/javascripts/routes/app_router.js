@@ -20,6 +20,7 @@ Scvrush.Router.map(function() {
     this.route("new", { path: "/new" });
 
     this.resource("tournament", { path: "/:tournament_id" }, function() {
+      this.route("emails");
       this.route("edit", { path: "/edit" });
       this.resource("signups", { path: "/signups" });
 

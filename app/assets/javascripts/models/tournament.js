@@ -41,6 +41,17 @@ Scvrush.Tournament = DS.Model.extend(Ember.Validations.Mixin, {
     });
   },
 
+  emails: function() {
+    var self = this;
+
+    $.getJSON("/api/tournaments/" + this.get("id") + "/emails.json", function(data) {
+      self.set("emails", data);
+      self.propertyDidChange("emails");
+    });
+
+    return [];
+  }.property("id"),
+
   reverseRounds: function() {
     return this.get("rounds");
   }.property("rounds.@each"),
