@@ -31,6 +31,10 @@ Scvrush.Tournament = DS.Model.extend(Ember.Validations.Mixin, {
     },
   },
 
+  startDay: function() {
+    return moment(this.get("startsAt")).utc().format("dddd, MMMM D, YYYY");
+  }.property("startsAt"),
+
   startNow: function() {
     var model = this;
 

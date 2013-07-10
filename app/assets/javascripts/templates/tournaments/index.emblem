@@ -2,26 +2,32 @@
   .span9
     h2 Upcoming Tournaments
 
-    each tournament in controller
-      .tournament
+    each day in groupedContent
 
-        .time = tournament.startTime
+      h4 = day.date
 
-        = linkTo "tournament" tournament
-          img{bindAttr src="tournament.imageUrl"}
+      hr
 
-        .description
-          h3 = linkTo "tournament" tournament | {{tournament.name}}
+      each tournament in day.tournaments
+        .tournament
 
-          p
-            i.icon-user
-            '
-            = tournament.signupsCount
-            '
-            if tournament.onePerson
-              | person
-            else
-              | people
+          .time = tournament.startTime
+
+          = linkTo "tournament" tournament
+            img{bindAttr src="tournament.imageUrl"}
+
+          .description
+            h3 = linkTo "tournament" tournament | {{tournament.name}}
+
+            p
+              i.icon-user
+              '
+              = tournament.signupsCount
+              '
+              if tournament.onePerson
+                | person
+              else
+                | people
 
 
   .span3

@@ -64,14 +64,6 @@ namespace :db do
         FactoryGirl.create(:signup, tournament: tournament, user: users.sample, status: 1)
       end
     end
-
-    Coach.populate 10 do |coach|
-      post = FactoryGirl.create(:post)
-
-      coach.title    = Faker::Name.name
-      coach.post_id  = post.id
-    end
-
   end
 
 end

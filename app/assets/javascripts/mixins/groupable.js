@@ -1,8 +1,3 @@
-/**
-@module ember
-@submodule ember-runtime
-*/
-
 var get = Ember.get, set = Ember.set;
 
 Ember.GroupableMixin = Ember.Mixin.create({

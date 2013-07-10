@@ -1,5 +1,4 @@
 Scvrush.TournamentIndexController = Ember.ObjectController.extend({
-
   adminView: false,
 
   submitResult: function(score, opponent) {
