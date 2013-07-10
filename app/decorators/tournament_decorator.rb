@@ -51,7 +51,7 @@ class TournamentDecorator < Draper::Decorator
   end
 
   def checkin_time
-    self.start_time - 30.minutes
+    self.start_time - 60.minutes
   end
 
   def start_at
@@ -59,7 +59,7 @@ class TournamentDecorator < Draper::Decorator
   end
 
   def checkin_at
-    h.distance_of_time_in_words_to_now(self.tournament.starts_at - 30.minutes)
+    h.distance_of_time_in_words_to_now(self.tournament.starts_at - 60.minutes)
   end
 
   # Checks if the user can admin the tournament
