@@ -7,7 +7,6 @@ class Post < ActiveRecord::Base
                   :user, :user_id, :comments_enabled, :tag_list
 
   belongs_to :user
-  has_many :comments, dependent: :destroy
   has_one :tournament
   has_one :coach
 
