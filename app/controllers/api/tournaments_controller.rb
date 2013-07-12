@@ -19,7 +19,7 @@ class Api::TournamentsController < ApplicationController
     elsif params[:page]
       tournaments = tournaments.page(params[:page]).per(50)
     else
-      tournaments = tournaments.order("created_at DESC").limit(20)
+      tournaments = tournaments.order("starts_at DESC").limit(20)
     end
 
     render json: tournaments.to_a
