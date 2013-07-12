@@ -1,0 +1,9 @@
+.calendar
+  .calendar-header = currentMonthName
+
+  each controller
+    .week
+      each days
+        .day title={tournament.name} class={isEmpty:empty} = dayInMonth
+
+

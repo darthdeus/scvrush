@@ -4,33 +4,37 @@
 
     each day in groupedContent
 
-      h4 = day.date
+      .tournament-day
+        h2 = day.date
 
-      hr
+        each tournament in day.tournaments
+          .tournament
 
-      each tournament in day.tournaments
-        .tournament
+            .time = tournament.startTime
 
-          .time = tournament.startTime
+            = linkTo "tournament" tournament
+              img{bindAttr src="tournament.imageUrl"}
 
-          = linkTo "tournament" tournament
-            img{bindAttr src="tournament.imageUrl"}
+            .description
+              h3 = linkTo "tournament" tournament | {{tournament.name}}
 
-          .description
-            h3 = linkTo "tournament" tournament | {{tournament.name}}
-
-            p
-              i.icon-user
-              '
-              = tournament.signupsCount
-              '
-              if tournament.onePerson
-                | person
-              else
-                | people
+              p
+                i.icon-user
+                '
+                = tournament.signupsCount
+                '
+                if tournament.onePerson
+                  | person
+                else
+                  | people
 
 
   .span3
     Ember.TextField valueBinding="query" placeholder="Search"
 
     = linkTo .btn.btn-primary "tournaments.new" | Create your own tournament
+
+    h3 calendar
+    = render "calendar"
+
+
