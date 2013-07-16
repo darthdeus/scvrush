@@ -55,5 +55,9 @@ Scvrush.Match = DS.Model.extend(Ember.Validations.Mixin, {
     return !this.get("score") && !!this.get("player1") && !!this.get("player2");
   }.property("player1", "player2", "score"),
 
+  isDone: function() {
+    return !!this.get("score");
+  }.property("isPending", "player1", "player2", "score")
+
 });
 

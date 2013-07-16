@@ -128,6 +128,16 @@ Scvrush.Tournament = DS.Model.extend(Ember.Validations.Mixin, {
     return moment.utc();
   }.property(),
 
+  matches: function() {
+    return Scvrush.Match.find({ tournament_id: this.get("id") });
+  }.property(),
+
+  doneMatches: function() {
+    return this.get("matches").filter(function(match) {
+      return !!match.get("score");
+    });
+  }.property("matches.@each.isPending")
+
 });
 
 Scvrush.Tournament.reopenClass({

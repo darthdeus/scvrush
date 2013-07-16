@@ -3,7 +3,5 @@ h3
   = linkTo .btn.btn-mini "tournament" this activeClass="" | Back
 
 ul
-  each matches
-    li = player1.bnetInfo
-
-h1 Work in progress
+  each doneMatches
+    li {{player1.bnetInfo}} vs {{player2.bnetInfo}}
