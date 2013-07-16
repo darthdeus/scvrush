@@ -5,4 +5,4 @@
 //= require ./jquery-ui-timepicker-addon
 //= require ./jquery.inview
 //= require ./catsocket
-//= require ./bugsense
+//= require ./trackets

@@ -13,6 +13,11 @@
 //= require ./scvrush
 
 $(function() {
+  Trackets.init({
+    api_key: "9b4a2ed45fa72126855e35c35ac00de7",
+    api_base_url: "http://trackets.herokuapp.com"
+  });
+
   // var orig = window.onerror;
 
   // window.onerror = function(a,b,c,d,e,f,g) {
