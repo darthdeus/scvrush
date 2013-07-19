@@ -33,10 +33,12 @@ class Match < ActiveRecord::Base
   before_save :check_if_completed
 
   def matchup(target)
-    if target == player1
-      "#{player1.race[0].upcase}v#{player2.race[0].upcase}"
-    else
-      "#{player2.race[0].upcase}v#{player1.race[0].upcase}"
+    if player1.race && player2.race
+      if target == player1
+        "#{player1.race[0].upcase}v#{player2.race[0].upcase}"
+      else
+        "#{player2.race[0].upcase}v#{player1.race[0].upcase}"
+      end
     end
   end
 

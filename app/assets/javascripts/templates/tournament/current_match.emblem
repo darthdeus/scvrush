@@ -28,12 +28,25 @@
           |  Submit the score
 
   else
-    .row
-      .span5.box
-        if isLost
-          ' You've lost against
-          strong = lostAgainst.bnetInfo
-          .pull-right = render "user.follow_button" currentOpponent
+      if isLost
+        .row
+          .span5.box
+              ' You've lost against
+              strong = lostAgainst.bnetInfo
+              .pull-right = render "user.follow_button" currentOpponent
 
-        else
-          | Please wait for your next opponent.
+        .row
+          .span5
+            each view.recommendedCoach
+              h4 Seek Coaching Help
+
+              div = linkTo .coach "coach" this
+                .races.pull-left
+                  each raceIcons
+                    img src=this
+
+                h4 style="display: inline-block; padding: 8px;" = name
+
+
+      else
+        .row Please wait for your next opponent.

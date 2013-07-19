@@ -1,7 +1,14 @@
 class Api::CoachesController < AuthenticatedController
 
   def index
-    render json: Coach.all
+    if params[:race]
+      coaches = Coach.where("? = ANY(races)", params[:race])
+      coaches.limit(params[:limit]) if params[:limit]
+
+      render json: coaches
+    else
+      render json: Coach.all
+    end
   end
 
   def show
