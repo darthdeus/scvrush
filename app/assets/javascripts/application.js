@@ -14,7 +14,7 @@
 
 $(function() {
   Trackets.init({
-    api_key: "9b4a2ed45fa72126855e35c35ac00de7",
+    api_key: "94bcee29ae05688ab42da8bf2e6cc07e",
     api_base_url: "http://trackets.herokuapp.com"
   });
 

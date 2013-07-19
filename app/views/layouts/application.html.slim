@@ -12,6 +12,8 @@ html
     title
       = content_for?(:title) ? yield(:title) : "SCV Rush"
 
+    script type="text/javascript" src="http://trackets.com/client.js"
+
     = favicon_link_tag "favicon.png"
 
     = stylesheet_link_tag "application"
