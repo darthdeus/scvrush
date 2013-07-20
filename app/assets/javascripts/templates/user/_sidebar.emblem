@@ -17,7 +17,7 @@
       dt Server
       dd = server
 
-  .about = about
+  .about = markdown about
 
   if hasFollowers
     h3 Followers
