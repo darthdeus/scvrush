@@ -12,14 +12,14 @@ html
     title
       = content_for?(:title) ? yield(:title) : "SCV Rush"
 
-    script type="text/javascript" src="http://trackets.com/client.js"
-
     = favicon_link_tag "favicon.png"
 
     = stylesheet_link_tag "application"
     = csrf_meta_tag
 
     = javascript_include_tag "application"
+    script type="text/javascript" src="http://trackets.com/client.js"
+
     = yield(:head)
 
   body
