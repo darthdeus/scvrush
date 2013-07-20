@@ -1,9 +1,10 @@
 Scvrush.Match = DS.Model.extend(Ember.Validations.Mixin, {
   number:        DS.attr("number"),
-  player1_score:  DS.attr("number"),
-  player2_score:  DS.attr("number"),
+  player1_score: DS.attr("number"),
+  player2_score: DS.attr("number"),
   score:         DS.attr("string"),
   completed:     DS.attr("boolean"),
+  updatedAt:     DS.attr("date"),
 
   player1: DS.belongsTo("Scvrush.User"),
   player2: DS.belongsTo("Scvrush.User"),
@@ -15,6 +16,12 @@ Scvrush.Match = DS.Model.extend(Ember.Validations.Mixin, {
       format: { with: /^\d:\d$/, allowBlank: true }
     }
   },
+
+  updatedAtHuman: function() {
+    if (this.get("updatedAt")) {
+      return moment(this.get("updatedAt")).utc().calendar();
+    }
+  }.property("updatedAt"),
 
   players: function() {
     return this.get("round.tournament.users");

@@ -4,4 +4,4 @@ h3
 
 ul
   each doneMatches
-    li {{player1.bnetInfo}} vs {{player2.bnetInfo}}
+    li {{player1.bnetInfo}} vs {{player2.bnetInfo}} {{updatedAtHuman}}
