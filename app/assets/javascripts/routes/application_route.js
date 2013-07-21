@@ -71,7 +71,7 @@ Scvrush.ApplicationRoute = Ember.Route.extend({
 Scvrush.Route = Ember.Route.extend({
 
   renderTemplate: function() {
-    $("body").scrollTop(0);
+    $(document).scrollTop(0);
     console.log("scrolling to top");
     this.render();
     this.render("user/timeline", {
