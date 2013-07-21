@@ -14,7 +14,7 @@ class Api::StatusesController < ApplicationController
   end
 
   def create
-    status = current_user.statuses.build(params[:status])
+    status = current_user.statuses.build(params[:status].except(:created_at))
 
     status.save!
     render json: status
