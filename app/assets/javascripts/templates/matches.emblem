@@ -3,5 +3,5 @@ h3
   = linkTo .btn.btn-mini "tournament" this activeClass="" | Back
 
 ul
-  each doneMatches
-    li {{player1.bnetInfo}} vs {{player2.bnetInfo}} {{updatedAtHuman}}
+  each sortedMatches
+    li {{player1.bnetInfo}} vs {{player2.bnetInfo}} <strong>{{updatedAtHuman}}</strong>

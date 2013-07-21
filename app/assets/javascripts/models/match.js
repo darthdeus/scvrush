@@ -19,7 +19,7 @@ Scvrush.Match = DS.Model.extend(Ember.Validations.Mixin, {
 
   updatedAtHuman: function() {
     if (this.get("updatedAt")) {
-      return moment(this.get("updatedAt")).utc().calendar();
+      return moment(this.get("updatedAt")).utc().fromNow();
     }
   }.property("updatedAt"),
 
