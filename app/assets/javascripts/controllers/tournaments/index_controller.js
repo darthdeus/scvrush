@@ -6,7 +6,7 @@ Scvrush.TournamentsIndexController = Ember.ArrayController.extend({
     this.updateTournaments();
   },
 
-  sortProperties: ["id"],
+  sortProperties: ["startsAt"],
   sortAscending: false,
 
   updateTournaments: _.debounce(function(value) {
