@@ -38,7 +38,7 @@
         .row
           .span5
             each view.recommendedCoach
-              h4 Seek Coaching Help
+              h4 Fancy a Coach?
 
               div = linkTo .coach "coach" this
                 .races.pull-left
