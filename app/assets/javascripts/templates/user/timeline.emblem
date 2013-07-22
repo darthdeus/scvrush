@@ -34,8 +34,4 @@
   .items
     each suggestedCoaches
       .item
-        .image
-          linkTo "post" this
-            Scvrush.ImageView srcBinding="image"
-
-        .text = linkTo "post" this | {{title}}
+        .text = linkTo "coach" this | {{name}}
