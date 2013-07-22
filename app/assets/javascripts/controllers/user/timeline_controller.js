@@ -17,7 +17,7 @@ Scvrush.UserTimelineController = Ember.ObjectController.extend({
 
   suggestedCoaches: function() {
     if (this.get("race")) {
-      return Scvrush.Post.query({ query: this.get("race") + " coach", limit: 3 });
+      return Scvrush.Coach.query({ query: this.get("race"), limit: 3 });
     }
   }.property("race"),
 
