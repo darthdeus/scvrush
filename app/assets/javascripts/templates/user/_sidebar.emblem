@@ -12,7 +12,7 @@
       dd = bnetInfo
 
       dt League
-      dd = league
+      dd = titleize league
 
       dt Server
       dd = server
