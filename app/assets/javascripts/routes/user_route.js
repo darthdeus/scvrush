@@ -6,6 +6,8 @@ Scvrush.UserRoute = Scvrush.Route.extend({
     } else {
       controller.set("model", model);
     }
+
+    $("title").text(controller.get("model.name"));
   }
 
 })

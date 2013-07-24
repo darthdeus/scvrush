@@ -4,6 +4,11 @@ Scvrush.PostsIndexRoute = Scvrush.Route.extend({
     return Scvrush.Post.find();
   },
 
+  setupController: function(controller, model) {
+    controller.set("model", model);
+    $("title").text("Posts");
+  },
+
   activate: function() {
     Ember.run.next(this, function() {
       this.controllerFor("postsIndex").set("query", "");
