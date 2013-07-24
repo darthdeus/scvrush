@@ -139,7 +139,5 @@ Scvrush.User.reopenClass({
     } else {
       return Scvrush.User.find({ username: username });
     }
-  },
-
-  ALL_RACES: [ "Zerg", "Terran", "Protoss", "Random" ]
+  }
 });
