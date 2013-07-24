@@ -15,10 +15,6 @@
     padding: 10px;
     overflow: hidden;
 
-    &:hover {
-      background: #dfdfdf;
-    }
-
     .image {
       float: left;
       box-shadow: 0 0 3px #666;
@@ -55,12 +51,8 @@
         cursor: pointer;
       }
 
-      &:hover .tag {
+      .tag:hover {
         background: #ccc;
-
-        &:hover {
-          background: #aaa;
-        }
       }
     }
   }
