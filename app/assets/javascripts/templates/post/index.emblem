@@ -7,10 +7,6 @@
 
 
     footer
-      if Scvrush.currentUser.isTrial
-        = linkTo "home"
-          img src="/assets/take_a_stand.png"
-
       a target="blank" href="http://chat.scvrush.com/"
         img src="/assets/watch_the_pros.png"
 
