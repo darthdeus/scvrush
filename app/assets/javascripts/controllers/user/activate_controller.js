@@ -19,7 +19,8 @@ Scvrush.UserActivateController = Ember.ObjectController.extend({
     user.set("emailTaken", false);
 
     $.ajax({
-      url: "/users/validate",
+      method: "GET",
+      url: "/api/users/validate.json",
       data: {
         username: user.get("username"),
         email: user.get("email")
