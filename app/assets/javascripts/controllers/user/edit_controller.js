@@ -7,6 +7,9 @@ Scvrush.UserEditController = Ember.ObjectController.extend({
       // TODO - find a better way to avoid this race condition
       Ember.run.later(this, function() {
         this.set("saved", true);
+        Ember.run.later(this, function() {
+          this.set("saved", false);
+        }, 2000);
       }, 500);
 
     }.bind(this));
