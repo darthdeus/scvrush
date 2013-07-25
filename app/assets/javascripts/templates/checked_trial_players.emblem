@@ -1,0 +1,7 @@
+h3
+  | Checked in trial players
+  = linkTo .btn.btn-mini "tournament" this activeClass="" | Back
+
+ul
+  each checkedPlayers
+    li {{this}}

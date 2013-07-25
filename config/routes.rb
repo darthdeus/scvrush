@@ -38,6 +38,7 @@ Scvrush::Application.routes.draw do
         post :unseed
         get :emails
         post :randomize
+        get :checked_trial_players
       end
     end
     resources :signups

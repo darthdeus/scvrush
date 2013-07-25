@@ -23,6 +23,7 @@ Scvrush.Router.map(function() {
       this.route("emails");
       this.route("edit", { path: "/edit" });
       this.resource("signups", { path: "/signups" });
+      this.resource("checked_trial_players", { path: "/checked_trial_players" });
 
       this.resource("matches", { path: "/matches" });
       this.resource("match", { path: "/matches/:match_id" }, function() {

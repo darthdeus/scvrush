@@ -11,6 +11,7 @@
     button.btn.btn-small disabled=isSaving click="start this" Start Now
 
   button.btn.btn-small disabled=isSaving click="deleteTournament this" Delete Tournament
+  = linkTo .btn.btn-small "checked_trial_players" this | CA
 
   unless seeded
     button.btn.btn-small disabled=isSaving click="randomize this" Randomize Players

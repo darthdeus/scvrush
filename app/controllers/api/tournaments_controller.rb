@@ -131,4 +131,10 @@ class Api::TournamentsController < ApplicationController
     render json: results.to_json
   end
 
+  def checked_trial_players
+    tournament = Tournament.find(params[:id])
+    players = tournament.checked_players.map { |user| user.bnet_info }
+    render json: { players: players }, serializer: nil
+  end
+
 end
