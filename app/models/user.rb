@@ -105,6 +105,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates :password, confirmation: true
   validates_presence_of :password, on: :create
+  validates :bnet_username, uniqueness: { scope: :bnet_code }
 
   def bnet_username_is_string
     if bnet_username?
