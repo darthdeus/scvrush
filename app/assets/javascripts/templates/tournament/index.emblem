@@ -20,6 +20,13 @@
     .rules
       = partial "tournament/rules"
 
+      br
+
+      if Scvrush.currentUser.isTrial
+        p.alert.alert-danger
+          | You're playing on a temporary account
+          img style="height: 40px; display: inline-block; margin-left: 10px;" src="/assets/red_exclamation_mark.png"
+
   if isStarted
     if isEmpty
       p.alert.alert-info No players were signed up for this tournament when it started
