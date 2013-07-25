@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
                   :favorite_player, :skype, :display_skype, :msn,
                   :display_msn, :display_email, :about, :avatar,
                   :bnet_code, :bnet_username, :twitter, :time_zone, :practice,
-                  :image, :bnet_info, :expires_at
+                  :image, :bnet_info, :expires_at, :tournament_admin
 
   attr_accessor :password
 
@@ -101,11 +101,23 @@ class User < ActiveRecord::Base
     find_all_by_username(username).first
   end
 
+  def tournament_admin
+    has_role?(:tournament_admin)
+  end
+
+  def tournament_admin=(value)
+    if value
+      grant(:tournament_admin)
+    else
+      revoke(:tournament_admin)
+    end
+  end
+
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true
   validates :password, confirmation: true
   validates_presence_of :password, on: :create
-  validates :bnet_username, uniqueness: { scope: :bnet_code }
+  validates :bnet_username, uniqueness: { scope: :bnet_code }, if: lambda { |user| user.bnet_username? }
 
   def bnet_username_is_string
     if bnet_username?

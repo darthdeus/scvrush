@@ -38,19 +38,13 @@ class Tournament < ActiveRecord::Base
     to_json(only: [:name])
   end
 
-  def admin_names
+  def admins
     User.with_role(:tournament_admin, self) - User.with_role(:tournament_admin)
   end
 
-  def admin_names=(ids)
-    admin_names.each do |user|
-      user.revoke :tournament_admin, self
-    end
-
-    ids.each do |id|
-      user = User.find_by_id(id)
-      user.grant :tournament_admin, self if user
-    end
+  def admins=(users)
+    admins.each { |user| user.revoke(:tournament_admin, self) }
+    users.each  { |user| user.grant(:tournament_admin, self) }
   end
 
   def self.types

@@ -99,7 +99,7 @@ Scvrush.TournamentIndexController = Ember.ObjectController.extend({
   }.property("score"),
 
   isAdmin: function() {
-    return this.get("user") == Scvrush.currentUser.get("content");
+    return this.get("user") == Scvrush.currentUser.get("content") || Scvrush.currentUser.get("tournamentAdmin");
   }.property("user"),
 
   isPlaying: function() {

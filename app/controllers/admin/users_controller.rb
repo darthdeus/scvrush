@@ -50,7 +50,7 @@ module Admin
       @user = User.find(params[:id])
       if @user.update_attributes(params[:user])
         flash[:success] = "User was updated."
-        redirect_to users_path
+        redirect_to admin_users_path
       else
         render :edit
       end
@@ -58,8 +58,9 @@ module Admin
 
     def destroy
       @user = User.find(params[:id])
-      # @user.destroy
-      redirect_to users_path, success: "User was successfully removed."
+      @user.destroy
+
+      redirect_to admin_users_path, success: "User was successfully removed."
     end
   end
 end

@@ -6,8 +6,9 @@ Scvrush.User = DS.Model.extend(Ember.Validations.Mixin, {
   race:      DS.attr("string"),
   league:    DS.attr("string"),
   expiresAt: DS.attr("date"),
-  isTrial: DS.attr("boolean"),
+  isTrial:   DS.attr("boolean"),
   about:     DS.attr("string"),
+  tournamentAdmin: DS.attr("boolean"),
 
   password:  DS.attr("string"),
   passwordConfirmation: DS.attr("string"),

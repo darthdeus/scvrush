@@ -1,6 +1,7 @@
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :username, :race, :image, :bnet_info, :expires_at,
-             :server, :about, :league, :follower_ids, :followee_ids, :achievement_ids, :is_trial
+             :server, :about, :league, :follower_ids, :followee_ids,
+             :achievement_ids, :is_trial, :tournament_admin
 
   has_many :tournaments, embed: :ids, include: true
   has_many :statuses, embed: :ids
@@ -32,6 +33,10 @@ class UserSerializer < ActiveModel::Serializer
   def image
     object.avatar.url(:thumb)
     "/assets/default_avatar.png"
+  end
+
+  def tournament_admin
+    object.has_role?(:tournament_admin)
   end
 
 end
