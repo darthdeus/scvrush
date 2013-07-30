@@ -1,5 +1,9 @@
 module TournamentsHelper
 
+  def tournament_image(tournament)
+    image_tag tournament.image_name
+  end
+
   def tournament_button(tour, text, options)
     action_params = { controller: :signups, action: options[:action], id: tour.id }
     link_to action_params, method: options[:method], class: "btn btn-large #{options[:class]}" do
@@ -68,9 +72,5 @@ module TournamentsHelper
 #       { :controller => :signups, :action => :update, :id => tour.id },
 #         :method => :put, :class => 'btn'
 #   end
-
-  def is_writer?
-    current_user.try(:is_writer?)
-  end
 
 end

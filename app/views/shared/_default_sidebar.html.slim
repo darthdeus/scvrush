@@ -3,7 +3,7 @@
 
   .sidebar-form
     = form_tag statuses_path do
-      = text_field_tag :text, placeholder: "Post a status"
+      = text_field_tag :text, "", placeholder: "Post a status"
 
   .items
     - current_user.recent_statuses.each do |status|

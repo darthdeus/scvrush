@@ -20,6 +20,7 @@ gem "carrierwave",        "~> 0.8.0"
 gem "mini_magick",        "~> 3.4"
 gem "airbrake",           "~> 3.1.6"
 
+gem "web-console"
 gem "slim-rails"
 gem "pnotify-rails"
 

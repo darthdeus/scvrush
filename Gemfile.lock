@@ -243,6 +243,9 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    web-console (0.1.0)
+      jquery-rails (~> 3.0.4)
+      rails (~> 4.0.0)
     will_paginate (3.0.4)
 
 PLATFORMS
@@ -292,3 +295,4 @@ DEPENDENCIES
   tire
   uglifier
   unicorn (~> 4.6.0)
+  web-console

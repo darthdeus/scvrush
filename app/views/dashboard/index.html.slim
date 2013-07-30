@@ -1,1 +1,53 @@
-h1 Dashboard
+.dashboard
+
+  .dashboard-content
+    .user-box
+      = image_tag current_user.avatar
+
+      h4.welcome Welcome back
+      h1.username = current_user.username
+
+    hr
+
+    .mood-box
+      header: p Shortcuts
+
+      .moods
+        a href="http://chat.scvrush.com/" target="_blank"
+          img src="/assets/post_nav_chat.png"
+        = link_to users_path do
+          img src="/assets/post_nav_practice.png"
+        = link_to posts_path do
+          img src="/assets/post_nav_content.png"
+        = link_to coaches_path do
+          img src="/assets/post_nav_coaches.png"
+
+    .carousel.slide
+      .carousel-inner
+        .item.active
+          a href="/meet-scvrush" title="SCV Rush Comic Iintro"
+            img src="/assets/slider_comic.png"
+
+    - @upcoming_tournaments.each do |tournament|
+      .upcoming-tournament
+        = link_to tournament do
+          = tournament_image tournament
+
+  - if false
+    .dashboard-posts
+      h3 News
+
+      - @news.each do |post|
+        .post
+          = link_to post, class: "image" do
+            = image_tag post.image
+
+          .content
+            h2
+              = link_to post.title, post
+
+            .text = markdown post.content
+
+            .tags
+              /*= each tagList itemController="tag"*/
+              /*  span.tag click="filterTag this" = content*/
