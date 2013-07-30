@@ -8,7 +8,7 @@ Scvrush::Application.routes.draw do
     resources :coaches
     resources :users
 
-    match "/staff" => "staff#index"
+    match "/staff" => "staff#index", via: :get
 
     root to: "home#index"
   end
@@ -16,6 +16,7 @@ Scvrush::Application.routes.draw do
   get "/" => "home#index", as: "home"
   get "/dashboard" => "dashboard#index", as: "dashboard"
 
+  resources :statuses
   resources :users
   resources :sessions
   resources :posts

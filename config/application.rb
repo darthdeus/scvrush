@@ -1,24 +1,8 @@
 require File.expand_path('../boot', __FILE__)
 
-# Pick the frameworks you want:
-require "active_record/railtie"
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "active_resource/railtie"
-require "sprockets/railtie"
-# require "rails/test_unit/railtie"
+require "rails/all"
 
-# This will require every file in lib and its subdirectories
-Dir.glob(File.join(File.dirname(__FILE__),'..','lib','**','*.rb')).each{ |file| require file }
-
-if defined?(Bundler)
-  # If you precompile assets before deploying to production, use this line
-  Bundler.require(*Rails.groups(:assets => %w(development test)))
-  # If you want your assets lazily compiled in production, use this line
-  # Bundler.require(:default, :assets, Rails.env)
-end
-
-require 'action_dispatch/middleware/session/dalli_store'
+Bundler.require(:default, Rails.env)
 
 module Scvrush
   class Application < Rails::Application
@@ -43,6 +27,8 @@ module Scvrush
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    config.active_record.schema_format = :sql
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"

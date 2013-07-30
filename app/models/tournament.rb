@@ -17,7 +17,7 @@ class Tournament < ActiveRecord::Base
   LEAGUES = %w(BRONZE SILVER GOLD PLATINUM DIAMOND MASTER)
 
   validates :tournament_type, inclusion: TYPES
-  validates :bo_preset, format: { with: /^[\d ]+$/ }
+  validates :bo_preset, format: { with: /\A[\d ]+\z/ }
 
   attr_accessible :name, :starts_at, :tournament_type, :description,
                   :rules, :map_info, :bo_preset, :map_preset, :visible,

@@ -118,7 +118,7 @@ class User < ActiveRecord::Base
 
   validate :bnet_username_is_string
   validates :bnet_code,
-            format: { with: /^\d+$/, message: 'can contain only numbers' },
+            format: { with: /\A\d+\z/, message: 'can contain only numbers' },
             if: lambda { |u| u.bnet_username? }
 
   def bnet_info
