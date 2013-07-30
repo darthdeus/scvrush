@@ -40,31 +40,6 @@ class User < ActiveRecord::Base
   include Tire::Model::Search
   include Tire::Model::Callbacks
 
-  before_save do
-    Rails.logger.error "\n\nUser #{username} #{id} is invalid\n\n" unless self.valid?
-  end
-
-  # settings analysis: {
-  #   filter: {
-  #     ngram_filter: {
-  #       type: "nGram",
-  #       min_gram: 3,
-  #       max_gram: 8
-  #     }
-  #   },
-  #   analyzer: {
-  #     ngram_analyzer: {
-  #       tokenizer: "lowercase",
-  #       filter: ["ngram_filter"],
-  #       type: "custom"
-  #     }
-  #   }
-  # } do
-  #   mapping do
-  #     indexes :username, type: 'string', analyzer: 'ngram_analyzer', boost: 100
-  #   end
-  # end
-
   mapping do
     indexes :id,       index: :not_analyzed
     indexes :username, analyzer: "snowball", boost: 100
