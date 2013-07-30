@@ -16,7 +16,7 @@
     = link_to "Start", start_tournament_path(tournament), method: "put", class: "btn btn-small"
 
   = link_to "Delete tournament", tournament, class: "btn btn-small", method: "delete", data: { confirm: "Are you sure? This can't be undone" }
-  = link_to "CA", ca_tournament_path(tournament), class: "btn btn-small"
+  = link_to "CA", checked_trial_players_tournament_path(tournament), class: "btn btn-small"
 
   - unless tournament.seeded?
     = link_to "Randomize players", randomize_tournament_path(tournament), method: "put", class: "btn btn-small", data: { confirm: "Are you sure? This will delete all of the current signups." }

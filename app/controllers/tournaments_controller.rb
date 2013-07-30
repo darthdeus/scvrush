@@ -81,12 +81,12 @@ class TournamentsController < AuthenticatedController
     redirect_to tournament
   end
 
-  def ca
-
+  def checked_trial_players
+    @tournament = Tournament.find(params[:id])
   end
 
   def matches
-
+    @tournament = Tournament.find(params[:id])
   end
 
   def start

@@ -191,5 +191,13 @@ class Tournament < ActiveRecord::Base
     end.last
   end
 
+  def checked_trial_players
+    self.users.includes(:signups).where(signups: { status: 1 }).where("expires_at IS NOT NULL").order(:id).all
+  end
+
+  def sorted_matches
+    self.matches.where("score IS NOT NULL").order("updated_at DESC")
+  end
+
   class DoubleRegistration < Error; end
 end
