@@ -9,11 +9,11 @@ Scvrush::Application.routes.draw do
     resources :users
 
     match "/staff" => "staff#index", via: :get
-
-    root to: "home#index"
   end
 
   get "/" => "home#index", as: "home"
+  get "/contact" => "home#contact"
+  get "/meet_scvrush" => "home#meet_scvrush"
   get "/dashboard" => "dashboard#index", as: "dashboard"
 
   resources :statuses
@@ -44,6 +44,7 @@ Scvrush::Application.routes.draw do
   end
 
   resources :matches
+
 
   get "login" => "sessions#new", as: "login"
   delete "logout" => "sessions#destroy", as: "logout"

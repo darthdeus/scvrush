@@ -12,8 +12,8 @@
       li = link_to "Users", users_path
       li = link_to "Coaches", coaches_path
 
-      /*if Scvrush.currentUser.isTrial*/
-        li = linkTo "user.edit" Scvrush.currentUser.content | Activate your account
+      - if current_user.trial?
+        li = link_to "Activate your account", new_activation_path
 
       li
         a.chat href="http://chat.scvrush.com" target="_blank"
