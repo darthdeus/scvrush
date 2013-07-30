@@ -1,0 +1,39 @@
+.user-sidebar
+  .clearfix
+    .left.avatar
+      = image_tag @user.avatar_image, class: "avatar"
+      div class="race race-#{@user.race}"
+
+    dl.dl-horizontal.info.left
+      dt Username
+      dd = @user.username
+
+      dt Battle.net ID
+      dd = @user.bnet_info
+
+      dt League
+      dd = @user.league
+
+      dt Server
+      dd = @user.server
+
+  - if @user.about
+    .about = markdown @user.about
+
+  - if @user.has_followers?
+    h3 Followers
+
+    .followers
+      - @user.followers.each do |follower|
+        = link_to follower do
+          = image_tag follower.avatar_image
+
+  - else
+    .alert.alert-info This user has no followers.
+
+  h3 Following
+
+  .followers
+    - @user.followees.each do |followee|
+      = link_to followee do
+        = image_tag followee.avatar_image

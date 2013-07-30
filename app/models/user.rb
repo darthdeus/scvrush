@@ -178,6 +178,10 @@ class User < ActiveRecord::Base
     save!
   end
 
+  def tournament_admin?
+    has_role?(:tournament_admin)
+  end
+
 end
 
 class NotRegistered < Exception

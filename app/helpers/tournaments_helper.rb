@@ -72,4 +72,5 @@ module TournamentsHelper
   def is_writer?
     current_user.try(:is_writer?)
   end
+
 end

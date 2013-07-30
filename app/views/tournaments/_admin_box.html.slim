@@ -1,0 +1,19 @@
+.admin.btn-group
+  = link_to "Signups", signups_tournament_path(tournament), class: "btn btn-small"
+  = link_to "Matches", matches_tournament_path(tournament), class: "btn btn-small"
+
+  - if tournament.started?
+    - if tournament.seeded?
+      button.btn.btn-small.btn-info title="Switch to admin view where you can edit matches" Admin View
+      button.btn.btn-small Destroy seed
+    - else
+      button.btn.btn-small Seed
+  - else
+    button.btn.btn-small Start Now
+
+  button.btn.btn-small Delete Tournament
+  = link_to "CA", ca_tournament_path(tournament), class: "btn btn-small"
+
+  - unless tournament.seeded?
+    button.btn.btn-small Randomize Players
+    = link_to "Edit", edit_tournament_path(tournament), class: "btn btn-small"

@@ -1,0 +1,29 @@
+.main-content: .tournaments.row
+  .span9
+    h2 Upcoming Tournaments
+
+    - @grouped_tournaments.each do |date, tournaments|
+
+      .tournament-day
+        h2 = date
+
+        - tournaments.each do |tournament|
+          .tournament
+
+            .time = tournament.starts_at
+
+            = link_to tournament do
+              = image_tag tournament.image_name
+
+            .description
+              h3 = link_to tournament.name, tournament
+
+              p
+                i.icon-user
+                '
+                = tournament.signups.size
+                |  people
+
+
+  .span3
+    = link_to "Create your own tournament", new_tournament_path, class: "btn btn-primary"

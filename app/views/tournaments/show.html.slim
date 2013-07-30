@@ -1,0 +1,42 @@
+.tournament
+  header
+    h1
+      = @tournament.name
+      - if @tournament.region
+        | @
+        = @tournament.region
+
+    - if current_user.tournament_admin?
+      = render "tournaments/admin_box", tournament: @tournament
+
+  .info
+    .description
+      = markdown @tournament.description
+
+      - if current_user.trial?
+        = link_to home_path do
+          img src="/assets/take_a_stand.png"
+
+    .rules
+      = render "tournaments/rules", tournament: @tournament
+
+      br
+
+      - if current_user.trial?
+        p.alert.alert-danger
+          | You're playing on a temporary account
+          img style="height: 40px; display: inline-block; margin-left: 10px;" src="/assets/red_exclamation_mark.png"
+
+  - if @tournament.started?
+    - if @tournament.empty?
+      p.alert.alert-info No players were signed up for this tournament when it started
+    - else
+      - if current_user.playing_in?(@tournament)
+        view Scvrush.TournamentCurrentMatchView
+
+      = render "tournament/rounds"
+
+  - else
+    h4 Tournament Signup
+
+    = render "tournament/signup"

@@ -1,7 +1,5 @@
 Scvrush::Application.routes.draw do
 
-  get "signups/index"
-
   namespace :admin do
     resources :tournaments do
       resources :signups
@@ -15,58 +13,23 @@ Scvrush::Application.routes.draw do
     root to: "home#index"
   end
 
-  get "api/auth"
-  get "api/login"
-  get "api/check"
-  get "api/user_data"
-  get "api/streams"
+  get "/" => "home#index", as: "home"
+  get "/dashboard" => "dashboard#index", as: "dashboard"
 
-  namespace :api, format: :json do
-
-    resources :notifications
-    resources :achievements
-
-    resources :rounds
-    resources :matches
-    resources :votes, only: [:create, :destroy]
-
-    resources :brackets
-    resources :tournaments do
-      member do
-        post :start
-        post :seed
-        post :unseed
-        get :emails
-        post :randomize
-        get :checked_trial_players
-      end
-    end
-    resources :signups
-
-    resources :posts
-    resources :statuses
-    resources :coaches
-
-    get "login" => "sessions#new", as: "login"
-    delete "logout" => "sessions#destroy", as: "logout"
-    get "signup" => "users#new", as: "signup"
-
-    resources :sessions, only: [:new, :create, :destroy]
-
-    resources :users do
-      collection do
-        get :validate
-      end
-
-      member do
-        post    :follow
-        delete  :unfollow
-        get     :info
-        get     :friends
-      end
+  resources :users
+  resources :sessions
+  resources :posts
+  resources :coaches
+  resources :tournaments do
+    member do
+      get :signups
+      get :ca
+      get :matches
     end
   end
 
-  match "*path" => "home#index"
+  get "login" => "sessions#new", as: "login"
+  delete "logout" => "sessions#destroy", as: "logout"
+
   root to: "home#index"
 end

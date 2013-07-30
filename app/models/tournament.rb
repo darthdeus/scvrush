@@ -12,13 +12,16 @@ class Tournament < ActiveRecord::Base
   validates :starts_at, presence: true
 
   TYPES = %w(EU_BSG EU_BS EU_GP EU_D EU_DM EU_PD EU_Masters NA_Friday NA_BSG NA_PD NA_M User Bronze_Week)
+  REGIONS = %w(EU NA KR SEA)
+  MAX_PLAYERS = %w(4 8 16 32 64 128)
+  LEAGUES = %w(BRONZE SILVER GOLD PLATINUM DIAMOND MASTER)
 
   validates :tournament_type, inclusion: TYPES
   validates :bo_preset, format: { with: /^[\d ]+$/ }
 
   attr_accessible :name, :starts_at, :tournament_type, :description,
                   :rules, :map_info, :bo_preset, :map_preset, :visible,
-                  :channel, :admin_names, :logo
+                  :channel, :admin_names, :logo, :region, :max_players, :leagues
 
   scope :recent, order('starts_at DESC').limit(5)
   scope :upcoming, lambda { where("starts_at > ? AND tournament_type <> 'User'", Time.now).order(:starts_at) }
@@ -87,6 +90,10 @@ class Tournament < ActiveRecord::Base
   def start
     self.starts_at = Time.now
     self.save!
+  end
+
+  def empty?
+    signups.size == 0
   end
 
   # TODO - rewrite this to a scope.

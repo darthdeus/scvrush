@@ -1,0 +1,28 @@
+.navbar.navbar-inverse
+  .container
+
+    ul.nav
+      - if current_user.trial?
+        li = link_to "Home", home_path
+      - else
+        li = link_to "Dashboard", dashboard_path
+
+      li = link_to "Content", posts_path
+      li = link_to "Tournaments", tournaments_path
+      li = link_to "Users", users_path
+      li = link_to "Coaches", coaches_path
+
+      /*if Scvrush.currentUser.isTrial*/
+        li = linkTo "user.edit" Scvrush.currentUser.content | Activate your account
+
+      li
+        a.chat href="http://chat.scvrush.com" target="_blank"
+          img src="/assets/chat_button_text.png"
+
+      /*if Scvrush.currentUser.currentOpponent*/
+      /*  li*/
+      /*    ' You're currently playing against*/
+
+    ul.nav.pull-right
+      li = link_to "Contact", "/contact"
+      li = link_to "About us", "/meet_scvrush"

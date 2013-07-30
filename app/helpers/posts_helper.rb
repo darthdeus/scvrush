@@ -1,4 +1,5 @@
 module PostsHelper
+
   def featured_image(post)
     img = image_tag post.featured_image_url(:thumb), :alt => post.title
     link_to img, post
@@ -25,10 +26,6 @@ module PostsHelper
     else
       raise "Invalid race parameter", ArgumentError
     end
-  end
-
-  def tournament_shortname(name)
-    name.sub(/\[\w+\] /, '')
   end
 
   # Return a timezoned date for a given user,

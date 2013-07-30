@@ -4,6 +4,11 @@ require "digest/md5"
 
 module ApplicationHelper
 
+  def markdown(text)
+    return unless text
+    RDiscount.new(text).to_html.html_safe
+  end
+
   def meta_description(&block)
     if content_for?(:description)
       yield(:description)

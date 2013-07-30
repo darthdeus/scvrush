@@ -1,0 +1,23 @@
+.user-profile
+  = render "users/sidebar"
+
+  .content
+    header
+      h2
+        = @user.bnet_info
+
+        - if @user != current_user
+          button class="btn btn-mini" click="unfollow this" Unfollow
+          button class="btn btn-mini btn-success" click="follow this" Follow
+
+    nav.user-sections
+    /*  = linkTo .btn "user.index" this | Feed*/
+    /*  = linkTo .btn "user.achievements" this | Achievements*/
+    /*  = linkTo .btn "user.tournaments" this | Tournaments*/
+    /*  if isCurrentUser*/
+    /*    if isTrial*/
+    /*      = linkTo .btn "user.activate" this | Activate*/
+    /*    else*/
+    /*      = linkTo .btn "user.edit" this | Account*/
+
+    /*= outlet*/
