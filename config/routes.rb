@@ -34,6 +34,8 @@ Scvrush::Application.routes.draw do
     end
   end
 
+  resources :matches
+
   get "login" => "sessions#new", as: "login"
   delete "logout" => "sessions#destroy", as: "logout"
 

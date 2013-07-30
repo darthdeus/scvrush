@@ -21,7 +21,6 @@ class User < ActiveRecord::Base
   has_many :owned_tournaments, class_name: "Tournament", foreign_key: "user_id"
 
   has_many :statuses
-
   has_many :posts
 
   has_many :notifications, dependent: :destroy, order: "created_at DESC"
@@ -50,6 +49,10 @@ class User < ActiveRecord::Base
 
   def to_indexed_json
     to_json(only: [:username, :race, :league, :server])
+  end
+
+  def recommended_coaches
+    Coach.where("? = ANY(races)", self.race)
   end
 
   # Return a user either by his username or by email.

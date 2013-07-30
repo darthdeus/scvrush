@@ -19,22 +19,23 @@
 
     img src="/assets/tournament_score_submission_notice.png"
 
-    form.form-horizontal.score-form submit="submitResult score currentOpponent"
+    = form_tag matches_path, class: "form-horizontal score-form" do
       div{bindAttr class="scoreError:error :control-group"}
-        input type="text" placeholder="Report Your Win, e.g. 1:0"
+        input type="text" placeholder="Report Your Win, e.g. 1:0" name="score"
+        = hidden_field_tag :opponent_id, current_match.opponent_for(current_user).id
+        = hidden_field_tag :tournament_id, tournament.id
         '
         button.btn.btn-success type="submit"
           i.icon-ok
           |  Submit the score
 
   - else
-    - if current_match.winner == current_user
-      .row Please wait for your next opponent.
-    - else
+    - if current_match.loser == current_user
       .row
         .span5.box
             ' You've lost against
-            strong = lostAgainst.bnetInfo
+            / TODO - fix this
+            strong = current_match.winner
             /*.pull-right = render "user.follow_button" currentOpponent*/
 
       .row
@@ -48,3 +49,5 @@
                   img src=icon
 
               h4 style="display: inline-block; padding: 8px;" = coach.name
+    - else
+      .row: .span5.box Please wait for your next opponent.
