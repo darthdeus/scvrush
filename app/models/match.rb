@@ -144,6 +144,10 @@ class Match < ActiveRecord::Base
     end
   end
 
+  def pending?
+    !score && !!player1_id && !!player2_id
+  end
+
   # Unset the match score and propagate to the following match
   # to unset the winner
   def unset_score(player = nil)

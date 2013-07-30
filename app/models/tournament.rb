@@ -184,5 +184,12 @@ class Tournament < ActiveRecord::Base
     users.each { |u| u.check_in(self) }
   end
 
+  def current_match_for(user)
+    sorted_rounds = self.rounds.includes(:matches).order("number DESC")
+    sorted_rounds.map(&:matches).flatten.select do |m|
+      m.player1_id == user.id || m.player2_id == user.id
+    end.last
+  end
+
   class DoubleRegistration < Error; end
 end

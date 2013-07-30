@@ -1,0 +1,3 @@
+class MatchesController < AuthenticatedController
+
+end

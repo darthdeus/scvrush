@@ -1,0 +1,50 @@
+.current-match
+  - if current_match.pending?
+    h4 You are currently plaing against
+
+    .row: .span5.box
+      strong = current_match.opponent_for(current_user).bnet_info
+      /*.pull-right = render "user.follow_button" currentOpponent*/
+
+    .row: .span5.box
+      p: strong Map pool for this round
+      p = current_match.round.map_pool
+
+    .row: .span5.box
+      p Playing in best of #{current_match.round.bo}
+
+    hr
+
+    h4 Submit results
+
+    img src="/assets/tournament_score_submission_notice.png"
+
+    form.form-horizontal.score-form submit="submitResult score currentOpponent"
+      div{bindAttr class="scoreError:error :control-group"}
+        input type="text" placeholder="Report Your Win, e.g. 1:0"
+        '
+        button.btn.btn-success type="submit"
+          i.icon-ok
+          |  Submit the score
+
+  - else
+    - if current_match.winner == current_user
+      .row Please wait for your next opponent.
+    - else
+      .row
+        .span5.box
+            ' You've lost against
+            strong = lostAgainst.bnetInfo
+            /*.pull-right = render "user.follow_button" currentOpponent*/
+
+      .row
+        .span5
+          - current_user.recommended_coaches.each do |coach|
+            h4 Fancy a Coach?
+
+            = link_to coach, class: "coach" do
+              .races.pull-left
+                - coach.race_icons.each do |icon|
+                  img src=icon
+
+              h4 style="display: inline-block; padding: 8px;" = coach.name

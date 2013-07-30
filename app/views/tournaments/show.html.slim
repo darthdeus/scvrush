@@ -32,11 +32,13 @@
       p.alert.alert-info No players were signed up for this tournament when it started
     - else
       - if current_user.playing_in?(@tournament)
-        view Scvrush.TournamentCurrentMatchView
+        - current_match = @tournament.current_match_for(current_user)
+        - if current_match
+          = render "tournaments/current_match", tournament: @tournament, current_match: current_match
 
       = render "tournaments/rounds", tournament: @tournament
 
   - else
     h4 Tournament Signup
 
-    = render "tournaments/signup"
+    = render "tournaments/signups"
