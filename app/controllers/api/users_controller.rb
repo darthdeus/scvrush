@@ -28,6 +28,7 @@ class Api::UsersController < ApplicationController
     user = current_user
     attributes = {
       username: params[:user][:username],
+      email: params[:user][:email],
       about: params[:user][:about],
       race: params[:user][:race],
       league: params[:user][:league],
