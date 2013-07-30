@@ -5,15 +5,15 @@
   - if tournament.started?
     - if tournament.seeded?
       button.btn.btn-small.btn-info title="Switch to admin view where you can edit matches" Admin View
-      button.btn.btn-small Destroy seed
+      = link_to "Destroy seed", destroy_seed_tournament_path(tournament), method: "delete", class: "btn btn-small", data: { confirm: "Are you sure? This can't be undone." }
     - else
-      button.btn.btn-small Seed
+      = link_to "Seed", seed_tournament_path(tournament), method: "put", class: "btn btn-small", data: { confirm: "Are you sure? This can't be undone." }
   - else
-    button.btn.btn-small Start Now
+    = link_to "Start", start_tournament_path(tournament), method: "put", class: "btn btn-small"
 
-  button.btn.btn-small Delete Tournament
+  = link_to "Delete tournament", tournament, class: "btn btn-small", method: "delete", data: { confirm: "Are you sure? This can't be undone" }
   = link_to "CA", ca_tournament_path(tournament), class: "btn btn-small"
 
   - unless tournament.seeded?
-    button.btn.btn-small Randomize Players
+    = link_to "Randomize players", randomize_tournament_path(tournament), method: "put", class: "btn btn-small", data: { confirm: "Are you sure? This will delete all of the current signups." }
     = link_to "Edit", edit_tournament_path(tournament), class: "btn btn-small"

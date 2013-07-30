@@ -14,7 +14,7 @@ class Signup < ActiveRecord::Base
 
   has_many :statuses, as: :statusable
 
-  validates_presence_of :status, :tournament, :user
+  validates_presence_of :status, :tournament_id, :user
 
   before_save do
     self.status = Signup::REGISTERED unless self.status

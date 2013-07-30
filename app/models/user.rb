@@ -182,6 +182,10 @@ class User < ActiveRecord::Base
     has_role?(:tournament_admin)
   end
 
+  def playing_in?(tournament)
+    Signup.exists?(user_id: self.id, tournament_id: tournament.id)
+  end
+
 end
 
 class NotRegistered < Exception

@@ -25,6 +25,12 @@ Scvrush::Application.routes.draw do
       get :signups
       get :ca
       get :matches
+
+      put :start
+      put :randomize
+      put :seed
+
+      delete :destroy_seed
     end
   end
 

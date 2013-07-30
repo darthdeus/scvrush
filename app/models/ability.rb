@@ -27,11 +27,6 @@ class Ability
     user ||= User.new # guest user (not logged in)
 
     can :read, :all
-    can :create, Comment
-    can :update, Comment do |comment|
-      # NOTE - could be nil
-      comment.user_id == user.id
-    end
 
     if user.has_role? :writer
       can :create, Post

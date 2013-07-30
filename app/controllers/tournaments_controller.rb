@@ -25,4 +25,90 @@ class TournamentsController < AuthenticatedController
     end
   end
 
+  def edit
+    @tournament = Tournament.find(params[:id])
+  end
+
+  def update
+    @tournament = Tournament.find(params[:id])
+    authorize! :edit, @tournament
+
+    if @tournament.update_attributes(params[:tournament])
+      redirect_to @tournament
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @tournament = Tournament.find(params[:id])
+    if current_user.tournament_admin?
+      @tournament.destroy
+      redirect_to tournaments_path, notice: "Tournament was deleted"
+    else
+      redirect_to @tournament, notice: "You're not authorized to do this"
+    end
+  end
+
+
+  def seed
+    tournament = TournamentDecorator.find(params[:id])
+    authorize! :seed, tournament
+
+    bracket = Bracket.new(tournament)
+    bracket.create_bracket_rounds
+    bracket.create_matches
+    bracket.linear_seed
+
+    tournament.seeded = true
+    tournament.save!
+
+    flash[:notice] = "Tournament was seeded"
+    redirect_to tournament
+  end
+
+  def destroy_seed
+    tournament = TournamentDecorator.find(params[:id])
+    authorize! :seed, tournament
+
+    tournament.seeded = false
+    tournament.winner = nil
+    tournament.rounds.destroy_all
+
+    tournament.save!
+
+    flash[:notice] = "Tournament seed was deleted"
+    redirect_to tournament
+  end
+
+  def ca
+
+  end
+
+  def matches
+
+  end
+
+  def start
+    tournament = Tournament.find(params[:id])
+    authorize! :start, tournament
+
+    unless tournament.started?
+      tournament.start
+    end
+
+    redirect_to tournament
+  end
+
+  def randomize
+    users = User.where("bnet_username IS NOT NULL").limit(10)
+    tournament = Tournament.find(params[:id])
+    binding.pry
+    tournament.users = users
+    tournament.users << current_user
+    tournament.users.each { |u| u.check_in(tournament) }
+
+    redirect_to tournament
+  end
+
 end

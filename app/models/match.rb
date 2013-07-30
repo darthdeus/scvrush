@@ -117,6 +117,22 @@ class Match < ActiveRecord::Base
     end
   end
 
+  def player1_bnet_info
+    player1.bnet_info if player1
+  end
+
+  def player2_bnet_info
+    player2.bnet_info if player2
+  end
+
+  def player1_score
+    score_for(:player1)
+  end
+
+  def player2_score
+    score_for(:player2)
+  end
+
   # Unset the given player from the match
   def unset_player(player)
     if self.player1 == player

@@ -34,9 +34,9 @@
       - if current_user.playing_in?(@tournament)
         view Scvrush.TournamentCurrentMatchView
 
-      = render "tournament/rounds"
+      = render "tournaments/rounds", tournament: @tournament
 
   - else
     h4 Tournament Signup
 
-    = render "tournament/signup"
+    = render "tournaments/signup"
