@@ -28,4 +28,25 @@ class MatchesController < AuthenticatedController
     redirect_to bracket.tournament
   end
 
+  def edit
+    @match = Match.find(params[:id])
+  end
+
+  def update
+    match = Match.find(params[:id])
+    match.score = params[:match][:score]
+    match.player1_id = params[:match][:player1_id]
+    match.player2_id = params[:match][:player2_id]
+
+    bracket = Bracket.new(match.round.tournament)
+
+    if match.save
+      bracket.seed_next_match_with(match.winner, match)
+
+      redirect_to tournament_path(match.tournament, admin_view: 1)
+    else
+      raise ActiveRecord::RecordInvalid, "Invalid match, this shouldn't happen"
+    end
+  end
+
 end

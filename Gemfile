@@ -4,16 +4,12 @@ gem "rails",        "~> 3.2.13"
 
 gem "bcrypt-ruby",  "~> 3.0.1", require: "bcrypt"
 
-gem "kaminari"
 gem "pg",                       "~> 0.14.0"
 gem "postgres_ext"
 gem "tire"
-gem "catsocket_client", github: "darthdeus/catsocket_client"
 # gem "catsocket_client", path: "../catsocket_client"
 
-gem "ember-rails"
-gem "emblem-rails"
-gem "active_model_serializers"
+gem "bootstrap-will_paginate", "~> 0.0.9"
 
 gem "rdiscount"
 gem "draper",             "~> 1.1.0"
@@ -55,8 +51,7 @@ group :development, :test do
   gem "pry-nav",    "~> 0.2.1"
   gem "pry-remote"
   gem "thin"
-
-  # gem "rack-mini-profiler", "~> 0.1.9"
+  gem "rack-mini-profiler", "~> 0.1.9"
 
   gem "populator",          "~> 1.0.0"
   gem "faker",              "~> 1.1.1"

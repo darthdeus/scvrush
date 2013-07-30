@@ -12,8 +12,8 @@
           - round.matches.each do |match|
             .match
 
-              - if @admin_view
-                = link_to "Edit", match, class: "overlay-edit"
+              - if params[:admin_view] == "1"
+                = link_to "Edit", edit_match_path(match), class: "overlay-edit"
               .player
                 = link_to match.player1 do
                   = user_race_icon match.player1

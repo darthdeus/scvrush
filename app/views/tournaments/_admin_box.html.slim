@@ -4,7 +4,11 @@
 
   - if tournament.started?
     - if tournament.seeded?
-      button.btn.btn-small.btn-info title="Switch to admin view where you can edit matches" Admin View
+      - if params[:admin_view] == "1"
+        = link_to "Turn Off Admin View", tournament_path(tournament, admin_view: 0), class: "btn btn-small"
+      - else
+        = link_to "Admin View", tournament_path(tournament, admin_view: 1), class: "btn btn-small"
+
       = link_to "Destroy seed", destroy_seed_tournament_path(tournament), method: "delete", class: "btn btn-small", data: { confirm: "Are you sure? This can't be undone." }
     - else
       = link_to "Seed", seed_tournament_path(tournament), method: "put", class: "btn btn-small", data: { confirm: "Are you sure? This can't be undone." }

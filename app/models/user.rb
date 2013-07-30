@@ -55,6 +55,14 @@ class User < ActiveRecord::Base
     Coach.where("? = ANY(races)", self.race)
   end
 
+  def recent_statuses
+    statuses.order("created_at DESC").limit(5)
+  end
+
+  def suggested_posts
+    Post.search(race, limit: 10)
+  end
+
   # Return a user either by his username or by email.
   # Used mostly for authentication purposes.
   def self.username_or_bnet_info(query)

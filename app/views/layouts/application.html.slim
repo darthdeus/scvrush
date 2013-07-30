@@ -7,7 +7,6 @@ html
     meta name="keywords" content="#{meta_keywords}"
     meta name="google-site-verification" content="igJwBmyTtGQNh8OlgQ0cKXdaEnsKm3BW01gSTyGYR_U"
     meta name="google-site-verification" content="z79z_p3RDNhOsFr6U0BNo249fqzhSzTSpJPBBFp0mTo"
-    meta name="catsocket-api-key" content="#{CATSOCKET_API_KEY}"
 
     title
       = content_for?(:title) ? yield(:title) : "SCV Rush"
@@ -33,7 +32,10 @@ html
 
     .container-wrap
       div class="span3 sidebar #{current_user.race}"
-        = yield :sidebar
+        - if content_for?(:sidebar)
+          = yield :sidebar
+        - else
+          = render "shared/default_sidebar"
 
       .span12
         - unless flash.empty?

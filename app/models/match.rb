@@ -32,6 +32,10 @@ class Match < ActiveRecord::Base
 
   before_save :check_if_completed
 
+  def tournament
+    round.tournament
+  end
+
   def matchup(target)
     if player1.race && player2.race
       if target == player1
