@@ -33,6 +33,8 @@ gem "jquery-rails"
 gem "coffee-rails"
 gem "bourbon",                 "~> 3.1.1"
 
+gem "turbolinks"
+
 gem "dalli"
 
 # Role management
@@ -50,6 +52,8 @@ group :development, :test do
   gem "thin"
   gem "rack-mini-profiler", "~> 0.1.9"
 
+  gem "better_errors"
+  gem "binding_of_caller"
   gem "populator",          "~> 1.0.0"
   gem "faker",              "~> 1.1.1"
 end

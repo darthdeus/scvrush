@@ -17,7 +17,15 @@ Scvrush::Application.routes.draw do
   get "/dashboard" => "dashboard#index", as: "dashboard"
 
   resources :statuses
-  resources :users
+  resources :users do
+    member do
+      get :activation
+      put :activate
+    end
+  end
+
+  resources :activations
+
   resources :sessions
   resources :posts
   resources :coaches

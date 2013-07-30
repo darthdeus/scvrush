@@ -1,1 +1,41 @@
-h1 Welcome to SCV Rush
+.home
+
+  = form_tag activate_user_path(current_user), method: "put" do
+
+    h2 Select your race
+    .race-picker.choice-picker
+      input type="hidden" name="race"
+      span.race-zerg data-value="zerg"
+      span.race-protoss data-value="protoss"
+      span.race-terran data-value="terran"
+      span.race-random data-value="random"
+
+    h2 Select your league
+
+    .league-picker.choice-picker
+      input type="hidden" name="league"
+      span.league-bronze data-value="bronze"
+      span.league-silver data-value="silver"
+      span.league-gold data-value="gold"
+      span.league-platinum data-value="platinum"
+      span.league-diamond data-value="diamond"
+      span.league-master data-value="master"
+      span.league-grandmaster data-value="grandmaster"
+
+    - if current_user.server
+      p We think you're playing on #{current_user.server}
+
+    .server-picker.choice-picker.btn-group
+      input type="hidden" name="server"
+      span.btn.league-eu data-value="EU" EU
+      span.btn.league-na data-value="NA" NA
+      span.btn.league-sea data-value="SEA" SEA
+      span.btn.league-kr data-value="KR" KR
+
+    hr
+    button.btn.btn-large type="submit" Activate!
+
+    javascript:
+      $(".choice-picker [data-value=#{current_user.race}]").addClass("active");
+      $(".choice-picker [data-value=#{current_user.league}]").addClass("active");
+      $(".choice-picker [data-value=#{current_user.server}]").addClass("active");

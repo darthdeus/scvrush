@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
                   :bnet_code, :bnet_username, :twitter, :time_zone, :practice,
                   :image, :bnet_info, :expires_at, :tournament_admin
 
-  attr_accessor :password
+  attr_accessor :password, :validate_trial_email
 
   mount_uploader :avatar, AvatarUploader
 
@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
   end
 
   def suggested_posts
-    Post.search(race, limit: 10)
+    race ? Post.search(race, limit: 10) : []
   end
 
   # Return a user either by his username or by email.
@@ -103,6 +103,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates :password, confirmation: true
   validates_presence_of :password, on: :create
+  validates_with TrialEmailValidator
 
   def bnet_username_is_string
     if bnet_username?

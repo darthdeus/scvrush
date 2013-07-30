@@ -24,6 +24,18 @@ $(function() {
     }
   });
 
+  $(".choice-picker span").click(function() {
+    var self = $(this),
+        race = self.data("value"),
+        parent = self.parents(".choice-picker");
+
+    parent.find("span").removeClass("active");
+    self.addClass("active");
+
+    parent.find("input[type=hidden]").val(race);
+  });
+
+
   // var orig = window.onerror;
 
   // window.onerror = function(a,b,c,d,e,f,g) {
