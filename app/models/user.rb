@@ -198,6 +198,10 @@ class User < ActiveRecord::Base
     Signup.exists?(user_id: self.id, tournament_id: tournament.id)
   end
 
+  def timeline_statuses
+    statuses
+  end
+
 end
 
 class NotRegistered < Exception

@@ -41,6 +41,8 @@ Scvrush::Application.routes.draw do
     member do
       get :activation
       put :activate
+      put :follow
+      delete :unfollow
     end
   end
 

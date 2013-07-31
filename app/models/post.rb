@@ -38,25 +38,12 @@ class Post < ActiveRecord::Base
     to_json(only: [:title, :content], methods: [:tag_names, :author_name])
   end
 
-  def self.race_post(race)
-    tags = %w(coach terran zerg protoss)
-    published.tagged_with(race).tagged_with(tags - [race], exclude: true).first
-  end
-
   def author_name
     user && user.username
   end
 
   def tag_names
     tag_list.join " "
-  end
-
-  def draft?
-    status == Post::DRAFT
-  end
-
-  def published?
-    status == Post::PUBLISHED
   end
 
   def author_avatar_thumb

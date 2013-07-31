@@ -23,8 +23,4 @@ class UserDecorator < Draper::Decorator
     race.downcase if race
   end
 
-  def has_followers?
-    followers.size > 0
-  end
-
 end

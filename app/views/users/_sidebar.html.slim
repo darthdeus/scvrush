@@ -20,7 +20,7 @@
   - if @user.about
     .about = markdown @user.about
 
-  - if @user.has_followers?
+  - if @user.followers.size > 0
     h3 Followers
 
     .followers
@@ -28,12 +28,10 @@
         = link_to follower do
           = image_tag follower.avatar_image
 
-  - else
-    .alert.alert-info This user has no followers.
+  - if @user.followees.size > 0
+    h3 Following
 
-  h3 Following
-
-  .followers
-    - @user.followees.each do |followee|
-      = link_to followee do
-        = image_tag followee.avatar_image
+    .followers
+      - @user.followees.each do |followee|
+        = link_to followee do
+          = image_tag followee.avatar_image

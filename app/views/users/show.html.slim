@@ -4,20 +4,26 @@
   .content
     header
       h2
-        = @user.bnet_info
+        = @user.username
+        '
 
         - if @user != current_user
-          button class="btn btn-mini" click="unfollow this" Unfollow
-          button class="btn btn-mini btn-success" click="follow this" Follow
+          - if current_user.following?(@user)
+            = link_to "Unfollow", unfollow_user_path(@user), class: "btn btn-mini", method: "delete"
+          - else
+            = link_to "Follow", follow_user_path(@user), class: "btn btn-mini btn-success", method: "put"
 
-    nav.user-sections
-    /*  = linkTo .btn "user.index" this | Feed*/
-    /*  = linkTo .btn "user.achievements" this | Achievements*/
-    /*  = linkTo .btn "user.tournaments" this | Tournaments*/
-    /*  if isCurrentUser*/
-    /*    if isTrial*/
-    /*      = linkTo .btn "user.activate" this | Activate*/
-    /*    else*/
-    /*      = linkTo .btn "user.edit" this | Account*/
+    .statuses
+      - if @user == current_user
+        = form_for :status do |f|
+          = f.text_field :text, placeholder: "Post a status"
 
-    /*= outlet*/
+      - @user.timeline_statuses.each do |status|
+        .status
+          .text
+            = status.text
+
+          .meta
+            - if @user == current_user
+              = link_to status, method: "delete", class: "btn btn-mini", data: { confirm: "Are you sure?" } do
+                i.icon-remove
