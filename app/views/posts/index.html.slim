@@ -10,7 +10,7 @@
     - @posts.each do |post|
       .post
         = link_to post, class: "image" do
-          img src=post.featured_image
+          = featured_post_image post
 
         .content
           h2

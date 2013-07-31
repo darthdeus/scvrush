@@ -57,7 +57,7 @@ module PostsHelper
     escape_javascript(content)
   end
 
-  def featured_image(post)
+  def featured_post_image(post)
     if post.featured_image
       image_tag post.featured_image.url
     else
