@@ -57,6 +57,14 @@ module PostsHelper
     escape_javascript(content)
   end
 
+  def featured_image(post)
+    if post.featured_image
+      image_tag post.featured_image.url
+    else
+      image_tag "/assets/post_default_image.png"
+    end
+  end
+
   # Return an image tag for post author's avatar,
   # or just return a default SCV Rush avatar if the user
   # doesn't have one.
