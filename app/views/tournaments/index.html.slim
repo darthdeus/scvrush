@@ -12,7 +12,7 @@
         - tournaments.each do |tournament|
           .tournament
 
-            .time = tournament.starts_at
+            .time = tournament.starts_at.strftime("%H:%M")
 
             = link_to tournament do
               = image_tag tournament.image_name
@@ -29,3 +29,9 @@
 
   .span3
     = link_to "Create your own tournament", new_tournament_path, class: "btn btn-primary"
+
+    h1 Calendar
+
+    = calendar do |date|
+      - tournaments = @calendar_tournaments[date]
+      .day-block title="#{tournaments.map(&:name) if tournaments}" = date.day
