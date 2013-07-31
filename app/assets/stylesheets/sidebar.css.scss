@@ -1,5 +1,11 @@
 $sidebar: #343d50;
 
+@media (max-width: 1220px) {
+  .sidebar {
+    display: none;
+  }
+}
+
 .sidebar {
   color: #fff;
   width: 260px;

@@ -12,8 +12,10 @@ Scvrush::Application.routes.draw do
   end
 
   get "/" => "home#index", as: "home"
-  get "/contact" => "home#contact"
-  get "/meet_scvrush" => "home#meet_scvrush"
+  get "/staff" => "home#staff", as: "staff"
+  get "/contact" => "home#contact", as: "contact"
+  get "/meet_scvrush" => "home#meet_scvrush", as: "meet_scvrush"
+
   get "/dashboard" => "dashboard#index", as: "dashboard"
 
   resources :activations
