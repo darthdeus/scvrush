@@ -1,37 +1,37 @@
 .user-sidebar
   .clearfix
     .left.avatar
-      = image_tag @user.avatar_image, class: "avatar"
-      div class="race race-#{@user.race}"
+      = image_tag user.avatar_image, class: "avatar"
+      div class="race race-#{user.race}"
 
     dl.dl-horizontal.info.left
       dt Username
-      dd = @user.username
+      dd = user.username
 
       dt Battle.net ID
-      dd = @user.bnet_info
+      dd = user.bnet_info
 
       dt League
-      dd = @user.league
+      dd = user.league
 
       dt Server
-      dd = @user.server
+      dd = user.server
 
-  - if @user.about
-    .about = markdown @user.about
+  - if user.about
+    .about = markdown user.about
 
-  - if @user.followers.size > 0
+  - if user.followers.size > 0
     h3 Followers
 
     .followers
-      - @user.followers.each do |follower|
+      - user.followers.each do |follower|
         = link_to follower do
           = image_tag follower.avatar_image
 
-  - if @user.followees.size > 0
+  - if user.followees.size > 0
     h3 Following
 
     .followers
-      - @user.followees.each do |followee|
+      - user.followees.each do |followee|
         = link_to followee do
           = image_tag followee.avatar_image

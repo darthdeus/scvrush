@@ -38,10 +38,6 @@ class Post < ActiveRecord::Base
     to_json(only: [:title, :content], methods: [:tag_names, :author_name])
   end
 
-  def author_name
-    user && user.username
-  end
-
   def tag_names
     tag_list.join " "
   end

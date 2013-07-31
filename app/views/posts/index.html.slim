@@ -1,6 +1,6 @@
 .main-content
   .posts-index
-    h2 Search Articles
+    h1 Search Articles
 
     form.form-horizontal submit="search"
       input.span8.post-search type="text" name="query"
@@ -15,6 +15,10 @@
         .content
           h2
             = link_to post.title, post
+            - if post.user
+              '
+              span.subtitle by #{link_to post.user.username, post.user}
+            span.subtitle , #{distance_of_time_in_words_to_now post.published_at} ago
 
           .tags
             - post.tag_list.each do |tag|
