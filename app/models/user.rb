@@ -199,7 +199,7 @@ class User < ActiveRecord::Base
   end
 
   def timeline_statuses
-    statuses
+    Status.where(user_id: followees.map(&:id) + [self.id]).order("created_at DESC")
   end
 
 end

@@ -20,10 +20,14 @@
 
       - @user.timeline_statuses.each do |status|
         .status
+          .author
+            = status.user.username
           .text
             = status.text
 
           .meta
+            = distance_of_time_in_words_to_now status.created_at
+            '  ago
             - if @user == current_user
               = link_to status, method: "delete", class: "btn btn-mini", data: { confirm: "Are you sure?" } do
                 i.icon-remove
