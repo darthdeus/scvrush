@@ -23,8 +23,8 @@ class Tournament < ActiveRecord::Base
                   :rules, :map_info, :bo_preset, :map_preset, :visible,
                   :channel, :admin_names, :logo, :region, :max_players, :leagues
 
-  scope :recent, order('starts_at DESC').limit(5)
-  scope :upcoming, lambda { where("starts_at > ? AND tournament_type <> 'User'", Time.now).order(:starts_at) }
+  scope :recent, -> { order('starts_at DESC').limit(5) }
+  scope :upcoming, -> { where("starts_at > ? AND tournament_type <> 'User'", Time.now).order(:starts_at) }
 
   #mounting the logo
   mount_uploader :logo, LogoUploader

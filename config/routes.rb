@@ -16,19 +16,13 @@ Scvrush::Application.routes.draw do
   get "/meet_scvrush" => "home#meet_scvrush"
   get "/dashboard" => "dashboard#index", as: "dashboard"
 
-  resources :statuses
-  resources :users do
-    member do
-      get :activation
-      put :activate
-    end
-  end
-
   resources :activations
-
-  resources :sessions
-  resources :posts
   resources :coaches
+  resources :matches
+  resources :posts
+  resources :statuses
+  resources :sessions
+
   resources :tournaments do
     member do
       get :signups
@@ -43,7 +37,12 @@ Scvrush::Application.routes.draw do
     end
   end
 
-  resources :matches
+  resources :users do
+    member do
+      get :activation
+      put :activate
+    end
+  end
 
 
   get "login" => "sessions#new", as: "login"

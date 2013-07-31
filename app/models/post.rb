@@ -15,12 +15,12 @@ class Post < ActiveRecord::Base
 
   acts_as_taggable
 
-  scope :drafts,    where(status: DRAFT)
-  scope :published, where("status = ? AND published_at IS NOT NULL", PUBLISHED)
+  scope :drafts, -> { where(status: DRAFT) }
+  scope :published, -> { where("status = ? AND published_at IS NOT NULL", PUBLISHED) }
 
-  default_scope order("published_at DESC, id DESC")
+  default_scope -> { order("published_at DESC, id DESC") }
 
-  scope :upcoming_tournaments, tagged_with('tournament').limit(2)
+  scope :upcoming_tournaments, -> { tagged_with('tournament').limit(2) }
 
   mount_uploader :featured_image, FeaturedImageUploader
 

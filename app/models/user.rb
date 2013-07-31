@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   include BattleNet
   include Player
 
-  scope :with_bnet_info, where("bnet_username IS NOT NULL AND bnet_code IS NOT NULL")
+  scope :with_bnet_info, -> { where("bnet_username IS NOT NULL AND bnet_code IS NOT NULL") }
 
   has_and_belongs_to_many :roles, join_table: :users_roles
 
