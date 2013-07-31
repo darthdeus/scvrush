@@ -99,4 +99,16 @@ module ApplicationHelper
     image_tag("http://www.gravatar.com/avatar/" + digest)
   end
 
+  def site_title(*args)
+    content_for :site_title, concate_site_title(args)
+  end
+
+  def concate_site_title(args)
+    if args && args.length > 0
+      "SCV Rush - " + args.select{|arg| arg.length > 0}.join(" - ")
+    else
+      "SCV Rush - "
+    end
+  end
+
 end

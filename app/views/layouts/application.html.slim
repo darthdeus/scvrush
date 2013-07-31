@@ -8,8 +8,7 @@ html
     meta name="google-site-verification" content="igJwBmyTtGQNh8OlgQ0cKXdaEnsKm3BW01gSTyGYR_U"
     meta name="google-site-verification" content="z79z_p3RDNhOsFr6U0BNo249fqzhSzTSpJPBBFp0mTo"
 
-    title
-      = content_for?(:title) ? yield(:title) : "SCV Rush"
+    title = content_for?(:site_title) ? yield(:site_title) : "SCV Rush"
 
     = favicon_link_tag "favicon.png"
 
