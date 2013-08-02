@@ -21,7 +21,6 @@ gem "carrierwave",        "~> 0.8.0"
 gem "mini_magick",        "~> 3.4"
 gem "airbrake",           "~> 3.1.6"
 
-gem "web-console"
 gem "slim-rails"
 gem "pnotify-rails"
 
@@ -48,6 +47,7 @@ gem "execjs", "~> 1.4.0"
 gem "geoip"
 
 group :development, :test do
+  gem "web-console"
   gem "pry-rails",  "~> 0.2.2"
   gem "pry-nav",    "~> 0.2.1"
   gem "pry-remote"
