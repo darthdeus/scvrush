@@ -1,0 +1,45 @@
+.bracket
+  - if tournament.rounds
+    h4 Brackets
+
+    - tournament.rounds.each_with_index do |round, index|
+
+      .round-wrap
+        .round-info-wrap
+          .round-info = round.human_name
+
+        div class="round-#{index}"
+          - round.matches.each do |match|
+            .match
+
+              - if params[:admin_view] == "1"
+                = link_to "Edit", edit_match_path(match), class: "overlay-edit"
+              .player
+                = link_to match.player1 do
+                  = user_race_icon match.player1
+                  .name = match.player1_bnet_info
+                  .score = match.player1_score
+
+              .player
+                = link_to match.player2 do
+                  = user_race_icon match.player2
+                  .name = match.player2_bnet_info
+                  .score = match.player2_score
+
+          - if round.matches.empty? && tournament.winner
+            .winner
+              = user_race_icon tournament.winner
+              = tournament.winner.bnet_info
+
+  - else
+    .row
+      p.alert.alert-info.span7
+        ' The tournament is already started.
+
+    .registered-players
+      ul.unstyled.tournament-players
+        - tournament.checked_players.each do |user|
+          li class="#{user == current_user ? "current-player" : ""}"
+            = link_to user do
+              = user_race_icon user
+              div.name = user.bnet_info

@@ -1,0 +1,20 @@
+- site_title "Create a new tournament"
+
+.tournaments-new
+  h2 Create your own custom tournament
+
+  p Every SCV Rush user can create custom tournaments and invite friends to play.
+
+  img.tournament-logo src="/assets/tourwin.png"
+
+  = simple_form_for @tournament do |f|
+
+    = f.input :name
+    = f.input :region, collection: Tournament::REGIONS
+    = f.input :max_players, collection: Tournament::MAX_PLAYERS
+    = f.input :channel
+    = f.input :description
+    = f.input :starts_at
+    = f.input :leagues, as: :check_boxes, collection: Tournament::LEAGUES
+
+    button.btn.btn-primary type="submit" Create tournament

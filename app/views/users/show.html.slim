@@ -1,0 +1,35 @@
+- site_title "User", @user.username
+
+.user-profile
+  = render "users/sidebar", user: @user
+
+  .content
+    header
+      h2
+        = @user.username
+        '
+
+        - if @user != current_user
+          - if current_user.following?(@user)
+            = link_to "Unfollow", unfollow_user_path(@user), class: "btn btn-mini", method: "delete"
+          - else
+            = link_to "Follow", follow_user_path(@user), class: "btn btn-mini btn-success", method: "put"
+
+    .statuses
+      - if @user == current_user
+        = form_for :status do |f|
+          = f.text_field :text, placeholder: "Post a status"
+
+      - @user.timeline_statuses.each do |status|
+        .status
+          .author
+            = status.user.username
+          .text
+            = status.text
+
+          .meta
+            = distance_of_time_in_words_to_now status.created_at
+            '  ago
+            - if @user == current_user
+              = link_to status, method: "delete", class: "btn btn-mini", data: { confirm: "Are you sure?" } do
+                i.icon-remove

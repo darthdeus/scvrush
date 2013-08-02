@@ -1,0 +1,38 @@
+.timeline.sidebar-list
+  h2 Timeline
+
+  .sidebar-form
+    = form_tag statuses_path do
+      = text_field_tag "status[text]", "", placeholder: "Post a status"
+
+  .items
+    - current_user.recent_statuses.each do |status|
+      .item
+        .image
+          = link_to status.user do
+            img src=status.user.avatar
+
+        .text = status.text
+
+    - if current_user.recent_statuses.empty?
+      .first-status
+        i.icon-pencil
+        |  Create your first status!
+
+  h2 Suggested articles
+
+  .items
+    - current_user.suggested_posts.each do |post|
+      .item
+        .image
+          = link_to post do
+            = featured_post_image post
+
+        .text = link_to post.title, post
+
+  h2 Coaches
+
+  .items
+    - current_user.recommended_coaches.each do |coach|
+      .item
+        .text = link_to coach.name, coach

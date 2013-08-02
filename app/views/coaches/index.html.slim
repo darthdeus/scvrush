@@ -1,0 +1,19 @@
+- site_title "Coaches"
+
+.main-content: .coaches-page.coaches-index
+  h1 Coaches
+
+  .row
+    - @coaches.each do |name, coach_group|
+
+      .span3
+        img src=coach_group.first.main_server_icon
+
+        - coach_group.each do |coach|
+          .coach
+            = link_to coach do
+              .races
+                - coach.race_icons.each do |icon|
+                  img src=icon
+
+            h4.name = link_to coach.name, coach

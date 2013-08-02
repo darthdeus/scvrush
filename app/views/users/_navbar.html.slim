@@ -1,0 +1,28 @@
+div class="#{current_user.race} user-navbar navbar-fixed-top"
+  = link_to current_user, class: "user-info" do
+    = image_tag current_user.avatar_image
+    = race_icon current_user.race
+    = league_icon current_user.league
+
+    .username = current_user.username
+
+  - if false
+    .notifications
+       = link_to "/notifications" do
+        i.icon.icon-envelope title="Notifications"
+
+  .pull-right.user-actions
+
+    ul.horizontal
+      /*if currentTournament*/
+      /*  li = linkTo "tournament" currentTournament*/
+      /*    | Your current tournament - {{currentTournament.name}}*/
+
+      li
+        = link_to "Settings", edit_user_path(current_user)
+
+      li
+        - if current_user.trial?
+          = link_to "Log in", login_path
+        - else
+          = link_to "Log out", logout_path, method: "delete"

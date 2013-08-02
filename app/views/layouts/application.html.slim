@@ -7,10 +7,8 @@ html
     meta name="keywords" content="#{meta_keywords}"
     meta name="google-site-verification" content="igJwBmyTtGQNh8OlgQ0cKXdaEnsKm3BW01gSTyGYR_U"
     meta name="google-site-verification" content="z79z_p3RDNhOsFr6U0BNo249fqzhSzTSpJPBBFp0mTo"
-    meta name="catsocket-api-key" content="#{CATSOCKET_API_KEY}"
 
-    title
-      = content_for?(:title) ? yield(:title) : "SCV Rush"
+    title = content_for?(:site_title) ? yield(:site_title) : "SCV Rush"
 
     = favicon_link_tag "favicon.png"
 
@@ -23,6 +21,35 @@ html
     = yield(:head)
 
   body
-    #ember-app data-user-id="#{current_user.id}"
+    .main-navbar
+      = link_to home_path do
+        img.big_logo src="/assets/big_logo.png"
+
+      = render "shared/navbar"
+
+    = render "users/navbar"
+
+    .container-wrap
+      div class="span3 sidebar #{current_user.race}"
+        - if content_for?(:sidebar)
+          = yield :sidebar
+        - else
+          = render "shared/default_sidebar"
+
+      .span12
+        - unless flash.empty?
+          - flash.each do |key, value|
+            #flash class="#{flash_class(key)} fade in padded" style="margin-top: 20px;"
+              button type="button" class="close" data-dismiss="alert" &times;
+              '
+              = value
+
+        = yield
+
+    .hidden
+      img src="/assets/icon_zerg_selected.png"
+      img src="/assets/icon_terran_selected.png"
+      img src="/assets/icon_protoss_selected.png"
+      img src="/assets/icon_random_selected.png"
 
     = render "shared/footer"

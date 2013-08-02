@@ -1,0 +1,26 @@
+- site_title "Coach", @coach.name
+
+.main-content: .coaches-page.coaches-show
+  h1
+    ' Coach: #{@coach.name}
+    span.servers.tags
+      - @coach.servers.each do |server|
+        span.tag = server
+
+  .about = markdown @coach.about
+
+  hr
+
+  .row
+    .span12
+      .pull-left
+        - @coach.races.each do |race|
+          = image_tag "race_#{race}_icon.png"
+
+      .pull-left
+        - @coach.languages.each do |language|
+          = image_tag "flags/#{language}.png"
+
+  hr
+
+  = link_to "All coaches", coaches_path, class: "btn"

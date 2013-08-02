@@ -1,0 +1,29 @@
+- site_title "Posts"
+
+.main-content
+  .posts-index
+    h1 Search Articles
+
+    form.form-horizontal submit="search"
+      input.span8.post-search type="text" name="query"
+      '
+      button.btn.btn-primary type="submit" Search
+
+    - @posts.each do |post|
+      .post
+        = link_to post, class: "image" do
+          = featured_post_image post
+
+        .content
+          h2
+            = link_to post.title, post
+            - if post.user
+              '
+              span.subtitle by #{link_to post.user.username, post.user}
+            span.subtitle , #{distance_of_time_in_words_to_now post.published_at} ago
+
+          .tags
+            - post.tag_list.each do |tag|
+              span.tag = tag
+
+  = will_paginate @posts

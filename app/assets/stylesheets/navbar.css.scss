@@ -15,6 +15,13 @@ $navbarOffset: 180px;
     margin-bottom: 44px;
     height: 60px;
 
+
+    @media (max-width: 1220px) {
+      ul.nav.pull-right {
+        display: none;
+      }
+    }
+
     ul.nav li a {
       color: #fff;
       padding: 20px;

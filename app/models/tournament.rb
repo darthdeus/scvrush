@@ -12,16 +12,19 @@ class Tournament < ActiveRecord::Base
   validates :starts_at, presence: true
 
   TYPES = %w(EU_BSG EU_BS EU_GP EU_D EU_DM EU_PD EU_Masters NA_Friday NA_BSG NA_PD NA_M User Bronze_Week)
+  REGIONS = %w(EU NA KR SEA)
+  MAX_PLAYERS = %w(4 8 16 32 64 128)
+  LEAGUES = %w(BRONZE SILVER GOLD PLATINUM DIAMOND MASTER)
 
   validates :tournament_type, inclusion: TYPES
-  validates :bo_preset, format: { with: /^[\d ]+$/ }
+  validates :bo_preset, format: { with: /\A[\d ]+\z/ }
 
   attr_accessible :name, :starts_at, :tournament_type, :description,
                   :rules, :map_info, :bo_preset, :map_preset, :visible,
-                  :channel, :admin_names, :logo
+                  :channel, :admin_names, :logo, :region, :max_players, :leagues
 
-  scope :recent, order('starts_at DESC').limit(5)
-  scope :upcoming, lambda { where("starts_at > ? AND tournament_type <> 'User'", Time.now).order(:starts_at) }
+  scope :recent, -> { order('starts_at DESC').limit(5) }
+  scope :upcoming, -> { where("starts_at > ? AND tournament_type <> 'User'", Time.now).order(:starts_at) }
 
   #mounting the logo
   mount_uploader :logo, LogoUploader
@@ -87,6 +90,10 @@ class Tournament < ActiveRecord::Base
   def start
     self.starts_at = Time.now
     self.save!
+  end
+
+  def empty?
+    signups.size == 0
   end
 
   # TODO - rewrite this to a scope.
@@ -175,6 +182,21 @@ class Tournament < ActiveRecord::Base
 
   def check_in_all
     users.each { |u| u.check_in(self) }
+  end
+
+  def current_match_for(user)
+    sorted_rounds = self.rounds.includes(:matches).order("number DESC")
+    sorted_rounds.map(&:matches).flatten.select do |m|
+      m.player1_id == user.id || m.player2_id == user.id
+    end.last
+  end
+
+  def checked_trial_players
+    self.users.includes(:signups).where(signups: { status: 1 }).where("expires_at IS NOT NULL").order(:id).all
+  end
+
+  def sorted_matches
+    self.matches.where("score IS NOT NULL").order("updated_at DESC")
   end
 
   class DoubleRegistration < Error; end

@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   include BattleNet
   include Player
 
-  scope :with_bnet_info, where("bnet_username IS NOT NULL AND bnet_code IS NOT NULL")
+  scope :with_bnet_info, -> { where("bnet_username IS NOT NULL AND bnet_code IS NOT NULL") }
 
   has_and_belongs_to_many :roles, join_table: :users_roles
 
@@ -21,7 +21,6 @@ class User < ActiveRecord::Base
   has_many :owned_tournaments, class_name: "Tournament", foreign_key: "user_id"
 
   has_many :statuses
-
   has_many :posts
 
   has_many :notifications, dependent: :destroy, order: "created_at DESC"
@@ -33,7 +32,7 @@ class User < ActiveRecord::Base
                   :bnet_code, :bnet_username, :twitter, :time_zone, :practice,
                   :image, :bnet_info, :expires_at, :tournament_admin
 
-  attr_accessor :password
+  attr_accessor :password, :validate_trial_email
 
   mount_uploader :avatar, AvatarUploader
 
@@ -50,6 +49,18 @@ class User < ActiveRecord::Base
 
   def to_indexed_json
     to_json(only: [:username, :race, :league, :server])
+  end
+
+  def recommended_coaches
+    Coach.where("? = ANY(races)", self.race)
+  end
+
+  def recent_statuses
+    statuses.order("created_at DESC").limit(5)
+  end
+
+  def suggested_posts
+    race ? Post.search(race, limit: 10) : []
   end
 
   # Return a user either by his username or by email.
@@ -92,6 +103,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates :password, confirmation: true
   validates_presence_of :password, on: :create
+  validates_with TrialEmailValidator
 
   def bnet_username_is_string
     if bnet_username?
@@ -107,7 +119,7 @@ class User < ActiveRecord::Base
 
   validate :bnet_username_is_string
   validates :bnet_code,
-            format: { with: /^\d+$/, message: 'can contain only numbers' },
+            format: { with: /\A\d+\z/, message: 'can contain only numbers' },
             if: lambda { |u| u.bnet_username? }
 
   def bnet_info
@@ -176,6 +188,18 @@ class User < ActiveRecord::Base
     self.follower_ids_cache = followers.pluck(:id).join(" ")
     self.followee_ids_cache = followees.pluck(:id).join(" ")
     save!
+  end
+
+  def tournament_admin?
+    has_role?(:tournament_admin)
+  end
+
+  def playing_in?(tournament)
+    Signup.exists?(user_id: self.id, tournament_id: tournament.id)
+  end
+
+  def timeline_statuses
+    Status.where(user_id: followees.map(&:id) + [self.id]).order("created_at DESC")
   end
 
 end

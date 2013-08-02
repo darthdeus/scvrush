@@ -4,6 +4,11 @@ require "digest/md5"
 
 module ApplicationHelper
 
+  def markdown(text)
+    return unless text
+    RDiscount.new(text).to_html.html_safe
+  end
+
   def meta_description(&block)
     if content_for?(:description)
       yield(:description)
@@ -92,6 +97,18 @@ module ApplicationHelper
 
   def gravatar_raw(digest)
     image_tag("http://www.gravatar.com/avatar/" + digest)
+  end
+
+  def site_title(*args)
+    content_for :site_title, concate_site_title(args)
+  end
+
+  def concate_site_title(args)
+    if args && args.length > 0
+      "SCV Rush - " + args.select{|arg| arg.length > 0}.join(" - ")
+    else
+      "SCV Rush - "
+    end
   end
 
 end

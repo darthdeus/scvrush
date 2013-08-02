@@ -1,0 +1,11 @@
+- site_title "Matches for tournament #{@tournament.name}"
+
+h3
+  = "#{@tournament.name} matches"
+  = link_to "Back", @tournament, class: "btn btn-mini"
+
+ul
+  - @tournament.sorted_matches.each do |match|
+    li
+      ' #{match.player1_bnet_info} vs #{match.player2_bnet_info}
+      strong #{distance_of_time_in_words_to_now match.updated_at} ago

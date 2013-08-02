@@ -32,6 +32,10 @@ class Match < ActiveRecord::Base
 
   before_save :check_if_completed
 
+  def tournament
+    round.tournament
+  end
+
   def matchup(target)
     if player1.race && player2.race
       if target == player1
@@ -117,6 +121,22 @@ class Match < ActiveRecord::Base
     end
   end
 
+  def player1_bnet_info
+    player1.bnet_info if player1
+  end
+
+  def player2_bnet_info
+    player2.bnet_info if player2
+  end
+
+  def player1_score
+    score_for(:player1)
+  end
+
+  def player2_score
+    score_for(:player2)
+  end
+
   # Unset the given player from the match
   def unset_player(player)
     if self.player1 == player
@@ -126,6 +146,10 @@ class Match < ActiveRecord::Base
     elsif player.present?
       raise UnknownPlayer.new("Can't unset a player who isn't playing this match")
     end
+  end
+
+  def pending?
+    !score && !!player1_id && !!player2_id
   end
 
   # Unset the match score and propagate to the following match

@@ -1,0 +1,23 @@
+.admin.btn-group
+  = link_to "Signups", signups_tournament_path(tournament), class: "btn btn-small"
+  = link_to "Matches", matches_tournament_path(tournament), class: "btn btn-small"
+
+  - if tournament.started?
+    - if tournament.seeded?
+      - if params[:admin_view] == "1"
+        = link_to "Turn Off Admin View", tournament_path(tournament, admin_view: 0), class: "btn btn-small"
+      - else
+        = link_to "Admin View", tournament_path(tournament, admin_view: 1), class: "btn btn-small"
+
+      = link_to "Destroy seed", destroy_seed_tournament_path(tournament), method: "delete", class: "btn btn-small", data: { confirm: "Are you sure? This can't be undone." }
+    - else
+      = link_to "Seed", seed_tournament_path(tournament), method: "put", class: "btn btn-small", data: { confirm: "Are you sure? This can't be undone." }
+  - else
+    = link_to "Start", start_tournament_path(tournament), method: "put", class: "btn btn-small"
+
+  = link_to "Delete tournament", tournament, class: "btn btn-small", method: "delete", data: { confirm: "Are you sure? This can't be undone" }
+  = link_to "CA", checked_trial_players_tournament_path(tournament), class: "btn btn-small"
+
+  - unless tournament.seeded?
+    = link_to "Randomize players", randomize_tournament_path(tournament), method: "put", class: "btn btn-small", data: { confirm: "Are you sure? This will delete all of the current signups." }
+    = link_to "Edit", edit_tournament_path(tournament), class: "btn btn-small"

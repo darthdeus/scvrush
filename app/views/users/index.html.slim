@@ -1,0 +1,17 @@
+- site_title "Users"
+
+.main-content
+  h2 All Users
+
+  .users-index
+
+    .user-list
+      - @users.each do |user|
+        .user
+          = link_to user do
+            = image_tag user.avatar_image
+
+            .info
+              div class="race race-#{user.race.downcase}"
+              .name
+                = user.username.truncate(10)

@@ -1,6 +1,6 @@
 - [:success, :error, :info, :notice].each do |type|
   .row
     - if flash[type]
-      div id="flash" class="span6 fade in alert #{flash_class(type)}"
+      div id="flash" class="span6 fade in alert padded #{flash_class(type)}"
         a href="#" data-dismiss="alert" class="close" ×
         div= flash[type]

@@ -1,0 +1,26 @@
+.info#tournament-accordion
+  .accordion-group
+    .accordion-heading
+      a.accordion-toggle data-parent="#tournament-accordion" data-toggle="collapse" href="#rules" Tournament Rules
+
+    #rules.accordion-body.collapse
+      .accordion-inner
+        = markdown tournament.rules
+
+  .accordion-group
+    .accordion-heading
+      a.accordion-toggle data-parent="#tournament-accordion" data-toggle="collapse" href="#contact" Tournament Map info
+    #contact.accordion-body.collapse
+      .accordion-inner
+        = markdown tournament.map_info
+
+  - if tournament.channel?
+    .accordion-group
+      .accordion-heading
+        .accordion-toggle
+          ' The meeting channel for the tournament is
+          strong = tournament.channel
+          | .
+
+  a href="http://beta.scvrush.com/posts/10016" target="_blank"
+    img src="/assets/tournament_view_full_rules.png"

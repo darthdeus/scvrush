@@ -2,7 +2,6 @@
   overflow: hidden;
 
   h1 {
-    margin-top: 0;
     font-size: 20px;
     line-height: 20px;
   }
@@ -29,12 +28,18 @@
 
       h2 {
         font-size: 18px;
+        font-weight: bold;
         line-height: 1.4;
 
-        font-weight: bold;
         a {
           color: #000;
           &:hover { text-decoration: none; }
+        }
+
+        .subtitle, .subtitle a {
+          color: #999;
+          font-size: 14px;
+          font-weight: normal;
         }
       }
 

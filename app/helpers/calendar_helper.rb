@@ -1,14 +1,18 @@
 module CalendarHelper
-  def calendar(date = Date.today, &block)
-    Calendar.new(self, date, block).table
+  def calendar(start = Date.today, &block)
+    Calendar.new(self, start, block).table
   end
 
-  class Calendar < Struct.new(:view, :date, :callback)
-    # HEADER = %w[Sunday Monday Tuesday Wednesday Thursday Friday Saturday]
-    HEADER = []
+  class Calendar < Struct.new(:view, :start, :callback)
+    HEADER = %w[Sun Mon Tue Wed Thu Fri Sat]
+    # HEADER = []
     START_DAY = :sunday
 
     delegate :content_tag, to: :view
+
+    def date
+      start.to_date
+    end
 
     def table
       content_tag :table, class: "calendar" do
@@ -47,4 +51,16 @@ module CalendarHelper
       (first..last).to_a.in_groups_of(7)
     end
   end
+
+  def title_for_date(date)
+    day   = date.strftime("%d")
+    month = date.strftime("%B")
+
+    "Tournaments on #{day.to_i.ordinalize} #{month}"
+  end
+
+  def tournaments_popover(tournaments)
+
+  end
+
 end

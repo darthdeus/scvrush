@@ -1,0 +1,22 @@
+- site_title "Log in"
+
+h1 Login
+
+p Use your SCV Rush credentials to log in.
+
+= form_tag sessions_path do |f|
+
+  .control-group
+    .control-label
+      label Username
+    .controls
+      = text_field_tag :username
+  .control-group
+    .control-label
+      label Password
+    .controls
+      = password_field_tag :password
+
+  .control-group
+    .controls
+      button.btn type="submit" class="btn" Log in!

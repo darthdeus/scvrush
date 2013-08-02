@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130725140208) do
+ActiveRecord::Schema.define(:version => 20130730132539) do
 
   create_table "coaches", :force => true do |t|
     t.string "name"
@@ -153,9 +153,9 @@ ActiveRecord::Schema.define(:version => 20130725140208) do
     t.string   "channel"
     t.string   "logo"
     t.integer  "max_players"
-    t.string   "leagues"
     t.string   "region"
     t.integer  "signups_count",   :default => 0
+    t.string   "leagues",         :default => [],    :array => true
   end
 
   add_index "tournaments", ["winner_id"], :name => "index_tournaments_on_winner_id"

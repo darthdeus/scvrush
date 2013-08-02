@@ -1,0 +1,44 @@
+- site_title "Tournaments"
+
+.main-content: .tournaments.row
+  .span9
+    h2 Upcoming Tournaments
+
+    - @grouped_tournaments.each do |date, tournaments|
+
+      .tournament-day
+        h2 = date.strftime("%A")
+
+        - tournaments.each do |tournament|
+          .tournament
+
+            .time = tournament.starts_at.strftime("%I:%M %P")
+
+            = link_to tournament do
+              = image_tag tournament.image_name
+
+            .description
+              h3 = link_to tournament.name, tournament
+
+              p
+                i.icon-user
+                '
+                = tournament.signups.size
+                |  people
+
+
+  .span3
+    = link_to "Create your own tournament", new_tournament_path, class: "btn btn-primary"
+
+    h1 Calendar
+
+
+    .calendar
+      .calendar-header = Time.zone.now.strftime("%B %Y")
+
+      = calendar Time.zone.now do |date|
+        - tournaments = @calendar_tournaments[date]
+        - if tournaments
+          .day.tournament title=title_for_date(date) data-content=tournaments_popover(tournaments) = date.day
+        - else
+          .day.empty = date.day

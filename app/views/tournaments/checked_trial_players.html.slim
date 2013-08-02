@@ -1,0 +1,9 @@
+- site_title "Checked trial players"
+
+h3
+  | Checked in trial players
+  = link_to "Back", @tournament, class: "btn btn-mini"
+
+ul
+  - @tournament.checked_trial_players.each do |user|
+    li = user.bnet_info
