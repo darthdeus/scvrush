@@ -5,4 +5,3 @@
 //= require underscore.string
 //= require ./jquery-ui-timepicker-addon
 //= require ./jquery.inview
-//= require ./catsocket

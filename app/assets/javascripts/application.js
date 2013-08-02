@@ -1,5 +1,6 @@
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.all
 //= require ./vendor/manifest
 //= require pnotify
 //= require bootstrap
