@@ -23,7 +23,7 @@ html
   body
     .main-navbar
       = link_to home_path do
-        img.big_logo src="/assets/big_logo.png"
+        = image_tag "big_logo.png", class: "big_logo"
 
       = render "shared/navbar"
 
@@ -47,9 +47,9 @@ html
         = yield
 
     .hidden
-      img src="/assets/icon_zerg_selected.png"
-      img src="/assets/icon_terran_selected.png"
-      img src="/assets/icon_protoss_selected.png"
-      img src="/assets/icon_random_selected.png"
+      = image_tag "icon_zerg_selected.png"
+      = image_tag "icon_terran_selected.png"
+      = image_tag "icon_protoss_selected.png"
+      = image_tag "icon_random_selected.png"
 
     = render "shared/footer"
