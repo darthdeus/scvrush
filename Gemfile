@@ -14,6 +14,7 @@ gem "bootstrap-will_paginate", "~> 0.0.9"
 gem "rdiscount"
 gem "draper",             "~> 1.1.0"
 gem "simple_form"
+gem "active_model_serializers"
 
 gem "fog",                "~> 1.9.0"
 gem "carrierwave",        "~> 0.8.0"
