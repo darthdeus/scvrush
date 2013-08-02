@@ -10,7 +10,7 @@ $navbarOffset: 180px;
   }
 
   .navbar-inverse {
-    background: asset-url("/assets/header_bg.png", "image") repeat-x #333333;
+    background: asset-url("header_bg.png", "image") repeat-x #333333;
     padding-top: 120px;
     margin-bottom: 44px;
     height: 60px;
@@ -30,7 +30,7 @@ $navbarOffset: 180px;
       @include transition(all 0.1s ease-in-out);
 
       &.chat {
-        background: asset-url("/assets/chat_button_bg.png", "image") repeat-x;
+        background: asset-url("chat_button_bg.png", "image") repeat-x;
         box-shadow: inset 1px 0 0 #575757, inset -1px 0 0 #575757;
         border-left: 1px solid #090909;
         border-right: 1px solid #090909;
