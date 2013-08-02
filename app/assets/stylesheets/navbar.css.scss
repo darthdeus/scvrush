@@ -10,7 +10,7 @@ $navbarOffset: 180px;
   }
 
   .navbar-inverse {
-    background: url("/assets/header_bg.png") repeat-x #333333;
+    background: asset-url("/assets/header_bg.png", "image") repeat-x #333333;
     padding-top: 120px;
     margin-bottom: 44px;
     height: 60px;
@@ -30,7 +30,7 @@ $navbarOffset: 180px;
       @include transition(all 0.1s ease-in-out);
 
       &.chat {
-        background: url("/assets/chat_button_bg.png") repeat-x;
+        background: asset-url("/assets/chat_button_bg.png", "image") repeat-x;
         box-shadow: inset 1px 0 0 #575757, inset -1px 0 0 #575757;
         border-left: 1px solid #090909;
         border-right: 1px solid #090909;
@@ -60,12 +60,12 @@ $navbarOffset: 180px;
 
   @include transition(background 0.3s ease-in-out);
 
-  background: url("/assets/user_navbar_random_bg.png") repeat-x;
+  background: asset-url("user_navbar_random_bg.png", "image") repeat-x;
 
-  &.zerg    { background: url("/assets/user_navbar_zerg_bg.png") repeat-x; }
-  &.terran  { background: url("/assets/user_navbar_terran_bg.png") repeat-x; }
-  &.protoss { background: url("/assets/user_navbar_protoss_bg.png") repeat-x; }
-  &.random  { background: url("/assets/user_navbar_random_bg.png") repeat-x; }
+  &.zerg    { background: asset-url("user_navbar_zerg_bg.png", "image") repeat-x; }
+  &.terran  { background: asset-url("user_navbar_terran_bg.png", "image") repeat-x; }
+  &.protoss { background: asset-url("user_navbar_protoss_bg.png", "image") repeat-x; }
+  &.random  { background: asset-url("user_navbar_random_bg.png", "image") repeat-x; }
 
   a {
     color: #fff;

@@ -18,13 +18,13 @@
       @include transition(all 0.3s ease-in-out);
     }
 
-    .league-bronze      { background-image: url("icon_bronze.png"); }
-    .league-silver      { background-image: url("icon_silver.png"); }
-    .league-gold        { background-image: url("icon_gold.png"); }
-    .league-platinum    { background-image: url("icon_platinum.png"); }
-    .league-diamond     { background-image: url("icon_diamond.png"); }
-    .league-master      { background-image: url("icon_master.png"); }
-    .league-grandmaster { background-image: url("icon_grandmaster.png"); }
+    .league-bronze      { background-image: asset-url("icon_bronze.png", "image"); }
+    .league-silver      { background-image: asset-url("icon_silver.png", "image"); }
+    .league-gold        { background-image: asset-url("icon_gold.png", "image"); }
+    .league-platinum    { background-image: asset-url("icon_platinum.png", "image"); }
+    .league-diamond     { background-image: asset-url("icon_diamond.png", "image"); }
+    .league-master      { background-image: asset-url("icon_master.png", "image"); }
+    .league-grandmaster { background-image: asset-url("icon_grandmaster.png", "image"); }
   }
 
   .user-edit-content {

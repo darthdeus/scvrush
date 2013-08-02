@@ -32,15 +32,15 @@
     }
 
     span { @include transition(all 0.3s ease-in-out); }
-    .race-zerg    { background: url("icon_zerg.png"); }
-    .race-terran  { background: url("icon_terran.png"); }
-    .race-protoss { background: url("icon_protoss.png"); }
-    .race-random  { background: url("icon_random.png"); }
+    .race-zerg    { background: asset-url("icon_zerg.png", "image"); }
+    .race-terran  { background: asset-url("icon_terran.png", "image"); }
+    .race-protoss { background: asset-url("icon_protoss.png", "image"); }
+    .race-random  { background: asset-url("icon_random.png", "image"); }
 
-    .active.race-zerg    { background: url("icon_zerg_selected.png"); }
-    .active.race-terran  { background: url("icon_terran_selected.png"); }
-    .active.race-protoss { background: url("icon_protoss_selected.png"); }
-    .active.race-random  { background: url("icon_random_selected.png"); }
+    .active.race-zerg    { background: asset-url("icon_zerg_selected.png", "image"); }
+    .active.race-terran  { background: asset-url("icon_terran_selected.png", "image"); }
+    .active.race-protoss { background: asset-url("icon_protoss_selected.png", "image"); }
+    .active.race-random  { background: asset-url("icon_random_selected.png", "image"); }
   }
 
   .league-picker {
@@ -56,13 +56,13 @@
     }
 
     span { @include transition(all 0.3s ease-in-out); }
-    .league-bronze      { background: url("icon_bronze.png"); }
-    .league-silver      { background: url("icon_silver.png"); }
-    .league-gold        { background: url("icon_gold.png"); }
-    .league-platinum    { background: url("icon_platinum.png"); }
-    .league-diamond     { background: url("icon_diamond.png"); }
-    .league-master      { background: url("icon_master.png"); }
-    .league-grandmaster { background: url("icon_grandmaster.png"); }
+    .league-bronze      { background: asset-url("icon_bronze.png", "image"); }
+    .league-silver      { background: asset-url("icon_silver.png", "image"); }
+    .league-gold        { background: asset-url("icon_gold.png", "image"); }
+    .league-platinum    { background: asset-url("icon_platinum.png", "image"); }
+    .league-diamond     { background: asset-url("icon_diamond.png", "image"); }
+    .league-master      { background: asset-url("icon_master.png", "image"); }
+    .league-grandmaster { background: asset-url("icon_grandmaster.png", "image"); }
   }
 
 }

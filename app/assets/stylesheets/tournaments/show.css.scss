@@ -83,17 +83,17 @@
     }
   }
 
-  .race-zerg    { background: url("race_zerg_icon.png"); }
-  .race-terran  { background: url("race_terran_icon.png"); }
-  .race-protoss { background: url("race_protoss_icon.png"); }
-  .race-random  { background: url("race_random_icon.png"); }
+  .race-zerg    { background: url("race_zerg_icon.png", "image"); }
+  .race-terran  { background: url("race_terran_icon.png", "image"); }
+  .race-protoss { background: url("race_protoss_icon.png", "image"); }
+  .race-random  { background: url("race_random_icon.png", "image"); }
 
-  .league-bronze   { background: url("league_bronze_icon.png"); }
-  .league-silver   { background: url("league_silver_icon.png"); }
-  .league-gold     { background: url("league_gold_icon.png"); }
-  .league-platinum { background: url("league_platinum_icon.png"); }
-  .league-diamond  { background: url("league_diamond_icon.png"); }
-  .league-masters  { background: url("league_masters_icon.png"); }
+  .league-bronze   { background: url("league_bronze_icon.png", "image"); }
+  .league-silver   { background: url("league_silver_icon.png", "image"); }
+  .league-gold     { background: url("league_gold_icon.png", "image"); }
+  .league-platinum { background: url("league_platinum_icon.png", "image"); }
+  .league-diamond  { background: url("league_diamond_icon.png", "image"); }
+  .league-masters  { background: url("league_masters_icon.png", "image"); }
 }
 
 .tournament-signups {

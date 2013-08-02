@@ -46,10 +46,10 @@
     .race {
       width: 50px;
 
-      &.race-random  { background: url("/assets/race_random_icon.png") no-repeat; }
-      &.race-zerg    { background: url("/assets/race_zerg_icon.png") no-repeat; }
-      &.race-terran  { background: url("/assets/race_terran_icon.png") no-repeat; }
-      &.race-protoss { background: url("/assets/race_protoss_icon.png") no-repeat; }
+      &.race-random  { background: asset-url("race_random_icon.png", "image") no-repeat; }
+      &.race-zerg    { background: asset-url("race_zerg_icon.png", "image") no-repeat; }
+      &.race-terran  { background: asset-url("race_terran_icon.png", "image") no-repeat; }
+      &.race-protoss { background: asset-url("race_protoss_icon.png", "image") no-repeat; }
     }
   }
 }

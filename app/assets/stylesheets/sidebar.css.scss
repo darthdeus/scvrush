@@ -25,7 +25,7 @@ $sidebar: #343d50;
   }
 
   &.terran {
-    background: #343d50 url("/assets/sidebar_terran_bg.png") no-repeat 0 300px;
+    background: #343d50 asset-url("sidebar_terran_bg.png", "image") no-repeat 0 300px;
 
     .sidebar-form input {
       border-color: #38445d;
@@ -46,7 +46,7 @@ $sidebar: #343d50;
   }
 
   &.zerg {
-    background: #3f3551 url("/assets/sidebar_zerg_bg.png") no-repeat 0 300px;
+    background: #3f3551 asset-url("sidebar_zerg_bg.png", "image") no-repeat 0 300px;
 
     .sidebar-form input {
       border-color: #4e4166;
@@ -57,7 +57,7 @@ $sidebar: #343d50;
   }
 
   &.protoss {
-    background: #d6bf61 url("/assets/sidebar_protoss_bg.png") no-repeat 0 300px;
+    background: #d6bf61 asset-url("sidebar_protoss_bg.png", "image") no-repeat 0 300px;
     color: #000;
 
     .item a {
@@ -73,7 +73,7 @@ $sidebar: #343d50;
   }
 
   &.random {
-    background: #505050 url("/assets/sidebar_random_bg.png") no-repeat 0 300px;
+    background: #505050 asset-url("sidebar_random_bg.png", "image") no-repeat 0 300px;
 
     .sidebar-form input {
       border-color: #3a3a3a;
