@@ -7,12 +7,12 @@
     - @grouped_tournaments.each do |date, tournaments|
 
       .tournament-day
-        h2 = date
+        h2 = date.strftime("%A")
 
         - tournaments.each do |tournament|
           .tournament
 
-            .time = tournament.starts_at.strftime("%H:%M")
+            .time = tournament.starts_at.strftime("%I:%M %P")
 
             = link_to tournament do
               = image_tag tournament.image_name
@@ -32,6 +32,13 @@
 
     h1 Calendar
 
-    = calendar do |date|
-      - tournaments = @calendar_tournaments[date]
-      .day-block title="#{tournaments.map(&:name) if tournaments}" = date.day
+
+    .calendar
+      .calendar-header = Time.zone.now.strftime("%B %Y")
+
+      = calendar Time.zone.now do |date|
+        - tournaments = @calendar_tournaments[date]
+        - if tournaments
+          .day.tournament title=title_for_date(date) data-content=tournaments_popover(tournaments) = date.day
+        - else
+          .day.empty = date.day

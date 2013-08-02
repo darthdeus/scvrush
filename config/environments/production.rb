@@ -47,7 +47,7 @@ Scvrush::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( comments.js bracket.js )
+  config.assets.precompile += %w(bracket.js)
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
@@ -62,8 +62,12 @@ Scvrush::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  config.action_mailer.default_url_options = { :host => "scvrush.com" }
-  config.action_mailer.delivery_method = :sendmail
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:   "smtp.mandrillapp.com",
+    port:      587,
+    user_name: "darthdeus@gmail.com",
+    password:  "hCVFAi7BtHFZNP3QrFXV3A",
+  }
+
 end

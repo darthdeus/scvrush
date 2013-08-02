@@ -52,6 +52,7 @@ group :development, :test do
   gem "thin"
   gem "rack-mini-profiler", "~> 0.1.9"
 
+  gem "letter_opener"
   gem "better_errors"
   gem "binding_of_caller"
   gem "populator",          "~> 1.0.0"

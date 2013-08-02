@@ -56,33 +56,78 @@ $calendarBorderColor: #999;
     margin-bottom: 2px;
   }
 
-  .week {
-    width: 217px;
-    display: block;
-    clear: both;
-    height: 22px;
+  th {
+    font-size: 10px;
+    font-weight: normal;
+    padding: 5px 0;
+  }
 
-    &:first-of-type {
-    }
+  td {
+    padding: 0;
+  }
 
-    .day {
-      background: #5E5C5D;
-      color: #E7E7E7;
-      font-size: 10px;
+  .today .day {
+    background: #D7C87A;
+    color: #000;
+  }
 
-      margin: 1px;
-      width: 20px;
-      height: 20px;
-      text-align: right;
-      padding: 3px 6px 3px 3px;
-      float: left;
+  .day {
+    background: #5E5C5D;
+    color: #E7E7E7;
+    font-size: 10px;
 
-      &.empty {
-        opacity: 0.6;
-      }
+    margin: 1px;
+    width: 20px;
+    height: 20px;
+    text-align: right;
+    padding: 3px 6px 3px 3px;
+    float: left;
+
+    &.empty {
+      opacity: 0.6;
     }
   }
 }
+
+// .calendar {
+//   td {
+//     width: 20px;
+//     height: 20px;
+//     font-size: 12px;
+//     line-height: 20px;
+//     text-align: center;
+//     padding: 0;
+// 
+//     &.today {
+//       background: #f3f3f3;
+//       .tournament {
+//         background: #bdb;
+//       }
+//     }
+// 
+//     &.notmonth {
+//       opacity: 0.7;
+//     }
+// 
+//     .tournament {
+//       background: #dfd;
+//       width: 22px;
+//       opacity: 0.8;
+//       @include transition(opacity 0.2s ease-in-out);
+// 
+//       a {
+//         color: black;
+//       }
+// 
+//       &:hover {
+//         opacity: 1;
+//         background: #cec;
+//         a { text-decoration: none; }
+//       }
+// 
+//     }
+//   }
+// }
 
 .tourwin {
   position: absolute;
@@ -111,45 +156,5 @@ $calendarBorderColor: #999;
 
 .tournament-edit {
   h1 { width: 620px; }
-}
-
-.calendar {
-  td {
-    width: 20px;
-    height: 20px;
-    font-size: 12px;
-    line-height: 20px;
-    text-align: center;
-    padding: 0;
-
-    &.today {
-      background: #f3f3f3;
-      .tournament {
-        background: #bdb;
-      }
-    }
-
-    &.notmonth {
-      opacity: 0.7;
-    }
-
-    .tournament {
-      background: #dfd;
-      width: 22px;
-      opacity: 0.8;
-      @include transition(opacity 0.2s ease-in-out);
-
-      a {
-        color: black;
-      }
-
-      &:hover {
-        opacity: 1;
-        background: #cec;
-        a { text-decoration: none; }
-      }
-
-    }
-  }
 }
 
