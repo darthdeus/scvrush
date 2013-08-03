@@ -4,6 +4,9 @@
   h2 All Users
 
   .users-index
+    = form_tag users_path, method: "get", class: "form-horizontal" do
+      = text_field_tag :query, params[:query], class: "span8 post-search"
+      button.btn.btn-primary type="submit" Search
 
     .user-list
       - @users.each do |user|
@@ -12,6 +15,6 @@
             = image_tag user.avatar_image
 
             .info
-              div class="race race-#{user.race.downcase}"
+              div class="race race-#{(user.race || "random").downcase}"
               .name
                 = user.username.truncate(10)

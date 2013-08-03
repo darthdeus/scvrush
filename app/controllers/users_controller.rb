@@ -1,7 +1,11 @@
 class UsersController < AuthenticatedController
 
   def index
-    @users = User.limit(15).decorate
+    if params[:query].present?
+      @users = User.search(params[:query], load: true)
+    else
+      @users = User.limit(15)
+    end
   end
 
   def show
