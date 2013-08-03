@@ -60,7 +60,7 @@ class User < ActiveRecord::Base
   end
 
   def suggested_posts
-    race ? Post.search(race, limit: 10) : []
+    race ? Post.search(race, limit: 3) : []
   end
 
   # Return a user either by his username or by email.
