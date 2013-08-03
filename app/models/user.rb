@@ -133,6 +133,7 @@ class User < ActiveRecord::Base
   end
 
   before_save :encrypt_password
+  before_save :downcase_race
   before_create { generate_token(:auth_token) }
 
   def encrypt_password
@@ -140,6 +141,10 @@ class User < ActiveRecord::Base
       self.password_salt = BCrypt::Engine.generate_salt
       self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
     end
+  end
+
+  def downcase_race
+    self.race = self.race.downcase if self.race
   end
 
   def generate_token(column)
