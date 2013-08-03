@@ -99,7 +99,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  validates :username, presence: true, uniqueness: true, length: { maximum: 12 }
+  validates :username, presence: true, uniqueness: true, length: { maximum: 20 }
   validates :email, presence: true, uniqueness: true
   validates :password, confirmation: true
   validates_presence_of :password, on: :create
