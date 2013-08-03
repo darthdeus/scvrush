@@ -4,6 +4,7 @@
 //= require dataTables/jquery.dataTables
 //= require dataTables/jquery.dataTables.bootstrap
 //= require ../vendor/select2
+//= require ../vendor/jquery-ui-timepicker-addon
 
 $(function() {
 
@@ -19,5 +20,5 @@ $(function() {
   });
 
   $('.admin-form select').select2({ width: "element" });
-
+  $(".datepicker").datetimepicker();
 });
