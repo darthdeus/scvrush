@@ -16,18 +16,19 @@
 
       .moods
         a href="http://chat.scvrush.com/" target="_blank"
-          img src="/assets/post_nav_chat.png"
+          = image_tag "post_nav_chat.png"
         = link_to users_path do
-          img src="/assets/post_nav_practice.png"
+          = image_tag "post_nav_practice.png"
         = link_to posts_path do
-          img src="/assets/post_nav_content.png"
+          = image_tag "post_nav_content.png"
         = link_to coaches_path do
-          img src="/assets/post_nav_coaches.png"
+          = image_tag "post_nav_coaches.png"
 
     .carousel.slide
       .carousel-inner
         .item.active
           a href="/meet-scvrush" title="SCV Rush Comic Iintro"
+            = image_tag "slider_comig.png"
             img src="/assets/slider_comic.png"
 
     - @upcoming_tournaments.each do |tournament|
