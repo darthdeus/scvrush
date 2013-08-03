@@ -3,5 +3,19 @@
     float: right;
     width: 200px;
   }
+
+  .horizontal-checkboxes {
+    padding-bottom: 10px;
+
+    input {
+      margin-top: 0;
+      display: inline-block;
+    }
+
+    label {
+      display: inline-block;
+      margin: 0 10px 0 5px;
+    }
+  }
 }
 
