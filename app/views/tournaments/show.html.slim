@@ -17,7 +17,7 @@
 
       - if current_user.trial?
         = link_to home_path do
-          img src="/assets/take_a_stand.png"
+          = image_tag "take_a_stand.png"
 
     .rules
       = render "tournaments/rules", tournament: @tournament
@@ -27,7 +27,7 @@
       - if current_user.trial?
         p.alert.alert-danger
           | You're playing on a temporary account
-          img style="height: 40px; display: inline-block; margin-left: 10px;" src="/assets/red_exclamation_mark.png"
+          = image_tag "red_exclamation_mark.png", style: "height: 40px; display: inline-block; margin-left: 10px;"
 
   - if @tournament.started?
     - if @tournament.empty?
