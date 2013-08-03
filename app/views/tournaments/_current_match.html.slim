@@ -17,7 +17,7 @@
 
     h4 Submit results
 
-    img src="/assets/tournament_score_submission_notice.png"
+    = image_tag "tournament_score_submission_notice.png"
 
     = form_tag matches_path, class: "form-horizontal score-form" do
       div{bindAttr class="scoreError:error :control-group"}
@@ -46,7 +46,7 @@
             = link_to coach, class: "coach" do
               .races.pull-left
                 - coach.race_icons.each do |icon|
-                  img src=icon
+                  = image_tag icon
 
               h4 style="display: inline-block; padding: 8px;" = coach.name
     - else
