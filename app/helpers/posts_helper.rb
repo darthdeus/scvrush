@@ -61,7 +61,7 @@ module PostsHelper
     if post.featured_image
       image_tag post.featured_image.url
     else
-      image_tag "/assets/post_default_image.png"
+      image_tag "post_default_image.png"
     end
   end
 
