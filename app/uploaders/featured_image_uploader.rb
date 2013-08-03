@@ -9,7 +9,7 @@ class FeaturedImageUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
-    "/assets/default_avatar.png"
+    "default_avatar.png"
   end
 
   # Create different versions of your uploaded files:
