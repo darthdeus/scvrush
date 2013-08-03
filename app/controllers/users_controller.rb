@@ -9,7 +9,7 @@ class UsersController < AuthenticatedController
   end
 
   def show
-    @user = User.find(params[:id]).decorate
+    @user = User.find(params[:id])
   end
 
   def edit
