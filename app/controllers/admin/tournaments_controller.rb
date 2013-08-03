@@ -13,7 +13,7 @@ module Admin
               "<a href='/#/tournaments/#{tournament.id}' target='_blank'>#{tournament.name}</a>",
               tournament.starts_at.to_s,
               "<a href='/admin/tournaments/#{tournament.id}/edit' target='_blank'>edit</a>&nbsp;" +
-              view_context.link_to("delete", "/admin/tournaments/#{tournament.id}", method: :delete)
+              view_context.link_to("delete", "/admin/tournaments/#{tournament.id}", method: :delete, confirm: "Are you sure?" )
             ]
           end
 
@@ -32,7 +32,7 @@ module Admin
       @tournament.user = current_user
 
       if @tournament.save
-        flash[:success] = "Tournament was created."
+        flash[:notice] = "Tournament was created."
         bracket = Bracket.new(@tournament)
 
         redirect_to @tournament
@@ -48,7 +48,7 @@ module Admin
     def update
       @tournament = Tournament.find(params[:id])
       if @tournament.update_attributes(params[:tournament])
-        flash[:success] = "Tournament was updated."
+        flash[:notice] = "Tournament was updated."
         redirect_to admin_tournaments_path
       else
         render :edit
@@ -57,7 +57,7 @@ module Admin
 
     def destroy
       Tournament.find(params[:id]).destroy
-      flash[:success] = "Tournament was deleted."
+      flash[:notice] = "Tournament was deleted."
       redirect_to admin_tournaments_path
     end
 

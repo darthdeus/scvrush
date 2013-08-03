@@ -19,7 +19,8 @@ module Admin
               user.email,
               user.bnet_info,
               user.bnet_code,
-              "<a href='/admin/users/#{user.id}/edit'>edit</a>"
+              view_context.link_to("edit", edit_user_path(user)) + "&nbsp;".html_safe +
+              view_context.link_to("delete", admin_user_path(user), method: "delete", data: { confirm: "Are you sure?" })
             ]
           end
 
@@ -35,7 +36,7 @@ module Admin
     def create
       @user = User.new(params[:user])
       if @user.save
-        flash[:success] = "User was succesfuly created"
+        flash[:notice] = "User was succesfuly created"
         redirect_to admin_users_path
       else
         render :new
@@ -49,7 +50,7 @@ module Admin
     def update
       @user = User.find(params[:id])
       if @user.update_attributes(params[:user])
-        flash[:success] = "User was updated."
+        flash[:notice] = "User was updated."
         redirect_to admin_users_path
       else
         render :edit
@@ -60,7 +61,7 @@ module Admin
       @user = User.find(params[:id])
       @user.destroy
 
-      redirect_to admin_users_path, success: "User was successfully removed."
+      redirect_to admin_users_path, notice: "User was successfully removed."
     end
   end
 end

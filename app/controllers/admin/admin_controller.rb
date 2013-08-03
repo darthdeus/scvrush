@@ -1,3 +1,5 @@
+require "datable"
+
 module Admin
   class AdminController < ApplicationController
 

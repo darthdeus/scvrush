@@ -14,7 +14,7 @@ class Datable
     {
       sEcho: @params[:sEcho].to_i,
       iTotalRecords: @klass.count,
-      iTotalDisplayRecords: items.total_count,
+      iTotalDisplayRecords: items.count,
       aaData: data
     }
   end
@@ -46,7 +46,7 @@ class Datable
   # Fetch the items from the database
   def fetch_items
     items = @klass.order("#{sort_column} #{sort_direction}")
-    items = items.page(page).per(per_page)
+    items = items.page(page).per_page(per_page)
     if @params[:sSearch].present?
       query = @fields.map { |field| "#{field} ilike :search" }.join(" OR ")
       items = items.where(query, search: "%#{@params[:sSearch]}%")
