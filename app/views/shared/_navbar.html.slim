@@ -15,14 +15,6 @@
       - if current_user.trial?
         li = link_to "Activate your account", new_activation_path
 
-      li
-        a.chat href="http://chat.scvrush.com" target="_blank"
-          = image_tag "chat_button_text.png"
-
-      /*if Scvrush.currentUser.currentOpponent*/
-      /*  li*/
-      /*    ' You're currently playing against*/
-
     ul.nav.pull-right
       /*li = link_to "Staff", staff_path*/
       li = link_to "Contact", contact_path
