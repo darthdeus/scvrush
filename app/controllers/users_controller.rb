@@ -19,7 +19,8 @@ class UsersController < AuthenticatedController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
-      redirect_to @user, notice: "Your profile was updated"
+      flash[:notice] = "Your profile was updated."
+      redirect_back_or @user
     else
       render :edit
     end

@@ -39,6 +39,10 @@ class TournamentPlayerDecorator
     end
   end
 
+  def signup
+    @tournament.signup_for(@user)
+  end
+
   def next_opponent
   end
 

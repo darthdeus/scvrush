@@ -20,4 +20,4 @@
 
   - unless tournament.seeded?
     = link_to "Randomize players", randomize_tournament_path(tournament), method: "put", class: "btn btn-small", data: { confirm: "Are you sure? This will delete all of the current signups." }
-    = link_to "Edit", edit_tournament_path(tournament), class: "btn btn-small"
+    = link_to "Edit", edit_admin_tournament_path(tournament), class: "btn btn-small"

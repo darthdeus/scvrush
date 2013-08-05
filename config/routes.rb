@@ -26,6 +26,7 @@ Scvrush::Application.routes.draw do
   resources :sessions
 
   resources :tournaments do
+    resources :signups
     member do
       get :signups
       get :checked_trial_players

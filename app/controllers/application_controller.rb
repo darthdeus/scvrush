@@ -21,6 +21,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def redirect_back_or(model)
+    if session[:redirect_back]
+      uri = session[:redirect_back].dup
+      session[:redirect_back] = nil
+      redirect_to uri
+    else
+      redirect_to model
+    end
+  end
+
   def current_user
     return @current_user if @current_user
 

@@ -7,11 +7,9 @@
 
     h3 Tell us about yourself
 
-    form
-      .control-group
-        input type="text" placeholder="Battle.net info"
-      .control-group
-        textarea rows="5" cols="50" placeholder="Bio"
+    = simple_form_for @user do |f|
+      = f.input :bnet_info, label: "Battle.net information", placeholder: "For example Vogin.123"
+      = f.input :race, collection: %w{zerg terran protoss random}
+      = f.input :about
 
-      .actions
-        button.btn type="submit" Save
+      button.btn.btn type="submit" Save
