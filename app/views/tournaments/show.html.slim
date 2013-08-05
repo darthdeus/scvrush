@@ -49,7 +49,7 @@
 
     .registered-players
       ul.unstyled.tournament-players
-        - tournament.checked_players.each do |user|
+        - @tournament.checked_players.each do |user|
           li class="#{user == current_user ? "current-player" : ""}"
             = link_to user do
               = user_race_icon user
