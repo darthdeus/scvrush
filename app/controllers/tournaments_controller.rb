@@ -49,7 +49,7 @@ class TournamentsController < AuthenticatedController
       @tournament.destroy
       redirect_to tournaments_path, notice: "Tournament was deleted"
     else
-      redirect_to @tournament, notice: "You're not authorized to do this"
+      redirect_to @tournament, notice: "You're not authorized to delete this tournament."
     end
   end
 
