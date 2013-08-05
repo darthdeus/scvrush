@@ -30,7 +30,7 @@ html
     = render "users/navbar"
 
     .container-wrap
-      div class="span3 sidebar #{current_user.race}"
+      div class="span3 sidebar main-sidebar #{current_user.race}"
         - if content_for?(:sidebar)
           = yield :sidebar
         - else
