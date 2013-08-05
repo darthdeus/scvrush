@@ -43,10 +43,6 @@
   - else
     h4 Tournament Signup
 
-    .row
-      p.alert.alert-info.span7
-        ' The tournament is already started.
-
     .registered-players
       ul.unstyled.tournament-players
         - @tournament.checked_players.each do |user|
