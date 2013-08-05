@@ -1,5 +1,4 @@
-class SignupsController < ApplicationController
-  before_filter :require_login
+class SignupsController < AuthenticatedController
   before_filter :require_bnet_username
 
   def create
