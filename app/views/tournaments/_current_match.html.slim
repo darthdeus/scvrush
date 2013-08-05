@@ -40,7 +40,7 @@
 
       .row
         .span5
-          - current_user.recommended_coaches.each do |coach|
+          - current_user.recommended_coaches[0..1].each do |coach|
             h4 Fancy a Coach?
 
             = link_to coach, class: "coach" do
