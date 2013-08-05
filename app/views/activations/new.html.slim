@@ -6,7 +6,7 @@ h1 Activate your account
   .span6
     ' Once you submit this form your account will be activated.
     ' You currently have a <strong>trial account, which is fully functional
-    ' but will be automatically deleted on {{expiresIn}} GMT</strong>.
+    ' but will be automatically deleted on #{current_user.expires_at}</strong>.
 
 = simple_form_for @user, url: activations_path, class: "well", method: "post" do |f|
 
