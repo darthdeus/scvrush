@@ -52,8 +52,10 @@
           - else
             = link_to "Check in", [@tournament, player.signup], method: "put", class: "btn btn-success"
 
-        '
-        = link_to "Cancel registration", [@tournament, player.signup], method: "delete", class: "btn"
+        - if player.signup
+          '
+          = link_to "Cancel registration", tournament_signup_path(@tournament, player.signup), method: "delete", class: "btn"
+
       - else
         = link_to "Register", tournament_signups_path(@tournament), method: "post", class: "btn btn-success"
     - else
