@@ -7,10 +7,6 @@
       - @coach.servers.each do |server|
         span.tag = server
 
-  .about = markdown @coach.about
-
-  hr
-
   .row
     .span12
       .pull-left
@@ -20,6 +16,10 @@
       .pull-left
         - @coach.languages.each do |language|
           = image_tag "flags/#{language}.png"
+
+  hr
+
+  .about = markdown @coach.about
 
   hr
 
