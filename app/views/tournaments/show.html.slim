@@ -26,13 +26,15 @@
 
       - if current_user.trial?
         .alert.alert-danger
-          p You're playing on a temporary account
+          .row
+            .span1 style="width: 20px;" = image_tag "red_exclamation_mark.png", style: "height: 40px; display: inline-block; margin-left: 10px;"
+            .span4
+              p You're playing on a temporary account
           ul
             li It allows you to play in a tournament without getting a real account.
             li You will lose all statuses, achievements, followers and other features in 48 hours. #{link_to "Learn more", "http://scvrush.com/posts/10185"}
             li The website remembers your temporary account even if you leave.
 
-          = image_tag "red_exclamation_mark.png", style: "height: 40px; display: inline-block; margin-left: 10px;"
 
   - if @tournament.started?
     - if @tournament.empty?
