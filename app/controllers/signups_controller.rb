@@ -1,6 +1,10 @@
 class SignupsController < AuthenticatedController
   before_filter :require_bnet_username
 
+  def index
+    @tournament = Tournament.find(params[:tournament_id])
+  end
+
   def create
     @tournament = Tournament.find(params[:tournament_id])
     @signup = Signup.for(current_user, @tournament)
