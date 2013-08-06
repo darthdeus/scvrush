@@ -101,7 +101,7 @@ class User < ActiveRecord::Base
 
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, unless: "self.new_record?"
-  validates :email, uniqueness: true
+  validates :email, uniqueness: true, if: "self.email.present?"
   validates :password, confirmation: true
   validates_presence_of :password, on: :create
   validates_with TrialEmailValidator
