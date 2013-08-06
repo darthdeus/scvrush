@@ -100,6 +100,7 @@ class User < ActiveRecord::Base
   end
 
   validates :username, presence: true, uniqueness: true
+  validates :email, presence: true, unless: "self.new_record?"
   validates :email, uniqueness: true
   validates :password, confirmation: true
   validates_presence_of :password, on: :create

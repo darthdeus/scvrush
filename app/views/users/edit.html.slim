@@ -8,6 +8,7 @@
     h3 Tell us about yourself
 
     = simple_form_for @user do |f|
+      = f.input :email
       = f.input :bnet_info, label: "Battle.net information", placeholder: "For example Vogin.123"
       = f.input :race, collection: %w{zerg terran protoss random}
       = f.input :about
