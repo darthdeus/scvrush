@@ -30,10 +30,12 @@
           a href="/meet-scvrush" title="SCV Rush Comic Iintro"
             = image_tag "slider_comic.png"
 
+    h1 Upcoming Tournaments
     - @upcoming_tournaments.each do |tournament|
-      .upcoming-tournament
+      .upcoming-tournament.row style="margin-bottom: 10px;"
         = link_to tournament do
-          = tournament_image tournament
+          .span2 = tournament_image tournament
+          .span3: h2 = tournament.name
 
   - if false
     .dashboard-posts
