@@ -5,7 +5,7 @@ class Randomizer
     marauder medivac zealot stalker archon sentry carrier phoenix scv}
 
   def self.username
-    "%s-%s-%i" % [ADJECTIVES.sample, UNITS.sample, rand() * 10000]
+    "%s-%s-%i" % [ADJECTIVES.sample, UNITS.sample, rand() * 1000000]
   end
 
   def self.email_for(username)
