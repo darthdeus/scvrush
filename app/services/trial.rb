@@ -4,7 +4,6 @@ class Trial
     username, email = Randomizer.credentials
     {
       username: username,
-      email: email,
       password: SecureRandom.urlsafe_base64,
       expires_at: 2.days.from_now
     }
