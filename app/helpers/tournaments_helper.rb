@@ -11,8 +11,7 @@ module TournamentsHelper
   end
 
   def registration_button(registration)
-    link_to registration.button_text, tournament_signups_path(registration.tournament),
-            class: "btn btn-success"
+    content_tag :button, registration.button_text, class: "btn btn-success", type: "submit"
   end
 
   # Button to start a tournament right now

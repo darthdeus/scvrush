@@ -5,7 +5,7 @@
   = cancel_registration_button @registration
 - else
 
-  = form_tag tournament_signups_path(@registration.tournament), class: "form-horizontal" do |f|
+  = form_tag tournament_signups_path(@registration.tournament), class: "form-horizontal", method: "post" do |f|
     = label_tag :bnet_info, "Battle.net information"
     = text_field_tag :bnet_info, @registration.user.bnet_info, placeholder: "For example Vogin.123"
     '

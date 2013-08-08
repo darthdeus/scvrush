@@ -1,2 +1,5 @@
-h1 Signups for #{@tournament.name}
+h1 Signups for #{link_to @tournament.name, @tournament}
 
+ul
+  - @tournament.signups.each do |signup|
+    li = signup
