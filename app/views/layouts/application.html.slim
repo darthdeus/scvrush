@@ -39,10 +39,11 @@ html
       .span12
         - unless flash.empty?
           - flash.each do |key, value|
-            #flash class="#{flash_class(key)} fade in padded" style="margin-top: 20px;"
-              button type="button" class="close" data-dismiss="alert" &times;
-              '
-              = value
+            - if value.present?
+              #flash class="#{flash_class(key)} fade in padded" style="margin-top: 20px;"
+                button type="button" class="close" data-dismiss="alert" &times;
+                '
+                = value
 
         = yield
 

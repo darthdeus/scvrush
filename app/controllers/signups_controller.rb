@@ -10,6 +10,7 @@ class SignupsController < AuthenticatedController
     @signup = Signup.for(current_user, @tournament)
 
     current_user.bnet_info = params[:bnet_info]
+    current_user.race = params[:race]
     current_user.skip_email_validation = true
     current_user.save!
 

@@ -12,6 +12,8 @@ class UserRegistrator < Struct.new(:signup)
     when :register_and_check_in
       register_and_check_in(registration)
       "You've been registered and automatically checked in. Please wait for the tournament to start."
+    when :update
+      "Your profile was updated."
     end
   end
 
