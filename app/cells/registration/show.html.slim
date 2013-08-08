@@ -1,0 +1,13 @@
+- if @registration.checked_in?
+  button.btn.btn-success disabled="disabled" You are checked in
+
+- if @registration.registered?
+  = cancel_registration_button @registration
+- else
+
+  = form_tag tournament_signups_path(@registration.tournament), class: "form-horizontal" do |f|
+    = label_tag :bnet_info, "Battle.net information"
+    = text_field_tag :bnet_info, @registration.user.bnet_info, placeholder: "For example Vogin.123"
+    '
+
+    = registration_button @registration

@@ -50,27 +50,7 @@
   - else
     h4 Tournament Signup
 
-    - if current_user.bnet_info.present?
-      - player = TournamentPlayerDecorator.new(current_user, @tournament)
-      - if player.registered? || player.checked_in?
-        - if @tournament.checkin_open?
-          - if player.checked_in?
-            button.btn.btn-success disabled="disabled" You are checked in
-          - else
-            = link_to "Check in", [@tournament, player.signup], method: "put", class: "btn btn-success"
-
-        - if player.signup
-          '
-          = link_to "Cancel registration", tournament_signup_path(@tournament, player.signup), method: "delete", class: "btn"
-
-      - else
-        = link_to "Register", tournament_signups_path(@tournament), method: "post", class: "btn btn-success"
-    - else
-      p.alert.alert-warning
-        ' You need to
-        = link_to "set your battle.net information and race", tournament_signups_path(@tournament), method: "post"
-        '  to sign up for this tournament.
-
+    = render_cell :registration, :show, tournament: @tournament, user: current_user
 
     .row: .span12: .registered-players
       ul.unstyled.tournament-players

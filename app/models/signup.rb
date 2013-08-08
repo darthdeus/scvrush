@@ -30,16 +30,9 @@ class Signup < ActiveRecord::Base
     self.status == CHECKED
   end
 
-  # Set the signup status and save
-  #
-  # Returns true if the signup was successful, otherwise false.
-  def signup!
-    if self.tournament.checkin_open?
-      self.status = CHECKED
-    else
-      self.status = REGISTERED
-    end
-    self.save!
+  def register
+    self.status = REGISTERED
+    self.save
   end
 
   def checkin
@@ -47,19 +40,9 @@ class Signup < ActiveRecord::Base
     self.save
   end
 
-  def checkin!
-    self.status = CHECKED
-    self.save!
-  end
-
   def cancel
     self.status = CANCELED
     self.save
-  end
-
-  def cancel_checkin
-    self.status = REGISTERED
-    self.save!
   end
 
 end

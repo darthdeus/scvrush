@@ -99,8 +99,13 @@ class User < ActiveRecord::Base
     end
   end
 
+  attr_writer :skip_email_validation
+  def skip_email_validation?
+    new_record? || @skip_email_validation
+  end
+
   validates :username, presence: true, uniqueness: true
-  validates :email, presence: true, unless: "self.new_record?"
+  validates :email, presence: true, unless: "self.skip_email_validation?"
   validates :email, uniqueness: true, if: "self.email.present?"
   validates :password, confirmation: true
   validates_presence_of :password, on: :create

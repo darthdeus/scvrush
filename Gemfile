@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
-gem "rails",        "4.0.0"
+gem "rails", "~> 4.0.0"
+# gem "rails", github: "rails/rails"
 gem "protected_attributes"
 
 gem "bcrypt-ruby",  "~> 3.0.1", require: "bcrypt"
@@ -10,6 +11,7 @@ gem "tire"
 # gem "catsocket_client", path: "../catsocket_client"
 
 gem "bootstrap-will_paginate", "~> 0.0.9"
+gem "cells"
 
 gem "rdiscount"
 gem "draper",             "~> 1.1.0"
@@ -47,7 +49,6 @@ gem "execjs", "~> 1.4.0"
 gem "geoip"
 
 group :development, :test do
-  gem "web-console"
   gem "pry-rails",  "~> 0.2.2"
   gem "pry-nav",    "~> 0.2.1"
   gem "pry-remote"

@@ -1,48 +1,29 @@
-class UserRegistrator < Struct.new(:user, :tournament)
+class UserRegistrator < Struct.new(:signup)
+  def forward
+    registration = TournamentRegistration.new(signup.tournament, signup.user)
 
-  def signup
-    signup = Signup.for(user, tournament)
-    signup.signup!
-    Tournament.reset_counters(tournament.id, :signups)
-    publish(tournament, user)
-    signup
-  end
-
-  def checkin
-    signup = Signup.for(user, tournament)
-    signup.checkin!
-    Tournament.reset_counters(tournament.id, :signups)
-    publish(tournament, user)
-    signup
-  end
-
-  def post_status(signup)
-    status = nil
-
-    if signup.checked?
-      status = Status.create!(user: user, text: "I've just checked in for #{signup.tournament.name}")
-    else
-      status = Status.create!(user: user, text: "I've just signed up for #{signup.tournament.name}")
+    case registration.status
+    when :register
+      register(registration)
+      "You have successfully registered for the tournament."
+    when :registered
+      check_in(registration)
+      "You've been checked in! Enjoy the tournament."
+    when :register_and_check_in
+      register_and_check_in(registration)
+      "You've been registered and automatically checked in. Please wait for the tournament to start."
     end
-
-    json = StatusSerializer.new(status).as_json(root: false)
-
-    CS.publish("scvrush", {
-      type: "Scvrush.Status",
-      data: json
-    })
-  rescue Errno::ECONNREFUSED => e
-    Rails.logger.error e
-  rescue RestClient::UnprocessableEntity => e
-    Rails.logger.error e
   end
 
-  def publish(tournament, user)
-    # json = TournamentSerializer.new(tournament, scope: user).as_json
-    # CS.publish("scvrush", {
-    #   type: "Scvrush.Tournament",
-    #   data: json
-    # })
+  def register(registration)
+    signup.register
   end
 
+  def check_in(registration)
+    signup.checkin
+  end
+
+  def register_and_check_in(registration)
+    signup.checkin
+  end
 end

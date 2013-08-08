@@ -4,54 +4,15 @@ module TournamentsHelper
     image_tag tournament.image_name
   end
 
-  def tournament_button(tour, text, options)
-    action_params = { controller: :signups, action: options[:action], id: tour.id }
-    link_to action_params, method: options[:method], class: "btn btn-large #{options[:class]}" do
-      html = content_tag(:i, "", class: "#{options[:icon]} icon-white")
-      html << text
-      html.html_safe
-    end
+  def cancel_registration_button(registration)
+    link_to "Cancel registration",
+            tournament_signup_path(registration.tournament, registration.signup),
+            method: "delete", class: "btn"
   end
 
-  # Cancel signup button
-  def cancel_signup_button(tour)
-    text    = "Cancel your registration for the tournament"
-    options = {
-      action: :destroy,
-      method: :delete,
-      class: "btn-danger",
-      icon: "icon-remove"
-    }
-    tournament_button(tour, text, options)
-  end
-
-  def checkin_button(tour, text = "Check in")
-    options = {
-      action: :update,
-      method: :put,
-      class: "btn-success",
-      icon: "icon-ok"
-    }
-    tournament_button(tour, text, options)
-  end
-
-  def signup_button(tour, text = "Sign up for the tournament")
-    options = {
-      action: :create,
-      method: :post,
-      class: "btn-success",
-      icon: "icon-ok"
-    }
-    tournament_button(tour, text, options)
-  end
-
-
-  def submit_match_result_button
-    confirm = "Are you sure? Once you submit the match result, you will have to contact an admin to change it."
-    content = '<i class="icon-ok icon-white"></i>Submit the result'
-    button_tag type: "submit", class: "btn btn-success btn-large", :"data-confirm" => confirm do
-      content.html_safe
-    end
+  def registration_button(registration)
+    link_to registration.button_text, tournament_signups_path(registration.tournament),
+            class: "btn btn-success"
   end
 
   # Button to start a tournament right now

@@ -1,5 +1,5 @@
 class SignupsController < AuthenticatedController
-  before_filter :require_bnet_username
+  # before_filter :require_bnet_username
 
   def index
     @tournament = Tournament.find(params[:tournament_id])
@@ -8,24 +8,16 @@ class SignupsController < AuthenticatedController
   def create
     @tournament = Tournament.find(params[:tournament_id])
     @signup = Signup.for(current_user, @tournament)
-    if @signup.signup!
-      flash[:notice] = "You have successfuly registered to the tournament."
-    else
-      flash[:success] = "You can't register for a given tournament"
-    end
 
-    redirect_to @tournament
-  end
+    current_user.bnet_info = params[:bnet_info]
+    current_user.skip_email_validation = true
+    current_user.save!
 
-  def update
-    @tournament = Tournament.find(params[:tournament_id])
-    @user = TournamentPlayerDecorator.new(current_user, @tournament)
-    if @user.registered?
-      current_user.check_in(@tournament)
-      flash[:notice] = "You've been checked in! Enjoy the tournament."
-    else
-      flash[:notice] = "You can't check in because you're not registered. Please contact the tournament administrator."
-    end
+    registrator = UserRegistrator.new(@signup)
+    message = registrator.forward
+
+    flash[:notice] = message
+
     redirect_to @tournament
   end
 
