@@ -6,7 +6,7 @@ class UserRegistrator < Struct.new(:signup)
     when :register
       register(registration)
       "You have successfully registered for the tournament."
-    when :registered
+    when :check_in
       check_in(registration)
       "You've been checked in! Enjoy the tournament."
     when :register_and_check_in

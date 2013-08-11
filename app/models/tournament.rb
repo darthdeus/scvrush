@@ -121,7 +121,8 @@ class Tournament < ActiveRecord::Base
   end
 
   def checkin_open?
-    self.starts_at < 60.minutes.from_now && self.starts_at > Time.now
+    now = Time.zone.now
+    now > (starts_at - 1.hour) && now < starts_at
   end
 
   def started?

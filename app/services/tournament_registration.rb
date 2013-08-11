@@ -14,6 +14,10 @@ class TournamentRegistration
     player.registered?
   end
 
+  def check_in?
+    status == :check_in
+  end
+
   def status
     if player.checked_in?
       :update

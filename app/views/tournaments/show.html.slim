@@ -55,7 +55,7 @@
     .row: .span12: .registered-players
       ul.unstyled.tournament-players
         - @tournament.users.each do |user|
-          li
+          li class="#{TournamentRegistration.new(@tournament, user).checked_in? ? "checked-in" : ""}"
             = link_to user do
               = user_race_icon user
               div.name = user.bnet_info

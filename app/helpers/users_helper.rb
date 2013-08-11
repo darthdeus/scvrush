@@ -12,8 +12,7 @@ module UsersHelper
       when "protoss" then image_tag("race_protoss_icon.png", class: "race-icon")
       when "terran"  then image_tag("race_terran_icon.png", class: "race-icon")
       when "random"  then image_tag("race_random_icon.png", class: "race-icon")
-
-      # else raise ArgumentError, "Invalid race"
+      else image_tag("race_random_icon.png", class: "race-icon")
     end
   end
 
