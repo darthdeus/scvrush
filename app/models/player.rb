@@ -32,7 +32,7 @@ module Player
     def check_in(tournament)
       signup = self.signups.where(tournament_id: tournament.id).first
       if signup
-        signup.checkin!
+        signup.checkin
       else
         raise NotRegistered.new("Trying to check in a user who isn't registered!")
       end
