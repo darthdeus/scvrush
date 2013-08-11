@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_user, :logged_in?
 
-  private
+  protected
 
   def require_login
     unless logged_in?
@@ -38,6 +38,7 @@ class ApplicationController < ActionController::Base
     if user
       @current_user = user
     else
+      redirect_to root_path, notice: "There was an error when creating a trial account, we've been notified"
       session.delete(:user_id)
       nil
     end
@@ -50,6 +51,12 @@ class ApplicationController < ActionController::Base
 
   def logged_in?
     !!current_user
+  end
+
+  def login_or_trial
+    unless logged_in?
+      user = Trial.new.create(session, request.remote_ip)
+    end
   end
 
 end

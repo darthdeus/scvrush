@@ -15,9 +15,13 @@
           - else
             = link_to "Follow", follow_user_path(@user), class: "btn btn-mini btn-success", method: "put"
 
+    nav.user-sections
+      .btn.active Feed
+      = link_to "Account", edit_user_path(current_user), class: "btn"
+
     .statuses
       - if @user == current_user
-        = form_for :status do |f|
+        = form_for Status.new do |f|
           = f.text_field :text, placeholder: "Post a status"
 
       - @user.timeline_statuses.each do |status|

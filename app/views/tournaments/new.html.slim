@@ -14,7 +14,7 @@
     = f.input :max_players, collection: Tournament::MAX_PLAYERS
     = f.input :channel
     = f.input :description
-    = f.input :starts_at, as: :string, input_html: { class: "datepicker" }
+    = f.input :starts_at
     .horizontal-checkboxes
       = f.input :leagues, as: :check_boxes, collection: Tournament::LEAGUES, label: false
 
