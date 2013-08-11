@@ -35,12 +35,12 @@
         .span5.box
             ' You've lost against
             / TODO - fix this
-            strong = current_match.winner
+            strong = current_match.winner.bnet_info
             /*.pull-right = render "user.follow_button" currentOpponent*/
 
       .row
         .span5
-          - current_user.recommended_coaches[0..1].each do |coach|
+          - current_user.recommended_coaches[0...1].each do |coach|
             h4 Fancy a Coach?
 
             = link_to coach, class: "coach" do
