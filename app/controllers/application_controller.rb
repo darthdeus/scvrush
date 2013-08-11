@@ -32,6 +32,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
+    login_or_trial
     return @current_user if @current_user
 
     user = User.find_by_id(session[:user_id])
@@ -54,8 +55,8 @@ class ApplicationController < ActionController::Base
   end
 
   def login_or_trial
-    unless logged_in?
-      user = Trial.new.create(session, request.remote_ip)
+    unless User.exists?(id: session[:user_id])
+      Trial.new.create(session, request.remote_ip)
     end
   end
 
