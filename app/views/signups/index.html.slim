@@ -1,16 +1,27 @@
-h1 Signups for #{link_to @tournament.name, @tournament}
+.signups
+  h1 Signups for #{link_to @tournament.name, @tournament}
 
-table.table.table-bordered.table-striped
-  thead: tr
-    th User
-    th Signup time
-    th Status
-    th Actions
-  tbody
-    - @tournament.signups.each do |signup|
-      tr
-        td = link_to signup.bnet_info, signup.user
-        td = distance_of_time_in_words_to_now signup.created_at
-        td = signup.status_text
-        td = link_to "delete", tournament_signup_path(@tournament, signup, admin: true), method: "delete", class: "btn btn-mini btn-danger", data: { confirm: "Are you sure?" }
+  table.table.table-bordered.table-striped
+    thead: tr
+      th User
+      th Signup time
+      th Status
+      th Actions
+    tbody
+      - @tournament.signups.each do |signup|
+        tr class="#{signup.checked? ? "checked-in" : ""}"
+          td = link_to signup.bnet_info, signup.user
+          td = distance_of_time_in_words_to_now signup.created_at
+          td = signup.status_text
+          td
+            = link_to "delete", tournament_signup_path(@tournament, signup, admin: true), method: "delete", class: "btn btn-mini btn-danger", data: { confirm: "Are you sure?" }
+            - if signup.registered?
+              '
+              = link_to "check in", check_in_user_tournament_signup_path(@tournament, signup), method: "put", class: "btn btn-mini btn-success"
 
+  h4 Add more users
+
+  = form_tag add_user_tournament_signups_path(@tournament), method: "post", class: "form-horizontal" do
+    = text_field_tag :user, "", class: "user-typeahead", autocomplete: "off"
+    '
+    button.btn.btn-primary type="submit" Add user

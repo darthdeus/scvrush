@@ -39,6 +39,10 @@ class Signup < ActiveRecord::Base
     end
   end
 
+  def registered?
+    self.status == REGISTERED
+  end
+
   def checked?
     self.status == CHECKED
   end
@@ -57,5 +61,4 @@ class Signup < ActiveRecord::Base
     self.status = CANCELED
     self.save
   end
-
 end

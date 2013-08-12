@@ -1,5 +1,9 @@
 Scvrush::Application.routes.draw do
 
+  namespace :api do
+    resources :users
+  end
+
   namespace :admin do
     resources :tournaments do
       resources :signups
@@ -26,7 +30,10 @@ Scvrush::Application.routes.draw do
   resources :sessions
 
   resources :tournaments do
-    resources :signups
+    resources :signups do
+      collection { post :add_user }
+      member { put :check_in_user }
+    end
     member do
       get :signups
       get :checked_trial_players
