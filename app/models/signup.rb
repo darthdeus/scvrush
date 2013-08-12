@@ -26,6 +26,19 @@ class Signup < ActiveRecord::Base
     signup || new(user: user, tournament: tournament)
   end
 
+  def bnet_info
+    user.bnet_info
+  end
+
+  def status_text
+    case status
+    when CHECKED then "Checked in"
+    when REGISTERED then "Registered"
+    when CANCELED then "Canceled"
+    else "Invalid status" # TODO notify
+    end
+  end
+
   def checked?
     self.status == CHECKED
   end

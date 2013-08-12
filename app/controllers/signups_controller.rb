@@ -23,9 +23,17 @@ class SignupsController < AuthenticatedController
   end
 
   def destroy
-    @tournament = Tournament.find(params[:tournament_id])
-    @tournament.unregister(current_user)
-    redirect_to @tournament, notice: "Your registration was canceled. We're sorry to see you go."
+    tournament = Tournament.find(params[:tournament_id])
+    if params[:admin]
+      authorize! :manage, Tournament
+      signup = tournament.signups.find(params[:id])
+      tournament.unregister(signup.user)
+
+      redirect_to tournament, notice: "Signup was deleted."
+    else
+      tournament.unregister(current_user)
+      redirect_to tournament, notice: "Your registration was canceled. We're sorry to see you go."
+    end
   end
 
   protected

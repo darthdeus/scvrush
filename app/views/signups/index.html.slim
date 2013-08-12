@@ -1,5 +1,16 @@
 h1 Signups for #{link_to @tournament.name, @tournament}
 
-ul
-  - @tournament.signups.each do |signup|
-    li = signup
+table.table.table-bordered.table-striped
+  thead: tr
+    th User
+    th Signup time
+    th Status
+    th Actions
+  tbody
+    - @tournament.signups.each do |signup|
+      tr
+        td = link_to signup.bnet_info, signup.user
+        td = distance_of_time_in_words_to_now signup.created_at
+        td = signup.status_text
+        td = link_to "delete", tournament_signup_path(@tournament, signup, admin: true), method: "delete", class: "btn btn-mini btn-danger", data: { confirm: "Are you sure?" }
+
