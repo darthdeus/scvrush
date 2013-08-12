@@ -6,11 +6,6 @@
 //= require bootstrap
 
 $(function() {
-  Trackets.init({
-    api_key: "fad2a363d5c034a49804f2c64ffe4856",
-    api_base_url: "http://trackets.com"
-  });
-
   var navbar = $(".user-navbar");
 
   $(window).scroll(function(event) {
