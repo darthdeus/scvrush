@@ -5,6 +5,7 @@ Scvrush::Application.routes.draw do
   end
 
   namespace :admin do
+    get "/" => "home#index"
     resources :tournaments do
       resources :signups
     end
