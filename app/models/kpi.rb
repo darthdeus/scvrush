@@ -8,6 +8,6 @@ class Kpi
   end
 
   def tournament_checkins
-    Signup.where("created_at > ? AND status = ?", 1.week.ago, Signup::REGISTERED).size
+    Signup.where("created_at > ? AND status = ?", 1.week.ago, Signup::CHECKED).size
   end
 end
