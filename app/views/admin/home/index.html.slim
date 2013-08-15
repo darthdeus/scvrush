@@ -1,1 +1,16 @@
-h1 Welcome to SCV Rush administration interface
+h1 This week's statistics
+
+
+table.table.table-bordered.table-striped style="width: 400px;"
+  tbody
+    tr
+      td Activated User Accounts
+      td = @kpi.activated_account_count
+
+    tr
+      td Tournament Signups
+      td = @kpi.tournament_signups
+
+    tr
+      td Tournament Checkins
+      td = @kpi.tournament_checkins
