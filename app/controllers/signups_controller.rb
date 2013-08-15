@@ -43,7 +43,7 @@ class SignupsController < AuthenticatedController
     if params[:user]
       flash[:notice] = "User was added to the tournament"
 
-      id = params[:user][/\A\d+/][0..-1]
+      id = params[:user][/\A\d+/]
       user = User.find(id)
 
       signup = Signup.for(user, tournament)

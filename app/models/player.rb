@@ -38,7 +38,6 @@ module Player
       end
     end
 
-
   end
 
   def self.included(receiver)
