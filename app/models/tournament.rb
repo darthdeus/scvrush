@@ -11,6 +11,7 @@ class Tournament < ActiveRecord::Base
   validates :name, presence: true
   validates :starts_at, presence: true
 
+  TYPE_USER = "User"
   TYPES = %w(EU_BSG EU_BS EU_GP EU_D EU_DM EU_PD EU_Masters NA_Friday NA_BSG NA_PD NA_M User Bronze_Week)
   REGIONS = %w(EU NA KR SEA)
   MAX_PLAYERS = %w(4 8 16 32 64 128)

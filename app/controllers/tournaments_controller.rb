@@ -16,11 +16,9 @@ class TournamentsController < AuthenticatedController
   end
 
   def create
-    @tournament = current_user.tournaments.build(params[:tournament])
-    @tournament.tournament_type = "User"
-    @tournament.bo_preset = "1"
+    @tournament = TournamentCreator.new.create(current_user, params[:tournament])
 
-    if @tournament.save
+    if @tournament.valid?
       flash[:notice] = "Tournament was created."
       redirect_to @tournament
     else
