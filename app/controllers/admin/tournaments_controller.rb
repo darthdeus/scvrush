@@ -49,7 +49,7 @@ module Admin
       @tournament = Tournament.find(params[:id])
       if @tournament.update_attributes(params[:tournament])
         flash[:notice] = "Tournament was updated."
-        redirect_to admin_tournaments_path
+        redirect_to @tournament
       else
         render :edit
       end
