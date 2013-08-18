@@ -20,6 +20,6 @@ div class="#{current_user.race} user-navbar navbar-fixed-top"
 
       li
         - if current_user.trial?
-          = link_to "Log in", login_path
+          = link_to "Log in", login_path(redirect_back: request.original_url)
         - else
-          = link_to "Log out", logout_path, method: "delete"
+          = link_to "Log out", logout_path(redirect_back: request.original_url), method: "delete"
