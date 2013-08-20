@@ -13,9 +13,4 @@
       '
       = registration_button @registration
 
-    .race-picker.choice-picker
-      input type="hidden" name="race"
-      span.race-zerg data-value="zerg"
-      span.race-protoss data-value="protoss"
-      span.race-terran data-value="terran"
-      span.race-random data-value="random"
+    = render "shared/race_picker"

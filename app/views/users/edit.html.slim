@@ -10,9 +10,11 @@
     = simple_form_for @user do |f|
       = f.input :email
       = f.input :bnet_info, label: "Battle.net information", placeholder: "For example Vogin.123"
-      = f.input :race, collection: %w{zerg terran protoss random}
       = f.input :about
+      = render "shared/race_picker"
+      = render "shared/league_picker"
 
-      button.btn.btn type="submit" Save
-      '
-      = link_to "back to account", current_user
+      .actions
+        button.btn.btn type="submit" Save
+        '
+        = link_to "back to account", current_user
