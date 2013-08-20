@@ -29,82 +29,16 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: achievements; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE achievements (
-    id integer NOT NULL,
-    name character varying(255),
-    slug character varying(255),
-    description text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: achievements_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE achievements_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: achievements_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE achievements_id_seq OWNED BY achievements.id;
-
-
---
--- Name: blog_posts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE blog_posts (
-    id integer NOT NULL,
-    title character varying(255),
-    url character varying(255),
-    "order" integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: blog_posts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE blog_posts_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: blog_posts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE blog_posts_id_seq OWNED BY blog_posts.id;
-
-
---
 -- Name: coaches; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE TABLE coaches (
     id integer NOT NULL,
-    "order" integer,
-    title character varying(255),
-    post_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    name character varying(255),
+    about text,
+    races character varying(255)[],
+    servers character varying(255)[],
+    languages character varying(255)[]
 );
 
 
@@ -128,23 +62,23 @@ ALTER SEQUENCE coaches_id_seq OWNED BY coaches.id;
 
 
 --
--- Name: games; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: followings; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE TABLE games (
+CREATE TABLE followings (
     id integer NOT NULL,
-    winner integer NOT NULL,
-    match_id integer NOT NULL,
+    follower_id integer,
+    followee_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
 
 
 --
--- Name: games_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: followings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE games_id_seq
+CREATE SEQUENCE followings_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -153,10 +87,10 @@ CREATE SEQUENCE games_id_seq
 
 
 --
--- Name: games_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: followings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE games_id_seq OWNED BY games.id;
+ALTER SEQUENCE followings_id_seq OWNED BY followings.id;
 
 
 --
@@ -166,8 +100,8 @@ ALTER SEQUENCE games_id_seq OWNED BY games.id;
 CREATE TABLE images (
     id integer NOT NULL,
     image character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -300,8 +234,8 @@ CREATE TABLE posts (
     title character varying(255),
     content text,
     featured_image character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
     status integer DEFAULT 0,
     user_id integer,
     published_at timestamp without time zone,
@@ -326,41 +260,6 @@ CREATE SEQUENCE posts_id_seq
 --
 
 ALTER SEQUENCE posts_id_seq OWNED BY posts.id;
-
-
---
--- Name: relationships; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE relationships (
-    id integer NOT NULL,
-    requestor_id integer NOT NULL,
-    requestor_type character varying(255) NOT NULL,
-    requestee_id integer NOT NULL,
-    requestee_type character varying(255) NOT NULL,
-    restricted boolean DEFAULT true,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: relationships_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE relationships_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: relationships_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE relationships_id_seq OWNED BY relationships.id;
 
 
 --
@@ -446,10 +345,10 @@ CREATE TABLE signups (
     id integer NOT NULL,
     tournament_id integer,
     user_id integer,
+    status integer DEFAULT 0,
     placement integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    status integer DEFAULT 0
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -576,9 +475,8 @@ CREATE TABLE tournaments (
     id integer NOT NULL,
     name character varying(255),
     starts_at timestamp without time zone,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    post_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
     winner_id integer,
     seeded boolean DEFAULT false,
     tournament_type character varying(255),
@@ -591,7 +489,11 @@ CREATE TABLE tournaments (
     visible boolean,
     channel character varying(255),
     logo character varying(255),
-    max_players integer
+    max_players integer,
+    region character varying(255),
+    signups_count integer DEFAULT 0,
+    leagues character varying(255) DEFAULT '--- []
+'::character varying
 );
 
 
@@ -615,38 +517,6 @@ ALTER SEQUENCE tournaments_id_seq OWNED BY tournaments.id;
 
 
 --
--- Name: user_achievements; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE user_achievements (
-    id integer NOT NULL,
-    user_id integer,
-    achievement_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: user_achievements_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE user_achievements_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: user_achievements_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE user_achievements_id_seq OWNED BY user_achievements.id;
-
-
---
 -- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -656,8 +526,8 @@ CREATE TABLE users (
     email character varying(255),
     password_hash character varying(255),
     password_salt character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
     auth_token character varying(255),
     password_reset_token character varying(255),
     password_reset_sent_at timestamp without time zone,
@@ -667,18 +537,12 @@ CREATE TABLE users (
     race character varying(255),
     league character varying(255),
     server character varying(255),
-    favorite_player character varying(255),
-    skype character varying(255),
-    msn character varying(255),
-    display_email boolean DEFAULT false,
-    display_skype boolean DEFAULT false,
-    display_msn boolean DEFAULT false,
     about text,
     practice boolean,
-    twitter character varying(255),
-    time_zone character varying(255),
     api_key character varying(255),
-    expires_at timestamp without time zone
+    expires_at timestamp without time zone,
+    follower_ids_cache text,
+    followee_ids_cache text
 );
 
 
@@ -749,20 +613,6 @@ ALTER SEQUENCE votes_id_seq OWNED BY votes.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY achievements ALTER COLUMN id SET DEFAULT nextval('achievements_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY blog_posts ALTER COLUMN id SET DEFAULT nextval('blog_posts_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY coaches ALTER COLUMN id SET DEFAULT nextval('coaches_id_seq'::regclass);
 
 
@@ -770,7 +620,7 @@ ALTER TABLE ONLY coaches ALTER COLUMN id SET DEFAULT nextval('coaches_id_seq'::r
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY games ALTER COLUMN id SET DEFAULT nextval('games_id_seq'::regclass);
+ALTER TABLE ONLY followings ALTER COLUMN id SET DEFAULT nextval('followings_id_seq'::regclass);
 
 
 --
@@ -806,13 +656,6 @@ ALTER TABLE ONLY pages ALTER COLUMN id SET DEFAULT nextval('pages_id_seq'::regcl
 --
 
 ALTER TABLE ONLY posts ALTER COLUMN id SET DEFAULT nextval('posts_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY relationships ALTER COLUMN id SET DEFAULT nextval('relationships_id_seq'::regclass);
 
 
 --
@@ -868,13 +711,6 @@ ALTER TABLE ONLY tournaments ALTER COLUMN id SET DEFAULT nextval('tournaments_id
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY user_achievements ALTER COLUMN id SET DEFAULT nextval('user_achievements_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
@@ -886,22 +722,6 @@ ALTER TABLE ONLY votes ALTER COLUMN id SET DEFAULT nextval('votes_id_seq'::regcl
 
 
 --
--- Name: achievements_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY achievements
-    ADD CONSTRAINT achievements_pkey PRIMARY KEY (id);
-
-
---
--- Name: blog_posts_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY blog_posts
-    ADD CONSTRAINT blog_posts_pkey PRIMARY KEY (id);
-
-
---
 -- Name: coaches_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -910,11 +730,11 @@ ALTER TABLE ONLY coaches
 
 
 --
--- Name: games_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: followings_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY games
-    ADD CONSTRAINT games_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY followings
+    ADD CONSTRAINT followings_pkey PRIMARY KEY (id);
 
 
 --
@@ -958,14 +778,6 @@ ALTER TABLE ONLY posts
 
 
 --
--- Name: relationships_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY relationships
-    ADD CONSTRAINT relationships_pkey PRIMARY KEY (id);
-
-
---
 -- Name: roles_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -979,6 +791,14 @@ ALTER TABLE ONLY roles
 
 ALTER TABLE ONLY rounds
     ADD CONSTRAINT rounds_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY schema_migrations
+    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
 
 
 --
@@ -1022,14 +842,6 @@ ALTER TABLE ONLY tournaments
 
 
 --
--- Name: user_achievements_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY user_achievements
-    ADD CONSTRAINT user_achievements_pkey PRIMARY KEY (id);
-
-
---
 -- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1043,20 +855,6 @@ ALTER TABLE ONLY users
 
 ALTER TABLE ONLY votes
     ADD CONSTRAINT votes_pkey PRIMARY KEY (id);
-
-
---
--- Name: index_coaches_on_post_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_coaches_on_post_id ON coaches USING btree (post_id);
-
-
---
--- Name: index_games_on_match_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_games_on_match_id ON games USING btree (match_id);
 
 
 --
@@ -1137,38 +935,10 @@ CREATE INDEX index_taggings_on_tagger_id ON taggings USING btree (tagger_id);
 
 
 --
--- Name: index_tournaments_on_post_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_tournaments_on_post_id ON tournaments USING btree (post_id);
-
-
---
 -- Name: index_tournaments_on_winner_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
 CREATE INDEX index_tournaments_on_winner_id ON tournaments USING btree (winner_id);
-
-
---
--- Name: index_user_achievements_on_achievement_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_user_achievements_on_achievement_id ON user_achievements USING btree (achievement_id);
-
-
---
--- Name: index_user_achievements_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_user_achievements_on_user_id ON user_achievements USING btree (user_id);
-
-
---
--- Name: index_user_achievements_on_user_id_and_achievement_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_user_achievements_on_user_id_and_achievement_id ON user_achievements USING btree (user_id, achievement_id);
 
 
 --
@@ -1196,15 +966,27 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 -- PostgreSQL database dump complete
 --
 
+SET search_path TO "$user",public;
+
 INSERT INTO schema_migrations (version) VALUES ('20111028235258');
 
+INSERT INTO schema_migrations (version) VALUES ('20111029141705');
+
+INSERT INTO schema_migrations (version) VALUES ('20111029142857');
+
 INSERT INTO schema_migrations (version) VALUES ('20111116164602');
+
+INSERT INTO schema_migrations (version) VALUES ('20111116173720');
+
+INSERT INTO schema_migrations (version) VALUES ('20111116173741');
 
 INSERT INTO schema_migrations (version) VALUES ('20111117233745');
 
 INSERT INTO schema_migrations (version) VALUES ('20111118020239');
 
 INSERT INTO schema_migrations (version) VALUES ('20111118030113');
+
+INSERT INTO schema_migrations (version) VALUES ('20111118144950');
 
 INSERT INTO schema_migrations (version) VALUES ('20111118152842');
 
@@ -1344,6 +1126,8 @@ INSERT INTO schema_migrations (version) VALUES ('20120926220208');
 
 INSERT INTO schema_migrations (version) VALUES ('20121019093659');
 
+INSERT INTO schema_migrations (version) VALUES ('20121216100237');
+
 INSERT INTO schema_migrations (version) VALUES ('20121221040640');
 
 INSERT INTO schema_migrations (version) VALUES ('20121221040650');
@@ -1363,3 +1147,29 @@ INSERT INTO schema_migrations (version) VALUES ('20130214155519');
 INSERT INTO schema_migrations (version) VALUES ('20130214155826');
 
 INSERT INTO schema_migrations (version) VALUES ('20130214205722');
+
+INSERT INTO schema_migrations (version) VALUES ('20130320190957');
+
+INSERT INTO schema_migrations (version) VALUES ('20130320211405');
+
+INSERT INTO schema_migrations (version) VALUES ('20130326130515');
+
+INSERT INTO schema_migrations (version) VALUES ('20130326150639');
+
+INSERT INTO schema_migrations (version) VALUES ('20130326150948');
+
+INSERT INTO schema_migrations (version) VALUES ('20130327233008');
+
+INSERT INTO schema_migrations (version) VALUES ('20130404205208');
+
+INSERT INTO schema_migrations (version) VALUES ('20130405102843');
+
+INSERT INTO schema_migrations (version) VALUES ('20130406055344');
+
+INSERT INTO schema_migrations (version) VALUES ('20130515093210');
+
+INSERT INTO schema_migrations (version) VALUES ('20130602101551');
+
+INSERT INTO schema_migrations (version) VALUES ('20130730132539');
+
+INSERT INTO schema_migrations (version) VALUES ('20130820183725');
