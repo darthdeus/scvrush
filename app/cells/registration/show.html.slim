@@ -6,9 +6,16 @@
 
 - if @registration.check_in? || !@registration.registered?
   = form_tag tournament_signups_path(@registration.tournament), class: "form-horizontal", method: "post" do |f|
-    = label_tag :bnet_info, "Battle.net information"
-    = select_tag "race", options_for_select(%w{zerg terran protoss random}, @registration.user.race)
-    '
-    = text_field_tag :bnet_info, @registration.user.bnet_info, placeholder: "For example Vogin.123"
-    '
-    = registration_button @registration
+
+    .control-group
+      = label_tag :bnet_info, "Battle.net information"
+      = text_field_tag :bnet_info, @registration.user.bnet_info, placeholder: "For example Vogin.123"
+      '
+      = registration_button @registration
+
+    .race-picker.choice-picker
+      input type="hidden" name="race"
+      span.race-zerg data-value="zerg"
+      span.race-protoss data-value="protoss"
+      span.race-terran data-value="terran"
+      span.race-random data-value="random"

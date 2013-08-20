@@ -5,12 +5,7 @@
   = form_tag activate_user_path(current_user), method: "put" do
 
     h2 Select your race
-    .race-picker.choice-picker
-      input type="hidden" name="race"
-      span.race-zerg data-value="zerg"
-      span.race-protoss data-value="protoss"
-      span.race-terran data-value="terran"
-      span.race-random data-value="random"
+    = render "shared/race_picker"
 
     h2 Select your league
 
