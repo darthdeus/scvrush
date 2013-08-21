@@ -11,8 +11,8 @@
       = f.input :email
       = f.input :bnet_info, label: "Battle.net information", placeholder: "For example Vogin.123"
       = f.input :about
-      = render "shared/race_picker"
-      = render "shared/league_picker"
+      = render "shared/race_picker", name: "user[race]", value: @user.league
+      = render "shared/league_picker", name: "user[league]", value: @user.league
 
       .actions
         button.btn.btn type="submit" Save

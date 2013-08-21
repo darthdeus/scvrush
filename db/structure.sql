@@ -492,8 +492,7 @@ CREATE TABLE tournaments (
     max_players integer,
     region character varying(255),
     signups_count integer DEFAULT 0,
-    leagues character varying(255) DEFAULT '--- []
-'::character varying
+    leagues character varying(255)[] DEFAULT '{}'::character varying[]
 );
 
 
@@ -1173,3 +1172,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130602101551');
 INSERT INTO schema_migrations (version) VALUES ('20130730132539');
 
 INSERT INTO schema_migrations (version) VALUES ('20130820183725');
+
+INSERT INTO schema_migrations (version) VALUES ('20130820190623');
