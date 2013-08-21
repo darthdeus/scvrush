@@ -18,6 +18,10 @@ class TournamentRegistration
     status == :check_in
   end
 
+  def user_race
+    user.race
+  end
+
   def status
     if player.checked_in?
       :update

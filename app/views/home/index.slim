@@ -5,10 +5,10 @@
   = form_tag activate_user_path(current_user), method: "put" do
 
     h2 Select your race
-    = render "shared/race_picker", name: "race"
+    = render "shared/race_picker", name: "race", value: ""
 
     h2 Select your league
-    = render partial: "shared/league_picker", name: "league"
+    = render "shared/league_picker", name: "league", value: ""
 
     - if current_user.server
       p We think you're playing on #{current_user.server}

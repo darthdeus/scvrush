@@ -5,5 +5,4 @@ class RegistrationCell < Cell::Rails
     @registration = TournamentRegistration.new(args[:tournament], args[:user])
     render
   end
-
 end
