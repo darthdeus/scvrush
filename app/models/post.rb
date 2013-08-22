@@ -42,6 +42,10 @@ class Post < ActiveRecord::Base
     tag_list.join " "
   end
 
+  def author_name
+    user ? user.username : ""
+  end
+
   def author_avatar_thumb
     self.user.avatar.url(:thumb)
   end
