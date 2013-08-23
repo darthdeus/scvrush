@@ -41,6 +41,4 @@ Scvrush::Application.configure do
   config.active_support.deprecation = :stderr
 
   config.active_record.mass_assignment_sanitizer = :strict
-
-  config.ember.variant = :development
 end
