@@ -24,8 +24,14 @@ class Tournament < ActiveRecord::Base
                   :rules, :map_info, :bo_preset, :map_preset, :visible,
                   :channel, :admin_names, :logo, :region, :max_players, :leagues
 
-  scope :recent, -> { order('starts_at DESC').limit(5) }
+  scope :in_range, ->(from, to) { where("starts_at > ? AND starts_at < ?", from, to) }
+  scope :ordered, -> { order("starts_at DESC") }
+  scope :recent, -> { order("starts_at DESC").limit(5) }
   scope :upcoming, -> { where("starts_at > ? AND tournament_type <> 'User'", Time.now).order(:starts_at) }
+  scope :past, -> { where("starts_at < ?", Time.zone.now) }
+  scope :official, -> { where("tournament_type <> ?", TYPE_USER) }
+
+  default_scope -> { order("starts_at DESC") }
 
   #mounting the logo
   mount_uploader :logo, LogoUploader

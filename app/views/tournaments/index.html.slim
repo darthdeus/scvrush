@@ -2,31 +2,38 @@
 
 .main-content: .tournaments.row
   .span9
-    h2 Upcoming Tournaments
+    h1
+      i.icon-trophy
+      '  Official SCV Rush Tournaments
 
-    - @grouped_tournaments.each do |date, tournaments|
+    ul.nav.nav-tabs
+      li.active: a href="#this-week" data-toggle="tab" This Week
+      li: a href="#next-week" data-toggle="tab" Next Week
+      li: a href="#past" data-toggle="tab" Past
+      li: a href="#all" data-toggle="tab" All
 
-      .tournament-day
-        h2 = date.strftime("%A")
+    .tab-content
+      .tab-pane.active#this-week
+        - if @tournaments.this_week.empty?
+          p There are no official SCV Rush tournaments for this week.
+        - else
+          - @tournaments.this_week.each do |date, tournaments|
+            = render "tournament_day", date: date, tournaments: tournaments
 
-        - tournaments.each do |tournament|
-          .tournament
+      .tab-pane#next-week
+        - if @tournaments.next_week.empty?
+          p There are no official SCV Rush tournaments for this week.
+        - else
+          - @tournaments.next_week.each do |date, tournaments|
+            = render "tournament_day", date: date, tournaments: tournaments
 
-            .time = tournament.starts_at.strftime("%I:%M %P %Z")
+      .tab-pane#past
+        - @tournaments.past.each do |date, tournaments|
+          = render "tournament_day", date: date, tournaments: tournaments
 
-            = link_to tournament do
-              = image_tag tournament.image_name
-
-            .description
-              h3 = link_to tournament.name, tournament
-
-              p
-                i.icon-user
-                '
-                = tournament.signups.size
-                |  people
-
-
+      .tab-pane#all
+        - @tournaments.all.each do |date, tournaments|
+          = render "tournament_day", date: date, tournaments: tournaments
   .span3
     = link_to "Create your own tournament", new_tournament_path, class: "btn btn-primary"
 

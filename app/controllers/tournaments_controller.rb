@@ -1,7 +1,8 @@
 class TournamentsController < AuthenticatedController
 
   def index
-    @grouped_tournaments = Tournament.order("starts_at DESC").limit(20).group_by { |tournament| tournament.starts_at.to_date }
+    @tournaments = TournamentsIndex.new
+    # @grouped_tournaments = Tournament.order("starts_at DESC").limit(20).group_by { |tournament| tournament.starts_at.to_date }
     @calendar_tournaments = Tournament.order("starts_at DESC")
                                         .where("created_at > ?", 1.month.ago)
                                         .group_by { |tournament| tournament.starts_at.to_date }

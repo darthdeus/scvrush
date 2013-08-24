@@ -1,0 +1,19 @@
+.tournament-day
+  h2 = date.strftime("%A")
+
+  - tournaments.each do |tournament|
+    .tournament
+
+      .time = tournament.starts_at.strftime("%I:%M %P %Z")
+
+      = link_to tournament do
+        = image_tag tournament.image_name
+
+      .description
+        h3 = link_to tournament.name, tournament
+
+        p
+          i.icon-user
+          '
+          = tournament.signups.size
+          |  people
