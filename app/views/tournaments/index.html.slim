@@ -46,6 +46,6 @@
       = calendar Time.zone.now do |date|
         - tournaments = @calendar_tournaments[date]
         - if tournaments
-          .day.tournament title=title_for_date(date) data-content=tournaments_popover(tournaments) = date.day
+          .day.tournament data-toggle="popover" title="#{title_for_date(date)}" data-content="#{tournaments_popover(tournaments)}" = link_to date.day, tournaments.first
         - else
           .day.empty = date.day

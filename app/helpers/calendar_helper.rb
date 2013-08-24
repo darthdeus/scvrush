@@ -60,7 +60,7 @@ module CalendarHelper
   end
 
   def tournaments_popover(tournaments)
-
+    tournaments.map { |tournament| tournament.name }.join(" ")
   end
 
 end

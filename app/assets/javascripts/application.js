@@ -56,4 +56,6 @@ $(function() {
       });
     }
   });
+
+  $(".calendar [data-toggle=popover]").popover({ trigger: "hover" })
 });
