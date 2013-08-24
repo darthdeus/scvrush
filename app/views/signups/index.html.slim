@@ -25,3 +25,10 @@
     = text_field_tag :user, "", class: "user-typeahead", autocomplete: "off"
     '
     button.btn.btn-primary type="submit" Add user
+
+
+  h4 Emails for checked in users
+
+  ul
+    - @tournament.checked_active_players.each do |player|
+      li = player.email
