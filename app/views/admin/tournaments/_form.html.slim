@@ -20,4 +20,7 @@
       = f.label :map_info
       = text_area_tag "tournament[map_info]", tournament.map_info || I18n.t("tournament.map_info"), rows: 20
 
+  .row
+    .span3
+      = f.input :description_after_bracket, input_html: { rows: 20 }, label: "Info after bracket"
   button.btn.btn-primary.btn-large type="submit" Submit

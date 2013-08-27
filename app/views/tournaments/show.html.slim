@@ -13,7 +13,10 @@
 
   .info
     .description
-      = markdown @tournament.description
+      - if @tournament.seeded?
+        = markdown @tournament.description_after_bracket || @tournament.description
+      - else
+        = markdown @tournament.description
 
       - if current_user.trial?
         = link_to home_path do

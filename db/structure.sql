@@ -526,7 +526,7 @@ CREATE TABLE tournaments (
     region character varying(255),
     signups_count integer DEFAULT 0,
     leagues character varying(255)[] DEFAULT '{}'::character varying[],
-    description_after_bracket character varying(255)
+    description_after_bracket text
 );
 
 

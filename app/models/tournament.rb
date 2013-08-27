@@ -20,9 +20,9 @@ class Tournament < ActiveRecord::Base
   validates :tournament_type, inclusion: TYPES
   validates :bo_preset, format: { with: /\A[\d ]+\z/ }
 
-  attr_accessible :name, :starts_at, :tournament_type, :description,
-                  :rules, :map_info, :bo_preset, :map_preset, :visible,
-                  :channel, :admin_names, :logo, :region, :max_players, :leagues
+  attr_accessible :name, :starts_at, :tournament_type, :description, :description_after_bracket,
+                  :rules, :map_info, :bo_preset, :map_preset, :visible, :channel,
+                  :admin_names, :logo, :region, :max_players, :leagues
 
   scope :in_range, ->(from, to) { where("starts_at > ? AND starts_at < ?", from, to) }
   scope :ordered, -> { order("starts_at DESC") }
