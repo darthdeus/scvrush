@@ -11,6 +11,7 @@ Scvrush::Application.routes.draw do
     end
     resources :posts
     resources :coaches
+    resources :battle_reports
     resources :users
 
     match "/staff" => "staff#index", via: :get
@@ -25,6 +26,7 @@ Scvrush::Application.routes.draw do
 
   resources :activations
   resources :coaches
+  resources :battle_reports
   resources :matches
   resources :posts
   resources :statuses

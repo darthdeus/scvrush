@@ -1,0 +1,7 @@
+= content_for :subnav do
+  li= link_to "back", admin_battle_reports_path
+
+section.admin-form
+  header: h1 Add new battle report
+
+  = render "form", battle_report: @battle_report

@@ -1,0 +1,7 @@
+.post
+  .content
+    h1 Battle Reports
+
+    h2
+      = link_to battle_report.title, battle_report
+      span.subtitle , #{distance_of_time_in_words_to_now battle_report.created_at} ago

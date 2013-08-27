@@ -1,0 +1,19 @@
+- site_title "Battle Report", @battle_report.title
+
+.single-post
+  section.post-content
+    article
+      h1 = @battle_report.title
+      div = markdown @battle_report.content
+
+    footer
+      = link_to "tournament" do
+        = image_tag "play_free_tournaments.png"
+
+  .post-nav
+    = link_to users_path do
+      = image_tag "post_nav_practice.png"
+    = link_to posts_path do
+      = image_tag "post_nav_content.png"
+    = link_to coaches_path do
+      = image_tag "post_nav_coaches.png"

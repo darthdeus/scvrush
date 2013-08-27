@@ -1,0 +1,8 @@
+= simple_form_for [:admin, battle_report], class: "well" do |f|
+
+  = f.input :title
+  = f.input :content
+  = f.association :tournament
+
+  hr
+  button.btn.btn-primary type="submit" Save
