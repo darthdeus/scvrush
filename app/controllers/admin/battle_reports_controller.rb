@@ -42,7 +42,7 @@ class Admin::BattleReportsController < Admin::AdminController
     end
 
     def destroy
-      Admin.find(params[:id]).destroy
+      BattleReport.find(params[:id]).destroy
       flash[:success] = "BattleReport was deleted"
       redirect_to admin_battle_reports_path
     end
