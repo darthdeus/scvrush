@@ -1,5 +1,4 @@
 class MatchSearch
-
   def initialize(matches)
     @matches = matches
   end

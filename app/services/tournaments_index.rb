@@ -1,10 +1,12 @@
 class TournamentsIndex
   def this_week
-    group_by_day(Tournament.in_range(Time.zone.now, 1.week.from_now).official.ordered)
+    now = Time.zone.now
+    group_by_day(Tournament.in_range(now.beginning_of_week, now.end_of_week).official.ordered)
   end
 
   def next_week
-    group_by_day(Tournament.in_range(1.week.from_now, 2.weeks.from_now).official.ordered)
+    week = 1.week.from_now
+    group_by_day(Tournament.in_range(week.beginning_of_week, week.end_of_week).official.ordered)
   end
 
   def past
@@ -17,6 +19,7 @@ class TournamentsIndex
 
   private
 
+  # :: [Tournament] -> { Date => [Tournament] }
   def group_by_day(tournaments)
     tournaments.group_by { |tournament| tournament.starts_at.to_date }
   end
