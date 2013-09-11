@@ -1,6 +1,12 @@
 class BattleReportsIndex
+  attr_reader :filter
+
+  def initialize(filter = nil)
+    @filter = filter
+  end
+
   def eu
-    all.where(tournaments: { region: "EU" })
+    results = all.where(tournaments: { region: "EU" })
   end
 
   def na
@@ -10,6 +16,8 @@ class BattleReportsIndex
   private
 
   def all
-    BattleReport.includes(:tournament)
+    results = BattleReport.includes(:tournament)
+    results = results.where(tournaments: { tournament_type: filter }) if filter
+    results
   end
 end

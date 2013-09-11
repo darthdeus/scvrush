@@ -7,34 +7,34 @@
       '  Official SCV Rush Battle Reports
 
     ul.nav.nav-tabs
-      li.active: a href="#eu" data-toggle="tab" EU
-      li: a href="#na" data-toggle="tab" NA
+      li class="tab-pane #{params[:na].present? ? "" : "active"}": a href="#eu" data-toggle="tab" EU
+      li class="tab-pane #{params[:na].present? ? "active" : ""}": a href="#na" data-toggle="tab" NA
 
     .tab-content
-      .tab-pane.active#eu
+      div id="eu" class="tab-pane #{params[:na].present? ? "" : "active"}"
         .row
           .span9 = render @battle_reports.eu
           .span3
             .battle-report-filter
               h4 Filter by Tournament
 
-              = link_to battle_reports_path(filter: "eu_bs") do
+              = link_to battle_reports_path(filter: "EU_BS") do
                 = image_tag "tournament_eu_bs.png"
-              = link_to battle_reports_path(filter: "eu_gp") do
+              = link_to battle_reports_path(filter: "EU_GP") do
                 = image_tag "tournament_eu_gp.png"
-              = link_to battle_reports_path(filter: "eu_dm") do
+              = link_to battle_reports_path(filter: "EU_DM") do
                 = image_tag "tournament_eu_dm.png"
 
-      .tab-pane#na
+      div id="na" class="tab-pane #{params[:na].present? ? "active" : ""}"
         .row
           .span9 = render @battle_reports.na
           .span3
             .battle-report-filter
               h4 Filter by Tournament
 
-              = link_to battle_reports_path(filter: "eu_bsg") do
+              = link_to battle_reports_path(filter: "NA_BSG", na: true) do
                 = image_tag "tournament_na_bsg.png"
-              = link_to battle_reports_path(filter: "eu_pd") do
+              = link_to battle_reports_path(filter: "NA_PD", na: true) do
                 = image_tag "tournament_na_pd.png"
-              = link_to battle_reports_path(filter: "eu_m") do
+              = link_to battle_reports_path(filter: "NA_M", na: true) do
                 = image_tag "tournament_na_m.png"

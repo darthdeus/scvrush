@@ -1,6 +1,6 @@
 class BattleReportsController < AuthenticatedController
   def index
-    @battle_reports = BattleReportsIndex.new
+    @battle_reports = BattleReportsIndex.new(params[:filter])
   end
 
   def show
