@@ -1,6 +1,6 @@
 class BattleReportsController < AuthenticatedController
   def index
-    @battle_reports = BattleReport.all
+    @battle_reports = BattleReportsIndex.new
   end
 
   def show

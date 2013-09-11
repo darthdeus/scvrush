@@ -1,7 +1,15 @@
-.post
-  .content
-    h1 Battle Reports
+.tournament
 
-    h2
-      = link_to battle_report.title, battle_report
-      span.subtitle , #{distance_of_time_in_words_to_now battle_report.created_at} ago
+  .time = battle_report.tournament_human_start
+
+  = link_to battle_report do
+    = image_tag battle_report.image_name
+
+  .description
+    h3 = link_to battle_report.title, battle_report
+
+    p
+      i.icon-user
+      '
+      = battle_report.signups_count
+      |  people

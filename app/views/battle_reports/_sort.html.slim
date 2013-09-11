@@ -1,0 +1,9 @@
+.battle-report-filter
+  h4 Filter by Tournament
+
+  = link_to battle_reports_path(filter: "#{region}_bs") do
+    = image_tag "tournament_#{region}_bs.png"
+  = link_to battle_reports_path(filter: "#{region}_gp") do
+    = image_tag "tournament_#{region}_gp.png"
+  = link_to battle_reports_path(filter: "#{region}_dm") do
+    = image_tag "tournament_#{region}_dm.png"

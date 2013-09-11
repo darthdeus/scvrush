@@ -1,2 +1,40 @@
-.main-content: .posts-index
-  = render @battle_reports
+- site_title "Battle Reports"
+
+.main-content: .battle-reports.tournaments.row
+  .span12
+    h1
+      i.icon-trophy
+      '  Official SCV Rush Battle Reports
+
+    ul.nav.nav-tabs
+      li.active: a href="#eu" data-toggle="tab" EU
+      li: a href="#na" data-toggle="tab" NA
+
+    .tab-content
+      .tab-pane.active#eu
+        .row
+          .span9 = render @battle_reports.eu
+          .span3
+            .battle-report-filter
+              h4 Filter by Tournament
+
+              = link_to battle_reports_path(filter: "eu_bs") do
+                = image_tag "tournament_eu_bs.png"
+              = link_to battle_reports_path(filter: "eu_gp") do
+                = image_tag "tournament_eu_gp.png"
+              = link_to battle_reports_path(filter: "eu_dm") do
+                = image_tag "tournament_eu_dm.png"
+
+      .tab-pane#na
+        .row
+          .span9 = render @battle_reports.na
+          .span3
+            .battle-report-filter
+              h4 Filter by Tournament
+
+              = link_to battle_reports_path(filter: "eu_bsg") do
+                = image_tag "tournament_na_bsg.png"
+              = link_to battle_reports_path(filter: "eu_pd") do
+                = image_tag "tournament_na_pd.png"
+              = link_to battle_reports_path(filter: "eu_m") do
+                = image_tag "tournament_na_m.png"

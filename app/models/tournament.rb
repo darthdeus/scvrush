@@ -2,8 +2,10 @@ class Tournament < ActiveRecord::Base
   has_many :signups, dependent: :destroy
   has_many :users, through: :signups
 
-  has_many :rounds, order: "number DESC", dependent: :destroy
-  has_many :matches, through: :rounds, order: "id"
+  has_many :rounds, -> { order("number DESC") }, dependent: :destroy
+  has_many :matches, -> { order("id") }, through: :rounds
+
+  has_one :battle_report, dependent: :destroy
 
   belongs_to :winner, class_name: 'User', foreign_key: 'winner_id'
   belongs_to :user
