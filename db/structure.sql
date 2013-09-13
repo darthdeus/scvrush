@@ -38,7 +38,10 @@ CREATE TABLE battle_reports (
     content text NOT NULL,
     tournament_id integer NOT NULL,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    vod character varying(255),
+    next_tournament character varying(255),
+    team_liquid character varying(255)
 );
 
 
@@ -570,8 +573,16 @@ CREATE TABLE users (
     race character varying(255),
     league character varying(255),
     server character varying(255),
+    favorite_player character varying(255),
+    skype character varying(255),
+    msn character varying(255),
+    display_email boolean DEFAULT false,
+    display_skype boolean DEFAULT false,
+    display_msn boolean DEFAULT false,
     about text,
     practice boolean,
+    twitter character varying(255),
+    time_zone character varying(255),
     api_key character varying(255),
     expires_at timestamp without time zone,
     follower_ids_cache text,
@@ -1227,3 +1238,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130820190623');
 INSERT INTO schema_migrations (version) VALUES ('20130827003310');
 
 INSERT INTO schema_migrations (version) VALUES ('20130827004741');
+
+INSERT INTO schema_migrations (version) VALUES ('20130913185734');

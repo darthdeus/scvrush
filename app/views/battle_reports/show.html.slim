@@ -1,10 +1,35 @@
 - site_title "Battle Report", @battle_report.title
 
-.single-post
-  section.post-content
-    article
-      h1 = @battle_report.title
-      div = markdown @battle_report.content
+.battle-report
+  header.overflow
+    .left
+      div
+        h1 = @battle_report.title
+
+        .overflow
+          h2.condensed
+            p
+              = @battle_report.players_count.to_s
+              |  players competed!
+
+        .overflow
+          h2.condensed
+            .float_left: p VODs:
+            .float_left = markdown @battle_report.vod
+
+        .overflow
+          h2.condensed
+            .float_left: p Next Tournament:
+            .float_left = markdown @battle_report.next_tournament
+
+    .right
+      div
+        = link_to @battle_report.team_liquid do
+          = image_tag "TL.png", :class => "tl_image"
+
+  hr
+  article.left
+    div = markdown @battle_report.content
 
     footer
       = link_to "tournament" do

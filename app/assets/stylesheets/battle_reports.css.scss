@@ -6,3 +6,48 @@
     }
   }
 }
+
+.battle-report {
+
+  h2.condensed, h2.condensed p {
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .float_left {
+    float: left;
+    margin-right: 5px;
+  }
+
+  .overflow {
+    overflow: hidden;
+  }
+
+  .left {
+    width: 500px;
+    float: left;
+  }
+
+  .right {
+    float: left;
+  }
+
+  .tl_image {
+    margin-top: 30px;
+  }
+
+  .post-nav {
+    float: right;
+    marin-top: 200px;
+
+    img {
+      display: block;
+      margin-bottom: 30px;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+
+}
