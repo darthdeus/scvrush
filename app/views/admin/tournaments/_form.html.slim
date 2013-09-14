@@ -2,6 +2,7 @@
 
   = f.input :name
   = f.input :starts_at
+  = f.input :region, collection: ["EU", "NA", "SEA", "KR"]
   .clearfix
 
   = f.input :tournament_type, collection: Tournament::TYPES
