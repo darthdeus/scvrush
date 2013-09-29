@@ -27,6 +27,7 @@ class Tournament < ActiveRecord::Base
                   :admin_names, :logo, :region, :max_players, :leagues
 
   scope :in_range, ->(from, to) { where("starts_at > ? AND starts_at < ?", from, to) }
+  scope :monday_first, -> { order("starts_at ASC") }
   scope :ordered, -> { order("starts_at DESC") }
   scope :recent, -> { order("starts_at DESC").limit(5) }
   scope :upcoming, -> { where("starts_at > ? AND tournament_type <> 'User'", Time.now).order(:starts_at) }
