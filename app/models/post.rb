@@ -47,7 +47,11 @@ class Post < ActiveRecord::Base
   end
 
   def author_avatar_thumb
-    self.user.avatar.url(:thumb)
+    user.avatar.url(:thumb)
+  end
+
+  def about_author
+    user.about
   end
 
   def readable_published_at
