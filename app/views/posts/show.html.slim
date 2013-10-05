@@ -11,7 +11,7 @@
         hr
 
         .author-box
-          h4 Author: #{@post.author_name}
+          h4 Author: #{link_to @post.author_name, @post.user}
 
           .row
             .span1 = image_tag @post.author_avatar_thumb, style: "width: 100px"
