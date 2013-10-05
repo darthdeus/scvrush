@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   has_many :statuses
   has_many :posts
 
-  has_many :notifications, dependent: :destroy, order: "created_at DESC"
+  has_many :notifications, -> { order("created_at DESC") }, dependent: :destroy
 
   attr_accessible :username, :email, :password, :password_confirmation,
                   :password_reset_token, :avatar, :race, :league, :server,
