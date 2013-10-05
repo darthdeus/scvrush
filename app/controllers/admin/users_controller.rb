@@ -15,7 +15,7 @@ module Admin
 
           table = Datable.new(User, fields, columns, params) do |user|
             [
-              "<a href='/#/users/#{user.id}' target='_blank'>#{user.username}</a>",
+              "<a href='/users/#{user.id}' target='_blank'>#{user.username}</a>",
               user.email,
               user.bnet_info,
               user.bnet_code,

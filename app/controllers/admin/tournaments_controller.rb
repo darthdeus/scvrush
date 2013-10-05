@@ -10,7 +10,7 @@ module Admin
           columns = %w[name starts_at]
           table   = Datable.new(Tournament, fields, columns, params) do |tournament|
             [
-              "<a href='/#/tournaments/#{tournament.id}' target='_blank'>#{tournament.name}</a>",
+              "<a href='/tournaments/#{tournament.id}' target='_blank'>#{tournament.name}</a>",
               tournament.starts_at.to_s,
               "<a href='/admin/tournaments/#{tournament.id}/edit' target='_blank'>edit</a>&nbsp;" +
               view_context.link_to("delete", "/admin/tournaments/#{tournament.id}", method: :delete, confirm: "Are you sure?" )

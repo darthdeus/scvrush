@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
   DELETED = 2
 
   attr_accessible :title, :content, :featured_image, :status,
-                  :user, :user_id, :comments_enabled, :tag_list
+                  :user, :user_id, :comments_enabled, :tag_list, :published_at
 
   belongs_to :user
   has_one :tournament
