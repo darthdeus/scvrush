@@ -15,7 +15,7 @@
 
           .row
             .span1 = image_tag @post.author_avatar_thumb, style: "width: 100px"
-            .span6 = @post.about_author
+            .span6 = markdown @post.about_author
         hr
       = link_to "tournament" do
         = image_tag "play_free_tournaments.png"
