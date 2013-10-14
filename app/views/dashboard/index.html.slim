@@ -35,17 +35,16 @@
           .span2 = tournament_image tournament
           .span3: h2 = tournament.name
 
-  - if false
-    .dashboard-posts
-      h3 News
+  .dashboard-posts
+    h3 Reading time!
 
-      - @news.each do |post|
-        .post
-          = link_to post, class: "image" do
-            = image_tag post.image
+    - @news.each do |post|
+      .post
+        = link_to post, class: "image" do
+          = image_tag post.featured_image.url(:thumb)
 
-          .content
-            h2
-              = link_to post.title, post
+        .content
+          h2
+            = link_to post.title, post
 
-            .text = markdown post.content
+          .text = markdown post.content
