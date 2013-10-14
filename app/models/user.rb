@@ -60,7 +60,8 @@ class User < ActiveRecord::Base
   end
 
   def suggested_posts
-    race.present? ? Post.search(race, per_page: 3)  : []
+    race_posts = race.present? ? Post.search(race, per_page: 2)  : Post.published.limit(2)
+    race_posts + [Post.tagged_with("fun").first]
   end
 
   # Return a user either by his username or by email.
