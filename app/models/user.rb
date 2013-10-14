@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
 
   def suggested_posts
     race_posts = race.present? ? Post.search(race, per_page: 2).to_a  : Post.published.limit(2).to_a
-    fun_post = Post.tagged_with("fun").first
+    fun_post = Post.published.tagged_with("fun").first
 
     fun_post ? race_posts + [fun_post] : race_posts
   end
