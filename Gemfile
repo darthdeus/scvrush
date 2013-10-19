@@ -18,6 +18,8 @@ gem "draper",             "~> 1.1.0"
 gem "simple_form"
 gem "active_model_serializers"
 
+gem "rock_config"
+
 gem "fog",                "~> 1.9.0"
 gem "carrierwave",        "~> 0.8.0"
 gem "mini_magick",        "~> 3.4"

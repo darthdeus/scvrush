@@ -45,6 +45,7 @@ namespace :deploy do
   end
 
   task :symlink_shared do
+    run "ln -nfs #{shared_path}/config/s3.yml  #{release_path}/config/s3.yml"
     run "ln -nfs #{shared_path}/config/database.yml  #{release_path}/config/database.yml"
     run "ln -nfs #{shared_path}/config/newrelic.yml  #{release_path}/config/newrelic.yml"
     run "ln -nfs #{shared_path}/config/unicorn.rb  #{release_path}/config/unicorn.rb"

@@ -189,6 +189,7 @@ GEM
     request_store (1.0.5)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    rock_config (0.0.6)
     rolify (3.2.0)
     rspec-core (2.13.1)
     rspec-expectations (2.13.0)
@@ -306,6 +307,7 @@ DEPENDENCIES
   rack-mini-profiler (~> 0.1.9)
   rails (~> 4.0.0)
   rdiscount
+  rock_config
   rolify (~> 3.2.0)
   rspec-rails (~> 2.13.0)
   sass-rails

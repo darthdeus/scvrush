@@ -5,9 +5,12 @@ tmp/
 .sass-cache/
 webrat.log
 coverage/
+
 config/sc2bc.yml
-b.log
 config/database.yml
+config/s3.yml
+
+b.log
 tags
 gems.tags
 .env
