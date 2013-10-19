@@ -3,7 +3,7 @@ CarrierWave.configure do |config|
     :provider               => "AWS",
     :aws_access_key_id      => ENV["AWS_ACCESS"],
     :aws_secret_access_key  => ENV["AWS_SECRET"],
-    :host                   => "https://s3.amazonaws.com/",
+    # :host                   => "s3.amazonaws.com",
     # :region                 => 'eu-west-1'  # optional, defaults to 'us-east-1'
   }
   config.fog_directory  = 'scvrush'
