@@ -17,6 +17,10 @@
       dt Server
       dd = user.server
 
+
+  h4 Tournament stats
+  p Participated in #{user.signups.size} tournaments and won #{user.won_tournaments.size} of them
+
   - if user.about
     .about = markdown user.about
 
