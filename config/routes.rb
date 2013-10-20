@@ -38,7 +38,6 @@ Scvrush::Application.routes.draw do
       member { put :check_in_user }
     end
     member do
-      get :signups
       get :checked_trial_players
       get :matches
 

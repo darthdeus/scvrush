@@ -2,11 +2,7 @@
 
 .tournament
   header
-    h1
-      = @tournament.name
-      - if @tournament.region
-        | @
-        = @tournament.region
+    h1 = @tournament.name
 
     - if current_user.tournament_admin?
       = render "tournaments/admin_box", tournament: @tournament
