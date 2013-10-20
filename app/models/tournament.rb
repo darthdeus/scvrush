@@ -112,7 +112,7 @@ class Tournament < ActiveRecord::Base
   # tournament.checked_users << user,
   # but I'm not sure ... need to check that with API documentation
   def checked_players
-    self.users.includes(:signups).where(signups: { status: 1 }).order(:id).all
+    self.users.includes(:signups).where(signups: { status: 1 }).order(:id).load
   end
 
   has_many :users, through: :signups

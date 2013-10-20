@@ -3,12 +3,6 @@ class Bracket < Struct.new(:tournament)
   class AlreadySubmitted < ::Exception; end
   class NotStartedYet < ::Exception; end
 
-  # attr_reader :tournament
-
-  # def initialize(tournament)
-  #   @tournament = tournament
-  # end
-
   # Create a bracket for a given tournament id
   def self.with_tournament(id)
     Bracket.new(Tournament.find(id))
@@ -20,12 +14,6 @@ class Bracket < Struct.new(:tournament)
       tournament_id: tournament.id
     }
   end
-
-  # Return JSON-formatted user data
-  # def to_json
-  #   user_data = map_users(@users)
-  #   user_data.to_json
-  # end
 
   def map_users(users)
     users.map.with_index { |user, index| { id: user.id, name: user.username, seed: index + 1 } }
