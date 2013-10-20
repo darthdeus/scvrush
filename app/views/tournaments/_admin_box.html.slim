@@ -1,5 +1,5 @@
 .admin.btn-group
-  = link_to "Signups", signups_tournament_path(tournament), class: "btn btn-small"
+  = link_to "Signups", tournament_signups_path(tournament_id: tournament.id), class: "btn btn-small"
   = link_to "Matches", matches_tournament_path(tournament), class: "btn btn-small"
 
   - if tournament.started?
