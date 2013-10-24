@@ -58,10 +58,10 @@ Scvrush::Application.routes.draw do
     end
   end
 
-  get "/:username" => "users#show"
-
   get "login" => "sessions#new", as: "login"
   delete "logout" => "sessions#destroy", as: "logout"
+
+  get "/:username" => "users#show"
 
   root to: "home#index"
 end
