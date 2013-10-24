@@ -36,6 +36,17 @@
       float: right;
       width: 400px;
     }
+
+    .accordion-heading a {
+      color: #000;
+      font-weight: bold;
+      background: #f0f0f0;
+
+      &:hover {
+        text-decoration: none;
+        background: #fafafa;
+      }
+    }
   }
 
   .tournament-signup {

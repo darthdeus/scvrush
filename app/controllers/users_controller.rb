@@ -9,7 +9,14 @@ class UsersController < AuthenticatedController
   end
 
   def show
-    @user = User.find(params[:id])
+    if params[:username]
+      redirect_to user_path(params[:username])
+    else
+      @user = User.find_by_username(params[:id])
+      if !@user
+        redirect_to users_path(User.find(params[:id]).username)
+      end
+    end
   end
 
   def edit
