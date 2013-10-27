@@ -1,4 +1,5 @@
 class TournamentsController < AuthenticatedController
+  after_action :allow_iframe
 
   def index
     @tournaments = TournamentsIndex.new
@@ -112,4 +113,9 @@ class TournamentsController < AuthenticatedController
     redirect_to tournament
   end
 
+  private
+
+  def allow_iframe
+    response.headers.except! 'X-Frame-Options'
+  end
 end
