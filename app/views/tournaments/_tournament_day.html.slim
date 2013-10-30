@@ -4,7 +4,7 @@
   - tournaments.each do |tournament|
     .tournament
 
-      .time = tournament.starts_at.strftime("%I:%M %P %Z")
+      .time = detailed_date(tournament.starts_at)
 
       = link_to tournament do
         = image_tag tournament.image_name

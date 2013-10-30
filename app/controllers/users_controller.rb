@@ -14,7 +14,7 @@ class UsersController < AuthenticatedController
     else
       @user = User.find_by_username(params[:id])
       if !@user
-        redirect_to users_path(User.find(params[:id]).username)
+        redirect_to user_path(User.find(params[:id]).username)
       end
     end
   end

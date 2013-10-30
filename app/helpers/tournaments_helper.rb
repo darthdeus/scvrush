@@ -1,4 +1,13 @@
 module TournamentsHelper
+  def detailed_date(datetime)
+    format = "%A %I:%M %P %Z"
+
+    est    = datetime.in_time_zone("Eastern Time (US & Canada)").strftime(format)
+    london = datetime.in_time_zone("London").strftime(format)
+    mdt    = datetime.in_time_zone("Mountain Time (US & Canada)").strftime(format)
+
+    "#{est}<br>#{london}<br>#{mdt}".html_safe
+  end
 
   def tournament_image(tournament)
     image_tag tournament.image_name
