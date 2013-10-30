@@ -2,8 +2,18 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery
   helper_method :current_user, :logged_in?
+  before_action :set_logger_request
 
   protected
+
+  def set_logger_request
+    BRACKET_LOG.request = request
+    true
+  end
+
+  def bracket_log(tournament, user, message)
+    BRACKET_LOG.info "Tournament: #{tournament.id}-#{tournament.name} #{user.id}-#{user.username}: #{message}"
+  end
 
   def require_login
     unless logged_in?

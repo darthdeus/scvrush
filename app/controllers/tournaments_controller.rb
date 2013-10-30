@@ -3,7 +3,6 @@ class TournamentsController < AuthenticatedController
 
   def index
     @tournaments = TournamentsIndex.new
-    # @grouped_tournaments = Tournament.order("starts_at DESC").limit(20).group_by { |tournament| tournament.starts_at.to_date }
     @calendar_tournaments = Tournament.order("starts_at DESC")
                                         .where("created_at > ?", 1.month.ago)
                                         .group_by { |tournament| tournament.starts_at.to_date }
@@ -21,6 +20,7 @@ class TournamentsController < AuthenticatedController
     @tournament = TournamentCreator.new.create(current_user, params[:tournament])
 
     if @tournament.valid?
+      bracket_log(@tournament, current_user, "Created tournament")
       flash[:notice] = "Tournament was created."
       redirect_to @tournament
     else
@@ -37,6 +37,7 @@ class TournamentsController < AuthenticatedController
     authorize! :edit, @tournament
 
     if @tournament.update_attributes(params[:tournament])
+      bracket_log(@tournament, current_user, "Updated tournament #{params[:tournament]}")
       redirect_to @tournament
     else
       render :edit
@@ -66,6 +67,8 @@ class TournamentsController < AuthenticatedController
     tournament.seeded = true
     tournament.save!
 
+    bracket_log(tournament, current_user, "Seeded tournament")
+
     flash[:notice] = "Tournament was seeded"
     redirect_to tournament
   end
@@ -79,6 +82,8 @@ class TournamentsController < AuthenticatedController
     tournament.rounds.destroy_all
 
     tournament.save!
+
+    bracket_log(tournament, current_user, "Destroyed seed")
 
     flash[:notice] = "Tournament seed was deleted"
     redirect_to tournament
@@ -98,6 +103,8 @@ class TournamentsController < AuthenticatedController
 
     unless tournament.started?
       tournament.start
+
+      bracket_log(tournament, current_user, "Started")
     end
 
     redirect_to tournament
@@ -109,6 +116,8 @@ class TournamentsController < AuthenticatedController
     tournament.users = users
     tournament.users << current_user
     tournament.users.each { |u| u.check_in(tournament) }
+
+    bracket_log(tournament, current_user, "Randomized")
 
     redirect_to tournament
   end

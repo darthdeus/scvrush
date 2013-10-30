@@ -12,6 +12,8 @@ class MatchesController < AuthenticatedController
       # TODO - use hash instead of an id
       winner = bracket.set_score_for(current_user, params[:score], false, params[:opponent_id])
 
+      BRACKET_LOG.info "#{current_user.to_debug} submitted score #{params[:score]} against #{params[:opponent_id]}"
+
       if winner == current_user
         flash[:success] = "Congratulations, you won the tournament!"
       else
@@ -40,11 +42,16 @@ class MatchesController < AuthenticatedController
 
     bracket = Bracket.new(match.round.tournament)
 
+    BRACKET_LOG.info "#{current_user.to_debug} updated match #{match.id} with params #{params.to_json}"
     if match.save
+      BRACKET_LOG.info "SUCCESS"
+
       bracket.seed_next_match_with(match.winner, match)
 
       redirect_to tournament_path(match.tournament, admin_view: 1)
     else
+      BRACKET_LOG.info "FAILED"
+
       raise ActiveRecord::RecordInvalid, "Invalid match, this shouldn't happen"
     end
   end

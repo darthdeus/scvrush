@@ -34,6 +34,8 @@ class User < ActiveRecord::Base
 
   attr_accessor :password, :validate_trial_email
 
+  after_save :log_changes
+
   mount_uploader :avatar, AvatarUploader
 
   include Tire::Model::Search
@@ -216,6 +218,14 @@ class User < ActiveRecord::Base
     Status.where(user_id: followees.map(&:id) + [self.id]).order("created_at DESC")
   end
 
+  def to_debug
+    "#{id}-#{username}"
+  end
+
+  def log_changes
+    BRACKET_LOG.info "#{to_debug} updated params to #{to_json}"
+    true
+  end
 end
 
 class NotRegistered < Exception
