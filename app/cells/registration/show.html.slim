@@ -14,7 +14,7 @@
       = registration_button @registration
 
     .race-picker.choice-picker
-      input type="hidden" name="race"
+      input type="hidden" name="race" value="#{@registration.user_race}"
       span.race-zerg data-value="zerg"
       span.race-protoss data-value="protoss"
       span.race-terran data-value="terran"

@@ -9,6 +9,10 @@
 
   .info
     .description
+      - if !@tournament.started?
+        h4 Tournament Signup
+        = render_cell :registration, :show, tournament: @tournament, user: current_user
+
       - if @tournament.seeded?
         = markdown @tournament.description_after_bracket || @tournament.description
       - else
@@ -47,9 +51,6 @@
       = render "tournaments/rounds", tournament: @tournament
 
   - else
-    h4 Tournament Signup
-
-    = render_cell :registration, :show, tournament: @tournament, user: current_user
 
     .row: .span12: .registered-players
       ul.unstyled.tournament-players
