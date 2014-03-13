@@ -24,20 +24,6 @@ class Post < ActiveRecord::Base
 
   mount_uploader :featured_image, FeaturedImageUploader
 
-  include Tire::Model::Search
-  include Tire::Model::Callbacks
-  mapping do
-    indexes :id,          index: :not_analyzed
-    indexes :title,       analyzer: "snowball", boost: 100
-    indexes :content,     analyzer: "snowball"
-    indexes :tag_names,   analyzer: "snowball", boost: 200
-    indexes :author_name, analyzer: "snowball", boost: 50
-  end
-
-  def to_indexed_json
-    to_json(only: [:title, :content], methods: [:tag_names, :author_name])
-  end
-
   def tag_names
     tag_list.join " "
   end

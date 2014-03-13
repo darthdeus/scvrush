@@ -39,18 +39,6 @@ class Tournament < ActiveRecord::Base
   #mounting the logo
   mount_uploader :logo, LogoUploader
 
-  include Tire::Model::Search
-  include Tire::Model::Callbacks
-
-  mapping do
-    indexes :id,       index: :not_analyzed
-    indexes :name,     analyzer: "snowball", boost: 100
-  end
-
-  def to_indexed_json
-    to_json(only: [:name])
-  end
-
   def admins
     User.with_role(:tournament_admin, self) - User.with_role(:tournament_admin)
   end

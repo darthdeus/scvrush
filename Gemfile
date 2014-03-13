@@ -7,7 +7,6 @@ gem "protected_attributes"
 gem "bcrypt-ruby",  "~> 3.0.1", require: "bcrypt"
 
 gem "pg",                       "~> 0.14.0"
-gem "tire"
 # gem "catsocket_client", path: "../catsocket_client"
 
 gem "bootstrap-will_paginate", "~> 0.0.9"
