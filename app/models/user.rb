@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
                   :favorite_player, :skype, :display_skype, :msn,
                   :display_msn, :display_email, :about, :avatar,
                   :bnet_code, :bnet_username, :twitter, :time_zone, :practice,
-                  :image, :bnet_info, :expires_at, :tournament_admin
+                  :image, :bnet_info, :expires_at, :tournament_admin, :main_admin
 
   attr_accessor :password, :validate_trial_email
 
@@ -90,6 +90,18 @@ class User < ActiveRecord::Base
       grant(:tournament_admin)
     else
       revoke(:tournament_admin)
+    end
+  end
+
+  def main_admin
+    has_role?(:admin)
+  end
+
+  def main_admin=(value)
+    if value
+      grant(:admin)
+    else
+      revoke(:admin)
     end
   end
 
