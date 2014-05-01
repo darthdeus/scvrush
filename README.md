@@ -1,1 +1,1 @@
-# Welcome to SCV Rush
+# SCV Rush
